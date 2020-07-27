@@ -30,35 +30,25 @@ public class Candidato implements Bean {
 	private String mansione;
 	@Column(name = "seniority")
 	private String seniority;
-	@Column(name = "contatto")
-	private Boolean contatto;
-	@Column(name = "commento_contatto")
-	private String commenti_contatto;
-	@Column(name = "colloquio")
-	private Date colloquio;
-	@Column(name = "commento_colloquio")
-	private String commenti_colloquio;
-	@Column(name = "da_ricontattare")
-	private String ricontatto;
-	@Column(name = "qualification_meeting")
-	private String qualification_meeting;
-	@Column(name = "azienda_qm")
-	private String azienda_qm;
-	@Column(name = "commento_qm")
-	private String commenti_qm;
-	@Column(name = "in")
-	private Date in;
+	@Column(name = "competenza")
+	private String competenza;
+	@Column(name = "inserimento_azienda")
+	private Date inserimentoAzienda;
+	
 //	private File allegato;
+
 	@ManyToMany(cascade = { CascadeType.ALL })
-	/*JoinTable specifica la tabella di mezzo
-	 * JoinColumn = inzialmente si specifica la foreignKey della classe in cui mi trovo
-	 * InverseJoinColumn = foreignKey dell' altra entità
+	/*
+	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
+	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
+	 * dell' altra entità
 	 */
 	@JoinTable(name = "candidato_competenza", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_competenza_fk") })
-	Set<Competenza> competenze = new HashSet<>();
-
+	Set<Sinonimo> competenze = new HashSet<>();
+	
 	// Getter & Setter
+
 	public int getId() {
 		return id;
 	}
@@ -123,92 +113,27 @@ public class Candidato implements Bean {
 		this.seniority = seniority;
 	}
 
-	public Boolean getContatto() {
-		return contatto;
+	public String getCompetenza() {
+		return competenza;
 	}
 
-	public void setContatto(Boolean contatto) {
-		this.contatto = contatto;
+	public void setCompetenza(String competenza) {
+		this.competenza = competenza;
 	}
 
-
-
-	public String getCommenti_contatto() {
-		return commenti_contatto;
+	public Date getInserimentoAzienda() {
+		return inserimentoAzienda;
 	}
 
-	public void setCommenti_contatto(String commenti_contatto) {
-		this.commenti_contatto = commenti_contatto;
+	public void setInserimentoAzienda(Date inserimentoAzienda) {
+		this.inserimentoAzienda = inserimentoAzienda;
 	}
 
-	public Date getColloquio() {
-		return colloquio;
-	}
-
-	public void setColloquio(Date colloquio) {
-		this.colloquio = colloquio;
-	}
-
-	public String getCommenti_colloquio() {
-		return commenti_colloquio;
-	}
-
-	public void setCommenti_colloquio(String commenti_colloquio) {
-		this.commenti_colloquio = commenti_colloquio;
-	}
-
-	public String getRicontatto() {
-		return ricontatto;
-	}
-
-	public void setRicontatto(String ricontatto) {
-		this.ricontatto = ricontatto;
-	}
-
-	public String getQualification_meeting() {
-		return qualification_meeting;
-	}
-
-	public void setQualification_meeting(String qualification_meeting) {
-		this.qualification_meeting = qualification_meeting;
-	}
-
-	public String getAzienda_qm() {
-		return azienda_qm;
-	}
-
-	public void setAzienda_qm(String azienda_qm) {
-		this.azienda_qm = azienda_qm;
-	}
-
-	public String getCommenti_qm() {
-		return commenti_qm;
-	}
-
-	public void setCommenti_qm(String commenti_qm) {
-		this.commenti_qm = commenti_qm;
-	}
-
-	public Date getIn() {
-		return in;
-	}
-
-	public void setIn(Date in) {
-		this.in = in;
-	}
-
-//	public File getAllegato() {
-//		return allegato;
-//	}
-//	public void setAllegato(File allegato) {
-//		this.allegato = allegato;
-//	}
-	public Set<Competenza> getCompetenze() {
+	public Set<Sinonimo> getCompetenze() {
 		return competenze;
 	}
 
-	public void setCompetenze(Set<Competenza> competenze) {
+	public void setCompetenze(Set<Sinonimo> competenze) {
 		this.competenze = competenze;
 	}
-
 }

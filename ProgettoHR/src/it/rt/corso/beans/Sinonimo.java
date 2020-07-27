@@ -11,17 +11,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "competenza")
-public class Competenza implements Bean {
+public class Sinonimo implements Bean {
 
 	// Attributi
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_competenza")
 	private int id;
-	@Column(name = "specializzazione")
-	private String specializzazione;
-	
-	//competenze rappresenta il SET associato alla classe candidato
+	@Column(name = "sinonimo")
+	private String sinonimo;
+
+	// competenze rappresenta il SET associato alla classe candidato
 	@ManyToMany(mappedBy = "competenze")
 	private Set<Candidato> candidato = new HashSet<>();
 
@@ -34,12 +34,12 @@ public class Competenza implements Bean {
 		this.id = id;
 	}
 
-	public String getSpecializzazione() {
-		return specializzazione;
+	public String getSinonimo() {
+		return sinonimo;
 	}
 
-	public void setSpecializzazione(String specializzazione) {
-		this.specializzazione = specializzazione;
+	public void setSinonimo(String sinonimo) {
+		this.sinonimo = sinonimo;
 	}
 
 	public Set<Candidato> getCandidato() {
