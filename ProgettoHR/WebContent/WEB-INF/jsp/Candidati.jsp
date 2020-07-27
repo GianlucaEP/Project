@@ -87,6 +87,34 @@
 						<br>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<div class="row p-2 mb-0 w-100 justify-content-md-start">
+						<label class="mb-0"
+							style="display: inline-block; text-align: left;" for="fname">Mansione:</label>
+					</div>
+
+					<div align="center"
+						class="row m-0 w-100 justify-content-md-start">
+						<br>
+							<input class="form-control w-100" type="text" id="mansione" name="mansione"></input>
+						<br>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="row p-2 mb-0 w-100 justify-content-md-start">
+						<label class="mb-0"
+							style="display: inline-block; text-align: left;" for="fname">Seniority:</label>
+					</div>
+
+					<div align="center"
+						class="row m-0 w-100 justify-content-md-start">
+						<br>
+							<input class="form-control w-100" type="text" id="seniority" name="seniority"></input>
+						<br>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<div class="row p-2 mb-0 w-100 justify-content-md-start">
@@ -114,8 +142,8 @@
 					<div align="center"
 						class="row m-0 w-100 justify-content-md-start">
 						<br>
-						<%-- <fmt:formatDate value="${cForm.dataNascita}" pattern="MM-dd-yyyy"
-							var="dateFormat" /> --%>
+						<!-- <fmt:formatDate value="${cForm.dataNascita}" pattern="MM-dd-yyyy"
+							var="dateFormat" /> -->
 							<input class="form-control w-100" type="date" id="dataNascita"
 								name="dataNascita"></input>
 						<br>
@@ -131,8 +159,8 @@
 					<div align="center"
 						class="row m-0 w-100 justify-content-md-start">
 						<br>
-							<input class="form-control w-100" type="text" id="competenceName"
-								name="competenceName"></input>
+							<textarea class="form-control w-100" id="competenceName"
+								name="competenceName"></textarea>
 						<br>
 					</div>
 				</div>
