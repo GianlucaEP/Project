@@ -1,8 +1,9 @@
 package it.rt.corso.beans;
 
+import java.io.File;
 import java.util.Date;
 
-public class Candidato {
+public class Candidato implements Bean{
 	
 	//Attributi
 	private int id;
@@ -13,18 +14,18 @@ public class Candidato {
 	private String email;
 	private String mansione;
 	private String seniority;
-	private boolean contatto;
+	private String contatto;
 	private String commmenti_contatto;
 	private Date colloquio;
 	private String commenti_colloquio;
 	private String ricontatto;
-	private boolean qualification_meeting;
+	private String qualification_meeting;
 	private String azienda_qm;
 	private String commenti_qm;
 	private Date in;
-//	private ? allegato;
+	private File allegato;
 	
-	//GETTER & SETTER
+	//Getter & Setter
 	public int getId() {
 		return id;
 	}
@@ -73,10 +74,10 @@ public class Candidato {
 	public void setSeniority(String seniority) {
 		this.seniority = seniority;
 	}
-	public boolean isContatto() {
+	public String getContatto() {
 		return contatto;
 	}
-	public void setContatto(boolean contatto) {
+	public void setContatto(String contatto) {
 		this.contatto = contatto;
 	}
 	public String getCommmenti_contatto() {
@@ -103,10 +104,10 @@ public class Candidato {
 	public void setRicontatto(String ricontatto) {
 		this.ricontatto = ricontatto;
 	}
-	public boolean isQualification_meeting() {
+	public String getQualification_meeting() {
 		return qualification_meeting;
 	}
-	public void setQualification_meeting(boolean qualification_meeting) {
+	public void setQualification_meeting(String qualification_meeting) {
 		this.qualification_meeting = qualification_meeting;
 	}
 	public String getAzienda_qm() {
@@ -127,7 +128,10 @@ public class Candidato {
 	public void setIn(Date in) {
 		this.in = in;
 	}
-	
-	
-	
+	public File getAllegato() {
+		return allegato;
+	}
+	public void setAllegato(File allegato) {
+		this.allegato = allegato;
+	}
 }
