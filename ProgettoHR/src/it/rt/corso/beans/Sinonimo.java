@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "competenza")
+@Table(name = "sinonimo")
 public class Sinonimo implements Bean {
 
 	// Attributi

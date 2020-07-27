@@ -16,7 +16,7 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<mapping class="it.rt.corso.beans.Candidato"/>  
-		<mapping class="it.rt.corso.beans.Competenza"/>  
+		<mapping class="it.rt.corso.beans.Sinonimo"/>  
 		
 		
 		</session-factory>

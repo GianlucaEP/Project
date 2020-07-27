@@ -43,7 +43,7 @@ public class Candidato implements Bean {
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
 	 * dell' altra entità
 	 */
-	@JoinTable(name = "candidato_competenza", joinColumns = {
+	@JoinTable(name = "candidato_sinonimo", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_competenza_fk") })
 	Set<Sinonimo> competenze = new HashSet<>();
 	
