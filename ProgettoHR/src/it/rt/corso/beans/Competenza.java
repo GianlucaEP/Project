@@ -1,13 +1,27 @@
 package it.rt.corso.beans;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "competenza")
 public class Competenza implements Bean{
 	
 	//Attributi
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_competenza")
 	private int id;
+	@Column(name = "specializzazione")
 	private String specializzazione;
-	private List<Candidato> candidato;
+	@ManyToMany(mappedBy = "competences")
+	private Set<Candidato> candidato = new HashSet<>();
 	
 	//Getter & Setter
 	public int getId() {
@@ -22,10 +36,10 @@ public class Competenza implements Bean{
 	public void setSpecializzazione(String specializzazione) {
 		this.specializzazione = specializzazione;
 	}
-	public List<Candidato> getCandidato() {
+	public Set<Candidato> getCandidato() {
 		return candidato;
 	}
-	public void setCandidato(List<Candidato> candidato) {
+	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
 	}
 	

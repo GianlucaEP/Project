@@ -2,32 +2,65 @@ package it.rt.corso.beans;
 
 //import java.io.File;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "candidato")
 public class Candidato implements Bean{
 	
 	//Attributi
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_candidato")
 	private int id;
+	@Column(name = "nome")
 	private String nome;
+	@Column(name = "cognome")
 	private String cognome;
+	@Column(name = "anno_di_nascita")
 	private int anno;
+	@Column(name = "num_tel")
 	private String telefono;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "mansione")
 	private String mansione;
+	@Column(name = "seniority")
 	private String seniority;
-	private String contatto;
+	@Column(name = "contatto")
+	private Boolean contatto;
+	@Column(name = "commmenti_contatto")
 	private String commmenti_contatto;
+	@Column(name = "colloquio")
 	private Date colloquio;
+	@Column(name = "commenti_colloquio")
 	private String commenti_colloquio;
+	@Column(name = "da_ricontattare")
 	private String ricontatto;
+	@Column(name = "qualification_meeting")
 	private String qualification_meeting;
+	@Column(name = "azienda_qm")
 	private String azienda_qm;
+	@Column(name = "commenti_qm")
 	private String commenti_qm;
+	@Column(name = "in")
 	private Date in;
 //	private File allegato;
-	private List<Competenza> competenza;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "candidato_competenza", joinColumns = { @JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_competenza_fk") })
+	Set<Competenza> competenze = new HashSet<>();
 	
 	
+	public Set<Competenza> getCompetenze() {
+		return competenze;
+	}
+	public void setCompetenze(Set<Competenza> competenze) {
+		this.competenze = competenze;
+	}
 	//Getter & Setter
 	public int getId() {
 		return id;
@@ -77,10 +110,10 @@ public class Candidato implements Bean{
 	public void setSeniority(String seniority) {
 		this.seniority = seniority;
 	}
-	public String getContatto() {
+	public Boolean getContatto() {
 		return contatto;
 	}
-	public void setContatto(String contatto) {
+	public void setContatto(Boolean contatto) {
 		this.contatto = contatto;
 	}
 	public String getCommmenti_contatto() {
@@ -137,10 +170,5 @@ public class Candidato implements Bean{
 //	public void setAllegato(File allegato) {
 //		this.allegato = allegato;
 //	}
-	public List<Competenza> getCompetenza() {
-		return competenza;
-	}
-	public void setCompetenza(List<Competenza> competenza) {
-		this.competenza = competenza;
-	}
+
 }
