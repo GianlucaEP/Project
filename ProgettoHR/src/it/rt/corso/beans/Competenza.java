@@ -20,6 +20,8 @@ public class Competenza implements Bean {
 	private int id;
 	@Column(name = "specializzazione")
 	private String specializzazione;
+	
+	//competenze rappresenta il SET associato alla classe candidato
 	@ManyToMany(mappedBy = "competenze")
 	private Set<Candidato> candidato = new HashSet<>();
 

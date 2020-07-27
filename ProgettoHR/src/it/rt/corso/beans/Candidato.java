@@ -50,6 +50,10 @@ public class Candidato implements Bean {
 	private Date in;
 //	private File allegato;
 	@ManyToMany(cascade = { CascadeType.ALL })
+	/*JoinTable specifica la tabella di mezzo
+	 * JoinColumn = inzialmente si specifica la foreignKey della classe in cui mi trovo
+	 * InverseJoinColumn = foreignKey dell' altra entità
+	 */
 	@JoinTable(name = "candidato_competenza", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_competenza_fk") })
 	Set<Competenza> competenze = new HashSet<>();
