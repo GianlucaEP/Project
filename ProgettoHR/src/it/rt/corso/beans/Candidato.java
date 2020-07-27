@@ -2,6 +2,7 @@ package it.rt.corso.beans;
 
 //import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 public class Candidato implements Bean{
 	
@@ -24,6 +25,8 @@ public class Candidato implements Bean{
 	private String commenti_qm;
 	private Date in;
 //	private File allegato;
+	private List<Competenza> competenza;
+	
 	
 	//Getter & Setter
 	public int getId() {
@@ -134,4 +137,10 @@ public class Candidato implements Bean{
 //	public void setAllegato(File allegato) {
 //		this.allegato = allegato;
 //	}
+	public List<Competenza> getCompetenza() {
+		return competenza;
+	}
+	public void setCompetenza(List<Competenza> competenza) {
+		this.competenza = competenza;
+	}
 }
