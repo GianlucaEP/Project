@@ -16,16 +16,10 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 		
 		Utility.buildSession();
 		
-		List<Candidato> listacandidati = Utility.getSession().createQuery(" FROM candidato ").getResultList();
+		List<Candidato> listacandidati = Utility.getSession().createQuery(" FROM Candidato ").getResultList();
 		return listacandidati;
 	}
 
-	public List<Candidato> getListaHome() {
-		
-		Utility.buildSession();
-		
-		List<Candidato> listacandidatihome = Utility.getSession().createQuery(" SELECT cognome,nome,mansione,seniority FROM candidato ").getResultList();
-		return listacandidatihome;
-	}
+	
 
 }

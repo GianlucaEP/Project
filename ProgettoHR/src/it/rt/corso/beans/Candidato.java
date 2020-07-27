@@ -32,11 +32,11 @@ public class Candidato implements Bean {
 	private String seniority;
 	@Column(name = "contatto")
 	private Boolean contatto;
-	@Column(name = "commmenti_contatto")
-	private String commmenti_contatto;
+	@Column(name = "commento_contatto")
+	private String commenti_contatto;
 	@Column(name = "colloquio")
 	private Date colloquio;
-	@Column(name = "commenti_colloquio")
+	@Column(name = "commento_colloquio")
 	private String commenti_colloquio;
 	@Column(name = "da_ricontattare")
 	private String ricontatto;
@@ -44,7 +44,7 @@ public class Candidato implements Bean {
 	private String qualification_meeting;
 	@Column(name = "azienda_qm")
 	private String azienda_qm;
-	@Column(name = "commenti_qm")
+	@Column(name = "commento_qm")
 	private String commenti_qm;
 	@Column(name = "in")
 	private Date in;
@@ -127,12 +127,14 @@ public class Candidato implements Bean {
 		this.contatto = contatto;
 	}
 
-	public String getCommmenti_contatto() {
-		return commmenti_contatto;
+
+
+	public String getCommenti_contatto() {
+		return commenti_contatto;
 	}
 
-	public void setCommmenti_contatto(String commmenti_contatto) {
-		this.commmenti_contatto = commmenti_contatto;
+	public void setCommenti_contatto(String commenti_contatto) {
+		this.commenti_contatto = commenti_contatto;
 	}
 
 	public Date getColloquio() {
