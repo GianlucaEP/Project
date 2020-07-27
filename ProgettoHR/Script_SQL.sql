@@ -29,15 +29,8 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
   `email` VARCHAR(45) NOT NULL,
   `mansione` VARCHAR(45) NOT NULL,
   `seniority` VARCHAR(45) NOT NULL,
-  `contatto` TINYINT(1) NOT NULL,
-  `commento_contatto` VARCHAR(45) NOT NULL,
-  `colloquio` DATE NOT NULL,
-  `commento_colloquio` VARCHAR(45) NOT NULL,
-  `da_ricontattare` VARCHAR(45) NOT NULL,
-  `qualification_meeting` VARCHAR(45) NOT NULL,
-  `azienda_qm` VARCHAR(45) NOT NULL,
-  `commento_qm` VARCHAR(45) NOT NULL,
-  `in` DATE NOT NULL,
+  `inserimento_azienda` DATE NOT NULL,
+  `competenza` TEXT NOT NULL,
   PRIMARY KEY (`id_candidato`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -45,31 +38,70 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `progetto_hr`.`competenza`
+-- Table `progetto_hr`.`sinonimo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `progetto_hr`.`competenza` (
-  `id_competenza` INT NOT NULL AUTO_INCREMENT,
-  `specializzazione` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_competenza`))
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`sinonimo` (
+  `id_sinonimo` INT NOT NULL AUTO_INCREMENT,
+  `sinonimo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_sinonimo`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `progetto_hr`.`candidato_competenza`
+-- Table `progetto_hr`.`candidato_sinonimo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato_competenza` (
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato_sinonimo` (
   `id_candidato_fk` INT NOT NULL,
-  `id_competenza_fk` INT NOT NULL,
+  `id_sinonimo_fk` INT NOT NULL,
   INDEX `id_candidato_idx` (`id_candidato_fk` ASC) VISIBLE,
-  INDEX `id_competenza_idx` (`id_competenza_fk` ASC) VISIBLE,
+  INDEX `id_competenza_idx` (`id_sinonimo_fk` ASC) VISIBLE,
   CONSTRAINT `id_candidato`
     FOREIGN KEY (`id_candidato_fk`)
     REFERENCES `progetto_hr`.`candidato` (`id_candidato`),
-  CONSTRAINT `id_competenza`
-    FOREIGN KEY (`id_competenza_fk`)
-    REFERENCES `progetto_hr`.`competenza` (`id_competenza`))
+  CONSTRAINT `id_sinonimo`
+    FOREIGN KEY (`id_sinonimo_fk`)
+    REFERENCES `progetto_hr`.`sinonimo` (`id_sinonimo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`colloquio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`colloquio` (
+  `id_colloquio` INT NOT NULL AUTO_INCREMENT,
+  `id_candidato` INT NOT NULL,
+  `data` DATE NOT NULL,
+  `operatore` VARCHAR(45) NOT NULL,
+  `commento` TEXT NOT NULL,
+  PRIMARY KEY (`id_colloquio`),
+  INDEX `id_candidato_colloquio_idx` (`id_candidato` ASC) VISIBLE,
+  CONSTRAINT `id_candidato_colloquio`
+    FOREIGN KEY (`id_candidato`)
+    REFERENCES `progetto_hr`.`candidato` (`id_candidato`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+COMMENT = '		';
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`telefonata`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`telefonata` (
+  `id_telefonata` INT NOT NULL AUTO_INCREMENT,
+  `id_candidato` INT NOT NULL,
+  `data` DATE NOT NULL,
+  `operatore` VARCHAR(45) NOT NULL,
+  `commento` TEXT NOT NULL,
+  PRIMARY KEY (`id_telefonata`),
+  INDEX `id_candidato_idx` (`id_candidato` ASC) VISIBLE,
+  CONSTRAINT `id_candidato_telefonata`
+    FOREIGN KEY (`id_candidato`)
+    REFERENCES `progetto_hr`.`candidato` (`id_candidato`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
