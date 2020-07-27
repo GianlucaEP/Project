@@ -11,37 +11,41 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "competenza")
-public class Competenza implements Bean{
-	
-	//Attributi
+public class Competenza implements Bean {
+
+	// Attributi
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_competenza")
 	private int id;
 	@Column(name = "specializzazione")
 	private String specializzazione;
-	@ManyToMany(mappedBy = "competences")
+	@ManyToMany(mappedBy = "competenze")
 	private Set<Candidato> candidato = new HashSet<>();
-	
-	//Getter & Setter
+
+	// Getter & Setter
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getSpecializzazione() {
 		return specializzazione;
 	}
+
 	public void setSpecializzazione(String specializzazione) {
 		this.specializzazione = specializzazione;
 	}
+
 	public Set<Candidato> getCandidato() {
 		return candidato;
 	}
+
 	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
 	}
-	
-	
+
 }
