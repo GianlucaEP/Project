@@ -1,6 +1,6 @@
 package it.rt.corso.beans;
 
-import java.io.File;
+//import java.io.File;
 import java.util.Date;
 
 public class Candidato implements Bean{
@@ -23,7 +23,7 @@ public class Candidato implements Bean{
 	private String azienda_qm;
 	private String commenti_qm;
 	private Date in;
-	private File allegato;
+//	private File allegato;
 	
 	//Getter & Setter
 	public int getId() {
@@ -128,10 +128,10 @@ public class Candidato implements Bean{
 	public void setIn(Date in) {
 		this.in = in;
 	}
-	public File getAllegato() {
-		return allegato;
-	}
-	public void setAllegato(File allegato) {
-		this.allegato = allegato;
-	}
+//	public File getAllegato() {
+//		return allegato;
+//	}
+//	public void setAllegato(File allegato) {
+//		this.allegato = allegato;
+//	}
 }
