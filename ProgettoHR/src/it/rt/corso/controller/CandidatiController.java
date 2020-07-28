@@ -31,4 +31,6 @@ public class CandidatiController {
 		return "redirect:/Home";// will redirect to viewemp request mapping
 	}
 
+	
+	
 }
