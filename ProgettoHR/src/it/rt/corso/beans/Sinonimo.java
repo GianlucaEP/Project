@@ -9,22 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "sinonimo")
 public class Sinonimo implements Bean {
 
 	// Attributi
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_competenza")
-	private int id;
-	@Column(name = "sinonimo")
-	private String sinonimo;
 	
-	private Competenza competenza;
-
+	private int id;
+	private String sinonimo;
+	private Mansione mansione;
 	// competenze rappresenta il SET associato alla classe candidato
-	@ManyToMany(mappedBy = "competenze")
 	private Set<Candidato> candidato = new HashSet<>();
 
 	// Getter & Setter
@@ -52,12 +44,13 @@ public class Sinonimo implements Bean {
 		this.candidato = candidato;
 	}
 
-	public Competenza getCompetenza() {
-		return competenza;
+	public Mansione getMansione() {
+		return mansione;
 	}
 
-	public void setCompetenza(Competenza competenza) {
-		this.competenza = competenza;
+	public void setMansione(Mansione mansione) {
+		this.mansione = mansione;
 	}
+
 
 }

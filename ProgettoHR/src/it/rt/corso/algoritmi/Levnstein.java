@@ -2,13 +2,20 @@ package it.rt.corso.algoritmi;
 
 import java.util.Arrays;
 
+import it.rt.corso.checkstring.CheckString;
+import it.rt.corso.checkstring.CheckWithList;
 
-public class Levnstein  {
+
+public class Levnstein extends CheckWithList {
 	
-	public Levnstein() {
-
+	public Levnstein(CheckString next) {
+		super(next);
 	}
-	
+
+	public Levnstein() {
+		super();
+	}
+
 	//Levnstein
 	public static int countDistance(String x, String y) {
 		int[][] dp = new int[x.length() + 1][y.length() + 1];
