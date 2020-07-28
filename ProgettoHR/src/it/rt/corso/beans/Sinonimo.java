@@ -20,6 +20,8 @@ public class Sinonimo implements Bean {
 	private int id;
 	@Column(name = "sinonimo")
 	private String sinonimo;
+	
+	private Competenza competenza;
 
 	// competenze rappresenta il SET associato alla classe candidato
 	@ManyToMany(mappedBy = "competenze")
@@ -48,6 +50,14 @@ public class Sinonimo implements Bean {
 
 	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
+	}
+
+	public Competenza getCompetenza() {
+		return competenza;
+	}
+
+	public void setCompetenza(Competenza competenza) {
+		this.competenza = competenza;
 	}
 
 }
