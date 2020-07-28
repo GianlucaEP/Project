@@ -25,11 +25,5 @@ public class HomeController {
 		return "Home";
 	}
 
-	@RequestMapping("/FormaCandidato")
-	public String showform(Model m) {
-		m.addAttribute("command", new Candidato());
-		return "empform";
-	}
-
-
+	
 }
