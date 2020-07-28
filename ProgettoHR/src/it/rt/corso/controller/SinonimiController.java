@@ -13,7 +13,7 @@ public class SinonimiController {
 //	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 //
 //	SinonimoDAO dao = (SinonimoDAO) factory.getBean("sinonimoDAO");
-//
+// 
 //	
 //	@RequestMapping("/Sinonimo")
 //	public String formAggiungiSinonimo(Model m) {
