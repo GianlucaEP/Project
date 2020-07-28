@@ -1,4 +1,4 @@
-//package it.rt.corso.algoritmi;
+//package it.rt.corso.algoritmi; TODO adattare questo algoritmo
 //
 //import it.rt.corso.DAO.SinonimoDAO;
 //import it.rt.corso.DAOImpl.SinonimoDAOImpl;
