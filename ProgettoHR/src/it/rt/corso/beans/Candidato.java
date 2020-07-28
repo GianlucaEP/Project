@@ -4,11 +4,10 @@ package it.rt.corso.beans;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "candidato")
+@Table (name = "candidato")
 public class Candidato implements Bean {
 
 	// Attributi

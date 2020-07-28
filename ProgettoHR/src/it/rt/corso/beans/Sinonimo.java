@@ -12,7 +12,6 @@ import javax.persistence.*;
 public class Sinonimo implements Bean {
 
 	// Attributi
-	
 	private int id;
 	private String sinonimo;
 	private Mansione mansione;
