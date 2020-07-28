@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Page</title>
+<title>Iserimento Candidai</title>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -20,165 +20,107 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-dark">
-			<h1><span class="navbar-text">Erre Technology <button class="btn btn-dark"></button> </span></h1>
-			
+		<nav class="navbar navbar-light bg-primary">
+			<h1>
+				<span class="navbar-text">Erre Technology </span>
+			</h1>
+
 		</nav>
 	</div>
 	<div align="center" class="container-fluid ">
-		<div align="center" class="col-sm-2 col-md-4 m-0 mt-2 p-2 border rounded">
-			<div class="row p-2 justify-content-md-center" align="center">
-				<h1>Inserimento Candidati</h1>
+		<div class="row p-2 justify-content-md-center">
+			<div class="col-auto p-2 border rounded">
+				<h1>Inserimento Candidato</h1>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
+							<input type="text" class="form-control" id="nome" name="nome">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
+							<input type="text" class="form-control" id="cognome"
+								name="cognome">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
+								di nascita:</div>
+							<input type="text" class="form-control" id="anno_di_nascita"
+								name="anno_di_nascita">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
+							<input type="text" class="form-control" id="telefono"
+								name="telefono">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
+							<input type="text" class="form-control" id="email" name="email">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+							<input type="text" class="form-control" id="mansione"
+								name="mansione">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
+							<input type="text" class="form-control" id="seniority"
+								name="seniority">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Competenza:</div>
+							<input type="text" class="form-control" id="competenza"
+								name="competenza">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
+								Azienda:</div>
+							<input type="date" class="form-control" id="inserimentoAzienda"
+								name="inserimentoAzienda">
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<button type="submit" class="btn btn-primary btn-block">Submit</button>
+						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+					</div>
+				</div>
 			</div>
-			<form name="registrationForm"
-				action="/RTWeb/CheckString" method="POST">
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Nome:</label>
-					</div>
 
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="nome"
-								name="nome"></input>
-							<br>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Cognome:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-						
-							<input class="form-control w-100" type="text" id="cognome" name="cognome"></input>
-						<br>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Indirizzo:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="indirizzo" name="indirizzo"></input>
-						<br>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Mail:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="mail" name="mail"></input>
-						<br>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Mansione:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="mansione" name="mansione"></input>
-						<br>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Seniority:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="seniority" name="seniority"></input>
-						<br>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Numero
-							telefonico:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<input class="form-control w-100" type="text" id="numeroTelefono"
-								name="numeroTelefono"></input>
-						<br>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Data
-							nascita:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-						<!-- <fmt:formatDate value="${cForm.dataNascita}" pattern="MM-dd-yyyy"
-							var="dateFormat" /> -->
-							<input class="form-control w-100" type="date" id="dataNascita"
-								name="dataNascita"></input>
-						<br>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row p-2 mb-0 w-100 justify-content-md-start">
-						<label class="mb-0"
-							style="display: inline-block; text-align: left;" for="fname">Competenze:</label>
-					</div>
-
-					<div align="center"
-						class="row m-0 w-100 justify-content-md-start">
-						<br>
-							<textarea class="form-control w-100" id="competenceName"
-								name="competenceName"></textarea>
-						<br>
-					</div>
-				</div>
-				<!--<div align="center"
-					class="row p-2 m-0 w-100 justify-content-md-start">
-					<br> <form class="w-100" type="text" id="competence"
-						name="competence"></form> <br>
-				</div>-->
-
-				<div align="center"
-					class="row p-2 m-0 w-100 justify-content-md-start">
-					<input type="submit" class="btn btn-secondary btn-block"
-						value="Salva"> <input type="reset"
-						class="btn btn-danger btn-block" value="Cancella">
-				</div>
-			</form>
 		</div>
-
 	</div>
 
 	<!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
