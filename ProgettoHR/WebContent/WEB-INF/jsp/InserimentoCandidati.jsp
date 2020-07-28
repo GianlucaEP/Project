@@ -22,7 +22,7 @@
 	<div>
 		<nav class="navbar navbar-light bg-primary">
 			<h1>
-				<span class="navbar-text">Erre Technology </span>
+				<span class="navbar-text text-light" >>Erre Technology </span>
 			</h1>
 
 		</nav>
@@ -31,7 +31,7 @@
 		<div class="row p-2 justify-content-md-center">
 			<div class="col-auto p-2 border rounded">
 				<h1>Inserimento Candidato</h1>
-				<form>
+				<form:form method="POST"  action="/ProgettoHR/CandidatiSave">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -119,7 +119,7 @@
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 
 		</div>

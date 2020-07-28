@@ -25,7 +25,7 @@ public class CandidatiController {
 		return "InserimentoCandidati";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
 		dao.inserisci(candidato);
 		return "redirect:/Home";// will redirect to viewemp request mapping
