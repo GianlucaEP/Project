@@ -28,10 +28,10 @@
 		</nav>
 	</div>
 
-	<div class="container">
-		<div class="col">
-			<div class="row">
-				<table class="table table-striped">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col col-6 p-2">
+				<table class="table table-bordered table-striped text-center">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
