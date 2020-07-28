@@ -31,93 +31,95 @@
 		<div class="row p-2 justify-content-md-center">
 			<div class="col-auto p-2 border rounded">
 				<h1>Inserimento Candidato</h1>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
-							<input type="text" class="form-control" id="nome" name="nome">
+				<form>
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
+								<input type="text" class="form-control" id="nome" name="nome">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
-							<input type="text" class="form-control" id="cognome"
-								name="cognome">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
+								<input type="text" class="form-control" id="cognome"
+									name="cognome">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
-								di nascita:</div>
-							<input type="text" class="form-control" id="anno_di_nascita"
-								name="anno_di_nascita">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
+									di nascita:</div>
+								<input type="text" class="form-control" id="anno_di_nascita"
+									name="anno_di_nascita">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
-							<input type="text" class="form-control" id="telefono"
-								name="telefono">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
+								<input type="text" class="form-control" id="telefono"
+									name="telefono">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
-							<input type="text" class="form-control" id="email" name="email">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
+								<input type="text" class="form-control" id="email" name="email">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-							<input type="text" class="form-control" id="mansione"
-								name="mansione">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+								<input type="text" class="form-control" id="mansione"
+									name="mansione">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-							<input type="text" class="form-control" id="seniority"
-								name="seniority">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
+								<input type="text" class="form-control" id="seniority"
+									name="seniority">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Competenza:</div>
-							<input type="text" class="form-control" id="competenza"
-								name="competenza">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Competenza:</div>
+								<input type="text" class="form-control" id="competenza"
+									name="competenza">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
-								Azienda:</div>
-							<input type="date" class="form-control" id="inserimentoAzienda"
-								name="inserimentoAzienda">
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
+									Azienda:</div>
+								<input type="date" class="form-control" id="inserimentoAzienda"
+									name="inserimentoAzienda">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row w-100 p-2 justify-content-md-start">
-					<div class="col w-100 p-0 justify-content-md-start">
-						<button type="submit" class="btn btn-primary btn-block">Submit</button>
-						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 
 		</div>
