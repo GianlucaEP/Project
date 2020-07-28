@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -28,10 +27,10 @@
 		</nav>
 	</div>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col col-6 p-2">
-				<table class="table table-bordered table-striped text-center">
+	<div class="container">
+		<div class="col">
+			<div class="row">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th scope="col">#</th>

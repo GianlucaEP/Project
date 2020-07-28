@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,6 +109,7 @@
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
 									Azienda:</div>
+									<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
 								<input type="date" class="form-control" id="inserimentoAzienda"
 									name="inserimentoAzienda">
 							</div>
