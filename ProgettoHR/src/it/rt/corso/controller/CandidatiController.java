@@ -18,12 +18,8 @@ public class CandidatiController {
 
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	
 	@RequestMapping("/Candidati")
-	public String display(Model m) {
-		return "InserimentoCandidati";
-	}
-
-	@RequestMapping("/FormaCandidato")
 	public String formAggiungiCandidato(Model m) {
 		m.addAttribute("candidato", new Candidato());
 		return "InserimentoCandidati";
