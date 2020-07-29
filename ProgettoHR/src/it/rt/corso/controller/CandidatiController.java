@@ -27,16 +27,15 @@ public class CandidatiController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
-	
+
 	SinonimoDAO sdao = (SinonimoDAO) factory.getBean("sinonimoDAO");
-	
+
 	@InitBinder
 	public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
-	    final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);  
-	    binder.registerCustomEditor(Date.class, "inserimentoAzienda", new CustomDateEditor(dateFormat, true));
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locale);
+		binder.registerCustomEditor(Date.class, "inserimentoAzienda", new CustomDateEditor(dateFormat, true));
 	}
 
-	
 	@RequestMapping("/Candidati")
 	public String formAggiungiCandidato(Model m) {
 		m.addAttribute("candidato", new Candidato());
@@ -45,18 +44,40 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
-		dao.inserisci(candidato); 
-		// aggiungi sinonimo alla tabella sinonimo corrispondente alla mansione del candidato
+		dao.inserisci(candidato);
+		// aggiungi sinonimo alla tabella sinonimo corrispondente alla mansione del
+		// candidato
 		Sinonimo s = new Sinonimo();
 		s.setSinonimo(candidato.getMansione());
 		sdao.inserisci(s);
 		return "redirect:/Home";// will redirect to viewemp request mapping
 	}
 
-	 @RequestMapping(value="/Candidato/{id}",method = RequestMethod.GET)    
+	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
 		Candidato c = dao.get(id);
 		m.addAttribute("mostraCandidato", c);
 		return "Candidato";
 	}
+
+	@RequestMapping(value = "/Elimina/{id}", method = RequestMethod.GET)
+	public String elimina(@PathVariable int id) {
+		Candidato c = dao.get(id);
+		dao.cancella(c);
+		return "redirect:/Home";
+	}
+
+	@RequestMapping(value = "/Modifica/{id}")
+	public String edit(@PathVariable int id, Model m) {
+		Candidato c =  dao.get(id);
+		m.addAttribute("modificaCandidato", c);
+		return "empeditform";
+	}
+	
+	 @RequestMapping(value="/SalvaModifica",method = RequestMethod.POST)    
+	    public String editsave(@ModelAttribute("modificaCandidato") Candidato c){    
+	        dao.aggiorna(c);   
+	       // int id = c.getId();
+	        return "redirect:/Candidato/{id}";    
+	    }    
 }
