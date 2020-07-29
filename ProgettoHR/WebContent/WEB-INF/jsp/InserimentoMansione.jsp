@@ -19,13 +19,13 @@
 
 </head>
 <meta charset="ISO-8859-1">
-<title>Inserimento Competenze</title>
+<title>Inserimento Mansione</title>
 </head>
 <body>
 	<div>
 		<nav class="navbar navbar-light bg-primary">
 			<h1>
-				<span class="navbar-text text-light">Erre Technology </span>
+				<span class="navbar-text text-light">Erre Technology</span>
 			</h1>
 
 		</nav>
@@ -33,17 +33,17 @@
 	<div align="center" class="container-fluid ">
 		<div class="row p-2 justify-content-md-center">
 			<div class="col-auto p-2 border rounded">
-				<h1>Inserimento Competenza</h1>
-				<form>
+				<h1>Inserimento Mansione</h1>
+				<form:form modelAttribute="mansione" action="/ProgettoHR/MansioniSave" method="POST">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Competenza:</div>
-								<input type="text" class="form-control" id="nome" name="nome">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+								<form:input path="mansione" type="text" class="form-control" id="nome" name="nome"></form:input>
 							</div>
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
