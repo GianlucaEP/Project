@@ -4,6 +4,7 @@ import java.util.List;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.Candidato;
+import it.rt.corso.beans.Sinonimo;
 import it.rt.corso.utility.Utility;
 
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
@@ -18,6 +19,10 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 		
 		List<Candidato> listacandidati = Utility.getSession().createQuery(" FROM Candidato ").getResultList();
 		return listacandidati;
+	}
+
+	public Candidato get(String id) {
+		return (Candidato) super.get(Candidato.class, id);
 	}
 
 	
