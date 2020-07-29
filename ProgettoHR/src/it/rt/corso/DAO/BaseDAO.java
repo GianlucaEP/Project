@@ -28,4 +28,26 @@ public abstract class BaseDAO {
 		Utility.destroySession();
 		return b;
 	}
+	
+	protected Object cancella(Bean bean) {
+		
+		Utility.buildSession();
+		Transaction t = Utility.getSession().beginTransaction();	
+		Utility.getSession().delete(bean);
+		
+		t.commit();
+		Utility.destroySession();
+		return bean;
+	}
+	
+	protected Object aggiorna(Bean bean) {
+		
+		Utility.buildSession();
+		Transaction t = Utility.getSession().beginTransaction();	
+		Utility.getSession().update(bean);
+		
+		t.commit();
+		Utility.destroySession();
+		return bean;
+	}
 }

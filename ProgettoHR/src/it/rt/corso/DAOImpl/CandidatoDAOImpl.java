@@ -24,6 +24,14 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 		return (Candidato) super.get(Candidato.class, id);
 	}
 
+	public Candidato cancella(Candidato candidato) {
+		return (Candidato) super.cancella(candidato);
+	}
+
+	public Candidato aggiorna(Candidato candidato) {
+		return (Candidato) super.aggiorna(candidato);
+	}
+
 	
 
 }
