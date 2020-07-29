@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "candidato")
 public class Candidato implements Bean {
 
-	// Attributi
+	// Attributi 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")

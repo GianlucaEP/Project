@@ -61,7 +61,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="cand" items="${list}">
-							<tr
+							<tr 
 								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 								<td>${cand.nome}</td>
 								<td>${cand.cognome}</td>
