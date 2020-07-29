@@ -20,8 +20,8 @@ public class HomeController {
 
 	@RequestMapping("/Home")
 	public String display(Model m) {
-//		List<Candidato> list = dao.getLista();
-//		m.addAttribute("list", list);
+		List<Candidato> list = dao.getLista();
+		m.addAttribute("list", list);
 		return "Home";
 	}
 

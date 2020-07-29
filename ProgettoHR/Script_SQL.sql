@@ -30,9 +30,10 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
   `mansione` VARCHAR(45) NOT NULL,
   `seniority` VARCHAR(45) NOT NULL,
   `inserimento_azienda` DATE NOT NULL,
-  `competenza` TEXT NOT NULL,
+  `specializzazione` TEXT NOT NULL,
   PRIMARY KEY (`id_candidato`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
