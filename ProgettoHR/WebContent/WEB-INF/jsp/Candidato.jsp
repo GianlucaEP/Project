@@ -29,6 +29,8 @@
 				<img
 					alt="logo" src="Erre_technology_group_NEW.png">
 				</span>
+				<img
+					alt="logo" src="Erre_technology_group_NEW.png">
 			</h1>
 
 		</nav>
