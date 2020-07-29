@@ -17,11 +17,10 @@
 
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
-
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-primary " style=" opacity: 0.8">
+		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8">
 			<h1>
 				<span class="navbar-text bg-primary text-white">Erre
 					Technology </span>
@@ -34,12 +33,10 @@
 		<div class="row">
 			<div class="col-2 ">
 
-				<a href="/ProgettoHR/Candidati" type="button"  class="btn btn-primary btn-block">Aggiungi
-					Candidato</a>
-
-
-				<a href="/ProgettoHR/Mansioni" type="button" class="btn btn-primary btn-block">Aggiungi
-					Mansione</a>
+				<a href="/ProgettoHR/Candidati" type="button"
+					class="btn btn-primary btn-block">Aggiungi Candidato</a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block">Aggiungi Mansione</a>
 			</div>
 
 			<div class="col-10">
@@ -55,12 +52,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="emp" items="${list}">
-							<tr>
-								<td>${emp.nome}</td>
-								<td>${emp.cognome}</td>
-								<td>${emp.mansione}</td>
-								<td>${emp.seniority}</td>
+						<c:forEach var="cand" items="${list}">
+							<tr
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								<td>${cand.nome}</td>
+								<td>${cand.cognome}</td>
+								<td>${cand.mansione}</td>
+								<td>${cand.seniority}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -68,5 +66,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
