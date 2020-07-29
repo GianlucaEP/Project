@@ -62,12 +62,12 @@
 					<tbody>
 						<c:forEach var="cand" items="${list}">
 							<tr 
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-								<td>${cand.nome}</td>
-								<td>${cand.cognome}</td>
-								<td>${cand.mansione}</td>
-								<td>${cand.seniority}</td>
-									<td onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"><i class="icon-trash"></i></td>
+							>
+								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
+								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
+								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.mansione}</td>
+								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
+								<td onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"><i class="icon-trash"></i></td>
 								
 							</tr>
 						
