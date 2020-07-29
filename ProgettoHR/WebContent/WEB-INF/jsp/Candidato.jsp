@@ -23,34 +23,42 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-primary "
+		<nav class="navbar navbar-dark bg-dark "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
-				<span class="navbar-text bg-primary text-white"> </span> 
-				<a href="/ProgettoHR/Home"><img
-					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-					
-			class="col-4"></a>
+				<span class="navbar-text  text-white"> <a
+					href="/ProgettoHR/Home"><img alt="logo"
+						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
+
 			</h1>
 
 		</nav>
 	</div>
 	<br>
-	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"
-		style="float: left;">
+	<!-- 	<div class="col-auto p-0 opacity-0 h-100 d-inline-block"
+		>
 
 
 		<a href="/ProgettoHR/Mansioni" type="button"
-			class="btn btn-primary btn-block">Aggiungi Mansione</a>
-			 <a
+			class="btn btn-primary btn-block  m-0">Aggiungi Mansione del cazzo la madonna</a> <a
 			href="/ProgettoHR/Home" type="button"
-			class="btn btn-primary btn-block">Torna alla Home</a>
+			class="btn btn-primary btn-block  m-0">Torna alla Home</a>
 
 
 
-	</div>
+	</div> -->
 	<div class="container-fluid ">
 		<div class="row">
+			<div class="col-auto p-0">
+
+
+				<a href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Aggiungi Mansione</a> <a href="/ProgettoHR/Home" type="button"
+					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Torna alla Home</a>
+
+
+
+			</div>
 			<!-- 	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"  >
 
 				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi

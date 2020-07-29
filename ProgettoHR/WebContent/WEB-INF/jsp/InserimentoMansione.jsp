@@ -25,10 +25,12 @@
 		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
 				<span class="navbar-text bg-primary text-white"> 
-				
+					<a href="/ProgettoHR/Home"><img
+					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+					
+			class="col-4"></a>
 				</span>
-				<img
-					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4">
+				
 			</h1>
 
 		</nav>
