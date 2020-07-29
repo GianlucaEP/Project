@@ -21,7 +21,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 		return listacandidati;
 	}
 
-	public Candidato get(String id) {
+	public Candidato get(int id) {
 		return (Candidato) super.get(Candidato.class, id);
 	}
 
