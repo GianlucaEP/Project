@@ -33,12 +33,12 @@
 		<div class="row">
 			<div class="col-2 ">
 
-				<button type="button" class="btn btn-primary btn-block">Aggiungi
-					Candidato</button>
+				<a href="/ProgettoHR/Candidati" type="button"  class="btn btn-primary btn-block">Aggiungi
+					Candidato</a>
 
 
-				<button type="button" class="btn btn-primary btn-block">Aggiungi
-					Mansione</button>
+				<a href="/ProgettoHR/Mansioni" type="button" class="btn btn-primary btn-block">Aggiungi
+					Mansione</a>
 			</div>
 
 			<div class="col-10">
