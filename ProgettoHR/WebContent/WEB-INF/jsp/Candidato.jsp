@@ -19,7 +19,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Candidato</title>
 </head>
 <body>
 	<div>
