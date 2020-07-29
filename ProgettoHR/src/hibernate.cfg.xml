@@ -18,6 +18,8 @@
 		<mapping class="it.rt.corso.beans.Candidato"/>
 		<mapping class="it.rt.corso.beans.Sinonimo"/>
 		<mapping class="it.rt.corso.beans.Mansione"/>
+		<mapping class="it.rt.corso.beans.Colloquio"/>
+		<mapping class="it.rt.corso.beans.Telefonata"/>
 		
 		
 		</session-factory>

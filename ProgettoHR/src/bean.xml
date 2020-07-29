@@ -4,16 +4,19 @@
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	 <bean id="candidatoDAO" 
-		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
-	</bean> 
-		
-	<bean id="mansioneDAO"
-		class="it.rt.corso.DAOImpl.MansioneDAOImpl">
-	</bean> 
+	<bean id="candidatoDAO" class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
+	</bean>
 
-	<bean id="sinonimoDAO"
-		class="it.rt.corso.DAOImpl.SinonimoDAOImpl">
-	</bean> 
+	<bean id="mansioneDAO" class="it.rt.corso.DAOImpl.MansioneDAOImpl">
+	</bean>
+
+	<bean id="sinonimoDAO" class="it.rt.corso.DAOImpl.SinonimoDAOImpl">
+	</bean>
 	
+	<bean id="colloquioDAO" class="it.rt.corso.DAOImpl.ColloquioDAOImpl">
+	</bean>
+	
+	<bean id="telefonataDAO" class="it.rt.corso.DAOImpl.TelefonataDAOImpl">
+	</bean>
+
 </beans> 
