@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="icon" href="/img/favicon.ico" />
- 
+<link rel="icon" href="/img/favicon.ico" />
+
 <link rel="icon" href="/favicon-32x32.png" type="image/png" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
@@ -23,32 +23,35 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+		<nav class="navbar navbar-dark bg-primary "
+			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
-				<span class="navbar-text bg-primary text-white"> 
-				
-				</span>
-				<img
-					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4">
+				<span class="navbar-text bg-primary text-white"> </span> 
+				<a href="/ProgettoHR/Home"><img
+					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+					
+			class="col-4"></a>
 			</h1>
 
 		</nav>
 	</div>
 	<br>
-	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block" style="float:left;" >
-
-				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi
-					Candidato</button>
+	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"
+		style="float: left;">
 
 
-				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi
-					Mansione</button>
-					
-				
-			</div>
+		<a href="/ProgettoHR/Mansioni" type="button"
+			class="btn btn-primary btn-block">Aggiungi Mansione</a>
+			 <a
+			href="/ProgettoHR/Home" type="button"
+			class="btn btn-primary btn-block">Torna alla Home</a>
+
+
+
+	</div>
 	<div class="container-fluid ">
 		<div class="row">
-		<!-- 	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"  >
+			<!-- 	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"  >
 
 				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi
 					Candidato</button>
@@ -62,8 +65,7 @@
 
 			<div class="col-auto">
 
-				<table
-					class="table table-bordered  text-center "
+				<table class="table table-bordered  text-center "
 					style="box-shadow: 10px 10px 5px grey;">
 					<!-- <thead> -->
 					<tbody>
@@ -99,13 +101,13 @@
 							<td scope="col">${mostraCandidato.seniority}</td>
 						</tr>
 						<tr>
-					<th scope="col">specializzazione</th>
+							<th scope="col">specializzazione</th>
 							<td scope="col">${mostraCandidato.specializzazione}</td>
 						</tr>
 						<tr>
-					
+
 						</tr>
-					
+
 
 
 					</tbody>
