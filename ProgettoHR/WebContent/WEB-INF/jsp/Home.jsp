@@ -5,13 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://kit.fontawesome.com/053b00be10.js" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
@@ -21,6 +20,7 @@
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
 </head>
+
 <body>
 	<div>
 		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -62,12 +62,21 @@
 					<tbody>
 						<c:forEach var="cand" items="${list}">
 							<tr 
+<<<<<<< HEAD
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								<td>${cand.nome}</td>
+								<td>${cand.cognome}</td>
+								<td>${cand.mansione}</td>
+								<td>${cand.seniority}</td>
+									<td onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"><i class="fas fa-trash"></i></td>
+=======
 							>
 								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
 								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.mansione}</td>
 								<td onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
 								<td onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"><i class="icon-trash"></i></td>
+>>>>>>> branch 'master' of https://github.com/GianlucaEP/Project
 								
 							</tr>
 						
