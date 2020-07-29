@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8">
+		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
 				<span class="navbar-text bg-primary text-white"> 
 				
@@ -72,39 +72,38 @@
 
 						<tr>
 							<th scope="col">Nome</th>
-							<td scope="col">${emp.nome}</td>
+							<td scope="col">${mostraCandidato.nome}</td>
 						</tr>
 						<tr>
 							<th scope="col">Cognome</th>
-							<td scope="col">${emp.cognome}</td>
+							<td scope="col">${mostraCandidato.cognome}</td>
 						</tr>
 						<tr>
 							<th scope="col">Anno di nascita</th>
-							<td scope="col">${emp.anno}</td>
+							<td scope="col">${mostraCandidato.anno}</td>
 						</tr>
 						<tr>
 							<th scope="col">N Telefonico</th>
-							<td scope="col">${emp.telefono}</td>
+							<td scope="col">${mostraCandidato.telefono}</td>
 						</tr>
 						<tr>
 							<th scope="col">Email</th>
-							<td scope="col">${emp.email}</td>
+							<td scope="col">${mostraCandidato.email}</td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
-							<td scope="col">${emp.mansione}</td>
+							<td scope="col">${mostraCandidato.mansione}</td>
 						</tr>
 						<tr>
 							<th scope="col">Seniority</th>
-							<td scope="col">${emp.seniority}</td>
+							<td scope="col">${mostraCandidato.seniority}</td>
 						</tr>
 						<tr>
 					<th scope="col">specializzazione</th>
-							<td scope="col">${emp.specializzazione}</td>
+							<td scope="col">${mostraCandidato.specializzazione}</td>
 						</tr>
 						<tr>
-							<th scope="col">Inserimento in azienda</th>
-							<td scope="col">${emp.inserimentoAzienda}</td>
+					
 						</tr>
 					
 
