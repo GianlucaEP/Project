@@ -37,7 +37,7 @@
 					Candidato</a>
 
 
-				<a href="#" type="button" class="btn btn-primary btn-block">Aggiungi
+				<a href="/ProgettoHR/Mansioni" type="button" class="btn btn-primary btn-block">Aggiungi
 					Mansione</a>
 			</div>
 
