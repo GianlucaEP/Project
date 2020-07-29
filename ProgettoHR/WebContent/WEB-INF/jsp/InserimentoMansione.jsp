@@ -43,6 +43,12 @@
 							</div>
 						</div>
 					</div>
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
+					</div>
 				</form:form>
 			</div>
 		</div>
