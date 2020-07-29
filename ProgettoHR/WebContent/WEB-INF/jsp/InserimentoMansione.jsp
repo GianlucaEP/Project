@@ -22,9 +22,10 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-light bg-primary">
+		<nav class="navbar navbar-dark bg-primary " style=" opacity: 0.8">
 			<h1>
-				<span class="navbar-text text-light">Erre Technology</span>
+				<span class="navbar-text bg-primary text-white">Erre
+					Technology </span>
 			</h1>
 
 		</nav>
@@ -45,6 +46,7 @@
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<a href="/ProgettoHR/Home" class="btn btn-primary btn-block">Torna alla home</a>
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
 					</div>

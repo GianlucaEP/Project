@@ -19,13 +19,14 @@
 	crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body style="padding-top: 100px;">
 	<div>
-		<nav class="navbar navbar-light bg-primary">
-			<h1>
-				<span class="navbar-text text-light" >Erre Technology </span>
+		<nav class="navbar navbar-light bg-primary fixed-top">
+		<h1>
+				<span class="navbar-text bg-primary text-white">Erre
+					Technology </span>/ProgettoHR/WebContent/WEB-INF/jsp/Erre_technology_group_NEW.png
 			</h1>
-
+					
 		</nav>
 	</div>
 	<div align="center" class="container-fluid ">
