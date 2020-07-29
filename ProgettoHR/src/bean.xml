@@ -8,6 +8,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean> 
 	
+	
+	
 	<bean id="mansioneDAO"
 		class="it.rt.corso.DAOImpl.MansioneDAOImpl">
 	</bean> 
