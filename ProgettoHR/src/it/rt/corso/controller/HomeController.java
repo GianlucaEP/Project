@@ -18,11 +18,16 @@ public class HomeController {
 
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	 //@RequestMapping("/Home")
+	//rappresenta l'url da scrivere dopo localhost:8080/ProgettoHR, in quanto, grazie al pattern MVC,
+	//non può essere chiamata la jsp direttamente, ma bisogna passare dal controller, il quale, semplicemente
+	// richiama la jsp che vogliamo ottenere
+	
 	@RequestMapping("/Home")
-	public String display(Model m) {
+	public String display(Model m) {    // Model m permette di aggiungere attributi della sessiose 
 		List<Candidato> list = dao.getLista();
 		m.addAttribute("list", list);
-		return "Home";
+		return "Home"; 		//rappresenta il nome della jsp che questo metodo andrà ad aprire
 	}
 
 	
