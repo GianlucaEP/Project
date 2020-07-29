@@ -23,7 +23,7 @@
 	<div>
 		<nav class="navbar navbar-light bg-primary">
 			<h1>
-				<span class="navbar-text text-light" >>Erre Technology </span>
+				<span class="navbar-text text-light" >Erre Technology </span>
 			</h1>
 
 		</nav>
@@ -32,12 +32,12 @@
 		<div class="row p-2 justify-content-md-center">
 			<div class="col-auto p-2 border rounded">
 				<h1>Inserimento Candidato</h1>
-				<form:form method="POST"  action="/ProgettoHR/CandidatiSave">
+				<form:form method="POST" modelAttribute="candidato"  action="/ProgettoHR/CandidatiSave">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
-								<input type="text" class="form-control" id="nome" name="nome">
+								<form:input path="nome" type="text" class="form-control" id="nome" name="nome"></form:input>
 							</div>
 						</div>
 					</div>
@@ -45,8 +45,8 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
-								<input type="text" class="form-control" id="cognome"
-									name="cognome">
+								<form:input path="cognome" type="text" class="form-control" id="cognome"
+									name="cognome"></form:input>
 							</div>
 						</div>
 					</div>
@@ -55,8 +55,8 @@
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
 									di nascita:</div>
-								<input type="text" class="form-control" id="anno_di_nascita"
-									name="anno_di_nascita">
+								<form:input path="anno" type="text" class="form-control" id="anno"
+									name="anno"></form:input>
 							</div>
 						</div>
 					</div>
@@ -64,8 +64,8 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
-								<input type="text" class="form-control" id="telefono"
-									name="telefono">
+								<form:input path="telefono" type="text" class="form-control" id="telefono"
+									name="telefono"></form:input>
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
-								<input type="text" class="form-control" id="email" name="email">
+								<form:input path="email" type="text" class="form-control" id="email" name="email"></form:input>
 							</div>
 						</div>
 					</div>
@@ -81,8 +81,8 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								<input type="text" class="form-control" id="mansione"
-									name="mansione">
+								<form:input path="mansione" type="text" class="form-control" id="mansione"
+									name="mansione"></form:input>
 							</div>
 						</div>
 					</div>
@@ -90,17 +90,17 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-								<input type="text" class="form-control" id="seniority"
-									name="seniority">
+								<form:textarea style="resize: none;" path="seniority" type="text" class="form-control" id="seniority"
+									name="seniority"></form:textarea>
 							</div>
 						</div>
 					</div>
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Competenza:</div>
-								<input type="text" class="form-control" id="competenza"
-									name="competenza">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
+								<form:input path="competenza" type="text" class="form-control" id="competenza"
+									name="competenza"></form:input>
 							</div>
 						</div>
 					</div>
@@ -110,8 +110,8 @@
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
 									Azienda:</div>
 									<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
-								<input type="date" class="form-control" id="inserimentoAzienda"
-									name="inserimentoAzienda">
+								<form:input path="inserimentoAzienda" type="date" class="form-control" id="inserimentoAzienda"
+									name="inserimentoAzienda"></form:input>
 							</div>
 						</div>
 					</div>
