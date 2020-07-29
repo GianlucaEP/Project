@@ -70,8 +70,36 @@
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.mansione}</td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
-								<td onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"><i class="fas fa-trash-alt"></i></td>
+								<td data-toggle="modal" data-target="#EliminaModal"><i
+									class="fas fa-trash-alt"></i></td>
 							</tr>
+							<!-- The Modal -->
+							<div class="modal" id="EliminaModal">
+								<div class="modal-dialog">
+									<div class="modal-content">
+
+										<!-- Modal Header -->
+										<div class="modal-header">
+											<h4 class="modal-title">Elimina Candidato</h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+
+										<!-- Modal body -->
+										<div class="modal-body">Sei sicuro di voler eliminare il
+											candidato ${cand.nome} ${cand.cognome}?</div>
+
+										<!-- Modal footer -->
+										<div class="modal-footer">
+											<button
+												onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"
+												type="button" class="btn btn-success" data-dismiss="modal">Si</button>
+											<button onclick="window.location = '/ProgettoHR/Home'"
+												type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
 
 						</c:forEach>
 					</tbody>
@@ -79,6 +107,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 </body>
 </html>
