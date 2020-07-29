@@ -34,7 +34,7 @@ public abstract class CheckWithList extends CheckString {
 				
 				Sinonimo sinonimo = new Sinonimo();
 				sinonimo.setSinonimo(input);
-				sinonimo.setMansione(standard);
+//				sinonimo.setMansione(standard);
 //				sinonimo.setAlgoritmo(this.getClass().getSimpleName());
 				sinonimoDAO.inserisci(sinonimo);
 				

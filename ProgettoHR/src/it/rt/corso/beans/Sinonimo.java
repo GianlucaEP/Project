@@ -3,19 +3,24 @@ package it.rt.corso.beans;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.*;
 
+@Entity
+@Table(name = "sinonimo")
 public class Sinonimo implements Bean {
 
 	// Attributi
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_sinonimo")
 	private int id;
+	@Column(name = "sinonimo")
 	private String sinonimo;
-	private Mansione mansione;
+	
+//	private Mansione mansione; //TODO Spr2 = fare many to one con la mansione base
+	
 	// competenze rappresenta il SET associato alla classe candidato
+	@ManyToMany(mappedBy = "sinonimo")
 	private Set<Candidato> candidato = new HashSet<>();
 
 	// Getter & Setter
@@ -43,13 +48,13 @@ public class Sinonimo implements Bean {
 		this.candidato = candidato;
 	}
 
-	public Mansione getMansione() {
-		return mansione;
-	}
-
-	public void setMansione(Mansione mansione) {
-		this.mansione = mansione;
-	}
+//	public Mansione getMansione() {
+//		return mansione;
+//	}
+//
+//	public void setMansione(Mansione mansione) {
+//		this.mansione = mansione;
+//	}
 
 
 }

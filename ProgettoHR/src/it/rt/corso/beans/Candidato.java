@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "candidato")
+@Table(name = "candidato")
 public class Candidato implements Bean {
 
 	// Attributi
@@ -29,23 +29,23 @@ public class Candidato implements Bean {
 	private String mansione;
 	@Column(name = "seniority")
 	private String seniority;
-	@Column(name = "competenza")
-	private String competenza;
+	@Column(name = "specializzazione") //Specializzazione che inserisce a mano(text box) e che fa riferimento a Sinonimo
+	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
-	
-//	private File allegato;
 
-//	@ManyToMany(cascade = { CascadeType.ALL })
+//	private File allegato; TODO aggiungere successivamente il file allegato
+
+	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
 	 * dell' altra entità
 	 */
-//	@JoinTable(name = "candidato_sinonimo", joinColumns = {
-//			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_competenza_fk") })
-	Set<Sinonimo> competenze = new HashSet<>();
-	
+	@JoinTable(name = "candidato_sinonimo", joinColumns = {
+			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_sinonimo_fk") })
+	Set<Sinonimo> sinonimo = new HashSet<>();
+
 	// Getter & Setter
 
 	public int getId() {
@@ -112,14 +112,6 @@ public class Candidato implements Bean {
 		this.seniority = seniority;
 	}
 
-	public String getCompetenza() {
-		return competenza;
-	}
-
-	public void setCompetenza(String competenza) {
-		this.competenza = competenza;
-	}
-
 	public Date getInserimentoAzienda() {
 		return inserimentoAzienda;
 	}
@@ -128,11 +120,20 @@ public class Candidato implements Bean {
 		this.inserimentoAzienda = inserimentoAzienda;
 	}
 
-	public Set<Sinonimo> getCompetenze() {
-		return competenze;
+	public Set<Sinonimo> getSinonimo() {
+		return sinonimo;
 	}
 
-	public void setCompetenze(Set<Sinonimo> competenze) {
-		this.competenze = competenze;
+	public void setSinonimo(Set<Sinonimo> sinonimo) {
+		this.sinonimo = sinonimo;
 	}
+
+	public String getSpecializzazione() {
+		return specializzazione;
+	}
+
+	public void setSpecializzazione(String specializzazione) {
+		this.specializzazione = specializzazione;
+	}
+
 }

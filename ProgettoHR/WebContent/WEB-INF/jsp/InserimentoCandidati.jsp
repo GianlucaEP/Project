@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Iserimento Candidai</title>
+<title>Inserimento Candidati</title>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -99,7 +99,7 @@
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<form:input path="competenza" type="text" class="form-control" id="competenza"
+								<form:input path="specializzazione" type="text" class="form-control" id="specializzazione"
 									name="competenza"></form:input>
 							</div>
 						</div>
@@ -117,7 +117,7 @@
 					</div>
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
-							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
 					</div>
