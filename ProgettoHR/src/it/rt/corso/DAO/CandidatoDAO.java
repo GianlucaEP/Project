@@ -2,7 +2,6 @@ package it.rt.corso.DAO;
 
 import java.util.List;
 import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Sinonimo;
 
 public interface CandidatoDAO {
 	
