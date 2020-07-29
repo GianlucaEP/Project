@@ -15,4 +15,5 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="sinonimoDAO"
 		class="it.rt.corso.DAOImpl.SinonimoDAOImpl">
 	</bean> 
+	
 </beans> 

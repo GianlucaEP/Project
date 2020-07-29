@@ -17,6 +17,7 @@
 
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
+
 </head>
 <body>
 	<div>
