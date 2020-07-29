@@ -89,6 +89,19 @@ COMMENT = '		';
 
 
 -- -----------------------------------------------------
+-- Table `progetto_hr`.`mansione`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`mansione` (
+  `id_mansione` INT NOT NULL AUTO_INCREMENT,
+  `mansione` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_mansione`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+COMMENT = '			';
+
+
+-- -----------------------------------------------------
 -- Table `progetto_hr`.`telefonata`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `progetto_hr`.`telefonata` (
