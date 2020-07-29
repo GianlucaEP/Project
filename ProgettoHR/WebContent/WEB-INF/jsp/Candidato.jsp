@@ -5,9 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<link rel="icon" href="/img/favicon.ico" />
+<script src="https://kit.fontawesome.com/053b00be10.js" crossorigin="anonymous"></script>
 
 <link rel="icon" href="/favicon-32x32.png" type="image/png" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
