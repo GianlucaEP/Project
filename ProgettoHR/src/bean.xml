@@ -7,8 +7,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	 <bean id="candidatoDAO" 
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean> 
-<!-- 
+ 
 	<bean id="sinonimoDAO"
 		class="it.rt.corso.DAOImpl.SinonimoDAOImpl">
-	</bean> -->
+	</bean> 
 </beans> 
