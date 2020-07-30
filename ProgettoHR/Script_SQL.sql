@@ -18,6 +18,17 @@ CREATE SCHEMA IF NOT EXISTS `progetto_hr` DEFAULT CHARACTER SET utf8mb4 COLLATE 
 USE `progetto_hr` ;
 
 -- -----------------------------------------------------
+-- Table `progetto_hr`.`stato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`stato` (
+  `descrizione` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`descrizione`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `progetto_hr`.`candidato`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
@@ -31,7 +42,12 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
   `seniority` VARCHAR(45) NOT NULL,
   `inserimento_azienda` DATE NOT NULL,
   `specializzazione` TEXT NOT NULL,
-  PRIMARY KEY (`id_candidato`))
+  `stato` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_candidato`),
+  INDEX `stato_idx` (`stato` ASC) VISIBLE,
+  CONSTRAINT `stato`
+    FOREIGN KEY (`stato`)
+    REFERENCES `progetto_hr`.`stato` (`descrizione`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
@@ -70,23 +86,39 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `progetto_hr`.`colloquio`
+-- Table `progetto_hr`.`tipo_feedback`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `progetto_hr`.`colloquio` (
-  `id_colloquio` INT NOT NULL AUTO_INCREMENT,
-  `id_candidato` INT NOT NULL,
-  `data` DATE NOT NULL,
-  `operatore` VARCHAR(45) NOT NULL,
-  `commento` TEXT NOT NULL,
-  PRIMARY KEY (`id_colloquio`),
-  INDEX `id_candidato_colloquio_idx` (`id_candidato` ASC) VISIBLE,
-  CONSTRAINT `id_candidato_colloquio`
-    FOREIGN KEY (`id_candidato`)
-    REFERENCES `progetto_hr`.`candidato` (`id_candidato`))
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`tipo_feedback` (
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tipo`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
-COMMENT = '		';
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`feedback`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`feedback` (
+  `id_feedback` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  `data` DATE NOT NULL,
+  `commento` VARCHAR(45) NOT NULL,
+  `id_candidato` INT NOT NULL,
+  `user_insert` VARCHAR(45) NOT NULL,
+  `data_insert` DATE NOT NULL,
+  PRIMARY KEY (`id_feedback`),
+  INDEX `id_candidato_idx` (`id_candidato` ASC) VISIBLE,
+  INDEX `tipo_fb_idx` (`tipo` ASC) VISIBLE,
+  CONSTRAINT `id_candidato_fb`
+    FOREIGN KEY (`id_candidato`)
+    REFERENCES `progetto_hr`.`candidato` (`id_candidato`),
+  CONSTRAINT `tipo_fb`
+    FOREIGN KEY (`tipo`)
+    REFERENCES `progetto_hr`.`tipo_feedback` (`tipo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -103,22 +135,29 @@ COMMENT = '			';
 
 
 -- -----------------------------------------------------
--- Table `progetto_hr`.`telefonata`
+-- Table `progetto_hr`.`qualification_meeting`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `progetto_hr`.`telefonata` (
-  `id_telefonata` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`qualification_meeting` (
+  `id_qualification` INT NOT NULL AUTO_INCREMENT,
+  `data_presentato` DATE NOT NULL,
+  `data_colloquio` DATE NOT NULL,
+  `commento` VARCHAR(45) NOT NULL,
   `id_candidato` INT NOT NULL,
-  `data` DATE NOT NULL,
-  `operatore` VARCHAR(45) NOT NULL,
-  `commento` TEXT NOT NULL,
-  PRIMARY KEY (`id_telefonata`),
-  INDEX `id_candidato_idx` (`id_candidato` ASC) VISIBLE,
-  CONSTRAINT `id_candidato_telefonata`
+  `azienda` VARCHAR(45) NOT NULL,
+  `ral` INT NOT NULL,
+  `preavviso` VARCHAR(45) NOT NULL,
+  `desiderata` INT NOT NULL,
+  `user_insert` VARCHAR(45) NOT NULL,
+  `data_insert` DATE NOT NULL,
+  PRIMARY KEY (`id_qualification`),
+  INDEX `id_candidato_qm_idx` (`id_candidato` ASC) VISIBLE,
+  CONSTRAINT `id_candidato_qm`
     FOREIGN KEY (`id_candidato`)
     REFERENCES `progetto_hr`.`candidato` (`id_candidato`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_0900_ai_ci
+COMMENT = '	';
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
