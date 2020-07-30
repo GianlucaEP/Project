@@ -143,100 +143,101 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form method="POST" action="/ProgettoHR/CandidatiSave"><!-- modelAttribute="modificaCandidato" --> 
-						
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 m-0justify-content-md-start">Nome:</div>
-									<input type="text" class="form-control"
-										id="nome" name="nome"></input>
+					<div class="container-fluid">
+						<form method="POST" action="/ProgettoHR/CandidatiSave">
+							<!-- modelAttribute="modificaCandidato" -->
+
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
+										<input type="text" class="form-control" id="nome" name="nome"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
-									<input type="text" class="form-control"
-										id="cognome" name="cognome"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
+										<input type="text" class="form-control" id="cognome"
+											name="cognome"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
-										di nascita:</div>
-									<input type="text" class="form-control"
-										id="anno" name="anno"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
+											di nascita:</div>
+										<input type="text" class="form-control" id="anno" name="anno"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
-									<input type="text" class="form-control"
-										id="telefono" name="telefono"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
+										<input type="text" class="form-control" id="telefono"
+											name="telefono"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
-									<input type="text" class="form-control"
-										id="email" name="email"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Email:</div>
+										<input type="text" class="form-control" id="email"
+											name="email"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-									<input type="text" class="form-control"
-										id="mansione" name="mansione"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
+										<input type="text" class="form-control" id="mansione"
+											name="mansione"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-									<textarea style="resize: none;" class="form-control" id="seniority"
-										name="seniority"></textarea>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
+										<textarea style="resize: none;" class="form-control"
+											id="seniority" name="seniority"></textarea>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-									<input type="text"
-										class="form-control" id="specializzazione" name="competenza"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
+										<input type="text" class="form-control" id="specializzazione"
+											name="competenza"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
-										Azienda:</div>
-									<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
-									<input type="date"
-										class="form-control" id="inserimentoAzienda"
-										name="inserimentoAzienda"></input>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
+											Azienda:</div>
+										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
+										<input type="date" class="form-control"
+											id="inserimentoAzienda" name="inserimentoAzienda"></input>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row w-100 p-2 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<button type="submit" class="btn btn-primary btn-block">Salva</button>
-								<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+								</div>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">Salva
