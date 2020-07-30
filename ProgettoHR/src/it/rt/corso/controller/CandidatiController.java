@@ -45,7 +45,7 @@ public class CandidatiController {
 		Candidato candidato = new Candidato();
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStatoCandidato(stato);
-		m.addAttribute("candidato", new Candidato());
+		m.addAttribute("candidato", candidato);
 		return "InserimentoCandidati";
 	}
 
