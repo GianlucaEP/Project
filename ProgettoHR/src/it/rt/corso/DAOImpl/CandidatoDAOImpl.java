@@ -32,6 +32,4 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 		return (Candidato) super.aggiorna(candidato);
 	}
 
-	
-
 }
