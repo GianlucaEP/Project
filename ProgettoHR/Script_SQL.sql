@@ -159,6 +159,26 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci
 COMMENT = '	';
 
+-- -----------------------------------------------------
+-- caricamento in table stato
+-- -----------------------------------------------------
+INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('nuovo_inserito');
+INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('da_contattare');
+INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('scartato');
+INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('attivo');
+INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('selezionato');
+
+
+-- -----------------------------------------------------
+-- caricamento in table tipo_feedback
+-- -----------------------------------------------------
+INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('chat');
+INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('colloquio_hr');
+INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('colloquio_tecnico');
+INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('mail');
+INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('telefonata');
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
