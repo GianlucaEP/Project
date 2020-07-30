@@ -26,7 +26,7 @@ public class QualificationMeetingController {
 
 	}
 
-	@RequestMapping(value = "/AggiungiFeedback", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiQualificationMeeting", method = RequestMethod.POST)
 	public String aggiungiQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting) {
 		quafilicationMeetingDAO.inserisci(qualificationMeeting);
 		return "redirect:/Candidato";

@@ -20,6 +20,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="tipoFeedbackDAO" class="it.rt.corso.DAOImpl.TipoFeedbackDAOImpl">
 	</bean>
 	
+	<bean id="qualificationMeetingDAO" class="it.rt.corso.DAOImpl.QualificationMeetingDAOImpl">
+	</bean>
+	
+	
   	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
   	 <property name="descrizione" value="nuovo_inserito" />
 	</bean>

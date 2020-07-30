@@ -54,7 +54,7 @@ public class FeedbackController {
 	@RequestMapping(value = "/AggiungiFeedback", method = RequestMethod.POST)
 	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback) {
 		feedbackDAO.inserisci(feedback);
-		return "redirect:/Candidato";// will redirect to viewemp request mapping
+		return "redirect:/Candidato";
 
 	}
 
