@@ -3,6 +3,7 @@ package it.rt.corso.beans;
 //import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -33,6 +34,13 @@ public class Candidato implements Bean {
 	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stato", referencedColumnName = "descrizione") //One to one con l'id(descrizione) di StatoCandidato
+	private StatoCandidato statoCandidato;
+	@OneToMany(mappedBy="candidato")
+	Set<Feedback> feedback;//One to many con la classe feedback
+	@OneToMany(mappedBy="candidato")
+	Set<QualificationMeeting> qm;
 
 //	private File allegato; TODO aggiungere successivamente il file allegato
 
@@ -134,6 +142,30 @@ public class Candidato implements Bean {
 
 	public void setSpecializzazione(String specializzazione) {
 		this.specializzazione = specializzazione;
+	}
+
+	public StatoCandidato getStatoCandidato() {
+		return statoCandidato;
+	}
+
+	public void setStatoCandidato(StatoCandidato statoCandidato) {
+		this.statoCandidato = statoCandidato;
+	}
+
+	public Set<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(Set<Feedback> feedback) {
+		this.feedback = feedback;
+	}
+
+	public Set<QualificationMeeting> getQm() {
+		return qm;
+	}
+
+	public void setQm(Set<QualificationMeeting> qm) {
+		this.qm = qm;
 	}
 
 }
