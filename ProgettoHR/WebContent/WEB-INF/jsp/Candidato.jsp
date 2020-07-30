@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/053b00be10.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/053b00be10.js"
+	crossorigin="anonymous"></script>
 
 <link rel="icon" href="/favicon-32x32.png" type="image/png" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -53,8 +54,15 @@
 
 
 				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Aggiungi Mansione</a> <a href="/ProgettoHR/Home" type="button"
-					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Torna alla Home</a>
+					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Aggiungi
+					Mansione</a>
+				<button type="button" data-toggle="modal"
+					data-target="#modificaModal"
+					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Modifica
+					Candidato</button>
+				<a href="/ProgettoHR/Home" type="button"
+					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Torna
+					alla Home</a>
 
 
 
@@ -120,6 +128,121 @@
 
 					</tbody>
 				</table>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+		aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" action="/ProgettoHR/CandidatiSave"><!-- modelAttribute="modificaCandidato" --> 
+						
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 m-0justify-content-md-start">Nome:</div>
+									<input type="text" class="form-control"
+										id="nome" name="nome"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
+									<input type="text" class="form-control"
+										id="cognome" name="cognome"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
+										di nascita:</div>
+									<input type="text" class="form-control"
+										id="anno" name="anno"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
+									<input type="text" class="form-control"
+										id="telefono" name="telefono"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
+									<input type="text" class="form-control"
+										id="email" name="email"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+									<input type="text" class="form-control"
+										id="mansione" name="mansione"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
+									<textarea style="resize: none;" class="form-control" id="seniority"
+										name="seniority"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
+									<input type="text"
+										class="form-control" id="specializzazione" name="competenza"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
+										Azienda:</div>
+									<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
+									<input type="date"
+										class="form-control" id="inserimentoAzienda"
+										name="inserimentoAzienda"></input>
+								</div>
+							</div>
+						</div>
+						<div class="row w-100 p-2 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<button type="submit" class="btn btn-primary btn-block">Salva</button>
+								<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Salva
+						modifiche</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+				</div>
 			</div>
 		</div>
 	</div>
