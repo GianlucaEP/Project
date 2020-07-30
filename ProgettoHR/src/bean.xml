@@ -4,7 +4,8 @@
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="candidatoDAO" class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
+	<bean id="candidatoDAO"
+		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean>
 
 	<bean id="mansioneDAO" class="it.rt.corso.DAOImpl.MansioneDAOImpl">
@@ -12,11 +13,34 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="sinonimoDAO" class="it.rt.corso.DAOImpl.SinonimoDAOImpl">
 	</bean>
-	
-	<bean id="colloquioDAO" class="it.rt.corso.DAOImpl.ColloquioDAOImpl">
+
+	<bean id="feedbackDAO" class="it.rt.corso.DAOImpl.FeedbackDAOImpl">
 	</bean>
 	
-	<bean id="telefonataDAO" class="it.rt.corso.DAOImpl.TelefonataDAOImpl">
+	<bean id="tipoFeedbackDAO" class="it.rt.corso.DAOImpl.TipoFeedbackDAOImpl">
 	</bean>
+	
+  	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
+  	 <property name="descrizione" value="nuovo_inserito" />
+	</bean>
+	
+	<bean id="daContattare" class="it.rt.corso.beans.StatoCandidato">
+  	 <property name="descrizione" value="da_contattare" />
+	</bean>
+	
+	<bean id="scartato" class="it.rt.corso.beans.StatoCandidato">
+  	 <property name="descrizione" value="scartato" />
+	</bean>
+	
+	<bean id="attivo" class="it.rt.corso.beans.StatoCandidato">
+  	 <property name="descrizione" value="attivo" />
+	</bean>
+	
+	<bean id="selezionato" class="it.rt.corso.beans.StatoCandidato">
+  	 <property name="descrizione" value="selezionato" />
+	</bean>
+
+
+
 
 </beans> 
