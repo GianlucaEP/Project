@@ -92,6 +92,8 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/Modifica/{id}", method = RequestMethod.POST)
 	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
+		c.setStatoCandidato(stato);
 		dao.aggiorna(c);
 		return "redirect:/Candidato/{id}";
 	}
