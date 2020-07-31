@@ -17,7 +17,7 @@ public class StatoCandidato implements Bean{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "descrizione")
 	private String descrizione;
-	@OneToOne(mappedBy = "stato")
+//	@OneToOne(mappedBy = "stato")
 	private Candidato candidato;
 	
 	
