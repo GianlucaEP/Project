@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,10 +33,9 @@ public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-
- //su quale base, scelgo come istanziare un oggetto(dai bean o da java(new))??
+	// su quale base, scelgo come istanziare un oggetto(dai bean o da java(new))??
 //	DA CHIEDERE AL PROF
-	FeedbackDAO fdao= (FeedbackDAO) factory.getBean("feedbackDAO");
+	FeedbackDAO fdao = (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	SinonimoDAO sdao = (SinonimoDAO) factory.getBean("sinonimoDAO");
@@ -70,16 +68,16 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
-		
+
 		Candidato c = dao.get(id);
-		List<Feedback> f= fdao.getByIdCandidato(id);
+		List<Feedback> f = fdao.getByIdCandidato(id);
 
 		m.addAttribute("mostraFeedback", f);
-		
+
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mostraCandidato", c);
-		
+
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
 		return "Candidato";
@@ -102,7 +100,7 @@ public class CandidatiController {
 	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato) {
 		Candidato c = dao.get(id);
 		StatoCandidato statoCandidato = (StatoCandidato) factory.getBean(stato);
-		
+
 		c.setStatoCandidato(statoCandidato);
 
 		dao.aggiorna(c);
