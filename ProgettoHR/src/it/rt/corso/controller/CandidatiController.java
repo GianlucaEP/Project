@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.rt.corso.DAO.CandidatoDAO;
+import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.SinonimoDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.Candidato;
@@ -32,7 +33,9 @@ public class CandidatiController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 
-
+ //su quale base, scelgo come istanziare un oggetto(dai bean o da java(new))??
+//	DA CHIEDERE AL PROF
+	FeedbackDAO fdao= (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	SinonimoDAO sdao = (SinonimoDAO) factory.getBean("sinonimoDAO");
@@ -66,6 +69,8 @@ public class CandidatiController {
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
 		Candidato c = dao.get(id);
+		List<Feedback> f= fdao.getLista();
+		m.addAttribute("mostraFeedback", f);
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mostraCandidato", c);

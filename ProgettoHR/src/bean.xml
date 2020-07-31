@@ -8,6 +8,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean>
 
+	<bean id="feedbackDAO"
+		class="it.rt.corso.DAOImpl.FeedbackDAOImpl">
+	</bean>
+
 	<bean id="mansioneDAO" class="it.rt.corso.DAOImpl.MansioneDAOImpl">
 	</bean>
 
@@ -16,32 +20,34 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="feedbackDAO" class="it.rt.corso.DAOImpl.FeedbackDAOImpl">
 	</bean>
-	
-	<bean id="tipoFeedbackDAO" class="it.rt.corso.DAOImpl.TipoFeedbackDAOImpl">
+
+	<bean id="tipoFeedbackDAO"
+		class="it.rt.corso.DAOImpl.TipoFeedbackDAOImpl">
 	</bean>
-	
-	<bean id="qualificationMeetingDAO" class="it.rt.corso.DAOImpl.QualificationMeetingDAOImpl">
+
+	<bean id="qualificationMeetingDAO"
+		class="it.rt.corso.DAOImpl.QualificationMeetingDAOImpl">
 	</bean>
-	
-	
-  	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
-  	 <property name="descrizione" value="nuovo_inserito" />
+
+
+	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
+		<property name="descrizione" value="nuovo_inserito" />
 	</bean>
-	
+
 	<bean id="daContattare" class="it.rt.corso.beans.StatoCandidato">
-  	 <property name="descrizione" value="da_contattare" />
+		<property name="descrizione" value="da_contattare" />
 	</bean>
-	
+
 	<bean id="scartato" class="it.rt.corso.beans.StatoCandidato">
-  	 <property name="descrizione" value="scartato" />
+		<property name="descrizione" value="scartato" />
 	</bean>
-	
+
 	<bean id="attivo" class="it.rt.corso.beans.StatoCandidato">
-  	 <property name="descrizione" value="attivo" />
+		<property name="descrizione" value="attivo" />
 	</bean>
-	
+
 	<bean id="selezionato" class="it.rt.corso.beans.StatoCandidato">
-  	 <property name="descrizione" value="selezionato" />
+		<property name="descrizione" value="selezionato" />
 	</bean>
 
 
