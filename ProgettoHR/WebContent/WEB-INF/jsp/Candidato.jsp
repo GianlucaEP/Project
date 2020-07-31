@@ -10,6 +10,13 @@
 
 <link rel="icon" href="/favicon-32x32.png" type="image/png" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -22,9 +29,9 @@
 <meta charset="ISO-8859-1">
 <title>Candidato</title>
 </head>
-<body>
+<body onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
 	<div>
-		<nav class="navbar navbar-dark bg-dark "
+		<nav class="navbar navbar-light bg-primary"
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
 				<span class="navbar-text  text-white"> <a
@@ -54,14 +61,14 @@
 
 
 				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Aggiungi
+					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi
 					Mansione</a>
 				<button type="button" data-toggle="modal"
 					data-target="#modificaModal"
-					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Modifica
+					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Modifica
 					Candidato</button>
 				<a href="/ProgettoHR/Home" type="button"
-					class="btn btn-secondary btn-block  m-0 " style="border-radius: 0;">Torna
+					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Torna
 					alla Home</a>
 
 
@@ -86,7 +93,21 @@
 					<!-- <thead> -->
 					<tbody>
 
+						<tr>
+							<th scope="col">Stato</th>
+							<td scope="col"><button class="btn btn-primary dropdown-toggle"
+								href="#" role="button" id="menuStato"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false" > </button>
 
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<a class="dropdown-item" href="#">Da contattare</a> <a
+										class="dropdown-item" href="#">Scartato</a> <a
+										class="dropdown-item" href="#">Attivo</a>
+										<a
+										class="dropdown-item" href="#">Selezionato</a>
+								</div></td>
+						</tr>
 
 						<tr>
 							<th scope="col">Nome</th>
@@ -247,5 +268,27 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function changeStato(stato){
+			if(stato === "nuovo_inserito"){
+				document.getElementById("menuStato").className = "btn btn-light dropdown-toggle";
+				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
+			} else if(stato === "da_contattare"){
+				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
+				document.getElementById("menuStato").innerHTML = "Da Contattare";
+			} else if(stato === "scartato"){
+				document.getElementById("menuStato").className = "btn btn-danger dropdown-toggle";
+				document.getElementById("menuStato").innerHTML = "Scartato";
+			} else if(stato === "attivo"){
+				document.getElementById("menuStato").className = "btn btn-success dropdown-toggle";
+				document.getElementById("menuStato").innerHTML = "Attivo";
+			} else if(stato === "selezionato"){
+				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
+				document.getElementById("menuStato").innerHTML = "Selezionato";
+			} 
+			
+		}
+	</script>
 </body>
 </html>

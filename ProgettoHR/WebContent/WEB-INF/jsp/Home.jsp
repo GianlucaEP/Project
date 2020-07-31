@@ -39,12 +39,12 @@
 	<br>
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-2 ">
+			<div class="col-auto p-0">
 
 				<a href="/ProgettoHR/Candidati" type="button"
-					class="btn btn-primary btn-block">Aggiungi Candidato</a> <a
+					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi Candidato</a> <a
 					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block">Aggiungi Mansione</a>
+					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi Mansione</a>
 			</div>
 
 			<div class="col-10">
