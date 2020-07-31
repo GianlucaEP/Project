@@ -29,7 +29,8 @@
 <meta charset="ISO-8859-1">
 <title>Candidato</title>
 </head>
-<body onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
+<body
+	onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
 	<div>
 		<nav class="navbar navbar-light bg-primary"
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -95,17 +96,20 @@
 
 						<tr>
 							<th scope="col">Stato</th>
-							<td scope="col"><button class="btn btn-primary dropdown-toggle"
-								href="#" role="button" id="menuStato"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false" > </button>
+							<td scope="col"><button
+									class="btn btn-primary dropdown-toggle" href="#" role="button"
+									id="menuStato" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"></button>
 
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="dropdown-item" href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da contattare</a> <a
-										class="dropdown-item" href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a> <a
-										class="dropdown-item" href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
-										<a
-										class="dropdown-item" href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
+									<a class="dropdown-item"
+										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
+										contattare</a> <a class="dropdown-item"
+										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
+									<a class="dropdown-item"
+										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
+									<a class="dropdown-item"
+										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
 								</div></td>
 						</tr>
 
@@ -147,6 +151,28 @@
 
 
 
+					</tbody>
+				</table>
+			</div>
+			<div class="col-auto">
+
+				<table class="table table-bordered  text-center "
+					style="box-shadow: 10px 10px 5px grey;">
+					<thead>
+						<tr>
+							<th scope="col">Data</th>
+							<th scope="col">Tipo</th>
+							<th scope="col">Feedback</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="feed" items="${mostraFeedback}">
+							<tr>
+								<td>${feed.data}</td>
+								<td>${feed.tipo}</td>
+								<td>${feed.commento}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -268,26 +294,26 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
-		function changeStato(stato){
-			if(stato === "nuovo_inserito"){
+		function changeStato(stato) {
+			if (stato === "nuovo_inserito") {
 				document.getElementById("menuStato").className = "btn btn-light dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
-			} else if(stato === "da_contattare"){
+			} else if (stato === "da_contattare") {
 				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Da Contattare";
-			} else if(stato === "scartato"){
+			} else if (stato === "scartato") {
 				document.getElementById("menuStato").className = "btn btn-danger dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Scartato";
-			} else if(stato === "attivo"){
+			} else if (stato === "attivo") {
 				document.getElementById("menuStato").className = "btn btn-success dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Attivo";
-			} else if(stato === "selezionato"){
+			} else if (stato === "selezionato") {
 				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Selezionato";
-			} 
-			
+			}
+
 		}
 	</script>
 </body>
