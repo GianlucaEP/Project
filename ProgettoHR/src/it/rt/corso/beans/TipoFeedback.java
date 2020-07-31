@@ -1,10 +1,14 @@
 package it.rt.corso.beans;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,9 +21,9 @@ public class TipoFeedback implements Bean{
 	@Column(name = "tipo")
 	private String tipo;
 	
-	//ONE-TO-ONE con la classe Candidato
-	@OneToOne(mappedBy="tipo")
-	private Feedback feedback;
+	//ONE-TO-MANY con la classe Candidato
+	@OneToMany(cascade = { CascadeType.ALL },mappedBy="tipo")
+	Set<Feedback> feedback;
 
 	public String getTipo() {
 		return tipo;
@@ -29,13 +33,13 @@ public class TipoFeedback implements Bean{
 		this.tipo = tipo;
 	}
 
-	public Feedback getFeedback() {
+	public Set<Feedback> getFeedback() {
 		return feedback;
 	}
 
-	public void setFeedback(Feedback feedback) {
+	public void setFeedback(Set<Feedback> feedback) {
 		this.feedback = feedback;
 	}
-	
+
 	
 }

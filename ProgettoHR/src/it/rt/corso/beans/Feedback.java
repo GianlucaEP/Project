@@ -33,8 +33,8 @@ public class Feedback implements Bean{
     @JoinColumn(name="id_candidato")
 	private Candidato candidato; 
 	
-	//ONE-TO-ONE con la classe TipoFeedback
-	@OneToOne(optional=false)
+	//MANY-TO-ONE con la classe TipoFeedback
+	@ManyToOne
 	@JoinColumn(name="tipo")
 	private TipoFeedback tipo;
 
