@@ -37,10 +37,12 @@ public class FeedbackController {
 	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @PathVariable int id,
 			@PathVariable String tipoFeedback) {
 		TipoFeedback tp = tipoFeedbackDAO.get(tipoFeedback);
-		feedback.setTipo(tp);
-		feedbackDAO.inserisci(feedback);
 		Candidato c = dao.get(id);
-		c.addFeedback(feedback);
+		feedback.setTipo(tp);
+		feedback.setCandidato(c);
+		feedbackDAO.inserisci(feedback);
+		
+		//c.addFeedback(feedback);
 		return "redirect:/Candidato/{id}";
 
 	}
