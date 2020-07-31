@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "candidato")
 public class Candidato implements Bean {
 
-	// Attributi 
+	// Attributi
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")
@@ -30,22 +30,23 @@ public class Candidato implements Bean {
 	private String mansione;
 	@Column(name = "seniority")
 	private String seniority;
-	@Column(name = "specializzazione") //Specializzazione che inserisce a mano(text box) e che fa riferimento a Sinonimo
+	@Column(name = "specializzazione") // Specializzazione che inserisce a mano(text box) e che fa riferimento a
+										// Sinonimo
 	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
-	
-	//ONE-TO-ONE con la classe StatoCandidato
-	@OneToOne(optional=false)
+
+	// ONE-TO-ONE con la classe StatoCandidato
+	@OneToOne(optional = false)
 	@JoinColumn(name = "stato")
 	private StatoCandidato statoCandidato;
-	
-	//ONE-TO-MANY con la classe feedback
-	@OneToMany(cascade = {CascadeType.ALL} , mappedBy="candidato")
+
+	// ONE-TO-MANY con la classe feedback
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Feedback> feedback;
-	
-	//ONE-TO-MANY con la classe QualificationMetting
-	@OneToMany(cascade = {CascadeType.ALL} , mappedBy="candidato")
+
+	// ONE-TO-MANY con la classe QualificationMetting
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;
 
 //	private File allegato; TODO aggiungere successivamente il file allegato
@@ -174,4 +175,13 @@ public class Candidato implements Bean {
 		this.qm = qm;
 	}
 
+	public void addFeedback(Feedback f) {
+		this.feedback.add(f);
+
+	}
+
+	public void addQualificationMeeting(QualificationMeeting qm) {
+		this.qm.add(qm);
+
+	}
 }
