@@ -1,5 +1,7 @@
 package it.rt.corso.beans;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 //import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
@@ -38,7 +40,7 @@ public class Candidato implements Bean {
 
 	// MANY-TO-ONE con la classe StatoCandidato
 	@ManyToOne
-	@JoinColumn(name= "stato")
+	@JoinColumn(name = "stato")
 	private StatoCandidato statoCandidato;
 
 	// ONE-TO-MANY con la classe feedback
@@ -128,6 +130,15 @@ public class Candidato implements Bean {
 	}
 
 	public Date getInserimentoAzienda() {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
+			String formattedDate = sdf.format(inserimentoAzienda);
+
+			inserimentoAzienda = sdf.parse(formattedDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return inserimentoAzienda;
 	}
 

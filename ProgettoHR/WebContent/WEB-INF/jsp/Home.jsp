@@ -39,12 +39,12 @@
 	<br>
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0">
+			<div class="col-auto p-0 bg-primary" style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 
 				<a href="/ProgettoHR/Candidati" type="button"
-					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi Candidato</a> <a
+					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi Candidato</a> <a
 					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi Mansione</a>
+					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi Mansione</a>
 			</div>
 
 			<div class="col-10">

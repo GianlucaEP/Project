@@ -58,19 +58,37 @@
 	</div> -->
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0">
+			<div class="col-auto p-0 bg-primary" style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 
 
 				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi
+					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi
 					Mansione</a>
 				<button type="button" data-toggle="modal"
 					data-target="#modificaModal"
-					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Modifica
+					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Modifica
 					Candidato</button>
 				<a href="/ProgettoHR/Home" type="button"
-					class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Torna
-					alla Home</a>
+					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Torna
+					alla Home</a><a href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Telefonata <i
+					class="fas fa-phone float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Chat <i
+					class="fas fa-comment-dots float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Colloquio HR <i
+					class="fas fa-user-tie float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Colloquio Tecnico &nbsp<i
+					class="fas fa-user float-right"></i></a> <a href="/ProgettoHR/Mansioni"
+					type="button" class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Mail <i
+					class="fas fa-envelope-open-text float-right"></i></a>
 
 
 
@@ -142,11 +160,12 @@
 							<td scope="col">${mostraCandidato.seniority}</td>
 						</tr>
 						<tr>
-							<th scope="col">specializzazione</th>
+							<th scope="col">Specializzazione</th>
 							<td scope="col">${mostraCandidato.specializzazione}</td>
 						</tr>
 						<tr>
-
+							<th scope="col">Inserimento Azienda</th>
+							<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
 						</tr>
 
 
@@ -191,14 +210,16 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST" action="/ProgettoHR/CandidatiSave">
+						<form method="POST"
+							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.statoCandidato.descrizione}">
 							<!-- modelAttribute="modificaCandidato" -->
 
 							<div class="row w-100 p-2 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
-										<input type="text" class="form-control" id="nome" name="nome"></input>
+										<input type="text" class="form-control" id="nome" name="nome"
+											value="${mostraCandidato.nome}"></input>
 									</div>
 								</div>
 							</div>
@@ -207,7 +228,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
 										<input type="text" class="form-control" id="cognome"
-											name="cognome"></input>
+											name="cognome" value="${mostraCandidato.cognome}"></input>
 									</div>
 								</div>
 							</div>
@@ -216,7 +237,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
 											di nascita:</div>
-										<input type="text" class="form-control" id="anno" name="anno"></input>
+										<input type="text" class="form-control" id="anno" name="anno"
+											value="${mostraCandidato.anno}"></input>
 									</div>
 								</div>
 							</div>
@@ -225,7 +247,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
 										<input type="text" class="form-control" id="telefono"
-											name="telefono"></input>
+											name="telefono" value="${mostraCandidato.telefono}"></input>
 									</div>
 								</div>
 							</div>
@@ -234,7 +256,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Email:</div>
 										<input type="text" class="form-control" id="email"
-											name="email"></input>
+											name="email" value="${mostraCandidato.email}"></input>
 									</div>
 								</div>
 							</div>
@@ -243,16 +265,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
 										<input type="text" class="form-control" id="mansione"
-											name="mansione"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
-										<textarea style="resize: none;" class="form-control"
-											id="seniority" name="seniority"></textarea>
+											name="mansione" value="${mostraCandidato.mansione}"></input>
 									</div>
 								</div>
 							</div>
@@ -260,8 +273,17 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
-										<input type="text" class="form-control" id="specializzazione"
-											name="competenza"></input>
+										<textarea style="resize: none;" class="form-control"
+											id="specializzazione" name="specializzazione"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
+										<input type="text" class="form-control" id="seniority"
+											name="seniority" value="${mostraCandidato.seniority}"></input>
 									</div>
 								</div>
 							</div>
@@ -272,7 +294,8 @@
 											Azienda:</div>
 										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
 										<input type="date" class="form-control"
-											id="inserimentoAzienda" name="inserimentoAzienda"></input>
+											id="inserimentoAzienda" name="inserimentoAzienda"
+											value="${mostraCandidato.inserimentoAzienda}"></input>
 									</div>
 								</div>
 							</div>
