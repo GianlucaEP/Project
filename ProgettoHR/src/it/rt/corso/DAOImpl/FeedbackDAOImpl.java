@@ -20,7 +20,9 @@ public class FeedbackDAOImpl extends BaseDAO implements FeedbackDAO{
 	public List<Feedback> getByIdCandidato(int id) {
 		Utility.buildSession();
 		
-		List<Feedback> listaFeedback = Utility.getSession().createQuery(" FROM Feedback F WHERE F.candidato=:id").getResultList();
+		List<Feedback> listaFeedback = Utility.getSession().createQuery(" FROM Feedback F WHERE F.candidato=:id").setParameter("id", id).getResultList();
+		
+		
 		return listaFeedback;
 	}
 
