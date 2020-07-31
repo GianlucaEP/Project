@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
@@ -69,11 +71,13 @@ public class CandidatiController {
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
 		Candidato c = dao.get(id);
-		List<Feedback> f= fdao.getLista();
+		Set<Feedback> f= c.getFeedback();
 		m.addAttribute("mostraFeedback", f);
+		
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mostraCandidato", c);
+		
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
 		return "Candidato";
