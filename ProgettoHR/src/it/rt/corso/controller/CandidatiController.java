@@ -71,7 +71,8 @@ public class CandidatiController {
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
 		Candidato c = dao.get(id);
-		Set<Feedback> f= c.getFeedback();
+		List<Feedback> f= fdao.getByIdCandidato(id);
+
 		m.addAttribute("mostraFeedback", f);
 		
 		// List<Feedback> feedbacks = c.getFeedback();

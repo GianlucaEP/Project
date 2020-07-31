@@ -7,5 +7,9 @@ import it.rt.corso.beans.Feedback;
 public interface FeedbackDAO {
 	
 	public Feedback inserisci(Feedback feedback);
-	public List<Feedback> getLista();
+
+	
+	public List<Feedback> getByIdCandidato(int id);
+	
+	
 }
