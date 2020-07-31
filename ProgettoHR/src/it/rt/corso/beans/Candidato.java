@@ -36,9 +36,9 @@ public class Candidato implements Bean {
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
 
-	// ONE-TO-ONE con la classe StatoCandidato
-	@OneToOne(optional = false)
-	@JoinColumn(name = "stato")
+	// MANY-TO-ONE con la classe StatoCandidato
+	@ManyToOne
+	@JoinColumn(name= "stato")
 	private StatoCandidato statoCandidato;
 
 	// ONE-TO-MANY con la classe feedback
