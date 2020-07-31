@@ -169,7 +169,7 @@
 						<c:forEach var="feed" items="${mostraFeedback}">
 							<tr>
 								<td>${feed.data}</td>
-								<td>${feed.tipo}</td>
+								<td>${feed.tipo.tipo}</td>
 								<td>${feed.commento}</td>
 							</tr>
 						</c:forEach>
