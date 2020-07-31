@@ -90,7 +90,7 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-	@RequestMapping(value = "/Modifica{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/Modifica/{id}", method = RequestMethod.POST)
 	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		dao.aggiorna(c);
 		return "redirect:/Candidato/{id}";
