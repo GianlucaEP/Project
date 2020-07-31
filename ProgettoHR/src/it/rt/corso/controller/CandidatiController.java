@@ -90,10 +90,10 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-	@RequestMapping(value = "/Modifica/{id}", method = RequestMethod.POST)
-	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
-		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-		c.setStatoCandidato(stato);
+	@RequestMapping(value = "/Modifica/{id}/{statoInput}", method = RequestMethod.POST)
+	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,  @PathVariable String statoInput) {
+		StatoCandidato statoOutput = (StatoCandidato) factory.getBean(statoInput);
+		c.setStatoCandidato(statoOutput);
 		dao.aggiorna(c);
 		return "redirect:/Candidato/{id}";
 	}
