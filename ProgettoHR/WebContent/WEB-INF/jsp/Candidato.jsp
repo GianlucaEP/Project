@@ -101,11 +101,11 @@
 								aria-expanded="false" > </button>
 
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="dropdown-item" href="/Aggiorna/'${ mostraCandidato.id }'/daContattare">Da contattare</a> <a
-										class="dropdown-item" href="/Aggiorna/'${ mostraCandidato.id }'/scartato">Scartato</a> <a
-										class="dropdown-item" href="/Aggiorna/'${ mostraCandidato.id }'/attivo">Attivo</a>
+									<a class="dropdown-item" href="/Aggiorna/${ mostraCandidato.id }/daContattare">Da contattare</a> <a
+										class="dropdown-item" href="/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a> <a
+										class="dropdown-item" href="/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
 										<a
-										class="dropdown-item" href="/Aggiorna/'${ mostraCandidato.id }'/selezionato">Selezionato</a>
+										class="dropdown-item" href="/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
 								</div></td>
 						</tr>
 
