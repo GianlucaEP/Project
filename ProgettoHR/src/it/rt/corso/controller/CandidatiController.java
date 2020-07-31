@@ -104,7 +104,7 @@ public class CandidatiController {
 
 		dao.aggiorna(c);
 
-		return "Candidato";
+		return "redirect:/Candidato/{id}";
 
 	}
 
