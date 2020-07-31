@@ -92,19 +92,11 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-//	@RequestMapping(value = "/Modifica/{id}")
-//	public String edit(@PathVariable int id, Model m) {
-//		Candidato c = dao.get(id);
-//		m.addAttribute("modificaCandidato", c);
-//		return "empeditform";
-//	}
-//
-//	@RequestMapping(value = "/SalvaModifica", method = RequestMethod.POST)
-//	public String editsave(@ModelAttribute("modificaCandidato") Candidato c) {
-//		dao.aggiorna(c);
-//		// int id = c.getId();
-//		return "redirect:/Candidato/{id}";
-//	}
+	@RequestMapping(value = "/Modifica{id}", method = RequestMethod.POST)
+	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+		dao.aggiorna(c);
+		return "redirect:/Candidato/{id}";
+	}
 
 	@RequestMapping("/Aggiorna/{id}/{stato}")
 	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato) {
