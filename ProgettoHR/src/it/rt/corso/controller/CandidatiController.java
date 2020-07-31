@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.SinonimoDAO;
+import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.QualificationMeeting;
@@ -29,6 +30,8 @@ import it.rt.corso.beans.StatoCandidato;
 public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+
+
 
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
@@ -42,15 +45,15 @@ public class CandidatiController {
 
 	@RequestMapping("/Candidati")
 	public String formAggiungiCandidato(Model m) {
-		Candidato candidato = new Candidato();
-		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-		candidato.setStatoCandidato(stato);
-		m.addAttribute("candidato", candidato);
+
+		m.addAttribute("candidato", new Candidato());
 		return "InserimentoCandidati";
 	}
 
 	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
+		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
+		candidato.setStatoCandidato(stato);
 		dao.inserisci(candidato);
 		// aggiungi sinonimo alla tabella sinonimo corrispondente alla mansione del
 		// candidato
@@ -63,11 +66,11 @@ public class CandidatiController {
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m) {
 		Candidato c = dao.get(id);
-		//List<Feedback> feedbacks = c.getFeedback();
-		//List<QualificationMeeting> listQM = c.getFeedback();
+		// List<Feedback> feedbacks = c.getFeedback();
+		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mostraCandidato", c);
-		//m.addAttribute("listaFeedback", feedbacks);
-		//m.addAttribute("listaFeedback", listQM);
+		// m.addAttribute("listaFeedback", feedbacks);
+		// m.addAttribute("listaFeedback", listQM);
 		return "Candidato";
 	}
 
@@ -78,17 +81,31 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-	@RequestMapping(value = "/Modifica/{id}")
-	public String edit(@PathVariable int id, Model m) {
+//	@RequestMapping(value = "/Modifica/{id}")
+//	public String edit(@PathVariable int id, Model m) {
+//		Candidato c = dao.get(id);
+//		m.addAttribute("modificaCandidato", c);
+//		return "empeditform";
+//	}
+//
+//	@RequestMapping(value = "/SalvaModifica", method = RequestMethod.POST)
+//	public String editsave(@ModelAttribute("modificaCandidato") Candidato c) {
+//		dao.aggiorna(c);
+//		// int id = c.getId();
+//		return "redirect:/Candidato/{id}";
+//	}
+
+	@RequestMapping("/Aggiorna/{id}/{stato}")
+	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato) {
 		Candidato c = dao.get(id);
-		m.addAttribute("modificaCandidato", c);
-		return "empeditform";
+		StatoCandidato statoCandidato = (StatoCandidato) factory.getBean(stato);
+		
+		c.setStatoCandidato(statoCandidato);
+
+		dao.aggiorna(c);
+
+		return "Candidato";
+
 	}
 
-	@RequestMapping(value = "/SalvaModifica", method = RequestMethod.POST)
-	public String editsave(@ModelAttribute("modificaCandidato") Candidato c) {
-		dao.aggiorna(c);
-		// int id = c.getId();
-		return "redirect:/Candidato/{id}";
-	}
 }
