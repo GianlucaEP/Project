@@ -34,12 +34,18 @@ public class Candidato implements Bean {
 	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "stato", referencedColumnName = "descrizione") //One to one con l'id(descrizione) di StatoCandidato
+	
+	//ONE-TO-ONE con la classe StatoCandidato
+	@OneToOne(optional=false)
+	@JoinColumn(name = "stato")
 	private StatoCandidato statoCandidato;
-	@OneToMany(mappedBy="candidato")
-	Set<Feedback> feedback;//One to many con la classe feedback
-	@OneToMany(mappedBy="candidato")
+	
+	//ONE-TO-MANY con la classe feedback
+	@OneToMany(cascade = {CascadeType.ALL} , mappedBy="candidato")
+	Set<Feedback> feedback;
+	
+	//ONE-TO-MANY con la classe QualificationMetting
+	@OneToMany(cascade = {CascadeType.ALL} , mappedBy="candidato")
 	Set<QualificationMeeting> qm;
 
 //	private File allegato; TODO aggiungere successivamente il file allegato

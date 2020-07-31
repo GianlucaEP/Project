@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,7 +16,9 @@ public class StatoCandidato implements Bean{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "descrizione")
 	private String descrizione;
-//	@OneToOne(mappedBy = "stato")
+	
+	//ONE-TO-ONE con la classe Candidato
+	@OneToOne(mappedBy="statoCandidato")
 	private Candidato candidato;
 	
 	

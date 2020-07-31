@@ -36,6 +36,8 @@ public class QualificationMeeting implements Bean{
 	private String preavviso;
 	@Column(name = "desiderata")
 	private int desiderata;
+	
+	//MANY-TO-ONE con la classe Candidato
 	@ManyToOne
     @JoinColumn(name="id_candidato")
 	private Candidato candidato;

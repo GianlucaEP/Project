@@ -16,7 +16,9 @@ public class TipoFeedback implements Bean{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tipo")
 	private String tipo;
-//	@OneToOne(mappedBy = "tipo_feedback")
+	
+	//ONE-TO-ONE con la classe Candidato
+	@OneToOne(mappedBy="tipo")
 	private Feedback feedback;
 
 	public String getTipo() {
