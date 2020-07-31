@@ -130,15 +130,6 @@ public class Candidato implements Bean {
 	}
 
 	public Date getInserimentoAzienda() {
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
-			String formattedDate = sdf.format(inserimentoAzienda);
-
-			inserimentoAzienda = sdf.parse(formattedDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return inserimentoAzienda;
 	}
 
