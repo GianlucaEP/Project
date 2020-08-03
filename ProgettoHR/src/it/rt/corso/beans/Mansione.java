@@ -31,6 +31,4 @@ public class Mansione implements Bean{
 		this.mansione = mansione;
 	}
 	
-	
-	
 }

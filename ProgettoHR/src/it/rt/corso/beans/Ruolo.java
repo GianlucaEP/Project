@@ -3,6 +3,7 @@ package it.rt.corso.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,17 +13,25 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 public class Ruolo implements Bean{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ruolo")
 	private int id;
 	@Column(name = "ruolo")
 	private String ruolo;
+	
+	//MANY-TO-MANY con Utente
 	@ManyToMany(mappedBy = "ruolo")
 	private Set<Utente> utente = new HashSet<>();
+	
+	//MANY-TO-MANY con funzionalità
+	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "ruolo_funzionalita", joinColumns = { @JoinColumn(name = "id_ruolo_fk") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_funzionalita_fk") })
 	Set<Funzionalita> funzionalita = new HashSet<>();
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -47,6 +56,4 @@ public class Ruolo implements Bean{
 	public void setFunzionalita(Set<Funzionalita> funzionalita) {
 		this.funzionalita = funzionalita;
 	}
-	
-	
 }

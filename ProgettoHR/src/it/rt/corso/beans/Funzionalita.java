@@ -10,14 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 public class Funzionalita implements Bean{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_funzionalita")
 	private int id;
 	@Column(name = "funzionalita")
 	private String funzionalita;
+	
+	//MANY-TO-MANY con Ruolo
 	@ManyToMany(mappedBy = "funzionalita")
 	private Set<Ruolo> ruolo = new HashSet<>();
+	
 	public int getId() {
 		return id;
 	}
@@ -36,6 +40,5 @@ public class Funzionalita implements Bean{
 	public void setRuolo(Set<Ruolo> ruolo) {
 		this.ruolo = ruolo;
 	}
-	
 	
 }
