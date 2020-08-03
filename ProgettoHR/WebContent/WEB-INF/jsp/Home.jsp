@@ -23,28 +23,36 @@
 </head>
 
 <body>
-	<div>
-		<nav class="navbar navbar-dark bg-primary "
-			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+	<div class="row w-100 p-0 m-0">
+		<nav class="navbar navbar-light bg-primary w-100 "
+			style="opacity: 0.8; ">
 			<h1>
-				<span class="navbar-text bg-primary text-white"> <a
+				<span class="navbar-text  text-white"> <a
 					href="/ProgettoHR/Home"><img alt="logo"
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>
-				</span>
+						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
 
 			</h1>
 
+
+			<a href="/ProgettoHR/Candidati" type="button"
+				class="col-1  btn btn-danger btn-block  m-0 "
+				style="border-radius: 0;">Logout</a>
+
 		</nav>
 	</div>
-	<br>
+
+	
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0 bg-primary" style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+			<div class="col-2 p-0 bg-primary"
+				style="opacity: 0.8;">
 
 				<a href="/ProgettoHR/Candidati" type="button"
-					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi Candidato</a> <a
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">Aggiungi Candidato</a> <a
 					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi Mansione</a>
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">Aggiungi Mansione</a>
 			</div>
 
 			<div class="col-10">

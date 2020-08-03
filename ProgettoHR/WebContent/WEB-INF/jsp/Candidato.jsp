@@ -33,7 +33,7 @@
 	onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
 	<div class="row w-100 p-0 m-0">
 		<nav class="navbar navbar-light bg-primary w-100 "
-			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+			style="opacity: 0.8;">
 			<h1>
 				<span class="navbar-text  text-white"> <a
 					href="/ProgettoHR/Home"><img alt="logo"
@@ -41,9 +41,13 @@
 
 			</h1>
 
+			<a href="/ProgettoHR/Candidati" type="button"
+				class="col-1  btn btn-danger btn-block  m-0 "
+				style="border-radius: 0;">Logout</a>
+
 		</nav>
 	</div>
-	<br>
+
 	<!-- 	<div class="col-auto p-0 opacity-0 h-100 d-inline-block"
 		>
 
@@ -58,8 +62,7 @@
 	</div> -->
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-2 p-0 bg-primary"
-				style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+			<div class="col-2 p-0 bg-primary" style="opacity: 0.8;">
 
 				<a href="/ProgettoHR/Home" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
@@ -71,7 +74,8 @@
 					style="border-radius: 0;">
 					Modifica Candidato<i class="fas fa-pen float-right"></i>
 				</button>
-				<a href="/ProgettoHR/Mansioni" type="button"
+				<a href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
+					data-target="#feedbackModal"
 					class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Colloquio HR <i
 					class="fas fa-user-tie float-right"></i></a> <a
@@ -82,7 +86,8 @@
 					type="button" class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Mail <i
 					class="fas fa-envelope-open-text float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
+					href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
+					data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">+ Mansione <i
 					class="fas fa-briefcase float-right"></i></a> <a
@@ -90,7 +95,8 @@
 					class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Social <i
 					class="fas fa-comment-dots float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
+					href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
+					data-target="#feedbackModal"
 					class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Telefonata <i
 					class="fas fa-phone float-right"></i></a>
@@ -308,6 +314,55 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" class="btn btn-primary btn-block">Salva</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
+		aria-labelledby="feedbackModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Feedback</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form method="POST"
+							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}/">
+							<!-- modelAttribute="modificaCandidato" -->
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
+										<input type="text" class="form-control" id="data" name="data"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
+										<input type="text" class="form-control" id="feedback"
+											name="feedback"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Aggiungi
+										Feedback</button>
 								</div>
 							</div>
 						</form>
