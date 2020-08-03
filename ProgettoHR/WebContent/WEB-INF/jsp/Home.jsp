@@ -36,7 +36,9 @@
 
 			<button class="btn btn-primary dropdown-toggle" role="button"
 				id="menuStato" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"><i class="fas fa-user"></i></button>
+				aria-expanded="false">
+				<i class="fas fa-user"></i>
+			</button>
 
 		</nav>
 	</div>
@@ -68,7 +70,8 @@
 					</thead>
 					<tbody>
 						<c:forEach var="cand" items="${list}">
-							<tr>
+							<tr onload="changeDotColor('${cand.statoCandidato.descrizione}')" >
+								<td><span id="dot" class="dot bg-primary"></span></td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td
@@ -119,4 +122,22 @@
 
 
 </body>
+
+<script>
+	function changeDotColor(stato){
+		if(stato === "attivo"){
+			document.getElementById("dot").className = "dot bg-success";
+		}
+	}
+</script>
+
+<style>
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
 </html>
+
