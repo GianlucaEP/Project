@@ -18,8 +18,6 @@ public class FeedbackDAOImpl extends BaseDAO implements FeedbackDAO{
 		return (Feedback) super.inserisci(feedback);
 	}
 
-
-	@Override
 	public List<Feedback> getByIdCandidato(int id) {
 		Utility.buildSession();
 		

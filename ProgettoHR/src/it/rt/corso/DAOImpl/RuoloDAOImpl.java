@@ -10,13 +10,10 @@ import it.rt.corso.utility.Utility;
 
 public class RuoloDAOImpl extends BaseDAO implements RuoloDAO{
 
-	@Override
 	public Ruolo getRuolo(String id) {
-	
 		return (Ruolo) super.get(Ruolo.class, id);
 	}
 
-	@Override
 	public List<Ruolo> getListaRuolo() {
 		Utility.buildSession();
 		 List<Ruolo> listaRuolo= Utility.getSession().createQuery("FROM Ruolo ").getResultList();

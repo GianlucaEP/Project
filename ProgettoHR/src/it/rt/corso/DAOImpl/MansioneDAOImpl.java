@@ -14,7 +14,6 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO{
 		return (Mansione) super.inserisci(mansione);
 	}
 
-	
 	public List<Mansione> getLista() {
 		
 		Utility.buildSession();
