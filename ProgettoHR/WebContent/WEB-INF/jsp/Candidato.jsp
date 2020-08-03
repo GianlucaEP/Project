@@ -31,8 +31,8 @@
 </head>
 <body
 	onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
-	<div>
-		<nav class="navbar navbar-light bg-primary"
+	<div class="row w-100 p-0 m-0">
+		<nav class="navbar navbar-light bg-primary w-100 "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
 				<span class="navbar-text  text-white"> <a
@@ -58,37 +58,42 @@
 	</div> -->
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0 bg-primary" style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+			<div class="col-2 p-0 bg-primary"
+				style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 
-
-				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Aggiungi
-					Mansione</a>
+				<a href="/ProgettoHR/Home" type="button"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">Torna alla Home<i
+					class="fas fa-home float-right"></i></a>
 				<button type="button" data-toggle="modal"
 					data-target="#modificaModal"
-					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Modifica
-					Candidato</button>
-				<a href="/ProgettoHR/Home" type="button"
-					class="btn btn-primary btn-block  m-0 text-left" style="border-radius: 0;">Torna
-					alla Home</a><a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Telefonata <i
-					class="fas fa-phone float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Chat <i
-					class="fas fa-comment-dots float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					Modifica Candidato<i class="fas fa-pen float-right"></i>
+				</button>
+				<a href="/ProgettoHR/Mansioni" type="button"
 					class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Colloquio HR <i
 					class="fas fa-user-tie float-right"></i></a> <a
 					href="/ProgettoHR/Mansioni" type="button"
 					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Colloquio Tecnico &nbsp<i
+					style="border-radius: 0;">+ Colloquio Tecnico<i
 					class="fas fa-user float-right"></i></a> <a href="/ProgettoHR/Mansioni"
 					type="button" class="btn btn-primary btn-block m-0 text-left"
 					style="border-radius: 0;">+ Mail <i
-					class="fas fa-envelope-open-text float-right"></i></a>
+					class="fas fa-envelope-open-text float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">+ Mansione <i
+					class="fas fa-briefcase float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Social <i
+					class="fas fa-comment-dots float-right"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button"
+					class="btn btn-primary btn-block m-0 text-left"
+					style="border-radius: 0;">+ Telefonata <i
+					class="fas fa-phone float-right"></i></a>
 
 
 
@@ -105,7 +110,7 @@
 				<div style="width:100%; color:black; opacity:0.6; ">PROVA</div>
 			</div> -->
 
-			<div class="col-auto">
+			<div class="col-auto justify-content-md-end">
 
 				<table class="table table-bordered  text-center "
 					style="box-shadow: 10px 10px 5px grey;">
@@ -115,7 +120,7 @@
 						<tr>
 							<th scope="col">Stato</th>
 							<td scope="col"><button
-									class="btn btn-primary dropdown-toggle" href="#" role="button"
+									class="btn btn-primary dropdown-toggle" role="button"
 									id="menuStato" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"></button>
 
@@ -173,7 +178,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-auto">
+			<div class="col-auto justify-content-md-end">
 
 				<table class="table table-bordered  text-center "
 					style="box-shadow: 10px 10px 5px grey;">
@@ -214,7 +219,7 @@
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.statoCandidato.descrizione}">
 							<!-- modelAttribute="modificaCandidato" -->
 
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
@@ -223,7 +228,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
@@ -232,7 +237,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
@@ -242,7 +247,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
@@ -251,7 +256,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Email:</div>
@@ -260,7 +265,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
@@ -269,7 +274,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
@@ -278,7 +283,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
@@ -287,7 +292,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
@@ -299,7 +304,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 justify-content-md-start">
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" class="btn btn-primary btn-block">Salva</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
@@ -308,11 +313,6 @@
 						</form>
 					</div>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Salva
-						modifiche</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
 				</div>
 			</div>
 		</div>
