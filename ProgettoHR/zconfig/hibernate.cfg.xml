@@ -8,9 +8,9 @@
 	<session-factory>
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/progetto_hr</property>
-		<property name="hibernate.connection.username">pippo</property>
-		<property name="hibernate.connection.password">pippo</property>
+		<property name="hibernate.connection.url">jdbc:mysql://10.120.66.252:12321/progetto_hr</property>
+		<property name="hibernate.connection.username">admin</property>
+		<property name="hibernate.connection.password">Progetto2020</property>
 		<property name="hibernate.connection.pool_size">1</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.show_sql">true</property>
