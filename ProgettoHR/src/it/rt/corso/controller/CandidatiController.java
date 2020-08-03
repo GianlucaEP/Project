@@ -94,6 +94,7 @@ public class CandidatiController {
 	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,  @PathVariable String statoInput) {
 		StatoCandidato statoOutput = (StatoCandidato) factory.getBean(statoInput);
 		c.setStatoCandidato(statoOutput);
+		
 		dao.aggiorna(c);
 		return "redirect:/Candidato/{id}";
 	}
