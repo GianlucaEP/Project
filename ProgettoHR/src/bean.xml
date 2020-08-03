@@ -28,6 +28,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	</bean>
 
 
+	<bean id="utenteDAO"
+		class="it.rt.corso.DAOImpl.UtenteDAOImpl">
+	</bean>
+
 	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
 		<property name="descrizione" value="nuovo_inserito" />
 	</bean>

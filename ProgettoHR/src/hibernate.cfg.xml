@@ -22,6 +22,10 @@
 		<mapping class="it.rt.corso.beans.QualificationMeeting"/>
 		<mapping class="it.rt.corso.beans.StatoCandidato"/>
 		<mapping class="it.rt.corso.beans.TipoFeedback"/>
+		<mapping class="it.rt.corso.beans.Utente"/>
+		<mapping class="it.rt.corso.beans.Funzionalita"/>
+		<mapping class="it.rt.corso.beans.Ruolo"/>
+		
 		
 		</session-factory>
 

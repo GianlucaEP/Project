@@ -29,19 +29,19 @@
 	<div>
 		<div class="row justify-content-md-center">
 			<div class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
-				<form>
+				<form:form  method="POST" action="/ProgettoHR/LoginTest/" modelAttribute="utente">
 					<div class="form-group">
-						<label for="Utente">Utente:</label> <input type="utente"
+						<label for="Utente">Utente:</label> <form:input path="username" type="text"
 							class="form-control" id="utente" aria-describedby="utente"
-							placeholder="Inserisci Utente">
+							placeholder="Inserisci Utente"/>
 					</div>
 					<div class="form-group">
-						<label for="Password">Password</label> <input type="password"
+						<label for="Password">Password</label> <form:input path="password" type="password"
 							class="form-control" id="password"
-							placeholder="Inserisci Password">
+							placeholder="Inserisci Password"/>
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Entra un po' qui</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>

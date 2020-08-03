@@ -22,18 +22,19 @@ public class LoginEffettuatoController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 	UtenteDAO udao= (UtenteDAO) factory.getBean("utenteDAO");
 	
-	@RequestMapping(value = "/LoginTest/{user}/{password}", method = RequestMethod.POST)
-	public String LoginTest(Model m, @PathVariable String user,  @PathVariable String password) {
+	@RequestMapping(value = "/LoginTest", method = RequestMethod.POST)
+	public String Login(
+			@ModelAttribute Utente utente, Model m) {
 		
 		
-		Utente utente= udao.getByUsernamePassword(user, password);
+		Utente u= udao.getByUsernamePassword(utente.getUsername(), utente.getPassword());
 		
-		if (utente!=null) {
+		if (u!=null) {
 			
-			m.addAttribute(utente);
+			m.addAttribute(u);
 		return "Home";
 		}
 		m.addAttribute("info", "error");
-		return"Login";
+		return "Login";
 	}
 }
