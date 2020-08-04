@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.rt.corso.DAO.CandidatoDAO;
+import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Candidato;
 
 @Controller

@@ -56,13 +56,4 @@ public abstract class BaseDAO {
 		return bean;
 	}
 	
-//	protected <T> List<T> getLista(String nometabella){
-//		
-//		Utility.buildSession();
-//		
-//		List<T> lista = Utility.getSession().createQuery(" FROM "+nometabella+"").setParameter("nometabella", "%"+nometabella+"%").getResultList();
-//		return lista ;
-//		
-//	}
-	
 }

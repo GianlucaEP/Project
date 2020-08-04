@@ -59,7 +59,7 @@ public class Candidato implements Bean {
 	// MANY-TO-ONE con la classe StatoCandidato
 	@ManyToOne
 	@JoinColumn(name = "stato")
-	private StatoCandidato statoCandidato;
+	private StatoCandidato stato;
 
 	// ONE-TO-MANY con la classe feedback
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
@@ -131,6 +131,30 @@ public class Candidato implements Bean {
 		this.email = email;
 	}
 
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+
+	public AreaCompetenza getArea() {
+		return area;
+	}
+
+	public void setArea(AreaCompetenza area) {
+		this.area = area;
+	}
+
+	public StatoCandidato getStato() {
+		return stato;
+	}
+
+	public void setStato(StatoCandidato stato) {
+		this.stato = stato;
+	}
+
 	public String getMansione() {
 		return mansione;
 	}
@@ -171,13 +195,7 @@ public class Candidato implements Bean {
 		this.specializzazione = specializzazione;
 	}
 
-	public StatoCandidato getStatoCandidato() {
-		return statoCandidato;
-	}
-
-	public void setStatoCandidato(StatoCandidato statoCandidato) {
-		this.statoCandidato = statoCandidato;
-	}
+	
 
 	public Set<Feedback> getFeedback() {
 		return feedback;
