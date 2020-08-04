@@ -14,9 +14,11 @@ public class FunzionalitaDAOImpl extends BaseDAO implements FunzionalitaDAO{
 		return (Funzionalita) super.get(Funzionalita.class, id);
 	}
 
-	public List<Funzionalita> getListaFunzionalita() {
+	public List<Funzionalita> getLista() {
+		
 		Utility.buildSession();
-		 List<Funzionalita> listaFunzionalita= Utility.getSession().createQuery("FROM Funzionalita ").getResultList();
+		List<Funzionalita> listaFunzionalita= Utility.getSession().createQuery("FROM Funzionalita ").getResultList();
+		
 		return listaFunzionalita;
 	}
 

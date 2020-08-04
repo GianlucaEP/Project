@@ -14,7 +14,7 @@ public class RuoloDAOImpl extends BaseDAO implements RuoloDAO{
 		return (Ruolo) super.get(Ruolo.class, id);
 	}
 
-	public List<Ruolo> getListaRuolo() {
+	public List<Ruolo> getLista() {
 		Utility.buildSession();
 		 List<Ruolo> listaRuolo= Utility.getSession().createQuery("FROM Ruolo ").getResultList();
 		return listaRuolo;
