@@ -16,7 +16,7 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 		return (Utente) super.get(Utente.class, id);
 	}
 
-	public List<Utente> getListaUtente() {
+	public List<Utente> getLista() {
 		Utility.buildSession();
 		List<Utente> listaUtente = Utility.getSession().createQuery("FROM Utente ").getResultList();
 		return listaUtente;

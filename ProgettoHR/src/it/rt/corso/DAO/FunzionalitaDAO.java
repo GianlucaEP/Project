@@ -7,5 +7,5 @@ import it.rt.corso.beans.Funzionalita;
 public interface FunzionalitaDAO {
 
 	public Funzionalita getFunzionalita(String id);
-	public List<Funzionalita> getListaFunzionalita();
+	public List<Funzionalita> getLista();
 }
