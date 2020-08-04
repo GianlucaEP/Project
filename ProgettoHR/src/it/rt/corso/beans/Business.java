@@ -1,6 +1,7 @@
 package it.rt.corso.beans;
 
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,24 +12,34 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "stato")
-public class StatoCandidato implements Bean {
-
+@Table(name = "business")
+public class Business implements Bean {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "descrizione")
-	private String descrizione;
+	@Column(name = "id_business")
+	private int id;
+	@Column(name = "business")
+	private String Business;
+	
+	//ONE-TO-MANY con Candidato
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "business")
+	Set<Candidato> candidato;
 
-	//ONE-TO-MANY con la classe Candidato
-	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "statoCandidato")
-	Set<Candidato>  candidato;
-
-	public String getDescrizione() {
-		return descrizione;
+	public int getId() {
+		return id;
 	}
 
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getBusiness() {
+		return Business;
+	}
+
+	public void setBusiness(String business) {
+		Business = business;
 	}
 
 	public Set<Candidato> getCandidato() {
@@ -38,7 +49,6 @@ public class StatoCandidato implements Bean {
 	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
 	}
-
-
-
+	
+	
 }

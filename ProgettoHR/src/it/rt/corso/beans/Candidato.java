@@ -45,6 +45,16 @@ public class Candidato implements Bean {
 	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
+	
+	// MANY-TO-ONE con Business
+	@ManyToOne
+	@JoinColumn(name = "business")
+	private Business business;
+
+	//MANY-TO-ONE con AreaCompetenza
+	@ManyToOne
+	@JoinColumn(name="area")
+	private AreaCompetenza area; 
 
 	// MANY-TO-ONE con la classe StatoCandidato
 	@ManyToOne

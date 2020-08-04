@@ -1,8 +1,13 @@
 package it.rt.corso.DAO;
 
 import java.io.Serializable;
+import java.util.List;
+
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import it.rt.corso.beans.Bean;
+import it.rt.corso.beans.Candidato;
 import it.rt.corso.utility.Utility;
 
 public abstract class BaseDAO {
@@ -50,5 +55,14 @@ public abstract class BaseDAO {
 		Utility.destroySession();
 		return bean;
 	}
+	
+//	protected <T> List<T> getLista(String nometabella){
+//		
+//		Utility.buildSession();
+//		
+//		List<T> lista = Utility.getSession().createQuery(" FROM "+nometabella+"").setParameter("nometabella", "%"+nometabella+"%").getResultList();
+//		return lista ;
+//		
+//	}
 	
 }
