@@ -80,22 +80,22 @@
 						<c:forEach var="cand" items="${list}">
 							<tr>
 								<td><c:choose>
-										<c:when test="${ cand.statoCandidato.descrizione == 'attivo'}">
+										<c:when test="${ cand.stato.descrizione == 'attivo'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Attivo" class="dot bg-success"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'selezionato'}">
+											test="${ cand.stato.descrizione == 'selezionato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Selezionato" class="dot bg-primary"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'da_contattare'}">
+											test="${ cand.stato.descrizione == 'da_contattare'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Da contattare" class="dot bg-warning"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'scartato'}">
+											test="${ cand.stato.descrizione == 'scartato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Scartato" class="dot bg-danger"></span>
 										</c:when>
