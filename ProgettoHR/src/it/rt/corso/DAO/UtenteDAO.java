@@ -9,5 +9,5 @@ public interface UtenteDAO {
 	public Utente get(String id);
 	public List<Utente> getLista();
 	public Utente getByUsernamePassword(String user, String password);
-	
+	public Utente inserisci(Utente utente);
 }

@@ -2,6 +2,7 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
+import javax.crypto.SecretKeyFactory;
 import javax.persistence.Query;
 
 import it.rt.corso.DAO.BaseDAO;
@@ -29,6 +30,7 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 		Query query = Utility.getSession().createQuery(hql);
 		query.setParameter("user", user);
 		query.setParameter("password", password);
+		
 		List<Utente> listaUtente = query.getResultList();
 		if (listaUtente.isEmpty()) {
 			Utente utente = null;
@@ -39,6 +41,11 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 
 		}
 
+	}
+
+	@Override
+	public Utente inserisci(Utente utente) {
+		return (Utente) super.inserisci(utente);
 	}
 
 }
