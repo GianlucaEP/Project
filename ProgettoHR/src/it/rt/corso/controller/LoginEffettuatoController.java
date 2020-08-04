@@ -24,7 +24,7 @@ public class LoginEffettuatoController {
 		Utente u= udao.getByUsernamePassword(utente.getUsername(), utente.getPassword());
 		
 		if (u!=null) {
-			
+//			jj
 			m.addAttribute(u);
 		return "redirect:/Home";
 		}
