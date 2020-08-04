@@ -26,7 +26,7 @@ public class LoginEffettuatoController {
 		if (u!=null) {
 			
 			m.addAttribute(u);
-		return "Home";
+		return "redirect:/Home";
 		}
 		m.addAttribute("info", "error");
 		return "Login";
