@@ -13,7 +13,7 @@
 <title>Login</title>
 </head>
 
-<body>
+<body onload="checkLogin('${info}')">
 	<div>
 		<nav class="navbar navbar-dark bg-primary "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -29,7 +29,7 @@
 	<div>
 		<div class="row justify-content-md-center">
 			<div class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
-				<form:form  method="POST" action="/ProgettoHR/LoginTest/" modelAttribute="utente">
+				<form:form id="utenteForm"  method="POST" action="/ProgettoHR/LogginIn/" modelAttribute="utente">
 					<div class="form-group">
 						<label for="Utente">Utente:</label> <form:input path="username" type="text"
 							class="form-control" id="utente" aria-describedby="utente"
@@ -46,4 +46,11 @@
 		</div>
 	</div>
 </body>
+<script>
+	function checkLogin(info){
+		if(info === "error"){
+			console.log("Si può fare!");
+		}
+	}
+</script>
 </html>
