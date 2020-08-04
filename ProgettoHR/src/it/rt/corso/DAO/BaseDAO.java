@@ -1,7 +1,6 @@
 package it.rt.corso.DAO;
 
 import java.io.Serializable;
-
 import org.hibernate.Transaction;
 import it.rt.corso.beans.Bean;
 import it.rt.corso.utility.Utility;
