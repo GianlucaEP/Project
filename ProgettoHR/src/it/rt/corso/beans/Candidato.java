@@ -185,13 +185,4 @@ public class Candidato implements Bean {
 		this.qm = qm;
 	}
 
-	public void addFeedback(Feedback f) {
-		this.feedback.add(f);
-
-	}
-
-	public void addQualificationMeeting(QualificationMeeting qm) {
-		this.qm.add(qm);
-
-	}
 }

@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,9 +43,11 @@
 
 			</h1>
 
-			<a href="/ProgettoHR/Candidati" type="button"
-				class="col-1  btn btn-danger btn-block  m-0 "
-				style="border-radius: 0;">Logout</a>
+			<button class="btn btn-primary dropdown-toggle" role="button"
+				id="logout" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+				<i class="fas fa-user"></i>
+			</button>
 
 		</nav>
 	</div>
@@ -74,33 +78,46 @@
 					style="border-radius: 0;">
 					Modifica Candidato<i class="fas fa-pen float-right"></i>
 				</button>
-				<a href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
-					data-target="#feedbackModal"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Colloquio HR <i
-					class="fas fa-user-tie float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Colloquio Tecnico<i
-					class="fas fa-user float-right"></i></a> <a href="/ProgettoHR/Mansioni"
-					type="button" class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Mail <i
-					class="fas fa-envelope-open-text float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
-					data-target="#feedbackModal"
+
+				<button onclick="impostaTipoFeedback('colloquio HR')" type="button"
+					data-toggle="modal" data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
+				</button>
+
+				<button onclick="impostaTipoFeedback('colloquio Tecnico')"
+					type="button" data-toggle="modal" data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					+ Colloquio Tecnico<i class="fas fa-user float-right"></i>
+				</button>
+
+				<button onclick="impostaTipoFeedback('mail')" type="button"
+					data-toggle="modal" data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					+ Mail <i class="fas fa-envelope-open-text float-right"></i>
+				</button>
+
+				<button onclick="impostaTipoFeedback('social')" type="button"
+					data-toggle="modal" data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					+ Social <i class="fas fa-comment-dots float-right"></i>
+				</button>
+
+				<button onclick="impostaTipoFeedback('telefonata')" type="button"
+					data-toggle="modal" data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">
+					+ Telefonata <i class="fas fa-phone float-right"></i>
+				</button>
+
+				<a href="/ProgettoHR/Mansioni" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">+ Mansione <i
-					class="fas fa-briefcase float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Social <i
-					class="fas fa-comment-dots float-right"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button" data-toggle="modal"
-					data-target="#feedbackModal"
-					class="btn btn-primary btn-block m-0 text-left"
-					style="border-radius: 0;">+ Telefonata <i
-					class="fas fa-phone float-right"></i></a>
-
+					class="fas fa-briefcase float-right"></i></a>
 
 
 			</div>
@@ -208,6 +225,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -327,10 +345,10 @@
 
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Feedback</h5>
+					<h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -338,15 +356,26 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST"
-							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}/">
+						<form method="POST" 
+							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
 							<!-- modelAttribute="modificaCandidato" -->
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
+										<input type="text" class="form-control" id="tipoFeedback"
+											name="tipoFeedback" value="${tipoFeedback.tipo}"></input>
+									</div>
+								</div>
+							</div>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
-										<input type="text" class="form-control" id="data" name="data"></input>
+										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${feedback.data}" />-->
+										<input type="date" pattern="yyyy-MM-dd" class="form-control" id="data"
+											name="data"  value="${feedback.data}"></input>
 									</div>
 								</div>
 							</div>
@@ -355,7 +384,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
 										<input type="text" class="form-control" id="feedback"
-											name="feedback"></input>
+											name="feedback" value="${feedback.commento}"></input>
 									</div>
 								</div>
 							</div>
@@ -373,10 +402,14 @@
 		</div>
 	</div>
 
+
+
+
+
 	<script type="text/javascript">
 		function changeStato(stato) {
 			if (stato === "nuovo_inserito") {
-				document.getElementById("menuStato").className = "btn btn-light dropdown-toggle";
+				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
 			} else if (stato === "da_contattare") {
 				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
@@ -392,6 +425,20 @@
 				document.getElementById("menuStato").innerHTML = "Selezionato";
 			}
 
+		}
+
+		function impostaTipoFeedback(tipoFeedback) {
+			if (tipoFeedback === "mail") {
+				document.getElementById("tipoFeedback").value = tipoFeedback;
+			} else if (tipoFeedback === "telefonata") {
+				document.getElementById("tipoFeedback").value = tipoFeedback;
+			} else if (tipoFeedback === "colloquio HR") {
+				document.getElementById("tipoFeedback").value = tipoFeedback;
+			} else if (tipoFeedback === "colloquio Tecnico") {
+				document.getElementById("tipoFeedback").value = tipoFeedback;
+			} else if (tipoFeedback === "social") {
+				document.getElementById("tipoFeedback").value = tipoFeedback;
+			}
 		}
 	</script>
 </body>

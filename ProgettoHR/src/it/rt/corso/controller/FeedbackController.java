@@ -1,5 +1,7 @@
 package it.rt.corso.controller;
 
+import java.util.Set;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,6 @@ import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
-import it.rt.corso.beans.Sinonimo;
 import it.rt.corso.beans.TipoFeedback;
 
 @Controller
@@ -26,23 +27,20 @@ public class FeedbackController {
 	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping("/FeedbackForm")
-	public String formAggiungiFeedback(Model m) {
-		m.addAttribute("feedback", new Feedback());
-		return "FeedbackForm";
-
-	}
-
-	@RequestMapping(value = "/AggiungiFeedback/{id}/{tipoFeedback}", method = RequestMethod.POST)
-	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @PathVariable int id,
-			@PathVariable String tipoFeedback) {
-		TipoFeedback tp = tipoFeedbackDAO.get(tipoFeedback);
+	@RequestMapping(value = "/AggiungiFeedback/{id}", method = RequestMethod.POST)
+	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback,
+			@ModelAttribute("tipoFeedback") TipoFeedback tipoFeedback, @PathVariable int id) {
 		Candidato c = dao.get(id);
-		feedback.setTipo(tp);
+		feedback.setTipo(tipoFeedback);
 		feedback.setCandidato(c);
-		feedbackDAO.inserisci(feedback);
-		
-		//c.addFeedback(feedback);
+		//feedbackDAO.inserisci(feedback);
+
+		Set<Feedback> feedbacks = c.getFeedback();
+		feedbacks.add(feedback);
+		c.setFeedback(feedbacks);
+
+		dao.aggiorna(c);
+
 		return "redirect:/Candidato/{id}";
 
 	}

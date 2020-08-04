@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "feedback")
 public class Feedback implements Bean{
@@ -18,6 +20,7 @@ public class Feedback implements Bean{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_feedback")
 	private int id;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "data")
 	private Date data;
 	@Column(name = "commento")

@@ -27,6 +27,7 @@ import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.QualificationMeeting;
 import it.rt.corso.beans.Sinonimo;
 import it.rt.corso.beans.StatoCandidato;
+import it.rt.corso.beans.TipoFeedback;
 
 @Controller
 public class CandidatiController {
@@ -50,6 +51,7 @@ public class CandidatiController {
 	public String formAggiungiCandidato(Model m) {
 
 		m.addAttribute("candidato", new Candidato());
+		
 		return "InserimentoCandidati";
 	}
 
@@ -77,6 +79,10 @@ public class CandidatiController {
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mostraCandidato", c);
+		
+		m.addAttribute("feedback", new Feedback());
+		
+		m.addAttribute("tipoFeedback", new TipoFeedback());
 
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
