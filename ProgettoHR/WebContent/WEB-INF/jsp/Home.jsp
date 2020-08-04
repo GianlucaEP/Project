@@ -70,8 +70,24 @@
 					</thead>
 					<tbody>
 						<c:forEach var="cand" items="${list}">
-							<tr onload="changeDotColor('${cand.statoCandidato.descrizione}')" >
-								<td><span id="dot" class="dot bg-primary"></span></td>
+							<tr>
+								<td><c:choose>
+										<c:when test="${ cand.statoCandidato.descrizione == 'attivo'}">
+											<span id="dot" class="dot bg-success"></span>
+										</c:when>
+										<c:when test="${ cand.statoCandidato.descrizione == 'selezionato'}">
+											<span id="dot" class="dot bg-primary"></span>
+										</c:when>
+										<c:when test="${ cand.statoCandidato.descrizione == 'da_contattare'}">
+											<span id="dot" class="dot bg-warning"></span>
+										</c:when>
+										<c:when test="${ cand.statoCandidato.descrizione == 'scartato'}">
+											<span id="dot" class="dot bg-danger"></span>
+										</c:when>
+										<c:otherwise>
+											<span id="dot" class="dot bg-light"></span>
+										</c:otherwise>
+									</c:choose></td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td
@@ -124,8 +140,8 @@
 </body>
 
 <script>
-	function changeDotColor(stato){
-		if(stato === "attivo"){
+	function changeDotColor(stato) {
+		if (stato === "attivo") {
 			document.getElementById("dot").className = "dot bg-success";
 		}
 	}
@@ -133,10 +149,10 @@
 
 <style>
 .dot {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  display: inline-block;
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	display: inline-block;
 }
 </style>
 </html>

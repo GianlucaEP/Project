@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
     FOREIGN KEY (`stato`)
     REFERENCES `progetto_hr`.`stato` (`descrizione`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`sinonimo` (
   `sinonimo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_sinonimo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -117,6 +118,21 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`feedback` (
     FOREIGN KEY (`tipo`)
     REFERENCES `progetto_hr`.`tipo_feedback` (`tipo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`funzionalita`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`funzionalita` (
+  `id_funzionalita` INT NOT NULL AUTO_INCREMENT,
+  `funzionalita` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_funzionalita`),
+  UNIQUE INDEX `funzionalita_UNIQUE` (`funzionalita` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -159,25 +175,73 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci
 COMMENT = '	';
 
+
 -- -----------------------------------------------------
--- caricamento in table stato
+-- Table `progetto_hr`.`ruolo`
 -- -----------------------------------------------------
-INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('nuovo_inserito');
-INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('da_contattare');
-INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('scartato');
-INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('attivo');
-INSERT INTO `progetto_hr`.`stato` (`descrizione`) VALUES ('selezionato');
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`ruolo` (
+  `id_ruolo` INT NOT NULL AUTO_INCREMENT,
+  `ruolo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_ruolo`),
+  UNIQUE INDEX `ruolo_UNIQUE` (`ruolo` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- caricamento in table tipo_feedback
+-- Table `progetto_hr`.`ruolo_funzionalita`
 -- -----------------------------------------------------
-INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('chat');
-INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('colloquio_hr');
-INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('colloquio_tecnico');
-INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('mail');
-INSERT INTO `progetto_hr`.`tipo_feedback` (`tipo`) VALUES ('telefonata');
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`ruolo_funzionalita` (
+  `id_funzionalita_fk` INT NOT NULL,
+  `id_ruolo_fk` INT NOT NULL,
+  PRIMARY KEY (`id_funzionalita_fk`, `id_ruolo_fk`),
+  INDEX `ruolof_fk_idx` (`id_ruolo_fk` ASC) VISIBLE,
+  CONSTRAINT `funzionalita_fk`
+    FOREIGN KEY (`id_funzionalita_fk`)
+    REFERENCES `progetto_hr`.`funzionalita` (`id_funzionalita`),
+  CONSTRAINT `ruolof_fk`
+    FOREIGN KEY (`id_ruolo_fk`)
+    REFERENCES `progetto_hr`.`ruolo` (`id_ruolo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`utente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`utente` (
+  `id_utente` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_utente`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`ruolo_utente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`ruolo_utente` (
+  `id_ruolo_fk` INT NOT NULL AUTO_INCREMENT,
+  `id_utente_fk` INT NOT NULL,
+  PRIMARY KEY (`id_ruolo_fk`, `id_utente_fk`),
+  INDEX `utente_fk_idx` (`id_utente_fk` ASC) VISIBLE,
+  CONSTRAINT `ruolo_fk`
+    FOREIGN KEY (`id_ruolo_fk`)
+    REFERENCES `progetto_hr`.`ruolo` (`id_ruolo`),
+  CONSTRAINT `utente_fk`
+    FOREIGN KEY (`id_utente_fk`)
+    REFERENCES `progetto_hr`.`utente` (`id_utente`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
