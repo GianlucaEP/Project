@@ -33,7 +33,7 @@
 
 
 		<button class="btn btn-primary dropdown-toggle" role="button"
-			id="menuStato" data-toggle="dropdown" aria-haspopup="true"
+			id="userOptions" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false">
 			<i class="fas fa-user"></i>
 		</button>
@@ -46,10 +46,10 @@
 
 			<a href="/ProgettoHR/Home" type="button"
 				class="btn btn-primary btn-block  m-0 text-left"
-				style="border-radius: 0;">Torna alla Home<i
+				style="border-radius: 0;">Torna alla Home <i
 				class="fas fa-home float-right"></i></a> <a href="/ProgettoHR/Mansioni"
 				type="button" class="btn btn-primary btn-block  m-0 text-left"
-				style="border-radius: 0;">+ Mansione<i
+				style="border-radius: 0;">+ Mansione <i
 				class="fas fa-briefcase float-right"></i></a>
 		</div>
 

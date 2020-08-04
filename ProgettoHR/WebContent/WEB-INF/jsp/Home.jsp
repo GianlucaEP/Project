@@ -41,7 +41,7 @@
 
 
 			<button class="btn btn-primary dropdown-toggle" role="button"
-				id="menuStato" data-toggle="dropdown" aria-haspopup="true"
+				id="userOptions" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">
 				<i class="fas fa-user"></i>
 			</button>
