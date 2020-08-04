@@ -56,10 +56,11 @@
 
 				<a href="/ProgettoHR/Candidati" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Aggiungi Candidato</a> <a
-					href="/ProgettoHR/Mansioni" type="button"
+					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button" 
 					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Aggiungi Mansione</a>
+					style="border-radius: 0;">+ Mansione <i
+					class="fas fa-briefcase float-right"></i></a>
 			</div>
 
 			<div class="col-10 p-2">
