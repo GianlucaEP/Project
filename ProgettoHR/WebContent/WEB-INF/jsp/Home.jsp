@@ -8,11 +8,17 @@
 <script src="https://kit.fontawesome.com/053b00be10.js"
 	crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
@@ -62,6 +68,7 @@
 					style="box-shadow: 10px 10px 5px grey;">
 					<thead>
 						<tr>
+							<th scope="col">Stato</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Cognome</th>
 							<th scope="col">Mansione</th>
@@ -73,19 +80,27 @@
 							<tr>
 								<td><c:choose>
 										<c:when test="${ cand.statoCandidato.descrizione == 'attivo'}">
-											<span id="dot" class="dot bg-success"></span>
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Attivo" class="dot bg-success"></span>
 										</c:when>
-										<c:when test="${ cand.statoCandidato.descrizione == 'selezionato'}">
-											<span id="dot" class="dot bg-primary"></span>
+										<c:when
+											test="${ cand.statoCandidato.descrizione == 'selezionato'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Selezionato" class="dot bg-primary"></span>
 										</c:when>
-										<c:when test="${ cand.statoCandidato.descrizione == 'da_contattare'}">
-											<span id="dot" class="dot bg-warning"></span>
+										<c:when
+											test="${ cand.statoCandidato.descrizione == 'da_contattare'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Da contattare" class="dot bg-warning"></span>
 										</c:when>
-										<c:when test="${ cand.statoCandidato.descrizione == 'scartato'}">
-											<span id="dot" class="dot bg-danger"></span>
+										<c:when
+											test="${ cand.statoCandidato.descrizione == 'scartato'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Scartato" class="dot bg-danger"></span>
 										</c:when>
 										<c:otherwise>
-											<span id="dot" class="dot bg-light"></span>
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Nuovo inserito" class="dot bg-secondary"></span>
 										</c:otherwise>
 									</c:choose></td>
 								<td
@@ -145,6 +160,10 @@
 			document.getElementById("dot").className = "dot bg-success";
 		}
 	}
+
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
 
 <style>
