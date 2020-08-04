@@ -16,7 +16,7 @@ public class LoginEffettuatoController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 	UtenteDAO udao= (UtenteDAO) factory.getBean("utenteDAO");
 	
-	@RequestMapping(value = "/LoginTest", method = RequestMethod.POST)
+	@RequestMapping(value = "/LogginIn", method = RequestMethod.POST)
 	public String Login(
 			@ModelAttribute Utente utente, Model m) {
 		
@@ -29,6 +29,6 @@ public class LoginEffettuatoController {
 		return "redirect:/Home";
 		}
 		m.addAttribute("info", "error");
-		return "Login";
+		return "redirect:/Login";
 	}
 }
