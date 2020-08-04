@@ -23,7 +23,7 @@ public class AreaCompetenza implements Bean{
 	private String area;
 	
 	//ONE-TO-MANY con Candidato
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "area_competenza")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "area")
 	Set<Candidato> candidato;
 	
 	public int getId() {
