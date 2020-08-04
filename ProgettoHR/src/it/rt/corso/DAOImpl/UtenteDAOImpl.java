@@ -24,13 +24,14 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 
 	public Utente getByUsernamePassword(String user, String password) {
 		Utility.buildSession();
-		String hql = "SELECT FROM Utente U WHERE U.username=:user AND U.password=:password";
+		String hql = "FROM Utente U WHERE U.username=:user AND U.password=:password";
 
 		Query query = Utility.getSession().createQuery(hql);
 		query.setParameter("user", user);
 		query.setParameter("password", password);
-
-		Utente utente = (Utente) query.getResultList().get(0);
+		List<Utente> listaUtente=query.getResultList();
+		Utente utente = listaUtente.get(0);
+		
 		return utente;
 
 	}
