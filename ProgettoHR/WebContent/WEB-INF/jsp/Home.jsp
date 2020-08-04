@@ -56,10 +56,11 @@
 
 				<a href="/ProgettoHR/Candidati" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Aggiungi Candidato</a> <a
-					href="/ProgettoHR/Mansioni" type="button"
+					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a> <a
+					href="/ProgettoHR/Mansioni" type="button" 
 					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Aggiungi Mansione</a>
+					style="border-radius: 0;">+ Mansione <i
+					class="fas fa-briefcase float-right"></i></a>
 			</div>
 
 			<div class="col-10 p-2">
@@ -79,22 +80,22 @@
 						<c:forEach var="cand" items="${list}">
 							<tr>
 								<td><c:choose>
-										<c:when test="${ cand.statoCandidato.descrizione == 'attivo'}">
+										<c:when test="${ cand.stato.descrizione == 'attivo'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Attivo" class="dot bg-success"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'selezionato'}">
+											test="${ cand.stato.descrizione == 'selezionato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Selezionato" class="dot bg-primary"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'da_contattare'}">
+											test="${ cand.stato.descrizione == 'da_contattare'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Da contattare" class="dot bg-warning"></span>
 										</c:when>
 										<c:when
-											test="${ cand.statoCandidato.descrizione == 'scartato'}">
+											test="${ cand.stato.descrizione == 'scartato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Scartato" class="dot bg-danger"></span>
 										</c:when>

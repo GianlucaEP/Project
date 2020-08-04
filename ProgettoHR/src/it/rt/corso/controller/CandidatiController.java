@@ -58,7 +58,7 @@ public class CandidatiController {
 	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-		candidato.setStatoCandidato(stato);
+		candidato.setStato(stato);
 		dao.inserisci(candidato);
 		// aggiungi sinonimo alla tabella sinonimo corrispondente alla mansione del
 		// candidato
@@ -99,7 +99,7 @@ public class CandidatiController {
 	@RequestMapping(value = "/Modifica/{id}/{statoInput}", method = RequestMethod.POST)
 	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,  @PathVariable String statoInput) {
 		StatoCandidato statoOutput = (StatoCandidato) factory.getBean(statoInput);
-		c.setStatoCandidato(statoOutput);
+		c.setStato(statoOutput);
 		
 		dao.aggiorna(c);
 		return "redirect:/Candidato/{id}";
@@ -110,7 +110,7 @@ public class CandidatiController {
 		Candidato c = dao.get(id);
 		StatoCandidato statoCandidato = (StatoCandidato) factory.getBean(stato);
 
-		c.setStatoCandidato(statoCandidato);
+		c.setStato(statoCandidato);
 
 		dao.aggiorna(c);
 

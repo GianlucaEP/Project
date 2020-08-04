@@ -32,7 +32,7 @@
 <title>Candidato</title>
 </head>
 <body
-	onload="changeStato('${mostraCandidato.statoCandidato.descrizione}')">
+	onload="changeStato('${mostraCandidato.stato.descrizione}')">
 	<div class="row w-100 p-0 m-0">
 		<nav class="navbar navbar-light bg-primary w-100 "
 			style="opacity: 0.8;">
@@ -240,7 +240,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form method="POST"
-							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.statoCandidato.descrizione}">
+							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
 							<!-- modelAttribute="modificaCandidato" -->
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
