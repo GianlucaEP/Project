@@ -8,6 +8,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserimento Candidati</title>
+<script src="https://kit.fontawesome.com/053b00be10.js"
+	crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -19,29 +21,36 @@
 	crossorigin="anonymous"></script>
 
 </head>
-<div>
-	<nav class="navbar navbar-dark bg-primary "
-		style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+<div class="row w-100 p-0 m-0">
+	<nav class="navbar navbar-light bg-primary w-100 "
+		style="opacity: 0.8;">
 		<h1>
-			<span class="navbar-text bg-primary text-white"> <a
+			<span class="navbar-text  text-white"> <a
 				href="/ProgettoHR/Home"><img alt="logo"
-					src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>
-			</span>
+					src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
 
 		</h1>
 
+
+		<button class="btn btn-primary dropdown-toggle" role="button"
+			id="menuStato" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">
+			<i class="fas fa-user"></i>
+		</button>
+
 	</nav>
 </div>
-<br>
 <div align="center" class="container-fluid ">
 	<div class="row justify-content-md-start">
-		<div class="col-auto p-0">
+		<div class="col-auto p-0 bg-primary" style="opacity: 0.8;">
 
 			<a href="/ProgettoHR/Home" type="button"
-				class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Torna
-				alla Home</a> <a href="/ProgettoHR/Mansioni" type="button"
-				class="btn btn-primary btn-block  m-0 " style="border-radius: 0;">Aggiungi
-				Mansione</a>
+				class="btn btn-primary btn-block  m-0 text-left"
+				style="border-radius: 0;">Torna alla Home<i
+				class="fas fa-home float-right"></i></a> <a href="/ProgettoHR/Mansioni"
+				type="button" class="btn btn-primary btn-block  m-0 text-left"
+				style="border-radius: 0;">+ Mansione<i
+				class="fas fa-briefcase float-right"></i></a>
 		</div>
 
 		<div align="center" class="col-auto p-2 border">
