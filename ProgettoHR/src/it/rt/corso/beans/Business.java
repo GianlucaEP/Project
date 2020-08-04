@@ -20,7 +20,7 @@ public class Business implements Bean {
 	@Column(name = "id_business")
 	private int id;
 	@Column(name = "business")
-	private String Business;
+	private String business;
 	
 	//ONE-TO-MANY con Candidato
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "business")
@@ -35,11 +35,11 @@ public class Business implements Bean {
 	}
 
 	public String getBusiness() {
-		return Business;
+		return business;
 	}
 
 	public void setBusiness(String business) {
-		Business = business;
+		this.business = business;
 	}
 
 	public Set<Candidato> getCandidato() {
