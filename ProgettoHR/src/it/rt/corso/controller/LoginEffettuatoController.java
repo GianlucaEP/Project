@@ -24,11 +24,12 @@ public class LoginEffettuatoController {
 		Utente u= udao.getByUsernamePassword(utente.getUsername(), utente.getPassword());
 		
 		if (u!=null) {
-//			jjse
+
 			m.addAttribute(u);
 		return "redirect:/Home";
 		}
 		m.addAttribute("info", "error");
-		return "redirect:/Login";
+		return "/Login";
+//	CHIEDERE AL PROF: il link della pagina sembra non essere corretto(logginIn) anche se tutto fila liscio come l olio (info === error)	
 	}
 }

@@ -10,7 +10,7 @@ import it.rt.corso.beans.Utente;
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "/Login", method = RequestMethod.POST)
+	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String display(@ModelAttribute Utente utente) {
 		
 		
