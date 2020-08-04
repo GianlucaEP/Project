@@ -12,4 +12,5 @@ public interface CandidatoDAO {
 	public Candidato aggiorna(Candidato candidato); //aggiorna il candidato dal db
 	public List<Candidato> getLista(); //metodo che prende tutta la lista di candidati da db
 	
+	
 }
