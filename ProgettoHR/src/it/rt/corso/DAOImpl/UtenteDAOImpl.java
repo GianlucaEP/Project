@@ -29,10 +29,15 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 		Query query = Utility.getSession().createQuery(hql);
 		query.setParameter("user", user);
 		query.setParameter("password", password);
-		List<Utente> listaUtente=query.getResultList();
-		Utente utente = listaUtente.get(0);
-		
-		return utente;
+		List<Utente> listaUtente = query.getResultList();
+		if (listaUtente.isEmpty()) {
+			Utente utente = null;
+			return utente;
+		} else {
+			Utente utente = listaUtente.get(0);
+			return utente;
+
+		}
 
 	}
 
