@@ -18,6 +18,32 @@ CREATE SCHEMA IF NOT EXISTS `progetto_hr` DEFAULT CHARACTER SET utf8mb4 COLLATE 
 USE `progetto_hr` ;
 
 -- -----------------------------------------------------
+-- Table `progetto_hr`.`area_competenza`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`area_competenza` (
+  `id_area` INT NOT NULL AUTO_INCREMENT,
+  `area` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_area`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `progetto_hr`.`business`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `progetto_hr`.`business` (
+  `id_business` INT NOT NULL AUTO_INCREMENT,
+  `business` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_business`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `progetto_hr`.`stato`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `progetto_hr`.`stato` (
@@ -43,8 +69,18 @@ CREATE TABLE IF NOT EXISTS `progetto_hr`.`candidato` (
   `inserimento_azienda` DATE NOT NULL,
   `specializzazione` TEXT NOT NULL,
   `stato` VARCHAR(45) NOT NULL,
+  `business` INT NOT NULL,
+  `area` INT NOT NULL,
   PRIMARY KEY (`id_candidato`),
   INDEX `stato_idx` (`stato` ASC) VISIBLE,
+  INDEX `business_fk_idx` (`business` ASC) VISIBLE,
+  INDEX `area_fk_idx` (`area` ASC) VISIBLE,
+  CONSTRAINT `area_fk`
+    FOREIGN KEY (`area`)
+    REFERENCES `progetto_hr`.`area_competenza` (`id_area`),
+  CONSTRAINT `business_fk`
+    FOREIGN KEY (`business`)
+    REFERENCES `progetto_hr`.`business` (`id_business`),
   CONSTRAINT `stato`
     FOREIGN KEY (`stato`)
     REFERENCES `progetto_hr`.`stato` (`descrizione`))
@@ -242,10 +278,6 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-
-
-
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
