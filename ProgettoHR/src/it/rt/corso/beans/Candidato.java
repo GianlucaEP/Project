@@ -224,7 +224,7 @@ public class Candidato implements Bean {
 		this.provenienza = provenienza;
 	}
 
-	public boolean isCategoriaProtetta() {
+	public boolean getCategoriaProtetta() {
 		return categoriaProtetta;
 	}
 
