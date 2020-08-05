@@ -174,6 +174,25 @@
 				</div>
 				<div class="row w-100 p-2 justify-content-md-start">
 					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Provenienza:</div>
+							<form:input path="provenienza" type="text" class="form-control"
+								id="provenienza" name="provenienza"></form:input>
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Categoria
+								Protetta:</div>
+							<form:checkbox path="categoriaProtetta" class="form-control"
+								id="categoriaProtetta" name="categoriaProtetta" value="true"></form:checkbox>
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
 						<button type="submit" class="btn btn-primary btn-block">Salva</button>
 						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 					</div>
