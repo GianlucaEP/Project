@@ -40,11 +40,14 @@ public class Candidato implements Bean {
 	private String mansione;
 	@Column(name = "seniority")
 	private String seniority;
-	@Column(name = "specializzazione") // Specializzazione che inserisce a mano(text box) e che fa riferimento a
-										// Sinonimo
+	@Column(name = "specializzazione") // Specializzazione che inserisce a mano(text box) e che fa riferimento a									// Sinonimo
 	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
+	@Column(name = "provenienza")
+	private String provenienza;
+	@Column(name = "categoria_protetta")
+	private boolean categoriaProtetta;
 	
 	// MANY-TO-ONE con Business
 	@ManyToOne
@@ -212,5 +215,22 @@ public class Candidato implements Bean {
 	public void setQm(Set<QualificationMeeting> qm) {
 		this.qm = qm;
 	}
+
+	public String getProvenienza() {
+		return provenienza;
+	}
+
+	public void setProvenienza(String provenienza) {
+		this.provenienza = provenienza;
+	}
+
+	public boolean isCategoriaProtetta() {
+		return categoriaProtetta;
+	}
+
+	public void setCategoriaProtetta(boolean categoriaProtetta) {
+		this.categoriaProtetta = categoriaProtetta;
+	}
+	
 
 }
