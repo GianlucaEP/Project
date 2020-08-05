@@ -1,5 +1,8 @@
 package it.rt.corso.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
@@ -17,6 +20,7 @@ import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.TipoFeedback;
+import it.rt.corso.beans.Utente;
 
 @Controller
 public class FeedbackController {
@@ -28,18 +32,16 @@ public class FeedbackController {
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/AggiungiFeedback/{id}", method = RequestMethod.POST)
-	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback,
-			@ModelAttribute("tipoFeedback") TipoFeedback tipoFeedback, @PathVariable int id) {
-		Candidato c = dao.get(id);
-		feedback.setTipo(tipoFeedback);
-		feedback.setCandidato(c);
-		//feedbackDAO.inserisci(feedback);
+	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback,@ModelAttribute("utente") Utente utente, @PathVariable int id) {
+		 Candidato c = dao.get(id);
+		 TipoFeedback tp = tipoFeedbackDAO.get(feedback.getTipo().getTipo());
+		 feedback.setTipo(tp);
+		 feedback.setUserInsert("Chiara");
+         Date ora = new Date();
+		 feedback.setDateInsert(ora);
+		 feedback.setCandidato(c);
+		 feedbackDAO.inserisci(feedback);
 
-		Set<Feedback> feedbacks = c.getFeedback();
-		feedbacks.add(feedback);
-		c.setFeedback(feedbacks);
-
-		dao.aggiorna(c);
 
 		return "redirect:/Candidato/{id}";
 

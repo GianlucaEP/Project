@@ -79,35 +79,35 @@
 					Modifica Candidato<i class="fas fa-pen float-right"></i>
 				</button>
 
-				<button onclick="impostaTipoFeedback('colloquio HR')" type="button"
+				<button onclick="impostaTipoFeedback('Colloquio HR')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">
 					+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
 				</button>
 
-				<button onclick="impostaTipoFeedback('colloquio Tecnico')"
+				<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
 					type="button" data-toggle="modal" data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">
 					+ Colloquio Tecnico<i class="fas fa-user float-right"></i>
 				</button>
 
-				<button onclick="impostaTipoFeedback('mail')" type="button"
+				<button onclick="impostaTipoFeedback('Mail')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">
 					+ Mail <i class="fas fa-envelope-open-text float-right"></i>
 				</button>
 
-				<button onclick="impostaTipoFeedback('social')" type="button"
+				<button onclick="impostaTipoFeedback('Social')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">
 					+ Social <i class="fas fa-comment-dots float-right"></i>
 				</button>
 
-				<button onclick="impostaTipoFeedback('telefonata')" type="button"
+				<button onclick="impostaTipoFeedback('Telefonata')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">
@@ -382,15 +382,15 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST"
+						<form:form method="POST" modelAttribute="feedback"
 							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
 							<!-- modelAttribute="modificaCandidato" -->
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<input type="text" class="form-control" id="tipoFeedback"
-											name="tipoFeedback" value="${tipoFeedback.tipo}"></input>
+										<form:input path="tipo.tipo" type="text" class="form-control" id="tipoFeedback"
+											name="tipoFeedback" value=""></form:input>
 									</div>
 								</div>
 							</div>
@@ -400,8 +400,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
 										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${feedback.data}" />-->
-										<input type="date" pattern="yyyy-MM-dd" class="form-control"
-											id="data" name="data" value="${feedback.data}"></input>
+										<form:input path="data" type="date" pattern="yyyy-MM-dd" class="form-control"
+											id="data" name="data" ></form:input>
 									</div>
 								</div>
 							</div>
@@ -409,8 +409,8 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<input type="text" class="form-control" id="feedback"
-											name="feedback" value="${feedback.commento}"></input>
+										<form:input path="commento" type="text" class="form-control" id="feedback"
+											name="feedback" ></form:input>
 									</div>
 								</div>
 							</div>
@@ -420,7 +420,7 @@
 										Feedback</button>
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 
 				</div>
@@ -473,15 +473,15 @@
 		}
 
 		function impostaTipoFeedback(tipoFeedback) {
-			if (tipoFeedback === "mail") {
+			if (tipoFeedback === "Mail") {
 				document.getElementById("tipoFeedback").value = tipoFeedback;
-			} else if (tipoFeedback === "telefonata") {
+			} else if (tipoFeedback === "Telefonata") {
 				document.getElementById("tipoFeedback").value = tipoFeedback;
-			} else if (tipoFeedback === "colloquio HR") {
+			} else if (tipoFeedback === "Colloquio HR") {
 				document.getElementById("tipoFeedback").value = tipoFeedback;
-			} else if (tipoFeedback === "colloquio Tecnico") {
+			} else if (tipoFeedback === "Colloquio Tecnico") {
 				document.getElementById("tipoFeedback").value = tipoFeedback;
-			} else if (tipoFeedback === "social") {
+			} else if (tipoFeedback === "Social") {
 				document.getElementById("tipoFeedback").value = tipoFeedback;
 			}
 		}
