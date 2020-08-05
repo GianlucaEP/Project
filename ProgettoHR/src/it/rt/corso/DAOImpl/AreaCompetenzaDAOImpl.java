@@ -2,10 +2,13 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
+
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Candidato;
+import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.utility.Utility;
 
 public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
@@ -21,5 +24,17 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		
 		return listaArea;
 	}
+
+	public AreaCompetenza get(String id) {
+		return (AreaCompetenza) super.get(AreaCompetenza.class, id); 
+	}
+	
+	public AreaCompetenza getByName(String area) {
+		Utility.buildSession();
+		
+		List<AreaCompetenza> area1 = Utility.getSession().createQuery("From AreaCompetenza WHERE area=:area").setParameter("area", area).getResultList();
+		return area1.get(0);
+	}
+
 
 }

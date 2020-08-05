@@ -72,6 +72,10 @@ public class CandidatiController {
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
+		AreaCompetenza area = areaCompetenzaDAO.getByName(candidato.getArea().getArea());
+		candidato.setArea(area);
+		Business business = businessDAO.getByName(candidato.getBusiness().getBusiness());
+		candidato.setBusiness(business);
 		dao.inserisci(candidato);
 		// aggiungi sinonimo alla tabella sinonimo corrispondente alla mansione del
 		// candidato

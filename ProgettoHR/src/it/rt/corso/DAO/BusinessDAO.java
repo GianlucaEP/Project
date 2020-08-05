@@ -8,4 +8,5 @@ public interface BusinessDAO {
 	
 	public Business inserisci(Business business);
 	public List<Business> getLista();
-}
+	public Business getByName(String business);
+	}
