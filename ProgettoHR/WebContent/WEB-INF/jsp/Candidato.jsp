@@ -32,7 +32,7 @@
 <title>Candidato</title>
 </head>
 <body
-	onload="changeStato('${mostraCandidato.stato.descrizione}')">
+	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}')">
 	<div class="row w-100 p-0 m-0">
 		<nav class="navbar navbar-light bg-primary w-100 "
 			style="opacity: 0.8;">
@@ -204,7 +204,7 @@
 			<div class="col-auto justify-content-md-end">
 
 				<table class="table table-bordered  text-center "
-					style="box-shadow: 10px 10px 5px grey;">
+					style="box-shadow: 10px 10px 5px grey;" id="feedbackTable">
 					<thead>
 						<tr>
 							<th scope="col">Data</th>
@@ -407,7 +407,7 @@
 
 
 	<script type="text/javascript">
-		function changeStato(stato) {
+		function changeStato(stato, feedback) {
 			if (stato === "nuovo_inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
@@ -424,7 +424,16 @@
 				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Selezionato";
 			}
+			
+			removeFeedbackTable(feedback);
 
+		}
+		
+		function removeFeedbackTable(feedback){
+			if(feedback === "[]"){
+				var myobj = document.getElementById("feedbackTable");
+				myobj.remove();
+			}
 		}
 
 		function impostaTipoFeedback(tipoFeedback) {
