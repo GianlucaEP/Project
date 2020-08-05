@@ -133,7 +133,7 @@
 				<div style="width:100%; color:black; opacity:0.6; ">PROVA</div>
 			</div> -->
 
-			<div class="col-auto justify-content-md-end">
+			<div class="col-auto p-2 justify-content-md-end">
 
 				<table class="table table-bordered  text-center "
 					style="box-shadow: 10px 10px 5px grey;">
@@ -201,7 +201,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-auto justify-content-md-end">
+			<div class="col-auto p-2 justify-content-md-end">
 
 				<table class="table table-bordered  text-center "
 					style="box-shadow: 10px 10px 5px grey;" id="feedbackTable">
