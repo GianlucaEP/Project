@@ -52,7 +52,7 @@
 
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0 bg-primary" style="opacity: 0.8;">
+			<div class="col-auto p-0 bg-primary justify-content-md-start" style="opacity: 0.8;">
 
 				<a href="/ProgettoHR/Candidati" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
@@ -63,7 +63,7 @@
 					class="fas fa-briefcase float-right"></i></a>
 			</div>
 
-			<div class="col-10 p-2">
+			<div class="col-auto p-2 justify-content-md-center">
 				<table
 					class="table table-bordered table-striped text-center table-hover "
 					style="box-shadow: 10px 10px 5px grey;">
