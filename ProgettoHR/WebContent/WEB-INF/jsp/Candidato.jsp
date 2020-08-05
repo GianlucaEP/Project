@@ -32,7 +32,7 @@
 <title>Candidato</title>
 </head>
 <body
-	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}')">
+	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}')">
 	<div class="row w-100 p-0 m-0">
 		<nav class="navbar navbar-light bg-primary w-100 "
 			style="opacity: 0.8;">
@@ -195,7 +195,7 @@
 						</tr>
 						<tr>
 							<th scope="col">Categoria Protetta</th>
-							<td scope="col" id="categoriaProtetta">${mostraCandidato.categoriaProtetta}</td>
+							<td scope="col" id="categoriaProtetta"></td>
 						</tr>
 						<tr>
 							<th scope="col">Business</th>
@@ -433,7 +433,7 @@
 
 
 	<script type="text/javascript">
-		function changeStato(stato, feedback) {
+		function changeStato(stato, feedback, categoriaProtetta) {
 			if (stato === "nuovo_inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
@@ -452,7 +452,7 @@
 			}
 
 			removeFeedbackTable(feedback);
-			checkCategoriaProtetta();
+			checkCategoriaProtetta(categoriaProtetta);
 
 		}
 
@@ -463,11 +463,13 @@
 			}
 		}
 
-		function checkCategoriaProtetta() {
-			if (document.getElementById("categoriaProtetta").val)
+		function checkCategoriaProtetta(categoriaProtetta) {
+			if (categoriaProtetta === "true"){
 				document.getElementById("categoriaProtetta").innerHTML = "SI";
-			else
+			}
+			else{
 				document.getElementById("categoriaProtetta").innerHTML = "NO";
+			}
 		}
 
 		function impostaTipoFeedback(tipoFeedback) {
