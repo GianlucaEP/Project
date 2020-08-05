@@ -18,6 +18,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="feedbackDAO" class="it.rt.corso.DAOImpl.FeedbackDAOImpl">
 	</bean>
+	
+	<bean id="businessDAO" class="it.rt.corso.DAOImpl.BusinessDAOImpl">
+	</bean>
+	
+	<bean id="areaCompetenzaDAO" class="it.rt.corso.DAOImpl.AreaCompetenzaDAOImpl">
+	</bean>
 
 	<bean id="tipoFeedbackDAO"
 		class="it.rt.corso.DAOImpl.TipoFeedbackDAOImpl">

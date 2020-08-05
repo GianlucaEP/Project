@@ -133,6 +133,36 @@
 				<div class="row w-100 p-2 justify-content-md-start">
 					<div class="col w-100 p-0 justify-content-md-start">
 						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Business:</div>
+							<form:select path="business.business" name="business"
+								class="custom-select mb-3">
+								<option selected></option>
+								<c:forEach var="bus" items="${businessList}">
+									<form:option value="${bus.business}">${bus.business}</form:option>
+								</c:forEach>
+							</form:select>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
+							<form:select path="area.area" name="area"
+								class="custom-select mb-3">
+								<option selected></option>
+								<c:forEach var="area" items="${areaCompetenzaList}">
+									<form:option value="${area.area}">${area.area}</form:option>
+								</c:forEach>
+							</form:select>
+						</div>
+					</div>
+				</div>
+				<div class="row w-100 p-2 justify-content-md-start">
+					<div class="col w-100 p-0 justify-content-md-start">
+						<div class="form-group">
 							<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
 								Azienda:</div>
 							<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->

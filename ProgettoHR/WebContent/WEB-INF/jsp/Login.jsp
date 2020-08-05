@@ -40,7 +40,7 @@
 							class="form-control" id="password"
 							placeholder="Inserisci Password"/>
 					</div>
-					<button type="submit" class="btn btn-lg btn-block btn-primary">Entra un po' qui</button>
+					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 				</form:form>
 			</div>
 		</div>

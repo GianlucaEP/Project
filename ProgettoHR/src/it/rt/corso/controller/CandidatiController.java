@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.rt.corso.DAO.AreaCompetenzaDAO;
+import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.SinonimoDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
+import it.rt.corso.beans.AreaCompetenza;
+import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.QualificationMeeting;
@@ -40,6 +44,9 @@ public class CandidatiController {
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	SinonimoDAO sdao = (SinonimoDAO) factory.getBean("sinonimoDAO");
+	
+	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
+	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 
 	@InitBinder
 	public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -49,6 +56,12 @@ public class CandidatiController {
 
 	@RequestMapping("/Candidati")
 	public String formAggiungiCandidato(Model m) {
+		
+		List<Business> businessList = businessDAO.getLista();
+		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
+		
+		m.addAttribute("businessList", businessList);
+		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
 
 		m.addAttribute("candidato", new Candidato());
 		
