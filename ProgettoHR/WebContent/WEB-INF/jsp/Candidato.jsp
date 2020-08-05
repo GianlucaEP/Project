@@ -119,6 +119,16 @@
 					style="border-radius: 0;">+ Mansione <i
 					class="fas fa-briefcase float-right"></i></a>
 
+				<button type="button" data-toggle="modal"
+					data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">+ Qualification Meeting</button>
+
+				<button type="button" data-toggle="modal"
+					data-target="#feedbackModal"
+					class="btn btn-primary btn-block  m-0 text-left"
+					style="border-radius: 0;">+ Economics</button>
+
 
 			</div>
 			<!-- 	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"  >
@@ -178,6 +188,22 @@
 						<tr>
 							<th scope="col">Email</th>
 							<td scope="col">${mostraCandidato.email}</td>
+						</tr>
+						<tr>
+							<th scope="col">Provenienza</th>
+							<td scope="col">${mostraCandidato.provenienza}</td>
+						</tr>
+						<tr>
+							<th scope="col">Categoria Protetta</th>
+							<td scope="col" id="categoriaProtetta">${mostraCandidato.categoriaProtetta}</td>
+						</tr>
+						<tr>
+							<th scope="col">Business</th>
+							<td scope="col">${mostraCandidato.business.business}</td>
+						</tr>
+						<tr>
+							<th scope="col">Area Competenza</th>
+							<td scope="col">${mostraCandidato.area.area}</td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
@@ -356,7 +382,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST" 
+						<form method="POST"
 							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
 							<!-- modelAttribute="modificaCandidato" -->
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -374,8 +400,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
 										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${feedback.data}" />-->
-										<input type="date" pattern="yyyy-MM-dd" class="form-control" id="data"
-											name="data"  value="${feedback.data}"></input>
+										<input type="date" pattern="yyyy-MM-dd" class="form-control"
+											id="data" name="data" value="${feedback.data}"></input>
 									</div>
 								</div>
 							</div>
@@ -424,16 +450,24 @@
 				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Selezionato";
 			}
-			
+
 			removeFeedbackTable(feedback);
+			checkCategoriaProtetta();
 
 		}
-		
-		function removeFeedbackTable(feedback){
-			if(feedback === "[]"){
+
+		function removeFeedbackTable(feedback) {
+			if (feedback === "[]") {
 				var myobj = document.getElementById("feedbackTable");
 				myobj.remove();
 			}
+		}
+
+		function checkCategoriaProtetta() {
+			if (document.getElementById("categoriaProtetta").val)
+				document.getElementById("categoriaProtetta").innerHTML = "SI";
+			else
+				document.getElementById("categoriaProtetta").innerHTML = "NO";
 		}
 
 		function impostaTipoFeedback(tipoFeedback) {
