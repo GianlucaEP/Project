@@ -52,12 +52,13 @@
 
 	<div class="container-fluid ">
 		<div class="row">
-			<div class="col-auto p-0 bg-primary justify-content-md-start" style="opacity: 0.8;">
+			<div class="col-auto p-0 bg-primary justify-content-md-start"
+				style="opacity: 0.8;">
 
 				<a href="/ProgettoHR/Candidati" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a> <a
-					href="/ProgettoHR/Mansioni" type="button" 
+					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a>
+				<a href="/ProgettoHR/Mansioni" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">+ Mansione <i
 					class="fas fa-briefcase float-right"></i></a>
@@ -70,8 +71,10 @@
 					<thead>
 						<tr>
 							<th scope="col">Stato</th>
+							<th scope="col">Business</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Cognome</th>
+							<th scope="col">Area Competenza</th>
 							<th scope="col">Mansione</th>
 							<th scope="col">Seniority</th>
 						</tr>
@@ -84,18 +87,15 @@
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Attivo" class="dot bg-success"></span>
 										</c:when>
-										<c:when
-											test="${ cand.stato.descrizione == 'selezionato'}">
+										<c:when test="${ cand.stato.descrizione == 'selezionato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Selezionato" class="dot bg-primary"></span>
 										</c:when>
-										<c:when
-											test="${ cand.stato.descrizione == 'da_contattare'}">
+										<c:when test="${ cand.stato.descrizione == 'da_contattare'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Da contattare" class="dot bg-warning"></span>
 										</c:when>
-										<c:when
-											test="${ cand.stato.descrizione == 'scartato'}">
+										<c:when test="${ cand.stato.descrizione == 'scartato'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Scartato" class="dot bg-danger"></span>
 										</c:when>
@@ -105,11 +105,16 @@
 										</c:otherwise>
 									</c:choose></td>
 								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.business.business}</td>
+								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
+										<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.area.area}</td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.mansione}</td>
+							
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
 								<td data-toggle="modal" data-target="#EliminaModal"><i
