@@ -203,11 +203,18 @@
 						</tr>
 						<tr>
 							<th scope="col">Area Competenza</th>
-							<td scope="col">${mostraCandidato.area.area}</td>
+							<td scope="col">{<c:forEach var="area" items="${cand.area}">
+									<span>${area.area}</span>
+								</c:forEach>}
+							</td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
-							<td scope="col">${mostraCandidato.mansione}</td>
+							<td scope="col">{<c:forEach var="mansione"
+									items="${cand.mansione}">
+									<span>${mansione.mansione}</span>
+								</c:forEach>}
+							</td>
 						</tr>
 						<tr>
 							<th scope="col">Seniority</th>
@@ -215,7 +222,11 @@
 						</tr>
 						<tr>
 							<th scope="col">Specializzazione</th>
-							<td scope="col">${mostraCandidato.specializzazione}</td>
+							<td scope="col">{<c:forEach var="specializzazione"
+									items="${cand.specializzazione}">
+									<span>${specializzazione.specializzazione}</span>
+								</c:forEach>}
+							</td>
 						</tr>
 						<tr>
 							<th scope="col">Inserimento Azienda</th>
@@ -389,8 +400,8 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<form:input path="tipo.tipo" type="text" class="form-control" id="tipoFeedback"
-											name="tipoFeedback" value=""></form:input>
+										<form:input path="tipo.tipo" type="text" class="form-control"
+											id="tipoFeedback" name="tipoFeedback" value=""></form:input>
 									</div>
 								</div>
 							</div>
@@ -400,8 +411,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
 										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${feedback.data}" />-->
-										<form:input path="data" type="date" pattern="yyyy-MM-dd" class="form-control"
-											id="data" name="data" ></form:input>
+										<form:input path="data" type="date" pattern="yyyy-MM-dd"
+											class="form-control" id="data" name="data"></form:input>
 									</div>
 								</div>
 							</div>
@@ -409,8 +420,8 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input path="commento" type="text" class="form-control" id="feedback"
-											name="feedback" ></form:input>
+										<form:input path="commento" type="text" class="form-control"
+											id="feedback" name="feedback"></form:input>
 									</div>
 								</div>
 							</div>
@@ -464,10 +475,9 @@
 		}
 
 		function checkCategoriaProtetta(categoriaProtetta) {
-			if (categoriaProtetta === "true"){
+			if (categoriaProtetta === "true") {
 				document.getElementById("categoriaProtetta").innerHTML = "SI";
-			}
-			else{
+			} else {
 				document.getElementById("categoriaProtetta").innerHTML = "NO";
 			}
 		}
