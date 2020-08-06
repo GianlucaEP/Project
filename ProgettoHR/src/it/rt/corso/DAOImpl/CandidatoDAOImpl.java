@@ -17,11 +17,12 @@ import it.rt.corso.beans.Funzionalita;
 import it.rt.corso.utility.Utility;
 
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
-	
+
 	@Override
 	public Candidato inserisci(Candidato candidato) {
 		return (Candidato) super.inserisci(candidato);
 	}
+
 	@Override
 	public List<Candidato> getLista() {
 
@@ -30,14 +31,17 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		return listacandidato;
 	}
+
 	@Override
 	public Candidato get(int id) {
 		return (Candidato) super.get(Candidato.class, id);
 	}
+
 	@Override
 	public Candidato cancella(Candidato candidato) {
 		return (Candidato) super.cancella(candidato);
 	}
+
 	@Override
 	public Candidato aggiorna(Candidato candidato) {
 		return (Candidato) super.aggiorna(candidato);
