@@ -22,11 +22,10 @@ public class BusinessDAOImpl extends BaseDAO implements BusinessDAO{
 		return listabusiness;
 	}
 
-	public Business getByName(String business) {
-		Utility.buildSession();
-		
-		List<Business> business1 = Utility.getSession().createQuery("From Business WHERE business=:business").setParameter("business", business).getResultList();
-		return business1.get(0);
+	public Business get(String id) {
+		return (Business)super.get(Business.class, id);
 	}
+
+	
 
 }

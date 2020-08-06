@@ -21,7 +21,6 @@ import javax.persistence.Table;
 @Table(name = "candidato")
 public class Candidato implements Bean {
 
-	// Attributi
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")
@@ -36,28 +35,20 @@ public class Candidato implements Bean {
 	private String telefono;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "mansione")
-	private String mansione;
 	@Column(name = "seniority")
 	private String seniority;
-	@Column(name = "specializzazione") // Specializzazione che inserisce a mano(text box) e che fa riferimento a									// Sinonimo
-	private String specializzazione;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
 	@Column(name = "provenienza")
 	private String provenienza;
 	@Column(name = "categoria_protetta")
 	private boolean categoriaProtetta;
+//	private File allegato; TODO aggiungere successivamente il file allegato
 	
 	// MANY-TO-ONE con Business
 	@ManyToOne
 	@JoinColumn(name = "business")
 	private Business business;
-
-	//MANY-TO-ONE con AreaCompetenza
-	@ManyToOne
-	@JoinColumn(name="area")
-	private AreaCompetenza area; 
 
 	// MANY-TO-ONE con la classe StatoCandidato
 	@ManyToOne
@@ -71,20 +62,27 @@ public class Candidato implements Bean {
 	// ONE-TO-MANY con la classe QualificationMetting
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;
+	
+	// ONE-TO-MANY con la classe CandidatoSpecializzazione
+	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "candidato")
+	Set<CandidatoSpecializzazione> candidatoSpecializzazione;
 
-//	private File allegato; TODO aggiungere successivamente il file allegato
-
+	// MANY-TO-MANY Con Mansione
 	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
 	 * dell' altra entità
 	 */
-	@JoinTable(name = "candidato_sinonimo", joinColumns = {
-			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_sinonimo_fk") })
-	Set<Sinonimo> sinonimo = new HashSet<>();
-
-	// Getter & Setter
+	@JoinTable(name = "candidato_mansione", joinColumns = {
+			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "mansione") })
+	Set<Mansione> mansione = new HashSet<>();
+	
+	// MANY-TO-MANY Con Area
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "candidato_area", joinColumns = {
+			@JoinColumn(name = "candidato") }, inverseJoinColumns = { @JoinColumn(name = "area") })
+	Set<AreaCompetenza> area = new HashSet<>();
 
 	public int getId() {
 		return id;
@@ -134,38 +132,6 @@ public class Candidato implements Bean {
 		this.email = email;
 	}
 
-	public Business getBusiness() {
-		return business;
-	}
-
-	public void setBusiness(Business business) {
-		this.business = business;
-	}
-
-	public AreaCompetenza getArea() {
-		return area;
-	}
-
-	public void setArea(AreaCompetenza area) {
-		this.area = area;
-	}
-
-	public StatoCandidato getStato() {
-		return stato;
-	}
-
-	public void setStato(StatoCandidato stato) {
-		this.stato = stato;
-	}
-
-	public String getMansione() {
-		return mansione;
-	}
-
-	public void setMansione(String mansione) {
-		this.mansione = mansione;
-	}
-
 	public String getSeniority() {
 		return seniority;
 	}
@@ -182,23 +148,37 @@ public class Candidato implements Bean {
 		this.inserimentoAzienda = inserimentoAzienda;
 	}
 
-	public Set<Sinonimo> getSinonimo() {
-		return sinonimo;
+	public String getProvenienza() {
+		return provenienza;
 	}
 
-	public void setSinonimo(Set<Sinonimo> sinonimo) {
-		this.sinonimo = sinonimo;
+	public void setProvenienza(String provenienza) {
+		this.provenienza = provenienza;
 	}
 
-	public String getSpecializzazione() {
-		return specializzazione;
+	public boolean isCategoriaProtetta() {
+		return categoriaProtetta;
 	}
 
-	public void setSpecializzazione(String specializzazione) {
-		this.specializzazione = specializzazione;
+	public void setCategoriaProtetta(boolean categoriaProtetta) {
+		this.categoriaProtetta = categoriaProtetta;
 	}
 
-	
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+
+	public StatoCandidato getStato() {
+		return stato;
+	}
+
+	public void setStato(StatoCandidato stato) {
+		this.stato = stato;
+	}
 
 	public Set<Feedback> getFeedback() {
 		return feedback;
@@ -216,21 +196,30 @@ public class Candidato implements Bean {
 		this.qm = qm;
 	}
 
-	public String getProvenienza() {
-		return provenienza;
+
+	public Set<CandidatoSpecializzazione> getCandidatoSpecializzazione() {
+		return candidatoSpecializzazione;
 	}
 
-	public void setProvenienza(String provenienza) {
-		this.provenienza = provenienza;
+	public void setCandidatoSpecializzazione(Set<CandidatoSpecializzazione> candidatoSpecializzazione) {
+		this.candidatoSpecializzazione = candidatoSpecializzazione;
 	}
 
-	public boolean getCategoriaProtetta() {
-		return categoriaProtetta;
+	public Set<Mansione> getMansione() {
+		return mansione;
 	}
 
-	public void setCategoriaProtetta(boolean categoriaProtetta) {
-		this.categoriaProtetta = categoriaProtetta;
+	public void setMansione(Set<Mansione> mansione) {
+		this.mansione = mansione;
 	}
+
+	public Set<AreaCompetenza> getArea() {
+		return area;
+	}
+
+	public void setArea(Set<AreaCompetenza> area) {
+		this.area = area;
+	}
+
 	
-
 }

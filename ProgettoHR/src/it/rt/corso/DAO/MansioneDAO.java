@@ -8,4 +8,5 @@ public interface MansioneDAO {
 	
 	public Mansione inserisci(Mansione mansione); 
 	public List<Mansione> getLista(); 
+	public Mansione get(String id);
 }

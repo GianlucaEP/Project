@@ -13,7 +13,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="mansioneDAO" class="it.rt.corso.DAOImpl.MansioneDAOImpl">
 	</bean>
 
-	<bean id="CandidatoSpecializzazioneDAO" class="it.rt.corso.DAOImpl.CandidatoSpecializzazioneDAOImpl">
+	<bean id="candidatoSpecializzazioneDAO" class="it.rt.corso.DAOImpl.CandidatoSpecializzazioneDAOImpl">
+	</bean>
+	
+	<bean id="specializzazioneDAO" class="it.rt.corso.DAOImpl.SpecializzazioneDAOImpl">
 	</bean>
 
 	<bean id="feedbackDAO" class="it.rt.corso.DAOImpl.FeedbackDAOImpl">

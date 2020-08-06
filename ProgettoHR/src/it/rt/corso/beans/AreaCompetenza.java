@@ -1,14 +1,13 @@
 package it.rt.corso.beans;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,21 +16,14 @@ public class AreaCompetenza implements Bean{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_area")
-	private int id;
 	@Column(name = "area")
 	private String area;
 	
-	//ONE-TO-MANY con Candidato
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "area")
-	Set<Candidato> candidato;
+	//MANY-TO-MANY Con candidato
+	@ManyToMany(mappedBy = "area")
+	private Set<Candidato> candidato = new HashSet<>();
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getArea() {
 		return area;
 	}

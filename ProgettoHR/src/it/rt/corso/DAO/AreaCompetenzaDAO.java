@@ -9,5 +9,4 @@ public interface AreaCompetenzaDAO {
 	public AreaCompetenza inserisci(AreaCompetenza area);
 	public List<AreaCompetenza> getLista();
 	public AreaCompetenza get(String id);
-	public AreaCompetenza getByName(String name);
 }

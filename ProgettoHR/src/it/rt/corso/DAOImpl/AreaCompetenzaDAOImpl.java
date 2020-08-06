@@ -29,12 +29,4 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		return (AreaCompetenza) super.get(AreaCompetenza.class, id); 
 	}
 	
-	public AreaCompetenza getByName(String area) {
-		Utility.buildSession();
-		
-		List<AreaCompetenza> area1 = Utility.getSession().createQuery("From AreaCompetenza WHERE area=:area").setParameter("area", area).getResultList();
-		return area1.get(0);
-	}
-
-
 }

@@ -16,7 +16,7 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<mapping class="it.rt.corso.beans.Candidato"/>
-		<mapping class="it.rt.corso.beans.Sinonimo"/>
+		<mapping class="it.rt.corso.beans.Specializzazione"/>
 		<mapping class="it.rt.corso.beans.Mansione"/>
 		<mapping class="it.rt.corso.beans.Feedback"/>
 		<mapping class="it.rt.corso.beans.QualificationMeeting"/>
@@ -27,6 +27,8 @@
 		<mapping class="it.rt.corso.beans.Ruolo"/>
 		<mapping class="it.rt.corso.beans.Business"/>
 		<mapping class="it.rt.corso.beans.AreaCompetenza"/>
+		<mapping class="it.rt.corso.beans.CandidatoSpecializzazione"/>
+		
 		
 		
 		

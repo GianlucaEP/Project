@@ -110,11 +110,19 @@
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
-										<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.area.area}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.mansione}</td>
-							
+									
+								<td><c:forEach var="area" items="${cand.area}">
+										<span
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${area.area}</span>
+									</c:forEach></td>
+									
+								<td><c:forEach var="mansione" items="${cand.mansione}">
+										<span
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${mansione.mansione}</span>
+									</c:forEach></td>
+
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
 								<td data-toggle="modal" data-target="#EliminaModal"><i

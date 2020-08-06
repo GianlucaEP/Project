@@ -17,22 +17,12 @@ public class Business implements Bean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_business")
-	private int id;
 	@Column(name = "business")
 	private String business;
 	
 	//ONE-TO-MANY con Candidato
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "business")
 	Set<Candidato> candidato;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getBusiness() {
 		return business;

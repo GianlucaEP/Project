@@ -13,4 +13,5 @@ public interface CandidatoDAO {
 	public List<Candidato> getLista();
 	
 	
+	
 }
