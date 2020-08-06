@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class AreaCompetenza implements Bean{
 	private String area;
 	
 	//MANY-TO-MANY Con candidato
-	@ManyToMany(mappedBy = "area")
+	@ManyToMany( mappedBy = "area")
 	private Set<Candidato> candidato = new HashSet<>();
 	
 	

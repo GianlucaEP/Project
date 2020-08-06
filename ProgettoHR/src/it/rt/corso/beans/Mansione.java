@@ -22,7 +22,7 @@ public class Mansione implements Bean{
 	private String mansione;
 	
 	//MANY-TO-MANY Con Candidato
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "mansione")
+	@ManyToMany(mappedBy = "mansione")
 	private Set<Candidato> candidato = new HashSet<>();
 
 	public String getMansione() {

@@ -203,29 +203,29 @@
 						</tr>
 						<tr>
 							<th scope="col">Area Competenza</th>
-							<td scope="col">{<c:forEach var="area" items="${cand.area}">
+							<td scope="col"><c:forEach var="area" items="${mostraCandidato.area}">
 									<span>${area.area}</span>
-								</c:forEach>}
+								</c:forEach>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
-							<td scope="col">{<c:forEach var="mansione"
-									items="${cand.mansione}">
+							<td scope="col"><c:forEach var="mansione"
+									items="${mostraCandidato.mansione}">
 									<span>${mansione.mansione}</span>
-								</c:forEach>}
+								</c:forEach>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col">Seniority</th>
-							<td scope="col">${mostraCandidato.seniority}</td>
+							<td scope="col">${mostraCandidato.seniority.seniority}</td>
 						</tr>
 						<tr>
 							<th scope="col">Specializzazione</th>
-							<td scope="col">{<c:forEach var="specializzazione"
-									items="${cand.specializzazione}">
+							<td scope="col"><c:forEach var="specializzazione"
+									items="${cand.candidatoSpecializzazione}">
 									<span>${specializzazione.specializzazione}</span>
-								</c:forEach>}
+								</c:forEach>
 							</td>
 						</tr>
 						<tr>
@@ -476,9 +476,9 @@
 
 		function checkCategoriaProtetta(categoriaProtetta) {
 			if (categoriaProtetta === "true") {
-				document.getElementById("categoriaProtetta").innerHTML = "SI";
+				document.getElementById("categoriaProtetta").innerHTML = "Si";
 			} else {
-				document.getElementById("categoriaProtetta").innerHTML = "NO";
+				document.getElementById("categoriaProtetta").innerHTML = "No";
 			}
 		}
 
