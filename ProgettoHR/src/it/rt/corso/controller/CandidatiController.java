@@ -22,6 +22,7 @@ import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.MansioneDAO;
+import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
@@ -29,6 +30,7 @@ import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.CandidatoSpecializzazione;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.Seniority;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.TipoFeedback;
@@ -47,6 +49,7 @@ public class CandidatiController {
 	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
 	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
+	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
 
 	@InitBinder
 	public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -59,10 +62,15 @@ public class CandidatiController {
 
 		List<Business> businessList = businessDAO.getLista();
 		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
+		List<Mansione> mansioneList = mansioneDAO.getLista();
+		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
+		List<Seniority> seniorityList = seniorityDAO.getLista();
 
 		m.addAttribute("businessList", businessList);
 		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
-
+		m.addAttribute("mansioneList", mansioneList);
+		m.addAttribute("specializzazioneList", specializzazioneList);
+		m.addAttribute("seniorityList", seniorityList);
 		m.addAttribute("candidato", new Candidato());
 
 		return "InserimentoCandidati";
@@ -74,6 +82,9 @@ public class CandidatiController {
 		// Inserisce lo stato di default "nuovo inserito"
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
+		
+		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
+		candidato.setSeniority(seniority);
 		
 		//Ciclo for per AreaCompetenza
 		for (AreaCompetenza a : candidato.getArea()) {

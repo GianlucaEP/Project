@@ -114,8 +114,13 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								<form:input path="mansione" type="text" class="form-control"
-									id="mansione" name="mansione"></form:input>
+								<form:select path="mansione.mansione" name="business"
+									class="custom-select mb-3">
+									<option selected></option>
+									<c:forEach var="mans" items="${mansioneList}">
+										<form:option value="${mansione.mansione}">${mans.mansione}</form:option>
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 					</div>
@@ -123,9 +128,13 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-								<form:textarea style="resize: none;" path="seniority"
-									type="text" class="form-control" id="seniority"
-									name="seniority"></form:textarea>
+								<form:select path="seniority.seniority" name="business"
+									class="custom-select mb-3">
+									<option selected></option>
+									<c:forEach var="sen" items="${seniorityList}">
+										<form:option value="${seniority.seniority}">${sen.seniority}</form:option>
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 					</div>
@@ -133,8 +142,13 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<form:input path="specializzazione" type="text"
-									class="form-control" id="specializzazione" name="competenza"></form:input>
+								<form:select path="specializzazione.specializzazione" name="business"
+									class="custom-select mb-3">
+									<option selected></option>
+									<c:forEach var="spec" items="${specializzazioneList}">
+										<form:option value="${specializzazione.specilizzazione}">${spec.specializzazione}</form:option>
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 					</div>
@@ -168,18 +182,7 @@ body {
 							</div>
 						</div>
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Inserimento
-									Azienda:</div>
-								<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
-								<form:input path="inserimentoAzienda" type="date"
-									class="form-control" id="inserimentoAzienda"
-									name="inserimentoAzienda"></form:input>
-							</div>
-						</div>
-					</div>
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -194,11 +197,12 @@ body {
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">
 									<label for="checkbox2">Categoria Protetta:</label>
-								<form:checkbox path="categoriaProtetta" class="form-check form-check-inline"
-									id="categoriaProtetta" name="categoriaProtetta"  style="float:rigth;"></form:checkbox>
+									<form:checkbox path="categoriaProtetta"
+										class="form-check form-check-inline" id="categoriaProtetta"
+										name="categoriaProtetta" style="float:rigth;"></form:checkbox>
 								</div>
-								
-								
+
+
 							</div>
 						</div>
 					</div>

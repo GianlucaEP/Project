@@ -17,8 +17,8 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO{
 		
 		Utility.buildSession();
 		
-		List<Mansione> listacompetenze = Utility.getSession().createQuery(" FROM Mansione ").getResultList();
-		return listacompetenze;
+		List<Mansione> listaMansione = Utility.getSession().createQuery(" FROM Mansione ").getResultList();
+		return listaMansione;
 	}
 
 	public Mansione get(String id) {
