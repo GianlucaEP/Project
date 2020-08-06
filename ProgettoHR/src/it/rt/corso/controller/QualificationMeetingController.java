@@ -1,5 +1,7 @@
 package it.rt.corso.controller;
 
+import java.util.Date;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.QualificationMeeting;
 import it.rt.corso.beans.TipoFeedback;
+import it.rt.corso.beans.Utente;
 
 @Controller
 public class QualificationMeetingController {
@@ -25,20 +28,16 @@ public class QualificationMeetingController {
 			.getBean("qualificationMeetingDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping("/QualificationMeetingForm")
-	public String formAggiungiQualificationMeeting(Model m) {
-		m.addAttribute("qualificationMeeting", new QualificationMeeting());
-		return "QualificationMeetingForm";
-
-	}
-
-	@RequestMapping(value = "/AggiungiQualificationMeeting/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiQu/{id}", method = RequestMethod.POST)
 	public String aggiungiFeedback(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@PathVariable int id) {
+			@ModelAttribute("utente") Utente utente, @PathVariable int id) {
 		Candidato c = dao.get(id);
+		qualificationMeeting.setUserInsert("Chiara");
+		Date ora = new Date();
+		qualificationMeeting.setDateInsert(ora);
 		qualificationMeeting.setCandidato(c);
 		quafilicationMeetingDAO.inserisci(qualificationMeeting);
-		//c.addQualificationMeeting(qualificationMeeting);
+
 		return "redirect:/Candidato/{id}";
 
 	}
