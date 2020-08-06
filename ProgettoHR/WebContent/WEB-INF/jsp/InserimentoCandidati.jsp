@@ -110,18 +110,7 @@ body {
 							</div>
 						</div>
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								<button type="button" data-toggle="modal"
-									data-target="#mansioneModal"
-									class="btn btn-primary btn-block  m-0 text-left"
-									style="border-radius: 0;">Aggiungi Mansione</button>
 
-							</div>
-						</div>
-					</div>
 
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
@@ -137,18 +126,7 @@ body {
 							</div>
 						</div>
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<button type="button" data-toggle="modal"
-									data-target="#specializzazioneModal"
-									class="btn btn-primary btn-block  m-0 text-left"
-									style="border-radius: 0;">Aggiungi Specializzazione</button>
 
-							</div>
-						</div>
-					</div>
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -164,6 +142,18 @@ body {
 						</div>
 					</div>
 
+
+
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Provenienza:</div>
+								<form:input path="provenienza" type="text" class="form-control"
+									id="provenienza" name="provenienza"></form:input>
+							</div>
+						</div>
+					</div>
 
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
@@ -181,12 +171,29 @@ body {
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Provenienza:</div>
-								<form:input path="provenienza" type="text" class="form-control"
-									id="provenienza" name="provenienza"></form:input>
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+								<button type="button" data-toggle="modal"
+									data-target="#mansioneModal"
+									class="btn btn-primary btn-block  m-0 text-left"
+									style="border-radius: 0;">Aggiungi Mansione</button>
+
 							</div>
 						</div>
 					</div>
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
+								<button type="button" data-toggle="modal"
+									data-target="#specializzazioneModal"
+									class="btn btn-primary btn-block  m-0 text-left"
+									style="border-radius: 0;">Aggiungi Specializzazione</button>
+
+							</div>
+						</div>
+					</div>
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -228,7 +235,7 @@ body {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="candidato"
-							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
+							action="/ProgettoHR/Candidati">
 							<!-- modelAttribute="modificaCandidato" -->
 							<div class="row w-100 p-2 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -272,7 +279,7 @@ body {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="candidato"
-							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
+							action="/ProgettoHR/Candidati">
 
 							<div class="row w-100 p-2 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -317,7 +324,7 @@ body {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="candidato"
-							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
+							action="/ProgettoHR/Candidati">
 							<!-- modelAttribute="modificaCandidato" -->
 							<div class="row w-100 p-2 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
