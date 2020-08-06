@@ -23,7 +23,11 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-
+<style>
+html, body {
+	height: 100%;
+}
+</style>
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
 </head>
@@ -50,9 +54,9 @@
 	</div>
 
 
-	<div class="container-fluid ">
-		<div class="row">
-			<div class="col-auto p-0 bg-primary justify-content-md-start"
+	<div class="container-fluid h-100">
+		<div class="row h-100">
+			<div class="col-auto h-100 p-0 bg-primary justify-content-md-start"
 				style="opacity: 0.8;">
 
 				<a href="/ProgettoHR/Candidati" type="button"
@@ -64,7 +68,7 @@
 					class="fas fa-briefcase float-right"></i></a>
 			</div>
 
-			<div class="col-auto p-2 justify-content-md-center">
+			<div class="col-md-2 col-lg-10 p-2 justify-content-md-center table-responsive-md">
 				<table
 					class="table table-bordered table-striped text-center table-hover "
 					style="box-shadow: 10px 10px 5px grey;">
@@ -110,13 +114,13 @@
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
-									
+
 								<td><c:forEach var="area" items="${cand.area}">
 										<span
 											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${area.area}</span>
 									</c:forEach></td>
-									
+
 								<td><c:forEach var="mansione" items="${cand.mansione}">
 										<span
 											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
@@ -124,7 +128,7 @@
 									</c:forEach></td>
 
 								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority}</td>
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.seniority.seniority}</td>
 								<td data-toggle="modal" data-target="#EliminaModal"><i
 									class="fas fa-trash-alt"></i></td>
 							</tr>
