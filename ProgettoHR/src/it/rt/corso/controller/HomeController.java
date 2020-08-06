@@ -41,7 +41,7 @@ public class HomeController {
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit) {
 
-		List<Candidato> list = dao.getLista(); //
+		List<Candidato> list = dao.getListaByBusinessUnit(businessUnit); //
 		m.addAttribute("list", list);
 		return "Home";
 	}

@@ -11,6 +11,7 @@ public interface CandidatoDAO {
 	public Candidato cancella(Candidato candidato); 
 	public Candidato aggiorna(Candidato candidato); 
 	public List<Candidato> getLista();
+	public List<Candidato> getListaByBusinessUnit(String businessUnit);
 	
 	
 	
