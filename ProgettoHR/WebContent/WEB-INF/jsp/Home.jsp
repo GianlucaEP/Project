@@ -75,12 +75,13 @@ html, body {
 					<thead>
 						<tr>
 							<th scope="col">Stato</th>
-							<th scope="col">Business</th>
+							<th scope="col">Business Unit</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Cognome</th>
 							<th scope="col">Area Competenza</th>
 							<th scope="col">Mansione</th>
 							<th scope="col">Seniority</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
