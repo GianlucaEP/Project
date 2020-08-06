@@ -1,6 +1,11 @@
 package it.rt.corso.DAOImpl;
 
 import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.Candidato;
@@ -31,6 +36,20 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO{
 
 	public Candidato aggiorna(Candidato candidato) {
 		return (Candidato) super.aggiorna(candidato);
+	}
+
+	@Override
+	public List<Candidato> getListaByBusinessUnit(String businessUnit) {
+		
+		Utility.buildSession();
+//		Query q =Utility.getSession().createQuery("FROM Candidato WHERE business LIKE '%':businessUnit:'%'");
+//		q.setParameter("businessUnit", businessUnit);
+//		List<Candidato> listacandidatoByBusinessUnit= q.getResultList();
+		Criteria cr = Utility.getSession().createCriteria(Candidato.class);
+		cr.add(Restrictions.eq("business", businessUnit));
+		List results = cr.list();
+		
+		return results;
 	}
 
 }
