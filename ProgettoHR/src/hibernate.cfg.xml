@@ -28,6 +28,7 @@
 		<mapping class="it.rt.corso.beans.Business"/>
 		<mapping class="it.rt.corso.beans.AreaCompetenza"/>
 		<mapping class="it.rt.corso.beans.CandidatoSpecializzazione"/>
+		<mapping class="it.rt.corso.beans.Seniority"/>
 		
 		
 		

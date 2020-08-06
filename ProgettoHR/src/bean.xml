@@ -8,24 +8,28 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean>
 
-
-
+	<bean id="seniorityDAO" class="it.rt.corso.DAOImpl.SeniorityDAOImpl">
+	</bean>
+	
 	<bean id="mansioneDAO" class="it.rt.corso.DAOImpl.MansioneDAOImpl">
 	</bean>
 
-	<bean id="candidatoSpecializzazioneDAO" class="it.rt.corso.DAOImpl.CandidatoSpecializzazioneDAOImpl">
+	<bean id="candidatoSpecializzazioneDAO"
+		class="it.rt.corso.DAOImpl.CandidatoSpecializzazioneDAOImpl">
 	</bean>
-	
-	<bean id="specializzazioneDAO" class="it.rt.corso.DAOImpl.SpecializzazioneDAOImpl">
+
+	<bean id="specializzazioneDAO"
+		class="it.rt.corso.DAOImpl.SpecializzazioneDAOImpl">
 	</bean>
 
 	<bean id="feedbackDAO" class="it.rt.corso.DAOImpl.FeedbackDAOImpl">
 	</bean>
-	
+
 	<bean id="businessDAO" class="it.rt.corso.DAOImpl.BusinessDAOImpl">
 	</bean>
-	
-	<bean id="areaCompetenzaDAO" class="it.rt.corso.DAOImpl.AreaCompetenzaDAOImpl">
+
+	<bean id="areaCompetenzaDAO"
+		class="it.rt.corso.DAOImpl.AreaCompetenzaDAOImpl">
 	</bean>
 
 	<bean id="tipoFeedbackDAO"
@@ -37,8 +41,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	</bean>
 
 
-	<bean id="utenteDAO"
-		class="it.rt.corso.DAOImpl.UtenteDAOImpl">
+	<bean id="utenteDAO" class="it.rt.corso.DAOImpl.UtenteDAOImpl">
 	</bean>
 
 	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">

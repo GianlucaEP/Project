@@ -35,20 +35,25 @@ public class Candidato implements Bean {
 	private String telefono;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "seniority")
-	private String seniority;
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
 	@Column(name = "provenienza")
 	private String provenienza;
 	@Column(name = "categoria_protetta")
 	private boolean categoriaProtetta;
+	@Column(name = "codice_fiscale")
+	private String codiceFiscale;
 //	private File allegato; TODO aggiungere successivamente il file allegato
 	
 	// MANY-TO-ONE con Business
 	@ManyToOne
 	@JoinColumn(name = "business")
 	private Business business;
+	
+	// MANY-TO-ONE con Seniority
+	@ManyToOne
+	@JoinColumn(name = "seniority")
+	private Seniority seniority;
 
 	// MANY-TO-ONE con la classe StatoCandidato
 	@ManyToOne
@@ -132,11 +137,11 @@ public class Candidato implements Bean {
 		this.email = email;
 	}
 
-	public String getSeniority() {
+	public Seniority getSeniority() {
 		return seniority;
 	}
 
-	public void setSeniority(String seniority) {
+	public void setSeniority(Seniority seniority) {
 		this.seniority = seniority;
 	}
 
@@ -219,6 +224,14 @@ public class Candidato implements Bean {
 
 	public void setArea(Set<AreaCompetenza> area) {
 		this.area = area;
+	}
+
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
 
 	
