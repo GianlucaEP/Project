@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,7 +74,7 @@ public class Candidato implements Bean {
 	Set<CandidatoSpecializzazione> candidatoSpecializzazione;
 
 	// MANY-TO-MANY Con Mansione
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
