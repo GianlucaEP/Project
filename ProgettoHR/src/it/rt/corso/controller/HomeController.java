@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.Bean;
+import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 
 // ------------------------------------------------------------------------
@@ -36,12 +38,14 @@ import it.rt.corso.beans.Candidato;
 public class HomeController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
-
+	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
+//	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
+	
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit) {
 
-		List<Candidato> list = dao.getListaByBusinessUnit(businessUnit); //
+		//Business business= bdao.get(businessUnit);
+		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit); 
 		m.addAttribute("list", list);
 		return "Home";
 	}

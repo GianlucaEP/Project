@@ -2,6 +2,7 @@ package it.rt.corso.DAO;
 
 import java.util.List;
 
+import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 
 public interface CandidatoDAO {
