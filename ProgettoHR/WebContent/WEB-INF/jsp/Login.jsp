@@ -29,7 +29,7 @@
 	<div>
 		<div class="row justify-content-md-center">
 			<div class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
-				<form:form id="utenteForm"  method="POST" action="/ProgettoHR/LogginIn/" modelAttribute="utente">
+				<form:form id="utenteForm"  method="POST" action="/ProgettoHR/LogginIn/" modelAttribute="utente" onsubmit="return validate();">
 					<div class="form-group">
 						<label for="Utente">Utente:</label> <form:input path="username" type="text"
 							class="form-control" id="utente" aria-describedby="utente"
@@ -49,7 +49,7 @@
 <script>
 	function checkLogin(info){
 		if(info === "error"){
-			console.log("Si può fare!");
+			
 		}
 	}
 </script>
