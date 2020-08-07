@@ -130,7 +130,8 @@ body {
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Business:</div>
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Business
+									Unit:</div>
 								<form:select path="business.business" name="business"
 									class="custom-select mb-3">
 									<option selected></option>
@@ -185,8 +186,7 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<button type="button" data-toggle="modal"
-									data-target="#specializzazioneModal"
+								<button type="button"
 									class="btn btn-primary btn-block  m-0 text-left"
 									style="border-radius: 0;">Aggiungi Specializzazione</button>
 
@@ -242,8 +242,9 @@ body {
 									<div class="form-group">
 										<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansioni:</div>
 										<c:forEach var="mans" items="${mansioneList}">
-											<div>${mans.mansione}<form:checkbox path="mansione"
-													value="${mans}" />
+											<div>
+												<form:checkbox path="mansione" value="${mans}" />
+												${mans.mansione}
 											</div>
 										</c:forEach>
 									</div>
@@ -252,8 +253,8 @@ body {
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Aggiungi
-										Mansioni</button>
+									<button type="submit" class="btn btn-primary btn-block"
+										data-dismiss="modal">Aggiungi Mansioni</button>
 								</div>
 							</div>
 						</form:form>
@@ -264,49 +265,6 @@ body {
 		</div>
 	</div>
 
-	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="specializzazioneModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="specializzazioneModalLabel">Specializzazioni</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="candidato"
-							action="/ProgettoHR/Candidati">
-
-							<div class="row w-100 p-2 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
-										<c:forEach var="spec" items="${specializzazioneList}">
-											<div>${spec.specializzazione}<form:checkbox
-													path="candidatoSpecializzazione" value="${spec}" />
-											</div>
-										</c:forEach>
-									</div>
-								</div>
-							</div>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Aggiungi
-										Specializzazioni</button>
-								</div>
-							</div>
-						</form:form>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
 		role="dialog" aria-labelledby="areaCompetenzaModalLabel"
@@ -331,8 +289,8 @@ body {
 									<div class="form-group">
 										<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
 										<c:forEach var="area" items="${areaCompetenzaList}">
-											<div>${area.area}<form:checkbox path="area"
-													value="${area}" />
+											<div><form:checkbox path="area"
+													value="${area}" />${area.area}
 											</div>
 										</c:forEach>
 									</div>
@@ -352,6 +310,74 @@ body {
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="specializzazioneModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="specializzazioneModalLabel">Specializzazioni</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="specializzazioni"
+							action="/ProgettoHR/Candidati">
+							<!-- modelAttribute="modificaCandidato" -->
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
+										<c:forEach var="spec" items="${specializzazioneList}"
+											varStatus="contatore">
+											<div>
+												<form:checkbox
+													onclick="mostraInputAnniEsperienza(${contatore.index})"
+													path="${specializzazioni}[${contatore.index}].specializzazione"
+													value="${spec}" />
+												${spec.specializzazione}
+												<form:input
+													path="${specializzazioni}[${contatore.index}].anni"
+													value="${spec}" type="hidden" placeholder="anni esperienza"
+													 class="form-control" name="anniEsperienza"></form:input>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block"
+										data-dismiss="modal">Aggiungi Specializzazioni</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	
+	function mostraInputAnniEsperienza(contatore) {
+		contatore = contatore + 1;
+		stringId = "mansione" + contatore;
+		 var x = document.getElementById(stringId);
+		 if (x.type === 'hidden') {
+		    x.type = 'visible';
+		  } else {
+		    x.type = 'hidden';
+		  }
+	}
+	</script>
+
 
 	<!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
 		aria-labelledby="errorModal" aria-hidden="true">
