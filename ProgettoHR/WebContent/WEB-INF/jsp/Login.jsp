@@ -13,7 +13,7 @@
 <title>Login</title>
 </head>
 
-<body onload="checkLogin('${info}')">
+<body>
 	<div>
 		<nav class="navbar navbar-dark bg-primary "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -28,17 +28,22 @@
 
 	<div>
 		<div class="row justify-content-md-center">
-			<div class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
-				<form:form id="utenteForm"  method="POST" action="/ProgettoHR/LogginIn/" modelAttribute="utente" onsubmit="return validate();">
-					<div class="form-group">
-						<label for="Utente">Utente:</label> <form:input path="username" type="text"
-							class="form-control" id="utente" aria-describedby="utente"
-							placeholder="Inserisci Utente"/>
+			<div
+				class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
+				<form:form id="utenteForm" method="POST"
+					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
+					onsubmit="return validate();">
+					<div class="form-group" id="formUtente">
+						<label for="Utente">Utente:</label>
+						<form:input path="username" type="text" class="form-control"
+							id="utente" aria-describedby="utente"
+							placeholder="Inserisci Utente" />
+							
 					</div>
-					<div class="form-group">
-						<label for="Password">Password</label> <form:input path="password" type="password"
-							class="form-control" id="password"
-							placeholder="Inserisci Password"/>
+					<div class="form-group" id="formPassword">
+						<label for="Password">Password</label>
+						<form:input path="password" type="password" class="form-control"
+							id="password" placeholder="Inserisci Password" />
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 				</form:form>
@@ -46,11 +51,32 @@
 		</div>
 	</div>
 </body>
-<script>
-	function checkLogin(info){
-		if(info === "error"){
+<script type="text/javascript">
+	function validate(info) {
+		var utente = document.getElementById("utente").value;
+		var pass = document.getElementById("password").value;
+		
+		if (utente===""){
+			 var list = document.getElementById("formUtente");
+			  list.removeChild(list.childNodes[3]);
+			  
+			  
+			var tagDiv = document.createElement("div");
 			
+			  var textnode = document.createTextNode("Inserisci Nome Utente");
+			  tagDiv.appendChild(textnode);
+			  document.getElementById("formUtente").appendChild(tagDiv);
+			return false;
 		}
+		else if(pass===""){
+			var tagDiv = document.createElement("div");
+			var tagP = document.createElement("p");
+			  var textnode = document.createTextNode("Inserisci Password");
+			  tagDiv.appendChild(textnode);
+			  document.getElementById("formPassword").appendChild(tagDiv);
+			return false
+		}
+		
 	}
 </script>
 </html>
