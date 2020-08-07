@@ -40,8 +40,9 @@ public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	//TODO su quale base, scelgo come istanziare un oggetto(dai bean o da java(new))??
-	
+	// TODO su quale base, scelgo come istanziare un oggetto(dai bean o da
+	// java(new))??
+
 	// Inizializzazione DAO
 	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
@@ -78,15 +79,15 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
-		
+
 		// Inserisce lo stato di default "nuovo inserito"
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
-		
+
 		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
 		candidato.setSeniority(seniority);
-		
-		//Ciclo for per AreaCompetenza
+
+		// Ciclo for per AreaCompetenza
 		for (AreaCompetenza a : candidato.getArea()) {
 
 			Set<AreaCompetenza> setArea = new HashSet<>();
@@ -97,26 +98,26 @@ public class CandidatiController {
 		// Inserisce il Business
 		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
 		candidato.setBusiness(business);
-		
+
 		// Ciclo for per Mansione
 		for (Mansione m : candidato.getMansione()) {
 
-			Set<Mansione> setMansione= new HashSet<>();
+			Set<Mansione> setMansione = new HashSet<>();
 			Mansione mansione = mansioneDAO.get(m.getMansione());
 			setMansione.add(mansione);
 			candidato.setMansione(setMansione);
 		}
-		
+
 		// Ciclo for per CandidatoSpecializzazione
-		for(CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
-			
-			Set<CandidatoSpecializzazione> setCandidatoSpecializzazione= new HashSet<>();
+		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
+
+			Set<CandidatoSpecializzazione> setCandidatoSpecializzazione = new HashSet<>();
 			Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
 			cs.setSpecializzazione(s);
 			setCandidatoSpecializzazione.add(cs);
 			candidato.setCandidatoSpecializzazione(setCandidatoSpecializzazione);
 		}
-		
+
 		candidatoDAO.inserisci(candidato);
 		return "redirect:/Home";// will redirect to viewemp request mapping
 	}

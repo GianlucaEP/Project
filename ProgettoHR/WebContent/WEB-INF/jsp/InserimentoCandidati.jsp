@@ -110,20 +110,8 @@ body {
 							</div>
 						</div>
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								<form:select path="mansione.mansione" name="business"
-									class="custom-select mb-3">
-									<option selected></option>
-									<c:forEach var="mans" items="${mansioneList}">
-										<form:option value="${mansione.mansione}">${mans.mansione}</form:option>
-									</c:forEach>
-								</form:select>
-							</div>
-						</div>
-					</div>
+
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -138,20 +126,7 @@ body {
 							</div>
 						</div>
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<form:select path="specializzazione.specializzazione" name="business"
-									class="custom-select mb-3">
-									<option selected></option>
-									<c:forEach var="spec" items="${specializzazioneList}">
-										<form:option value="${specializzazione.specilizzazione}">${spec.specializzazione}</form:option>
-									</c:forEach>
-								</form:select>
-							</div>
-						</div>
-					</div>
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -168,20 +143,7 @@ body {
 					</div>
 
 
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
-								<form:select path="area.area" name="area"
-									class="custom-select mb-3">
-									<option selected></option>
-									<c:forEach var="area" items="${areaCompetenzaList}">
-										<form:option value="${area.area}">${area.area}</form:option>
-									</c:forEach>
-								</form:select>
-							</div>
-						</div>
-					</div>
+
 
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
@@ -192,6 +154,46 @@ body {
 							</div>
 						</div>
 					</div>
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
+								<button type="button" data-toggle="modal"
+									data-target="#areaCompetenzaModal"
+									class="btn btn-primary btn-block  m-0 text-left"
+									style="border-radius: 0;">Aggiungi Area Competenza</button>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
+								<button type="button" data-toggle="modal"
+									data-target="#mansioneModal"
+									class="btn btn-primary btn-block  m-0 text-left"
+									style="border-radius: 0;">Aggiungi Mansione</button>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
+								<button type="button" data-toggle="modal"
+									data-target="#specializzazioneModal"
+									class="btn btn-primary btn-block  m-0 text-left"
+									style="border-radius: 0;">Aggiungi Specializzazione</button>
+
+							</div>
+						</div>
+					</div>
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -215,6 +217,139 @@ body {
 				</form:form>
 			</div>
 
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
+		aria-labelledby="mansioneModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="mansioneModalLabel">Mansioni</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="candidato"
+							action="/ProgettoHR/Candidati">
+							<!-- modelAttribute="modificaCandidato" -->
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansioni:</div>
+										<c:forEach var="mans" items="${mansioneList}">
+											<div>${mans.mansione}<form:checkbox path="mansione"
+													value="${mans}" />
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Aggiungi
+										Mansioni</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="specializzazioneModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="specializzazioneModalLabel">Specializzazioni</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="candidato"
+							action="/ProgettoHR/Candidati">
+
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
+										<c:forEach var="spec" items="${specializzazioneList}">
+											<div>${spec.specializzazione}<form:checkbox
+													path="candidatoSpecializzazione" value="${spec}" />
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Aggiungi
+										Specializzazioni</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
+		role="dialog" aria-labelledby="areaCompetenzaModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="areaCompetenzaModalLabel">Area
+						Competenza</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="candidato"
+							action="/ProgettoHR/Candidati">
+							<!-- modelAttribute="modificaCandidato" -->
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
+										<c:forEach var="area" items="${areaCompetenzaList}">
+											<div>${area.area}<form:checkbox path="area"
+													value="${area}" />
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Aggiungi
+										Area Competenza</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+
+				</div>
+			</div>
 		</div>
 	</div>
 
