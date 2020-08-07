@@ -1,6 +1,7 @@
 package it.rt.corso.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -66,12 +67,18 @@ public class CandidatiController {
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
 		List<Seniority> seniorityList = seniorityDAO.getLista();
+		
+		List<CandidatoSpecializzazione> specializzazioni = new ArrayList<>();
+		
+		
 
 		m.addAttribute("businessList", businessList);
 		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("specializzazioneList", specializzazioneList);
 		m.addAttribute("seniorityList", seniorityList);
+		
+		m.addAttribute("specializzazioni", specializzazioni);
 		m.addAttribute("candidato", new Candidato());
 
 		return "InserimentoCandidati";
