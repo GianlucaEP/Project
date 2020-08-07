@@ -38,7 +38,7 @@
 						<form:input path="username" type="text" class="form-control"
 							id="utente" aria-describedby="utente"
 							placeholder="Inserisci Utente" />
-							
+
 					</div>
 					<div class="form-group" id="formPassword">
 						<label for="Password">Password</label>
@@ -53,30 +53,45 @@
 </body>
 <script type="text/javascript">
 	function validate(info) {
+		var control = true;
 		var utente = document.getElementById("utente").value;
 		var pass = document.getElementById("password").value;
-		
-		if (utente===""){
-			 var list = document.getElementById("formUtente");
-			  list.removeChild(list.childNodes[3]);
-			  
-			  
+		var list = document.getElementById("formUtente");
+		var listpass = document.getElementById("formPassword");
+		if (utente === "") {
+
 			var tagDiv = document.createElement("div");
-			
-			  var textnode = document.createTextNode("Inserisci Nome Utente");
-			  tagDiv.appendChild(textnode);
-			  document.getElementById("formUtente").appendChild(tagDiv);
-			return false;
+			tagDiv.style = "color:red; font-size: small;"
+			if (list.childNodes[4]) {
+				list.removeChild(list.childNodes[4]);
+			}
+			var textnode = document.createTextNode("Inserisci Nome Utente")
+			tagDiv.appendChild(textnode)
+			document.getElementById("formUtente").appendChild(tagDiv);
+			control = false;
+
+		} else {
+			if (list.childNodes[4]) {
+				list.removeChild(list.childNodes[4]);
+			}
 		}
-		else if(pass===""){
+		if (pass === "") {
 			var tagDiv = document.createElement("div");
-			var tagP = document.createElement("p");
-			  var textnode = document.createTextNode("Inserisci Password");
-			  tagDiv.appendChild(textnode);
-			  document.getElementById("formPassword").appendChild(tagDiv);
-			return false
+			tagDiv.style = "color:red; font-size: small;"
+			if (listpass.childNodes[4]) {
+				listpass.removeChild(listpass.childNodes[4]);
+			}
+			var textnode = document.createTextNode("Inserisci Password")
+			tagDiv.appendChild(textnode);
+			document.getElementById("formPassword").appendChild(tagDiv)
+
+			control = false;
+		} else {
+			if (listpass.childNodes[4]) {
+				listpass.removeChild(listpass.childNodes[4]);
+			}
 		}
-		
+		return control;
 	}
 </script>
 </html>
