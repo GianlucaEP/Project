@@ -15,9 +15,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-
-</head>
-<meta charset="ISO-8859-1">
+	
 <title>Inserimento Mansione</title>
 </head>
 <body>
@@ -29,9 +27,7 @@
 					href="/ProgettoHR/Home"><img alt="logo"
 						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>
 				</span>
-
 			</h1>
-
 		</nav>
 	</div>
 	<div align="center" class="container-fluid ">
