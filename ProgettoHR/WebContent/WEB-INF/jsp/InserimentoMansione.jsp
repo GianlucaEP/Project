@@ -22,15 +22,14 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-dark bg-primary " style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
+		<nav class="navbar navbar-dark bg-primary "
+			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 			<h1>
-				<span class="navbar-text bg-primary text-white"> 
-					<a href="/ProgettoHR/Home"><img
-					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-					
-			class="col-4"></a>
+				<span class="navbar-text bg-primary text-white"> <a
+					href="/ProgettoHR/Home"><img alt="logo"
+						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>
 				</span>
-				
+
 			</h1>
 
 		</nav>
@@ -38,20 +37,23 @@
 	<div align="center" class="container-fluid ">
 		<div class="row p-2 justify-content-md-center">
 			<div class="col-auto p-2 border rounded">
-				<h1>Inserimento Mansione</h1>
-				<form:form modelAttribute="mansione" action="/ProgettoHR/MansioniSave" method="POST">
+				<h1>Inserisci mansione</h1>
+				<form:form modelAttribute="mansione"
+					action="/ProgettoHR/MansioniSave" method="POST">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								<form:input path="mansione" type="text" class="form-control" id="nome" name="nome"></form:input>
+								<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
+								<form:input path="mansione" type="text" class="form-control"
+									placeholder="Mansione" id="nome" name="nome"></form:input>
 							</div>
 						</div>
 					</div>
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<a href="/ProgettoHR/Home" class="btn btn-primary btn-block">Torna alla home</a>
+							<a href="/ProgettoHR/Home" class="btn btn-primary btn-block">Torna
+								alla home</a>
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
 					</div>
