@@ -59,6 +59,14 @@ public class Candidato implements Bean {
 	@ManyToOne
 	@JoinColumn(name = "stato")
 	private StatoCandidato stato;
+	
+	// ONE-TO-MANY con la classe Costi
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
+	Set<Costo> costi;
+	
+	// ONE-TO-MANY con la classe Costi
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
+	Set<Economics> economics;
 
 	// ONE-TO-MANY con la classe feedback
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
@@ -232,6 +240,22 @@ public class Candidato implements Bean {
 
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
+	}
+
+	public Set<Costo> getCosti() {
+		return costi;
+	}
+
+	public void setCosti(Set<Costo> costi) {
+		this.costi = costi;
+	}
+
+	public Set<Economics> getEconomics() {
+		return economics;
+	}
+
+	public void setEconomics(Set<Economics> economics) {
+		this.economics = economics;
 	}
 
 	
