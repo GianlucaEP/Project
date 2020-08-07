@@ -100,8 +100,8 @@ html, body {
 				<div id="ingegneria" class="row h-100 ">
 					<div class="col center-content align-self-center "
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/Ingengeria"><img alt="logo"
-							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>Ingengeria
+						<a href="/ProgettoHR/Home/Ingegneria"><img alt="logo"
+							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>Ingegneria
 					</div>
 				</div>
 			</div>

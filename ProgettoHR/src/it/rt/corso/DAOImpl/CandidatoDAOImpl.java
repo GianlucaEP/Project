@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.query.Query;
@@ -51,9 +52,17 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	public List<Candidato> getListaByBusinessUnit(String businessUnit) {
 
 		Utility.buildSession();
-		Set<Candidato> lista = Utility.getSession().byId(Business.class).getReference(businessUnit).getCandidato();
-
+		
+		//Set<Candidato> lista = Utility.getSession().byId(Business.class).getReference(businessUnit).getCandidato();
+		
+		Session session=Utility.getSession();
+		
+		Business bus=session.byId(Business.class).getReference(businessUnit);
+		
+		Set<Candidato> lista = bus.getCandidato();
+		
 		List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
+		
 		return listacandidatoByBusinessUnit;
 	}
 

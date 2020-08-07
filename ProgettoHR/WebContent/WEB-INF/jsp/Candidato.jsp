@@ -203,18 +203,17 @@
 						</tr>
 						<tr>
 							<th scope="col">Area Competenza</th>
-							<td scope="col"><c:forEach var="area" items="${mostraCandidato.area}">
+							<td scope="col"><c:forEach var="area"
+									items="${cand.mostraCandidato.area}">
 									<span>${area.area}</span>
-								</c:forEach>
-							</td>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
 							<td scope="col"><c:forEach var="mansione"
-									items="${mostraCandidato.mansione}">
+									items="${cand.mostraCandidato.mansione}">
 									<span>${mansione.mansione}</span>
-								</c:forEach>
-							</td>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Seniority</th>
@@ -225,8 +224,7 @@
 							<td scope="col"><c:forEach var="specializzazione"
 									items="${cand.candidatoSpecializzazione}">
 									<span>${specializzazione.specializzazione}</span>
-								</c:forEach>
-							</td>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Inserimento Azienda</th>
