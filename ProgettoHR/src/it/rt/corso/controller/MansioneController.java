@@ -19,12 +19,6 @@ public class MansioneController {
 
 	MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
 	
-	@RequestMapping("/Mansioni")
-	public String formAggiungiMansione(Model m) {
-		m.addAttribute("mansione", new Mansione());
-		return "InserimentoMansione";
-	}
-	
 	@RequestMapping(value = "/MansioniSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
 		dao.inserisci(mansione); 
