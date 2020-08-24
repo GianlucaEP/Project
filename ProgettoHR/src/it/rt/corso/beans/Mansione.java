@@ -17,7 +17,6 @@ import javax.persistence.Table;
 public class Mansione implements Bean{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mansione")
 	private String mansione;
 	

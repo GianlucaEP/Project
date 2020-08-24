@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,9 +25,9 @@ public class MansioneController {
 		return "InserimentoMansione";
 	}
 	
-	@RequestMapping(value = "/MansioniSave", method = RequestMethod.POST)
-	public String aggiungiCandidato(@ModelAttribute("candidato") Mansione mansione) {
+	@RequestMapping(value = "/MansioniSave/{businessUnit}", method = RequestMethod.POST)
+	public String aggiungiCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
 		dao.inserisci(mansione); 
-		return "redirect:/Mansioni";
+		return "redirect:/Home/{businessUnit}";
 	}
 }

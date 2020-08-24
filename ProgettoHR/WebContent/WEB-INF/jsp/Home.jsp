@@ -62,13 +62,15 @@ html, body {
 				<a href="/ProgettoHR/Candidati" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a>
-				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Mansione <i
-					class="fas fa-briefcase float-right"></i></a>
+				<button class="btn btn-primary btn-block  m-0 text-left"
+					data-toggle="modal" data-target="#mansioneModal"
+					style="border-radius: 0;">
+					+ Mansione <i class="fas fa-briefcase float-right"></i>
+				</button>
 			</div>
 
-			<div class="col-md-2 col-lg-10 p-2 justify-content-md-center table-responsive-md">
+			<div
+				class="col-md-2 col-lg-10 p-2 justify-content-md-center table-responsive-md">
 				<table
 					class="table table-bordered table-striped text-center table-hover "
 					style="box-shadow: 10px 10px 5px grey;">
@@ -167,6 +169,35 @@ html, body {
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
+						Mansione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form:form modelAttribute="mansione" id="formMansione"
+						method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
+						onsubmit="return validate();">
+						<div class="form-group">
+							<form:input path="mansione" type="text" class="form-control"
+								placeholder="Mansione" id="mansione" name="mansione"></form:input>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -183,6 +214,25 @@ html, body {
 	$(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
+
+	function validate() {
+		var mansione = document.getElementById("mansione").value;
+		var list = document.getElementById("formMansione");
+		var control = true;
+
+		if (mansione === "") {
+
+			var tagDiv = document.createElement("div");
+			tagDiv.style = "color:red; font-size: small;"
+			var textnode = document.createTextNode("Inserisci Mansione")
+			tagDiv.appendChild(textnode)
+			document.getElementById("mansione").appendChild(tagDiv);
+			control = false;
+
+		}
+
+		return control;
+	}
 </script>
 
 <style>

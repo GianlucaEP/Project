@@ -14,6 +14,7 @@ import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
+import it.rt.corso.beans.Mansione;
 
 // ------------------------------------------------------------------------
 // @RequestMapping("/Home")
@@ -47,6 +48,8 @@ public class HomeController {
 		//Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit); 
 		m.addAttribute("list", list);
+		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("mansione", new Mansione());
 		return "Home";
 	}
 

@@ -9,11 +9,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Login</title>
 </head>
 
-<body>
+<body onload="badCredentials('${info}')">
 	<div>
 		<nav class="navbar navbar-dark bg-primary "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -47,12 +49,24 @@
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 				</form:form>
+				<div class="row w-100 m-0 p-2">
+					<div class="alert alert-danger text-center" role="alert">Credenziali Errate</div>
+				</div>
+				
 			</div>
+
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	function validate(info) {
+	function badCredentials(error) {
+		$('.alert').hide();
+		if (error === "error") {
+			$('.alert').show();
+		}
+	}
+	function validate() {
+		$('.alert').hide();
 		var control = true;
 		var utente = document.getElementById("utente").value;
 		var pass = document.getElementById("password").value;
