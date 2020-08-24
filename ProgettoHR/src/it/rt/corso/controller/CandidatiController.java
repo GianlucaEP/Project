@@ -67,18 +67,13 @@ public class CandidatiController {
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
 		List<Seniority> seniorityList = seniorityDAO.getLista();
-		
-		List<CandidatoSpecializzazione> specializzazioni = new ArrayList<>();
-		
-		
 
 		m.addAttribute("businessList", businessList);
 		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("specializzazioneList", specializzazioneList);
 		m.addAttribute("seniorityList", seniorityList);
-		
-		m.addAttribute("specializzazioni", specializzazioni);
+
 		m.addAttribute("candidato", new Candidato());
 
 		return "InserimentoCandidati";
@@ -91,39 +86,44 @@ public class CandidatiController {
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
 
+		// Ciclo for per Mansione
+		List<Mansione> setMansione = new ArrayList<>();
+		for (Mansione m : candidato.getMansione()) {
+
+			if (m.getMansione() != null) {
+				Mansione mansione = mansioneDAO.get(m.getMansione());
+				setMansione.add(mansione);
+			}
+		}
+		candidato.setMansione(setMansione);
+
 		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
 		candidato.setSeniority(seniority);
 
 		// Ciclo for per AreaCompetenza
+		List<AreaCompetenza> setArea = new ArrayList<>();
 		for (AreaCompetenza a : candidato.getArea()) {
 
-			Set<AreaCompetenza> setArea = new HashSet<>();
 			AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
 			setArea.add(area);
-			candidato.setArea(setArea);
+
 		}
+		candidato.setArea(setArea);
+
 		// Inserisce il Business
 		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
 		candidato.setBusiness(business);
 
-		// Ciclo for per Mansione
-		for (Mansione m : candidato.getMansione()) {
-
-			Set<Mansione> setMansione = new HashSet<>();
-			Mansione mansione = mansioneDAO.get(m.getMansione());
-			setMansione.add(mansione);
-			candidato.setMansione(setMansione);
-		}
-
 		// Ciclo for per CandidatoSpecializzazione
+		List<CandidatoSpecializzazione> setCandidatoSpecializzazione = new ArrayList<>();
 		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
 
-			Set<CandidatoSpecializzazione> setCandidatoSpecializzazione = new HashSet<>();
 			Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
 			cs.setSpecializzazione(s);
 			setCandidatoSpecializzazione.add(cs);
-			candidato.setCandidatoSpecializzazione(setCandidatoSpecializzazione);
+
 		}
+		candidato.setCandidatoSpecializzazione(setCandidatoSpecializzazione);
 
 		candidatoDAO.inserisci(candidato);
 		return "redirect:/Home";// will redirect to viewemp request mapping
