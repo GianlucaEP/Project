@@ -1,5 +1,7 @@
 package it.rt.corso.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,21 +13,28 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "candidato_specializzazione")
-public class CandidatoSpecializzazione implements Bean{
+public class CandidatoSpecializzazione implements Bean,  Serializable{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "anni_esperienza")
 	private int anni;
 	
 	// MANY-TO-ONE con Candidato
+	@Id
 	@ManyToOne
-	@JoinColumn(name = "candidato")
+	@JoinColumn(name = "id_candidato_fk")
 	private Candidato candidato;
 	
 	// MANY-TO-ONE con Specializzazione
+	@Id
 	@ManyToOne
-	@JoinColumn(name = "specializzazione")
+	@JoinColumn(name = "specializzazione_fk")
 	private Specializzazione specializzazione;
 
 	public int getAnni() {

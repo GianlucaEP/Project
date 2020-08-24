@@ -79,54 +79,59 @@ public class CandidatiController {
 		return "InserimentoCandidati";
 	}
 
-	@RequestMapping(value = "/CandidatiSave", method = RequestMethod.POST)
-	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato) {
+	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
+	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato, @PathVariable String businessUnit) {
 
 		// Inserisce lo stato di default "nuovo inserito"
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
 
 		// Ciclo for per Mansione
-		List<Mansione> setMansione = new ArrayList<>();
+		List<Mansione> listMansione = new ArrayList<>();
 		for (Mansione m : candidato.getMansione()) {
 
 			if (m.getMansione() != null) {
 				Mansione mansione = mansioneDAO.get(m.getMansione());
-				setMansione.add(mansione);
+				listMansione.add(mansione);
 			}
 		}
-		candidato.setMansione(setMansione);
+		candidato.setMansione(listMansione);
 
 		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
 		candidato.setSeniority(seniority);
 
 		// Ciclo for per AreaCompetenza
-		List<AreaCompetenza> setArea = new ArrayList<>();
+		List<AreaCompetenza> listArea = new ArrayList<>();
 		for (AreaCompetenza a : candidato.getArea()) {
 
-			AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
-			setArea.add(area);
+			if (a.getArea() != null) {
+				AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
+				listArea.add(area);
+			}
 
 		}
-		candidato.setArea(setArea);
+		candidato.setArea(listArea);
 
 		// Inserisce il Business
 		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
 		candidato.setBusiness(business);
 
 		// Ciclo for per CandidatoSpecializzazione
-		List<CandidatoSpecializzazione> setCandidatoSpecializzazione = new ArrayList<>();
+		List<CandidatoSpecializzazione> listCandidatoSpecializzazione = new ArrayList<>();
 		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
 
-			Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
-			cs.setSpecializzazione(s);
-			setCandidatoSpecializzazione.add(cs);
+			if (cs.getSpecializzazione().getSpecializzazione() != null) {
+				Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
+				cs.setSpecializzazione(s);
+				cs.setCandidato(candidato);
+				listCandidatoSpecializzazione.add(cs);
+			}
 
 		}
-		candidato.setCandidatoSpecializzazione(setCandidatoSpecializzazione);
+		candidato.setCandidatoSpecializzazione(listCandidatoSpecializzazione);
 
 		candidatoDAO.inserisci(candidato);
-		return "redirect:/Home";// will redirect to viewemp request mapping
+		return "redirect:/Home/{businessUnit}";
 	}
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)

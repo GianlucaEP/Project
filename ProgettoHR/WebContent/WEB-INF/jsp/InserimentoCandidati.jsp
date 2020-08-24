@@ -232,14 +232,14 @@ body {
 					<div class="row w-100 p-2 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start"></div>
+							<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazioni</div>
 							<c:forEach var="spec" items="${specializzazioneList}"
 								varStatus="contatore">
 								<div>
 									<form:checkbox
 										onclick="mostraInputAnniEsperienza(${contatore.index})"
-										path="candidatoSpecializzazione[${contatore.index}].specializzazione"
-										value="${spec}" />
+										path="candidatoSpecializzazione[${contatore.index}].specializzazione.specializzazione"
+										value="${spec.specializzazione}" />
 									${spec.specializzazione}
 									<form:input
 										path="candidatoSpecializzazione[${contatore.index}].anni"
