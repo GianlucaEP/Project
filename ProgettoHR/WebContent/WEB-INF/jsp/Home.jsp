@@ -59,7 +59,7 @@ html, body {
 			<div class="col-auto h-100 p-0 bg-primary justify-content-md-start"
 				style="opacity: 0.8;">
 
-				<a href="/ProgettoHR/Candidati" type="button"
+				<a href="/ProgettoHR/Candidati/${businessUnit}" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">+ Candidato <i class="fas fa-user"></i></a>
 				<button class="btn btn-primary btn-block  m-0 text-left"

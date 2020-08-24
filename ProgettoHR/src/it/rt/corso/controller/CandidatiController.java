@@ -59,8 +59,8 @@ public class CandidatiController {
 		binder.registerCustomEditor(Date.class, "inserimentoAzienda", new CustomDateEditor(dateFormat, true));
 	}
 
-	@RequestMapping("/Candidati")
-	public String formAggiungiCandidato(Model m) {
+	@RequestMapping("/Candidati/{businessUnit}")
+	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit) {
 
 		List<Business> businessList = businessDAO.getLista();
 		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
@@ -68,6 +68,7 @@ public class CandidatiController {
 		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
 		List<Seniority> seniorityList = seniorityDAO.getLista();
 
+		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", businessList);
 		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
 		m.addAttribute("mansioneList", mansioneList);
