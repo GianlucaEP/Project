@@ -63,7 +63,7 @@ body {
 			<div align="center" class="col-auto m-2 p-2 border ">
 				<h1>Inserimento Candidato</h1>
 				<form:form method="POST" modelAttribute="candidato"
-					action="/ProgettoHR/CandidatiSave">
+					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
