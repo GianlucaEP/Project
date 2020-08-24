@@ -1,8 +1,10 @@
 package it.rt.corso.beans;
 
+import java.util.ArrayList;
 //import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -78,7 +80,7 @@ public class Candidato implements Bean {
 	
 	// ONE-TO-MANY con la classe CandidatoSpecializzazione
 	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "candidato")
-	Set<CandidatoSpecializzazione> candidatoSpecializzazione;
+	List<CandidatoSpecializzazione> candidatoSpecializzazione;
 
 	// MANY-TO-MANY Con Mansione
 	@ManyToMany(cascade = { CascadeType.ALL })
@@ -89,13 +91,13 @@ public class Candidato implements Bean {
 	 */
 	@JoinTable(name = "candidato_mansione", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "mansione") })
-	Set<Mansione> mansione = new HashSet<>();
+	List<Mansione> mansione = new ArrayList<Mansione>();
 	
 	// MANY-TO-MANY Con Area
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "candidato_area", joinColumns = {
 			@JoinColumn(name = "candidato") }, inverseJoinColumns = { @JoinColumn(name = "area") })
-	Set<AreaCompetenza> area = new HashSet<>();
+	List<AreaCompetenza> area = new ArrayList<AreaCompetenza>();
 
 	public int getId() {
 		return id;
@@ -209,28 +211,27 @@ public class Candidato implements Bean {
 		this.qm = qm;
 	}
 
-
-	public Set<CandidatoSpecializzazione> getCandidatoSpecializzazione() {
+	public List<CandidatoSpecializzazione> getCandidatoSpecializzazione() {
 		return candidatoSpecializzazione;
 	}
 
-	public void setCandidatoSpecializzazione(Set<CandidatoSpecializzazione> candidatoSpecializzazione) {
+	public void setCandidatoSpecializzazione(List<CandidatoSpecializzazione> candidatoSpecializzazione) {
 		this.candidatoSpecializzazione = candidatoSpecializzazione;
 	}
 
-	public Set<Mansione> getMansione() {
+	public List<Mansione> getMansione() {
 		return mansione;
 	}
 
-	public void setMansione(Set<Mansione> mansione) {
+	public void setMansione(List<Mansione> mansione) {
 		this.mansione = mansione;
 	}
 
-	public Set<AreaCompetenza> getArea() {
+	public List<AreaCompetenza> getArea() {
 		return area;
 	}
 
-	public void setArea(Set<AreaCompetenza> area) {
+	public void setArea(List<AreaCompetenza> area) {
 		this.area = area;
 	}
 
