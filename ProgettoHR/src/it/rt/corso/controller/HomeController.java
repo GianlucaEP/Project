@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
@@ -15,6 +16,7 @@ import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.Utente;
 
 // ------------------------------------------------------------------------
 // @RequestMapping("/Home")
@@ -43,10 +45,11 @@ public class HomeController {
 //	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
 	
 	@RequestMapping("/Home/{businessUnit}")
-	public String display(Model m, @PathVariable String businessUnit) {
+	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
 		//Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit); 
+		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());

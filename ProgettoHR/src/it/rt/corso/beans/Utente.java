@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +28,10 @@ public class Utente implements Bean {
 	@Column(name = "password")
 	private String password;
 	
-	//MANY-TO-MANY con Ruolo
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "ruolo_utente", joinColumns = { @JoinColumn(name = "id_utente_fk") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_ruolo_fk") })
-	Set<Ruolo> ruolo = new HashSet<>();
+	//MANY-TO-ONE con Ruolo
+	@ManyToOne
+	@JoinColumn(name = "id_ruolo")
+	Ruolo ruolo;
 
 	public int getId() {
 		return id;
@@ -57,12 +57,14 @@ public class Utente implements Bean {
 		this.password = password;
 	}
 
-	public Set<Ruolo> getRuolo() {
+	public Ruolo getRuolo() {
 		return ruolo;
 	}
 
-	public void setRuolo(Set<Ruolo> ruolo) {
+	public void setRuolo(Ruolo ruolo) {
 		this.ruolo = ruolo;
 	}
+
+	
 
 }

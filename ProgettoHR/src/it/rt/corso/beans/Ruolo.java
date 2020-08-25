@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +25,8 @@ public class Ruolo implements Bean{
 	@Column(name = "ruolo")
 	private String ruolo;
 	
-	//MANY-TO-MANY con Utente
-	@ManyToMany(mappedBy = "ruolo")
+	//ONE-TO-MANY con Utente
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "ruolo")
 	private Set<Utente> utente = new HashSet<>();
 	
 	//MANY-TO-MANY con funzionalità
