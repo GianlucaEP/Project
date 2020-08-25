@@ -148,14 +148,6 @@ public class Candidato implements Bean {
 		this.email = email;
 	}
 
-	public Seniority getSeniority() {
-		return seniority;
-	}
-
-	public void setSeniority(Seniority seniority) {
-		this.seniority = seniority;
-	}
-
 	public Date getInserimentoAzienda() {
 		return inserimentoAzienda;
 	}
@@ -180,6 +172,14 @@ public class Candidato implements Bean {
 		this.categoriaProtetta = categoriaProtetta;
 	}
 
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
+
 	public Business getBusiness() {
 		return business;
 	}
@@ -188,12 +188,36 @@ public class Candidato implements Bean {
 		this.business = business;
 	}
 
+	public Seniority getSeniority() {
+		return seniority;
+	}
+
+	public void setSeniority(Seniority seniority) {
+		this.seniority = seniority;
+	}
+
 	public StatoCandidato getStato() {
 		return stato;
 	}
 
 	public void setStato(StatoCandidato stato) {
 		this.stato = stato;
+	}
+
+	public Set<Costo> getCosti() {
+		return costi;
+	}
+
+	public void setCosti(Set<Costo> costi) {
+		this.costi = costi;
+	}
+
+	public Set<Economics> getEconomics() {
+		return economics;
+	}
+
+	public void setEconomics(Set<Economics> economics) {
+		this.economics = economics;
 	}
 
 	public Set<Feedback> getFeedback() {
@@ -236,29 +260,6 @@ public class Candidato implements Bean {
 		this.area = area;
 	}
 
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-
-	public void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
-	}
-
-	public Set<Costo> getCosti() {
-		return costi;
-	}
-
-	public void setCosti(Set<Costo> costi) {
-		this.costi = costi;
-	}
-
-	public Set<Economics> getEconomics() {
-		return economics;
-	}
-
-	public void setEconomics(Set<Economics> economics) {
-		this.economics = economics;
-	}
-
+	
 	
 }
