@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import it.rt.corso.DAO.UtenteDAO;
+import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Utente;
 
 @Controller
@@ -35,10 +36,10 @@ public class LoginController {
 		if (u!=null) {
 
 			m.addAttribute(u);
-		return "redirect:/Home";
+		return "redirect:/";
 		}
 		m.addAttribute("info", "error");
-		return "/Login";
+		return "redirect:/Login";
 //	CHIEDERE AL PROF: il link della pagina sembra non essere corretto(logginIn) anche se tutto fila liscio come l olio (info === error)	
 	}
 	

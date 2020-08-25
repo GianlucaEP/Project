@@ -15,7 +15,7 @@
 <title>Login</title>
 </head>
 
-<body onload="badCredentials('${info}')">
+<body onload="badCredentials()">
 	<div>
 		<nav class="navbar navbar-dark bg-primary "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
@@ -59,8 +59,11 @@
 	</div>
 </body>
 <script type="text/javascript">
-	function badCredentials(error) {
+	function badCredentials() {
 		$('.alert').hide();
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const error = urlParams.get('info')
 		if (error === "error") {
 			$('.alert').show();
 		}
