@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.MansioneDAO;
+import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
 
@@ -23,6 +24,17 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO{
 
 	public Mansione get(String id) {
 		return (Mansione)super.get(Mansione.class, id);
+	}
+
+	@Override
+	public List<Mansione> getIdByCandidato(int id) {
+		
+		Utility.buildSession();
+
+		List<Mansione> listaMansione = Utility.getSession().createQuery(" FROM candidato_mansione WHERE id_candidato_fk=:id")
+				.setParameter("id", id).getResultList();
+
+		return listaMansione;
 	}
 
 }
