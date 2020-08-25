@@ -18,23 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import it.rt.corso.DAO.AreaCompetenzaDAO;
-import it.rt.corso.DAO.BusinessDAO;
-import it.rt.corso.DAO.CandidatoDAO;
-import it.rt.corso.DAO.FeedbackDAO;
-import it.rt.corso.DAO.MansioneDAO;
-import it.rt.corso.DAO.SeniorityDAO;
-import it.rt.corso.DAO.SpecializzazioneDAO;
-import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Business;
-import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.CandidatoSpecializzazione;
-import it.rt.corso.beans.Feedback;
-import it.rt.corso.beans.Mansione;
-import it.rt.corso.beans.Seniority;
-import it.rt.corso.beans.Specializzazione;
-import it.rt.corso.beans.StatoCandidato;
-import it.rt.corso.beans.TipoFeedback;
+import it.rt.corso.DAO.*;
+import it.rt.corso.beans.*;
 
 @Controller
 public class CandidatiController {
@@ -52,6 +37,8 @@ public class CandidatiController {
 	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
+	EconomicsDAO economicsDAO = (EconomicsDAO) factory.getBean("economicsDAO");
+	CostoDAO costoDAO = (CostoDAO) factory.getBean("costoDAO");
 
 	@InitBinder
 	public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -140,6 +127,8 @@ public class CandidatiController {
 
 		Candidato c = candidatoDAO.get(id);
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
+		List<Economics> e = economicsDAO.getByIdCandidato(id);
+		List<Costo> co = costoDAO.getByIdCandidato(id);
 
 		m.addAttribute("mostraFeedback", f);
 
@@ -150,6 +139,10 @@ public class CandidatiController {
 		m.addAttribute("feedback", new Feedback());
 
 		m.addAttribute("tipoFeedback", new TipoFeedback());
+		
+		m.addAttribute("mostraEconomics", new Economics());
+		
+		m.addAttribute("mostraCosto", new Costo());
 
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);

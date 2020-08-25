@@ -261,23 +261,23 @@
 						</tr>
 						<tr>
 							<th scope="col">Inquadramento</th>
-							<td scope="col">${}</td>
+							<td scope="col">${economics.inquadramento}</td>
 						</tr>
 						<tr>
 							<th scope="col">RAL</th>
-							<td scope="col">${}</td>
+							<td scope="col">${economics.ral}</td>
 						</tr>
 						<tr>
 							<th scope="col">Benefit</th>
-							<td scope="col">${}</td>
+							<td scope="col">${economics.benefit}</td>
 						</tr>
 						<tr>
 							<th scope="col">Preavviso</th>
-							<td scope="col">${}</td>
+							<td scope="col">${economics.preavviso}</td>
 						</tr>
 						<tr>
 							<th scope="col">Desiderata</th>
-							<td scope="col">${}</td>
+							<td scope="col">${economics.desiderata}</td>
 						</tr>
 
 					</tbody>
@@ -299,15 +299,15 @@
 						</tr>
 						<tr>
 							<th scope="col">Costo orario</th>
-							<td scope="col">${}</td>
+							<td scope="col">${costo.orario}</td>
 						</tr>
 						<tr>
 							<th scope="col">Costo giornaliero</th>
-							<td scope="col">${}</td>
+							<td scope="col">${costo.giornaliero}</td>
 						</tr>
 						<tr>
 							<th scope="col">Commenti</th>
-							<td scope="col">${}</td>
+							<td scope="col">${costo.commento}</td>
 						</tr>
 
 					</tbody>
@@ -578,7 +578,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Inquadramento:</div>
 										<input type="text" class="form-control" id="Inquadramento"
-											name="Inquadramento" value="${}"></input>
+											name="Inquadramento" value="${economics.inquadramento}"></input>
 									</div>
 								</div>
 							</div>
@@ -588,7 +588,7 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">RAL:
 										</div>
 										<input type="text" class="form-control" id="RAL" name="RAL"
-											value="${}"></input>
+											value="${economics.ral}"></input>
 									</div>
 								</div>
 							</div>
@@ -597,7 +597,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Benefit:</div>
 										<input type="text" class="form-control" id="benefit"
-											name="benefit" value="${}"></input>
+											name="benefit" value="${economics.benefit}"></input>
 									</div>
 								</div>
 							</div>
@@ -606,7 +606,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Preavviso:</div>
 										<input type="text" class="form-control" id="preavviso"
-											name="preavviso" value="${}"></input>
+											name="preavviso" value="${economics.preavviso}"></input>
 									</div>
 								</div>
 							</div>
@@ -615,7 +615,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Desiderata:</div>
 										<input type="text" class="form-control" id="desiderata"
-											name="desiderata" value="${}"></input>
+											name="desiderata" value="${economics.desiderata}"></input>
 									</div>
 								</div>
 							</div>
@@ -657,7 +657,7 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											orario:</div>
 										<input type="text" class="form-control" id="costoOrario"
-											name="costoOrario" value="${}"></input>
+											name="costoOrario" value="${costo.orario}"></input>
 									</div>
 								</div>
 							</div>
@@ -667,7 +667,7 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											giornaliero:</div>
 										<input type="text" class="form-control" id="costoGiornaliero"
-											name="costoGiornaliero" value="${}"></input>
+											name="costoGiornaliero" value="${costo.giornaliero}"></input>
 									</div>
 								</div>
 							</div>
@@ -676,7 +676,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
 										<input type="text" class="form-control" id="commenti"
-											name="commenti" value="${}"></input>
+											name="commenti" value="${costo.commento}"></input>
 									</div>
 								</div>
 							</div>
