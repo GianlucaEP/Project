@@ -6,11 +6,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
+<!--fare tutti i modal delle tabelle per la modifica-->
+<!--mettere icone carine-->
+
 <head>
+
+<!--Link-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" />
+
+<!--Script-->
 <script src="https://kit.fontawesome.com/053b00be10.js"
 	crossorigin="anonymous"></script>
-
-<link rel="icon" href="/favicon-32x32.png" type="image/png" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -19,137 +29,120 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
 
+<!--Meta-->
 <meta charset="ISO-8859-1">
 <title>Candidato</title>
+
 </head>
+
 <body
 	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}')">
-	<div class="row w-100 p-0 m-0">
-		<nav class="navbar navbar-light bg-primary w-100 "
-			style="opacity: 0.8;">
-			<h1>
-				<span class="navbar-text  text-white"> <a
-					href="/ProgettoHR/Home"><img alt="logo"
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
 
-			</h1>
+	<!-- Navbar -->
+	<div class="container-fluid">
+		<div class="row w-100 p-0 m-0">
+			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
+				style="opacity: 0.8;">
 
-			<button class="btn btn-primary dropdown-toggle" role="button"
-				id="logout" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">
-				<i class="fas fa-user"></i>
-			</button>
+				<!-- logo (da sistemare) -->
+				<h1>
+					<span class="navbar-text text-white"> <a
+						href="/ProgettoHR/Home"><img alt="logo"
+							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
 
-		</nav>
+				</h1>
+
+				<!-- componenti della navbar -->
+				<div class="col">
+					<a href="/ProgettoHR/Home" type="button" class="btn btn-primary ">Home<i
+						class="fas fa-home ml-2 right"></i></a>
+				</div>
+
+				<!-- bottone profilo -->
+				<div class="col-auto text-right">
+					<button class="btn btn-primary dropdown-toggle " role="button"
+						id="logout" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">
+						<i class="fas fa-user"></i>
+					</button>
+				</div>
+
+			</nav>
+		</div>
 	</div>
 
-	<!-- 	<div class="col-auto p-0 opacity-0 h-100 d-inline-block"
-		>
-
-
-		<a href="/ProgettoHR/Mansioni" type="button"
-			class="btn btn-primary btn-block  m-0">Aggiungi Mansione del cazzo la madonna</a> <a
-			href="/ProgettoHR/Home" type="button"
-			class="btn btn-primary btn-block  m-0">Torna alla Home</a>
-
-
-
-	</div> -->
-	<div class="container-fluid ">
-		<div class="row">
-			<div class="col-2 p-0 bg-primary" style="opacity: 0.8;">
-
-				<a href="/ProgettoHR/Home" type="button"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Torna alla Home<i
-					class="fas fa-home float-right"></i></a>
-				<button type="button" data-toggle="modal"
-					data-target="#modificaModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
-					Modifica Candidato<i class="fas fa-pen float-right"></i>
-				</button>
+	<!-- Bottoni per aggiunta feedback -->
+	<div style="margin-top: 110px;" class="container-fluid ">
+		<div class="row ">
+			<div class="col-auto p-0 bg-primary "
+				style="opacity: 0.9; border-radius: 1px 10px 10px 5px;">
 
 				<button onclick="impostaTipoFeedback('Colloquio HR')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
+					class="btn btn-primary btn-block mt-1 text-left">
 					+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
 					type="button" data-toggle="modal" data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
-					+ Colloquio Tecnico<i class="fas fa-user float-right"></i>
+					class="btn btn-primary btn-block mt-1 text-left">
+					+ Colloquio tecnico<i class="fas fa-user float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Mail')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
-					+ Mail <i class="fas fa-envelope-open-text float-right"></i>
+					class="btn btn-primary btn-block mt-1  text-left">
+					+ E-mail <i class="fas fa-envelope-open-text float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Social')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
-					+ Social <i class="fas fa-comment-dots float-right"></i>
+					class="btn btn-primary btn-block mt-1 text-left">
+					+ Social network <i class="fas fa-comment-dots float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Telefonata')" type="button"
 					data-toggle="modal" data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">
+					class="btn btn-primary btn-block mt-1 text-left">
 					+ Telefonata <i class="fas fa-phone float-right"></i>
 				</button>
 
 				<a href="/ProgettoHR/Mansioni" type="button"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Mansione <i
+					class="btn btn-primary btn-block  m-0 text-left">+ Mansione <i
 					class="fas fa-briefcase float-right"></i></a>
 
 				<button type="button" data-toggle="modal"
 					data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Qualification Meeting</button>
+					class="btn btn-primary btn-block  m-0 text-left">+
+					Qualification Meeting</button>
 
 				<button type="button" data-toggle="modal"
 					data-target="#feedbackModal"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Economics</button>
+					class="btn btn-primary btn-block  m-0 text-left">+
+					Economics</button>
 
 
 			</div>
-			<!-- 	<div class="col-2 p-0 bg-primary opacity-0 h-100 d-inline-block"  >
 
-				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi
-					Candidato</button>
-
-
-				<button type="button" class="btn btn-primary btn-block" style="border-radius: 0;">Aggiungi
-					Mansione</button>
-					
-				<div style="width:100%; color:black; opacity:0.6; ">PROVA</div>
-			</div> -->
-
-			<div class="col-auto p-2 justify-content-md-end">
-
-				<table class="table table-bordered  text-center "
-					style="box-shadow: 10px 10px 5px grey;">
-					<!-- <thead> -->
+			<!-- tabella ANAGRAFICA -->
+			<div class="col-auto p-1 justify-content-md-end">
+				<table
+					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 					<tbody>
-
+						<tr>
+							<th colspan=2 class="text-center table-info">ANAGRAFICA
+								<button type="button" data-toggle="modal"
+									data-target="#modificaModal"
+									class="btn btn-info float-md-right">
+									<i class="fas fa-pen "></i>
+								</button>
+							</th>
+						</tr>
 						<tr>
 							<th scope="col">Stato</th>
 							<td scope="col"><button
@@ -168,7 +161,6 @@
 										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
 								</div></td>
 						</tr>
-
 						<tr>
 							<th scope="col">Nome</th>
 							<td scope="col">${mostraCandidato.nome}</td>
@@ -182,27 +174,46 @@
 							<td scope="col">${mostraCandidato.anno}</td>
 						</tr>
 						<tr>
-							<th scope="col">N Telefonico</th>
+							<th scope="col">Telefono</th>
 							<td scope="col">${mostraCandidato.telefono}</td>
 						</tr>
 						<tr>
-							<th scope="col">Email</th>
+							<th scope="col">E-mail</th>
 							<td scope="col">${mostraCandidato.email}</td>
 						</tr>
 						<tr>
-							<th scope="col">Provenienza</th>
+							<th scope="col">Provenienza candidatura</th>
 							<td scope="col">${mostraCandidato.provenienza}</td>
 						</tr>
 						<tr>
-							<th scope="col">Categoria Protetta</th>
+							<th scope="col">Categoria protetta</th>
 							<td scope="col" id="categoriaProtetta"></td>
 						</tr>
+
+					</tbody>
+				</table>
+
+				<!-- tabella BUSINESS-->
+				<table
+					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+					<tbody>
+
 						<tr>
-							<th scope="col">Business</th>
+							<th colspan=2 class="text-center table-success ">BUSINESS
+								<button type="button" data-toggle="modal"
+									data-target="#modificaModal"
+									class="btn btn-success float-md-right">
+									<i class="fas fa-pen "></i>
+								</button>
+							</th>
+						</tr>
+
+						<tr>
+							<th scope="col">Business unit</th>
 							<td scope="col">${mostraCandidato.business.business}</td>
 						</tr>
 						<tr>
-							<th scope="col">Area Competenza</th>
+							<th scope="col">Area di competenza</th>
 							<td scope="col"><c:forEach var="area"
 									items="${cand.mostraCandidato.area}">
 									<span>${area.area}</span>
@@ -227,20 +238,93 @@
 								</c:forEach></td>
 						</tr>
 						<tr>
-							<th scope="col">Inserimento Azienda</th>
+							<th scope="col">Inserimento azienda</th>
 							<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
 						</tr>
 
+					</tbody>
+				</table>
 
+				<!-- tabella ECONOMICS -->
+				<table
+					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+					<tbody>
+
+						<tr>
+							<th colspan=2 class="text-center table-warning">ECONOMICS
+								<button type="button" data-toggle="modal"
+									data-target="#modificaModal"
+									class="btn btn-warning float-md-right">
+									<i class="fas fa-pen "></i>
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th scope="col">Inquadramento</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">RAL</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">Benefit</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">Preavviso</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">Desiderata</th>
+							<td scope="col">${}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<!--tabella COSTI -->
+				<table
+					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+					<tbody>
+
+						<tr>
+							<th colspan=2 class="text-center table-danger">COSTI
+								<button type="button" data-toggle="modal"
+									data-target="#modificaModal"
+									class="btn btn-danger float-md-right">
+									<i class="fas fa-pen "></i>
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th scope="col">Costo orario</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">Costo giornaliero</th>
+							<td scope="col">${}</td>
+						</tr>
+						<tr>
+							<th scope="col">Commenti</th>
+							<td scope="col">${}</td>
+						</tr>
 
 					</tbody>
 				</table>
 			</div>
-			<div class="col-auto p-2 justify-content-md-end">
 
-				<table class="table table-bordered  text-center "
-					style="box-shadow: 10px 10px 5px grey;" id="feedbackTable">
+			<!-- Colonna con Tabella FEEDBACK -->
+			<div class="col-auto p-1 justify-content-md-end">
+				<table
+					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white"
+					id="feedbackTable">
 					<thead>
+
+						<tr>
+							<th colspan=3 class="text-center table-secondary">FEEDBACK</th>
+						</tr>
+
 						<tr>
 							<th scope="col">Data</th>
 							<th scope="col">Tipo</th>
@@ -261,12 +345,14 @@
 		</div>
 	</div>
 
+	<!-- MODAL modifica CANDIDATO-->
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica</h5>
+					<h5 class="modal-title" id="modificaModalLabel">Modifica
+						anagrafica</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -318,7 +404,7 @@
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Email:</div>
+										<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
 										<input type="text" class="form-control" id="email"
 											name="email" value="${mostraCandidato.email}"></input>
 									</div>
@@ -355,11 +441,181 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
-											Azienda:</div>
+											azienda:</div>
 										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
 										<input type="date" class="form-control"
 											id="inserimentoAzienda" name="inserimentoAzienda"
 											value="${mostraCandidato.inserimentoAzienda}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL modifica BUSINESS-->
+	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+		aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica
+						business</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form method="POST"
+							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
+							<!-- modelAttribute="modificaCandidato" -->
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Business
+											unit:</div>
+										<input type="text" class="form-control" id="businessUnit"
+											name="businessUnit"
+											value="${mostraCandidato.business.business}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Area
+											di competenza:</div>
+										<input type="text" class="form-control" id="areaCompetenza"
+											name="areaCompetenza" value="${area.area}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
+										<input type="text" class="form-control" id="mansione"
+											name="mansione" value="${mostraCandidato.mansione}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
+										<input type="text" class="form-control" id="seniority"
+											name="seniority" value="${mostraCandidato.seniority}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
+										<input type="text" class="form-control" id="specializzazione"
+											name="specializzazione"
+											value="${mostraCandidato.specializzazione}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
+											azienda:</div>
+										<input type="text" class="form-control"
+											id="inserimentoAzienda" name="inserimentoAzienda "
+											value="${mostraCandidato.mansione}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--MODAL modifica ECONOMICS-->
+	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+		aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica
+						economics</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form method="POST"
+							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
+							<!-- modelAttribute="modificaCandidato" -->
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Inquadramento:</div>
+										<input type="text" class="form-control" id="Inquadramento"
+											name="Inquadramento" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">RAL:
+										</div>
+										<input type="text" class="form-control" id="RAL" name="RAL"
+											value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Benefit:</div>
+										<input type="text" class="form-control" id="benefit"
+											name="benefit" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Preavviso:</div>
+										<input type="text" class="form-control" id="preavviso"
+											name="preavviso" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Desiderata:</div>
+										<input type="text" class="form-control" id="desiderata"
+											name="desiderata" value="${}"></input>
 									</div>
 								</div>
 							</div>
@@ -377,7 +633,67 @@
 		</div>
 	</div>
 
+	<!--MODAL modifica COSTI-->
+	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+		aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica costi</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form method="POST"
+							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
+							<!-- modelAttribute="modificaCandidato" -->
 
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
+											orario:</div>
+										<input type="text" class="form-control" id="costoOrario"
+											name="costoOrario" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
+											giornaliero:</div>
+										<input type="text" class="form-control" id="costoGiornaliero"
+											name="costoGiornaliero" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
+										<input type="text" class="form-control" id="commenti"
+											name="commenti" value="${}"></input>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--MODAL FEEDBACK-->
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -437,10 +753,7 @@
 		</div>
 	</div>
 
-
-
-
-
+	<!-- script per MODIFICA STATO candidato-->
 	<script type="text/javascript">
 		function changeStato(stato, feedback, categoriaProtetta) {
 			if (stato === "nuovo_inserito") {
@@ -494,5 +807,7 @@
 			}
 		}
 	</script>
+
 </body>
+
 </html>
