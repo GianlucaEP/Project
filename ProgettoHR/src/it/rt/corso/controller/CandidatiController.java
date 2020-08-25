@@ -140,9 +140,9 @@ public class CandidatiController {
 
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		
-		m.addAttribute("mostraEconomics", new Economics());
+		m.addAttribute("mostraEconomics", e);
 		
-		m.addAttribute("mostraCosto", new Costo());
+		m.addAttribute("mostraCosto", co);
 
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
