@@ -215,14 +215,14 @@
 						<tr>
 							<th scope="col">Area di competenza</th>
 							<td scope="col"><c:forEach var="area"
-									items="${cand.mostraCandidato.area}">
+									items="${mostraCandidato.area}">
 									<span>${area.area}</span>
 								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Mansione</th>
 							<td scope="col"><c:forEach var="mansione"
-									items="${cand.mostraCandidato.mansione}">
+									items="${mostraCandidato.mansione}">
 									<span>${mansione.mansione}</span>
 								</c:forEach></td>
 						</tr>
@@ -230,13 +230,13 @@
 							<th scope="col">Seniority</th>
 							<td scope="col">${mostraCandidato.seniority.seniority}</td>
 						</tr>
-						<!-- <tr>
+						<tr>
 							<th scope="col">Specializzazione</th>
 							<td scope="col"><c:forEach var="specializzazione"
-									items="${cand.candidatoSpecializzazione}">
-									<span>${specializzazione.specializzazione}</span>
+									items="${mostraCandidato.candidatoSpecializzazione}">
+									<span>${specializzazione.specializzazione.specializzazione} &nbsp ${specializzazione.anni} anni esperienza</span>
 								</c:forEach></td>
-						</tr> -->
+						</tr>
 						<tr>
 							<th scope="col">Inserimento azienda</th>
 							<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
@@ -261,23 +261,38 @@
 						</tr>
 						<tr>
 							<th scope="col">Inquadramento</th>
-							<td scope="col">${economics.inquadramento}</td>
+							<td scope="col"><c:forEach var="ec"
+									items="${mostraCandidato.economics}">
+									<span>${ec.inquadramento}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">RAL</th>
-							<td scope="col">${economics.ral}</td>
+							<td scope="col"><c:forEach var="ec"
+									items="${mostraCandidato.economics}">
+									<span>${ec.ral}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Benefit</th>
-							<td scope="col">${economics.benefit}</td>
+							<td scope="col"><c:forEach var="ec"
+									items="${mostraCandidato.economics}">
+									<span>${ec.benefit}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Preavviso</th>
-							<td scope="col">${economics.preavviso}</td>
+							<td scope="col"><c:forEach var="ec"
+									items="${mostraCandidato.economics}">
+									<span>${ec.preavviso}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Desiderata</th>
-							<td scope="col">${economics.desiderata}</td>
+							<td scope="col"><c:forEach var="ec"
+									items="${mostraCandidato.economics}">
+									<span>${ec.desiderata}</span>
+								</c:forEach></td>
 						</tr>
 
 					</tbody>
@@ -299,15 +314,24 @@
 						</tr>
 						<tr>
 							<th scope="col">Costo orario</th>
-							<td scope="col">${costo.orario}</td>
+							<td scope="col"><c:forEach var="costo"
+									items="${mostraCandidato.costi}">
+									<span>${costo.orario}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Costo giornaliero</th>
-							<td scope="col">${costo.giornaliero}</td>
+							<td scope="col"><c:forEach var="costo"
+									items="${mostraCandidato.costi}">
+									<span>${costo.giornaliero}</span>
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="col">Commenti</th>
-							<td scope="col">${costo.commento}</td>
+							<td scope="col"><c:forEach var="costo"
+									items="${mostraCandidato.costi}">
+									<span>${costo.commento}</span>
+								</c:forEach></td>
 						</tr>
 
 					</tbody>
@@ -462,7 +486,7 @@
 		</div>
 	</div>
 
-	<!-- MODAL modifica BUSINESS
+	 MODAL modifica BUSINESS
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -554,7 +578,7 @@
 		</div>
 	</div>
 
-	<!--MODAL modifica ECONOMICS
+	MODAL modifica ECONOMICS
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -633,7 +657,7 @@
 		</div>
 	</div>
 
-	<!--MODAL modifica COSTI
+	MODAL modifica COSTI
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -693,7 +717,7 @@
 		</div>
 	</div>
 
-	<!--MODAL FEEDBACK
+	MODAL FEEDBACK
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -751,7 +775,7 @@
 		</div>
 	</div>
 
-	<!-- script per MODIFICA STATO candidato-->
+	
 	<script type="text/javascript">
 		function changeStato(stato, feedback, categoriaProtetta) {
 			if (stato === "nuovo_inserito") {

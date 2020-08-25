@@ -8,22 +8,22 @@ import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
 
-public class MansioneDAOImpl extends BaseDAO implements MansioneDAO{
+public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 
 	public Mansione inserisci(Mansione mansione) {
 		return (Mansione) super.inserisci(mansione);
 	}
 
 	public List<Mansione> getLista() {
-		
+
 		Utility.buildSession();
-		
+
 		List<Mansione> listaMansione = Utility.getSession().createQuery(" FROM Mansione ").getResultList();
 		return listaMansione;
 	}
 
 	public Mansione get(String id) {
-		return (Mansione)super.get(Mansione.class, id);
+		return (Mansione) super.get(Mansione.class, id);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO{
 		
 		Utility.buildSession();
 
-		List<Mansione> listaMansione = Utility.getSession().createQuery(" FROM candidato_mansione WHERE id_candidato_fk=:id")
+		List<Mansione> listaMansione = Utility.getSession().createQuery("SELECT m FROM Mansione m JOIN m.candidato c WHERE c.id = :id")
 				.setParameter("id", id).getResultList();
 
 		return listaMansione;

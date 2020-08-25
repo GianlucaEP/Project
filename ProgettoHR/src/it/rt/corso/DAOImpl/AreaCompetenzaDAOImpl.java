@@ -35,7 +35,7 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		
 		Utility.buildSession();
 
-		List<AreaCompetenza> listaAreaCompetenza = Utility.getSession().createQuery(" FROM candidato_area WHERE candidato=:id")
+		List<AreaCompetenza> listaAreaCompetenza = Utility.getSession().createQuery("SELECT a FROM AreaCompetenza a JOIN a.candidato c WHERE c.id = :id")
 				.setParameter("id", id).getResultList();
 
 		return listaAreaCompetenza;

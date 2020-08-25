@@ -21,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name = "candidato")
 @Transactional
@@ -66,10 +69,12 @@ public class Candidato implements Bean {
 	private StatoCandidato stato;
 
 	// ONE-TO-MANY con la classe Costi
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Costo> costi;
 
 	// ONE-TO-MANY con la classe economics
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Economics> economics;
 
@@ -81,6 +86,7 @@ public class Candidato implements Bean {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
@@ -92,10 +98,12 @@ public class Candidato implements Bean {
 	List<Mansione> mansione = new ArrayList<Mansione>();
 
 	// ONE-TO-MANY con la classe CandidatoSpecializzazione
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidato")
 	List<CandidatoSpecializzazione> candidatoSpecializzazione;
 
 	// MANY-TO-MANY Con Area
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "candidato_area", joinColumns = { @JoinColumn(name = "candidato") }, inverseJoinColumns = {
 			@JoinColumn(name = "area") })

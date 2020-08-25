@@ -126,11 +126,19 @@ public class CandidatiController {
 	public String Candidato(@PathVariable int id, Model m) {
 
 		Candidato c = candidatoDAO.get(id);
-		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
+		/*List<Mansione> listaMansione = mansioneDAO.getIdByCandidato(id);
+		List<AreaCompetenza> listaAreaComp = areaCompetenzaDAO.getIdByCandidato(id);
+		
 		List<Economics> e = economicsDAO.getByIdCandidato(id);
 		List<Costo> co = costoDAO.getByIdCandidato(id);
+		*/
+		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
 		m.addAttribute("mostraFeedback", f);
+		
+		//m.addAttribute("listaMansione", listaMansione);
+		
+		//m.addAttribute("listaAreaComp", listaAreaComp);
 
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
@@ -140,9 +148,9 @@ public class CandidatiController {
 
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		
-		m.addAttribute("mostraEconomics", e);
+		//m.addAttribute("mostraEconomics", e);
 		
-		m.addAttribute("mostraCosto", co);
+		//m.addAttribute("mostraCosto", co);
 
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
