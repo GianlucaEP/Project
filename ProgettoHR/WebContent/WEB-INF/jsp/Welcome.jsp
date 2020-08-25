@@ -3,10 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- Link -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+
+<!-- CSS -->
 <style type="text/css">
 #colonna1 {
 	background-color: rgb(8, 212, 239)
@@ -57,36 +61,30 @@ html, body {
 	height: 100%;
 }
 </style>
+
+<!-- META -->
 <meta charset="ISO-8859-1">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-primary "
-		style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
-		<h1>
-			<span class="navbar-text bg-primary text-white"><a href="/ProgettoHR/Home/"> 
-				<img
-					alt="logo" src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-					class="col-4"></a>
-			</span>
-		</h1>
-	</nav>
+
 	<div class="container-fluid h-100 ">
 		<div class="row h-100 ">
 
+			<!-- Telco -->
 			<div id="colonna1" class="col center-content h-100 ">
 				<div id="telco" class="row h-100 ">
-
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
 						<a href="/ProgettoHR/Home/Telco"><img alt="logo"
 							src="/ProgettoHR/img/Erre_pro_blu.png" class="col-4"></a>Telco
 					</div>
 				</div>
-
 			</div>
 
+			<!-- ICT -->
 			<div id="colonna2" class="col center-content h-100 ">
 				<div id="ict" class="row h-100 ">
 					<div class="col center-content align-self-center"
@@ -96,6 +94,8 @@ html, body {
 					</div>
 				</div>
 			</div>
+
+			<!-- Ingegneria -->
 			<div id="colonna3" class="col center-content h-100 ">
 				<div id="ingegneria" class="row h-100 ">
 					<div class="col center-content align-self-center "
@@ -105,8 +105,8 @@ html, body {
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
+	
 </body>
 </html>
