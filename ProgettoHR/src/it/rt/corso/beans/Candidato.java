@@ -80,6 +80,7 @@ public class Candidato implements Bean {
 	// ONE-TO-MANY con la classe QualificationMetting
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
+	
 	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
