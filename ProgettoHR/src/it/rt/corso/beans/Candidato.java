@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,12 +67,12 @@ public class Candidato implements Bean {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Costo> costi;
 	
-	// ONE-TO-MANY con la classe Costi
+	// ONE-TO-MANY con la classe economics
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Economics> economics;
 
 	// ONE-TO-MANY con la classe feedback
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato", fetch = FetchType.EAGER)
 	Set<Feedback> feedback;
 
 	// ONE-TO-MANY con la classe QualificationMetting
@@ -83,7 +84,7 @@ public class Candidato implements Bean {
 	List<CandidatoSpecializzazione> candidatoSpecializzazione;
 
 	// MANY-TO-MANY Con Mansione
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
