@@ -19,9 +19,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name = "candidato")
+@Transactional
 public class Candidato implements Bean {
 
 	@Id
@@ -47,12 +49,12 @@ public class Candidato implements Bean {
 	@Column(name = "codice_fiscale")
 	private String codiceFiscale;
 //	private File allegato; TODO aggiungere successivamente il file allegato
-	
+
 	// MANY-TO-ONE con Business
 	@ManyToOne
 	@JoinColumn(name = "business")
 	private Business business;
-	
+
 	// MANY-TO-ONE con Seniority
 	@ManyToOne
 	@JoinColumn(name = "seniority")
@@ -62,29 +64,23 @@ public class Candidato implements Bean {
 	@ManyToOne
 	@JoinColumn(name = "stato")
 	private StatoCandidato stato;
-	
+
 	// ONE-TO-MANY con la classe Costi
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Costo> costi;
-	
+
 	// ONE-TO-MANY con la classe economics
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Economics> economics;
 
 	// ONE-TO-MANY con la classe feedback
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato", fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Feedback> feedback;
 
 	// ONE-TO-MANY con la classe QualificationMetting
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
-	Set<QualificationMeeting> qm;
-	
-	// ONE-TO-MANY con la classe CandidatoSpecializzazione
-	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "candidato")
-	List<CandidatoSpecializzazione> candidatoSpecializzazione;
-
-	// MANY-TO-MANY Con Mansione
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
+	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
@@ -93,11 +89,15 @@ public class Candidato implements Bean {
 	@JoinTable(name = "candidato_mansione", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "mansione") })
 	List<Mansione> mansione = new ArrayList<Mansione>();
-	
+
+	// ONE-TO-MANY con la classe CandidatoSpecializzazione
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidato")
+	List<CandidatoSpecializzazione> candidatoSpecializzazione;
+
 	// MANY-TO-MANY Con Area
 	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "candidato_area", joinColumns = {
-			@JoinColumn(name = "candidato") }, inverseJoinColumns = { @JoinColumn(name = "area") })
+	@JoinTable(name = "candidato_area", joinColumns = { @JoinColumn(name = "candidato") }, inverseJoinColumns = {
+			@JoinColumn(name = "area") })
 	List<AreaCompetenza> area = new ArrayList<AreaCompetenza>();
 
 	public int getId() {
@@ -260,6 +260,4 @@ public class Candidato implements Bean {
 		this.area = area;
 	}
 
-	
-	
 }

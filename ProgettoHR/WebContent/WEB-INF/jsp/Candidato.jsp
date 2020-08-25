@@ -230,13 +230,13 @@
 							<th scope="col">Seniority</th>
 							<td scope="col">${mostraCandidato.seniority.seniority}</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<th scope="col">Specializzazione</th>
 							<td scope="col"><c:forEach var="specializzazione"
 									items="${cand.candidatoSpecializzazione}">
 									<span>${specializzazione.specializzazione}</span>
 								</c:forEach></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th scope="col">Inserimento azienda</th>
 							<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
@@ -419,7 +419,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
+							<!--  <div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
@@ -427,7 +427,7 @@
 											id="specializzazione" name="specializzazione"></textarea>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
@@ -462,7 +462,7 @@
 		</div>
 	</div>
 
-	<!-- MODAL modifica BUSINESS-->
+	<!-- MODAL modifica BUSINESS
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -479,7 +479,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-							<!-- modelAttribute="modificaCandidato" -->
+							
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -526,7 +526,7 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
 										<input type="text" class="form-control" id="specializzazione"
 											name="specializzazione"
-											value="${mostraCandidato.specializzazione}"></input>
+											value="${mostraCandidato.candidatoSpecializzazione[0].specializzazione}"></input>
 									</div>
 								</div>
 							</div>
@@ -554,7 +554,7 @@
 		</div>
 	</div>
 
-	<!--MODAL modifica ECONOMICS-->
+	<!--MODAL modifica ECONOMICS
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -571,7 +571,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-							<!-- modelAttribute="modificaCandidato" -->
+							
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -633,7 +633,7 @@
 		</div>
 	</div>
 
-	<!--MODAL modifica COSTI-->
+	<!--MODAL modifica COSTI
 	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -649,7 +649,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-							<!-- modelAttribute="modificaCandidato" -->
+						
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -693,7 +693,7 @@
 		</div>
 	</div>
 
-	<!--MODAL FEEDBACK-->
+	<!--MODAL FEEDBACK
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -709,7 +709,6 @@
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="feedback"
 							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
-							<!-- modelAttribute="modificaCandidato" -->
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
@@ -724,7 +723,6 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
-										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${feedback.data}" />-->
 										<form:input path="data" type="date" pattern="yyyy-MM-dd"
 											class="form-control" id="data" name="data"></form:input>
 									</div>
