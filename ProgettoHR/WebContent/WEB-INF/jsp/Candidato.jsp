@@ -89,7 +89,8 @@
 				</button>
 
 				<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
-					type="button" data-toggle="modal" data-target="#modificaFeedbackModal"
+					type="button" data-toggle="modal"
+					data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1 text-left">
 					+ Colloquio tecnico<i class="fas fa-user float-right"></i>
 				</button>
@@ -135,32 +136,46 @@
 					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 					<tbody>
 						<tr>
-							<th colspan=2 class="text-center table-info">ANAGRAFICA
-								<button type="button" data-toggle="modal"
-									data-target="#modificaModal"
-									class="btn btn-info float-md-right">
-									<i class="fas fa-pen "></i>
-								</button>
+							<th colspan=2 class="text-center table-info">ANAGRAFICA <c:forEach
+									var="funz" items="${ruolo.funzionalita}">
+									<c:choose>
+										<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
+											<button type="button" data-toggle="modal"
+												data-target="#modificaModal"
+												class="btn btn-info float-md-right">
+												<i class="fas fa-pen "></i>
+											</button>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+
 							</th>
 						</tr>
-						<tr>
-							<th scope="col">Stato</th>
-							<td scope="col"><button
-									class="btn btn-primary dropdown-toggle" role="button"
-									id="menuStato" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"></button>
+						<c:forEach var="funz" items="${ruolo.funzionalita}">
+							<c:choose>
+								<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
+									<tr>
 
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="dropdown-item"
-										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
-										contattare</a> <a class="dropdown-item"
-										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
-									<a class="dropdown-item"
-										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
-									<a class="dropdown-item"
-										href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
-								</div></td>
-						</tr>
+										<th scope="col">Stato</th>
+										<td scope="col"><button
+												class="btn btn-primary dropdown-toggle" role="button"
+												id="menuStato" data-toggle="dropdown" aria-haspopup="true"
+												aria-expanded="false"></button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+												<a class="dropdown-item"
+													href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
+													contattare</a> <a class="dropdown-item"
+													href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
+												<a class="dropdown-item"
+													href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
+												<a class="dropdown-item"
+													href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
+											</div></td>
+									</tr>
+								</c:when>
+							</c:choose>
+						</c:forEach>
 						<tr>
 							<th scope="col">Nome</th>
 							<td scope="col">${mostraCandidato.nome}</td>
@@ -181,161 +196,184 @@
 							<th scope="col">E-mail</th>
 							<td scope="col">${mostraCandidato.email}</td>
 						</tr>
-						<tr>
-							<th scope="col">Provenienza candidatura</th>
-							<td scope="col">${mostraCandidato.provenienza}</td>
-						</tr>
-						<tr>
-							<th scope="col">Categoria protetta</th>
-							<td scope="col" id="categoriaProtetta"></td>
-						</tr>
+						<c:forEach var="funz" items="${ruolo.funzionalita}">
+							<c:choose>
+								<c:when
+									test="${funz.funzionalita == 'visualizza anagrafica completa'}">
+									<tr>
+										<th scope="col">Provenienza candidatura</th>
+										<td scope="col">${mostraCandidato.provenienza}</td>
+									</tr>
+
+									<tr>
+										<th scope="col">Categoria protetta</th>
+										<td scope="col" id="categoriaProtetta"></td>
+									</tr>
+								</c:when>
+							</c:choose>
+						</c:forEach>
 
 					</tbody>
 				</table>
 
 				<!-- tabella BUSINESS-->
-				<table
-					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-					<tbody>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when
+							test="${funz.funzionalita == 'visualizza profilo professionale'}">
+							<table
+								class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+								<tbody>
 
-						<tr>
-							<th colspan=2 class="text-center table-success ">BUSINESS
-								<button type="button" data-toggle="modal"
-									data-target="#modificaBusinessModal"
-									class="btn btn-success float-md-right">
-									<i class="fas fa-pen "></i>
-								</button>
-							</th>
-						</tr>
+									<tr>
+										<th colspan=2 class="text-center table-success ">BUSINESS
+											<c:forEach var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when
+														test="${funz.funzionalita == 'modifica profilo professionale'}">
+														<button type="button" data-toggle="modal"
+															data-target="#modificaBusinessModal"
+															class="btn btn-success float-md-right">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</th>
+									</tr>
 
-						<tr>
-							<th scope="col">Business unit</th>
-							<td scope="col">${mostraCandidato.business.business}</td>
-						</tr>
-						<tr>
-							<th scope="col">Area di competenza</th>
-							<td scope="col"><c:forEach var="area"
-									items="${mostraCandidato.area}">
-									<span>${area.area}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Mansione</th>
-							<td scope="col"><c:forEach var="mansione"
-									items="${mostraCandidato.mansione}">
-									<span>${mansione.mansione}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Seniority</th>
-							<td scope="col">${mostraCandidato.seniority.seniority}</td>
-						</tr>
-						<tr>
-							<th scope="col">Specializzazione</th>
-							<td scope="col"><c:forEach var="specializzazione"
-									items="${mostraCandidato.candidatoSpecializzazione}">
-									<span>${specializzazione.specializzazione.specializzazione} &nbsp ${specializzazione.anni} anni esperienza</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Inserimento azienda</th>
-							<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
-						</tr>
+									<tr>
+										<th scope="col">Business unit</th>
+										<td scope="col">${mostraCandidato.business.business}</td>
+									</tr>
+									<tr>
+										<th scope="col">Area di competenza</th>
+										<td scope="col"><c:forEach var="area"
+												items="${mostraCandidato.area}">
+												<span>${area.area}</span>
+											</c:forEach></td>
+									</tr>
+									<tr>
+										<th scope="col">Mansione</th>
+										<td scope="col"><c:forEach var="mansione"
+												items="${mostraCandidato.mansione}">
+												<span>${mansione.mansione}</span>
+											</c:forEach></td>
+									</tr>
+									<tr>
+										<th scope="col">Seniority</th>
+										<td scope="col">${mostraCandidato.seniority.seniority}</td>
+									</tr>
+									<tr>
+										<th scope="col">Specializzazione</th>
+										<td scope="col"><c:forEach var="specializzazione"
+												items="${mostraCandidato.candidatoSpecializzazione}">
+												<span>${specializzazione.specializzazione.specializzazione}
+													&nbsp ${specializzazione.anni} anni esperienza</span>
+											</c:forEach></td>
+									</tr>
+									<tr>
+										<th scope="col">Inserimento azienda</th>
+										<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
+									</tr>
 
-					</tbody>
-				</table>
+								</tbody>
+							</table>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
 				<!-- tabella ECONOMICS -->
-				<table
-					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-					<tbody>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'visualizza economics'}">
+							<table
+								class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+								<tbody>
 
-						<tr>
-							<th colspan=2 class="text-center table-warning">ECONOMICS
-								<button type="button" data-toggle="modal"
-									data-target="#modificaEconomicsModal"
-									class="btn btn-warning float-md-right">
-									<i class="fas fa-pen "></i>
-								</button>
-							</th>
-						</tr>
-						<tr>
-							<th scope="col">Inquadramento</th>
-							<td scope="col"><c:forEach var="ec"
-									items="${mostraCandidato.economics}">
-									<span>${ec.inquadramento}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">RAL</th>
-							<td scope="col"><c:forEach var="ec"
-									items="${mostraCandidato.economics}">
-									<span>${ec.ral}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Benefit</th>
-							<td scope="col"><c:forEach var="ec"
-									items="${mostraCandidato.economics}">
-									<span>${ec.benefit}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Preavviso</th>
-							<td scope="col"><c:forEach var="ec"
-									items="${mostraCandidato.economics}">
-									<span>${ec.preavviso}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Desiderata</th>
-							<td scope="col"><c:forEach var="ec"
-									items="${mostraCandidato.economics}">
-									<span>${ec.desiderata}</span>
-								</c:forEach></td>
-						</tr>
+									<tr>
+										<th colspan=2 class="text-center table-warning">ECONOMICS
+											<c:forEach var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when test="${funz.funzionalita == 'modifica economics'}">
+														<button type="button" data-toggle="modal"
+															data-target="#modificaEconomicsModal"
+															class="btn btn-warning float-md-right">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</th>
+									</tr>
+									<tr>
+										<th scope="col">Inquadramento</th>
+										<td scope="col">${mostraCandidato.economics.inquadramento}</td>
+									</tr>
+									<tr>
+										<th scope="col">RAL</th>
+										<td scope="col">${mostraCandidato.economics.ral}</td>
+									</tr>
+									<tr>
+										<th scope="col">Benefit</th>
+										<td scope="col">${mostraCandidato.economics.benefit}</td>
+									</tr>
+									<tr>
+										<th scope="col">Preavviso</th>
+										<td scope="col">${mostraCandidato.economics.preavviso}</td>
+									</tr>
+									<tr>
+										<th scope="col">Desiderata</th>
+										<td scope="col">${mostraCandidato.economics.desiderata}</td>
+									</tr>
 
-					</tbody>
-				</table>
+								</tbody>
+							</table>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
 				<!--tabella COSTI -->
-				<table
-					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-					<tbody>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'visualizza costi'}">
+							<table
+								class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+								<tbody>
 
-						<tr>
-							<th colspan=2 class="text-center table-danger">COSTI
-								<button type="button" data-toggle="modal"
-									data-target="#modificaCostiModal"
-									class="btn btn-danger float-md-right">
-									<i class="fas fa-pen "></i>
-								</button>
-							</th>
-						</tr>
-						<tr>
-							<th scope="col">Costo orario</th>
-							<td scope="col"><c:forEach var="costo"
-									items="${mostraCandidato.costi}">
-									<span>${costo.orario}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Costo giornaliero</th>
-							<td scope="col"><c:forEach var="costo"
-									items="${mostraCandidato.costi}">
-									<span>${costo.giornaliero}</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<th scope="col">Commenti</th>
-							<td scope="col"><c:forEach var="costo"
-									items="${mostraCandidato.costi}">
-									<span>${costo.commento}</span>
-								</c:forEach></td>
-						</tr>
+									<tr>
+										<th colspan=2 class="text-center table-danger">COSTI <c:forEach
+												var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when test="${funz.funzionalita == 'modifica costi'}">
+														<button type="button" data-toggle="modal"
+															data-target="#modificaCostiModal"
+															class="btn btn-danger float-md-right">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</th>
+									</tr>
+									<tr>
+										<th scope="col">Costo orario</th>
+										<td scope="col">${mostraCandidato.costo.orario}</td>
+									</tr>
+									<tr>
+										<th scope="col">Costo giornaliero</th>
+										<td scope="col">${mostraCandidato.costo.giornaliero}</td>
+									</tr>
+									<tr>
+										<th scope="col">Commenti</th>
+										<td scope="col">${mostraCandidato.costo.commento}</td>
+									</tr>
 
-					</tbody>
-				</table>
+								</tbody>
+							</table>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 			</div>
 
 			<!-- Colonna con Tabella FEEDBACK -->
@@ -434,15 +472,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
-										<input type="text" class="form-control" id="mansione"
-											name="mansione" value="${mostraCandidato.mansione}"></input>
-									</div>
-								</div>
-							</div>
+
 							<!--  <div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
@@ -452,15 +482,7 @@
 									</div>
 								</div>
 							</div> -->
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
-										<input type="text" class="form-control" id="seniority"
-											name="seniority" value="${mostraCandidato.seniority}"></input>
-									</div>
-								</div>
-							</div>
+
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
@@ -486,9 +508,9 @@
 		</div>
 	</div>
 
-	 <!-- MODAL modifica BUSINESS -->
-	<div class="modal fade" id="modificaBusinessModal" tabindex="-1" role="dialog"
-		aria-labelledby="modificaModalLabel" aria-hidden="true">
+	<!-- MODAL modifica BUSINESS -->
+	<div class="modal fade" id="modificaBusinessModal" tabindex="-1"
+		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -503,7 +525,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-							
+
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -522,7 +544,11 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Area
 											di competenza:</div>
 										<input type="text" class="form-control" id="areaCompetenza"
-											name="areaCompetenza" value="${area.area}"></input>
+											name="areaCompetenza"
+											value="<c:forEach var="area"
+												items="${mostraCandidato.area}">
+												<span>${area.area}</span>
+											</c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -531,7 +557,11 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
 										<input type="text" class="form-control" id="mansione"
-											name="mansione" value="${mostraCandidato.mansione}"></input>
+											name="mansione"
+											value="<c:forEach var="mansione"
+												items="${mostraCandidato.mansione}">
+												<span>${mansione.mansione}</span>
+											</c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -540,7 +570,7 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
 										<input type="text" class="form-control" id="seniority"
-											name="seniority" value="${mostraCandidato.seniority}"></input>
+											name="seniority" value="${mostraCandidato.seniority.seniority}"></input>
 									</div>
 								</div>
 							</div>
@@ -550,7 +580,11 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
 										<input type="text" class="form-control" id="specializzazione"
 											name="specializzazione"
-											value="${mostraCandidato.candidatoSpecializzazione[0].specializzazione}"></input>
+											value="<c:forEach var="specializzazione"
+												items="${mostraCandidato.candidatoSpecializzazione}">
+												<span>${specializzazione.specializzazione.specializzazione}
+													&nbsp ${specializzazione.anni} anni esperienza</span>
+											</c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -561,7 +595,7 @@
 											azienda:</div>
 										<input type="text" class="form-control"
 											id="inserimentoAzienda" name="inserimentoAzienda "
-											value="${mostraCandidato.mansione}"></input>
+											value="${mostraCandidato.inserimentoAzienda}"></input>
 									</div>
 								</div>
 							</div>
@@ -579,8 +613,8 @@
 	</div>
 
 	<!--MODAL modifica ECONOMICS-->
-	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1" role="dialog"
-		aria-labelledby="modificaModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1"
+		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -595,7 +629,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-							
+
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -658,8 +692,8 @@
 	</div>
 
 	<!--  MODAL modifica COSTI-->
-	<div class="modal fade" id="modificaCostiModal" tabindex="-1" role="dialog"
-		aria-labelledby="modificaModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modificaCostiModal" tabindex="-1"
+		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -673,7 +707,7 @@
 					<div class="container-fluid">
 						<form method="POST"
 							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-						
+
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -718,8 +752,8 @@
 	</div>
 
 	<!-- MODAL FEEDBACK -->
-	<div class="modal fade" id="modificaFeedbackModal" tabindex="-1" role="dialog"
-		aria-labelledby="feedbackModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modificaFeedbackModal" tabindex="-1"
+		role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -775,7 +809,7 @@
 		</div>
 	</div>
 
-	
+
 	<script type="text/javascript">
 		function changeStato(stato, feedback, categoriaProtetta) {
 			if (stato === "nuovo_inserito") {

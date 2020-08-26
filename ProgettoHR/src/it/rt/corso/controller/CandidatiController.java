@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
 import it.rt.corso.DAO.*;
 import it.rt.corso.beans.*;
 
@@ -123,7 +125,7 @@ public class CandidatiController {
 	}
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, Model m) {
+	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
 
 		Candidato c = candidatoDAO.get(id);
 		/*List<Mansione> listaMansione = mansioneDAO.getIdByCandidato(id);
@@ -147,6 +149,8 @@ public class CandidatiController {
 		m.addAttribute("feedback", new Feedback());
 
 		m.addAttribute("tipoFeedback", new TipoFeedback());
+		
+		m.addAttribute("ruolo", utente.getRuolo());
 		
 		//m.addAttribute("mostraEconomics", e);
 		
