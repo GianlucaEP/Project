@@ -6,8 +6,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.BusinessDAO;
@@ -36,23 +40,35 @@ import it.rt.corso.beans.Utente;
 // --------------------------------------------------------------------
 // return "Home" rappresenta il nome della jsp che questo metodo andrà ad aprire
 
-
 @Controller
 public class HomeController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 //	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
-	
+
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
-		//Business business= bdao.get(businessUnit);
-		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit); 
+		// Business business= bdao.get(businessUnit);
+		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
+//		m.addAttribute("cognome", "");
+		return "Home";
+	}
+
+	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
+	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
+			@RequestParam("cognome") String cognome) {
+		List<Candidato> list = cdao.getListaByBusinessUnitFilteredBySurname(businessUnit, cognome);
+		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
+		m.addAttribute("list", list);
+		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("mansione", new Mansione());
+
 		return "Home";
 	}
 

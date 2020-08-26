@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.query.Query;
@@ -64,6 +69,33 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
 		
 		return listacandidatoByBusinessUnit;
+	}
+	
+	@Override
+	public List<Candidato> getListaByBusinessUnitFilteredBySurname(String businessUnit, String cognome) {
+
+		Utility.buildSession();
+		
+		
+		Session session=Utility.getSession();
+		
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Candidato> criteriaQueryItem = criteriaBuilder.createQuery(Candidato.class);
+		Root<Candidato> root = criteriaQueryItem.from(Candidato.class);
+		criteriaQueryItem.select(root);
+		criteriaQueryItem.select(root).where(criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%"));
+		
+//		String queryString="FROM Candidato as C WHERE C.businessUnit = '"+ businessUnit+"' AND C.cognome = '"+ cognome+"'";
+		 
+//		Query queryString=session.createQuery("FROM Candidato WHERE business =:businessUnit  AND cognome =: cognome");
+//		
+//		queryString.setParameter("businessUnit", businessUnit);
+//		queryString.setParameter("cognome", cognome);
+//		List<Candidato> lista = (List<Candidato>) queryString.getResultList();
+		Query<Candidato> query = session.createQuery(criteriaQueryItem);
+		
+		List<Candidato> lista = (List<Candidato>) query.getResultList();
+		return lista;
 	}
 
 }

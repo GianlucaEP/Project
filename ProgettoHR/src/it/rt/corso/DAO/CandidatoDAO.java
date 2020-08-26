@@ -13,6 +13,8 @@ public interface CandidatoDAO {
 	public Candidato aggiorna(Candidato candidato); 
 	public List<Candidato> getLista();
 	public List<Candidato> getListaByBusinessUnit(String businessUnit);
+
+	List<Candidato> getListaByBusinessUnitFilteredBySurname(String businessUnit, String cognome);
 	
 	
 	

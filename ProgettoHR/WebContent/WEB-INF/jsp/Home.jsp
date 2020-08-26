@@ -62,8 +62,7 @@ html, body {
 
 			</h1>
 
-			<!-- Search -->
-			<div class="col"></div>
+
 
 			<!-- Bottone profilo -->
 			<button class="btn btn-primary dropdown-toggle" role="button"
@@ -77,132 +76,149 @@ html, body {
 
 	<!-- Bottoni Laterali -->
 	<div style="margin-top: 110px;" class="container-fluid">
-		<div class="row h-100">
-			<div class="col-auto p-0 bg-primary"
-				style="opacity: 0.9; border-radius: 1px 10px 10px 1px;">
+	
 
-				<!-- bottone aggiunta candidato-->
-				<a href="/ProgettoHR/Candidati/${businessUnit}" type="button"
-					class="btn btn-primary btn-block mt-1 text-left">+ Candidato <i
-					class="fas fa-user"></i></a>
 
-				<!-- bottone aggiunta mansione -->
-				<c:choose>
-					<c:when test="${ ruolo == 'admin'}">
-						<button class="btn btn-primary btn-block m-0 text-left"
-							data-toggle="modal" data-target="#mansioneModal">
-							+ Mansione <i class="fas fa-briefcase "></i>
-						</button>
-					</c:when>
-				</c:choose>
+	</div>
+	<div class="row h-100">
+		<div class="col-auto p-0 bg-primary"
+			style="opacity: 0.9; border-radius: 1px 10px 10px 1px;">
 
+			<!-- bottone aggiunta candidato-->
+			<a href="/ProgettoHR/Candidati/${businessUnit}" type="button"
+				class="btn btn-primary btn-block mt-1 text-left">+ Candidato <i
+				class="fas fa-user"></i></a>
+
+			<!-- bottone aggiunta mansione -->
+			<c:choose>
+				<c:when test="${ ruolo == 'admin'}">
+					<button class="btn btn-primary btn-block m-0 text-left"
+						data-toggle="modal" data-target="#mansioneModal">
+						+ Mansione <i class="fas fa-briefcase "></i>
+					</button>
+				</c:when>
+			</c:choose>
+
+		</div>
+
+		<!-- Search -->
+		<div
+			class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md px-4">
+			<div class="col">
+				<div class="input-group mb-3">
+					<form action="/ProgettoHR/Home/filter/${businessUnit}" method="post">
+						<input type="text" name="cognome" class="form-control"
+							placeholder="Recipient's username" value=""
+							aria-label="Recipient's username" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="submit">Button</button>
+						</div>
+					</form>
+				</div>
 			</div>
-
 			<!-- Tabella principale -->
-			<div
-				class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md">
-				<table
-					class="table table-striped text-center table-hover shadow p-4 ml-3 mb-4 bg-white">
+			<table
+				class="table table-striped text-center table-hover shadow  bg-white">
 
-					<!-- Testa della tabella -->
-					<thead class="thead-dark">
+				<!-- Testa della tabella -->
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Stato</th>
+						<th scope="col">Business unit</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Cognome</th>
+						<th scope="col">Area Competenza</th>
+						<th scope="col">Mansione</th>
+						<th scope="col">Seniority</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+
+				<!-- Corpo della tabella -->
+				<tbody>
+					<c:forEach var="cand" items="${list}">
 						<tr>
-							<th scope="col">Stato</th>
-							<th scope="col">Business unit</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Cognome</th>
-							<th scope="col">Area Competenza</th>
-							<th scope="col">Mansione</th>
-							<th scope="col">Seniority</th>
-							<th scope="col"></th>
+							<td><c:choose>
+									<c:when test="${ cand.stato.descrizione == 'attivo'}">
+										<span id="dot" data-toggle="tooltip" data-placement="top"
+											title="Attivo" class="dot bg-success"></span>
+									</c:when>
+									<c:when test="${ cand.stato.descrizione == 'selezionato'}">
+										<span id="dot" data-toggle="tooltip" data-placement="top"
+											title="Selezionato" class="dot bg-primary"></span>
+									</c:when>
+									<c:when test="${ cand.stato.descrizione == 'da_contattare'}">
+										<span id="dot" data-toggle="tooltip" data-placement="top"
+											title="Da contattare" class="dot bg-warning"></span>
+									</c:when>
+									<c:when test="${ cand.stato.descrizione == 'scartato'}">
+										<span id="dot" data-toggle="tooltip" data-placement="top"
+											title="Scartato" class="dot bg-danger"></span>
+									</c:when>
+									<c:otherwise>
+										<span id="dot" data-toggle="tooltip" data-placement="top"
+											title="Nuovo inserito" class="dot bg-secondary"></span>
+									</c:otherwise>
+								</c:choose></td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								${cand.business.business}</td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
+
+							<td><c:forEach var="area" items="${cand.area}">
+									<span
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${area.area}</span>
+								</c:forEach></td>
+
+							<td><c:forEach var="mansione" items="${cand.mansione}">
+									<span
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${mansione.mansione}</span>
+								</c:forEach></td>
+
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								${cand.seniority.seniority}</td>
+							<td data-toggle="modal" data-target="#EliminaModal"><i
+								class="fas fa-trash-alt"></i></td>
 						</tr>
-					</thead>
+						<!-- The Modal -->
+						<!--  <div class="modal" id="EliminaModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
 
-					<!-- Corpo della tabella -->
-					<tbody>
-						<c:forEach var="cand" items="${list}">
-							<tr>
-								<td><c:choose>
-										<c:when test="${ cand.stato.descrizione == 'attivo'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Attivo" class="dot bg-success"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'selezionato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Selezionato" class="dot bg-primary"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'da_contattare'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Da contattare" class="dot bg-warning"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'scartato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Scartato" class="dot bg-danger"></span>
-										</c:when>
-										<c:otherwise>
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Nuovo inserito" class="dot bg-secondary"></span>
-										</c:otherwise>
-									</c:choose></td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-									${cand.business.business}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
-
-								<td><c:forEach var="area" items="${cand.area}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${area.area}</span>
-									</c:forEach></td>
-
-								<td><c:forEach var="mansione" items="${cand.mansione}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${mansione.mansione}</span>
-									</c:forEach></td>
-
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-									${cand.seniority.seniority}</td>
-								<td data-toggle="modal" data-target="#EliminaModal"><i
-									class="fas fa-trash-alt"></i></td>
-							</tr>
-							<!-- The Modal -->
-							<div class="modal" id="EliminaModal">
-								<div class="modal-dialog">
-									<div class="modal-content">
-
-										<!-- Modal Header -->
-										<div class="modal-header">
-											<h4 class="modal-title">Elimina Candidato</h4>
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-										</div>
-
-										<!-- Modal body -->
-										<div class="modal-body">Sei sicuro di voler eliminare il
-											candidato ${cand.nome} ${cand.cognome}?</div>
-
-										<!-- Modal footer -->
-										<div class="modal-footer">
-											<button
-												onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"
-												type="button" class="btn btn-success" data-dismiss="modal">Si</button>
-											<button onclick="window.location = '/ProgettoHR/Home'"
-												type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-										</div>
-
+									
+									<div class="modal-header">
+										<h4 class="modal-title">Elimina Candidato</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
 									</div>
+
+								
+									<div class="modal-body">Sei sicuro di voler eliminare il
+										candidato ${cand.nome} ${cand.cognome}?</div>
+
+								
+									<div class="modal-footer">
+										<button
+											onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"
+											type="button" class="btn btn-success" data-dismiss="modal">Si</button>
+										<button onclick="window.location = '/ProgettoHR/Home'"
+											type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+									</div>
+
 								</div>
 							</div>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+						</div>-->
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
+
 
 	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
