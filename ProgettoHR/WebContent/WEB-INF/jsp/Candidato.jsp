@@ -201,7 +201,7 @@
 						<tr>
 							<th colspan=2 class="text-center table-success ">BUSINESS
 								<button type="button" data-toggle="modal"
-									data-target="#modificaModal"
+									data-target="#modificaBusinessModal"
 									class="btn btn-success float-md-right">
 									<i class="fas fa-pen "></i>
 								</button>
@@ -253,7 +253,7 @@
 						<tr>
 							<th colspan=2 class="text-center table-warning">ECONOMICS
 								<button type="button" data-toggle="modal"
-									data-target="#modificaModal"
+									data-target="#modificaEconomicsModal"
 									class="btn btn-warning float-md-right">
 									<i class="fas fa-pen "></i>
 								</button>
@@ -306,7 +306,7 @@
 						<tr>
 							<th colspan=2 class="text-center table-danger">COSTI
 								<button type="button" data-toggle="modal"
-									data-target="#modificaModal"
+									data-target="#modificaCostiModal"
 									class="btn btn-danger float-md-right">
 									<i class="fas fa-pen "></i>
 								</button>
@@ -486,8 +486,8 @@
 		</div>
 	</div>
 
-	 MODAL modifica BUSINESS
-	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+	 <!-- MODAL modifica BUSINESS -->
+	<div class="modal fade" id="modificaBusinessModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -578,8 +578,8 @@
 		</div>
 	</div>
 
-	MODAL modifica ECONOMICS
-	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+	<!--MODAL modifica ECONOMICS-->
+	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -657,8 +657,8 @@
 		</div>
 	</div>
 
-	MODAL modifica COSTI
-	<div class="modal fade" id="modificaModal" tabindex="-1" role="dialog"
+	<!--  MODAL modifica COSTI-->
+	<div class="modal fade" id="modificaCostiModal" tabindex="-1" role="dialog"
 		aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -717,8 +717,8 @@
 		</div>
 	</div>
 
-	MODAL FEEDBACK
-	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
+	<!-- MODAL FEEDBACK -->
+	<div class="modal fade" id="modificaFeedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
