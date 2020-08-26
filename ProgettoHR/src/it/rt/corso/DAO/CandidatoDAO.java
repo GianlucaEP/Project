@@ -1,6 +1,7 @@
 package it.rt.corso.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
@@ -14,7 +15,7 @@ public interface CandidatoDAO {
 	public List<Candidato> getLista();
 	public List<Candidato> getListaByBusinessUnit(String businessUnit);
 
-	List<Candidato> getListaByBusinessUnitFilteredBySurname(String businessUnit, String cognome);
+	List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter);
 	
 	
 	

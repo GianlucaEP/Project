@@ -2,6 +2,7 @@ package it.rt.corso.DAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.TypedQuery;
@@ -77,7 +78,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	}
 	
 	@Override
-	public List<Candidato> getListaByBusinessUnitFilteredBySurname(String businessUnit, String cognome) {
+	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter ) {
 
 		Utility.buildSession();
 		
@@ -89,10 +90,12 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		CriteriaQuery<Candidato> criteriaQuery = criteriaBuilder.createQuery(Candidato.class);
 		Root<Candidato> root = criteriaQuery.from(Candidato.class);
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
-			
-		Predicate[] predicates = new Predicate[2];
-		predicates[0] = criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%");
+	
+		
+		Predicate[] predicates = new Predicate[3];
+		predicates[0] = criteriaBuilder.like(root.get("cognome"), "%"+mappaFilter.get("cognome")+"%");
 		predicates[1] = criteriaBuilder.like(business.get("business"), "%"+businessUnit+"%");
+		predicates[2] = criteriaBuilder.like(root.get("nome"), "%"+mappaFilter.get("nome")+"%");
 		criteriaQuery.select(root).where(predicates);
 
 		Query<Candidato> query = session.createQuery(criteriaQuery);

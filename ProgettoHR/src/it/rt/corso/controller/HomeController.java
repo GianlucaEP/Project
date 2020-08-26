@@ -1,6 +1,8 @@
 package it.rt.corso.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -52,18 +54,26 @@ public class HomeController {
 
 		// Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
+		
+		HashMap<String, String> hashMap= new HashMap<String, String>();
+		
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
-//		m.addAttribute("cognome", "");
+		m.addAttribute("cognome", "");
+		m.addAttribute("filterMap", hashMap);
 		return "Home";
 	}
 
 	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
-			@RequestParam("cognome") String cognome) {
-		List<Candidato> list = cdao.getListaByBusinessUnitFilteredBySurname(businessUnit, cognome);
+			@RequestParam Map<String,String> requestParams ){
+//			@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) {
+		
+		 String nome=requestParams.get("nome");
+		   String cognome=requestParams.get("cognome");
+		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);

@@ -75,11 +75,7 @@ html, body {
 	</div>
 
 	<!-- Bottoni Laterali -->
-	<div style="margin-top: 110px;" class="container-fluid">
-	
-
-
-	</div>
+	<div style="margin-top: 110px;" class="container-fluid"></div>
 	<div class="row h-100">
 		<div class="col-auto p-0 bg-primary"
 			style="opacity: 0.9; border-radius: 1px 10px 10px 1px;">
@@ -106,10 +102,17 @@ html, body {
 			class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md px-4">
 			<div class="col">
 				<div class="input-group mb-3">
-					<form action="/ProgettoHR/Home/filter/${businessUnit}" method="post">
-						<input type="text" name="cognome" class="form-control"
-							placeholder="Recipient's username" value=""
-							aria-label="Recipient's username" aria-describedby="basic-addon2">
+				
+					<form action="/ProgettoHR/Home/filter/${businessUnit}"
+						method="post">
+						<label>nome</label> <input type="text" name="nome"
+							class="form-control" 
+							 aria-describedby="basic-addon2">
+						<label>cognome</label>
+						 <input type="text" name="cognome"
+							class="form-control"
+							 aria-describedby="basic-addon2">
+
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary" type="submit">Button</button>
 						</div>
