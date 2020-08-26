@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
@@ -58,7 +64,6 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		Utility.buildSession();
 		
-		//Set<Candidato> lista = Utility.getSession().byId(Business.class).getReference(businessUnit).getCandidato();
 		
 		Session session=Utility.getSession();
 		
@@ -78,21 +83,41 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		
 		
 		Session session=Utility.getSession();
+//		Business business=session.byId(Business.class).getReference(businessUnit);
+//		CriteriaBuilder cb = session.getCriteriaBuilder();
+//		CriteriaQuery<Candidato> cq = cb.createQuery(Candidato.class);
+//		Root<Candidato> root = cq.from(Candidato.class);
+//		Join<Object, Object> business= root.join(Candidato);
+//		 
+//		ParameterExpression<String> unitBusiness= cb.parameter(String.class);
+//		cq.where(cb.like(business.get(business.business), unitBusiness));
+//		 
+//		TypedQuery<Candidato> q = session.createQuery(cq);
+//		q.setParameter(unitBusiness, "%"+businessUnit+"%");
+//		List<Candidato> authors = q.getResultList();
+//		
+		
 		
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Candidato> criteriaQueryItem = criteriaBuilder.createQuery(Candidato.class);
-		Root<Candidato> root = criteriaQueryItem.from(Candidato.class);
-		criteriaQueryItem.select(root);
-		criteriaQueryItem.select(root).where(criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%"));
+		CriteriaQuery<Candidato> criteriaQuery = criteriaBuilder.createQuery(Candidato.class);
+		Root<Candidato> root = criteriaQuery.from(Candidato.class);
+		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 		
-//		String queryString="FROM Candidato as C WHERE C.businessUnit = '"+ businessUnit+"' AND C.cognome = '"+ cognome+"'";
-		 
-//		Query queryString=session.createQuery("FROM Candidato WHERE business =:businessUnit  AND cognome =: cognome");
-//		
-//		queryString.setParameter("businessUnit", businessUnit);
-//		queryString.setParameter("cognome", cognome);
-//		List<Candidato> lista = (List<Candidato>) queryString.getResultList();
-		Query<Candidato> query = session.createQuery(criteriaQueryItem);
+
+
+//		Path<String> business = root.join("business").get("business");
+//		criteriaQuery.select(root).where(criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%"));
+
+//		criteriaQuery.select(root).where(criteriaBuilder.like(root.get("business"), "%"+candidato.getBusiness()+"%"));
+		
+		Predicate[] predicates = new Predicate[2];
+		predicates[0] = criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%");
+		predicates[1] = criteriaBuilder.like(business.get("business"), "%"+businessUnit+"%");
+		criteriaQuery.select(root).where(predicates);
+
+
+
+		Query<Candidato> query = session.createQuery(criteriaQuery);
 		
 		List<Candidato> lista = (List<Candidato>) query.getResultList();
 		return lista;
