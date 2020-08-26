@@ -68,15 +68,15 @@ public class Candidato implements Bean {
 	@JoinColumn(name = "stato")
 	private StatoCandidato stato;
 
-	// ONE-TO-MANY con la classe Costi
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
-	Set<Costo> costi;
+	// MANY-TO-ONE con la classe Costo
+	@ManyToOne
+	@JoinColumn(name = "costo")
+	private Costo costo;
 
-	// ONE-TO-MANY con la classe economics
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
-	Set<Economics> economics;
+	// MANY-TO-ONE con la classe Economics
+	@ManyToOne
+	@JoinColumn(name = "economics")
+	private Economics economics;
 
 	// ONE-TO-MANY con la classe feedback
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
@@ -85,7 +85,7 @@ public class Candidato implements Bean {
 	// ONE-TO-MANY con la classe QualificationMetting
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
-	
+
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
@@ -213,19 +213,19 @@ public class Candidato implements Bean {
 		this.stato = stato;
 	}
 
-	public Set<Costo> getCosti() {
-		return costi;
+	public Costo getCosto() {
+		return costo;
 	}
 
-	public void setCosti(Set<Costo> costi) {
-		this.costi = costi;
+	public void setCosto(Costo costo) {
+		this.costo = costo;
 	}
 
-	public Set<Economics> getEconomics() {
+	public Economics getEconomics() {
 		return economics;
 	}
 
-	public void setEconomics(Set<Economics> economics) {
+	public void setEconomics(Economics economics) {
 		this.economics = economics;
 	}
 

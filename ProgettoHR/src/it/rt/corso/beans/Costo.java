@@ -1,5 +1,8 @@
 package it.rt.corso.beans;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "costo")
 public class Costo implements Bean {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_costo")
@@ -23,11 +27,10 @@ public class Costo implements Bean {
 	private double giornaliero;
 	@Column(name = "commento")
 	private String commento;
-	
-	// MANY-TO-ONE con la classe Candidato
-	@ManyToOne
-	@JoinColumn(name = "id_candidato")
-	private Candidato candidato;
+
+	// ONE-TO-MANY con Candidato
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "costo")
+	Set<Candidato> candidato;
 
 	public int getId() {
 		return id;
@@ -61,14 +64,12 @@ public class Costo implements Bean {
 		this.commento = commento;
 	}
 
-	public Candidato getCandidato() {
+	public Set<Candidato> getCandidato() {
 		return candidato;
 	}
 
-	public void setCandidato(Candidato candidato) {
+	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
 	}
-	
-	
-	
+
 }
