@@ -83,31 +83,31 @@
 				style="opacity: 0.9; border-radius: 1px 10px 10px 5px;">
 
 				<button onclick="impostaTipoFeedback('Colloquio HR')" type="button"
-					data-toggle="modal" data-target="#feedbackModal"
+					data-toggle="modal" data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1 text-left">
 					+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
-					type="button" data-toggle="modal" data-target="#feedbackModal"
+					type="button" data-toggle="modal" data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1 text-left">
 					+ Colloquio tecnico<i class="fas fa-user float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Mail')" type="button"
-					data-toggle="modal" data-target="#feedbackModal"
+					data-toggle="modal" data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1  text-left">
 					+ E-mail <i class="fas fa-envelope-open-text float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Social')" type="button"
-					data-toggle="modal" data-target="#feedbackModal"
+					data-toggle="modal" data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1 text-left">
 					+ Social network <i class="fas fa-comment-dots float-right"></i>
 				</button>
 
 				<button onclick="impostaTipoFeedback('Telefonata')" type="button"
-					data-toggle="modal" data-target="#feedbackModal"
+					data-toggle="modal" data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block mt-1 text-left">
 					+ Telefonata <i class="fas fa-phone float-right"></i>
 				</button>
@@ -117,12 +117,12 @@
 					class="fas fa-briefcase float-right"></i></a>
 
 				<button type="button" data-toggle="modal"
-					data-target="#feedbackModal"
+					data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left">+
 					Qualification Meeting</button>
 
 				<button type="button" data-toggle="modal"
-					data-target="#feedbackModal"
+					data-target="#modificaFeedbackModal"
 					class="btn btn-primary btn-block  m-0 text-left">+
 					Economics</button>
 
