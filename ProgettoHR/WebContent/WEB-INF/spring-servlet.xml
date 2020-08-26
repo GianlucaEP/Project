@@ -24,6 +24,7 @@
      
      <mvc:resources location="/WEB-INF/img/" mapping="/img/**"></mvc:resources>
      
+     
    
       
 </beans>  

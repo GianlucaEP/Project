@@ -6,8 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<!--fare tutti i modal delle tabelle per la modifica-->
-<!--mettere icone carine-->
 
 <head>
 
@@ -57,12 +55,6 @@
 
 				</h1>
 
-				<!-- componenti della navbar -->
-				<div class="col">
-					<a href="/ProgettoHR/Home" type="button" class="btn btn-primary ">Home<i
-						class="fas fa-home ml-2 right"></i></a>
-				</div>
-
 				<!-- bottone profilo -->
 				<div class="col-auto text-right">
 					<button class="btn btn-primary dropdown-toggle " role="button"
@@ -82,36 +74,52 @@
 			<div class="col-auto p-0 bg-primary "
 				style="opacity: 0.9; border-radius: 1px 10px 10px 5px;">
 
-				<button onclick="impostaTipoFeedback('Colloquio HR')" type="button"
-					data-toggle="modal" data-target="#modificaFeedbackModal"
-					class="btn btn-primary btn-block mt-1 text-left">
-					+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
-				</button>
+				<!-- Dropdown feedback -->
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta feedback'}">
+							<div>
+								<button
+									class="btn btn-primary btn-block mt-1 text-center dropdown-toggle"
+									role="button" id="menuFeedback" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Feedback</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<button onclick="impostaTipoFeedback('Colloquio HR')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left">
+										+ Colloquio HR<i class="fas fa-user-tie float-right"></i>
+									</button>
 
-				<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
-					type="button" data-toggle="modal"
-					data-target="#modificaFeedbackModal"
-					class="btn btn-primary btn-block mt-1 text-left">
-					+ Colloquio tecnico<i class="fas fa-user float-right"></i>
-				</button>
+									<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left">
+										+ Colloquio tecnico<i class="fas fa-user float-right"></i>
+									</button>
 
-				<button onclick="impostaTipoFeedback('Mail')" type="button"
-					data-toggle="modal" data-target="#modificaFeedbackModal"
-					class="btn btn-primary btn-block mt-1  text-left">
-					+ E-mail <i class="fas fa-envelope-open-text float-right"></i>
-				</button>
+									<button onclick="impostaTipoFeedback('Mail')" type="button"
+										data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1  text-left">
+										+ E-mail <i class="fas fa-envelope-open-text float-right"></i>
+									</button>
 
-				<button onclick="impostaTipoFeedback('Social')" type="button"
-					data-toggle="modal" data-target="#modificaFeedbackModal"
-					class="btn btn-primary btn-block mt-1 text-left">
-					+ Social network <i class="fas fa-comment-dots float-right"></i>
-				</button>
+									<button onclick="impostaTipoFeedback('Social')" type="button"
+										data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left">
+										+ Social network <i class="fas fa-comment-dots float-right"></i>
+									</button>
 
-				<button onclick="impostaTipoFeedback('Telefonata')" type="button"
-					data-toggle="modal" data-target="#modificaFeedbackModal"
-					class="btn btn-primary btn-block mt-1 text-left">
-					+ Telefonata <i class="fas fa-phone float-right"></i>
-				</button>
+									<button onclick="impostaTipoFeedback('Telefonata')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left">
+										+ Telefonata <i class="fas fa-phone float-right"></i>
+									</button>
+								</div>
+							</div>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+
+
 
 				<a href="/ProgettoHR/Mansioni" type="button"
 					class="btn btn-primary btn-block  m-0 text-left">+ Mansione <i
@@ -127,6 +135,13 @@
 					class="btn btn-primary btn-block  m-0 text-left">+
 					Economics</button>
 
+				<!--Upload-->
+				<!-- Button trigger modal -->
+				<button type="button"
+					class="btn btn-primary btn-block mt-1 text-center"
+					data-toggle="modal" data-target="#exampleModalCenter">
+					Allegati <i class="fa fa-upload text-right " aria-hidden="true"></i>
+				</button>
 
 			</div>
 
@@ -545,10 +560,10 @@
 											di competenza:</div>
 										<input type="text" class="form-control" id="areaCompetenza"
 											name="areaCompetenza"
-											value="<c:forEach var="area"
-												items="${mostraCandidato.area}">
-												<span>${area.area}</span>
-											</c:forEach>"></input>
+											value="<c:forEach var=" area"
+                                            items="${mostraCandidato.area}">
+                                        <span>${area.area}</span>
+                                        </c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -558,10 +573,9 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
 										<input type="text" class="form-control" id="mansione"
 											name="mansione"
-											value="<c:forEach var="mansione"
-												items="${mostraCandidato.mansione}">
-												<span>${mansione.mansione}</span>
-											</c:forEach>"></input>
+											value="<c:forEach var=" mansione" items="${mostraCandidato.mansione}">
+                                        <span>${mansione.mansione}</span>
+                                        </c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -570,7 +584,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
 										<input type="text" class="form-control" id="seniority"
-											name="seniority" value="${mostraCandidato.seniority.seniority}"></input>
+											name="seniority"
+											value="${mostraCandidato.seniority.seniority}"></input>
 									</div>
 								</div>
 							</div>
@@ -580,11 +595,11 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
 										<input type="text" class="form-control" id="specializzazione"
 											name="specializzazione"
-											value="<c:forEach var="specializzazione"
-												items="${mostraCandidato.candidatoSpecializzazione}">
-												<span>${specializzazione.specializzazione.specializzazione}
-													&nbsp ${specializzazione.anni} anni esperienza</span>
-											</c:forEach>"></input>
+											value="<c:forEach var=" specializzazione"
+                                            items="${mostraCandidato.candidatoSpecializzazione}">
+                                        <span>${specializzazione.specializzazione.specializzazione}
+                                            &nbsp ${specializzazione.anni} anni esperienza</span>
+                                        </c:forEach>"></input>
 									</div>
 								</div>
 							</div>
@@ -752,8 +767,8 @@
 	</div>
 
 	<!-- MODAL FEEDBACK -->
-	<div class="modal fade" id="modificaFeedbackModal" tabindex="-1"
-		role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
+		aria-labelledby="feedbackModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
