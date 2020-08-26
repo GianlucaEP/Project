@@ -83,39 +83,17 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		
 		
 		Session session=Utility.getSession();
-//		Business business=session.byId(Business.class).getReference(businessUnit);
-//		CriteriaBuilder cb = session.getCriteriaBuilder();
-//		CriteriaQuery<Candidato> cq = cb.createQuery(Candidato.class);
-//		Root<Candidato> root = cq.from(Candidato.class);
-//		Join<Object, Object> business= root.join(Candidato);
-//		 
-//		ParameterExpression<String> unitBusiness= cb.parameter(String.class);
-//		cq.where(cb.like(business.get(business.business), unitBusiness));
-//		 
-//		TypedQuery<Candidato> q = session.createQuery(cq);
-//		q.setParameter(unitBusiness, "%"+businessUnit+"%");
-//		List<Candidato> authors = q.getResultList();
-//		
-		
+
 		
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<Candidato> criteriaQuery = criteriaBuilder.createQuery(Candidato.class);
 		Root<Candidato> root = criteriaQuery.from(Candidato.class);
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
-		
-
-
-//		Path<String> business = root.join("business").get("business");
-//		criteriaQuery.select(root).where(criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%"));
-
-//		criteriaQuery.select(root).where(criteriaBuilder.like(root.get("business"), "%"+candidato.getBusiness()+"%"));
-		
+			
 		Predicate[] predicates = new Predicate[2];
 		predicates[0] = criteriaBuilder.like(root.get("cognome"), "%"+cognome+"%");
 		predicates[1] = criteriaBuilder.like(business.get("business"), "%"+businessUnit+"%");
 		criteriaQuery.select(root).where(predicates);
-
-
 
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 		
