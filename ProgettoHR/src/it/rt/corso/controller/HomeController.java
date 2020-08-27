@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
+import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
@@ -47,6 +48,7 @@ public class HomeController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
+	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 //	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
 
 	@RequestMapping("/Home/{businessUnit}")
@@ -54,13 +56,15 @@ public class HomeController {
 
 		// Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
-
+		List<Mansione> mansioneList = mansioneDAO.getLista();
+		
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("cognome", "");
 		m.addAttribute("filterMap", hashMap);
 		return "Home";
@@ -72,8 +76,6 @@ public class HomeController {
 		
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
-		String nome = requestParams.get("nome");
-		String cognome = requestParams.get("cognome");
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);

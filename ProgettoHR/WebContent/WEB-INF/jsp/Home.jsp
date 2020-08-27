@@ -102,17 +102,21 @@ html, body {
 			class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md px-4">
 			<div class="col">
 				<div class="input-group mb-3">
-				
+
 					<form action="/ProgettoHR/Home/filter/${businessUnit}"
 						method="post">
 						<label>nome</label> <input type="text" name="nome"
-							class="form-control" 
-							 aria-describedby="basic-addon2">
-						<label>cognome</label>
-						 <input type="text" name="cognome"
-							class="form-control"
-							 aria-describedby="basic-addon2">
-
+							class="form-control" aria-describedby="basic-addon2"> <label>cognome</label>
+						<input type="text" name="cognome" class="form-control"
+							aria-describedby="basic-addon2">
+						<c:forEach var="mans" items="${mansioneList}"
+							varStatus="contatore">
+							<div>
+								<input type="checkbox" name="mansione"
+									value="${mans.mansione}" />
+								${mans.mansione}
+							</div>
+						</c:forEach>
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary" type="submit">Button</button>
 						</div>
