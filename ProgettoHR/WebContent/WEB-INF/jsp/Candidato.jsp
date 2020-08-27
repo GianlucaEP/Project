@@ -74,110 +74,140 @@
 			<div class="col-auto p-0 pr-1"
 				style="opacity: 0.9; border-radius: 1px 10px 10px 5px; background-color: #0466c8;">
 
-				<button data-toggle="modal" data-target="#aggiungiMansione"
-					type="button" class="btn btn-dark btn-block mt-1 text-left"
-					style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
-					<i class="fas fa-plus-square mr-1"></i> Mansione <i
-						class="fas fa-briefcase" style="vertical-align: auto;"></i></a>
 
-					<button type="button" data-toggle="modal"
-						data-target="#modificaFeedbackModal"
-						class="btn btn-dark btn-block  mt-1 text-left"
-						style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
-						<i class="fas fa-plus-square"></i> Qualification meeting <i
-							class="fas fa-brain"></i>
-					</button>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta mansione'}">
+							<button data-toggle="modal" data-target="#aggiungiMansione"
+								type="button" class="btn btn-dark btn-block mt-1 text-left"
+								style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
+								<i class="fas fa-plus-square mr-1"></i> Mansione <i
+									class="fas fa-briefcase" style="vertical-align: auto;"></i>
+							</button>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
-					<button type="button" data-toggle="modal"
-						data-target="#modificaFeedbackModal"
-						class="btn btn-dark btn-block  mt-1 text-left"
-						style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
-						<i class="fas fa-plus-square"></i> Economics<i
-							class="fas fa-coins pl-1"></i>
-					</button>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when
+							test="${funz.funzionalita == 'aggiunta qualification meeting'}">
+							<button type="button" data-toggle="modal"
+								data-target="#modificaFeedbackModal"
+								class="btn btn-dark btn-block  mt-1 text-left"
+								style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
+								<i class="fas fa-plus-square"></i> Qualification meeting <i
+									class="fas fa-brain"></i>
+							</button>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
-					<button type="button" data-toggle="modal"
-						data-target="#modificaFeedbackModal"
-						class="btn btn-dark btn-block  mt-1 text-left"
-						style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
-						<i class="fas fa-plus-square"></i> Costi<i
-							class="fas fa-euro-sign pl-1"></i>
-					</button>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta economics'}">
+							<button type="button" data-toggle="modal"
+								data-target="#modificaFeedbackModal"
+								class="btn btn-dark btn-block  mt-1 text-left"
+								style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
+								<i class="fas fa-plus-square"></i> Economics<i
+									class="fas fa-coins pl-1"></i>
+							</button>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
-					<!-- Dropdown feedback -->
-					<c:forEach var="funz" items="${ruolo.funzionalita}">
-						<c:choose>
-							<c:when test="${funz.funzionalita == 'aggiunta feedback'}">
-								<div>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta costi'}">
+							<button type="button" data-toggle="modal"
+								data-target="#modificaFeedbackModal"
+								class="btn btn-dark btn-block  mt-1 text-left"
+								style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;">
+								<i class="fas fa-plus-square"></i> Costi<i
+									class="fas fa-euro-sign pl-1"></i>
+							</button>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
-									<button
-										class="btn btn-primary btn-block mt-1 text-center dropdown-toggle "
-										style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
-										role="button" id="menuFeedback" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false">Feedback</button>
+				<!-- Dropdown feedback -->
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta feedback'}">
+							<div>
 
-									<div class="dropdown-menu btn-block"
-										style="background-color: transparent; border-color: transparent;"
-										aria-labelledby="dropdownMenuLink">
+								<button
+									class="btn btn-primary btn-block mt-1 text-center dropdown-toggle "
+									style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
+									role="button" id="menuFeedback" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Feedback</button>
 
-										<button onclick="impostaTipoFeedback('Colloquio HR')"
-											type="button" data-toggle="modal"
-											data-target="#feedbackModal"
-											class="btn btn-primary btn-block m-0 text-left"
-											style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
-											<i class="fas fa-plus-square mr-1"></i> Colloquio HR<i
-												class="fas fa-user-tie pl-1" style="vertical-align: auto;"></i>
-										</button>
+								<div class="dropdown-menu btn-block"
+									style="background-color: transparent; border-color: transparent;"
+									aria-labelledby="dropdownMenuLink">
 
-										<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
-											type="button" data-toggle="modal"
-											data-target="#feedbackModal"
-											class="btn btn-primary btn-block mt-1 text-left"
-											style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
-											<i class="fas fa-plus-square mr-1"></i> Colloquio tecnico<i
-												class="fas fa-user pl-1" style="vertical-align: auto;"></i>
-										</button>
+									<button onclick="impostaTipoFeedback('Colloquio HR')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-primary btn-block m-0 text-left"
+										style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
+										<i class="fas fa-plus-square mr-1"></i> Colloquio HR<i
+											class="fas fa-user-tie pl-1" style="vertical-align: auto;"></i>
+									</button>
 
-										<button onclick="impostaTipoFeedback('Mail')" type="button"
-											data-toggle="modal" data-target="#feedbackModal"
-											class="btn btn-success btn-block mt-1 text-left"
-											style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
-											<i class="fas fa-plus-square mr-1"></i> E-mail <i
-												class="fas fa-envelope-open-text pl-1"
-												style="vertical-align: auto;"></i>
-										</button>
+									<button onclick="impostaTipoFeedback('Colloquio Tecnico')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-primary btn-block mt-1 text-left"
+										style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
+										<i class="fas fa-plus-square mr-1"></i> Colloquio tecnico<i
+											class="fas fa-user pl-1" style="vertical-align: auto;"></i>
+									</button>
 
-										<button onclick="impostaTipoFeedback('Social')" type="button"
-											data-toggle="modal" data-target="#feedbackModal"
-											class="btn btn-success btn-block mt-1 text-left"
-											style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
-											<i class="fas fa-plus-square mr-1"></i> Social network <i
-												class="fas fa-comment-dots pl-1"
-												style="vertical-align: auto;"></i>
-										</button>
+									<button onclick="impostaTipoFeedback('Mail')" type="button"
+										data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left"
+										style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
+										<i class="fas fa-plus-square mr-1"></i> E-mail <i
+											class="fas fa-envelope-open-text pl-1"
+											style="vertical-align: auto;"></i>
+									</button>
 
-										<button onclick="impostaTipoFeedback('Telefonata')"
-											type="button" data-toggle="modal"
-											data-target="#feedbackModal"
-											class="btn btn-success btn-block mt-1 text-left"
-											style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
-											<i class="fas fa-plus-square mr-1"></i> Telefonata <i
-												class="fas fa-phone pl-1" style="vertical-align: auto;"></i>
-										</button>
+									<button onclick="impostaTipoFeedback('Social')" type="button"
+										data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left"
+										style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
+										<i class="fas fa-plus-square mr-1"></i> Social network <i
+											class="fas fa-comment-dots pl-1"
+											style="vertical-align: auto;"></i>
+									</button>
 
-									</div>
+									<button onclick="impostaTipoFeedback('Telefonata')"
+										type="button" data-toggle="modal" data-target="#feedbackModal"
+										class="btn btn-success btn-block mt-1 text-left"
+										style="background-color: #03045e; border-color: transparent; border-radius: 10px 10px 10px 10px;">
+										<i class="fas fa-plus-square mr-1"></i> Telefonata <i
+											class="fas fa-phone pl-1" style="vertical-align: auto;"></i>
+									</button>
+
 								</div>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+							</div>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 
-					<!-- Bottone AGGIUNTA FILE -->
-					<button type="button"
-						class="btn btn-primary btn-block mt-1 text-center"
-						style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
-						data-toggle="modal" data-target="#allegatiModal">
-						Allegati <i class="fa fa-upload text-right " aria-hidden="true"></i>
-					</button>
+				<!-- Bottone AGGIUNTA FILE -->
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'aggiunta allegati'}">
+							<button type="button"
+								class="btn btn-primary btn-block mt-1 text-center"
+								style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
+								data-toggle="modal" data-target="#allegatiModal">
+								Allegati <i class="fa fa-upload text-right " aria-hidden="true"></i>
+							</button>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 			</div>
 
 			<!-- Modal AGGIUNTA FILE -->
@@ -507,38 +537,44 @@
 				</c:forEach>
 
 				<!-- Tabella ALLEGATI -->
-				<table
-					class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-					<thead>
+				<c:forEach var="funz" items="${ruolo.funzionalita}">
+					<c:choose>
+						<c:when test="${funz.funzionalita == 'visualizza allegati'}">
+							<table
+								class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+								<thead>
 
-						<tr>
-							<th colspan=3 class="text-center table-secondary"
-								style="background-color: #98c1d9">ALLEGATI</th>
-						</tr>
+									<tr>
+										<th colspan=3 class="text-center table-secondary"
+											style="background-color: #98c1d9">ALLEGATI</th>
+									</tr>
 
-						<tr>
-							<th scope="col">Nome Allegato</th>
-							<th scope="col">File</th>
-						</tr>
+									<tr>
+										<th scope="col">Nome Allegato</th>
+										<th scope="col">File</th>
+									</tr>
 
-					</thead>
+								</thead>
 
-					<tbody>
-						<c:forEach var="allegato" items="${mostraCandidato.file}">
-							<tr>
-								<td>${allegato.nomeFile}</td>
-								<td>${allegato.tipo}</td>
-								<td><a
-									href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
-									class="btn btn-success custom-width">Download</a></td>
-								<td><a
-									href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
-									class="btn btn-danger custom-width">Delete</a></td>
+								<tbody>
+									<c:forEach var="allegato" items="${mostraCandidato.file}">
+										<tr>
+											<td>${allegato.nomeFile}</td>
+											<td>${allegato.tipo}</td>
+											<td><a
+												href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
+												class="btn btn-success custom-width">Download</a></td>
+											<td><a
+												href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
+												class="btn btn-danger custom-width">Delete</a></td>
 
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 			</div>
 
 			<!-- MODAL modifica ANAGRAFICA -->
@@ -904,12 +940,19 @@
 						<tr>
 							<th colspan=5 class="text-center table-success"
 								style="background-color: #fca311">QUALIFICATION MEETING <!-- Bottone modifica qualification meeting-->
-								<button type="button" data-toggle="modal"
-									data-target="#modificaQualificationMeetingModal"
-									class="btn btn-light float-md-right"
-									style="background-color: #fcbf49; border-color: transparent;">
-									<i class="fas fa-pen "></i>
-								</button>
+								<c:forEach var="funz" items="${ruolo.funzionalita}">
+									<c:choose>
+										<c:when
+											test="${funz.funzionalita == 'modifica qualification meeting'}">
+											<button type="button" data-toggle="modal"
+												data-target="#modificaQualificationMeetingModal"
+												class="btn btn-light float-md-right"
+												style="background-color: #fcbf49; border-color: transparent;">
+												<i class="fas fa-pen "></i>
+											</button>
+										</c:when>
+									</c:choose>
+								</c:forEach>
 							</th>
 						</tr>
 
@@ -952,12 +995,18 @@
 						<tr>
 							<th colspan=3 class="text-center table-secondary"
 								style="background-color: #e7d8c9">FEEDBACK <!-- Bottone modifica feedback -->
-								<button type="button" data-toggle="modal"
-									data-target="#modificaFeedbackModal"
-									class="btn btn-light float-md-right"
-									style="background-color: #ddbea9; border-color: transparent;">
-									<i class="fas fa-pen "></i>
-								</button>
+								<c:forEach var="funz" items="${ruolo.funzionalita}">
+									<c:choose>
+										<c:when test="${funz.funzionalita == 'modifica feedback'}">
+											<button type="button" data-toggle="modal"
+												data-target="#modificaFeedbackModal"
+												class="btn btn-light float-md-right"
+												style="background-color: #ddbea9; border-color: transparent;">
+												<i class="fas fa-pen "></i>
+											</button>
+										</c:when>
+									</c:choose>
+								</c:forEach>
 							</th>
 						</tr>
 
