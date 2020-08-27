@@ -82,6 +82,11 @@ public class Candidato implements Bean {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Feedback> feedback;
 
+	// ONE-TO-MANY con la classe UploadFile
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
+	Set<UploadFile> file;
+
 	// ONE-TO-MANY con la classe QualificationMetting
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
@@ -267,6 +272,14 @@ public class Candidato implements Bean {
 
 	public void setArea(List<AreaCompetenza> area) {
 		this.area = area;
+	}
+
+	public Set<UploadFile> getFile() {
+		return file;
+	}
+
+	public void setFile(Set<UploadFile> file) {
+		this.file = file;
 	}
 
 }

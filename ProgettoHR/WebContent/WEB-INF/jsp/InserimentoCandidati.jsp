@@ -156,7 +156,7 @@ body {
 						</div>
 					</div>
 
-					<!--	<div class="row w-100 p-2 justify-content-md-start">
+				<!--  <div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
@@ -167,7 +167,9 @@ body {
 
 							</div>
 						</div>
-					</div>-->
+					</div>
+					-->
+
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
@@ -230,58 +232,103 @@ body {
 					</div>
 					-->
 					<div class="row w-100 p-2 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-						<div class="form-group">
-							<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazioni</div>
-							<c:forEach var="spec" items="${specializzazioneList}"
-								varStatus="contatore">
-								<div>
-									<form:checkbox
-										onclick="mostraInputAnniEsperienza(${contatore.index})"
-										path="candidatoSpecializzazione[${contatore.index}].specializzazione.specializzazione"
-										value="${spec.specializzazione}" />
-									${spec.specializzazione}
-									<form:input
-										path="candidatoSpecializzazione[${contatore.index}].anni"
-										type="hidden" placeholder="anni esperienza"
-										class="form-control" name="anniEsperienza"></form:input>
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazioni</div>
+								<c:forEach var="spec" items="${specializzazioneList}"
+									varStatus="contatore">
+									<div>
+										<form:checkbox
+											onclick="mostraInputAnniEsperienza(${contatore.index})"
+											path="candidatoSpecializzazione[${contatore.index}].specializzazione.specializzazione"
+											value="${spec.specializzazione}" />
+										${spec.specializzazione}
+										<form:input
+											path="candidatoSpecializzazione[${contatore.index}].anni"
+											type="hidden" placeholder="anni esperienza"
+											class="form-control" name="anniEsperienza"></form:input>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">
+
+									<form:checkbox path="categoriaProtetta"
+										class="form-check form-check-inline" id="categoriaProtetta"
+										name="categoriaProtetta" style="float:rigth;"></form:checkbox>
+									Categoria Protetta
 								</div>
-							</c:forEach>
+
+
+							</div>
 						</div>
 					</div>
-					</div>
-			
 
-
-			<div class="row w-100 p-2 justify-content-md-start">
-				<div class="col w-100 p-0 justify-content-md-start">
-					<div class="form-group">
-						<div class="row w-100 p-0 mb-2 justify-content-md-start">
-
-							<form:checkbox path="categoriaProtetta"
-								class="form-check form-check-inline" id="categoriaProtetta"
-								name="categoriaProtetta" style="float:rigth;"></form:checkbox>
-							Categoria Protetta
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
-
-
 					</div>
-				</div>
+				</form:form>
 			</div>
-			
-			<div class="row w-100 p-2 justify-content-md-start">
-				<div class="col w-100 p-0 justify-content-md-start">
-					<button type="submit" class="btn btn-primary btn-block">Salva</button>
-					<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-				</div>
-			</div>
-			</form:form>
+
 		</div>
-
-	</div>
 	</div>
 
 
+	<!-- <div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
+		role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="feedbackModalLabel">Area
+						Competenza</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="candidato"
+							action="/ProgettoHR/CandidatiSave/${businessUnit}">
+							<div class="row w-100 p-2 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
+										<c:forEach var="area" items="${areaCompetenzaList}"
+											varStatus="contatore">
+											<div>
+												<form:checkbox path="area[${contatore.index}].area"
+													value="${area.area}" />
+												${area.area}
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" class="btn btn-primary btn-block" data-dismiss="modal">Aggiungi
+										Area Competenza</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+ -->
 
 
 	<script type="text/javascript">
@@ -290,7 +337,7 @@ body {
 		stringId = "candidatoSpecializzazione" + contatore + ".anni";
 		 var x = document.getElementById(stringId);
 		 if (x.type === 'hidden') {
-		    x.type = 'visible';
+		    x.type = 'number';
 		  } else {
 		    x.type = 'hidden';
 		  }

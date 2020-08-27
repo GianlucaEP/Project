@@ -40,6 +40,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="qualificationMeetingDAO"
 		class="it.rt.corso.DAOImpl.QualificationMeetingDAOImpl">
 	</bean>
+	
+	<bean id="uploadFileDAO"
+		class="it.rt.corso.DAOImpl.UploadFileDAOImpl">
+	</bean>
 
 
 	<bean id="utenteDAO" class="it.rt.corso.DAOImpl.UtenteDAOImpl">

@@ -31,6 +31,7 @@
 		<mapping class="it.rt.corso.beans.Seniority"/>
 		<mapping class="it.rt.corso.beans.Costo"/>
 		<mapping class="it.rt.corso.beans.Economics"/>
+		<mapping class="it.rt.corso.beans.UploadFile"/>
 		
 		
 		
