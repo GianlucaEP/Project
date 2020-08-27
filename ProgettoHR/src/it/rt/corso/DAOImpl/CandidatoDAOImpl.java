@@ -64,42 +64,55 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	public List<Candidato> getListaByBusinessUnit(String businessUnit) {
 
 		Utility.buildSession();
-		
-		
-		Session session=Utility.getSession();
-		
-		Business bus=session.byId(Business.class).getReference(businessUnit);
-		
+
+		Session session = Utility.getSession();
+
+		Business bus = session.byId(Business.class).getReference(businessUnit);
+
 		Set<Candidato> lista = bus.getCandidato();
-		
+
 		List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
-		
+
 		return listacandidatoByBusinessUnit;
 	}
-	
+
 	@Override
-	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter ) {
+	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter) {
 
 		Utility.buildSession();
-		
-		
-		Session session=Utility.getSession();
 
-		
+		Session session = Utility.getSession();
+
+		// creo builder di criteria
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+		// Crea a CriteriaQuery object with the specified resulttype. (classe candidato)
 		CriteriaQuery<Candidato> criteriaQuery = criteriaBuilder.createQuery(Candidato.class);
+
+		// Create and add a query root corresponding to the given entity,forming a
+		// cartesian product with any existing roots.
 		Root<Candidato> root = criteriaQuery.from(Candidato.class);
+
+		// join tra candidato e business
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
-	
-		
-		Predicate[] predicates = new Predicate[3];
-		predicates[0] = criteriaBuilder.like(root.get("cognome"), "%"+mappaFilter.get("cognome")+"%");
-		predicates[1] = criteriaBuilder.like(business.get("business"), "%"+businessUnit+"%");
-		predicates[2] = criteriaBuilder.like(root.get("nome"), "%"+mappaFilter.get("nome")+"%");
+
+		// crea una serie di condizioni, WHERE
+
+		Predicate[] predicates = new Predicate[mappaFilter.size()+1];
+		int i = 1;
+		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%");
+		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
+			predicates[i] = criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%");
+			i++;
+		}
+
+
+		// unisce i pezzi creatin in precedenza, per comporre la query completa (root,
+		// predicates)
 		criteriaQuery.select(root).where(predicates);
 
 		Query<Candidato> query = session.createQuery(criteriaQuery);
-		
+
 		List<Candidato> lista = (List<Candidato>) query.getResultList();
 		return lista;
 	}
