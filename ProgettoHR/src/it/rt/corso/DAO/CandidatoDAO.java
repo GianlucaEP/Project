@@ -15,6 +15,16 @@ public interface CandidatoDAO {
 	public List<Candidato> getLista();
 	public List<Candidato> getListaByBusinessUnit(String businessUnit);
 
+	/** Create and execute query to Candidato table, joining Business unit specified by the String businessUnit, to get 
+	 * a List of type Candidato using the parameters contained in the Map mappaFilter as where clauses
+	 * 
+	 * @param businessUnit String that specifies the business unit wich the Candidato is part of
+	 * 
+	 * @param mappaFilter Map containing the filters names and the value of the filter wich has to be used to create the query
+	 * 
+	 * @return the List of Candidato, wich has to be printed inside the table, filtered by the user
+	 * 
+	 * */
 	List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter);
 	
 	

@@ -98,13 +98,14 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// crea una serie di condizioni, WHERE
 
-		Predicate[] predicates = new Predicate[mappaFilter.size()+1];
+		Predicate[] predicates = new Predicate[mappaFilter.size()+1]; //La length dell'array è decisa dalla size della Map dei filtri 
+																	  //più una cella per la business unit
 		int i = 1;
-		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%");
+		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"); //predicato per la business unit
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
 			predicates[i] = criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%");
 			i++;
-		}
+		} //cicla la mappa dei filtri e aggiunge all'array predicates i predicati neccsari per custruire le where della query
 
 
 		// unisce i pezzi creatin in precedenza, per comporre la query completa (root,
