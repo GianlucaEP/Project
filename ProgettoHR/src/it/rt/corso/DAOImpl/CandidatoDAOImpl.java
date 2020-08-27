@@ -27,6 +27,7 @@ import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Funzionalita;
+import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
 
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
@@ -96,17 +97,26 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		// join tra candidato e business
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 
+		// join tra candidato e mansione
+		Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
+
 		// crea una serie di condizioni, WHERE
 
-		Predicate[] predicates = new Predicate[mappaFilter.size()+1]; //La length dell'array è decisa dalla size della Map dei filtri 
-																	  //più una cella per la business unit
+		Predicate[] predicates = new Predicate[mappaFilter.size() + 1]; // La length dell'array è decisa dalla size
+																		// della Map dei filtri
+																		// più una cella per la business unit
 		int i = 1;
-		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"); //predicato per la business unit
+		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"); // predicato per la
+																									// business unit
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
-			predicates[i] = criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%");
+			if (entry.getKey().contains("mansione")) {
+				predicates[i] = criteriaBuilder.like(mansione.get("mansione"), "%" + entry.getValue() + "%");
+			} else {
+				predicates[i] = criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%");
+			}
 			i++;
-		} //cicla la mappa dei filtri e aggiunge all'array predicates i predicati neccsari per custruire le where della query
-
+		} // cicla la mappa dei filtri e aggiunge all'array predicates i predicati
+			// neccsari per custruire le where della query
 
 		// unisce i pezzi creatin in precedenza, per comporre la query completa (root,
 		// predicates)

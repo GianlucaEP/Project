@@ -77,6 +77,10 @@ public class HomeController {
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
+		
+		List<Mansione> mansioneList = mansioneDAO.getLista();
+		
+		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
