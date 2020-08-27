@@ -86,8 +86,10 @@ public class Candidato implements Bean {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<UploadFile> file;
-
+	
+	
 	// ONE-TO-MANY con la classe QualificationMetting
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
 

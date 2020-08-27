@@ -218,7 +218,7 @@
                         </div>
                         <div class="modal-body">
                             <form:form modelAttribute="mansione" id="formMansione" method="POST"
-                                action="/ProgettoHR/MansioniSave/${businessUnit}" onsubmit="return validate();">
+                                action="/ProgettoHR/MansioniSaveInCandidato/${mostraCandidato.id}" onsubmit="return validate();">
                                 <div class="form-group">
                                     <form:input path="mansione" type="text" class="form-control" placeholder="Mansione"
                                         id="mansione" name="mansione"></form:input>
@@ -889,13 +889,13 @@
                     <tbody>
 
                         <tr>
-                            <c:forEach var="qm" items="${mostraCandidato.QualificationMeeting}">
+                            <c:forEach var="qualificationMeeting" items="${mostraCandidato.qm}">
 
-                                <td>${qm.cliente}</td>
-                                <td>${qm.dataPresentato}</td>
-                                <td>${qm.riferimentoGara}</td>
-                                <td>${qm.dataColloquio}</td>
-                                <td>${qm.feedback}</td>
+                                <td>${qualificationMeeting.cliente}</td>
+                                <td>${qualificationMeeting.dataPresentato}</td>
+                                <td>${qualificationMeeting.riferimentoGara}</td>
+                                <td>${qualificationMeeting.dataColloquio}</td>
+                                <td>${qualificationMeeting.feedback}</td>
 
                             </c:forEach>
                         </tr>

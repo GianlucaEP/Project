@@ -144,6 +144,8 @@ public class CandidatiController {
 
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
+		m.addAttribute("mansione", new Mansione());
+		
 		m.addAttribute("mostraCandidato", c);
 
 		m.addAttribute("feedback", new Feedback());

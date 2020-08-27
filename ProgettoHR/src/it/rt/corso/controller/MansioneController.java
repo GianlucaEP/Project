@@ -20,8 +20,14 @@ public class MansioneController {
 	MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
 	
 	@RequestMapping(value = "/MansioniSave/{businessUnit}", method = RequestMethod.POST)
-	public String aggiungiCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
+	public String aggiungiMansioneHome(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
 		dao.inserisci(mansione); 
 		return "redirect:/Home/{businessUnit}";
+	}
+	
+	@RequestMapping(value = "/MansioniSaveInCandidato/{id}", method = RequestMethod.POST)
+	public String aggiungiMansioneCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable int id) {
+		dao.inserisci(mansione); 
+		return "redirect:/Candidato/{id}";
 	}
 }
