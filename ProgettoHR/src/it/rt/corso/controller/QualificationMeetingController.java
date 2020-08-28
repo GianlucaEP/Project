@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.QualificationMeetingDAO;
@@ -28,11 +29,11 @@ public class QualificationMeetingController {
 			.getBean("qualificationMeetingDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping(value = "/AggiungiQu/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiQualificationMeeting/{id}", method = RequestMethod.POST)
 	public String aggiungiFeedback(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@ModelAttribute("utente") Utente utente, @PathVariable int id) {
+			@PathVariable int id, @SessionAttribute("utente") Utente utente) {
 		Candidato c = dao.get(id);
-		qualificationMeeting.setUserInsert("Chiara");
+		qualificationMeeting.setUserInsert(utente.getUsername());
 		Date ora = new Date();
 		qualificationMeeting.setDateInsert(ora);
 		qualificationMeeting.setCandidato(c);

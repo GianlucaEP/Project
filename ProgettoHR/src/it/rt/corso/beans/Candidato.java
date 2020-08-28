@@ -69,12 +69,12 @@ public class Candidato implements Bean {
 	private StatoCandidato stato;
 
 	// MANY-TO-ONE con la classe Costo
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "costo")
 	private Costo costo;
 
 	// MANY-TO-ONE con la classe Economics
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "economics")
 	private Economics economics;
 

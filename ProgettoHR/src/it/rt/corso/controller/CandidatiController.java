@@ -70,7 +70,8 @@ public class CandidatiController {
 	}
 
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
-	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato, @PathVariable String businessUnit) {
+	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato,
+			@PathVariable String businessUnit) {
 
 		// Inserisce lo stato di default "nuovo inserito"
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
@@ -128,35 +129,28 @@ public class CandidatiController {
 	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
 
 		Candidato c = candidatoDAO.get(id);
-		/*List<Mansione> listaMansione = mansioneDAO.getIdByCandidato(id);
-		List<AreaCompetenza> listaAreaComp = areaCompetenzaDAO.getIdByCandidato(id);
-		
-		List<Economics> e = economicsDAO.getByIdCandidato(id);
-		List<Costo> co = costoDAO.getByIdCandidato(id);
-		*/
+
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
 		m.addAttribute("mostraFeedback", f);
-		
-		//m.addAttribute("listaMansione", listaMansione);
-		
-		//m.addAttribute("listaAreaComp", listaAreaComp);
+
+		// m.addAttribute("listaMansione", listaMansione);
+
+		// m.addAttribute("listaAreaComp", listaAreaComp);
 
 		// List<Feedback> feedbacks = c.getFeedback();
 		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mansione", new Mansione());
-		
+
 		m.addAttribute("mostraCandidato", c);
 
 		m.addAttribute("feedback", new Feedback());
 
 		m.addAttribute("tipoFeedback", new TipoFeedback());
-		
+
+		m.addAttribute("qualificationMeeting", new QualificationMeeting());
+
 		m.addAttribute("ruolo", utente.getRuolo());
-		
-		//m.addAttribute("mostraEconomics", e);
-		
-		//m.addAttribute("mostraCosto", co);
 
 		// m.addAttribute("listaFeedback", feedbacks);
 		// m.addAttribute("listaFeedback", listQM);
@@ -170,13 +164,37 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-	@RequestMapping(value = "/Modifica/{id}/{statoInput}", method = RequestMethod.POST)
-	public String modifica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+	@RequestMapping(value = "/ModificaAnagrafica/{id}/{statoInput}", method = RequestMethod.POST)
+	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
 			@PathVariable String statoInput) {
+		Candidato candidato = candidatoDAO.get(id);
 		StatoCandidato statoOutput = (StatoCandidato) factory.getBean(statoInput);
-		c.setStato(statoOutput);
+		candidato.setStato(statoOutput);
+		candidato.setNome(c.getNome());
+		candidato.setCognome(c.getCognome());
+		candidato.setAnno(c.getAnno());
+		candidato.setTelefono(c.getTelefono());
+		candidato.setEmail(c.getEmail());
+		candidato.setInserimentoAzienda(c.getInserimentoAzienda());
+		candidatoDAO.aggiorna(candidato);
+		return "redirect:/Candidato/{id}";
+	}
 
-		candidatoDAO.aggiorna(c);
+	@RequestMapping(value = "/ModificaCosto/{id}", method = RequestMethod.POST)
+	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+
+		candidato.setCosto(c.getCosto());
+		candidatoDAO.aggiorna(candidato);
+		return "redirect:/Candidato/{id}";
+	}
+
+	@RequestMapping(value = "/ModificaEconomics/{id}", method = RequestMethod.POST)
+	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+
+		candidato.setEconomics(c.getEconomics());
+		candidatoDAO.aggiorna(candidato);
 		return "redirect:/Candidato/{id}";
 	}
 

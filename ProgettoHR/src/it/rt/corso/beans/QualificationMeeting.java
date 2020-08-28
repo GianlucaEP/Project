@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "qualification_meeting")
 public class QualificationMeeting implements Bean{
@@ -20,8 +22,10 @@ public class QualificationMeeting implements Bean{
 	private int id;
 	@Column(name = "cliente")
 	private String cliente;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "data_presentato")
 	private Date dataPresentato;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "data_colloquio")
 	private Date dataColloquio;
 	@Column(name = "feedback")
