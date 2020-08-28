@@ -97,7 +97,7 @@ html, body {
 
 		</div>
 
-		<!-- Search -->
+		<!-- Filtro -->
 		<div
 			class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md px-4">
 			<div class="row">
@@ -105,7 +105,7 @@ html, body {
 					<div class="input-group mb-3">
 
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
-							method="post">
+							method="post" >
 							<label>nome</label> <input type="text" name="nome"
 								class="form-control" aria-describedby="basic-addon2"> <label>cognome</label>
 							<input type="text" name="cognome" class="form-control"
@@ -113,8 +113,8 @@ html, body {
 							<c:forEach var="mans" items="${mansioneList}"
 								varStatus="contatore">
 								<div>
-									<input type="checkbox" name="mansione${contatore.index}" value="${mans.mansione}" />
-									${mans.mansione}
+									<input type="checkbox" name="mansione${contatore.index}"
+										value="${mans.mansione}" /> ${mans.mansione}
 								</div>
 							</c:forEach>
 							<div class="input-group-append">
@@ -258,7 +258,38 @@ html, body {
 		</div>
 	</div>
 
+	<div class="modal fade" id="filterErrorModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">Nessun filtro inserito.</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script>
+		function validateFilter(contatore) {
+			var control = true;
+			var nome = document.getElementsByName("nome")[0].value;
+			var cognome = document.getElementsByName("cognome")[0].value;
+
+			if (nome === "" && cognome === "" && document.querySelectorAll("input:checked").length === 0) {
+				$("#filterErrorModal").modal()
+				return !control;
+			}
+
+			return control;
+		}
 		function changeDotColor(stato) {
 			if (stato === "attivo") {
 				document.getElementById("dot").className = "dot bg-success";
