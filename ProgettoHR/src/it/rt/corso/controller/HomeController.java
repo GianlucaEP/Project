@@ -61,7 +61,7 @@ public class HomeController {
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
-		
+
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
@@ -70,24 +70,23 @@ public class HomeController {
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("statoCandidatoList", statoCandidatoList);
-		m.addAttribute("filterMap", hashMap); //da togliere
+		m.addAttribute("filterMap", hashMap); // da togliere
 		return "Home";
 	}
 
 	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
-		
+
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
 //		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
-		
+
 		List<Candidato> list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
-		
+
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
-		
-	
+
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
