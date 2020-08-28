@@ -116,9 +116,9 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// della Map dei filtri
 		List<Predicate> listaPredicates = new ArrayList<Predicate>();
-
+		//Lista per gestire le mansioni da inserire nella or
 		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
-
+		//aggiungi business unit nei predicates
 		listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
 
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
@@ -133,16 +133,18 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 			}
 
-		}
-
+		}//ciclo per inserire nei predicati dei filtri nelle rispettive liste
+		
+		
+		//trasforma la lista in array per inserire i predicati delle mansioni nella or
 		Predicate[] predicatesMansioni = listaPredicatesMansioni.toArray(new Predicate[listaPredicatesMansioni.size()]);
-
+		//aggiunge alla lista di tutti i predicati la or delle mansioni
 		listaPredicates.add(criteriaBuilder.or(predicatesMansioni));
-
+		//trasforma in array la lista di tutti i predicati
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
-
+		//costruzione della query
 		criteriaQuery.select(root).where(predicates);
-
+		//esecuzione della query
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 
 		List<Candidato> lista = (List<Candidato>) query.getResultList();
