@@ -12,6 +12,14 @@ public class Utility {
 	private static SessionFactory factory;
 	private static Session session;
 
+	
+	/** 
+	 * 
+	 * Build an hibernate session to connect to database
+	 * 
+	 * @return the builded session
+	 * 
+	 * */
 	public static Session buildSession() {
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 
@@ -22,7 +30,14 @@ public class Utility {
 
 		return session;
 	}
-
+	
+	/** 
+	 * 
+	 * Build an hibernate session if a session has not previuosly built
+	 * 
+	 * @return the builded session
+	 * 
+	 * */
 	public static Session getSession() {
 		if (session == null) {
 			session = buildSession();
@@ -31,6 +46,11 @@ public class Utility {
 		return session;
 	}
 
+	/** 
+	 * 
+	 * Destroy the current session
+	 * 
+	 * */
 	public static void destroySession() {
 		factory.close();
 		session.close();
