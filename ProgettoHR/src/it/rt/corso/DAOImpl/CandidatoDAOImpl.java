@@ -77,18 +77,6 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		return listacandidatoByBusinessUnit;
 	}
 
-	private int countKey(String keyName, Map<String, String> mappa) {
-
-		int count = 0;
-		for (Map.Entry<String, String> entry : mappa.entrySet()) {
-			if (entry.getKey().contains(keyName)) {
-				count++;
-			}
-		}
-		return count;
-
-	}
-
 	@Override
 	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter) {
 
