@@ -27,6 +27,8 @@ public interface CandidatoDAO {
 	 * */
 	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter);
 	
+	public List<Candidato> getListaByBusinessUnitFilteredByStato(String businessUnit, String stato);
+	
 	
 	
 }

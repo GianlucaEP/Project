@@ -120,7 +120,7 @@ html, body {
 										value="${mans.mansione}" /> ${mans.mansione}
 								</div>
 							</c:forEach> -->
-							<select id="stati" name="stati">
+							<select id="stati" name="stato">
 								<c:forEach var="stato" items="${statoCandidatoList}">
 									<option value="${stato.descrizione}">${stato.descrizione}</option></c:forEach>
 							</select>
@@ -154,19 +154,19 @@ html, body {
 					<c:forEach var="cand" items="${list}">
 						<tr>
 							<td><c:choose>
-									<c:when test="${ cand.stato.descrizione == 'attivo'}">
+									<c:when test="${ cand.stato.descrizione == 'Attivo'}">
 										<span id="dot" data-toggle="tooltip" data-placement="top"
 											title="Attivo" class="dot bg-success"></span>
 									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'selezionato'}">
+									<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
 										<span id="dot" data-toggle="tooltip" data-placement="top"
 											title="Selezionato" class="dot bg-primary"></span>
 									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'da_contattare'}">
+									<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
 										<span id="dot" data-toggle="tooltip" data-placement="top"
 											title="Da contattare" class="dot bg-warning"></span>
 									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'scartato'}">
+									<c:when test="${ cand.stato.descrizione == 'Scartato'}">
 										<span id="dot" data-toggle="tooltip" data-placement="top"
 											title="Scartato" class="dot bg-danger"></span>
 									</c:when>
