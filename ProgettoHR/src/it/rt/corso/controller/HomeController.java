@@ -66,7 +66,7 @@ public class HomeController {
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("cognome", "");
-		m.addAttribute("filterMap", hashMap);
+		m.addAttribute("filterMap", hashMap); //da togliere
 		return "Home";
 	}
 
@@ -80,6 +80,7 @@ public class HomeController {
 		
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		
+	
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);

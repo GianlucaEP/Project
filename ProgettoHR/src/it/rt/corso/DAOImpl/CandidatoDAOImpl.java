@@ -77,6 +77,18 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		return listacandidatoByBusinessUnit;
 	}
 
+	private int countKey(String keyName, Map<String, String> mappa) {
+
+		int count = 0;
+		for (Map.Entry<String, String> entry : mappa.entrySet()) {
+			if (entry.getKey().contains(keyName)) {
+				count++;
+			}
+		}
+		return count;
+
+	}
+
 	@Override
 	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter) {
 
@@ -102,24 +114,33 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// crea una serie di condizioni, WHERE
 
-		Predicate[] predicates = new Predicate[mappaFilter.size() + 1]; // La length dell'array è decisa dalla size
-																		// della Map dei filtri
-																		// più una cella per la business unit
-		int i = 1;
-		predicates[0] = criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"); // predicato per la
-																									// business unit
-		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
-			if (entry.getKey().contains("mansione")) {
-				predicates[i] = criteriaBuilder.like(mansione.get("mansione"), "%" + entry.getValue() + "%");
-			} else {
-				predicates[i] = criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%");
-			}
-			i++;
-		} // cicla la mappa dei filtri e aggiunge all'array predicates i predicati
-			// neccsari per custruire le where della query
+		// della Map dei filtri
+		List<Predicate> listaPredicates = new ArrayList<Predicate>();
 
-		// unisce i pezzi creatin in precedenza, per comporre la query completa (root,
-		// predicates)
+		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
+
+		listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
+
+		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
+
+			if (entry.getKey().contains("mansione")) {
+
+				listaPredicatesMansioni
+						.add(criteriaBuilder.like(mansione.get("mansione"), "%" + entry.getValue() + "%"));
+
+			} else {
+				listaPredicates.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
+
+			}
+
+		}
+
+		Predicate[] predicatesMansioni = listaPredicatesMansioni.toArray(new Predicate[listaPredicatesMansioni.size()]);
+
+		listaPredicates.add(criteriaBuilder.or(predicatesMansioni));
+
+		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
+
 		criteriaQuery.select(root).where(predicates);
 
 		Query<Candidato> query = session.createQuery(criteriaQuery);
