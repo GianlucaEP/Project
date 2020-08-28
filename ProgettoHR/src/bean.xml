@@ -54,6 +54,9 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	
 	<bean id="costoDAO" class="it.rt.corso.DAOImpl.CostoDAOImpl">
 	</bean>
+	
+	<bean id="statoCandidatoDAO" class="it.rt.corso.DAOImpl.StatoCandidatoDAOImpl">
+	</bean>
 
 	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
 		<property name="descrizione" value="nuovo_inserito" />

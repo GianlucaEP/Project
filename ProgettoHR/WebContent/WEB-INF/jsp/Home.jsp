@@ -94,6 +94,9 @@ html, body {
 					</button>
 				</c:when>
 			</c:choose>
+			<a href="/ProgettoHR/Filter/${businessUnit}" type="button"
+				class="btn btn-primary btn-block mt-1 text-left">Filtri<i
+				class="fas fa-user"></i></a>
 
 		</div>
 
@@ -105,8 +108,8 @@ html, body {
 					<div class="input-group mb-3">
 
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
-							method="post" >
-							<label>nome</label> <input type="text" name="nome"
+							method="post">
+							<!-- <label>nome</label> <input type="text" name="nome"
 								class="form-control" aria-describedby="basic-addon2"> <label>cognome</label>
 							<input type="text" name="cognome" class="form-control"
 								aria-describedby="basic-addon2"> <label>mansione</label>
@@ -116,7 +119,11 @@ html, body {
 									<input type="checkbox" name="mansione${contatore.index}"
 										value="${mans.mansione}" /> ${mans.mansione}
 								</div>
-							</c:forEach>
+							</c:forEach> -->
+							<select id="stati" name="stati">
+								<c:forEach var="stato" items="${statoCandidatoList}">
+									<option value="${stato.descrizione}">${stato.descrizione}</option></c:forEach>
+							</select>
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="submit">Button</button>
 							</div>
@@ -283,7 +290,8 @@ html, body {
 			var nome = document.getElementsByName("nome")[0].value;
 			var cognome = document.getElementsByName("cognome")[0].value;
 
-			if (nome === "" && cognome === "" && document.querySelectorAll("input:checked").length === 0) {
+			if (nome === "" && cognome === ""
+					&& document.querySelectorAll("input:checked").length === 0) {
 				$("#filterErrorModal").modal()
 				return !control;
 			}

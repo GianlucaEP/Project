@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.MansioneDAO;
+import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.Utente;
 
 // ------------------------------------------------------------------------
@@ -49,6 +51,7 @@ public class HomeController {
 
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
+	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 //	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
 
 	@RequestMapping("/Home/{businessUnit}")
@@ -57,6 +60,7 @@ public class HomeController {
 		// Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		List<Mansione> mansioneList = mansioneDAO.getLista();
+		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
 		
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
@@ -65,7 +69,7 @@ public class HomeController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneList);
-		m.addAttribute("cognome", "");
+		m.addAttribute("statoCandidatoList", statoCandidatoList);
 		m.addAttribute("filterMap", hashMap); //da togliere
 		return "Home";
 	}
