@@ -43,9 +43,9 @@ public class FilterController {
 			mansioneListString.add(mansione.getMansione());
 		}
 		
-		String[] stringArray= new String[mansioneListString.size()];
-		
-		stringArray= mansioneListString.toArray(stringArray);
+//		String[] stringArray= new String[mansioneListString.size()];
+//		
+//		stringArray= mansioneListString.toArray(stringArray);
 		
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
@@ -53,7 +53,7 @@ public class FilterController {
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", stringArray);
+		m.addAttribute("mansioneList", mansioneListString);
 //		m.addAttribute("cognome", "");
 //		m.addAttribute("filterMap", hashMap); //da togliere
 		return "FiltroAvanzato";
