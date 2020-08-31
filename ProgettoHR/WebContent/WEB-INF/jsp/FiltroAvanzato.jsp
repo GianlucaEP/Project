@@ -39,6 +39,126 @@ html, body {
 	border-radius: 50%;
 	display: inline-block;
 }
+
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #3e8e41;
+}
+
+#myInput {
+	box-sizing: border-box;
+	background-image: url('searchicon.png');
+	background-position: 14px 12px;
+	background-repeat: no-repeat;
+	font-size: 16px;
+	padding: 14px 20px 12px 45px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {
+	outline: 3px solid #ddd;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f6f6f6;
+	min-width: 230px;
+	overflow: auto;
+	border: 1px solid #ddd;
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}
+
+--------------------------------------
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font: 16px Arial;
+}
+
+.autocomplete {
+	/*the container must be positioned relative:*/
+	position: relative;
+	display: inline-block;
+}
+
+input {
+	border: 1px solid transparent;
+	background-color: #f1f1f1;
+	padding: 10px;
+	font-size: 16px;
+}
+
+input[type=text] {
+	background-color: #f1f1f1;
+	width: 100%;
+}
+
+input[type=submit] {
+	background-color: DodgerBlue;
+	color: #fff;
+}
+
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	/*position the autocomplete items to be the same width as the container:*/
+	top: 100%;
+	left: 0;
+	right: 0;
+}
+
+.autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+	/*when hovering an item:*/
+	background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+	/*when navigating through the items using the arrow keys:*/
+	background-color: DodgerBlue !important;
+	color: #ffffff;
+}
 </style>
 
 <!-- Meta -->
@@ -96,20 +216,44 @@ html, body {
 			</c:choose>-->
 				<div class="col">
 					<div class="input-group mb-3">
+						<form autocomplete="off" action="/ProgettoHR/Filter/advanced/${businessUnit}">
+							<div class="autocomplete" style="width: 300px;">
+								<input id="myInput" type="text" name="myCountry"
+									placeholder="Country">
+							</div>
+							<input type="submit">
+						</form>
 
 						<form action="/ProgettoHR/Filter/advanced/${businessUnit}"
 							method="post">
-							 <label>nome</label> <input type="text" name="nome"
+							<label>nome</label> <input type="text" name="nome"
 								class="form-control" aria-describedby="basic-addon2"> <label>cognome</label>
 							<input type="text" name="cognome" class="form-control"
-								aria-describedby="basic-addon2"> <label>mansione</label>
-							<c:forEach var="mans" items="${mansioneList}"
-								varStatus="contatore">
-								<div>
-									<input type="checkbox" name="mansione${contatore.index}"
-										value="${mans.mansione}" /> ${mans.mansione}
+								aria-describedby="basic-addon2">
+
+							<div class="dropdown">
+								<!--  <button onclick="myFunction()" class="dropbtn">Dropdown</button>-->
+
+								<input oninput="myFunction()" type="text" placeholder="Search.."
+									id="myInput" onkeyup="filterFunction()">
+								<div id="myDropdown" class="dropdown-content">
+									<c:forEach var="mans" items="${mansioneList}"
+										varStatus="contatore">
+										<div id="prova">
+											<input class="mansioni" type="checkbox"
+												name="mansione${contatore.index}" value="${mans.mansione}" />
+											<label id="label">${mans.mansione}</label>
+										</div>
+									</c:forEach>
+									<!--  	<a href="#about">About</a> <a href="#base">Base</a> <a
+										href="#blog">Blog</a> <a href="#contact">Contact</a> <a
+										href="#custom">Custom</a> <a href="#support">Support</a> <a
+										href="#tools">Tools</a>-->
 								</div>
-							</c:forEach>
+							</div>
+
+							<label>mansione</label>
+
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="submit">Button</button>
 							</div>
@@ -147,205 +291,139 @@ html, body {
 				</div>
 			</div>-->
 				<!-- Tabella principale -->
+				<!--  -->
 			</div>
-			<div
-				class="col-md-2 col-lg-10 p-0 justify-content-md-center table-responsive-md px-4">
-				<table
-					class="table table-striped text-center table-hover shadow  bg-white">
 
-					<!-- Testa della tabella -->
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Stato</th>
-							<th scope="col">Business unit</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Cognome</th>
-							<th scope="col">Area Competenza</th>
-							<th scope="col">Mansione</th>
-							<th scope="col">Seniority</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
+		</div>
 
-					<!-- Corpo della tabella -->
-					<tbody>
-						<c:forEach var="cand" items="${list}">
-							<tr>
-								<td><c:choose>
-										<c:when test="${ cand.stato.descrizione == 'attivo'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Attivo" class="dot bg-success"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'selezionato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Selezionato" class="dot bg-primary"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'da_contattare'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Da contattare" class="dot bg-warning"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'scartato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Scartato" class="dot bg-danger"></span>
-										</c:when>
-										<c:otherwise>
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Nuovo inserito" class="dot bg-secondary"></span>
-										</c:otherwise>
-									</c:choose></td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-									${cand.business.business}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.nome}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">${cand.cognome}</td>
-
-								<td><c:forEach var="area" items="${cand.area}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${area.area}</span>
-									</c:forEach></td>
-
-								<td><c:forEach var="mansione" items="${cand.mansione}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${mansione.mansione}</span>
-									</c:forEach></td>
-
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-									${cand.seniority.seniority}</td>
-								<td data-toggle="modal" data-target="#EliminaModal"><i
-									class="fas fa-trash-alt"></i></td>
-							</tr>
-							<!-- The Modal -->
-							<!--  <div class="modal" id="EliminaModal">
-							<div class="modal-dialog">
-								<div class="modal-content">
-
-									
-									<div class="modal-header">
-										<h4 class="modal-title">Elimina Candidato</h4>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-
-								
-									<div class="modal-body">Sei sicuro di voler eliminare il
-										candidato ${cand.nome} ${cand.cognome}?</div>
-
-								
-									<div class="modal-footer">
-										<button
-											onclick="window.location = '/ProgettoHR/Elimina/${cand.id}'"
-											type="button" class="btn btn-success" data-dismiss="modal">Si</button>
-										<button onclick="window.location = '/ProgettoHR/Home'"
-											type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-									</div>
-
-								</div>
+		<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Aggiunta
+							Mansione</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form:form modelAttribute="mansione" id="formMansione"
+							method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
+							onsubmit="return validate();">
+							<div class="form-group">
+								<form:input path="mansione" type="text" class="form-control"
+									placeholder="Mansione" id="mansione" name="mansione"></form:input>
 							</div>
-						</div>-->
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
-						Mansione</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
-						onsubmit="return validate();">
-						<div class="form-group">
-							<form:input path="mansione" type="text" class="form-control"
-								placeholder="Mansione" id="mansione" name="mansione"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-block">Salva</button>
+								<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+							</div>
+						</form:form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="modal fade" id="filterErrorModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Nessun filtro inserito.</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+		<div class="modal fade" id="filterErrorModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">Nessun filtro inserito.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<script>
-		function validateFilter(contatore) {
-			var control = true;
-			var nome = document.getElementsByName("nome")[0].value;
-			var cognome = document.getElementsByName("cognome")[0].value;
+		<script>
+			function validateFilter(contatore) {
+				var control = true;
+				var nome = document.getElementsByName("nome")[0].value;
+				var cognome = document.getElementsByName("cognome")[0].value;
 
-			if (nome === "" && cognome === ""
-					&& document.querySelectorAll("input:checked").length === 0) {
-				$("#filterErrorModal").modal()
-				return !control;
+				if (nome === ""
+						&& cognome === ""
+						&& document.querySelectorAll("input:checked").length === 0) {
+					$("#filterErrorModal").modal()
+					return !control;
+				}
+
+				return control;
+			}
+			function changeDotColor(stato) {
+				if (stato === "attivo") {
+					document.getElementById("dot").className = "dot bg-success";
+				}
 			}
 
-			return control;
-		}
-		function changeDotColor(stato) {
-			if (stato === "attivo") {
-				document.getElementById("dot").className = "dot bg-success";
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+
+			function validate() {
+				var mansione = document.getElementById("mansione").value;
+				var list = document.getElementById("formMansione");
+				var control = true;
+
+				if (mansione === "") {
+
+					var tagDiv = document.createElement("div");
+					tagDiv.style = "color:red; font-size: small;"
+					var textnode = document
+							.createTextNode("Inserisci Mansione")
+					tagDiv.appendChild(textnode)
+					document.getElementById("mansione").appendChild(tagDiv);
+					control = false;
+
+				}
+
+				return control;
 			}
-		}
+		</script>
 
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-
-		function validate() {
-			var mansione = document.getElementById("mansione").value;
-			var list = document.getElementById("formMansione");
-			var control = true;
-
-			if (mansione === "") {
-
-				var tagDiv = document.createElement("div");
-				tagDiv.style = "color:red; font-size: small;"
-				var textnode = document.createTextNode("Inserisci Mansione")
-				tagDiv.appendChild(textnode)
-				document.getElementById("mansione").appendChild(tagDiv);
-				control = false;
-
+		<script>
+			/* When the user clicks on the button,
+			 toggle between hiding and showing the dropdown content */
+			function myFunction() {
+				if (!document.getElementById("myDropdown").classList
+						.toggle("show")) {
+					document.getElementById("myDropdown").classList
+							.toggle("show");
+				}
+				if (document.getElementById("myInput").value == "") {
+					document.getElementById("myDropdown").classList
+							.toggle("show");
+				}
 			}
 
-			return control;
-		}
-	</script>
+			function filterFunction() {
+				var input, filter, ul, li, a, i;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				div = document.getElementById("myDropdown");
+				checkbox = div.getElementsByTagName("input");
+				for (i = 0; i < checkbox.length; i++) {
+					txtValue = checkbox[i].value;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						checkbox[i].style.display = "block";
 
+					} else {
+						document.getElementById("prova").style.display = "none";
+						checkbox[i].style.display = "none";
+					}
+				}
+			}
+		</script>
 </body>
 
 </html>
