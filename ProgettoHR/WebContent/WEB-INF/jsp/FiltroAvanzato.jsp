@@ -540,7 +540,7 @@ input[type=submit] {
 			}
 
 			function getMansione(list) {
-				var res = list.replace("[", "").replace("]", "").split(",");
+				var res = list.replace("[", "").replace("]", "").split(", ");
 				autocomplete(document.getElementById("myInput"), res);
 			}
 		</script>
