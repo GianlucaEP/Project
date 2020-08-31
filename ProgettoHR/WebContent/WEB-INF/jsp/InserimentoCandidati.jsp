@@ -51,7 +51,7 @@ body {
 		<div class="row justify-content-md-start">
 			<div class="col-auto p-0 bg-primary" style="opacity: 0.8;">
 
-				<a href="/ProgettoHR/Home" type="button"
+				<a href="/ProgettoHR/Home/${businessUnit}]" type="button"
 					class="btn btn-primary btn-block  m-0 text-left"
 					style="border-radius: 0;">Torna alla Home <i
 					class="fas fa-home float-right"></i></a> <a href="/ProgettoHR/Mansioni"
@@ -62,7 +62,8 @@ body {
 
 			<div align="center" class="col-auto m-2 p-2 border ">
 				<h1>Inserimento Candidato</h1>
-				<form:form method="POST" modelAttribute="candidato"
+				<form:form autocomplete="off" method="POST"
+					modelAttribute="candidato"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
@@ -156,7 +157,7 @@ body {
 						</div>
 					</div>
 
-				<!--  <div class="row w-100 p-2 justify-content-md-start">
+					<!--  <div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
@@ -170,7 +171,7 @@ body {
 					</div>
 					-->
 
-					<div class="row w-100 p-2 justify-content-md-start">
+					<!-- <div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
@@ -182,6 +183,37 @@ body {
 										${area.area}
 									</div>
 								</c:forEach>
+							</div>
+						</div>
+					</div>-->
+
+					<div class="row w-100 p-2 justify-content-md-start">
+						<div class="col w-100 p-0 justify-content-md-start">
+							<div class="form-group">
+								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
+
+
+
+
+
+
+								<input list="browsers" name="browser">
+								<div>
+
+									<datalist id="browsers">
+										<c:forEach var="area" items="${areaCompetenzaList}"
+											varStatus="contatore">
+											<form:select path="area[${contatore.index}].area" name="area"
+												class="custom-select mb-3">
+
+												<form:option value="${area.area}" ></form:option>
+											</form:select>
+										</c:forEach>
+
+									</datalist>
+
+								</div>
+
 							</div>
 						</div>
 					</div>
