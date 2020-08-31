@@ -44,7 +44,7 @@
 
                 <!-- logo (da sistemare) -->
                 <h1>
-                    <span class="navbar-text text-white"> <a href="/ProgettoHR/Home"><img alt="logo"
+                    <span class="navbar-text text-white"> <a href="/ProgettoHR/Home/${businessUnit}"><img alt="logo"
                                 src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
 
                 </h1>
