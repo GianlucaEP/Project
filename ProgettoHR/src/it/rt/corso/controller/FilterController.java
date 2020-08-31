@@ -1,5 +1,6 @@
 package it.rt.corso.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,13 +36,24 @@ public class FilterController {
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		
+		List<String> mansioneListString= new ArrayList<String>();
+		
+		for (Mansione mansione : mansioneList) {
+			
+			mansioneListString.add(mansione.getMansione());
+		}
+		
+		String[] stringArray= new String[mansioneListString.size()];
+		
+		stringArray= mansioneListString.toArray(stringArray);
+		
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneList);
+		m.addAttribute("mansioneList", stringArray);
 //		m.addAttribute("cognome", "");
 //		m.addAttribute("filterMap", hashMap); //da togliere
 		return "FiltroAvanzato";
