@@ -60,8 +60,6 @@ public class UploadFileController {
 		return "redirect:/Candidato/{id}";
 	}
 
-	
-
 	@RequestMapping(value = "/download/{candidatoId}/{fileId}", method = RequestMethod.GET)
 	public String downloadDocument(@PathVariable int candidatoId, @PathVariable int fileId,
 			HttpServletResponse response) throws IOException {
@@ -74,6 +72,13 @@ public class UploadFileController {
 
 		return "redirect:/Candidato/{candidatoId}";
 
+	}
+
+	@RequestMapping(value = { "/delete/{candidatoId}/{fileId}" }, method = RequestMethod.GET)
+	public String deleteDocument(@PathVariable int candidatoId, @PathVariable int fileId) {
+		UploadFile file = uploadFileDAO.get(fileId);
+		uploadFileDAO.cancella(file);
+		return "redirect:/Candidato/{candidatoId}";
 	}
 
 }

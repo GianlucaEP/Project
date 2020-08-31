@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.FeedbackDAO;
@@ -32,15 +33,32 @@ public class FeedbackController {
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/AggiungiFeedback/{id}", method = RequestMethod.POST)
-	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback,@ModelAttribute("utente") Utente utente, @PathVariable int id) {
+	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id) {
 		 Candidato c = dao.get(id);
 		 TipoFeedback tp = tipoFeedbackDAO.get(feedback.getTipo().getTipo());
 		 feedback.setTipo(tp);
-		 feedback.setUserInsert("Chiara");
+		 feedback.setUserInsert(utente.getUsername());
          Date ora = new Date();
 		 feedback.setDateInsert(ora);
 		 feedback.setCandidato(c);
 		 feedbackDAO.inserisci(feedback);
+
+
+		return "redirect:/Candidato/{id}";
+
+	}
+	
+	@RequestMapping(value = "/ModificaFeedback/{id}", method = RequestMethod.POST)
+	public String modificaFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id) {
+		 Feedback f = feedbackDAO.get(feedback.getId());
+		 TipoFeedback tp = tipoFeedbackDAO.get(f.getTipo().getTipo());
+		 f.setTipo(tp);
+		 f.setData(feedback.getData());
+		 f.setCommento(feedback.getCommento());
+		 f.setUserInsert(utente.getUsername());
+         Date ora = new Date();
+		 f.setDateInsert(ora);
+		 feedbackDAO.aggiorna(f);
 
 
 		return "redirect:/Candidato/{id}";

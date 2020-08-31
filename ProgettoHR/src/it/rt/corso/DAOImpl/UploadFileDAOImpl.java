@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.UploadFileDAO;
+import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Costo;
 import it.rt.corso.beans.UploadFile;
 import it.rt.corso.utility.Utility;
@@ -18,6 +19,11 @@ public class UploadFileDAOImpl extends BaseDAO implements UploadFileDAO {
 	@Override
 	public UploadFile get(int id) {
 		return (UploadFile) super.get(UploadFile.class, id);
+	}
+	
+	@Override
+	public UploadFile cancella(UploadFile file) {
+		return (UploadFile) super.cancella(file);
 	}
 
 	@Override

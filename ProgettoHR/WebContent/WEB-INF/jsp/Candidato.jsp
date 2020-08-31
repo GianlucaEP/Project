@@ -39,7 +39,7 @@
 </head>
 
 <body
-	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}' )">
+	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}' )">
 
 	<!-- Navbar -->
 	<div class="container-fluid">
@@ -308,7 +308,7 @@
 						<c:forEach var="funz" items="${ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza economics'}">
-									<table
+									<table id="economicsTable"
 										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 										<tbody>
 
@@ -433,7 +433,7 @@
 						<c:forEach var="funz" items="${ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza costi'}">
-									<table
+									<table id="costiTable"
 										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 										<tbody>
 
@@ -486,21 +486,9 @@
 							<thead>
 
 								<tr>
-									<th colspan=5 class="text-center table-success"
+									<th colspan=6 class="text-center table-success"
 										style="background-color: #fca311">QUALIFICATION MEETING <!-- Bottone modifica qualification meeting-->
-										<c:forEach var="funz" items="${ruolo.funzionalita}">
-											<c:choose>
-												<c:when
-													test="${funz.funzionalita == 'modifica qualification meeting'}">
-													<button type="button" data-toggle="modal"
-														data-target="#modificaQualificationMeetingModal"
-														class="btn btn-light float-md-right"
-														style="background-color: #fcbf49; border-color: transparent;">
-														<i class="fas fa-pen "></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach>
+
 									</th>
 								</tr>
 
@@ -527,6 +515,21 @@
 										<td>${qualificationMeeting.riferimentoGara}</td>
 										<td>${qualificationMeeting.dataColloquio}</td>
 										<td>${qualificationMeeting.feedback}</td>
+										<td><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when
+														test="${funz.funzionalita == 'modifica qualification meeting'}">
+														<button
+															onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}', '${qualificationMeeting.cliente}', '${qualificationMeeting.dataPresentato}', '${qualificationMeeting.riferimentoGara}', '${qualificationMeeting.dataColloquio}', '${qualificationMeeting.feedback}' )"
+															type="button" data-toggle="modal"
+															data-target="#modificaQualificationMeetingModal"
+															class="btn btn-light float-md-right"
+															style="background-color: #fcbf49; border-color: transparent;">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach></td>
 									</tr>
 								</c:forEach>
 
@@ -541,20 +544,8 @@
 							<thead>
 
 								<tr>
-									<th colspan=3 class="text-center table-secondary"
+									<th colspan=4 class="text-center table-secondary"
 										style="background-color: #e7d8c9">FEEDBACK <!-- Bottone modifica feedback -->
-										<c:forEach var="funz" items="${ruolo.funzionalita}">
-											<c:choose>
-												<c:when test="${funz.funzionalita == 'modifica feedback'}">
-													<button type="button" data-toggle="modal"
-														data-target="#modificaFeedbackModal"
-														class="btn btn-light float-md-right"
-														style="background-color: #ddbea9; border-color: transparent;">
-														<i class="fas fa-pen "></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach>
 									</th>
 								</tr>
 
@@ -571,6 +562,20 @@
 										<td>${feed.data}</td>
 										<td>${feed.tipo.tipo}</td>
 										<td>${feed.commento}</td>
+										<td><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when test="${funz.funzionalita == 'modifica feedback'}">
+														<button
+															onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
+															type="button" data-toggle="modal"
+															data-target="#modificaFeedbackModal"
+															class="btn btn-light float-md-right"
+															style="background-color: #ddbea9; border-color: transparent;">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -580,7 +585,7 @@
 						<c:forEach var="funz" items="${ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza allegati'}">
-									<table
+									<table id="allegatiTable"
 										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 										<thead>
 
@@ -846,7 +851,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							action="/ProgettoHR/ModificaEconomics/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiModificaEconomics/${mostraCandidato.id}">
 
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -931,7 +936,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							action="/ProgettoHR/ModificaCosto/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiModificaCosto/${mostraCandidato.id}">
 
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -979,6 +984,7 @@
 		</div>
 	</div>
 
+
 	<!--  MODAL MODIFICA QUALIFICATION MEETING-->
 	<div class="modal fade" id="modificaQualificationMeetingModal"
 		tabindex="-1" role="dialog" aria-labelledby="modificaModalLabel"
@@ -995,16 +1001,26 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST"
-							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-
+						<form:form method="POST" modelAttribute="qualificationMeeting"
+							action="/ProgettoHR/ModificaQualificationMeeting/${mostraCandidato.id}">
+							
+							<div style="visibility: hidden"
+								class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start"></div>
+										<form:input path="id" type="hidden" class="form-control"
+											id="idQualificationMeeting" name="idQualificationMeeting" value=""></form:input>
+									</div>
+								</div>
+							</div>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
-										<input type="text" class="form-control" id="costoOrario"
-											name="costoOrario" value="${costo.orario}"></input>
+										<form:input id="clienteQualificationMeeting" type="text" class="form-control" 
+											path="cliente" name="costoOrario"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1013,8 +1029,9 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
 											di presentazione:</div>
-										<input type="text" class="form-control" id="costoGiornaliero"
-											name="costoGiornaliero" value="${costo.giornaliero}"></input>
+										<form:input id="dataPresentatoQualificationMeeting" type="date" pattern="yyyy-MM-dd"
+											class="form-control" 
+											path="dataPresentato" name="costoGiornaliero"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1023,8 +1040,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Riferimento
 											gara:</div>
-										<input type="text" class="form-control" id="commenti"
-											name="commenti" value="${costo.commento}"></input>
+										<form:input type="text" class="form-control" id="riferimentoGaraQualificationMeeting"
+											path="riferimentoGara" name="commenti"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1033,8 +1050,9 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
 											colloquio:</div>
-										<input type="text" class="form-control" id="commenti"
-											name="commenti" value="${costo.commento}"></input>
+										<form:input type="date" pattern="yyyy-MM-dd"
+											class="form-control" id="dataColloquioQualificationMeeting" path="dataColloquio"
+											name="commenti"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1042,18 +1060,18 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<input type="text" class="form-control" id="commenti"
-											name="commenti" value="${costo.commento}"></input>
+										<form:input type="text" class="form-control" id="feedbackQualificationMeeting"
+											path="feedback" name="commenti"></form:input>
 									</div>
 								</div>
 							</div>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Salva</button>
+									<button type="submit" class="btn btn-primary btn-block">Modifica</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>
@@ -1075,25 +1093,36 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form method="POST"
-							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
+						<form:form method="POST" modelAttribute="feedback"
+							action="/ProgettoHR/ModificaFeedback/${mostraCandidato.id}">
 
+							<div style="visibility: hidden"
+								class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start"></div>
+										<form:input path="id" type="hidden" class="form-control"
+											id="idFeedback" name="idFeedback" value=""></form:input>
+									</div>
+								</div>
+							</div>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<div class="form-group">
+										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
+										<form:input path="tipo.tipo" type="text" class="form-control"
+											id="tipoModificaFeedback" name="tipoFeedback" value=""></form:input>
+									</div>
+								</div>
+							</div>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
-										<input type="text" class="form-control" id="costoOrario"
-											name="costoOrario" value="${costo.orario}"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo:</div>
-										<input type="text" class="form-control" id="costoGiornaliero"
-											name="costoGiornaliero" value="${costo.giornaliero}"></input>
+										<form:input id="dataFeedback" path="data" type="date"
+											pattern="yyyy-MM-dd" class="form-control" name="data"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1101,8 +1130,8 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<input type="text" class="form-control" id="commenti"
-											name="commenti" value="${costo.commento}"></input>
+										<form:input id="commentoFeedback" path="commento" type="text"
+											class="form-control" name="feedback"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1112,7 +1141,7 @@
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>
@@ -1213,8 +1242,9 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<form:input path="tipo.tipo" type="text" class="form-control"
-											id="tipoFeedback" name="tipoFeedback" value=""></form:input>
+										<form:input readonly="readonly" path="tipo.tipo" type="text"
+											class="form-control" id="tipoAggiungiFeedback"
+											name="tipoFeedback" value=""></form:input>
 									</div>
 								</div>
 							</div>
@@ -1337,7 +1367,7 @@
 
 	<script type="text/javascript">
 		function changeStato(stato, feedback, categoriaProtetta,
-				qualificationMeeting) {
+				qualificationMeeting, allegati, costi, economics) {
 			if (stato === "nuovo_inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
@@ -1356,7 +1386,10 @@
 			}
 
 			removeFeedbackTable(feedback);
-			removeQualificationMeetingTable(qualificationMeeting)
+			removeAllegatiTable(allegati);
+			removeCostiTable(costi);
+			removeEconomicsTable(economics);
+			removeQualificationMeetingTable(qualificationMeeting);
 			checkCategoriaProtetta(categoriaProtetta);
 
 		}
@@ -1376,6 +1409,27 @@
 			}
 		}
 
+		function removeAllegatiTable(allegati) {
+			if (allegati === "[]") {
+				var myobj = document.getElementById("allegatiTable");
+				myobj.remove();
+			}
+		}
+
+		function removeCostiTable(costi) {
+			if (costi === "") {
+				var myobj = document.getElementById("costiTable");
+				myobj.remove();
+			}
+		}
+
+		function removeEconomicsTable(economics) {
+			if (economics === "") {
+				var myobj = document.getElementById("economicsTable");
+				myobj.remove();
+			}
+		}
+
 		function checkCategoriaProtetta(categoriaProtetta) {
 			if (categoriaProtetta === "true") {
 				document.getElementById("categoriaProtetta").innerHTML = "Si";
@@ -1386,16 +1440,33 @@
 
 		function impostaTipoFeedback(tipoFeedback) {
 			if (tipoFeedback === "Mail") {
-				document.getElementById("tipoFeedback").value = tipoFeedback;
+				document.getElementById("tipoAggiungiFeedback").value = tipoFeedback;
 			} else if (tipoFeedback === "Telefonata") {
-				document.getElementById("tipoFeedback").value = tipoFeedback;
+				document.getElementById("tipoAggiungiFeedback").value = tipoFeedback;
 			} else if (tipoFeedback === "Colloquio HR") {
-				document.getElementById("tipoFeedback").value = tipoFeedback;
+				document.getElementById("tipoAggiungiFeedback").value = tipoFeedback;
 			} else if (tipoFeedback === "Colloquio Tecnico") {
-				document.getElementById("tipoFeedback").value = tipoFeedback;
+				document.getElementById("tipoAggiungiFeedback").value = tipoFeedback;
 			} else if (tipoFeedback === "Social") {
-				document.getElementById("tipoFeedback").value = tipoFeedback;
+				document.getElementById("tipoAggiungiFeedback").value = tipoFeedback;
 			}
+		}
+
+		function impostaParametriFeedback(id, tipo, data, commento) {
+			document.getElementById("idFeedback").value = id;
+			document.getElementById("tipoModificaFeedback").value = tipo;
+			document.getElementById("dataFeedback").value = data;
+			document.getElementById("commentoFeedback").value = commento;
+		}
+
+		function impostaParametriQualificationMeeting(id, cliente,
+				dataPresentato, riferimentoGara, dataColloquio, feedback) {
+			document.getElementById("idQualificationMeeting").value = id;
+			document.getElementById("clienteQualificationMeeting").value = cliente;
+			document.getElementById("dataPresentatoQualificationMeeting").value = dataPresentato;
+			document.getElementById("riferimentoGaraQualificationMeeting").value = riferimentoGara;
+			document.getElementById("dataColloquioQualificationMeeting").value = dataColloquio;
+			document.getElementById("feedbackQualificationMeeting").value = feedback;
 		}
 	</script>
 

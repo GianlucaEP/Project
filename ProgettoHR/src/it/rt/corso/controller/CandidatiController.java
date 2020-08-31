@@ -180,21 +180,47 @@ public class CandidatiController {
 		return "redirect:/Candidato/{id}";
 	}
 
-	@RequestMapping(value = "/ModificaCosto/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiModificaCosto/{id}", method = RequestMethod.POST)
 	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
 
-		candidato.setCosto(c.getCosto());
-		candidatoDAO.aggiorna(candidato);
+		if (candidato.getCosto() == null) {
+			//aggiungi costo per la prima volta di un dato candidato
+			candidato.setCosto(c.getCosto());
+			candidatoDAO.aggiorna(candidato);
+		}
+		
+		else {
+			//modifica costo di un dato candidato
+			candidato.getCosto().setOrario(c.getCosto().getOrario());
+			candidato.getCosto().setGiornaliero(c.getCosto().getGiornaliero());
+			candidato.getCosto().setCommento(c.getCosto().getCommento());
+			costoDAO.aggiorna(candidato.getCosto());
+		}
+		
 		return "redirect:/Candidato/{id}";
 	}
 
-	@RequestMapping(value = "/ModificaEconomics/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiModificaEconomics/{id}", method = RequestMethod.POST)
 	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
-
+		
+		if (candidato.getEconomics() == null) {
+			//aggiungi economics per la prima volta di un dato candidato
 		candidato.setEconomics(c.getEconomics());
 		candidatoDAO.aggiorna(candidato);
+		}
+		
+		else {
+			//modifica economics di un dato candidato
+			candidato.getEconomics().setInquadramento(c.getEconomics().getInquadramento());
+			candidato.getEconomics().setRal(c.getEconomics().getRal());
+			candidato.getEconomics().setBenefit(c.getEconomics().getBenefit());
+			candidato.getEconomics().setPreavviso(c.getEconomics().getPreavviso());
+			candidato.getEconomics().setDesiderata(c.getEconomics().getDesiderata());
+			economicsDAO.aggiorna(candidato.getEconomics());
+		}
+		
 		return "redirect:/Candidato/{id}";
 	}
 

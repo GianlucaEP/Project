@@ -30,7 +30,7 @@ public class QualificationMeetingController {
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/AggiungiQualificationMeeting/{id}", method = RequestMethod.POST)
-	public String aggiungiFeedback(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
+	public String aggiungiQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
 			@PathVariable int id, @SessionAttribute("utente") Utente utente) {
 		Candidato c = dao.get(id);
 		qualificationMeeting.setUserInsert(utente.getUsername());
@@ -38,6 +38,24 @@ public class QualificationMeetingController {
 		qualificationMeeting.setDateInsert(ora);
 		qualificationMeeting.setCandidato(c);
 		quafilicationMeetingDAO.inserisci(qualificationMeeting);
+
+		return "redirect:/Candidato/{id}";
+
+	}
+	
+	@RequestMapping(value = "/ModificaQualificationMeeting/{id}", method = RequestMethod.POST)
+	public String modificaQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
+			@PathVariable int id, @SessionAttribute("utente") Utente utente) {
+		QualificationMeeting qm = quafilicationMeetingDAO.get(qualificationMeeting.getId());
+		qm.setUserInsert(utente.getUsername());
+		qm.setCliente(qualificationMeeting.getCliente());
+		qm.setDataPresentato(qualificationMeeting.getDataPresentato());
+		qm.setDataColloquio(qualificationMeeting.getDataColloquio());
+		qm.setRiferimentoGara(qualificationMeeting.getRiferimentoGara());
+		qm.setFeedback(qualificationMeeting.getFeedback());
+		Date ora = new Date();
+		qualificationMeeting.setDateInsert(ora);
+		quafilicationMeetingDAO.aggiorna(qm);
 
 		return "redirect:/Candidato/{id}";
 

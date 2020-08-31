@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,8 +30,8 @@ public class Costo implements Bean {
 	private String commento;
 
 	// ONE-TO-MANY con Candidato
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "costo")
-	Set<Candidato> candidato;
+	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "costo")
+	private Candidato candidato;
 
 	public int getId() {
 		return id;
@@ -64,11 +65,11 @@ public class Costo implements Bean {
 		this.commento = commento;
 	}
 
-	public Set<Candidato> getCandidato() {
+	public Candidato getCandidato() {
 		return candidato;
 	}
 
-	public void setCandidato(Set<Candidato> candidato) {
+	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
 	}
 

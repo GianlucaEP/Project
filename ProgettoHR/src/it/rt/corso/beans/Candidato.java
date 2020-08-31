@@ -18,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 
@@ -68,13 +69,13 @@ public class Candidato implements Bean {
 	@JoinColumn(name = "stato")
 	private StatoCandidato stato;
 
-	// MANY-TO-ONE con la classe Costo
-	@ManyToOne(cascade = {CascadeType.ALL})
+	// ONE-TO-ONE con la classe Costo
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "costo")
 	private Costo costo;
 
-	// MANY-TO-ONE con la classe Economics
-	@ManyToOne(cascade = {CascadeType.ALL})
+	// ONE-TO-ONE con la classe Economics
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "economics")
 	private Economics economics;
 

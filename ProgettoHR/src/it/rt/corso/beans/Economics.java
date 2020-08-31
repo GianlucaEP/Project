@@ -11,18 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "economics")
 public class Economics implements Bean {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_economics")
 	private int id;
 	@Column(name = "inquadramento")
-	private String inquadramento; //TODO modificare nel database Inquadramento
+	private String inquadramento; // TODO modificare nel database Inquadramento
 	@Column(name = "RAL")
 	private double ral;
 	@Column(name = "benefit")
@@ -31,10 +32,10 @@ public class Economics implements Bean {
 	private String preavviso;
 	@Column(name = "desiderata")
 	private String desiderata;
-	
-	//ONE-TO-MANY con Candidato
-		@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "economics")
-		Set<Candidato> candidato;
+
+	// ONE-TO-ONE con Candidato
+	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "economics")
+	private Candidato candidato;
 
 	public int getId() {
 		return id;
@@ -84,14 +85,12 @@ public class Economics implements Bean {
 		this.desiderata = desiderata;
 	}
 
-	public Set<Candidato> getCandidato() {
+	public Candidato getCandidato() {
 		return candidato;
 	}
 
-	public void setCandidato(Set<Candidato> candidato) {
+	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
 	}
 
-	
-	
 }
