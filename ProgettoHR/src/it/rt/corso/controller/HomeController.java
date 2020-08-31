@@ -62,15 +62,12 @@ public class HomeController {
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
 
-		HashMap<String, String> hashMap = new HashMap<String, String>();
-
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("statoCandidatoList", statoCandidatoList);
-		m.addAttribute("filterMap", hashMap); // da togliere
 		return "Home";
 	}
 
