@@ -100,6 +100,10 @@ html, body {
 --------------------------------------
 
 
+
+
+
+
 * {
 	box-sizing: border-box;
 }
@@ -221,15 +225,6 @@ input[type=submit] {
 				<div class="col">
 					<div class="input-group mb-3">
 						<form autocomplete="off"
-							action="/ProgettoHR/Filter/advanced/${businessUnit}">
-							<div class="autocomplete" style="width: 300px;">
-								<input id="myInput" type="text" name="myCountry"
-									placeholder="Country">
-							</div>
-							<input type="submit">
-						</form>
-
-						<form autocomplete="off"
 							action="/ProgettoHR/Filter/advanced/${businessUnit}"
 							method="post">
 							<label>nome</label> <input type="text" name="nome"
@@ -237,24 +232,13 @@ input[type=submit] {
 							<input type="text" name="cognome" class="form-control"
 								aria-describedby="basic-addon2">
 
-							<div class="dropdown">
-								<!--  <button onclick="myFunction()" class="dropbtn">Dropdown</button>-->
-
-								<input oninput="myFunction()" type="text" placeholder="Search.."
-									id="myInput" onkeyup="filterFunction()">
-								<div id="myDropdown" class="dropdown-content">
-									<!-- foreach su discord -->
-									<!--  	<a href="#about">About</a> <a href="#base">Base</a> <a
-										href="#blog">Blog</a> <a href="#contact">Contact</a> <a
-										href="#custom">Custom</a> <a href="#support">Support</a> <a
-										href="#tools">Tools</a>-->
-								</div>
+							<div class="autocomplete" style="width: 300px;">
+								<input id="myInput" type="text" name="myCountry"
+									placeholder="Country">
 							</div>
 
-							<label>mansione</label>
-
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="submit">Button</button>
+								<button class="btn btn-primary" type="submit">Button</button>
 							</div>
 						</form>
 					</div>
@@ -425,7 +409,8 @@ input[type=submit] {
 				the text field element and an array of possible autocompleted values:*/
 				var currentFocus;
 				/*execute a function when someone writes in the text field:*/
-				inp.addEventListener(
+				inp
+						.addEventListener(
 								"input",
 								function(e) {
 									var a, b, i, val = this.value;
@@ -461,7 +446,8 @@ input[type=submit] {
 											/*insert a input field that will hold the current array item's value:*/
 											b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
 											/*execute a function when someone clicks on the item value (DIV element):*/
-											b.addEventListener(
+											b
+													.addEventListener(
 															"click",
 															function(e) {
 																/*insert the value for the autocomplete text field:*/
