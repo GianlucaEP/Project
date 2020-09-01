@@ -115,8 +115,10 @@ html, body {
 						aria-haspopup="true" aria-expanded="false">Business unit
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#">ICT</a> <a class="dropdown-item"
-							href="#">Telco</a> <a class="dropdown-item" href="#">Ingegneria</a>
+						<c:forEach var="business" items="${businessList}">
+							<a class="dropdown-item"
+								href="/ProgettoHR/Home/${business.business}">${business.business}</a>
+						</c:forEach>
 					</div>
 				</div>
 

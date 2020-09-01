@@ -52,6 +52,7 @@ public class HomeController {
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
+	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
 
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
@@ -60,10 +61,12 @@ public class HomeController {
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
+		List<Business> businessList = businessDAO.getLista();
 
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("businessList", businessList);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("statoCandidatoList", statoCandidatoList);
@@ -82,11 +85,13 @@ public class HomeController {
 
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
+		List<Business> businessList = businessDAO.getLista();
 
 		m.addAttribute("mansioneList", mansioneList);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("statoCandidatoList", statoCandidatoList);
+		m.addAttribute("businessList", businessList);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
 
