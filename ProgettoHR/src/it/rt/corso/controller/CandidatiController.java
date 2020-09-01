@@ -1,11 +1,13 @@
 package it.rt.corso.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.*;
+import it.rt.corso.DAOImpl.StatoCandidatoDAOImpl;
 import it.rt.corso.beans.*;
 
 @Controller
@@ -69,60 +73,127 @@ public class CandidatiController {
 		return "InserimentoCandidati";
 	}
 
+//	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
+//	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato,
+//			@PathVariable String businessUnit) {
+//
+//		// Inserisce lo stato di default "nuovo inserito"
+//		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
+//		candidato.setStato(stato);
+//
+//		// Ciclo for per Mansione
+//		List<Mansione> listMansione = new ArrayList<>();
+//		for (Mansione m : candidato.getMansione()) {
+//
+//			if (m.getMansione() != null) {
+//				Mansione mansione = mansioneDAO.get(m.getMansione());
+//				listMansione.add(mansione);
+//			}
+//		}
+//		candidato.setMansione(listMansione);
+//
+//		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
+//		candidato.setSeniority(seniority);
+//
+//		// Ciclo for per AreaCompetenza
+//		List<AreaCompetenza> listArea = new ArrayList<>();
+//		for (AreaCompetenza a : candidato.getArea()) {
+//
+//			if (a.getArea() != null) {
+//				AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
+//				listArea.add(area);
+//			}
+//
+//		}
+//		candidato.setArea(listArea);
+//
+//		// Inserisce il Business
+//		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
+//		candidato.setBusiness(business);
+//
+//		// Ciclo for per CandidatoSpecializzazione
+//		List<CandidatoSpecializzazione> listCandidatoSpecializzazione = new ArrayList<>();
+//		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
+//
+//			if (cs.getSpecializzazione().getSpecializzazione() != null) {
+//				Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
+//				cs.setSpecializzazione(s);
+//				cs.setCandidato(candidato);
+//				listCandidatoSpecializzazione.add(cs);
+//			}
+//
+//		}
+//		candidato.setCandidatoSpecializzazione(listCandidatoSpecializzazione);
+//
+//		candidatoDAO.inserisci(candidato);
+//		return "redirect:/Home/{businessUnit}";
+//	}
+//
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
-	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato,
+	public String aggiungiCandidato(@RequestParam Map<String, String> mappaCandidato,
 			@PathVariable String businessUnit) {
 
-		// Inserisce lo stato di default "nuovo inserito"
+		Candidato candidato = new Candidato();
+
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		candidato.setStato(stato);
 
-		// Ciclo for per Mansione
-		List<Mansione> listMansione = new ArrayList<>();
-		for (Mansione m : candidato.getMansione()) {
+		candidato.setNome(mappaCandidato.get("nome"));
+		candidato.setCognome(mappaCandidato.get("cognome"));
+		candidato.setAnno(Integer.parseInt(mappaCandidato.get("annoNascita")));
+		candidato.setTelefono(mappaCandidato.get("telefono"));
+		candidato.setEmail(mappaCandidato.get("email"));
 
-			if (m.getMansione() != null) {
-				Mansione mansione = mansioneDAO.get(m.getMansione());
-				listMansione.add(mansione);
-			}
-		}
-		candidato.setMansione(listMansione);
-
-		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
+		Seniority seniority = seniorityDAO.get(mappaCandidato.get("seniority"));
 		candidato.setSeniority(seniority);
 
-		// Ciclo for per AreaCompetenza
-		List<AreaCompetenza> listArea = new ArrayList<>();
-		for (AreaCompetenza a : candidato.getArea()) {
+		Business business = businessDAO.get(mappaCandidato.get("business"));
+		candidato.setBusiness(business);
+		
+		candidato.setProvenienza(mappaCandidato.get("provenienza"));
+		candidato.setCategoriaProtetta(Boolean.parseBoolean(mappaCandidato.get("provenienza")));
+//		candidato.setCodiceFiscale(mappaCandidato.get("codiceFiscale"));
+		
+	
 
-			if (a.getArea() != null) {
-				AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
-				listArea.add(area);
-			}
-
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(mappaCandidato.get("data"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		candidato.setArea(listArea);
+		candidato.setInserimentoAzienda(date);
 
-		// Inserisce il Business
-		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
 		candidato.setBusiness(business);
 
-		// Ciclo for per CandidatoSpecializzazione
-		List<CandidatoSpecializzazione> listCandidatoSpecializzazione = new ArrayList<>();
-		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
+		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
+		List<Mansione> listaMansione = new ArrayList<Mansione>();
+		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
+		CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
 
-			if (cs.getSpecializzazione().getSpecializzazione() != null) {
-				Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
-				cs.setSpecializzazione(s);
-				cs.setCandidato(candidato);
-				listCandidatoSpecializzazione.add(cs);
+		for (Map.Entry<String, String> entry : mappaCandidato.entrySet()) {
+			if (entry.getKey().contains("areaCompetenza")) {
+
+				AreaCompetenza area = areaCompetenzaDAO.get(entry.getValue());
+				listaCompetenza.add(area);
+			} else if (entry.getKey().contains("mansione")) {
+				Mansione mansione = mansioneDAO.get(entry.getValue());
+				listaMansione.add(mansione);
+			} else if (entry.getKey().contains("specializzazione")) {
+				Specializzazione specializzazione = specializzazioneDAO.get(entry.getValue());
+
+				candidatoSpecializzazione.setSpecializzazione(specializzazione);
+				candidatoSpecializzazione.setCandidato(candidato);
+				listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
 			}
-
 		}
-		candidato.setCandidatoSpecializzazione(listCandidatoSpecializzazione);
 
-		candidatoDAO.inserisci(candidato);
+		candidato.setArea(listaCompetenza);
+
 		return "redirect:/Home/{businessUnit}";
+
 	}
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
@@ -185,34 +256,34 @@ public class CandidatiController {
 		Candidato candidato = candidatoDAO.get(id);
 
 		if (candidato.getCosto() == null) {
-			//aggiungi costo per la prima volta di un dato candidato
+			// aggiungi costo per la prima volta di un dato candidato
 			candidato.setCosto(c.getCosto());
 			candidatoDAO.aggiorna(candidato);
 		}
-		
+
 		else {
-			//modifica costo di un dato candidato
+			// modifica costo di un dato candidato
 			candidato.getCosto().setOrario(c.getCosto().getOrario());
 			candidato.getCosto().setGiornaliero(c.getCosto().getGiornaliero());
 			candidato.getCosto().setCommento(c.getCosto().getCommento());
 			costoDAO.aggiorna(candidato.getCosto());
 		}
-		
+
 		return "redirect:/Candidato/{id}";
 	}
 
 	@RequestMapping(value = "/AggiungiModificaEconomics/{id}", method = RequestMethod.POST)
 	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
-		
+
 		if (candidato.getEconomics() == null) {
-			//aggiungi economics per la prima volta di un dato candidato
-		candidato.setEconomics(c.getEconomics());
-		candidatoDAO.aggiorna(candidato);
+			// aggiungi economics per la prima volta di un dato candidato
+			candidato.setEconomics(c.getEconomics());
+			candidatoDAO.aggiorna(candidato);
 		}
-		
+
 		else {
-			//modifica economics di un dato candidato
+			// modifica economics di un dato candidato
 			candidato.getEconomics().setInquadramento(c.getEconomics().getInquadramento());
 			candidato.getEconomics().setRal(c.getEconomics().getRal());
 			candidato.getEconomics().setBenefit(c.getEconomics().getBenefit());
@@ -220,7 +291,7 @@ public class CandidatiController {
 			candidato.getEconomics().setDesiderata(c.getEconomics().getDesiderata());
 			economicsDAO.aggiorna(candidato.getEconomics());
 		}
-		
+
 		return "redirect:/Candidato/{id}";
 	}
 
