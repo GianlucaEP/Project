@@ -19,12 +19,15 @@
 	<div>
 		<nav class="navbar navbar-dark bg-primary "
 			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
-			<h1>
-				<span class="navbar-text bg-primary text-white"> <a
-					href="/ProgettoHR/Home"><img alt="logo"
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>
-				</span>
-			</h1>
+
+			<!-- Logo -->
+			<nav class="navbar">
+				<a class="navbar-brand" href="/ProgettoHR/Home"> <img
+					src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+					style="width: 170px;">
+				</a>
+			</nav>
+
 		</nav>
 	</div>
 
@@ -50,9 +53,10 @@
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 				</form:form>
 				<div class="row w-100 m-0 p-2">
-					<div class="alert alert-danger text-center" role="alert">Credenziali Errate</div>
+					<div class="alert alert-danger text-center" role="alert">Credenziali
+						Errate</div>
 				</div>
-				
+
 			</div>
 
 		</div>

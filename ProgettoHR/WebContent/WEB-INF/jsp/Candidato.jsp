@@ -47,19 +47,20 @@
 			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
 				style="opacity: 0.9;">
 
-				<!-- logo (da sistemare) -->
-				<h1>
-					<span class="navbar-text text-white"> <a
-						href="/ProgettoHR/Home"><img alt="logo"
-							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
-
-				</h1>
+				<!-- Logo -->
+				<nav class="navbar">
+					<a class="navbar-brand" href="/ProgettoHR/Home"> <img
+						src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+						style="width: 170px;">
+					</a>
+				</nav>
 
 				<!-- bottone profilo -->
 				<div class="col-auto text-right">
-					<button class="btn btn-primary dropdown-toggle " role="button"
-						id="logout" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
+					<button class="btn btn-primary dropdown-toggle"
+						style="border-radius: 10px; box-shadow: 0px 0px 2px black;"
+						role="button" id="logout" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-user"></i>
 					</button>
 				</div>
@@ -1003,14 +1004,15 @@
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="qualificationMeeting"
 							action="/ProgettoHR/ModificaQualificationMeeting/${mostraCandidato.id}">
-							
+
 							<div style="visibility: hidden"
 								class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start"></div>
 										<form:input path="id" type="hidden" class="form-control"
-											id="idQualificationMeeting" name="idQualificationMeeting" value=""></form:input>
+											id="idQualificationMeeting" name="idQualificationMeeting"
+											value=""></form:input>
 									</div>
 								</div>
 							</div>
@@ -1019,8 +1021,8 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
-										<form:input id="clienteQualificationMeeting" type="text" class="form-control" 
-											path="cliente" name="costoOrario"></form:input>
+										<form:input id="clienteQualificationMeeting" type="text"
+											class="form-control" path="cliente" name="costoOrario"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1029,8 +1031,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
 											di presentazione:</div>
-										<form:input id="dataPresentatoQualificationMeeting" type="date" pattern="yyyy-MM-dd"
-											class="form-control" 
+										<form:input id="dataPresentatoQualificationMeeting"
+											type="date" pattern="yyyy-MM-dd" class="form-control"
 											path="dataPresentato" name="costoGiornaliero"></form:input>
 									</div>
 								</div>
@@ -1040,7 +1042,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Riferimento
 											gara:</div>
-										<form:input type="text" class="form-control" id="riferimentoGaraQualificationMeeting"
+										<form:input type="text" class="form-control"
+											id="riferimentoGaraQualificationMeeting"
 											path="riferimentoGara" name="commenti"></form:input>
 									</div>
 								</div>
@@ -1051,8 +1054,8 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
 											colloquio:</div>
 										<form:input type="date" pattern="yyyy-MM-dd"
-											class="form-control" id="dataColloquioQualificationMeeting" path="dataColloquio"
-											name="commenti"></form:input>
+											class="form-control" id="dataColloquioQualificationMeeting"
+											path="dataColloquio" name="commenti"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1060,8 +1063,9 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input type="text" class="form-control" id="feedbackQualificationMeeting"
-											path="feedback" name="commenti"></form:input>
+										<form:input type="text" class="form-control"
+											id="feedbackQualificationMeeting" path="feedback"
+											name="commenti"></form:input>
 									</div>
 								</div>
 							</div>
