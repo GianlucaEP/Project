@@ -140,7 +140,9 @@ public class CandidatiController {
 
 		candidato.setNome(mappaCandidato.get("nome"));
 		candidato.setCognome(mappaCandidato.get("cognome"));
-		candidato.setAnno(Integer.parseInt(mappaCandidato.get("annoNascita")));
+		String annoString = mappaCandidato.get("anno");
+		Integer anno = Integer.parseInt(annoString);
+		candidato.setAnno(anno);
 		candidato.setTelefono(mappaCandidato.get("telefono"));
 		candidato.setEmail(mappaCandidato.get("email"));
 
@@ -156,7 +158,7 @@ public class CandidatiController {
 		
 	
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		/*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
 			date = formatter.parse(mappaCandidato.get("data"));
@@ -165,7 +167,7 @@ public class CandidatiController {
 			e.printStackTrace();
 		}
 		candidato.setInserimentoAzienda(date);
-
+*/
 		candidato.setBusiness(business);
 
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
@@ -191,42 +193,14 @@ public class CandidatiController {
 		}
 
 		candidato.setArea(listaCompetenza);
+		candidato.setMansione(listaMansione);
+		
+		candidatoDAO.inserisci(candidato);
 
 		return "redirect:/Home/{businessUnit}";
 
 	}
 
-	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
-
-		Candidato c = candidatoDAO.get(id);
-
-		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
-
-		m.addAttribute("mostraFeedback", f);
-
-		// m.addAttribute("listaMansione", listaMansione);
-
-		// m.addAttribute("listaAreaComp", listaAreaComp);
-
-		// List<Feedback> feedbacks = c.getFeedback();
-		// List<QualificationMeeting> listQM = c.getFeedback();
-		m.addAttribute("mansione", new Mansione());
-
-		m.addAttribute("mostraCandidato", c);
-
-		m.addAttribute("feedback", new Feedback());
-
-		m.addAttribute("tipoFeedback", new TipoFeedback());
-
-		m.addAttribute("qualificationMeeting", new QualificationMeeting());
-
-		m.addAttribute("ruolo", utente.getRuolo());
-
-		// m.addAttribute("listaFeedback", feedbacks);
-		// m.addAttribute("listaFeedback", listQM);
-		return "Candidato";
-	}
 
 	@RequestMapping(value = "/Elimina/{id}", method = RequestMethod.GET)
 	public String elimina(@PathVariable int id) {
@@ -307,5 +281,38 @@ public class CandidatiController {
 		return "redirect:/Candidato/{id}";
 
 	}
+	
+	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
+    public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m, @SessionAttribute("utente") Utente utente) {
+
+        Candidato c = candidatoDAO.get(id);
+
+        List<Feedback> f = feedbackDAO.getByIdCandidato(id);
+
+        m.addAttribute("businessUnit", businessUnit);
+        m.addAttribute("mostraFeedback", f);
+
+        // m.addAttribute("listaMansione", listaMansione);
+
+        // m.addAttribute("listaAreaComp", listaAreaComp);
+
+        // List<Feedback> feedbacks = c.getFeedback();
+        // List<QualificationMeeting> listQM = c.getFeedback();
+        m.addAttribute("mansione", new Mansione());
+
+        m.addAttribute("mostraCandidato", c);
+
+        m.addAttribute("feedback", new Feedback());
+
+        m.addAttribute("tipoFeedback", new TipoFeedback());
+
+        m.addAttribute("qualificationMeeting", new QualificationMeeting());
+
+        m.addAttribute("ruolo", utente.getRuolo());
+
+        // m.addAttribute("listaFeedback", feedbacks);
+        // m.addAttribute("listaFeedback", listQM);
+        return "Candidato";
+    }
 
 }
