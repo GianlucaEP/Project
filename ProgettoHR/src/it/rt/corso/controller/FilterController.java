@@ -15,56 +15,75 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.MansioneDAO;
+import it.rt.corso.DAO.SpecializzazioneDAO;
+import it.rt.corso.beans.AreaCompetenza;
+import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.Utente;
 
 @Controller
 public class FilterController {
-	
+
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
-	
+	SpecializzazioneDAO specializzazioneDAO = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
+	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
+
 	@RequestMapping("/Filter/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
 		// Business business= bdao.get(businessUnit);
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
 		List<Mansione> mansioneList = mansioneDAO.getLista();
-		
-		List<String> mansioneListString= new ArrayList<String>();
-		
+		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
+		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
+
+		List<String> mansioneListString = new ArrayList<String>();
+		List<String> specializzazioneListString = new ArrayList<String>();
+		List<String> areaCompetenzaListString = new ArrayList<String>();
+
 		for (Mansione mansione : mansioneList) {
-			
+
 			mansioneListString.add(mansione.getMansione());
 		}
 		
-		HashMap<String, String> hashMap = new HashMap<String, String>();
+		for (Specializzazione specializzazione : specializzazioneList) {
+
+			specializzazioneListString.add(specializzazione.getSpecializzazione());
+		}
+		
+		for (AreaCompetenza areaCompetenza : areaCompetenzaList) {
+
+			areaCompetenzaListString.add(areaCompetenza.getArea());
+		}
 
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneListString);
+		m.addAttribute("specializzazioneList", specializzazioneListString);
+		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
 		return "FiltroAvanzato";
 	}
 
 	@RequestMapping(value = "/Filter/advanced/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
-		
+
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
-		
+
 		List<Mansione> mansioneList = mansioneDAO.getLista();
-		
-	
-		
+
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);

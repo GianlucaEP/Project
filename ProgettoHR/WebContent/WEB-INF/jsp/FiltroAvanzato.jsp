@@ -35,7 +35,7 @@
 
 </head>
 
-<body onload="getMansione('${mansioneList}')">
+<body onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
 
     <!-- Navbar -->
     <div class="container-fluid">
@@ -722,10 +722,18 @@
                 closeAllLists(e.target);
             });
         }
+        
+        function buildString(string){
+        	return string.replace("[", "").replace("]", "").split(", ");
+        }
 
-        function getMansione(list) {
-            var res = list.replace("[", "").replace("]", "").split(", ");
-            autocomplete(document.getElementById("myInput"), res);
+        function getMansione(listMansione, specializzazioneList, areaCompetenzaList) {
+            var mansioneString = buildString(listMansione);
+            var specializzazioneString = buildString(specializzazioneList);
+            var areaCompetenzaString = buildString(areaCompetenzaList);
+            autocomplete(document.getElementById("myInput"), mansioneString);
+            autocomplete(document.getElementById("inputSpecializzazione"), specializzazioneString);
+            autocomplete(document.getElementById("inputArea"), areaCompetenzaString);
         }
     </script>
 
