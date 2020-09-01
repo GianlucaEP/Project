@@ -26,7 +26,8 @@ body {
 
 </style> -->
 </head>
-<body>
+<body
+	onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
 
 	<div class="row w-100 p-0 m-0">
 		<nav class="navbar navbar-light bg-primary w-100 "
@@ -62,15 +63,13 @@ body {
 
 			<div align="center" class="col-auto m-2 p-2 border ">
 				<h1>Inserimento Candidato</h1>
-				<form:form autocomplete="off" method="POST"
-					modelAttribute="candidato"
+				<form autocomplete="off" method="POST"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 					<div class="row w-100 p-2 justify-content-md-start">
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
-								<form:input path="nome" type="text" class="form-control"
-									id="nome" name="nome"></form:input>
+								<input type="text" class="form-control" id="nome" name="nome"></input>
 							</div>
 						</div>
 					</div>
@@ -78,8 +77,8 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
-								<form:input path="cognome" type="text" class="form-control"
-									id="cognome" name="cognome"></form:input>
+								<input type="text" class="form-control" id="cognome"
+									name="cognome"></input>
 							</div>
 						</div>
 					</div>
@@ -88,8 +87,7 @@ body {
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
 									di nascita:</div>
-								<form:input path="anno" type="text" class="form-control"
-									id="anno" name="anno"></form:input>
+								<input type="text" class="form-control" id="anno" name="anno"></input>
 							</div>
 						</div>
 					</div>
@@ -97,8 +95,8 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
-								<form:input path="telefono" type="text" class="form-control"
-									id="telefono" name="telefono"></form:input>
+								<input type="text" class="form-control" id="telefono"
+									name="telefono"></input>
 							</div>
 						</div>
 					</div>
@@ -106,8 +104,7 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
-								<form:input path="email" type="text" class="form-control"
-									id="email" name="email"></form:input>
+								<input type="text" class="form-control" id="email" name="email"></input>
 							</div>
 						</div>
 					</div>
@@ -117,13 +114,12 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-								<form:select path="seniority.seniority" name="seniority"
-									class="custom-select mb-3">
+								<select name="seniority" class="custom-select mb-3">
 									<option selected></option>
 									<c:forEach var="sen" items="${seniorityList}">
-										<form:option value="${sen.seniority}">${sen.seniority}</form:option>
+										<option value="${sen.seniority}">${sen.seniority}</option>
 									</c:forEach>
-								</form:select>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -133,13 +129,11 @@ body {
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Business
 									Unit:</div>
-								<form:select path="business.business" name="business"
-									class="custom-select mb-3">
-									<option selected></option>
+								<select name="business" class="custom-select mb-3">
 									<c:forEach var="bus" items="${businessList}">
-										<form:option value="${bus.business}">${bus.business}</form:option>
+										<option value="${bus.business}">${bus.business}</option>
 									</c:forEach>
-								</form:select>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -151,66 +145,39 @@ body {
 						<div class="col w-100 p-0 justify-content-md-start">
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">Provenienza:</div>
-								<form:input path="provenienza" type="text" class="form-control"
-									id="provenienza" name="provenienza"></form:input>
+								<input type="text" class="form-control" id="provenienza"
+									name="provenienza"></input>
 							</div>
 						</div>
 					</div>
 
-					<!--  <div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
-								<button type="button" data-toggle="modal"
-									data-target="#areaCompetenzaModal"
-									class="btn btn-primary btn-block  m-0 text-left"
-									style="border-radius: 0;">Aggiungi Area Competenza</button>
 
-							</div>
+
+
+					<div class="card" style="border-color: transparent;">
+						<div class="card-header" id="heading10">
+							<h2 class="">
+								<button class="btn btn-block text-left collapsed"
+									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+									type="button" data-toggle="collapse" data-target="#collapse10"
+									aria-expanded="false" aria-controls="collapse10">
+									<i class="fa fa-plus" aria-hidden="true"></i> Area Competenza <i
+										class="fas fa-briefcase float-right pt-1"></i>
+								</button>
+							</h2>
 						</div>
-					</div>
-					-->
+						<div id="collapse10" class="collapse" aria-labelledby="heading10">
+							<div class="card-body">
 
-					<!-- <div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
-								<c:forEach var="area" items="${areaCompetenzaList}"
-									varStatus="contatore">
-									<div>
-										<form:checkbox path="area[${contatore.index}].area"
-											value="${area.area}" />
-										${area.area}
+								<div id="areaCompetenzaDiv" class="autocomplete"
+									style="border-bottom-style: ridge;">
+									<input id="areaCompetenzaInput" class="text-left"
+										style="border-color: transparent;" type="text"
+										 placeholder=" area competenza candidato">
+
+									<div onclick="stampaAreaCompetenzaSelezionata()" class="btn">
+										<i class="fas fa-arrow-circle-down"></i>
 									</div>
-								</c:forEach>
-							</div>
-						</div>
-					</div>-->
-
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
-
-
-
-
-
-
-								<input list="browsers" name="area" value="Cerca">
-								<div>
-
-
-									<datalist id="browsers">
-											<c:forEach var="area" items="${areaCompetenzaList}"
-												varStatus="contatore">
-
-
-												<option value="${area.area}"></option>
-
-											</c:forEach>
-										
-									</datalist>
 
 								</div>
 
@@ -219,71 +186,69 @@ body {
 					</div>
 
 
-					<!--  	<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansione:</div>
-								  <button type="button" data-toggle="modal"
-									data-target="#mansioneModal"
-									class="btn btn-primary btn-block  m-0 text-left"
-									style="border-radius: 0;">Aggiungi Mansione</button>
+					<div class="card" style="border-color: transparent;">
+						<div class="card-header" id="heading10">
+							<h2 class="">
+								<button class="btn btn-block text-left collapsed"
+									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+									type="button" data-toggle="collapse" data-target="#collapse10"
+									aria-expanded="false" aria-controls="collapse10">
+									<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
+										class="fas fa-briefcase float-right pt-1"></i>
+								</button>
+							</h2>
+						</div>
+						<div id="collapse10" class="collapse" aria-labelledby="heading10">
+							<div class="card-body">
 
-							
+								<div id="mansioneDiv" class="autocomplete"
+									style="border-bottom-style: ridge;">
+									<input id="mansioneInput" class="text-left"
+										style="border-color: transparent;" type="text"
+										 placeholder=" mansione candidato">
+
+									<div onclick="stampaMansioneSelezionata()" class="btn"><i class="fas fa-arrow-circle-down"></i></div>
+
+
+								</div>
+
 							</div>
 						</div>
 					</div>
-					-->
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Mansioni:</div>
-								<c:forEach var="mans" items="${mansioneList}"
-									varStatus="contatore">
-									<div>
-										<form:checkbox path="mansione[${contatore.index}].mansione"
-											value="${mans.mansione}" />
-										${mans.mansione}
+
+
+					<div class="card" style="border-color: transparent;">
+						<div class="card-header" id="heading10">
+							<h2 class="">
+								<button class="btn btn-block text-left collapsed"
+									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+									type="button" data-toggle="collapse" data-target="#collapse10"
+									aria-expanded="false" aria-controls="collapse10">
+									<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione <i
+										class="fas fa-briefcase float-right pt-1"></i>
+								</button>
+							</h2>
+						</div>
+						<div id="collapse10" class="collapse" aria-labelledby="heading10">
+							<div class="card-body">
+
+								<div id="specializzazioneDiv" class="autocomplete"
+									style="border-bottom-style: ridge;">
+									<input id="specializzazioneInput" class="text-left"
+										style="border-color: transparent;" type="text"
+										 placeholder=" specializzazione candidato">
+
+									<div onclick="stampaSpecializzazioneSelezionata()" class="btn">
+										<i class="fas fa-arrow-circle-down"></i>
 									</div>
-								</c:forEach>
+
+								</div>
+
 							</div>
 						</div>
 					</div>
 
 
-					<!--  	<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazione:</div>
-								<button type="button" data-toggle="modal"
-									data-target="#specializzazioneModal"
-									class="btn btn-primary btn-block  m-0 text-left"
-									style="border-radius: 0;">Aggiungi Specializzazione</button>
-
-							</div>
-						</div>
-					</div>
-					-->
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Specializzazioni</div>
-								<c:forEach var="spec" items="${specializzazioneList}"
-									varStatus="contatore">
-									<div>
-										<form:checkbox
-											onclick="mostraInputAnniEsperienza(${contatore.index})"
-											path="candidatoSpecializzazione[${contatore.index}].specializzazione.specializzazione"
-											value="${spec.specializzazione}" />
-										${spec.specializzazione}
-										<form:input
-											path="candidatoSpecializzazione[${contatore.index}].anni"
-											type="hidden" placeholder="anni esperienza"
-											class="form-control" name="anniEsperienza"></form:input>
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-					</div>
 
 
 
@@ -292,10 +257,9 @@ body {
 							<div class="form-group">
 								<div class="row w-100 p-0 mb-2 justify-content-md-start">
 
-									<form:checkbox path="categoriaProtetta"
-										class="form-check form-check-inline" id="categoriaProtetta"
-										name="categoriaProtetta" style="float:rigth;"></form:checkbox>
-									Categoria Protetta
+									<input type="checkbox" class="form-check form-check-inline"
+										id="categoriaProtetta" name="categoriaProtetta"
+										style="float: rigth;"></input> Categoria Protetta
 								</div>
 
 
@@ -309,111 +273,198 @@ body {
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
 					</div>
-				</form:form>
+				</form>
 			</div>
 
 		</div>
 	</div>
 
-
-	<!-- <div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
-		role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="feedbackModalLabel">Area
-						Competenza</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="candidato"
-							action="/ProgettoHR/CandidatiSave/${businessUnit}">
-							<div class="row w-100 p-2 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 mb-2 justify-content-md-start">Area:</div>
-										<c:forEach var="area" items="${areaCompetenzaList}"
-											varStatus="contatore">
-											<div>
-												<form:checkbox path="area[${contatore.index}].area"
-													value="${area.area}" />
-												${area.area}
-											</div>
-										</c:forEach>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block" data-dismiss="modal">Aggiungi
-										Area Competenza</button>
-								</div>
-							</div>
-						</form:form>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
- -->
 
 
 	<script type="text/javascript">
-	
-	function mostraInputAnniEsperienza(contatore) {
-		stringId = "candidatoSpecializzazione" + contatore + ".anni";
-		 var x = document.getElementById(stringId);
-		 if (x.type === 'hidden') {
-		    x.type = 'number';
-		  } else {
-		    x.type = 'hidden';
-		  }
-		 
-	}
+		areaCnt = 0;
+		mansioneCnt = 0;
+		specializzazioneCnt = 0;
+
+		function mostraInputAnniEsperienza(contatore) {
+			stringId = "candidatoSpecializzazione" + contatore + ".anni";
+			var x = document.getElementById(stringId);
+			if (x.type === 'hidden') {
+				x.type = 'number';
+			} else {
+				x.type = 'hidden';
+			}
+
+		}
+
+		function stampaAreaCompetenzaSelezionata() {
+			var string = document.getElementById("areaCompetenzaInput").value;
+			var tagDiv = document.createElement("input");
+			//var node = document.createTextNode(string);
+			tagDiv.value = string;
+			areaName = "area" + areaCnt;
+			areaCnt++;
+			tagDiv.name = areaName;
+			document.getElementById("areaCompetenzaDiv").appendChild(tagDiv);
+		}
+
+		function stampaMansioneSelezionata() {
+			var string = document.getElementById("mansioneInput").value;
+			var tagDiv = document.createElement("input");
+			//var node = document.createTextNode(string);
+			tagDiv.value = string;
+			mansioneName = "mansione" + mansioneCnt;
+			mansioneCnt++;
+			tagDiv.name = mansioneName;
+			document.getElementById("mansioneDiv").appendChild(tagDiv);
+		}
+
+		function stampaSpecializzazioneSelezionata() {
+			var string = document.getElementById("specializzazioneInput").value;
+			var tagDiv = document.createElement("input");
+			//var node = document.createTextNode(string);
+			tagDiv.value = string;
+			specializzazioneName = "specializzazione"+specializzazioneCnt;
+			specializzazioneCnt++;
+			tagDiv.name = specializzazioneName;
+			document.getElementById("specializzazioneDiv").appendChild(tagDiv);
+		}
+
+		function autocomplete(inp, arr) {
+			/*the autocomplete function takes two arguments,
+			the text field element and an array of possible autocompleted values:*/
+			var currentFocus;
+			/*execute a function when someone writes in the text field:*/
+			inp
+					.addEventListener(
+							"input",
+							function(e) {
+								var a, b, i, val = this.value;
+								/*close any already open lists of autocompleted values*/
+								closeAllLists();
+								if (!val) {
+									return false;
+								}
+								currentFocus = -1;
+								/*create a DIV element that will contain the items (values):*/
+								a = document.createElement("DIV");
+								a.setAttribute("id", this.id
+										+ "autocomplete-list");
+								a.setAttribute("class", "autocomplete-items");
+								/*append the DIV element as a child of the autocomplete container:*/
+								this.parentNode.appendChild(a);
+								/*for each item in the array...*/
+								for (i = 0; i < arr.length; i++) {
+									/*check if the item starts with the same letters as the text field value:*/
+									if (arr[i].substr(0, val.length)
+											.toUpperCase() == val.toUpperCase()) {
+										/*create a DIV element for each matching element:*/
+										b = document.createElement("DIV");
+										/*make the matching letters bold:*/
+										b.innerHTML = "<strong>"
+												+ arr[i].substr(0, val.length)
+												+ "</strong>";
+										b.innerHTML += arr[i]
+												.substr(val.length);
+										/*insert a input field that will hold the current array item's value:*/
+										b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+										/*execute a function when someone clicks on the item value (DIV element):*/
+										b
+												.addEventListener(
+														"click",
+														function(e) {
+															/*insert the value for the autocomplete text field:*/
+															inp.value = this
+																	.getElementsByTagName("input")[0].value;
+															/*close the list of autocompleted values,
+															(or any other open lists of autocompleted values:*/
+															closeAllLists();
+														});
+										a.appendChild(b);
+									}
+								}
+							});
+			/*execute a function presses a key on the keyboard:*/
+			inp.addEventListener("keydown", function(e) {
+				var x = document.getElementById(this.id + "autocomplete-list");
+				if (x)
+					x = x.getElementsByTagName("div");
+				if (e.keyCode == 40) {
+					/*If the arrow DOWN key is pressed,
+					increase the currentFocus variable:*/
+					currentFocus++;
+					/*and and make the current item more visible:*/
+					addActive(x);
+				} else if (e.keyCode == 38) { //up
+					/*If the arrow UP key is pressed,
+					decrease the currentFocus variable:*/
+					currentFocus--;
+					/*and and make the current item more visible:*/
+					addActive(x);
+				} else if (e.keyCode == 13) {
+					/*If the ENTER key is pressed, prevent the form from being submitted,*/
+					e.preventDefault();
+					if (currentFocus > -1) {
+						/*and simulate a click on the "active" item:*/
+						if (x)
+							x[currentFocus].click();
+					}
+				}
+			});
+			function addActive(x) {
+				/*a function to classify an item as "active":*/
+				if (!x)
+					return false;
+				/*start by removing the "active" class on all items:*/
+				removeActive(x);
+				if (currentFocus >= x.length)
+					currentFocus = 0;
+				if (currentFocus < 0)
+					currentFocus = (x.length - 1);
+				/*add class "autocomplete-active":*/
+				x[currentFocus].classList.add("autocomplete-active");
+			}
+			function removeActive(x) {
+				/*a function to remove the "active" class from all autocomplete items:*/
+				for (var i = 0; i < x.length; i++) {
+					x[i].classList.remove("autocomplete-active");
+				}
+			}
+			function closeAllLists(elmnt) {
+				/*close all autocomplete lists in the document,
+				except the one passed as an argument:*/
+				var x = document.getElementsByClassName("autocomplete-items");
+				for (var i = 0; i < x.length; i++) {
+					if (elmnt != x[i] && elmnt != inp) {
+						x[i].parentNode.removeChild(x[i]);
+					}
+				}
+			}
+			/*execute a function when someone clicks in the document:*/
+			document.addEventListener("click", function(e) {
+				closeAllLists(e.target);
+			});
+		}
+
+		function buildString(string) {
+			return string.replace("[", "").replace("]", "").split(", ");
+		}
+
+		function getMansione(listMansione, specializzazioneList,
+				areaCompetenzaList) {
+			var mansioneString = buildString(listMansione);
+			var specializzazioneString = buildString(specializzazioneList);
+			var areaCompetenzaString = buildString(areaCompetenzaList);
+			autocomplete(document.getElementById("mansioneInput"),
+					mansioneString);
+			autocomplete(document.getElementById("specializzazioneInput"),
+					specializzazioneString);
+			autocomplete(document.getElementById("areaCompetenzaInput"),
+					areaCompetenzaString);
+		}
 	</script>
 
 
-	<!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
-		aria-labelledby="errorModal" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Uno dei campi inseriti è vuoto</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">OK</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog"
-		aria-labelledby="loadingModal" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Caricamento Dati...</div>
-				<div class="modal-footer"></div>
-			</div>
-		</div>
-	</div> -->
 
 </body>
 </html>

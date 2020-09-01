@@ -61,11 +61,30 @@ public class CandidatiController {
 		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
 		List<Seniority> seniorityList = seniorityDAO.getLista();
 
+		List<String> mansioneListString = new ArrayList<String>();
+		List<String> areaCompetenzaListString = new ArrayList<String>();
+		List<String> specializzazioneListString = new ArrayList<String>();
+
+		for (Mansione mansione : mansioneList) {
+
+			mansioneListString.add(mansione.getMansione());
+		}
+		
+		for (AreaCompetenza area : areaCompetenzaList) {
+
+			areaCompetenzaListString.add(area.getArea());
+		}
+		
+		for (Specializzazione spec : specializzazioneList) {
+
+			specializzazioneListString.add(spec.getSpecializzazione());
+		}
+
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", businessList);
-		m.addAttribute("areaCompetenzaList", areaCompetenzaList);
-		m.addAttribute("mansioneList", mansioneList);
-		m.addAttribute("specializzazioneList", specializzazioneList);
+		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		m.addAttribute("mansioneList", mansioneListString);
+		m.addAttribute("specializzazioneList", specializzazioneListString);
 		m.addAttribute("seniorityList", seniorityList);
 
 		m.addAttribute("candidato", new Candidato());
@@ -151,23 +170,17 @@ public class CandidatiController {
 
 		Business business = businessDAO.get(mappaCandidato.get("business"));
 		candidato.setBusiness(business);
-		
+
 		candidato.setProvenienza(mappaCandidato.get("provenienza"));
 		candidato.setCategoriaProtetta(Boolean.parseBoolean(mappaCandidato.get("provenienza")));
 //		candidato.setCodiceFiscale(mappaCandidato.get("codiceFiscale"));
-		
-	
 
-		/*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		try {
-			date = formatter.parse(mappaCandidato.get("data"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		candidato.setInserimentoAzienda(date);
-*/
+		/*
+		 * SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); Date date =
+		 * null; try { date = formatter.parse(mappaCandidato.get("data")); } catch
+		 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
+		 * } candidato.setInserimentoAzienda(date);
+		 */
 		candidato.setBusiness(business);
 
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
@@ -176,7 +189,7 @@ public class CandidatiController {
 		CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
 
 		for (Map.Entry<String, String> entry : mappaCandidato.entrySet()) {
-			if (entry.getKey().contains("areaCompetenza")) {
+			if (entry.getKey().contains("area")) {
 
 				AreaCompetenza area = areaCompetenzaDAO.get(entry.getValue());
 				listaCompetenza.add(area);
@@ -194,13 +207,12 @@ public class CandidatiController {
 
 		candidato.setArea(listaCompetenza);
 		candidato.setMansione(listaMansione);
-		
+
 		candidatoDAO.inserisci(candidato);
 
 		return "redirect:/Home/{businessUnit}";
 
 	}
-
 
 	@RequestMapping(value = "/Elimina/{id}", method = RequestMethod.GET)
 	public String elimina(@PathVariable int id) {
@@ -281,38 +293,39 @@ public class CandidatiController {
 		return "redirect:/Candidato/{id}";
 
 	}
-	
+
 	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
-    public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m, @SessionAttribute("utente") Utente utente) {
+	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m,
+			@SessionAttribute("utente") Utente utente) {
 
-        Candidato c = candidatoDAO.get(id);
+		Candidato c = candidatoDAO.get(id);
 
-        List<Feedback> f = feedbackDAO.getByIdCandidato(id);
+		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
-        m.addAttribute("businessUnit", businessUnit);
-        m.addAttribute("mostraFeedback", f);
+		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("mostraFeedback", f);
 
-        // m.addAttribute("listaMansione", listaMansione);
+		// m.addAttribute("listaMansione", listaMansione);
 
-        // m.addAttribute("listaAreaComp", listaAreaComp);
+		// m.addAttribute("listaAreaComp", listaAreaComp);
 
-        // List<Feedback> feedbacks = c.getFeedback();
-        // List<QualificationMeeting> listQM = c.getFeedback();
-        m.addAttribute("mansione", new Mansione());
+		// List<Feedback> feedbacks = c.getFeedback();
+		// List<QualificationMeeting> listQM = c.getFeedback();
+		m.addAttribute("mansione", new Mansione());
 
-        m.addAttribute("mostraCandidato", c);
+		m.addAttribute("mostraCandidato", c);
 
-        m.addAttribute("feedback", new Feedback());
+		m.addAttribute("feedback", new Feedback());
 
-        m.addAttribute("tipoFeedback", new TipoFeedback());
+		m.addAttribute("tipoFeedback", new TipoFeedback());
 
-        m.addAttribute("qualificationMeeting", new QualificationMeeting());
+		m.addAttribute("qualificationMeeting", new QualificationMeeting());
 
-        m.addAttribute("ruolo", utente.getRuolo());
+		m.addAttribute("ruolo", utente.getRuolo());
 
-        // m.addAttribute("listaFeedback", feedbacks);
-        // m.addAttribute("listaFeedback", listQM);
-        return "Candidato";
-    }
+		// m.addAttribute("listaFeedback", feedbacks);
+		// m.addAttribute("listaFeedback", listQM);
+		return "Candidato";
+	}
 
 }
