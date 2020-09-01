@@ -46,7 +46,7 @@ html, body {
 
 </head>
 
-<body>
+<body onload="validateOption()">
 
 	<!-- Navbar -->
 	<div class="container-fluid">
@@ -54,13 +54,13 @@ html, body {
 			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
 				style="opacity: 0.9;">
 
-				<!-- Logo -->
-				<nav class="navbar">
-					<a class="navbar-brand" href="/ProgettoHR/Home"> <img
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-						style="width: 170px;">
-					</a>
-				</nav>
+				<!-- logo (da sistemare) -->
+				<h1>
+					<span class="navbar-text text-white"> <a
+						href="/ProgettoHR/Home"><img alt="logo"
+							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
+
+				</h1>
 
 				<!-- bottone profilo -->
 				<div class="col-auto text-right">
@@ -119,7 +119,7 @@ html, body {
 							method="post">
 							<div class="input-group">
 
-								<select class="custom-select" id="stati" name="stato">
+								<select onchange="validateOption()" class="custom-select" id="stati" name="stato">
 
 									<option selected disabled>Stati</option>
 
@@ -130,7 +130,7 @@ html, body {
 								</select>
 
 								<div class="input-group-append">
-									<button class="btn btn-primary"
+									<button id="filterButton" class="btn btn-primary"
 										style="background-color: #0353a4; border-color: transparent;"
 										type="submit">
 										<i class="fas fa-filter"></i>
@@ -255,20 +255,6 @@ html, body {
 			</div>
 
 			<script>
-				function validateFilter(contatore) {
-					var control = true;
-					var nome = document.getElementsByName("nome")[0].value;
-					var cognome = document.getElementsByName("cognome")[0].value;
-
-					if (nome === ""
-							&& cognome === ""
-							&& document.querySelectorAll("input:checked").length === 0) {
-						$("#filterErrorModal").modal()
-						return !control;
-					}
-
-					return control;
-				}
 				function changeDotColor(stato) {
 					if (stato === "attivo") {
 						document.getElementById("dot").className = "dot bg-success";
@@ -297,6 +283,16 @@ html, body {
 					}
 
 					return control;
+				}
+				function validateOption(){
+					var e = document.getElementById("stati");
+					var value = e.options[e.selectedIndex].value;
+					
+					if(value === "Stati"){
+						document.getElementById("filterButton").disabled = true;
+					} else {
+						document.getElementById("filterButton").disabled = false;
+					}
 				}
 			</script>
 
