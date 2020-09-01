@@ -1372,19 +1372,19 @@
 	<script type="text/javascript">
 		function changeStato(stato, feedback, categoriaProtetta,
 				qualificationMeeting, allegati, costi, economics) {
-			if (stato === "nuovo_inserito") {
+			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
-			} else if (stato === "da_contattare") {
+			} else if (stato === "Da Contattare") {
 				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Da Contattare";
-			} else if (stato === "scartato") {
+			} else if (stato === "Scartato") {
 				document.getElementById("menuStato").className = "btn btn-danger dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Scartato";
-			} else if (stato === "attivo") {
+			} else if (stato === "Attivo") {
 				document.getElementById("menuStato").className = "btn btn-success dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Attivo";
-			} else if (stato === "selezionato") {
+			} else if (stato === "Selezionato") {
 				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Selezionato";
 			}

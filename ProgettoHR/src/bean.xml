@@ -59,23 +59,23 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	</bean>
 
 	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
-		<property name="descrizione" value="nuovo_inserito" />
+		<property name="descrizione" value="Nuovo inserito" />
 	</bean>
 
 	<bean id="daContattare" class="it.rt.corso.beans.StatoCandidato">
-		<property name="descrizione" value="da_contattare" />
+		<property name="descrizione" value="Da contattare" />
 	</bean>
 
 	<bean id="scartato" class="it.rt.corso.beans.StatoCandidato">
-		<property name="descrizione" value="scartato" />
+		<property name="descrizione" value="Scartato" />
 	</bean>
 
 	<bean id="attivo" class="it.rt.corso.beans.StatoCandidato">
-		<property name="descrizione" value="attivo" />
+		<property name="descrizione" value="Attivo" />
 	</bean>
 
 	<bean id="selezionato" class="it.rt.corso.beans.StatoCandidato">
-		<property name="descrizione" value="selezionato" />
+		<property name="descrizione" value="Selezionato" />
 	</bean>
 
 
