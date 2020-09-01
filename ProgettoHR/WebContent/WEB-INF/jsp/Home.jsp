@@ -54,13 +54,13 @@ html, body {
 			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
 				style="opacity: 0.9;">
 
-				<!-- logo (da sistemare) -->
-				<h1>
-					<span class="navbar-text text-white"> <a
-						href="/ProgettoHR/Home"><img alt="logo"
-							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
-
-				</h1>
+				<!-- Logo -->
+				<nav class="navbar">
+					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}"> <img
+						src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+						style="width: 170px;">
+					</a>
+				</nav>
 
 				<!-- bottone profilo -->
 				<div class="col-auto text-right">

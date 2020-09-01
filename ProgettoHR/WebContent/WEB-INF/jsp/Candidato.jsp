@@ -49,7 +49,7 @@
 
 				<!-- Logo -->
 				<nav class="navbar">
-					<a class="navbar-brand" href="/ProgettoHR/Home"> <img
+					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}"> <img
 						src="/ProgettoHR/img/Erre_technology_group_NEW.png"
 						style="width: 170px;">
 					</a>
