@@ -1374,10 +1374,10 @@
 				qualificationMeeting, allegati, costi, economics) {
 			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Nuovo Inserito";
-			} else if (stato === "Da Contattare") {
+				document.getElementById("menuStato").innerHTML = "Nuovo inserito";
+			} else if (stato === "Da contattare") {
 				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Da Contattare";
+				document.getElementById("menuStato").innerHTML = "Da contattare";
 			} else if (stato === "Scartato") {
 				document.getElementById("menuStato").className = "btn btn-danger dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Scartato";
