@@ -52,7 +52,6 @@ public class HomeController {
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
-//	BusinessDAO bdao = (BusinessDAO) factory.getBean("businessDAO");
 
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
