@@ -16,25 +16,27 @@
 </head>
 
 <body onload="badCredentials()">
-	<div>
-		<nav class="navbar navbar-dark bg-primary "
-			style="opacity: 0.8; box-shadow: 10px 10px 5px grey;">
 
-			<!-- Logo -->
-			<nav class="navbar">
-				<a class="navbar-brand" href="/ProgettoHR/Home"> <img
-					src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+	<!-- Navbar -->
+	<div class="container-fluid">
+		<div class="row w-100">
+			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
+				style="opacity: 0.9;">
+
+				<!-- Logo -->
+				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
 					style="width: 170px;">
 				</a>
-			</nav>
 
-		</nav>
+			</nav>
+		</div>
 	</div>
 
-	<div>
+	<div class="container-fluid" style="margin-top: 110px;">
 		<div class="row justify-content-md-center">
-			<div
-				class="col-auto container-fluid mt-5 mb-5 ml-auto mr-auto pt-3 pb-3 pl-5 pr-5 border-primary rounded border">
+			<div class="col-auto" style="">
+
 				<form:form id="utenteForm" method="POST"
 					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
 					onsubmit="return validate();">
@@ -52,67 +54,69 @@
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 				</form:form>
+
 				<div class="row w-100 m-0 p-2">
 					<div class="alert alert-danger text-center" role="alert">Credenziali
 						Errate</div>
 				</div>
-
 			</div>
-
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		function badCredentials() {
+			$('.alert').hide();
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const error = urlParams.get('info')
+			if (error === "error") {
+				$('.alert').show();
+			}
+		}
+		function validate() {
+			$('.alert').hide();
+			var control = true;
+			var utente = document.getElementById("utente").value;
+			var pass = document.getElementById("password").value;
+			var list = document.getElementById("formUtente");
+			var listpass = document.getElementById("formPassword");
+			if (utente === "") {
+
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				if (list.childNodes[4]) {
+					list.removeChild(list.childNodes[4]);
+				}
+				var textnode = document.createTextNode("Inserisci Nome Utente")
+				tagDiv.appendChild(textnode)
+				document.getElementById("formUtente").appendChild(tagDiv);
+				control = false;
+
+			} else {
+				if (list.childNodes[4]) {
+					list.removeChild(list.childNodes[4]);
+				}
+			}
+			if (pass === "") {
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				if (listpass.childNodes[4]) {
+					listpass.removeChild(listpass.childNodes[4]);
+				}
+				var textnode = document.createTextNode("Inserisci Password")
+				tagDiv.appendChild(textnode);
+				document.getElementById("formPassword").appendChild(tagDiv)
+
+				control = false;
+			} else {
+				if (listpass.childNodes[4]) {
+					listpass.removeChild(listpass.childNodes[4]);
+				}
+			}
+			return control;
+		}
+	</script>
+
 </body>
-<script type="text/javascript">
-	function badCredentials() {
-		$('.alert').hide();
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const error = urlParams.get('info')
-		if (error === "error") {
-			$('.alert').show();
-		}
-	}
-	function validate() {
-		$('.alert').hide();
-		var control = true;
-		var utente = document.getElementById("utente").value;
-		var pass = document.getElementById("password").value;
-		var list = document.getElementById("formUtente");
-		var listpass = document.getElementById("formPassword");
-		if (utente === "") {
 
-			var tagDiv = document.createElement("div");
-			tagDiv.style = "color:red; font-size: small;"
-			if (list.childNodes[4]) {
-				list.removeChild(list.childNodes[4]);
-			}
-			var textnode = document.createTextNode("Inserisci Nome Utente")
-			tagDiv.appendChild(textnode)
-			document.getElementById("formUtente").appendChild(tagDiv);
-			control = false;
-
-		} else {
-			if (list.childNodes[4]) {
-				list.removeChild(list.childNodes[4]);
-			}
-		}
-		if (pass === "") {
-			var tagDiv = document.createElement("div");
-			tagDiv.style = "color:red; font-size: small;"
-			if (listpass.childNodes[4]) {
-				listpass.removeChild(listpass.childNodes[4]);
-			}
-			var textnode = document.createTextNode("Inserisci Password")
-			tagDiv.appendChild(textnode);
-			document.getElementById("formPassword").appendChild(tagDiv)
-
-			control = false;
-		} else {
-			if (listpass.childNodes[4]) {
-				listpass.removeChild(listpass.childNodes[4]);
-			}
-		}
-		return control;
-	}
-</script>
 </html>

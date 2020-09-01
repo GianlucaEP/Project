@@ -48,12 +48,10 @@
 				style="opacity: 0.9;">
 
 				<!-- Logo -->
-				<nav class="navbar">
-					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}"> <img
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-						style="width: 170px;">
-					</a>
-				</nav>
+				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+					style="width: 170px;">
+				</a>
 
 				<!-- bottone profilo -->
 				<div class="col-auto text-right">
