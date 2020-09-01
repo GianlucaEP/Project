@@ -211,7 +211,7 @@
 			</div>
 
 			<!-- Colonna principale che contiene tutte le altre-->
-			<div class="col-10-5">
+			<div class="col-10">
 				<!-- Row principale che tiene tutte le collone-->
 				<div class="row">
 
