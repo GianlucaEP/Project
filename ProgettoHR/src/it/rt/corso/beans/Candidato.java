@@ -20,10 +20,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "candidato")
@@ -44,6 +47,7 @@ public class Candidato implements Bean {
 	private String telefono;
 	@Column(name = "email")
 	private String email;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
 	@Column(name = "provenienza")

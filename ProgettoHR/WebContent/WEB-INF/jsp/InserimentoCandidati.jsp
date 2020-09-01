@@ -197,19 +197,19 @@ body {
 
 
 
-								<input list="browsers" name="browser">
+								<input list="browsers" name="area" value="Cerca">
 								<div>
 
+
 									<datalist id="browsers">
-										<c:forEach var="area" items="${areaCompetenzaList}"
-											varStatus="contatore">
-											<form:select path="area[${contatore.index}].area" name="area"
-												class="custom-select mb-3">
+											<c:forEach var="area" items="${areaCompetenzaList}"
+												varStatus="contatore">
 
-												<form:option value="${area.area}" ></form:option>
-											</form:select>
-										</c:forEach>
 
+												<option value="${area.area}"></option>
+
+											</c:forEach>
+										
 									</datalist>
 
 								</div>
