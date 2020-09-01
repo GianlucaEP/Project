@@ -121,7 +121,7 @@ html, body {
 
 								<select class="custom-select" id="stati" name="stato">
 
-									<option selected>Stati</option>
+									<option selected disabled>Stati</option>
 
 									<c:forEach var="stato" items="${statoCandidatoList}">
 										<option value="${stato.descrizione}">${stato.descrizione}</option>
