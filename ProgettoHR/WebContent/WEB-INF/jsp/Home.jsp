@@ -138,8 +138,8 @@ html, body {
 								<select onchange="validateOption()" class="custom-select"
 									id="stati" name="stato">
 
-									<option selected disabled>Stati</option>
-
+									<option selected disabled>Stato candidato</option>
+									<option value="noFiltro">Tutti gli stati</option>
 									<c:forEach var="stato" items="${statoCandidatoList}">
 										<option value="${stato.descrizione}">${stato.descrizione}</option>
 									</c:forEach>

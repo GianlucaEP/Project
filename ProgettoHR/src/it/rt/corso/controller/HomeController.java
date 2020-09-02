@@ -1,5 +1,6 @@
 package it.rt.corso.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,8 +81,12 @@ public class HomeController {
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
 //		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
-
-		List<Candidato> list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
+		List<Candidato> list = new ArrayList<>();
+		if (requestParams.get("stato").equals("noFiltro")) {
+			list = cdao.getListaByBusinessUnit(businessUnit);
+		} else {
+			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
+		}
 
 		List<Mansione> mansioneList = mansioneDAO.getLista();
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
