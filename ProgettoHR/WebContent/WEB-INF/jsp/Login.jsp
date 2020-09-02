@@ -5,14 +5,26 @@
 <html>
 
 <head>
+
+<!-- CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+
+<!-- JAVASCRIPT -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<!-- META -->
 <meta charset="ISO-8859-1">
 <title>Login</title>
+
+<style>
+body {
+	background-image: url("/ProgettoHR/img/Login_background.jpg");
+}
+</style>
 </head>
 
 <body onload="badCredentials()">
@@ -35,8 +47,9 @@
 
 	<div class="container-fluid" style="margin-top: 110px;">
 		<div class="row justify-content-md-center">
-			<div class="col-auto" style="">
+			<div class="col-2" style="background-color: white; border-radius: 10px 10px 10px 10px;">
 
+				<h4 class="text-center mt-4">Login</h4>
 				<form:form id="utenteForm" method="POST"
 					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
 					onsubmit="return validate();">
@@ -53,6 +66,7 @@
 							id="password" placeholder="Inserisci Password" />
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
+					<hr class="my-4">
 				</form:form>
 
 				<div class="row w-100 m-0 p-2">
@@ -62,6 +76,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<script type="text/javascript">
 		function badCredentials() {
@@ -116,7 +131,6 @@
 			return control;
 		}
 	</script>
-
 </body>
 
 </html>
