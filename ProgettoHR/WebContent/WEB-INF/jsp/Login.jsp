@@ -57,21 +57,20 @@ body {
 						<label for="Utente">Utente:</label>
 						<form:input path="username" type="text" class="form-control"
 							id="utente" aria-describedby="utente"
-							placeholder="Inserisci Utente" />
+							placeholder="Inserisci Utente" required="required"/>
 
 					</div>
 					<div class="form-group" id="formPassword">
 						<label for="Password">Password</label>
 						<form:input path="password" type="password" class="form-control"
-							id="password" placeholder="Inserisci Password" />
+							id="password" placeholder="Inserisci Password" required="required"/>
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 					<hr class="my-4">
 				</form:form>
 
-				<div class="row w-100 m-0 p-2">
-					<div class="alert alert-danger text-center" role="alert">Credenziali
-						Errate</div>
+				<div class="row justify-content-center">
+					<div class="alert alert-danger btn-block mb-4 ml-2 mr-2 text-center" role="alert">Credenziali errate</div>
 				</div>
 			</div>
 		</div>
