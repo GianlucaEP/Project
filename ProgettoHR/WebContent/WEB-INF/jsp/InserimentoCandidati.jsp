@@ -167,13 +167,12 @@ body {
 							</h2>
 						</div>
 						<div id="collapse10" class="collapse" aria-labelledby="heading10">
-							<div class="card-body">
+							<div id="areaCompetenzaDiv" class="card-body">
 
-								<div id="areaCompetenzaDiv" class="autocomplete"
-									style="border-bottom-style: ridge;">
+								<div class="autocomplete" style="border-bottom-style: ridge;">
 									<input id="areaCompetenzaInput" class="text-left"
 										style="border-color: transparent;" type="text"
-										 placeholder=" area competenza candidato">
+										placeholder=" area competenza">
 
 									<div onclick="stampaAreaCompetenzaSelezionata()" class="btn">
 										<i class="fas fa-arrow-circle-down"></i>
@@ -187,27 +186,28 @@ body {
 
 
 					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading10">
+						<div class="card-header" id="heading11">
 							<h2 class="">
 								<button class="btn btn-block text-left collapsed"
 									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse10"
-									aria-expanded="false" aria-controls="collapse10">
+									type="button" data-toggle="collapse" data-target="#collapse11"
+									aria-expanded="false" aria-controls="collapse11">
 									<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
 										class="fas fa-briefcase float-right pt-1"></i>
 								</button>
 							</h2>
 						</div>
-						<div id="collapse10" class="collapse" aria-labelledby="heading10">
-							<div class="card-body">
+						<div id="collapse11" class="collapse" aria-labelledby="heading11">
+							<div id="mansioneDiv" class="card-body">
 
-								<div id="mansioneDiv" class="autocomplete"
-									style="border-bottom-style: ridge;">
+								<div class="autocomplete" style="border-bottom-style: ridge;">
 									<input id="mansioneInput" class="text-left"
 										style="border-color: transparent;" type="text"
-										 placeholder=" mansione candidato">
+										placeholder="mansione">
 
-									<div onclick="stampaMansioneSelezionata()" class="btn"><i class="fas fa-arrow-circle-down"></i></div>
+									<div onclick="stampaMansioneSelezionata()" class="btn">
+										<i class="fas fa-arrow-circle-down"></i>
+									</div>
 
 
 								</div>
@@ -218,25 +218,27 @@ body {
 
 
 					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading10">
+						<div class="card-header" id="heading12">
 							<h2 class="">
 								<button class="btn btn-block text-left collapsed"
 									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse10"
-									aria-expanded="false" aria-controls="collapse10">
-									<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione <i
-										class="fas fa-briefcase float-right pt-1"></i>
+									type="button" data-toggle="collapse" data-target="#collapse12"
+									aria-expanded="false" aria-controls="collapse12">
+									<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione
+									<i class="fas fa-briefcase float-right pt-1"></i>
 								</button>
 							</h2>
 						</div>
-						<div id="collapse10" class="collapse" aria-labelledby="heading10">
-							<div class="card-body">
+						<div id="collapse12" class="collapse" aria-labelledby="heading12">
+							<div id="specializzazioneDiv" class="card-body">
 
-								<div id="specializzazioneDiv" class="autocomplete"
-									style="border-bottom-style: ridge;">
+								<div class="autocomplete" style="border-bottom-style: ridge;">
 									<input id="specializzazioneInput" class="text-left"
 										style="border-color: transparent;" type="text"
-										 placeholder=" specializzazione candidato">
+										placeholder="specializzazione"> <input
+										id="anniEsperienzaInput" class="text-left"
+										style="border-color: transparent;" type="number"
+										placeholder="anni esperienza">
 
 									<div onclick="stampaSpecializzazioneSelezionata()" class="btn">
 										<i class="fas fa-arrow-circle-down"></i>
@@ -306,6 +308,9 @@ body {
 			areaCnt++;
 			tagDiv.name = areaName;
 			document.getElementById("areaCompetenzaDiv").appendChild(tagDiv);
+			document.getElementById("areaCompetenzaInput").value = "";
+			document.getElementById("areaCompetenzaInput").focus();
+
 		}
 
 		function stampaMansioneSelezionata() {
@@ -317,17 +322,27 @@ body {
 			mansioneCnt++;
 			tagDiv.name = mansioneName;
 			document.getElementById("mansioneDiv").appendChild(tagDiv);
+			document.getElementById("mansioneInput").value = "";
+			document.getElementById("mansioneInput").focus();
 		}
 
 		function stampaSpecializzazioneSelezionata() {
-			var string = document.getElementById("specializzazioneInput").value;
-			var tagDiv = document.createElement("input");
+			var specializzazione = document
+					.getElementById("specializzazioneInput").value;
+			var anniEsperienza = document.getElementById("anniEsperienzaInput").value;
+			var tagInputSpecializzazione = document.createElement("input");
+
 			//var node = document.createTextNode(string);
-			tagDiv.value = string;
-			specializzazioneName = "specializzazione"+specializzazioneCnt;
+			tagInputSpecializzazione.value = specializzazione + " "
+					+ anniEsperienza;
+
+			specializzazioneName = "specializzazione" + specializzazioneCnt;
 			specializzazioneCnt++;
-			tagDiv.name = specializzazioneName;
-			document.getElementById("specializzazioneDiv").appendChild(tagDiv);
+			tagInputSpecializzazione.name = specializzazioneName;
+			document.getElementById("specializzazioneDiv").appendChild(
+					tagInputSpecializzazione);
+			document.getElementById("specializzazioneInput").value = "";
+			document.getElementById("specializzazioneInput").focus();
 		}
 
 		function autocomplete(inp, arr) {

@@ -69,12 +69,12 @@ public class CandidatiController {
 
 			mansioneListString.add(mansione.getMansione());
 		}
-		
+
 		for (AreaCompetenza area : areaCompetenzaList) {
 
 			areaCompetenzaListString.add(area.getArea());
 		}
-		
+
 		for (Specializzazione spec : specializzazioneList) {
 
 			specializzazioneListString.add(spec.getSpecializzazione());
@@ -186,7 +186,6 @@ public class CandidatiController {
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
 		List<Mansione> listaMansione = new ArrayList<Mansione>();
 		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
-		CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
 
 		for (Map.Entry<String, String> entry : mappaCandidato.entrySet()) {
 			if (entry.getKey().contains("area")) {
@@ -197,8 +196,14 @@ public class CandidatiController {
 				Mansione mansione = mansioneDAO.get(entry.getValue());
 				listaMansione.add(mansione);
 			} else if (entry.getKey().contains("specializzazione")) {
-				Specializzazione specializzazione = specializzazioneDAO.get(entry.getValue());
 
+				// da jsp mi arriva la specializzazione come stringa in formato
+				// "specializzazione anniEsperienza e devo dividerla per assengnarla ai 2 campi
+				// di candidatoSpecializzazione
+				String[] specializzazioneCorretta = entry.getValue().split(" ");
+				CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
+				Specializzazione specializzazione = specializzazioneDAO.get(specializzazioneCorretta[0]);
+				candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
 				candidatoSpecializzazione.setSpecializzazione(specializzazione);
 				candidatoSpecializzazione.setCandidato(candidato);
 				listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
@@ -207,6 +212,7 @@ public class CandidatiController {
 
 		candidato.setArea(listaCompetenza);
 		candidato.setMansione(listaMansione);
+		candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
 
 		candidatoDAO.inserisci(candidato);
 
