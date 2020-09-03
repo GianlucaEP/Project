@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -22,8 +23,10 @@ import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.query.Query;
 
+
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
+import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Funzionalita;
@@ -78,7 +81,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	}
 
 	@Override
-	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter) {
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) {
 
 		Utility.buildSession();
 
@@ -104,6 +107,8 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// join tra candidato e mansione
 		Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
+		//join tra candidato e aree
+		Join<Candidato, AreaCompetenza> areaCompetenza = root.join("area", JoinType.INNER);
 
 		// crea una serie di condizioni, WHERE
 
@@ -111,8 +116,10 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		List<Predicate> listaPredicates = new ArrayList<Predicate>();
 		// Lista per gestire le mansioni da inserire nella or
 		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
+		
+		List<Predicate> listaPredicatesAree = new ArrayList<Predicate>();
 		// aggiungi business unit nei predicates
-		listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
+		//listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
 
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
 
@@ -121,9 +128,24 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 				listaPredicatesMansioni
 						.add(criteriaBuilder.like(mansione.get("mansione"), "%" + entry.getValue() + "%"));
 
-			} else {
+			} 
+			else if(entry.getKey().contains("area")) {
+				listaPredicatesAree
+				.add(criteriaBuilder.like(areaCompetenza.get("area"), "%" + entry.getValue() + "%"));
+			}
+			else if(entry.getKey().contains("business")) {
+				listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + entry.getValue() + "%"));
+			}
+			else {
+				
+				String regex = "[0-9]+";
+				if(entry.getValue().matches(regex)){
+					int x=Integer.parseInt(entry.getValue());
+					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
+				}
+				else {
 				listaPredicates.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
-
+				}
 			}
 
 		} // ciclo per inserire nei predicati dei filtri nelle rispettive liste
@@ -135,6 +157,14 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 			// aggiunge alla lista di tutti i predicati la or delle mansioni
 			listaPredicates.add(criteriaBuilder.or(predicatesMansioni));
 		}
+		
+		if (!listaPredicatesAree.isEmpty()) {
+			// trasforma la lista in array per inserire i predicati delle mansioni nella or
+			Predicate[] predicateAree = listaPredicatesAree
+					.toArray(new Predicate[listaPredicatesAree.size()]);
+			// aggiunge alla lista di tutti i predicati la or delle mansioni
+			listaPredicates.add(criteriaBuilder.or(predicateAree));
+		}
 
 		// trasforma in array la lista di tutti i predicati
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
@@ -143,7 +173,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		// esecuzione della query
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 
-		List<Candidato> lista = (List<Candidato>) query.getResultList();
+		List<Candidato> lista = query.getResultList();
 		return lista;
 	}
 
