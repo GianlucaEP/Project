@@ -61,7 +61,8 @@ body {
 					class="fas fa-briefcase float-right"></i></a>
 			</div>
 
-			<div align="center" class="col-auto m-2 p-2 border ">
+			<div align="center" class="col-auto m-2 p-2 border "
+				style="background-color: #ffffff;">
 				<h1>Inserimento Candidato</h1>
 				<form autocomplete="off" method="POST"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
@@ -155,17 +156,17 @@ body {
 
 
 					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading10">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse10"
-									aria-expanded="false" aria-controls="collapse10">
-									<i class="fa fa-plus" aria-hidden="true"></i> Area Competenza <i
-										class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
+
+						<h2 class="">
+							<button class="btn btn-block text-left collapsed"
+								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+								type="button" data-toggle="collapse" data-target="#collapse10"
+								aria-expanded="false" aria-controls="collapse10">
+								<i class="fa fa-plus" aria-hidden="true"></i> Area Competenza <i
+									class="fas fa-briefcase float-right pt-1"></i>
+							</button>
+						</h2>
+
 						<div id="collapse10" class="collapse" aria-labelledby="heading10">
 							<div id="areaCompetenzaDiv" class="card-body">
 
@@ -174,7 +175,9 @@ body {
 										style="border-color: transparent;" type="text"
 										placeholder=" area competenza">
 
-									<div onclick="stampaAreaCompetenzaSelezionata()" class="btn">
+									<div
+										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+										class="btn">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -186,17 +189,17 @@ body {
 
 
 					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading11">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse11"
-									aria-expanded="false" aria-controls="collapse11">
-									<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
-										class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
+
+						<h2 class="">
+							<button class="btn btn-block text-left collapsed"
+								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+								type="button" data-toggle="collapse" data-target="#collapse11"
+								aria-expanded="false" aria-controls="collapse11">
+								<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
+									class="fas fa-briefcase float-right pt-1"></i>
+							</button>
+						</h2>
+
 						<div id="collapse11" class="collapse" aria-labelledby="heading11">
 							<div id="mansioneDiv" class="card-body">
 
@@ -205,7 +208,8 @@ body {
 										style="border-color: transparent;" type="text"
 										placeholder="mansione">
 
-									<div onclick="stampaMansioneSelezionata()" class="btn">
+									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+										class="btn">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -218,17 +222,16 @@ body {
 
 
 					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading12">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse12"
-									aria-expanded="false" aria-controls="collapse12">
-									<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione
-									<i class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
+						<h2 class="">
+							<button class="btn btn-block text-left collapsed"
+								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+								type="button" data-toggle="collapse" data-target="#collapse12"
+								aria-expanded="false" aria-controls="collapse12">
+								<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione <i
+									class="fas fa-briefcase float-right pt-1"></i>
+							</button>
+						</h2>
+
 						<div id="collapse12" class="collapse" aria-labelledby="heading12">
 							<div id="specializzazioneDiv" class="card-body">
 
@@ -240,7 +243,9 @@ body {
 										style="border-color: transparent;" type="number"
 										placeholder="anni esperienza">
 
-									<div onclick="stampaSpecializzazioneSelezionata()" class="btn">
+									<div
+										onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+										class="btn">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -280,6 +285,18 @@ body {
 
 		</div>
 	</div>
+	
+	
+	<!-- MODAL DI ERRORE INSERIMENTO CAMPO -->
+	  <div id="modalErrore" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <p>Campo inserito non valido</p>
+      </div>
+    </div>
+  </div>
+
 
 
 
@@ -288,61 +305,82 @@ body {
 		mansioneCnt = 0;
 		specializzazioneCnt = 0;
 
-		function mostraInputAnniEsperienza(contatore) {
-			stringId = "candidatoSpecializzazione" + contatore + ".anni";
-			var x = document.getElementById(stringId);
-			if (x.type === 'hidden') {
-				x.type = 'number';
-			} else {
-				x.type = 'hidden';
+
+		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
+			
+			
+			for(area of buildString(areaCompetenzaList)){
+				if(document.getElementById("areaCompetenzaInput").value === area){
+					var tagInput = document.createElement("input");
+					tagInput.value = document.getElementById("areaCompetenzaInput").value;
+					
+					areaName = "area" + areaCnt;
+					areaCnt++;
+					
+					tagInput.name = areaName;
+					tagInput.readOnly = true;
+					
+					document.getElementById("areaCompetenzaDiv").appendChild(tagInput);
+					document.getElementById("areaCompetenzaInput").value = "";
+					document.getElementById("areaCompetenzaInput").focus();
+					return;
+				}	
 			}
+			alert("Area competenza scelta non esistente");
+			
+			
+			
 
 		}
+		
 
-		function stampaAreaCompetenzaSelezionata() {
-			var string = document.getElementById("areaCompetenzaInput").value;
-			var tagDiv = document.createElement("input");
-			//var node = document.createTextNode(string);
-			tagDiv.value = string;
-			areaName = "area" + areaCnt;
-			areaCnt++;
-			tagDiv.name = areaName;
-			document.getElementById("areaCompetenzaDiv").appendChild(tagDiv);
-			document.getElementById("areaCompetenzaInput").value = "";
-			document.getElementById("areaCompetenzaInput").focus();
-
-		}
-
-		function stampaMansioneSelezionata() {
-			var string = document.getElementById("mansioneInput").value;
-			var tagDiv = document.createElement("input");
-			//var node = document.createTextNode(string);
-			tagDiv.value = string;
+		function stampaMansioneSelezionata(mansioneList) {
+			
+			for(mansione of buildString(mansioneList)){
+				if(document.getElementById("mansioneInput").value === mansione){
+			
+			var tagInput = document.createElement("input");
+			tagInput.value = document.getElementById("mansioneInput").value;
+			
 			mansioneName = "mansione" + mansioneCnt;
 			mansioneCnt++;
-			tagDiv.name = mansioneName;
-			document.getElementById("mansioneDiv").appendChild(tagDiv);
+			
+			tagInput.name = mansioneName;
+			tagInput.readOnly = true;
+			
+			document.getElementById("mansioneDiv").appendChild(tagInput);
 			document.getElementById("mansioneInput").value = "";
 			document.getElementById("mansioneInput").focus();
+			return;
+				}
+			}
+			alert("Mansione scelta non esistente");
 		}
+		
 
-		function stampaSpecializzazioneSelezionata() {
-			var specializzazione = document
-					.getElementById("specializzazioneInput").value;
-			var anniEsperienza = document.getElementById("anniEsperienzaInput").value;
-			var tagInputSpecializzazione = document.createElement("input");
+		function stampaSpecializzazioneSelezionata(specializzazioneList) {
+			
+			for(specializzazione of buildString(specializzazioneList)){
+				if(document.getElementById("specializzazioneInput").value === specializzazione){
+					
+				
+					var tagInput = document.createElement("input");
+					tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
 
-			//var node = document.createTextNode(string);
-			tagInputSpecializzazione.value = specializzazione + " "
-					+ anniEsperienza;
-
-			specializzazioneName = "specializzazione" + specializzazioneCnt;
-			specializzazioneCnt++;
-			tagInputSpecializzazione.name = specializzazioneName;
-			document.getElementById("specializzazioneDiv").appendChild(
-					tagInputSpecializzazione);
-			document.getElementById("specializzazioneInput").value = "";
-			document.getElementById("specializzazioneInput").focus();
+					specializzazioneName = "specializzazione" + specializzazioneCnt;
+					specializzazioneCnt++;
+					
+					tagInput.name = specializzazioneName;
+					tagInput.readOnly = true;
+					
+					document.getElementById("specializzazioneDiv").appendChild(tagInput);
+					document.getElementById("specializzazioneInput").value = "";
+					document.getElementById("specializzazioneInput").focus();
+					return;
+				}
+			}
+			alert("Specializzazione scelta non esistente");
+			
 		}
 
 		function autocomplete(inp, arr) {
