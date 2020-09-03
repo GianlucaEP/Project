@@ -69,7 +69,7 @@ html, body {
 						<i class="fas fa-user"></i>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a> 
+						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a>
 					</div>
 				</div>
 
@@ -96,7 +96,7 @@ html, body {
 						<button class="btn btn-dark btn-block mt-1 text-left"
 							style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
 							data-toggle="modal" data-target="#mansioneModal">
-							<i class="fas fa-plus-square mr-1"></i> Mansione  <i>
+							<i class="fas fa-plus-square mr-1"></i> Mansione <i
 								class="fas fa-briefcase "></i>
 						</button>
 					</c:when>
@@ -207,29 +207,29 @@ html, body {
 												</c:otherwise>
 											</c:choose></td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${cand.business.business}</td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${cand.nome}</td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${cand.cognome}</td>
 
 										<td><c:forEach var="area" items="${cand.area}">
 												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 													${area.area}</span>
 											</c:forEach></td>
 
 										<td><c:forEach var="mansione" items="${cand.mansione}">
 												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 													${mansione.mansione}</span>
 											</c:forEach></td>
 
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${cand.seniority.seniority}</td>
 										<td data-toggle="modal" data-target="#EliminaModal"><i
 											class="fas fa-trash-alt"></i></td>
