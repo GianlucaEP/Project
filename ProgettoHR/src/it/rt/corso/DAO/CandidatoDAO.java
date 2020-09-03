@@ -25,7 +25,7 @@ public interface CandidatoDAO {
 	 * @return the List of Candidato, wich has to be printed inside the table, filtered by the user
 	 * 
 	 * */
-	public List<Candidato> getListaByBusinessUnitFiltered(String businessUnit, Map<String, String> mappaFilter);
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter);
 	
 	public List<Candidato> getListaByBusinessUnitFilteredByStato(String businessUnit, String stato);
 	
