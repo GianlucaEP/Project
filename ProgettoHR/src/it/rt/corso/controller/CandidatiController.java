@@ -300,15 +300,15 @@ public class CandidatiController {
 
 	}
 
-	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m,
+	@RequestMapping(value = "/Candidato//{id}", method = RequestMethod.GET)
+	public String Candidato(@PathVariable int id, Model m,
 			@SessionAttribute("utente") Utente utente) {
 
 		Candidato c = candidatoDAO.get(id);
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
-		m.addAttribute("businessUnit", businessUnit);
+		
 		m.addAttribute("mostraFeedback", f);
 
 		// m.addAttribute("listaMansione", listaMansione);

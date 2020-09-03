@@ -48,7 +48,7 @@
 				style="opacity: 0.9;">
 
 				<!-- Logo -->
-				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<a class="navbar-brand" href="/ProgettoHR/Home/${mostraCandidato.business.business}">
 					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
 					style="width: 170px;">
 				</a>
@@ -1615,7 +1615,7 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<form:input readonly="readonly" path="tipo.tipo" type="text"
+										<form:input readOnly="true" path="tipo.tipo" type="text"
 											class="form-control" id="tipoAggiungiFeedback"
 											name="tipoFeedback" value=""></form:input>
 									</div>
