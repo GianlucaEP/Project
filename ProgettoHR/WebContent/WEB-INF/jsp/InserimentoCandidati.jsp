@@ -299,6 +299,28 @@ body {
 		</div>
 	</div>
 
+	<!-- MODAL ERRORE -->
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="errorModalBody"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Chiudi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script type="text/javascript">
 		areaCnt = 0;
 		mansioneCnt = 0;
@@ -325,7 +347,8 @@ body {
 					return;
 				}	
 			}
-			alert("Area competenza scelta non esistente");
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Area inserita non esistente"
 			
 		}
 		
