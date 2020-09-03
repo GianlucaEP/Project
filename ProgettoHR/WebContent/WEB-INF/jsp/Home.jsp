@@ -68,6 +68,9 @@ html, body {
 						aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-user"></i>
 					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a> 
+					</div>
 				</div>
 
 			</nav>
@@ -89,11 +92,11 @@ html, body {
 
 				<!-- bottone aggiunta mansione -->
 				<c:choose>
-					<c:when test="${ ruolo == 'admin'}">
+					<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
 						<button class="btn btn-dark btn-block mt-1 text-left"
 							style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
 							data-toggle="modal" data-target="#mansioneModal">
-							<i class="fas fa-plus-square mr-1"></i> Mansione <i
+							<i class="fas fa-plus-square mr-1"></i> Mansione  <i>
 								class="fas fa-briefcase "></i>
 						</button>
 					</c:when>

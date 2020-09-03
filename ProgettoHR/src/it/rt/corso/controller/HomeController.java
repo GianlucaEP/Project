@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.BusinessDAO;
@@ -55,6 +57,7 @@ public class HomeController {
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
 
+	
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
@@ -64,6 +67,13 @@ public class HomeController {
 		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
 		List<Business> businessList = businessDAO.getLista();
 
+		
+		//fare una classe singleton che carica mansioni ruoli stato
+		
+		if (utente.getUsername()==null) {
+			return "redirect:/Login";
+		}
+		
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
@@ -74,6 +84,8 @@ public class HomeController {
 		return "Home";
 	}
 
+	
+	
 	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
@@ -102,5 +114,14 @@ public class HomeController {
 
 		return "Home";
 	}
+
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Some parameters are invalid")
+	void onIllegalArgumentException(IllegalArgumentException exception) {
+		
+	}
+
+	
+	
 
 }

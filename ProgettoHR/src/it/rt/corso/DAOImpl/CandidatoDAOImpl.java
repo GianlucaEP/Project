@@ -82,6 +82,11 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		Utility.buildSession();
 
+		
+		
+		//bean di candidatofilter nel argomento
+		//controllo i campi not null e ne faccio predicati
+		
 		Session session = Utility.getSession();
 
 		// creo builder di criteria
