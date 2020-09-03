@@ -83,6 +83,7 @@ public class CandidatiController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", businessList);
 		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", mansioneListString);
 		m.addAttribute("specializzazioneList", specializzazioneListString);
 		m.addAttribute("seniorityList", seniorityList);
