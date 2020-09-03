@@ -328,8 +328,17 @@ body {
 
 
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
+			if(document.getElementById("area0") !== null){   
+				for(var i = 0; i<areaCnt; i++){       
+				 	var areaId = "area"+i;
+					if(document.getElementById(areaId).value === document.getElementById("areaCompetenzaInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 
 			
-			
+			}
 			for(area of buildString(areaCompetenzaList)){
 				if(document.getElementById("areaCompetenzaInput").value === area){
 					var tagInput = document.createElement("input");
@@ -338,7 +347,7 @@ body {
 					areaName = "area" + areaCnt;
 					areaCnt++;
 					
-					tagInput.name = areaName;
+					tagInput.id = areaName;
 					tagInput.readOnly = true;
 					
 					document.getElementById("areaCompetenzaDiv").appendChild(tagInput);
