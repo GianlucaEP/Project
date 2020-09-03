@@ -217,98 +217,101 @@
 					<!-- COLONNA 1-->
 					<div class="col-6">
 						<!-- Tabella ANAGRAFICA -->
-						<table
-							class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-							<tbody>
-								<tr>
-									<th colspan=2 class="text-center table-info"
-										style="background-color: #90e0ef">ANAGRAFICA <c:forEach
-											var="funz" items="${ruolo.funzionalita}">
-											<c:choose>
-												<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-													<!-- Bottone modifica anagrafica -->
-													<button type="button" data-toggle="modal"
-														data-target="#modificaAnagraficaModal"
-														class="btn btn-info float-md-right">
-														<i class="fas fa-pen "></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach>
+						<div class="table-responsive-md">
+							<table
+								class="table table-hover table-md table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+								<tbody>
+									<tr>
+										<th colspan=2 class="text-center table-info"
+											style="background-color: #90e0ef">ANAGRAFICA <c:forEach
+												var="funz" items="${ruolo.funzionalita}">
+												<c:choose>
+													<c:when
+														test="${funz.funzionalita == 'modifica anagrafica'}">
+														<!-- Bottone modifica anagrafica -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaAnagraficaModal"
+															class="btn btn-info float-md-right">
+															<i class="fas fa-pen "></i>
+														</button>
+													</c:when>
+												</c:choose>
+											</c:forEach>
 
-									</th>
-								</tr>
-								<c:forEach var="funz" items="${ruolo.funzionalita}">
-									<c:choose>
-										<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-											<tr>
+										</th>
+									</tr>
+									<c:forEach var="funz" items="${ruolo.funzionalita}">
+										<c:choose>
+											<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
+												<tr>
 
-												<th scope="col">Stato</th>
-												<td scope="col"><button
-														class="btn btn-primary dropdown-toggle" role="button"
-														id="menuStato" data-toggle="dropdown" aria-haspopup="true"
-														aria-expanded="false"></button> <!-- Dropdown per stati candidato -->
-													<div class="dropdown-menu"
-														aria-labelledby="dropdownMenuLink">
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
-															contattare</a> <a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
-													</div></td>
-											</tr>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-								<tr>
-									<th scope="col">Nome</th>
-									<td scope="col">${mostraCandidato.nome}</td>
-								</tr>
-								<tr>
-									<th scope="col">Cognome</th>
-									<td scope="col">${mostraCandidato.cognome}</td>
-								</tr>
-								<tr>
-									<th scope="col">Anno di nascita</th>
-									<td scope="col">${mostraCandidato.anno}</td>
-								</tr>
-								<tr>
-									<th scope="col">Telefono</th>
-									<td scope="col">${mostraCandidato.telefono}</td>
-								</tr>
-								<tr>
-									<th scope="col">E-mail</th>
-									<td scope="col">${mostraCandidato.email}</td>
-								</tr>
-								<c:forEach var="funz" items="${ruolo.funzionalita}">
-									<c:choose>
-										<c:when
-											test="${funz.funzionalita == 'visualizza anagrafica completa'}">
-											<tr>
-												<th scope="col">Provenienza candidatura</th>
-												<td scope="col">${mostraCandidato.provenienza}</td>
-											</tr>
+													<th scope="col">Stato</th>
+													<td scope="col"><button
+															class="btn btn-primary dropdown-toggle" role="button"
+															id="menuStato" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"></button> <!-- Dropdown per stati candidato -->
+														<div class="dropdown-menu"
+															aria-labelledby="dropdownMenuLink">
+															<a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
+																contattare</a> <a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
+															<a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
+															<a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
+														</div></td>
+												</tr>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+									<tr>
+										<th style="width: 10%" scope="col">Nome</th>
+										<td style="width: 30%" scope="col">${mostraCandidato.nome}</td>
+									</tr>
+									<tr>
+										<th scope="col">Cognome</th>
+										<td scope="col">${mostraCandidato.cognome}</td>
+									</tr>
+									<tr>
+										<th scope="col">Anno di nascita</th>
+										<td scope="col">${mostraCandidato.anno}</td>
+									</tr>
+									<tr>
+										<th scope="col">Telefono</th>
+										<td scope="col">${mostraCandidato.telefono}</td>
+									</tr>
+									<tr>
+										<th scope="col">E-mail</th>
+										<td scope="col">${mostraCandidato.email}</td>
+									</tr>
+									<c:forEach var="funz" items="${ruolo.funzionalita}">
+										<c:choose>
+											<c:when
+												test="${funz.funzionalita == 'visualizza anagrafica completa'}">
+												<tr>
+													<th scope="col">Provenienza candidatura</th>
+													<td scope="col">${mostraCandidato.provenienza}</td>
+												</tr>
 
-											<tr>
-												<th scope="col">Categoria protetta</th>
-												<td scope="col" id="categoriaProtetta"></td>
-											</tr>
-										</c:when>
-									</c:choose>
-								</c:forEach>
+												<tr>
+													<th scope="col">Categoria protetta</th>
+													<td scope="col" id="categoriaProtetta"></td>
+												</tr>
+											</c:when>
+										</c:choose>
+									</c:forEach>
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 
 						<!-- tabella ECONOMICS -->
 						<c:forEach var="funz" items="${ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza economics'}">
 									<table id="economicsTable"
-										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+										class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
 										<tbody>
 
 											<tr>
@@ -365,64 +368,162 @@
 								<c:when
 									test="${funz.funzionalita == 'visualizza profilo professionale'}">
 									<table
-										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+										class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
+
 										<tbody>
 
 											<tr>
-												<th colspan=2 class="text-center table-success"
+
+												<th colspan=3 class="text-center table-success"
 													style="background-color: #77bfa3">BUSINESS <c:forEach
 														var="funz" items="${ruolo.funzionalita}">
+													</c:forEach>
+												</th>
+
+											</tr>
+
+											<!-- BUSINESS UNIT -->
+											<tr>
+
+												<th scope="col">Business unit</th>
+												<td scope="col">${mostraCandidato.business.business}</td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
-																<!-- Bottone modifica business -->
+																<!-- Bottone modifica business unit -->
 																<button type="button" data-toggle="modal"
-																	data-target="#modificaBusinessModal"
-																	class="btn btn-success float-md-right">
-																	<i class="fas fa-pen "></i>
+																	data-target="#modificaBusinessUnit"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
 																</button>
 															</c:when>
 														</c:choose>
-													</c:forEach>
-												</th>
+													</c:forEach></th>
+
 											</tr>
 
+											<!-- AREA COMPETENZA -->
 											<tr>
-												<th scope="col">Business unit</th>
-												<td scope="col">${mostraCandidato.business.business}</td>
-											</tr>
-											<tr>
+
 												<th scope="col">Area di competenza</th>
 												<td scope="col"><c:forEach var="area"
 														items="${mostraCandidato.area}">
 														<span>${area.area}</span>
 													</c:forEach></td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+														<c:choose>
+															<c:when
+																test="${funz.funzionalita == 'modifica profilo professionale'}">
+																<!-- Bottone modifica area di competenza-->
+																<button type="button" data-toggle="modal"
+																	data-target="#modificaAreaCompetenza"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
+																</button>
+															</c:when>
+														</c:choose>
+													</c:forEach></th>
+
 											</tr>
+
+											<!-- MANSIONE -->
 											<tr>
 												<th scope="col">Mansione</th>
 												<td scope="col"><c:forEach var="mansione"
 														items="${mostraCandidato.mansione}">
 														<span>${mansione.mansione}</span>
 													</c:forEach></td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+														<c:choose>
+															<c:when
+																test="${funz.funzionalita == 'modifica profilo professionale'}">
+																<!-- Bottone modifica mansione -->
+																<button type="button" data-toggle="modal"
+																	data-target="#modificaMansione"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
+																</button>
+															</c:when>
+														</c:choose>
+													</c:forEach></th>
+
 											</tr>
+
+											<!-- SENIORITY -->
 											<tr>
+
 												<th scope="col">Seniority</th>
 												<td scope="col">${mostraCandidato.seniority.seniority}</td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+														<c:choose>
+															<c:when
+																test="${funz.funzionalita == 'modifica profilo professionale'}">
+																<!-- Bottone modifica seniority -->
+																<button type="button" data-toggle="modal"
+																	data-target="#modificaSeniority"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
+																</button>
+															</c:when>
+														</c:choose>
+													</c:forEach></th>
+
 											</tr>
+
+											<!-- SPECIALIZZAZIONE -->
 											<tr>
+
 												<th scope="col">Specializzazione</th>
 												<td scope="col"><c:forEach var="specializzazione"
 														items="${mostraCandidato.candidatoSpecializzazione}">
 														<span>${specializzazione.specializzazione.specializzazione}
 															&nbsp ${specializzazione.anni} anni esperienza</span>
 													</c:forEach></td>
-											</tr>
-											<tr>
-												<th scope="col">Inserimento azienda</th>
-												<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+														<c:choose>
+															<c:when
+																test="${funz.funzionalita == 'modifica profilo professionale'}">
+																<!-- Bottone modifica specializzazione -->
+																<button type="button" data-toggle="modal"
+																	data-target="#modificaSpecializzazione"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
+																</button>
+															</c:when>
+														</c:choose>
+													</c:forEach></th>
+
 											</tr>
 
+											<!-- INSERIMENTO AZIENDA -->
+											<tr>
+
+												<th scope="col">Inserimento azienda</th>
+												<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
+												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+														<c:choose>
+															<c:when
+																test="${funz.funzionalita == 'modifica profilo professionale'}">
+																<!-- Bottone modifica inserimento azienda -->
+																<button type="button" data-toggle="modal"
+																	data-target="#modificaInserimentoAzienda"
+																	class="btn btn-light btn-block"
+																	style="background-color: #52b788; border-color: transparent;">
+																	<i class="fas fa-cogs"></i>
+																</button>
+															</c:when>
+														</c:choose>
+													</c:forEach></th>
+
+											</tr>
 										</tbody>
+
 									</table>
 								</c:when>
 							</c:choose>
@@ -433,7 +534,7 @@
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza costi'}">
 									<table id="costiTable"
-										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+										class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
 										<tbody>
 
 											<tr>
@@ -481,7 +582,7 @@
 
 						<!-- tabella QUALIFICATION MEETING-->
 						<table id="qualificationMeetingTable"
-							class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+							class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
 							<thead>
 
 								<tr>
@@ -538,7 +639,7 @@
 
 						<!-- Tabella FEEDBACK -->
 						<table
-							class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white"
+							class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white"
 							id="feedbackTable">
 							<thead>
 
@@ -585,7 +686,7 @@
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza allegati'}">
 									<table id="allegatiTable"
-										class="table table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
+										class="table table-hover table-md table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
 										<thead>
 
 											<tr>
@@ -729,7 +830,277 @@
 		</div>
 	</div>
 
-	<!-- MODAL modifica BUSINESS -->
+	<!-- MODAL MODIFICA BUSINESS UNIT -->
+	<div class="modal fade" id="modificaBusinessUnit" tabindex="-1"
+		role="dialog" aria-labelledby="modalBusinessUnit" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleBusinessUnit">Modifica
+						Business Unit</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-row justify-content-center">
+
+						<div class="form-group col-auto">
+							<h5 class="text-center">Scegli:</h5>
+							<select id="inputState" class="form-control text-center">
+								<option disabled>business unit</option>
+								<option>ICT</option>
+								<option>Telco</option>
+								<option>Ingegneria</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL MODIFICA AREA DI COMPETENZA -->
+	<div class="modal fade" id="modificaAreaCompetenza" tabindex="-1"
+		role="dialog" aria-labelledby="modalAreaCompetenza" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleAreaCompetenza">Modifica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div style="border-color: transparent;">
+
+						<div>
+							<h5>Aree di competenza:</h5>
+						</div>
+						<button class="btn btn-block text-center collapsed"
+							style="box-shadow: 0px 0px 2px black;" type="button"
+							data-toggle="collapse" data-target="#collapseAreaCompetenza"
+							aria-expanded="false" aria-controls="collapseAreaCompetenza">
+							<i class="fas fa-wrench"></i> Aggiungi
+						</button>
+
+						<div id="collapseAreaCompetenza" class="collapse"
+							aria-labelledby="headingAreaCompetenza">
+							<div class="card-body" id="areaCompetenza">
+
+								<div class="autocomplete" style="border-bottom-style: ridge;">
+									<input id="areaCompetenzaInput"
+										style="border-color: transparent;" type="text">
+
+									<div onclick="stampaAreaCompetenzaSelezionata()"
+										class="btn float-right">
+										<i class="fas fa-arrow-circle-down"></i>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL MODIFICA MANSIONE -->
+	<div class="modal fade" id="modificaMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalMansione" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleMansione">Modifica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div style="border-color: transparent;">
+
+						<div>
+							<h5>Mansioni:</h5>
+						</div>
+						<button class="btn btn-block text-center collapsed"
+							style="box-shadow: 0px 0px 2px black;" type="button"
+							data-toggle="collapse" data-target="#collapseAreaCompetenza"
+							aria-expanded="false" aria-controls="collapseAreaCompetenza">
+							<i class="fas fa-wrench"></i> Aggiungi
+						</button>
+
+						<div id="collapseAreaCompetenza" class="collapse"
+							aria-labelledby="headingAreaCompetenza">
+							<div class="card-body" id="areaCompetenza">
+
+								<div class="autocomplete" style="border-bottom-style: ridge;">
+									<input id="areaCompetenzaInput"
+										style="border-color: transparent;" type="text">
+
+									<div onclick="stampaAreaCompetenzaSelezionata()"
+										class="btn float-right">
+										<i class="fas fa-arrow-circle-down"></i>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL MODIFICA SENIORITY-->
+	<div class="modal fade" id="modificaSeniority" tabindex="-1"
+		role="dialog" aria-labelledby="modalSeniority" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleSeniority">Modifica Seniority</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-row justify-content-center">
+
+						<div class="form-group col-auto">
+							<h5 class="text-center">Scegli:</h5>
+							<select id="inputState" class="form-control text-center">
+								<option disabled>business unit</option>
+								<option>Graduate</option>
+								<option>Junior</option>
+								<option>Intermediate</option>
+								<option>Senior</option>
+								<option>Expert</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL MODIFICA SPECIALIZZAZIONE -->
+	<div class="modal fade" id="modificaSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalSpecializzazione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleSpecializzazione">Modifica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div style="border-color: transparent;">
+
+						<div>
+							<h5>Specializzazioni:</h5>
+						</div>
+						<button class="btn btn-block text-center collapsed"
+							style="box-shadow: 0px 0px 2px black;" type="button"
+							data-toggle="collapse" data-target="#collapseAreaCompetenza"
+							aria-expanded="false" aria-controls="collapseAreaCompetenza">
+							<i class="fas fa-wrench"></i> Aggiungi
+						</button>
+
+						<div id="collapseAreaCompetenza" class="collapse"
+							aria-labelledby="headingAreaCompetenza">
+							<div class="card-body" id="areaCompetenza">
+
+								<div class="autocomplete" style="border-bottom-style: ridge;">
+									<input id="areaCompetenzaInput"
+										style="border-color: transparent;" type="text">
+
+									<div onclick="stampaAreaCompetenzaSelezionata()"
+										class="btn float-right">
+										<i class="fas fa-arrow-circle-down"></i>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODIFICA INSERIMENTO AZIENDA -->
+	<div class="modal fade" id="modificaInserimentoAzienda" tabindex="-1"
+		role="dialog" aria-labelledby="modalInserimentoAzienda"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleInserimentoAzienda">Modifica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<!--FORM DATA DA METTERE-->
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-success">Salva</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL modifica BUSINESS 
 	<div class="modal fade" id="modificaBusinessModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -832,7 +1203,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!--MODAL modifica ECONOMICS-->
 	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1"
