@@ -29,155 +29,149 @@ body {
 <body
 	onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
 
-	<div class="row w-100 p-0 m-0">
-		<nav class="navbar navbar-light bg-primary w-100 "
-			style="opacity: 0.8;">
-			<h1>
-				<span class="navbar-text  text-white"> <a
-					href="/ProgettoHR/Home"><img alt="logo"
-						src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a></span>
+	<!-- Navbar -->
+	<div class="container-fluid">
+		<div class="row w-100">
+			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
+				style="opacity: 0.9;">
 
-			</h1>
+				<!-- Logo -->
+				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+					style="width: 170px;">
+				</a>
 
+				<!-- bottone profilo -->
+				<div class="col-auto text-right">
+					<button class="btn btn-primary dropdown-toggle"
+						style="border-radius: 10px; box-shadow: 0px 0px 2px black;"
+						role="button" id="logout" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-user"></i>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a>
+					</div>
+				</div>
 
-			<button class="btn btn-primary dropdown-toggle" role="button"
-				id="userOptions" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">
-				<i class="fas fa-user"></i>
-			</button>
-
-		</nav>
+			</nav>
+		</div>
 	</div>
-	<div align="center" class="container-fluid ">
-		<div class="row justify-content-md-start">
-			<div class="col-auto p-0 bg-primary" style="opacity: 0.8;">
 
-				<a href="/ProgettoHR/Home/${businessUnit}]" type="button"
-					class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">Torna alla Home <i
-					class="fas fa-home float-right"></i></a> <a href="/ProgettoHR/Mansioni"
-					type="button" class="btn btn-primary btn-block  m-0 text-left"
-					style="border-radius: 0;">+ Mansione <i
-					class="fas fa-briefcase float-right"></i></a>
+	<div style="margin-top: 110px;" class="container-fluid ">
+		<div class="row">
+
+			<!-- COLONNA BOTTONI LATERALI -->
+			<div class="col-1.5"
+				style="opacity: 0.9; border-radius: 0px 10px 10px 0px; background-color: #0466c8;">
+
+				<!-- bottone aggiunta mansione -->
+				<c:choose>
+					<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
+						<button class="btn btn-dark btn-block mt-1 text-left"
+							style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
+							data-toggle="modal" data-target="#mansioneModal">
+							<i class="fas fa-plus-square mr-1"></i> Mansione <i
+								class="fas fa-briefcase "></i>
+						</button>
+					</c:when>
+				</c:choose>
+
 			</div>
 
-			<div align="center" class="col-auto m-2 p-2 border "
-				style="background-color: #ffffff;">
-				<h1>Inserimento Candidato</h1>
-				<form autocomplete="off" method="POST"
+			<!-- COLONNA INSERIMENTO CANDIDATO -->
+			<div class="col-auto">
+
+				<form class="border rounded p-3" autocomplete="off" method="POST"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Nome:</div>
-								<input type="text" class="form-control" id="nome" name="nome"></input>
-							</div>
+
+					<h4 class="text-center"">Nuovo candidato</h4>
+					<p class="text-center">Compila i campi presenti per inserire un
+						nuovo candidato</p>
+					<hr class="my-4">
+
+					<div class="form-row">
+
+						<div class="form-group col-6">
+							<label>Nome: </label><input type="text" class="form-control"
+								id="nome" name="nome"></input>
 						</div>
-					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Cognome:</div>
-								<input type="text" class="form-control" id="cognome"
-									name="cognome"></input>
-							</div>
+						<div class="form-group col-6">
+							<label>Cognome: </label><input type="text" class="form-control"
+								id="cognome" name="cognome"></input>
 						</div>
+
 					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Anno
-									di nascita:</div>
-								<input type="text" class="form-control" id="anno" name="anno"></input>
-							</div>
+
+					<div class="form-row">
+
+						<div class="form-group col-4">
+							<label>Anno di nascita: </label> <input type="text"
+								class="form-control" id="anno" name="anno"></input>
 						</div>
-					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Telefono:</div>
-								<input type="text" class="form-control" id="telefono"
-									name="telefono"></input>
-							</div>
-						</div>
-					</div>
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Email:</div>
-								<input type="text" class="form-control" id="email" name="email"></input>
-							</div>
+
+						<div class="form-group col-8">
+							<label>Telefono:</label> <input type="text" class="form-control"
+								id="telefono" name="telefono"></input>
 						</div>
 					</div>
 
-
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Seniority:</div>
-								<select name="seniority" class="custom-select mb-3">
-									<option selected></option>
-									<c:forEach var="sen" items="${seniorityList}">
-										<option value="${sen.seniority}">${sen.seniority}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
+					<div class="form-group">
+						<label>E-mail:</label> <input type="text" class="form-control"
+							id="email" name="email"></input>
 					</div>
 
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Business
-									Unit:</div>
-								<select name="business" class="custom-select mb-3">
-									<c:forEach var="bus" items="${businessList}">
-										<option value="${bus.business}">${bus.business}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
+					<div class="form-group">
+						<label>Codice fiscale:</label> <input type="text"
+							class="form-control" id="codiceFiscale" name="codiceFiscale"></input>
 					</div>
 
+					<div class="form-group">
+						<label>Seniority:</label> <select name="seniority"
+							class="custom-select">
 
+							<c:forEach var="sen" items="${seniorityList}">
+								<option value="${sen.seniority}">${sen.seniority}</option>
+							</c:forEach>
+						</select>
+					</div>
 
+					<div class="form-group">
+						<label>Business unit:</label> <select name="business"
+							class="custom-select">
+							<c:forEach var="bus" items="${businessList}">
+								<option value="${bus.business}">${bus.business}</option>
+							</c:forEach>
+						</select>
+					</div>
 
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">Provenienza:</div>
-								<input type="text" class="form-control" id="provenienza"
-									name="provenienza"></input>
-							</div>
-						</div>
+					<div class="form-group">
+						<label>Provenienza candidatura:</label> <input type="text"
+							class="form-control" id="provenienza" name="provenienza"></input>
 					</div>
 
 
+					<div class="form-group">
 
+						<label>Area competenza:</label>
+						<button class="btn btn-block text-center border collapsed"
+							type="button" data-toggle="collapse"
+							data-target="#collapseAreaCompetenza" aria-expanded="false"
+							aria-controls="collapseAreaCompetenza">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
 
-					<div class="card" style="border-color: transparent;">
-
-						<h2 class="">
-							<button class="btn btn-block text-left collapsed"
-								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-								type="button" data-toggle="collapse" data-target="#collapse10"
-								aria-expanded="false" aria-controls="collapse10">
-								<i class="fa fa-plus" aria-hidden="true"></i> Area Competenza <i
-									class="fas fa-briefcase float-right pt-1"></i>
-							</button>
-						</h2>
-
-						<div id="collapse10" class="collapse" aria-labelledby="heading10">
+						<div id="collapseAreaCompetenza" class="collapse"
+							aria-labelledby="headingAreaCompetenza">
 							<div id="areaCompetenzaDiv" class="card-body">
-
 								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="areaCompetenzaInput" class="text-left"
-										style="border-color: transparent;" type="text"
-										placeholder=" area competenza">
+
+									<input id="areaCompetenzaInput"
+										style="border-color: transparent;" type="text">
 
 									<div
 										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-										class="btn">
+										class="btn float-right">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -187,29 +181,26 @@ body {
 						</div>
 					</div>
 
+					<div class="form-group">
 
-					<div class="card" style="border-color: transparent;">
+						<label>Mansione:</label>
+						<button class="btn btn-block text-center border collapsed"
+							type="button" data-toggle="collapse"
+							data-target="#collapseMansione" aria-expanded="false"
+							aria-controls="collapseMansione">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
 
-						<h2 class="">
-							<button class="btn btn-block text-left collapsed"
-								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-								type="button" data-toggle="collapse" data-target="#collapse11"
-								aria-expanded="false" aria-controls="collapse11">
-								<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
-									class="fas fa-briefcase float-right pt-1"></i>
-							</button>
-						</h2>
-
-						<div id="collapse11" class="collapse" aria-labelledby="heading11">
+						<div id="collapseMansione" class="collapse"
+							aria-labelledby="headingMansione">
 							<div id="mansioneDiv" class="card-body">
 
 								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="mansioneInput" class="text-left"
-										style="border-color: transparent;" type="text"
-										placeholder="mansione">
+									<input id="mansioneInput" style="border-color: transparent;"
+										type="text">
 
 									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-										class="btn">
+										class="btn float-right">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -220,22 +211,24 @@ body {
 						</div>
 					</div>
 
+					<div class="form-group">
 
-					<div class="card" style="border-color: transparent;">
-						<h2 class="">
-							<button class="btn btn-block text-left collapsed"
-								style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-								type="button" data-toggle="collapse" data-target="#collapse12"
-								aria-expanded="false" aria-controls="collapse12">
-								<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione <i
-									class="fas fa-briefcase float-right pt-1"></i>
-							</button>
-						</h2>
+						<label>Specializzazione:</label>
+						<button class="btn btn-block text-center border collapsed"
+							type="button" data-toggle="collapse"
+							data-target="#collapseSpecializzazione" aria-expanded="false"
+							aria-controls="collapseSpecializzazione">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
 
-						<div id="collapse12" class="collapse" aria-labelledby="heading12">
+
+
+						<div id="collapseSpecializzazione" class="collapse"
+							aria-labelledby="headingSpecializzazione">
 							<div id="specializzazioneDiv" class="card-body">
 
 								<div class="autocomplete" style="border-bottom-style: ridge;">
+
 									<input id="specializzazioneInput" class="text-left"
 										style="border-color: transparent;" type="text"
 										placeholder="specializzazione"> <input
@@ -245,7 +238,7 @@ body {
 
 									<div
 										onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-										class="btn">
+										class="btn float-right">
 										<i class="fas fa-arrow-circle-down"></i>
 									</div>
 
@@ -255,50 +248,56 @@ body {
 						</div>
 					</div>
 
-
-
-
-
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
-							<div class="form-group">
-								<div class="row w-100 p-0 mb-2 justify-content-md-start">
-
-									<input type="checkbox" class="form-check form-check-inline"
-										id="categoriaProtetta" name="categoriaProtetta"
-										style="float: rigth;"></input> Categoria Protetta
-								</div>
-
-
-							</div>
+					<div class="form-group mt-2">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input"
+								id="customSwitch1"> <label class="custom-control-label"
+								for="customSwitch1">Categoria protetta</label>
 						</div>
 					</div>
 
-					<div class="row w-100 p-2 justify-content-md-start">
-						<div class="col w-100 p-0 justify-content-md-start">
+					<hr class="my-4">
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">Salva</button>
+						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL AGGIUNTA MANSIONE -->
+	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
+						Mansione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form:form modelAttribute="mansione" id="formMansione"
+						method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
+						onsubmit="return validate();">
+						<div class="form-group">
+							<form:input path="mansione" type="text" class="form-control"
+								placeholder="Mansione" id="mansione" name="mansione"></form:input>
+						</div>
+						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>
 							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 						</div>
-					</div>
-				</form>
+					</form:form>
+				</div>
 			</div>
-
 		</div>
 	</div>
-	
-	
-	<!-- MODAL DI ERRORE INSERIMENTO CAMPO -->
-	  <div id="modalErrore" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container">
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        <p>Campo inserito non valido</p>
-      </div>
-    </div>
-  </div>
-
-
-
 
 	<script type="text/javascript">
 		areaCnt = 0;
@@ -328,9 +327,6 @@ body {
 			}
 			alert("Area competenza scelta non esistente");
 			
-			
-			
-
 		}
 		
 
@@ -357,7 +353,6 @@ body {
 			alert("Mansione scelta non esistente");
 		}
 		
-
 		function stampaSpecializzazioneSelezionata(specializzazioneList) {
 			
 			for(specializzazione of buildString(specializzazioneList)){
@@ -517,7 +512,6 @@ body {
 		}
 	</script>
 
-
-
 </body>
+
 </html>
