@@ -7,6 +7,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/** 
+ * 
+ * Class that contains methods used to handle hibernate connection to database 
+ * 
+ * */
 public class Utility {
 
 	private static SessionFactory factory;
@@ -33,7 +38,7 @@ public class Utility {
 	
 	/** 
 	 * 
-	 * Build an hibernate session if a session has not previuosly built
+	 * Build an hibernate session if a session has not been previuosly built
 	 * 
 	 * @return the builded session
 	 * 
