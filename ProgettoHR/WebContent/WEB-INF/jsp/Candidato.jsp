@@ -32,6 +32,7 @@
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
 
+
 <!--Meta-->
 <meta charset="ISO-8859-1">
 <title>Candidato</title>
@@ -39,17 +40,20 @@
 </head>
 
 <body
-	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}' )">
+	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}')">
+
 
 	<!-- Navbar -->
+
 	<div class="container-fluid">
 		<div class="row w-100 p-0 m-0">
 			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
 				style="opacity: 0.9;">
 
 				<!-- Logo -->
-				<a class="navbar-brand" href="/ProgettoHR/Home/${mostraCandidato.business.business}">
-					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
+				<a class="navbar-brand"
+					href="/ProgettoHR/Home/${mostraCandidato.business.business}"> <img
+					src="/ProgettoHR/img/Erre_technology_group_NEW.png"
 					style="width: 170px;">
 				</a>
 
@@ -86,6 +90,7 @@
 						</c:when>
 					</c:choose>
 				</c:forEach>
+
 
 				<c:forEach var="funz" items="${ruolo.funzionalita}">
 					<c:choose>
@@ -285,6 +290,10 @@
 										<th scope="col">E-mail</th>
 										<td scope="col">${mostraCandidato.email}</td>
 									</tr>
+									<tr>
+										<th scope="col">Codice Fiscale</th>
+										<td scope="col">${mostraCandidato.codiceFiscale}</td>
+									</tr>
 									<c:forEach var="funz" items="${ruolo.funzionalita}">
 										<c:choose>
 											<c:when
@@ -408,10 +417,13 @@
 											<tr>
 
 												<th scope="col">Area di competenza</th>
-												<td scope="col"><c:forEach var="area"
-														items="${mostraCandidato.area}">
-														<span>${area.area}</span>
-													</c:forEach></td>
+												<td scope="col">
+													<ul>
+														<c:forEach var="area" items="${mostraCandidato.area}">
+															<li>${area.area}</li>
+														</c:forEach>
+													</ul>
+												</td>
 												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
 														<c:choose>
 															<c:when
@@ -432,10 +444,14 @@
 											<!-- MANSIONE -->
 											<tr>
 												<th scope="col">Mansione</th>
-												<td scope="col"><c:forEach var="mansione"
-														items="${mostraCandidato.mansione}">
-														<span>${mansione.mansione}</span>
-													</c:forEach></td>
+												<td scope="col">
+													<ul>
+														<c:forEach var="mansione"
+															items="${mostraCandidato.mansione}">
+															<li>${mansione.mansione}</li>
+														</c:forEach>
+													</ul>
+												</td>
 												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
 														<c:choose>
 															<c:when
@@ -479,11 +495,14 @@
 											<tr>
 
 												<th scope="col">Specializzazione</th>
-												<td scope="col"><c:forEach var="specializzazione"
-														items="${mostraCandidato.candidatoSpecializzazione}">
-														<span>${specializzazione.specializzazione.specializzazione}
-															&nbsp ${specializzazione.anni} anni esperienza</span>
-													</c:forEach></td>
+												<td scope="col">
+													<ul>
+														<c:forEach var="specializzazione" items="${mostraCandidato.candidatoSpecializzazione}">
+															<li>${specializzazione.specializzazione.specializzazione}
+																&nbsp ${specializzazione.anni} anni esperienza</li>
+														</c:forEach>
+													</ul>
+												</td>
 												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
 														<c:choose>
 															<c:when
@@ -845,25 +864,29 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<div class="form-row justify-content-center">
+				<form method="POST"
+					action="/ProgettoHR/ModificaBusinessUnit/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="form-row justify-content-center">
 
-						<div class="form-group col-auto">
-							<h5 class="text-center">Scegli:</h5>
-							<select id="inputState" class="form-control text-center">
-								<option disabled>business unit</option>
-								<option>ICT</option>
-								<option>Telco</option>
-								<option>Ingegneria</option>
-							</select>
+							<div class="form-group col-auto">
+								<h5 class="text-center">Scegli:</h5>
+								<select id="inputState" class="form-control text-center"
+									name="businessUnit">
+									<option disabled>business unit</option>
+									<c:forEach var="business" items="${businessList}">
+										<option value="${business.business}">${business.business}</option>
+									</c:forEach>
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -882,43 +905,44 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<div style="border-color: transparent;">
+				<form method="POST"
+					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div style="border-color: transparent;">
+							<div>
+								<h5>Aree di competenza:</h5>
+							</div>
 
-						<div>
-							<h5>Aree di competenza:</h5>
-						</div>
-						<button class="btn btn-block text-center collapsed"
-							style="box-shadow: 0px 0px 2px black;" type="button"
-							data-toggle="collapse" data-target="#collapseAreaCompetenza"
-							aria-expanded="false" aria-controls="collapseAreaCompetenza">
-							<i class="fas fa-wrench"></i> Aggiungi
-						</button>
+							<div class="autocomplete" style="border-bottom-style: ridge;">
+								<div id="areaCompetenzeCandidato">
+									<c:forEach var="area" items="${mostraCandidato.area}">
+										<input readonly type="text" class="form-control"
+											name="areaCompetenza" value="${area.area}"></input>
+									</c:forEach>
+								</div>
 
-						<div id="collapseAreaCompetenza" class="collapse"
-							aria-labelledby="headingAreaCompetenza">
-							<div class="card-body" id="areaCompetenza">
+								<input autocomplete="off" placeholder="aggiungi"
+									list="areeCompetenzeDisponibili" id="areaCompetenzaInput">
+								<datalist id="areeCompetenzeDisponibili">
+									<c:forEach var="area" items="${areaCompetenzaList}">
+										<option value="${area}"></option>
+									</c:forEach>
+								</datalist>
 
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="areaCompetenzaInput"
-										style="border-color: transparent;" type="text">
-
-									<div onclick="stampaAreaCompetenzaSelezionata()"
-										class="btn float-right">
-										<i class="fas fa-arrow-circle-down"></i>
-									</div>
-
+								<div
+									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+									class="btn float-right">
+									<i class="fas fa-plus-square mr-1"></i>
 								</div>
 
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -937,46 +961,46 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<div style="border-color: transparent;">
+				<form method="POST"
+					action="/ProgettoHR/ModificaMansione/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div style="border-color: transparent;">
 
-						<div>
-							<h5>Mansioni:</h5>
-						</div>
-						<button class="btn btn-block text-center collapsed"
-							style="box-shadow: 0px 0px 2px black;" type="button"
-							data-toggle="collapse" data-target="#collapseAreaCompetenza"
-							aria-expanded="false" aria-controls="collapseAreaCompetenza">
-							<i class="fas fa-wrench"></i> Aggiungi
-						</button>
-
-						<div id="collapseAreaCompetenza" class="collapse"
-							aria-labelledby="headingAreaCompetenza">
-							<div class="card-body" id="areaCompetenza">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="areaCompetenzaInput"
-										style="border-color: transparent;" type="text">
-
-									<div onclick="stampaAreaCompetenzaSelezionata()"
-										class="btn float-right">
-										<i class="fas fa-arrow-circle-down"></i>
-									</div>
-
+							<div>
+								<h5>Mansioni:</h5>
+							</div>
+							<div class="autocomplete" style="border-bottom-style: ridge;">
+								<div id="mansioniCandidato">
+									<c:forEach var="mansione" items="${mostraCandidato.mansione}">
+										<input readonly type="text" class="form-control"
+											name="mansione" value="${mansione.mansione}"></input>
+									</c:forEach>
 								</div>
-
+								<div>
+									<input autocomplete="off" placeholder="aggiungi"
+										list="mansioniDisponibili" id="mansioneInput">
+									<datalist id="mansioniDisponibili">
+										<c:forEach var="mansione" items="${mansioneList}">
+											<option value="${mansione}"></option>
+										</c:forEach>
+									</datalist>
+									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+										class="btn float-right">
+										<i class="fas fa-plus-square mr-1"></i>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- MODAL MODIFICA SENIORITY-->
 	<div class="modal fade" id="modificaSeniority" tabindex="-1"
@@ -992,27 +1016,27 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<div class="form-row justify-content-center">
+				<form method="POST"
+					action="/ProgettoHR/ModificaSeniority/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="form-row justify-content-center">
 
-						<div class="form-group col-auto">
-							<h5 class="text-center">Scegli:</h5>
-							<select id="inputState" class="form-control text-center">
-								<option disabled>business unit</option>
-								<option>Graduate</option>
-								<option>Junior</option>
-								<option>Intermediate</option>
-								<option>Senior</option>
-								<option>Expert</option>
-							</select>
+							<div class="form-group col-auto">
+								<h5 class="text-center">Scegli:</h5>
+								<select id="senioritySelezionata"
+									class="form-control text-center" name="seniority">
+									<c:forEach var="seniority" items="${seniorityList}">
+										<option value="${seniority.seniority}">${seniority.seniority}</option>
+									</c:forEach>
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -1032,46 +1056,54 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<div style="border-color: transparent;">
+				<form method="POST"
+					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div style="border-color: transparent;">
 
-						<div>
-							<h5>Specializzazioni:</h5>
-						</div>
-						<button class="btn btn-block text-center collapsed"
-							style="box-shadow: 0px 0px 2px black;" type="button"
-							data-toggle="collapse" data-target="#collapseAreaCompetenza"
-							aria-expanded="false" aria-controls="collapseAreaCompetenza">
-							<i class="fas fa-wrench"></i> Aggiungi
-						</button>
+							<div>
+								<h5>Specializzazioni:</h5>
+							</div>
 
-						<div id="collapseAreaCompetenza" class="collapse"
-							aria-labelledby="headingAreaCompetenza">
-							<div class="card-body" id="areaCompetenza">
+							<div id="specializzazioniCandidato">
+								<c:forEach var="spec"
+									items="${mostraCandidato.candidatoSpecializzazione}">
+									<input readonly type="text" class="form-control"
+										name="specializzazione"
+										value="${spec.specializzazione.specializzazione} ${spec.anni}"></input>
+								</c:forEach>
+							</div>
+							<div>
+								<input autocomplete="off" placeholder="aggiungi"
+									list="specializzazioniDisponibili" id="specializzazioneInput">
+								<datalist id="specializzazioniDisponibili">
+									<c:forEach var="specializzazione"
+										items="${specializzazioneList}">
+										<option value="${specializzazione}"></option>
+									</c:forEach>
+								</datalist>
 
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="areaCompetenzaInput"
-										style="border-color: transparent;" type="text">
-
-									<div onclick="stampaAreaCompetenzaSelezionata()"
-										class="btn float-right">
-										<i class="fas fa-arrow-circle-down"></i>
-									</div>
-
+								<input id="anniEsperienzaInput" class="text-left" type="number"
+									placeholder="anni esperienza">
+								<div
+									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+									class="btn float-right">
+									<i class="fas fa-plus-square mr-1"></i>
 								</div>
-
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 			</div>
 		</div>
+
+
 	</div>
+
 
 	<!-- MODIFICA INSERIMENTO AZIENDA -->
 	<div class="modal fade" id="modificaInserimentoAzienda" tabindex="-1"
@@ -1739,8 +1771,7 @@
 
 
 	<script type="text/javascript">
-		function changeStato(stato, feedback, categoriaProtetta,
-				qualificationMeeting, allegati, costi, economics) {
+		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics) {
 			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo inserito";
@@ -1841,6 +1872,83 @@
 			document.getElementById("dataColloquioQualificationMeeting").value = dataColloquio;
 			document.getElementById("feedbackQualificationMeeting").value = feedback;
 		}
+		
+		function buildString(string) {
+			return string.replace("[", "").replace("]", "").split(", ");
+		}
+		
+function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
+	
+	var areaCompetenzaString = buildString(areaCompetenzaList);
+	
+					for(area of areaCompetenzaString){
+				if(document.getElementById("areaCompetenzaInput").value === area){
+					var tagInput = document.createElement("input");
+					tagInput.value = document.getElementById("areaCompetenzaInput").value;					
+					
+					tagInput.name = "areaCompetenza";
+					tagInput.readOnly = true;
+					
+					document.getElementById("areaCompetenzeCandidato").appendChild(tagInput);
+					document.getElementById("areaCompetenzaInput").value = "";
+					document.getElementById("areaCompetenzaInput").focus();
+					return;
+				}	
+			}
+			alert("Area competenza scelta non esistente");							
+
+		}
+		
+		
+		function stampaMansioneSelezionata(mansioneList) {
+			
+			var mansioneString = buildString(mansioneList);
+			
+			for(mansione of mansioneString){
+				if(document.getElementById("mansioneInput").value === mansione){
+			
+			var tagInput = document.createElement("input");
+			tagInput.value = document.getElementById("mansioneInput").value;
+									
+			tagInput.name = "mansione";
+			tagInput.readOnly = true;
+			
+			document.getElementById("mansioniCandidato").appendChild(tagInput);
+			document.getElementById("mansioneInput").value = "";
+			document.getElementById("mansioneInput").focus();
+			return;
+				}
+			}
+			alert("Mansione scelta non esistente");
+		}
+		
+		function stampaSpecializzazioneSelezionata(specializzazioneList) {
+			
+			var specializzazioneString = buildString(specializzazioneList);
+			
+			for(specializzazione of specializzazioneString){
+				if(document.getElementById("specializzazioneInput").value === specializzazione){
+					
+				
+					var tagInput = document.createElement("input");
+					tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;					
+					
+					tagInput.name = "specializzazione";
+					tagInput.readOnly = true;
+					
+					document.getElementById("specializzazioniCandidato").appendChild(tagInput);
+					document.getElementById("specializzazioneInput").value = "";
+					document.getElementById("specializzazioneInput").focus();
+					return;
+				}
+			}
+			alert("Specializzazione scelta non esistente");
+		}
+		
+		
+		
+		
+		
 	</script>
 
 </body>

@@ -165,6 +165,7 @@ public class CandidatiController {
 		candidato.setAnno(anno);
 		candidato.setTelefono(mappaCandidato.get("telefono"));
 		candidato.setEmail(mappaCandidato.get("email"));
+		candidato.setCodiceFiscale(mappaCandidato.get("codiceFiscale"));
 
 		Seniority seniority = seniorityDAO.get(mappaCandidato.get("seniority"));
 		candidato.setSeniority(seniority);
@@ -288,6 +289,91 @@ public class CandidatiController {
 		return "redirect:/Candidato/{id}";
 	}
 
+	// metodo per aggiornare la seniority del candidato dalla pagina del candidato
+	// stesso
+	@RequestMapping("/ModificaSeniority/{id}")
+	public String modificaSeniority(@RequestParam(name = "seniority") String seniority, @PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+		candidato.getSeniority().setSeniority(seniority);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
+	// metodo per aggiornare la businessUnit del candidato dalla pagina del
+	// candidato stesso
+	@RequestMapping("/ModificaBusinessUnit/{id}")
+	public String modificaBusinessUnit(@RequestParam(name = "businessUnit") String businessUnit, @PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+		candidato.getBusiness().setBusiness(businessUnit);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
+	// metodo per aggiornare l'area competenza del candidato dalla pagina del
+	// candidato stesso
+	@RequestMapping("/ModificaAreaCompetenza/{id}")
+	public String modificaAreaCompetenza(@RequestParam(name = "areaCompetenza") List<String> areeCompetenza,
+			@PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+
+		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
+		for (String area : areeCompetenza) {
+			AreaCompetenza areaCompetenza = areaCompetenzaDAO.get(area);
+			listaCompetenza.add(areaCompetenza);
+		}
+
+		candidato.setArea(listaCompetenza);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
+	// metodo per aggiornare la mansione del candidato dalla pagina del
+	// candidato stesso
+	@RequestMapping("/ModificaMansione/{id}")
+	public String modificaMansione(@RequestParam(name = "mansione") List<String> mansioni, @PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+
+		List<Mansione> listaMansione = new ArrayList<Mansione>();
+		for (String mansione : mansioni) {
+			Mansione mansioneDaInserire = mansioneDAO.get(mansione);
+			listaMansione.add(mansioneDaInserire);
+		}
+
+		candidato.setMansione(listaMansione);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
+	// metodo per aggiornare la specializzazione del candidato dalla pagina del
+	// candidato stesso
+	@RequestMapping("/ModificaSpecializzazione/{id}")
+	public String modificaSpecializzazione(@RequestParam(name = "specializzazione") List<String> specializzazioni,
+			@PathVariable int id) {
+		Candidato candidato = candidatoDAO.get(id);
+
+		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
+		for (String specializzazione : specializzazioni) {
+			String[] specializzazioneCorretta = specializzazione.split(" ");
+
+			CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
+
+			Specializzazione specializzazioneDaInserire = specializzazioneDAO.get(specializzazioneCorretta[0]);
+			candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
+			candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
+			candidatoSpecializzazione.setCandidato(candidato);
+			listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
+		}
+
+		candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
 	@RequestMapping("/Aggiorna/{id}/{stato}")
 	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato) {
 		Candidato c = candidatoDAO.get(id);
@@ -301,15 +387,37 @@ public class CandidatiController {
 
 	}
 
-	@RequestMapping(value = "/Candidato//{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, Model m,
-			@SessionAttribute("utente") Utente utente) {
+	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
+	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
 
 		Candidato c = candidatoDAO.get(id);
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
+		List<Business> businessList = businessDAO.getLista();
+		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
+		List<Mansione> mansioneList = mansioneDAO.getLista();
+		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
+		List<Seniority> seniorityList = seniorityDAO.getLista();
 
-		
+		List<String> mansioneListString = new ArrayList<String>();
+		List<String> areaCompetenzaListString = new ArrayList<String>();
+		List<String> specializzazioneListString = new ArrayList<String>();
+
+		for (Mansione mansione : mansioneList) {
+
+			mansioneListString.add(mansione.getMansione());
+		}
+
+		for (AreaCompetenza area : areaCompetenzaList) {
+
+			areaCompetenzaListString.add(area.getArea());
+		}
+
+		for (Specializzazione spec : specializzazioneList) {
+
+			specializzazioneListString.add(spec.getSpecializzazione());
+		}
+
 		m.addAttribute("mostraFeedback", f);
 
 		// m.addAttribute("listaMansione", listaMansione);
@@ -321,6 +429,16 @@ public class CandidatiController {
 		m.addAttribute("mansione", new Mansione());
 
 		m.addAttribute("mostraCandidato", c);
+
+		m.addAttribute("businessList", businessList);
+
+		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+
+		m.addAttribute("mansioneList", mansioneListString);
+
+		m.addAttribute("specializzazioneList", specializzazioneListString);
+
+		m.addAttribute("seniorityList", seniorityList);
 
 		m.addAttribute("feedback", new Feedback());
 
