@@ -96,7 +96,8 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		Root<Candidato> root = criteriaQuery.from(Candidato.class);
 
 		//
-		//	Root<CandidatoSpecializzazione> rootCandidatoSpecializzazione= criteriaQuery.from(CandidatoSpecializzazione.class);
+		// Root<CandidatoSpecializzazione> rootCandidatoSpecializzazione=
+		// criteriaQuery.from(CandidatoSpecializzazione.class);
 		// join tra candidato e business
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 
@@ -108,7 +109,8 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 				JoinType.INNER);
 
 		// join tra candidato e candidatoSpecializzazione
-		Join<Specializzazione, CandidatoSpecializzazione> specializzazione = candidatoSpecializzazione.join("specializzazione", JoinType.INNER);
+		Join<Specializzazione, CandidatoSpecializzazione> specializzazione = candidatoSpecializzazione
+				.join("specializzazione", JoinType.INNER);
 
 		// join tra candidato e mansione
 		Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
@@ -148,6 +150,16 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 				listaPredicatesSpecializzazioni.add(
 						criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + entry.getValue() + "%"));
+			} else if (entry.getKey().contains("categoriaProtetta")) {
+				int x;
+				
+				if (entry.getValue().equalsIgnoreCase("on")) {
+					x = 1;
+				} else {
+					x = 0;
+				}
+				listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
+
 			} else {
 
 				String regex = "[0-9]+";
@@ -187,8 +199,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		// trasforma in array la lista di tutti i predicati
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
 		// costruzione della query
-		
-		
+
 		criteriaQuery.select(root).where(predicates);
 		criteriaQuery.groupBy(root.get("id"));
 		// esecuzione della query

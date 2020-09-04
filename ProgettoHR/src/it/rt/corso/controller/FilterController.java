@@ -95,15 +95,46 @@ public class FilterController {
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(requestParams);
-
+		
 		List<Mansione> mansioneList = mansioneDAO.getLista();
+		List<Business> businessList = businessDAO.getLista();		
+		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
+		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
+		List<Seniority> seniorityList = seniorityDAO.getLista();
 
+		
+		List<String> mansioneListString = new ArrayList<String>();
+		List<String> specializzazioneListString = new ArrayList<String>();
+		List<String> areaCompetenzaListString = new ArrayList<String>();
+
+		for (Mansione mansione : mansioneList) {
+
+			mansioneListString.add(mansione.getMansione());
+		}
+		
+		for (Specializzazione specializzazione : specializzazioneList) {
+
+			specializzazioneListString.add(specializzazione.getSpecializzazione());
+		}
+		
+		for (AreaCompetenza areaCompetenza : areaCompetenzaList) {
+
+			areaCompetenzaListString.add(areaCompetenza.getArea());
+		}
+
+		m.addAttribute("businessList", businessList);
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneList);
+		m.addAttribute("seniorityList", seniorityList);
 
+		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("mansioneList", mansioneListString);
+		m.addAttribute("specializzazioneList", specializzazioneListString);
+		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		
+		
+	
 		return "FiltroAvanzato";
 	}
 }

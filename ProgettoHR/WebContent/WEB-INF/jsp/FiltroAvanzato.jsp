@@ -105,7 +105,7 @@ html, body {
 					</h2>
 
 					<div id="collapse1" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="nome" name="nome" class="text-left"
@@ -130,7 +130,7 @@ html, body {
 					</h2>
 
 					<div id="collapse2" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="cognome" name="cognome" class="text-left"
@@ -155,7 +155,7 @@ html, body {
 					</h2>
 
 					<div id="collapse3" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<!--  <input id="anno" name="anno" class="text-left"
@@ -180,7 +180,7 @@ html, body {
 					</h2>
 
 					<div id="collapse4" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="telefono" name="telefono" class="text-left"
@@ -205,7 +205,7 @@ html, body {
 					</h2>
 
 					<div id="collapse5" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="email" name="email" class="text-left"
@@ -232,7 +232,7 @@ html, body {
 					</h2>
 
 					<div id="collapse6" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<select name="business" class="custom-select mb-3">
@@ -259,10 +259,10 @@ html, body {
 					</h2>
 
 					<div id="collapse7" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-						 <select name="seniority" class="custom-select mb-3">
+								<select name="seniority" class="custom-select mb-3">
 									<option selected></option>
 									<c:forEach var="sen" items="${seniorityList}">
 										<option value="${sen.seniority}">${sen.seniority}</option>
@@ -287,7 +287,7 @@ html, body {
 					</h2>
 
 					<div id="collapse8" class="collapse" aria-labelledby="heading10">
-						<div  class="card-body">
+						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="provenienza" name="provenienza" class="text-left"
@@ -386,7 +386,8 @@ html, body {
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="specializzazioneInput" class="text-left"
 									style="border-color: transparent;" type="text"
-									placeholder="specializzazione"> <!--  <input
+									placeholder="specializzazione">
+								<!--  <input
 									id="anniEsperienzaInput" class="text-left"
 									style="border-color: transparent;" type="number"
 									placeholder="anni esperienza">-->
@@ -411,8 +412,8 @@ html, body {
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse12"
 							aria-expanded="false" aria-controls="collapse12">
-							<i class="fa fa-plus" aria-hidden="true"></i> Categoria protetta <i
-								class="fas fa-briefcase float-right pt-1"></i>
+							<i class="fa fa-plus" aria-hidden="true"></i> Categoria protetta
+							<i class="fas fa-briefcase float-right pt-1"></i>
 						</button>
 					</h2>
 
@@ -420,9 +421,14 @@ html, body {
 						<div id="areaCompetenzaDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input type="checkbox" class="form-check form-check-inline"
-									id="categoriaProtetta" name="categoriaProtetta"
-									style="float: rigth;"></input> Categoria Protetta
+
+								<select class="custom-select mb-3" id="categoriaProtetta"
+									name="categoriaProtetta" style="float: rigth;">
+									<option></option>
+									<option value="on">si</option>
+									<option value="off">no</option>
+								</select>
+
 							</div>
 
 						</div>
@@ -1048,6 +1054,9 @@ html, body {
 							<th scope="col">Area Competenza</th>
 							<th scope="col">Mansione</th>
 							<th scope="col">Seniority</th>
+							<th scope="col">Specializzazione</th>
+							<th scope="col">Inserimento Azienda</th>
+							<th scope="col">costi</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -1078,30 +1087,42 @@ html, body {
 										</c:otherwise>
 									</c:choose></td>
 								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.business.business}</td>
 								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.nome}</td>
 								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.cognome}</td>
 
 								<td><c:forEach var="area" items="${cand.area}">
 										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${area.area}</span>
 									</c:forEach></td>
 
 								<td><c:forEach var="mansione" items="${cand.mansione}">
 										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${mansione.mansione}</span>
 									</c:forEach></td>
 
 								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.seniority.seniority}</td>
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									<c:forEach var="specializzazione"
+										items="${cand.candidatoSpecializzazione}">
+										<span>${specializzazione.specializzazione.specializzazione}
+											&nbsp ${specializzazione.anni} anni esperienza</span>
+									</c:forEach>
+								</td>
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.inserimentoAzienda}</td>
+
 								<td data-toggle="modal" data-target="#EliminaModal"><i
 									class="fas fa-trash-alt"></i></td>
 							</tr>
