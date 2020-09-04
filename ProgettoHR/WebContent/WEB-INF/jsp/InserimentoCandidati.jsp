@@ -348,6 +348,7 @@ body {
 					areaCnt++;
 					
 					tagInput.id = areaName;
+					tagInput.name = areaName;
 					tagInput.readOnly = true;
 					
 					document.getElementById("areaCompetenzaDiv").appendChild(tagInput);
