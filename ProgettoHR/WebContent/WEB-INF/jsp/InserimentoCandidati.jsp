@@ -364,6 +364,17 @@ body {
 		
 
 		function stampaMansioneSelezionata(mansioneList) {
+			if(document.getElementById("mansione0") !== null){   
+				for(var i = 0; i<mansioneCnt; i++){       
+				 	var mansioneId = "mansione"+i;
+					if(document.getElementById(mansioneId).value === document.getElementById("mansioneInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 
+			
+			}
 			
 			for(mansione of buildString(mansioneList)){
 				if(document.getElementById("mansioneInput").value === mansione){
@@ -374,6 +385,7 @@ body {
 			mansioneName = "mansione" + mansioneCnt;
 			mansioneCnt++;
 			
+			tagInput.id = mansioneName;
 			tagInput.name = mansioneName;
 			tagInput.readOnly = true;
 			
@@ -383,10 +395,22 @@ body {
 			return;
 				}
 			}
-			alert("Mansione scelta non esistente");
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
 		}
 		
 		function stampaSpecializzazioneSelezionata(specializzazioneList) {
+			if(document.getElementById("specializzazione0") !== null){   
+				for(var i = 0; i<specializzazioneCnt; i++){       
+				 	var specializzazioneId = "specializzazione"+i;
+					if(document.getElementById(specializzazioneId).value === document.getElementById("specializzazioneInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 
+			
+			}
 			
 			for(specializzazione of buildString(specializzazioneList)){
 				if(document.getElementById("specializzazioneInput").value === specializzazione){
@@ -398,6 +422,7 @@ body {
 					specializzazioneName = "specializzazione" + specializzazioneCnt;
 					specializzazioneCnt++;
 					
+					tagInput.id = specializzazioneName;
 					tagInput.name = specializzazioneName;
 					tagInput.readOnly = true;
 					
@@ -407,7 +432,8 @@ body {
 					return;
 				}
 			}
-			alert("Specializzazione scelta non esistente");
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"
 			
 		}
 
