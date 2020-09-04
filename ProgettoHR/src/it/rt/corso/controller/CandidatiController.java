@@ -174,16 +174,11 @@ public class CandidatiController {
 		candidato.setBusiness(business);
 
 		candidato.setProvenienza(mappaCandidato.get("provenienza"));
-		candidato.setCategoriaProtetta(Boolean.parseBoolean(mappaCandidato.get("provenienza")));
-//		candidato.setCodiceFiscale(mappaCandidato.get("codiceFiscale"));
 
-		/*
-		 * SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); Date date =
-		 * null; try { date = formatter.parse(mappaCandidato.get("data")); } catch
-		 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
-		 * } candidato.setInserimentoAzienda(date);
-		 */
-		candidato.setBusiness(business);
+		if (mappaCandidato.get("categoriaProtetta") != null) {
+			candidato.setCategoriaProtetta(true);
+		} else
+			candidato.setCategoriaProtetta(false);
 
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
 		List<Mansione> listaMansione = new ArrayList<Mansione>();
@@ -229,18 +224,23 @@ public class CandidatiController {
 		return "redirect:/Home";
 	}
 
-	@RequestMapping(value = "/ModificaAnagrafica/{id}/{statoInput}", method = RequestMethod.POST)
-	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
-			@PathVariable String statoInput) {
+	@RequestMapping(value = "/ModificaAnagrafica/{id}", method = RequestMethod.POST)
+	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
-		StatoCandidato statoOutput = (StatoCandidato) factory.getBean(statoInput);
-		candidato.setStato(statoOutput);
+		
 		candidato.setNome(c.getNome());
 		candidato.setCognome(c.getCognome());
 		candidato.setAnno(c.getAnno());
 		candidato.setTelefono(c.getTelefono());
 		candidato.setEmail(c.getEmail());
-		candidato.setInserimentoAzienda(c.getInserimentoAzienda());
+		candidato.setCodiceFiscale(c.getCodiceFiscale());
+		candidato.setProvenienza(c.getProvenienza());
+
+		if (c.isCategoriaProtetta()) {
+			candidato.setCategoriaProtetta(true);
+		} else
+			candidato.setCategoriaProtetta(false);
+		
 		candidatoDAO.aggiorna(candidato);
 		return "redirect:/Candidato/{id}";
 	}
@@ -369,6 +369,24 @@ public class CandidatiController {
 		}
 
 		candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
+		candidatoDAO.aggiorna(candidato);
+
+		return "redirect:/Candidato/{id}";
+	}
+
+	// metodo per aggiornare la data di inserimento azienda del candidato dalla
+	// pagina del
+	// candidato stesso
+	@RequestMapping("/ModificaDataInserimentoAzienda/{id}")
+	public String modificaDataInserimentoAzienda(
+			@RequestParam(name = "dataInserimentoAzienda") String dataInserimentoAzienda, @PathVariable int id)
+			throws ParseException {
+		Candidato candidato = candidatoDAO.get(id);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date dataFormattata = formatter.parse(dataInserimentoAzienda);
+		candidato.setInserimentoAzienda(dataFormattata);
 		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{id}";

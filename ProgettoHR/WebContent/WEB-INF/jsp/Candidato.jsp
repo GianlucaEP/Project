@@ -14,7 +14,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" />
 
 <!--Script-->
 <script src="https://kit.fontawesome.com/053b00be10.js"
@@ -497,7 +496,8 @@
 												<th scope="col">Specializzazione</th>
 												<td scope="col">
 													<ul>
-														<c:forEach var="specializzazione" items="${mostraCandidato.candidatoSpecializzazione}">
+														<c:forEach var="specializzazione"
+															items="${mostraCandidato.candidatoSpecializzazione}">
 															<li>${specializzazione.specializzazione.specializzazione}
 																&nbsp ${specializzazione.anni} anni esperienza</li>
 														</c:forEach>
@@ -762,80 +762,73 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							action="/ProgettoHR/ModificaAnagrafica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
+							action="/ProgettoHR/ModificaAnagrafica/${mostraCandidato.id}">
 
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
-										<form:input type="text" class="form-control" id="nome"
-											name="nome" path="nome" value="${mostraCandidato.nome}"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
-										<form:input type="text" class="form-control" id="cognome"
-											name="cognome" path="cognome"
-											value="${mostraCandidato.cognome}"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
-											di nascita:</div>
-										<form:input type="text" class="form-control" id="anno"
-											name="anno" path="anno" value="${mostraCandidato.anno}"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
-										<form:input type="text" class="form-control" id="telefono"
-											name="telefono" path="telefono"
-											value="${mostraCandidato.telefono}"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
-										<form:input type="text" class="form-control" id="email"
-											name="email" path="email" value="${mostraCandidato.email}"></form:input>
-									</div>
-								</div>
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
+								<form:input type="text" class="form-control" id="nome"
+									name="nome" path="nome" value="${mostraCandidato.nome}"></form:input>
 							</div>
 
-							<!--  <div class="row w-100 p-2 m-0 justify-content-md-start">
-                  <div class="col w-100 p-0 justify-content-md-start">
-                      <div class="form-group">
-                          <div class="row w-100 p-0 m-0 justify-content-md-start">Specializzazione:</div>
-                          <textarea style="resize: none;" class="form-control"
-                              id="specializzazione" name="specializzazione"></textarea>
-                      </div>
-                  </div>
-              </div> -->
 
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
-											azienda:</div>
-										<!--<fmt:formatDate pattern="YYYY-MM-DD" value="${candidato.inserimentoAzienda}" />-->
-										<form:input type="date" class="form-control"
-											id="inserimentoAzienda" name="inserimentoAzienda"
-											path="inserimentoAzienda"
-											value="${mostraCandidato.inserimentoAzienda}"></form:input>
-									</div>
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
+								<form:input type="text" class="form-control" id="cognome"
+									name="cognome" path="cognome"
+									value="${mostraCandidato.cognome}"></form:input>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
+									di nascita:</div>
+								<form:input type="text" class="form-control" id="anno"
+									name="anno" path="anno" value="${mostraCandidato.anno}"></form:input>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
+								<form:input type="text" class="form-control" id="telefono"
+									name="telefono" path="telefono"
+									value="${mostraCandidato.telefono}"></form:input>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
+								<form:input type="text" class="form-control" id="email"
+									name="email" path="email" value="${mostraCandidato.email}"></form:input>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Codice
+									Fiscale:</div>
+								<form:input type="text" class="form-control"
+									id="idCodiceFiscale" name="codiceFiscale" path="codiceFiscale"
+									value="${mostraCandidato.codiceFiscale}"></form:input>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Provenienza
+									Candidatura:</div>
+								<form:input type="text" class="form-control"
+									id="idProvenienzaCandidatura" name="provenienzaCandidatura"
+									path="provenienza" value="${mostraCandidato.provenienza}"></form:input>
+							</div>
+
+							<div class="form-group mt-2">
+								<div class="custom-control custom-switch">
+									<form:checkbox  class="custom-control-input" path="categoriaProtetta"
+										id="customSwitch1" name="categoriaProtetta"></form:checkbox> <label
+										class="custom-control-label" for="customSwitch1">Categoria
+										protetta</label>
 								</div>
 							</div>
+
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" class="btn btn-primary btn-block">Salva</button>
@@ -1120,14 +1113,28 @@
 					</button>
 				</div>
 
-				<div class="modal-body">
-					<!--FORM DATA DA METTERE-->
-				</div>
+				<form method="POST"
+					action="/ProgettoHR/ModificaDataInserimentoAzienda/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="row w-100 p-2 m-0 justify-content-md-start">
+							<div class="col w-100 p-0 justify-content-md-start">
+								<div class="form-group">
+									<div class="row w-100 p-0 m-0 justify-content-md-start">Data
+										Inserimento azienda:</div>
+									<input type="date" pattern="yyyy-MM-dd"
+										value="${mostraCandidato.inserimentoAzienda}"
+										class="form-control" id="idInserimentoAzienda"
+										name="dataInserimentoAzienda"></input>
+								</div>
+							</div>
+						</div>
+					</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-					<button type="button" class="btn btn-success">Salva</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -1862,6 +1869,7 @@
 			document.getElementById("dataFeedback").value = data;
 			document.getElementById("commentoFeedback").value = commento;
 		}
+		
 
 		function impostaParametriQualificationMeeting(id, cliente,
 				dataPresentato, riferimentoGara, dataColloquio, feedback) {
@@ -1873,13 +1881,14 @@
 			document.getElementById("feedbackQualificationMeeting").value = feedback;
 		}
 		
+		
 		function buildString(string) {
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
 		
-function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
+		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
 	
-	var areaCompetenzaString = buildString(areaCompetenzaList);
+			var areaCompetenzaString = buildString(areaCompetenzaList);
 	
 					for(area of areaCompetenzaString){
 				if(document.getElementById("areaCompetenzaInput").value === area){
