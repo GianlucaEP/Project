@@ -20,7 +20,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" />
+
 
 <style>
 html, body {
@@ -91,7 +91,7 @@ html, body {
 	<div style="margin-top: 110px;" class="container-fluid ">
 		<div class="row">
 			<form autocomplete="off" method="POST"
-				action="/ProgettoHR//Filter/advanced/${businessUnit}">
+				action="/ProgettoHR/Filter/advanced/${businessUnit}">
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
@@ -262,12 +262,12 @@ html, body {
 						<div  class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-							<!--  <select name="seniority" class="custom-select mb-3">
+						 <select name="seniority" class="custom-select mb-3">
 									<option selected></option>
 									<c:forEach var="sen" items="${seniorityList}">
 										<option value="${sen.seniority}">${sen.seniority}</option>
 									</c:forEach>
-								</select>-->	
+								</select>
 
 							</div>
 
@@ -386,10 +386,10 @@ html, body {
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<input id="specializzazioneInput" class="text-left"
 									style="border-color: transparent;" type="text"
-									placeholder="specializzazione"> <input
+									placeholder="specializzazione"> <!--  <input
 									id="anniEsperienzaInput" class="text-left"
 									style="border-color: transparent;" type="number"
-									placeholder="anni esperienza">
+									placeholder="anni esperienza">-->
 
 								<div
 									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
@@ -1178,7 +1178,7 @@ html, body {
 				
 			
 				var tagInput = document.createElement("input");
-				tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
+				tagInput.value = document.getElementById("specializzazioneInput").value;// + " " + document.getElementById("anniEsperienzaInput").value;
 
 				specializzazioneName = "specializzazione" + specializzazioneCnt;
 				specializzazioneCnt++;

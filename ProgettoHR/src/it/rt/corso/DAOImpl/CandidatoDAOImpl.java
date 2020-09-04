@@ -23,14 +23,9 @@ import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.query.Query;
 
-
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
-import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Business;
-import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Funzionalita;
-import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.*;
 import it.rt.corso.utility.Utility;
 
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
@@ -85,11 +80,9 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		Utility.buildSession();
 
-		
-		
-		//bean di candidatofilter nel argomento
-		//controllo i campi not null e ne faccio predicati
-		
+		// bean di candidatofilter nel argomento
+		// controllo i campi not null e ne faccio predicati
+
 		Session session = Utility.getSession();
 
 		// creo builder di criteria
@@ -102,12 +95,25 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		// cartesian product with any existing roots.
 		Root<Candidato> root = criteriaQuery.from(Candidato.class);
 
+		//
+		//	Root<CandidatoSpecializzazione> rootCandidatoSpecializzazione= criteriaQuery.from(CandidatoSpecializzazione.class);
 		// join tra candidato e business
 		Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 
+		// join tra candidato e seniority
+		Join<Candidato, Seniority> seniority = root.join("seniority", JoinType.INNER);
+
+		// join tra candidato e candidatoSpecializzazione
+		Join<Candidato, CandidatoSpecializzazione> candidatoSpecializzazione = root.join("candidatoSpecializzazione",
+				JoinType.INNER);
+
+		// join tra candidato e candidatoSpecializzazione
+		Join<Specializzazione, CandidatoSpecializzazione> specializzazione = candidatoSpecializzazione.join("specializzazione", JoinType.INNER);
+
 		// join tra candidato e mansione
 		Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
-		//join tra candidato e aree
+
+		// join tra candidato e aree
 		Join<Candidato, AreaCompetenza> areaCompetenza = root.join("area", JoinType.INNER);
 
 		// crea una serie di condizioni, WHERE
@@ -116,10 +122,14 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		List<Predicate> listaPredicates = new ArrayList<Predicate>();
 		// Lista per gestire le mansioni da inserire nella or
 		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
-		
+
 		List<Predicate> listaPredicatesAree = new ArrayList<Predicate>();
+
+		// Lista per gestire le mansioni da inserire nella or
+		List<Predicate> listaPredicatesSpecializzazioni = new ArrayList<Predicate>();
 		// aggiungi business unit nei predicates
-		//listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
+		// listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" +
+		// businessUnit + "%"));
 
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
 
@@ -128,23 +138,24 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 				listaPredicatesMansioni
 						.add(criteriaBuilder.like(mansione.get("mansione"), "%" + entry.getValue() + "%"));
 
-			} 
-			else if(entry.getKey().contains("area")) {
-				listaPredicatesAree
-				.add(criteriaBuilder.like(areaCompetenza.get("area"), "%" + entry.getValue() + "%"));
-			}
-			else if(entry.getKey().contains("business")) {
+			} else if (entry.getKey().contains("area")) {
+				listaPredicatesAree.add(criteriaBuilder.like(areaCompetenza.get("area"), "%" + entry.getValue() + "%"));
+			} else if (entry.getKey().contains("business")) {
 				listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + entry.getValue() + "%"));
-			}
-			else {
-				
+			} else if (entry.getKey().contains("seniority")) {
+				listaPredicates.add(criteriaBuilder.like(seniority.get("seniority"), "%" + entry.getValue() + "%"));
+			} else if (entry.getKey().contains("specializzazione")) {
+
+				listaPredicatesSpecializzazioni.add(
+						criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + entry.getValue() + "%"));
+			} else {
+
 				String regex = "[0-9]+";
-				if(entry.getValue().matches(regex)){
-					int x=Integer.parseInt(entry.getValue());
+				if (entry.getValue().matches(regex)) {
+					int x = Integer.parseInt(entry.getValue());
 					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
-				}
-				else {
-				listaPredicates.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
+				} else {
+					listaPredicates.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
 				}
 			}
 
@@ -157,19 +168,29 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 			// aggiunge alla lista di tutti i predicati la or delle mansioni
 			listaPredicates.add(criteriaBuilder.or(predicatesMansioni));
 		}
-		
+
 		if (!listaPredicatesAree.isEmpty()) {
-			// trasforma la lista in array per inserire i predicati delle mansioni nella or
-			Predicate[] predicateAree = listaPredicatesAree
-					.toArray(new Predicate[listaPredicatesAree.size()]);
-			// aggiunge alla lista di tutti i predicati la or delle mansioni
-			listaPredicates.add(criteriaBuilder.or(predicateAree));
+			// trasforma la lista in array per inserire i predicati delle aree nella or
+			Predicate[] predicatesAree = listaPredicatesAree.toArray(new Predicate[listaPredicatesAree.size()]);
+			// aggiunge alla lista di tutti i predicati la or delle aree
+			listaPredicates.add(criteriaBuilder.or(predicatesAree));
 		}
 
+		if (!listaPredicatesSpecializzazioni.isEmpty()) {
+			// trasforma la lista in array per inserire i predicati delle specializzazioni
+			// nella or
+			Predicate[] predicatesSpecializzazioni = listaPredicatesSpecializzazioni
+					.toArray(new Predicate[listaPredicatesSpecializzazioni.size()]);
+			// aggiunge alla lista di tutti i predicati la or delle mansioni
+			listaPredicates.add(criteriaBuilder.or(predicatesSpecializzazioni));
+		}
 		// trasforma in array la lista di tutti i predicati
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
 		// costruzione della query
+		
+		
 		criteriaQuery.select(root).where(predicates);
+		criteriaQuery.groupBy(root.get("id"));
 		// esecuzione della query
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 
@@ -198,11 +219,11 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// join tra candidato e statoCandidato
 		Join<Candidato, Business> statoCandidato = root.join("stato", JoinType.INNER);
-		
+
 		List<Predicate> listaPredicates = new ArrayList<Predicate>();
-		
+
 		listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" + businessUnit + "%"));
-		
+
 		listaPredicates.add(criteriaBuilder.like(statoCandidato.get("descrizione"), "%" + stato + "%"));
 
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
