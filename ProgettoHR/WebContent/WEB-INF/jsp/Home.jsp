@@ -8,11 +8,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 
 <title>Home</title>
 
-<link rel="stylesheet" href="/ProgettoHR/css/home.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -184,8 +183,56 @@ ul ul a {
 	background: #cae9ff;
 }
 
-.imput-group .custom-select {
-	border-radius: 0px 0px 0px 0px;
+/* filtro stato candidato */
+.select {
+	position: relative;
+	padding: 0.5em 4em 0.5em 1.5em;
+	color: #333333;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+	appearance: none;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.select option {
+	background-color: white;
+	
+}
+
+.custom-arrow {
+	position: absolute;
+	top: 0;
+	right: 0.3em;
+	display: block;
+	background-color: #5aa9e6;
+	height: 100%;
+	width: 2.5em;
+	pointer-events: none;
+	border-radius: 0px 5px 0px 0px;
+}
+
+.custom-arrow::before, .custom-arrow::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.custom-arrow::before {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-bottom: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 35%;
+}
+
+.custom-arrow::after {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 65%;
 }
 </style>
 
@@ -268,34 +315,31 @@ ul ul a {
 				<div class="row">
 
 					<!-- COLLONNA CON FILTRO STATO CANDIDATO -->
-					<div class="col-auto mb-2">
+					<div class="col-3 mb-2">
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
 							method="post">
 							<div class="form-row">
 								<div class="col-auto">
-									<div class="dropdown">
 
-										<select onchange="validateOption()" class="custom-select"
-											id="stati" name="stato">
-
-											<option selected disabled>Stato candidato</option>
+									<select class="select" onchange="validateOption()" id="stati"
+										name="stato">
+										
+											<option disabled selected>Stato candidato</option>
 											<option value="noFiltro">Tutti gli stati</option>
 											<c:forEach var="stato" items="${statoCandidatoList}">
 												<option value="${stato.descrizione}">${stato.descrizione}</option>
 											</c:forEach>
-
-										</select>
-									</div>
+										
+									</select> <span class="custom-arrow"></span>
 								</div>
 
-								<div class="col">
-									<button id="filterButton" class="btn btn-dark"
-										style="background-color: #5aa9e6; border-color: transparent;"
+								<div class="col-auto">
+									<button id="filterButton" class="btn btn-dark btn-block "
+										style="background-color: #5aa9e6; border-color: transparent; height: 2.60em;"
 										type="submit">
-										<i class="fas fa-filter"></i>
+										<i class="fas fa-filter" style="vertical-align: middle;"></i>
 									</button>
 								</div>
-
 							</div>
 						</form>
 					</div>
@@ -472,8 +516,6 @@ ul ul a {
 
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
-
-
 </body>
 
 </html>
