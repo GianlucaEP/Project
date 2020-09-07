@@ -89,9 +89,10 @@ html, body {
 
 	<!-- COLONNA CON FILTRO -->
 	<div style="margin-top: 110px;" class="container-fluid ">
-		<div class="row">
+		<div class="row" id="divForm">
 			<form autocomplete="off" method="POST"
-				action="/ProgettoHR/Filter/advanced/${businessUnit}">
+				action="/ProgettoHR/Filter/advanced/${businessUnit}"
+				onsubmit="controlloMappa()">
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
@@ -158,7 +159,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="anno" name="anno" class="text-left"
+								<input id="anno" maxlength="4" name="anno" class="text-left"
 									style="border-color: transparent;" type="text"
 									placeholder="anno">
 
@@ -235,7 +236,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<select name="business" class="custom-select mb-3">
+								<select id="selectBusiness" name="business" class="custom-select mb-3">
 									<c:forEach var="bus" items="${businessList}">
 										<option value="${bus.business}">${bus.business}</option>
 									</c:forEach>
@@ -262,7 +263,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<select name="seniority" class="custom-select mb-3">
+								<select id=selectSeniority name="seniority" class="custom-select mb-3">
 									<option selected></option>
 									<c:forEach var="sen" items="${seniorityList}">
 										<option value="${sen.seniority}">${sen.seniority}</option>
@@ -487,9 +488,9 @@ html, body {
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 
-								<select class="custom-select mb-3" id="categoriaProtetta"
+								<select class="custom-select mb-3" id="categoriaProtettaSelect"
 									name="categoriaProtetta" style="float: rigth;">
-									<option></option>
+									<option selected value=""></option>
 									<option value="on">si</option>
 									<option value="off">no</option>
 								</select>
@@ -1208,11 +1209,28 @@ html, body {
 	mansioneCnt = 0;
 	specializzazioneCnt = 0;
 
-
+function controlloMappa() {
+	  var inputFormArray = document.getElementsByTagName("input");
+	  
+	  for (var i = 0; i < inputFormArray.length; i++) {
+		  if (inputFormArray[i].value===""){
+			  	inputFormArray[i].name="";
+		  }
+	}
+	  if (document.getElementById("selectSeniority").value === ""){
+		  document.getElementById("selectSeniority").name="" 
+	  }
+	  if (document.getElementById("selectBusiness").value === ""){
+		  document.getElementById("selectBusiness").name="" 
+	  }
+	  if (document.getElementById("categoriaProtettaSelect").value === ""){
+		  document.getElementById("categoriaProtettaSelect").name="" 
+	  }
+	
+}
 	function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
-		
-		
-		for(area of buildString(areaCompetenzaList)){
+	
+				for(area of buildString(areaCompetenzaList)){
 			if(document.getElementById("areaCompetenzaInput").value === area){
 				var tagInput = document.createElement("input");
 				tagInput.value = document.getElementById("areaCompetenzaInput").value;
