@@ -822,9 +822,10 @@
 
 							<div class="form-group mt-2">
 								<div class="custom-control custom-switch">
-									<form:checkbox  class="custom-control-input" path="categoriaProtetta"
-										id="customSwitch1" name="categoriaProtetta"></form:checkbox> <label
-										class="custom-control-label" for="customSwitch1">Categoria
+									<form:checkbox class="custom-control-input"
+										path="categoriaProtetta" id="customSwitch1"
+										name="categoriaProtetta"></form:checkbox>
+									<label class="custom-control-label" for="customSwitch1">Categoria
 										protetta</label>
 								</div>
 							</div>
@@ -909,25 +910,29 @@
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<div id="areaCompetenzeCandidato">
 									<c:forEach var="area" items="${mostraCandidato.area}">
-										<input readonly type="text" class="form-control"
-											name="areaCompetenza" value="${area.area}"></input>
+										<div>
+											<input style="background: #3CBC8D" readonly type="text"
+												name="areaCompetenza" value="${area.area}"></input> <span
+												onclick="eliminaCampo('${area.area}', 'areaCompetenzeCandidato')"
+												class="btn"> <i class="fa fa-close"></i>
+											</span>
+										</div>
 									</c:forEach>
 								</div>
-
-								<input autocomplete="off" placeholder="aggiungi"
-									list="areeCompetenzeDisponibili" id="areaCompetenzaInput">
-								<datalist id="areeCompetenzeDisponibili">
-									<c:forEach var="area" items="${areaCompetenzaList}">
-										<option value="${area}"></option>
-									</c:forEach>
-								</datalist>
-
-								<div
-									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-									class="btn float-right">
-									<i class="fas fa-plus-square mr-1"></i>
+								<div>
+									<input autocomplete="off" placeholder="aggiungi"
+										list="areeCompetenzeDisponibili" id="areaCompetenzaInput">
+									<datalist id="areeCompetenzeDisponibili">
+										<c:forEach var="area" items="${areaCompetenzaList}">
+											<option value="${area}"></option>
+										</c:forEach>
+									</datalist>
+									<div
+										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+										class="btn">
+										<i class="fas fa-plus-square mr-1"></i>
+									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -965,8 +970,13 @@
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								<div id="mansioniCandidato">
 									<c:forEach var="mansione" items="${mostraCandidato.mansione}">
-										<input readonly type="text" class="form-control"
-											name="mansione" value="${mansione.mansione}"></input>
+										<div>
+											<input style="background: #3CBC8D" readonly type="text"
+												name="mansione" value="${mansione.mansione}"></input> <span
+												onclick="eliminaCampo('${mansione.mansione}', 'mansioniCandidato')"
+												class="btn"> <i class="fa fa-close"></i>
+											</span>
+										</div>
 									</c:forEach>
 								</div>
 								<div>
@@ -978,7 +988,7 @@
 										</c:forEach>
 									</datalist>
 									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-										class="btn float-right">
+										class="btn">
 										<i class="fas fa-plus-square mr-1"></i>
 									</div>
 								</div>
@@ -1061,9 +1071,14 @@
 							<div id="specializzazioniCandidato">
 								<c:forEach var="spec"
 									items="${mostraCandidato.candidatoSpecializzazione}">
-									<input readonly type="text" class="form-control"
-										name="specializzazione"
-										value="${spec.specializzazione.specializzazione} ${spec.anni}"></input>
+									<div>
+										<input style="background: #3CBC8D" readonly type="text"
+											name="specializzazione"
+											value="${spec.specializzazione.specializzazione} ${spec.anni}"></input> <span
+											onclick="eliminaCampo('${spec.specializzazione.specializzazione} ${spec.anni}', 'specializzazioniCandidato')"
+											class="btn"> <i class="fa fa-close"></i>
+										</span>
+									</div>
 								</c:forEach>
 							</div>
 							<div>
@@ -1080,7 +1095,7 @@
 									placeholder="anni esperienza">
 								<div
 									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-									class="btn float-right">
+									class="btn">
 									<i class="fas fa-plus-square mr-1"></i>
 								</div>
 							</div>
@@ -1139,110 +1154,6 @@
 		</div>
 	</div>
 
-	<!-- MODAL modifica BUSINESS 
-	<div class="modal fade" id="modificaBusinessModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						business</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form method="POST"
-							action="/ProgettoHR/Modifica/${mostraCandidato.id}/${mostraCandidato.stato.descrizione}">
-
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Business
-											unit:</div>
-										<input type="text" class="form-control" id="businessUnit"
-											name="businessUnit"
-											value="${mostraCandidato.business.business}"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Area
-											di competenza:</div>
-										<input type="text" class="form-control" id="areaCompetenza"
-											name="areaCompetenza"
-											value="<c:forEach var=" area"
-                                            items="${mostraCandidato.area}">
-                                        <span>${area.area}</span>
-                                        </c:forEach>"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Mansione:</div>
-										<input type="text" class="form-control" id="mansione"
-											name="mansione"
-											value="<c:forEach var=" mansione" items="${mostraCandidato.mansione}">
-                                        <span>${mansione.mansione}</span>
-                                        </c:forEach>"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Seniority:</div>
-										<input type="text" class="form-control" id="seniority"
-											name="seniority"
-											value="${mostraCandidato.seniority.seniority}"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">
-											Specializzazione:</div>
-										<input type="text" class="form-control" id="specializzazione"
-											name="specializzazione"
-											value="<c:forEach var=" specializzazione"
-                                            items="${mostraCandidato.candidatoSpecializzazione}">
-                                        <span>${specializzazione.specializzazione.specializzazione}
-                                            &nbsp ${specializzazione.anni} anni esperienza</span>
-                                        </c:forEach>"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Inserimento
-											azienda:</div>
-										<input type="text" class="form-control"
-											id="inserimentoAzienda" name="inserimentoAzienda "
-											value="${mostraCandidato.inserimentoAzienda}"></input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
 
 	<!--MODAL modifica ECONOMICS-->
 	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1"
@@ -1776,8 +1687,30 @@
 		</div>
 	</div>
 
+	<!-- MODAL ERRORE -->
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="errorModalBody"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Chiudi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script type="text/javascript">
+	
 		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics) {
 			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
@@ -1886,78 +1819,177 @@
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
 		
+	
+		
+		// gestione modal di modifica area competenza
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
-	
-			var areaCompetenzaString = buildString(areaCompetenzaList);
-	
-					for(area of areaCompetenzaString){
-				if(document.getElementById("areaCompetenzaInput").value === area){
-					var tagInput = document.createElement("input");
-					tagInput.value = document.getElementById("areaCompetenzaInput").value;					
-					
-					tagInput.name = "areaCompetenza";
-					tagInput.readOnly = true;
-					
-					document.getElementById("areaCompetenzeCandidato").appendChild(tagInput);
-					document.getElementById("areaCompetenzaInput").value = "";
-					document.getElementById("areaCompetenzaInput").focus();
-					return;
-				}	
+			
+			var areeCompetenzaEsistenti = document.getElementById("areaCompetenzeCandidato").children;
+			if(areeCompetenzaEsistenti != null){   
+				for(var i=0; i<areeCompetenzaEsistenti.length; i++){    
+					var input = areeCompetenzaEsistenti[i].children;
+					if(input[0].value === document.getElementById("areaCompetenzaInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 			
 			}
-			alert("Area competenza scelta non esistente");							
-
+			
+			var areaString = buildString(areaCompetenzaList);
+			
+			for(area of areaString){
+				if(document.getElementById("areaCompetenzaInput").value === area){
+			
+			var tagDiv = document.createElement("div");		
+			var tagInput = document.createElement("input");
+			var tagDivButton = document.createElement("span");
+			tagInput.value = document.getElementById("areaCompetenzaInput").value;
+												
+			tagInput.name = "areaCompetenza";
+			tagInput.readOnly = true;			
+			tagInput.style.backgroundColor = "#3CBC8D";
+			
+			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';
+			
+			tagDivButton.onclick = function(){				              	              	          				
+				tagDiv.remove();
+			};
+			
+			tagDiv.appendChild(tagInput);
+			tagDiv.appendChild(tagDivButton);
+			
+			document.getElementById("areaCompetenzeCandidato").appendChild(tagDiv);
+			document.getElementById("areaCompetenzaInput").value = "";
+			document.getElementById("areaCompetenzaInput").focus();
+			return;
+				}
+			}
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Area Competenza inserita non esistente"		
 		}
 		
-		
+		// gestione modal di modifica mansioni
 		function stampaMansioneSelezionata(mansioneList) {
+			
+			//controllo che non sia già stato inserito il valore selezionato
+			//il controllo viene fatto esplorando il DOM, in particolare il div che contiente gli input dei valori inseriti (qualora ci fossero)
+			var mansioniEsistenti = document.getElementById("mansioniCandidato").children;
+			if(mansioniEsistenti != null){   
+				for(var i=0; i<mansioniEsistenti.length; i++){    
+					var input = mansioniEsistenti[i].children;
+					if(input[0].value === document.getElementById("mansioneInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 			
+			}
 			
 			var mansioneString = buildString(mansioneList);
 			
+			//controllo che il valore selezionato sia effettivamente un valore presente nel database per non incorrere in problemi futuri
 			for(mansione of mansioneString){
 				if(document.getElementById("mansioneInput").value === mansione){
 			
+			//creo dinamicamento la struttura contenente gli input con i valori selezionati
+			var tagDiv = document.createElement("div");		
 			var tagInput = document.createElement("input");
+			var tagDivButton = document.createElement("span");
 			tagInput.value = document.getElementById("mansioneInput").value;
-									
+												
 			tagInput.name = "mansione";
 			tagInput.readOnly = true;
 			
-			document.getElementById("mansioniCandidato").appendChild(tagInput);
+			tagInput.style.backgroundColor = "#3CBC8D";
+			
+			//var mansioneDaCercare = document.getElementById("mansioneInput").value;
+			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';
+			
+			tagDivButton.onclick = function(){				              	              	          				
+				tagDiv.remove();
+			};
+			
+			tagDiv.appendChild(tagInput);
+			tagDiv.appendChild(tagDivButton);
+			
+			document.getElementById("mansioniCandidato").appendChild(tagDiv);
 			document.getElementById("mansioneInput").value = "";
 			document.getElementById("mansioneInput").focus();
 			return;
 				}
 			}
-			alert("Mansione scelta non esistente");
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
 		}
 		
+		
 		function stampaSpecializzazioneSelezionata(specializzazioneList) {
+			
+			var specializzazioniEsistenti = document.getElementById("specializzazioniCandidato").children;
+			if(specializzazioniEsistenti != null){   
+				for(var i=0; i<specializzazioniEsistenti.length; i++){    
+					var input = specializzazioniEsistenti[i].children;
+					input = input[0].value;
+					input = input.split(" ");
+					if(input[0] === document.getElementById("specializzazioneInput").value){  
+						$('#errorModal').modal('toggle');   
+						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						return;              
+              		}           
+				} 			
+			}
 			
 			var specializzazioneString = buildString(specializzazioneList);
 			
 			for(specializzazione of specializzazioneString){
 				if(document.getElementById("specializzazioneInput").value === specializzazione){
-					
-				
-					var tagInput = document.createElement("input");
-					tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;					
-					
-					tagInput.name = "specializzazione";
-					tagInput.readOnly = true;
-					
-					document.getElementById("specializzazioniCandidato").appendChild(tagInput);
-					document.getElementById("specializzazioneInput").value = "";
-					document.getElementById("specializzazioneInput").focus();
-					return;
+			
+			var tagDiv = document.createElement("div");		
+			var tagInput = document.createElement("input");
+			var tagDivButton = document.createElement("span");
+			tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
+												
+			tagInput.name = "specializzazione";
+			tagInput.readOnly = true;
+			tagInput.style.backgroundColor = "#3CBC8D";
+			
+			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';			
+			tagDivButton.onclick = function(){				              	              	          				
+				tagDiv.remove();
+			};
+			
+			tagDiv.appendChild(tagInput);
+			tagDiv.appendChild(tagDivButton);
+			
+			document.getElementById("specializzazioniCandidato").appendChild(tagDiv);
+			document.getElementById("specializzazioneInput").value = "";
+			document.getElementById("anniEsperienzaInput").value = "";
+			document.getElementById("specializzazioneInput").focus();
+			return;
 				}
 			}
-			alert("Specializzazione scelta non esistente");
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"
 		}
 		
 		
 		
-		
-		
+		function eliminaCampo(campo, tipoCampo){
+			
+			var campiEsistenti = document.getElementById(tipoCampo).children;
+			if(campiEsistenti != null){   
+				for(var i=0; i<campiEsistenti.length; i++){    
+					var input = campiEsistenti[i].children;
+					if(input[0].value === campo){ 
+						campiEsistenti[i].remove();
+						return;              
+              		}           
+				} 			
+			}
+		}
+	
+
 	</script>
 
 </body>

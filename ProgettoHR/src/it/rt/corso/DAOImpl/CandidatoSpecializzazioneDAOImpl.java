@@ -11,6 +11,14 @@ public class CandidatoSpecializzazioneDAOImpl extends BaseDAO implements Candida
 	public CandidatoSpecializzazione inserisci(CandidatoSpecializzazione candidatoSpecializzazione) {
 		return (CandidatoSpecializzazione)super.inserisci(candidatoSpecializzazione);
 	}
+	
+	public CandidatoSpecializzazione aggiorna(CandidatoSpecializzazione candidatoSpecializzazione) {
+		return (CandidatoSpecializzazione) super.aggiorna(candidatoSpecializzazione);
+	}
+	
+	public CandidatoSpecializzazione cancella(CandidatoSpecializzazione candidatoSpecializzazione) {
+		return (CandidatoSpecializzazione)super.cancella(candidatoSpecializzazione);
+	}
 
 	public CandidatoSpecializzazione get(String id) {
 		return (CandidatoSpecializzazione)super.get(CandidatoSpecializzazione.class, id);

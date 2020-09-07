@@ -39,6 +39,8 @@ public class CandidatiController {
 	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 	SpecializzazioneDAO specializzazioneDAO = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
+	CandidatoSpecializzazioneDAO candidatoSpecializzazioneDAO = (CandidatoSpecializzazioneDAO) factory
+			.getBean("candidatoSpecializzazioneDAO");
 	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
 	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
@@ -227,7 +229,7 @@ public class CandidatiController {
 	@RequestMapping(value = "/ModificaAnagrafica/{id}", method = RequestMethod.POST)
 	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
-		
+
 		candidato.setNome(c.getNome());
 		candidato.setCognome(c.getCognome());
 		candidato.setAnno(c.getAnno());
@@ -240,7 +242,7 @@ public class CandidatiController {
 			candidato.setCategoriaProtetta(true);
 		} else
 			candidato.setCategoriaProtetta(false);
-		
+
 		candidatoDAO.aggiorna(candidato);
 		return "redirect:/Candidato/{id}";
 	}
@@ -320,7 +322,11 @@ public class CandidatiController {
 
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
 		for (String area : areeCompetenza) {
-			AreaCompetenza areaCompetenza = areaCompetenzaDAO.get(area);
+			// AreaCompetenza areaCompetenza = areaCompetenzaDAO.get(area);
+
+			AreaCompetenza areaCompetenza = new AreaCompetenza();
+			areaCompetenza.setArea(area);
+
 			listaCompetenza.add(areaCompetenza);
 		}
 
@@ -338,7 +344,10 @@ public class CandidatiController {
 
 		List<Mansione> listaMansione = new ArrayList<Mansione>();
 		for (String mansione : mansioni) {
-			Mansione mansioneDaInserire = mansioneDAO.get(mansione);
+			// Mansione mansioneDaInserire = mansioneDAO.get(mansione);
+			Mansione mansioneDaInserire = new Mansione();
+			mansioneDaInserire.setMansione(mansione);
+
 			listaMansione.add(mansioneDaInserire);
 		}
 
@@ -354,22 +363,40 @@ public class CandidatiController {
 	public String modificaSpecializzazione(@RequestParam(name = "specializzazione") List<String> specializzazioni,
 			@PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
+		int trovato = 0;
 
-		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
+		//controllo che non siano stati cancellati delle specializzazioni e nel caso la elimino dalla tabella di mezzo
+		 List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
+		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
+			for (String specializzazione : specializzazioni) {
+				String[] specializzazioneCorretta = specializzazione.split(" ");
+				if (cs.getSpecializzazione().getSpecializzazione().equalsIgnoreCase(specializzazioneCorretta[0])) {
+					trovato = 1;
+				}
+			}
+			if (trovato == 0) {
+				candidatoSpecializzazioneDAO.cancella(cs);
+			} else
+				trovato = 0;
+		}
+
+		//aggiorno tutte le specializzazioni
 		for (String specializzazione : specializzazioni) {
 			String[] specializzazioneCorretta = specializzazione.split(" ");
 
 			CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
 
-			Specializzazione specializzazioneDaInserire = specializzazioneDAO.get(specializzazioneCorretta[0]);
+			Specializzazione specializzazioneDaInserire = new Specializzazione();
+			specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
+
 			candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
 			candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
 			candidatoSpecializzazione.setCandidato(candidato);
 			listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
 		}
 
-		candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
-		candidatoDAO.aggiorna(candidato);
+		 candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
+		 candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{id}";
 	}
