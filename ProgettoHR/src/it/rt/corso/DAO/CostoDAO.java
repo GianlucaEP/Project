@@ -2,7 +2,6 @@ package it.rt.corso.DAO;
 
 import java.util.List;
 
-import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Costo;
 
 public interface CostoDAO {
