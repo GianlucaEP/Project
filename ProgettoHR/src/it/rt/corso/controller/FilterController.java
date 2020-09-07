@@ -2,7 +2,6 @@ package it.rt.corso.controller;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,6 @@ import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
 import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Bean;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
