@@ -3,7 +3,6 @@ package it.rt.corso.DAOImpl;
 import java.util.List;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CostoDAO;
-import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Costo;
 import it.rt.corso.utility.Utility;
 

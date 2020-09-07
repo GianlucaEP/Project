@@ -2,14 +2,10 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
-import org.hibernate.query.Query;
 
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Mansione;
-import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.utility.Utility;
 
 public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{

@@ -1,16 +1,10 @@
 package it.rt.corso.DAOImpl;
 
 import java.util.List;
-import java.util.Set;
-
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.FeedbackDAO;
-import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
-import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
 
 public class FeedbackDAOImpl extends BaseDAO implements FeedbackDAO {

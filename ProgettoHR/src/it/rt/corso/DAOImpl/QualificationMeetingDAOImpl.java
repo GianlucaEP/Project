@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.QualificationMeetingDAO;
-import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.QualificationMeeting;
 
 public class QualificationMeetingDAOImpl extends BaseDAO implements QualificationMeetingDAO{

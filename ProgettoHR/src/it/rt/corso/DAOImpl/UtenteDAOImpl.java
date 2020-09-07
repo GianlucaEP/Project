@@ -2,7 +2,6 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
-import javax.crypto.SecretKeyFactory;
 import javax.persistence.Query;
 
 import it.rt.corso.DAO.BaseDAO;
