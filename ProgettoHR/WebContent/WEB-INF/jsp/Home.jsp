@@ -7,15 +7,19 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
 <title>Home</title>
 
 <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <style>
+
 /* Body e html generale*/
 html, body {
 	height: 100%;
@@ -64,7 +68,7 @@ a, a:hover, a:focus {
 .tabellaHome .head {
 	background-color: #5aa9e6;
 	color: #ffffff;
-	text-align: center;
+	text-align: left;
 	font-weight: bold;
 }
 
@@ -120,6 +124,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
+	height: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
 	min-width: 250px;
@@ -197,7 +202,6 @@ ul ul a {
 
 .select option {
 	background-color: white;
-	
 }
 
 .custom-arrow {
@@ -234,6 +238,8 @@ ul ul a {
 	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
 	top: 65%;
 }
+
+
 </style>
 
 </head>
@@ -284,7 +290,7 @@ ul ul a {
 
 						<li class="active"><a href="#homeSubmenu"
 							data-toggle="collapse" aria-expanded="false"
-							class="dropdown-toggle">Business unit</a>
+							class="dropdown-toggle">Business Unit</a>
 							<ul class="collapse list-unstyled" id="homeSubmenu">
 								<li><c:forEach var="business" items="${businessList}">
 										<a class="dropdown-item"
@@ -293,18 +299,18 @@ ul ul a {
 
 							</ul></li>
 						<li><a href="/ProgettoHR/Candidati/${businessUnit}"
-							type="button">Candidato</a></li>
+							type="button"><i class="fas fa-plus"></i> Nuovo candidato</a></li>
 
 						<li><c:choose>
 								<c:when
 									test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
 									<a href="" data-toggle="modal" data-target="#mansioneModal"
-										type="button">Mansione</a>
+										type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
 								</c:when>
 							</c:choose></li>
 
 						<li><a href="/ProgettoHR/Filter/${businessUnit}"
-							type="button">Filtri</a></li>
+							type="button" class="text-center">Filtri</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -323,13 +329,13 @@ ul ul a {
 
 									<select class="select" onchange="validateOption()" id="stati"
 										name="stato">
-										
-											<option disabled selected>Stato candidato</option>
-											<option value="noFiltro">Tutti gli stati</option>
-											<c:forEach var="stato" items="${statoCandidatoList}">
-												<option value="${stato.descrizione}">${stato.descrizione}</option>
-											</c:forEach>
-										
+
+										<option disabled selected>Stato candidato</option>
+										<option value="noFiltro">Tutti gli stati</option>
+										<c:forEach var="stato" items="${statoCandidatoList}">
+											<option value="${stato.descrizione}">${stato.descrizione}</option>
+										</c:forEach>
+
 									</select> <span class="custom-arrow"></span>
 								</div>
 
