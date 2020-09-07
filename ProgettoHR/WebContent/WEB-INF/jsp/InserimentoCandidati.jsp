@@ -5,78 +5,205 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Inserimento Candidati</title>
-<script src="https://kit.fontawesome.com/053b00be10.js"
-	crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Inserimento candidato</title>
+
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-<!-- <style>
-body {
-    background-image: url("/ProgettoHR/img/sfondo.jpg");
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+/* Body e html generale*/
+html, body {
+	height: 100%;
 }
 
-</style> -->
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
+}
+
+p {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 1.7em;
+	color: #999;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* Navbar */
+.navbar {
+
+	position: absolute;
+	background: #5aa9e6;
+	border: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+	width: 100%;
+}
+
+.navbar .navbar-brand .logo {
+	width: auto;
+	height: 70px;
+}
+
+.navbar .btn {
+	background: #7fc8f8;
+	width: 50%;
+	margin-left: 60px;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	border-bottom: 1px dashed #ddd;
+	margin: 40px 0;
+}
+
+/* Barra Laterale */
+.container-fluid2 {
+	margin-top: 110px;
+}
+
+#sidebar {
+
+	border-collapse: collapse;
+	font-size: 0.9em;
+	min-width: 250px;
+	max-width: 250px;
+	border-radius: 0px 5px 5px 0px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	background: #5aa9e6;
+	color: #fff;
+	height: 100%;
+}
+
+#sidebar .sidebar-header {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background: #7fc8f8;
+}
+
+#sidebar ul.components {
+	padding: 10px 0px 0px 0px;
+}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	margin: 5px 0px;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #000000;
+	background: #fff;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #7fc8f8;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #cae9ff;
+}
+</style>
+
 </head>
+
 <body
 	onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
 
-	<!-- Navbar -->
+	<!-- NAVBAR -->
 	<div class="container-fluid">
-		<div class="row w-100">
-			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
-				style="opacity: 0.9;">
+		<div class="row">
+			<nav class="navbar">
 
-				<!-- Logo -->
+				<!-- LOGO -->
 				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-					<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-					style="width: 170px;">
+					<img class="logo"
+					src="/ProgettoHR/img/Erre_technology_group_NEW.png">
 				</a>
 
-				<!-- bottone profilo -->
-				<div class="col-auto text-right">
-					<button class="btn btn-primary dropdown-toggle"
-						style="border-radius: 10px; box-shadow: 0px 0px 2px black;"
-						role="button" id="logout" data-toggle="dropdown"
+				<!-- BOTTONE PROFILO -->
+				<div class="col-1">
+
+					<button class="btn" id="logout" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-cog"></i>
 					</button>
+
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a>
 					</div>
+
 				</div>
 
 			</nav>
 		</div>
 	</div>
 
-	<div style="margin-top: 110px;" class="container-fluid ">
+	<div class="container-fluid2 ">
 		<div class="row">
-
 			<!-- COLONNA BOTTONI LATERALI -->
-			<div class="col-1.5"
-				style="opacity: 0.9; border-radius: 0px 10px 10px 0px; background-color: #0466c8;">
+			<div class="col-auto">
 
-				<!-- bottone aggiunta mansione -->
-				<c:choose>
-					<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-						<button class="btn btn-dark btn-block mt-1 text-left"
-							style="background-color: #0353a4; border-color: transparent; border-radius: 1px 10px 10px 1px;"
-							data-toggle="modal" data-target="#mansioneModal">
-							<i class="fas fa-plus-square mr-1"></i> Mansione <i
-								class="fas fa-briefcase "></i>
-						</button>
-					</c:when>
-				</c:choose>
+				<!-- BARRA LATERALE -->
+				<nav id="sidebar">
 
+					<div class="sidebar-header">
+						<h3>Inserimento candidato</h3>
+					</div>
+
+					<ul class="list-unstyled components">
+						<li><c:choose>
+								<c:when
+									test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
+									<a href="" data-toggle="modal" data-target="#mansioneModal"
+										type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
+								</c:when>
+							</c:choose></li>
+					</ul>
+				</nav>
 			</div>
 
 			<!-- COLONNA INSERIMENTO CANDIDATO -->
@@ -85,7 +212,7 @@ body {
 				<form class="border rounded p-3" autocomplete="off" method="POST"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 
-					<h4 class="text-center"">Nuovo candidato</h4>
+					<h4 class="text-center">Nuovo candidato</h4>
 					<p class="text-center">Compila i campi presenti per inserire un
 						nuovo candidato</p>
 					<hr class="my-4">
@@ -251,8 +378,9 @@ body {
 					<div class="form-group mt-2">
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input"
-								id="customSwitch1" name="categoriaProtetta"> <label class="custom-control-label"
-								for="customSwitch1">Categoria protetta</label>
+								id="customSwitch1" name="categoriaProtetta"> <label
+								class="custom-control-label" for="customSwitch1">Categoria
+								protetta</label>
 						</div>
 					</div>
 
@@ -570,6 +698,21 @@ body {
 					areaCompetenzaString);
 		}
 	</script>
+
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<!-- Font Awesome JS -->
+	<script defer
+		src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+
+	<script defer
+		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 
 </body>
 
