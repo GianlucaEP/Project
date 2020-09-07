@@ -1,5 +1,6 @@
 package it.rt.corso.DAO;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,10 @@ public interface CandidatoDAO {
 	 * @param mappaFilter Map containing the filters names and the value of the filter wich has to be used to create the query
 	 * 
 	 * @return the List of Candidato, wich has to be printed inside the table, filtered by the user
+	 * @throws ParseException 
 	 * 
 	 * */
-	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter);
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) throws ParseException;
 	
 	/** Create and execute query to Candidato table, joining Business unit specified by the String businessUnit, to get 
 	 * a List of type Candidato filtered by stato specified by the stato attribute.

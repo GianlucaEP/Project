@@ -1,5 +1,6 @@
 package it.rt.corso.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +91,7 @@ public class FilterController {
 
 	@RequestMapping(value = "/Filter/advanced/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
-			@RequestParam Map<String, String> requestParams) {
+			@RequestParam Map<String, String> requestParams) throws ParseException {
 
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
 

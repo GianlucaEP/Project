@@ -1,6 +1,9 @@
 package it.rt.corso.DAOImpl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +25,7 @@ import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.query.Query;
+import org.hibernate.type.DateType;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
@@ -76,7 +80,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	}
 
 	@Override
-	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) {
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) throws ParseException {
 
 		Utility.buildSession();
 
@@ -132,7 +136,8 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		// aggiungi business unit nei predicates
 		// listaPredicates.add(criteriaBuilder.like(business.get("business"), "%" +
 		// businessUnit + "%"));
-
+		Date dataFrom = null;
+		Date dataTo = null;
 		for (Map.Entry<String, String> entry : mappaFilter.entrySet()) {
 
 			if (entry.getKey().contains("mansione")) {
@@ -151,28 +156,58 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 				listaPredicatesSpecializzazioni.add(
 						criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + entry.getValue() + "%"));
 			} else if (entry.getKey().contains("categoriaProtetta")) {
-				int x;
-				
+				int x = -1;
+
 				if (entry.getValue().equalsIgnoreCase("on")) {
 					x = 1;
-				} else {
+				} else if (entry.getValue().equalsIgnoreCase("off")) {
 					x = 0;
 				}
-				listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
+				if (x != -1)
+					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
 
+			} else if (entry.getKey().contains("costoMin")) {
+				if (!entry.getValue().equals("")) {
+					int x = Integer.parseInt(entry.getValue());
+					listaPredicates.add(criteriaBuilder.greaterThan(root.get("costo"), x));
+				}
+			} else if (entry.getKey().contains("costoMax")) {
+				if (!entry.getValue().equals("")) {
+					int x = Integer.parseInt(entry.getValue());
+					listaPredicates.add(criteriaBuilder.lessThan(root.get("costo"), x));
+				}
+			} else if (entry.getKey().contains("dataInserimentoFrom")) {
+				if (!entry.getValue().equals("")) {
+					SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+					dataFrom = date.parse(entry.getValue());
+				}
+			} else if (entry.getKey().contains("dataInserimentoTo")) {
+				if (!entry.getValue().equals("")) {
+					SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+					dataTo = date.parse(entry.getValue());
+				}
 			} else {
 
 				String regex = "[0-9]+";
 				if (entry.getValue().matches(regex)) {
 					int x = Integer.parseInt(entry.getValue());
+
 					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
 				} else {
-					listaPredicates.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
+					if (entry.getValue().equals("") && entry.getKey().equals("anno") ) {
+
+					} else {
+						listaPredicates
+								.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
+					}
+
 				}
 			}
 
 		} // ciclo per inserire nei predicati dei filtri nelle rispettive liste
-
+		if (dataFrom != null || dataTo != null) {
+			listaPredicates.add(criteriaBuilder.between(root.<Date>get("inserimentoAzienda"), dataFrom, dataTo));
+		}
 		if (!listaPredicatesMansioni.isEmpty()) {
 			// trasforma la lista in array per inserire i predicati delle mansioni nella or
 			Predicate[] predicatesMansioni = listaPredicatesMansioni

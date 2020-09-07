@@ -158,9 +158,9 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<!--  <input id="anno" name="anno" class="text-left"
+								<input id="anno" name="anno" class="text-left"
 									style="border-color: transparent;" type="text"
-									placeholder="anno">-->
+									placeholder="anno">
 
 							</div>
 
@@ -404,20 +404,85 @@ html, body {
 					</div>
 				</div>
 
+				<div class="card" style="border-color: transparent;">
+					<h2 class="">
+						<button class="btn btn-block text-left collapsed"
+							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+							type="button" data-toggle="collapse" data-target="#collapse12"
+							aria-expanded="false" aria-controls="collapse12">
+							<i class="fa fa-plus" aria-hidden="true"></i> Costo orario <i
+								class="fas fa-briefcase float-right pt-1"></i>
+						</button>
+					</h2>
+
+					<div id="collapse12" class="collapse" aria-labelledby="heading12">
+						<div id="specializzazioneDiv" class="card-body">
+
+							<div class="autocomplete" style="border-bottom-style: ridge;">
+								<input id="costoMinInput" name="costoMin" class="text-left"
+									style="border-color: transparent;" type="text"
+									placeholder="costo minimo"> <input id="costoMaxInput"
+									name="costoMax" class="text-left"
+									style="border-color: transparent;" type="text"
+									placeholder="costo massimo">
+								<!--  <input
+									id="anniEsperienzaInput" class="text-left"
+									style="border-color: transparent;" type="number"
+									placeholder="anni esperienza">-->
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="card" style="border-color: transparent;">
+					<h2 class="">
+						<button class="btn btn-block text-left collapsed"
+							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
+							type="button" data-toggle="collapse" data-target="#collapse13"
+							aria-expanded="false" aria-controls="collapse13">
+							<i class="fa fa-plus" aria-hidden="true"></i> Inserimento Azienda
+							<i class="fas fa-briefcase float-right pt-1"></i>
+						</button>
+					</h2>
+
+					<div id="collapse13" class="collapse" aria-labelledby="heading12">
+						<div id="specializzazioneDiv" class="card-body">
+
+							<div class="autocomplete" style="border-bottom-style: ridge;">
+								Dal <input type="date" id="dataInserimentoInputFrom"
+									name="dataInserimentoFrom" class="text-left"
+									style="border-color: transparent;"> Al <input
+									type="date" id="dataInserimentoInputTo"
+									name="dataInserimentoTo" class="text-left"
+									style="border-color: transparent;">
+
+								<!--  <input
+									id="anniEsperienzaInput" class="text-left"
+									style="border-color: transparent;" type="number"
+									placeholder="anni esperienza">-->
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
 
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
 						<button class="btn btn-block text-left collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-							type="button" data-toggle="collapse" data-target="#collapse12"
-							aria-expanded="false" aria-controls="collapse12">
+							type="button" data-toggle="collapse" data-target="#collapse15"
+							aria-expanded="false" aria-controls="collapse15">
 							<i class="fa fa-plus" aria-hidden="true"></i> Categoria protetta
 							<i class="fas fa-briefcase float-right pt-1"></i>
 						</button>
 					</h2>
 
-					<div id="collapse12" class="collapse" aria-labelledby="heading10">
+					<div id="collapse15" class="collapse" aria-labelledby="heading10">
 						<div id="areaCompetenzaDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
@@ -1056,7 +1121,7 @@ html, body {
 							<th scope="col">Seniority</th>
 							<th scope="col">Specializzazione</th>
 							<th scope="col">Inserimento Azienda</th>
-							<th scope="col">costi</th>
+							<th scope="col">costo orario</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -1122,6 +1187,10 @@ html, body {
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.inserimentoAzienda}</td>
+
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.costo.orario} &#8364; /H</td>
 
 								<td data-toggle="modal" data-target="#EliminaModal"><i
 									class="fas fa-trash-alt"></i></td>
