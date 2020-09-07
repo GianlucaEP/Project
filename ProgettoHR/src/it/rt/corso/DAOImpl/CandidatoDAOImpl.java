@@ -181,14 +181,13 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 			} else {
 
 				String regex = "[0-9]+";
-				if (entry.getValue().matches(regex)) {
+				if (entry.getValue().matches(regex) && entry.getKey().equals("anno")) {
 					int x = Integer.parseInt(entry.getValue());
 
 					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
 				} else {
-					if (entry.getValue().equals("") && entry.getKey().equals("anno") ) {
+					if (!entry.getValue().contains("[0-9]")) {
 
-					} else {
 						listaPredicates
 								.add(criteriaBuilder.like(root.get(entry.getKey()), "%" + entry.getValue() + "%"));
 					}
