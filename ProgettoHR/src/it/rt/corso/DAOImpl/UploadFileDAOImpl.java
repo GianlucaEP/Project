@@ -4,8 +4,6 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.UploadFileDAO;
-import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Costo;
 import it.rt.corso.beans.UploadFile;
 import it.rt.corso.utility.Utility;
 

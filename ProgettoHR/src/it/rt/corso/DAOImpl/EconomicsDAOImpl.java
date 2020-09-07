@@ -4,10 +4,7 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.EconomicsDAO;
-import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Costo;
 import it.rt.corso.beans.Economics;
-import it.rt.corso.beans.Feedback;
 import it.rt.corso.utility.Utility;
 
 public class EconomicsDAOImpl extends BaseDAO implements EconomicsDAO {

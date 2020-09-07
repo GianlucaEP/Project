@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.MansioneDAO;
-import it.rt.corso.beans.Feedback;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
 

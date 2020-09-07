@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
-import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.utility.Utility;
 

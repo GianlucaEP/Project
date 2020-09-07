@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 
 public interface CandidatoDAO {

@@ -900,7 +900,7 @@
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}" onsubmit="return validateMyForm('areaCompetenzaInput')">
 					<div class="modal-body">
 						<div style="border-color: transparent;">
 							<div>
@@ -960,7 +960,8 @@
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaMansione/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaMansione/${mostraCandidato.id}"
+					onsubmit="return validateMyForm('mansioneInput');">
 					<div class="modal-body">
 						<div style="border-color: transparent;">
 
@@ -997,7 +998,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="submit" class="btn btn-success" name="submitButton">Salva</button>
 					</div>
 				</form>
 			</div>
@@ -1060,7 +1061,7 @@
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}" onsubmit="return validateMyForm('specializzazioneInput');">
 					<div class="modal-body">
 						<div style="border-color: transparent;">
 
@@ -1074,7 +1075,8 @@
 									<div>
 										<input style="background: #3CBC8D" readonly type="text"
 											name="specializzazione"
-											value="${spec.specializzazione.specializzazione} ${spec.anni}"></input> <span
+											value="${spec.specializzazione.specializzazione} ${spec.anni}"></input>
+										<span
 											onclick="eliminaCampo('${spec.specializzazione.specializzazione} ${spec.anni}', 'specializzazioniCandidato')"
 											class="btn"> <i class="fa fa-close"></i>
 										</span>
@@ -1986,6 +1988,19 @@
 						return;              
               		}           
 				} 			
+			}
+		}
+		
+		//funzione che mi salva le modifiche solo in caso non ci sia nulla all'interno dell'input
+		function validateMyForm(id){
+
+			if(document.getElementById(id).value != ""){			
+				$('#errorModal').modal('toggle');
+				document.getElementById("errorModalBody").innerHTML = "Premere bottone per aggiungere il valore selezionato"
+				return false;
+			}
+			else {
+				return true;
 			}
 		}
 	

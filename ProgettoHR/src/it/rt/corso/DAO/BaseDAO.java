@@ -1,13 +1,10 @@
 package it.rt.corso.DAO;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import it.rt.corso.beans.Bean;
-import it.rt.corso.beans.Candidato;
 import it.rt.corso.utility.Utility;
 
 public abstract class BaseDAO {

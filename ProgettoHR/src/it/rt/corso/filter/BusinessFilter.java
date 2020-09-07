@@ -15,7 +15,7 @@ import it.rt.corso.beans.Candidato;
 import it.rt.corso.utility.Utility;
 
 public class BusinessFilter extends CandidatoFilter {
-
+	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro, String valore) {
 
 		if (nomeFiltro.contains("business")) {
@@ -27,7 +27,7 @@ public class BusinessFilter extends CandidatoFilter {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(business.get("business"), "%" + valore + "%"));
 		} else {
-			
+			//TODO chiamata ad altri filtri
 			
 			
 		}
