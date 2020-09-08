@@ -67,7 +67,6 @@ public class HomeController {
 			return "redirect:/Login";
 		}
 		
-		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
@@ -97,7 +96,6 @@ public class HomeController {
 
 
 		m.addAttribute("mansioneList", singleton.getMansioneList());
-		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		m.addAttribute("businessList", singleton.getBusinessList());

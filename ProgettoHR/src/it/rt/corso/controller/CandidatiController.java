@@ -394,7 +394,6 @@ public class CandidatiController {
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		m.addAttribute("qualificationMeeting", new QualificationMeeting());
 
-		m.addAttribute("ruolo", utente.getRuolo());
 
 		return "Candidato";
 	}
