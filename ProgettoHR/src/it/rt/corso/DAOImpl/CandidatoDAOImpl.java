@@ -61,14 +61,24 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		Utility.buildSession();
 
 		Session session = Utility.getSession();
+		
+		//---------------------------------------------------------------------
+		
+		String hql = "FROM Candidato C WHERE C.business.business = : businessUnit ORDER BY C.id DESC";
+		Query query = session.createQuery(hql);
+		query.setParameter("businessUnit", businessUnit);
+		List<Candidato> results = query.getResultList();
 
-		Business bus = session.byId(Business.class).getReference(businessUnit);
-
-		Set<Candidato> lista = bus.getCandidato();
-
-		List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
-
-		return listacandidatoByBusinessUnit;
+		//---------------------------------------------------------------------
+		//SOLUZIONE PRECEDENTE FUNZIONANTE
+		//
+		//Business bus = session.byId(Business.class).getReference(businessUnit);
+		//Set<Candidato> lista = bus.getCandidato();
+		//List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
+		//return listacandidatoByBusinessUnit;
+		//---------------------------------------------------------------------
+		
+		return results;
 	}
 
 	@Override
