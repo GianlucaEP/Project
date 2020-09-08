@@ -69,9 +69,11 @@ public class UploadFileController {
 
 	}
 
-	@RequestMapping(value = { "/delete/{candidatoId}/{fileId}" }, method = RequestMethod.GET)
-	public String deleteDocument(@PathVariable int candidatoId, @PathVariable int fileId) {
-		UploadFile file = uploadFileDAO.get(fileId);
+	@RequestMapping(value = { "/delete/{candidatoId}" }, method = RequestMethod.GET)
+	public String deleteDocument(@PathVariable int candidatoId, @RequestParam(name = "idAllegato") int idAllegato) {
+		
+		
+		UploadFile file = uploadFileDAO.get(idAllegato);
 		uploadFileDAO.cancella(file);
 		return "redirect:/Candidato/{candidatoId}";
 	}

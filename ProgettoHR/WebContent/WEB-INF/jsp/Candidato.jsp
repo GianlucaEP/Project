@@ -395,7 +395,8 @@
 
 												<th scope="col">Business unit</th>
 												<td scope="col">${mostraCandidato.business.business}</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -423,7 +424,8 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -451,7 +453,8 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -473,7 +476,8 @@
 
 												<th scope="col">Seniority</th>
 												<td scope="col">${mostraCandidato.seniority.seniority}</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -503,7 +507,8 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -525,7 +530,8 @@
 
 												<th scope="col">Inserimento azienda</th>
 												<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
-												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+												<th><c:forEach var="funz"
+														items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -634,7 +640,8 @@
 										<td>${qualificationMeeting.riferimentoGara}</td>
 										<td>${qualificationMeeting.dataColloquio}</td>
 										<td>${qualificationMeeting.feedback}</td>
-										<td><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+										<td><c:forEach var="funz"
+												items="${utente.ruolo.funzionalita}">
 												<c:choose>
 													<c:when
 														test="${funz.funzionalita == 'modifica qualification meeting'}">
@@ -681,7 +688,8 @@
 										<td>${feed.data}</td>
 										<td>${feed.tipo.tipo}</td>
 										<td>${feed.commento}</td>
-										<td><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+										<td><c:forEach var="funz"
+												items="${utente.ruolo.funzionalita}">
 												<c:choose>
 													<c:when test="${funz.funzionalita == 'modifica feedback'}">
 														<button
@@ -715,7 +723,7 @@
 
 											<tr>
 												<th scope="col">Nome Allegato</th>
-												<th scope="col">File</th>
+
 											</tr>
 
 										</thead>
@@ -724,13 +732,16 @@
 											<c:forEach var="allegato" items="${mostraCandidato.file}">
 												<tr>
 													<td>${allegato.nomeFile}</td>
-													<td>${allegato.tipo}</td>
+
 													<td><a
 														href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
 														class="btn btn-success custom-width">Scarica</a></td>
-													<td><a
-														href="<c:url value='/delete/${mostraCandidato.id}/${allegato.id}' />"
-														class="btn btn-danger custom-width">Cancella</a></td>
+													<td>
+														<button onclick="impostaParametriAllegati(${allegato.id})"
+															type="button" class="btn btn-danger custom-width"
+															data-toggle="modal" data-target="#deleteModal">
+															Cancella</button>
+													</td>
 
 												</tr>
 											</c:forEach>
@@ -745,7 +756,30 @@
 		</div>
 	</div>
 
+	<!-- MODAL cancella allegati -->
 
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					Sei sicuro di voler cancellare l'allegato selezionato?
+					<form action="/ProgettoHR/delete/${mostraCandidato.id}" method="GET">
+						<div style="visibility: hidden;">
+							<input name="idAllegato" id="Allegato" />
+						</div>
+						<div class="modal-body" id="errorModalBody"></div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-success">si</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+							
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- MODAL modifica ANAGRAFICA -->
 	<div class="modal fade" id="modificaAnagraficaModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
@@ -900,7 +934,8 @@
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}" onsubmit="return validateMyForm('areaCompetenzaInput')">
+					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}"
+					onsubmit="return validateMyForm('areaCompetenzaInput')">
 					<div class="modal-body">
 						<div style="border-color: transparent;">
 							<div>
@@ -1061,7 +1096,8 @@
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}" onsubmit="return validateMyForm('specializzazioneInput');">
+					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}"
+					onsubmit="return validateMyForm('specializzazioneInput');">
 					<div class="modal-body">
 						<div style="border-color: transparent;">
 
@@ -1492,11 +1528,7 @@
 							enctype="multipart/form-data">
 							<table>
 								<tr>
-									<td>Pick file #1:</td>
-									<td><input type="file" name="fileUpload" size="50" /></td>
-								</tr>
-								<tr>
-									<td>Pick file #2:</td>
+									<td>Pick file:</td>
 									<td><input type="file" name="fileUpload" size="50" /></td>
 								</tr>
 
@@ -1803,6 +1835,11 @@
 			document.getElementById("tipoModificaFeedback").value = tipo;
 			document.getElementById("dataFeedback").value = data;
 			document.getElementById("commentoFeedback").value = commento;
+		}
+		
+		function impostaParametriAllegati(id) {
+			document.getElementById("Allegato").value = id;
+		
 		}
 		
 
