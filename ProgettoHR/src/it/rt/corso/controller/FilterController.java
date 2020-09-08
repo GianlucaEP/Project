@@ -28,6 +28,7 @@ import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.Seniority;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class FilterController {
@@ -35,53 +36,27 @@ public class FilterController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
-	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
-	SpecializzazioneDAO specializzazioneDAO = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
-	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
-	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
-	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
 
 	@RequestMapping("/Filter/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+		
+		Singleton singleton = Singleton.getInstance();
 
 		// Business business= bdao.get(businessUnit);
-		List<Business> businessList = businessDAO.getLista();
+		
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
-		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
-		List<Seniority> seniorityList = seniorityDAO.getLista();
-
 		
-		List<String> mansioneListString = new ArrayList<String>();
-		List<String> specializzazioneListString = new ArrayList<String>();
-		List<String> areaCompetenzaListString = new ArrayList<String>();
 
-		for (Mansione mansione : mansioneList) {
-
-			mansioneListString.add(mansione.getMansione());
-		}
-		
-		for (Specializzazione specializzazione : specializzazioneList) {
-
-			specializzazioneListString.add(specializzazione.getSpecializzazione());
-		}
-		
-		for (AreaCompetenza areaCompetenza : areaCompetenzaList) {
-
-			areaCompetenzaListString.add(areaCompetenza.getArea());
-		}
-
-		m.addAttribute("businessList", businessList);
+		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("seniorityList", seniorityList);
+		m.addAttribute("seniorityList", singleton.getSeniorityList());
 
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneListString);
-		m.addAttribute("specializzazioneList", specializzazioneListString);
-		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		m.addAttribute("mansioneList", singleton.getMansioneListString());
+		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
+		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		
 		
 		return "FiltroAvanzato";
@@ -92,48 +67,23 @@ public class FilterController {
 			@RequestParam Map<String, String> requestParams) throws ParseException {
 
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
+		
+		Singleton singleton = Singleton.getInstance();
 
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(requestParams);
-		
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<Business> businessList = businessDAO.getLista();		
-		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
-		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
-		List<Seniority> seniorityList = seniorityDAO.getLista();
 
-		
-		List<String> mansioneListString = new ArrayList<String>();
-		List<String> specializzazioneListString = new ArrayList<String>();
-		List<String> areaCompetenzaListString = new ArrayList<String>();
-
-		for (Mansione mansione : mansioneList) {
-
-			mansioneListString.add(mansione.getMansione());
-		}
-		
-		for (Specializzazione specializzazione : specializzazioneList) {
-
-			specializzazioneListString.add(specializzazione.getSpecializzazione());
-		}
-		
-		for (AreaCompetenza areaCompetenza : areaCompetenzaList) {
-
-			areaCompetenzaListString.add(areaCompetenza.getArea());
-		}
-
-		m.addAttribute("businessList", businessList);
+		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("seniorityList", seniorityList);
+		m.addAttribute("seniorityList", singleton.getSeniorityList());
 
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneListString);
-		m.addAttribute("specializzazioneList", specializzazioneListString);
-		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		m.addAttribute("mansioneList", singleton.getMansioneListString());
+		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
+		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		
-		
-	
+
 		return "FiltroAvanzato";
 	}
 }
