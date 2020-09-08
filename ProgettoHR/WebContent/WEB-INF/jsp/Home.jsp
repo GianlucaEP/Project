@@ -10,7 +10,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
 <title>Home</title>
 
 <link rel="stylesheet"
@@ -18,8 +17,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<style>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
+<style>
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 /* Body e html generale*/
 html, body {
 	height: 100%;
@@ -28,14 +30,6 @@ html, body {
 body {
 	font-family: 'Poppins', sans-serif;
 	background: #fafafa;
-}
-
-p {
-	font-family: 'Poppins', sans-serif;
-	font-size: 1.1em;
-	font-weight: 300;
-	line-height: 1.7em;
-	color: #999;
 }
 
 a, a:hover, a:focus {
@@ -50,54 +44,34 @@ a, a:hover, a:focus {
 	width: 25px;
 	border-radius: 50%;
 	display: inline-block;
+	margin-top: 5px;
 }
-
-/* Tabella Home */
-.tabellaHome {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 5px 0;
-	font-size: 0.9em;
-	min-width: 400px;
-	border-radius: 5px 5px 0px 0px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-}
-
-.tabellaHome .head {
-	background-color: #5aa9e6;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaHome th, .tabellaHome td {
-	padding: 12px 15px;
-}
-
-.tabellaHome .body tr {
-	border-bottom: 1px solid #dddddd;
-}
-
-.tabellaHome .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaHome .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
-}
-
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 /* Navbar */
 .navbar {
-	width: 100%;
-	position: fixed;
 	background: #5aa9e6;
 	border: none;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-link {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #7fc8f8;
+	border-radius: 50%;
+}
+
+.navbar-expand-xl .navbar-collapse {
+	text-align: center;
+}
+
+.svg-inline--fa.fa-w-16 {
+	margin-top: 4px;
+	margin-left: 3px;
+	width: 25px;
+	height: 25px;
+	width: 25px;
 }
 
 .navbar .navbar-brand .logo {
@@ -105,36 +79,31 @@ a, a:hover, a:focus {
 	height: 70px;
 }
 
-.navbar .btn {
-	background: #7fc8f8;
-	width: 50%;
-	margin-left: 60px;
-}
-
-.line {
-	width: 100%;
-	height: 1px;
-	border-bottom: 1px dashed #ddd;
-	margin: 40px 0;
+.navbar-toggler-icon {
+	background-color: white;
 }
 
 /* Barra Laterale */
-.container-fluid2 {
-	margin-top: 110px;
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: rows;
+	justify-content: flex-start;
 }
 
 #sidebar {
+	width: 100%;
 	height: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	min-width: 250px;
-	max-width: 250px;
 	border-radius: 0px 5px 5px 0px;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
 	background: #5aa9e6;
 	color: #fff;
+	border-collapse: collapse;
+	height: 100%;
 }
 
 #sidebar .sidebar-header {
@@ -188,6 +157,45 @@ ul ul a {
 	background: #cae9ff;
 }
 
+/* Tabella Home */
+.tabellaHome {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaHome .head {
+	background-color: #5aa9e6;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tabellaHome .body tr {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tabellaHome .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaHome .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaHome th {
+	padding: 8px;
+}
+
+.tabellaHome td {
+	font-size: 14px;
+	padding: 4px;
+}
+
 /* filtro stato candidato */
 .select {
 	position: relative;
@@ -213,7 +221,7 @@ ul ul a {
 	height: 100%;
 	width: 2.5em;
 	pointer-events: none;
-	border-radius: 0px 5px 0px 0px;
+	border-radius: 0px 3px 0px 0px;
 }
 
 .custom-arrow::before, .custom-arrow::after {
@@ -238,6 +246,40 @@ ul ul a {
 	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
 	top: 65%;
 }
+
+.btn {
+	margin-top: 0.06em;
+	padding: 0;
+	height: 40px;
+	width: 40px;
+	background-color: #5aa9e6;
+	padding: 0;
+}
+
+svg {
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+/* Media */
+@media ( min-width : 992px) {
+	.tabellaHome {
+		width: 60%;
+	}
+	.col-lg {
+		max-width: 50%;
+	}
+}
+
+@media ( min-width : 1200px) {
+	#sidebar {
+		width: 100%;
+	}
+	.tabellaHome {
+		width: 100%;
+	}
+}
 </style>
 
 </head>
@@ -245,194 +287,182 @@ ul ul a {
 <body onload="validateOption()">
 
 	<!-- NAVBAR -->
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="navbar">
+	<nav class="navbar navbar-expand-xl ">
+		<div class="container-fluid">
 
-				<!-- LOGO -->
-				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-					<img class="logo"
-					src="/ProgettoHR/img/Erre_technology_group_NEW.png">
-				</a>
+			<!-- LOGO -->
+			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<img class="logo"
+				src="/ProgettoHR/img/Erre_technology_group_NEW.png">
+			</a>
 
-				<!-- BOTTONE PROFILO -->
-				<div class="col-1">
+			<!-- BOTTONE PROFILO -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-expanded="false"
+				aria-controls="navbarCollapse" aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
 
-					<button class="btn" id="logout" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-cog"></i>
-					</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
 
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a>
-					</div>
-
-				</div>
-
-			</nav>
-		</div>
-	</div>
-
-
-	<div class="container-fluid2">
-		<div class="row">
-			<div class="col-auto">
-
-				<!-- BARRA LATERALE -->
-				<nav id="sidebar">
-					<div class="sidebar-header">
-						<h3>Home</h3>
-					</div>
-
-					<ul class="list-unstyled components">
-
-						<li class="active"><a href="#homeSubmenu"
-							data-toggle="collapse" aria-expanded="false"
-							class="dropdown-toggle">Business Unit</a>
-							<ul class="collapse list-unstyled" id="homeSubmenu">
-								<li><c:forEach var="business" items="${businessList}">
-										<a class="dropdown-item"
-											href="/ProgettoHR/Home/${business.business}">${business.business}</a>
-									</c:forEach></li>
-
-							</ul></li>
-						<li><a href="/ProgettoHR/Candidati/${businessUnit}"
-							type="button"><i class="fas fa-plus"></i> Nuovo candidato</a></li>
-
-						<li><c:choose>
-								<c:when
-									test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-									<a href="" data-toggle="modal" data-target="#mansioneModal"
-										type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
-								</c:when>
-							</c:choose></li>
-
-						<li><a href="/ProgettoHR/Filter/${businessUnit}"
-							type="button" class="text-center">Filtri</a></li>
-					</ul>
-				</nav>
+				</ul>
 			</div>
 
-			<!-- COLONNA PRINCIPALE -->
-			<div class="col-10">
-				<!-- ROW PRINCIPALE-->
-				<div class="row">
+		</div>
+	</nav>
 
-					<!-- COLLONNA CON FILTRO STATO CANDIDATO -->
-					<div class="col-3 mb-2">
-						<form action="/ProgettoHR/Home/filter/${businessUnit}"
-							method="post">
-							<div class="form-row">
-								<div class="col-auto">
-
-									<select class="select" onchange="validateOption()" id="stati"
-										name="stato">
-
-										<option disabled selected>Stato candidato</option>
-										<option value="noFiltro">Tutti gli stati</option>
-										<c:forEach var="stato" items="${statoCandidatoList}">
-											<option value="${stato.descrizione}">${stato.descrizione}</option>
-										</c:forEach>
-
-									</select> <span class="custom-arrow"></span>
-								</div>
-
-								<div class="col-auto">
-									<button id="filterButton" class="btn btn-dark btn-block "
-										style="background-color: #5aa9e6; border-color: transparent; height: 2.60em;"
-										type="submit">
-										<i class="fas fa-filter" style="vertical-align: middle;"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<!-- COLONNA 2 CON TABELLA CANDIDATO -->
-					<div class="col-12">
-						<table class="tabellaHome">
-
-							<thead class="head">
-								<tr>
-									<th scope="col">Stato</th>
-									<th scope="col">Dettaglio</th>
-									<th scope="col">Business unit</th>
-									<th scope="col">Nome</th>
-									<th scope="col">Cognome</th>
-									<th scope="col">Area Competenza</th>
-									<th scope="col">Mansione</th>
-									<th scope="col">Seniority</th>
-								</tr>
-							</thead>
-
-							<tbody class="body">
-								<c:forEach var="cand" items="${list}">
-									<tr>
-										<td><c:choose>
-												<c:when test="${ cand.stato.descrizione == 'Attivo'}">
-													<span id="dot" data-toggle="tooltip" data-placement="top"
-														title="Attivo" class="dot bg-success"></span>
-												</c:when>
-												<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
-													<span id="dot" data-toggle="tooltip" data-placement="top"
-														title="Selezionato" class="dot bg-primary"></span>
-												</c:when>
-												<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
-													<span id="dot" data-toggle="tooltip" data-placement="top"
-														title="Da contattare" class="dot bg-warning"></span>
-												</c:when>
-												<c:when test="${ cand.stato.descrizione == 'Scartato'}">
-													<span id="dot" data-toggle="tooltip" data-placement="top"
-														title="Scartato" class="dot bg-danger"></span>
-												</c:when>
-												<c:otherwise>
-													<span id="dot" data-toggle="tooltip" data-placement="top"
-														title="Nuovo inserito" class="dot bg-secondary"></span>
-												</c:otherwise>
-											</c:choose></td>
-										<td><i
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'"
-											class="fas fa-user"></i></td>
-										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${cand.business.business}</td>
-										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${cand.nome}</td>
-										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${cand.cognome}</td>
-
-										<td><c:forEach var="area" items="${cand.area}">
-												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-													${area.area}</span>
-											</c:forEach></td>
-
-										<td><c:forEach var="mansione" items="${cand.mansione}">
-												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-													${mansione.mansione}</span>
-											</c:forEach></td>
-
-										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${cand.seniority.seniority}</td>
-
-									</tr>
-
-								</c:forEach>
-							</tbody>
-
-							<tfoot class="footer">
-								<tr>
-									<td></td>
-
-								</tr>
-							</tfoot>
-						</table>
-					</div>
+	<div class="container-fluid container1 p-0">
+		<!-- COLONNA BARRA LATERALE -->
+		<div class="col-auto p-0 ">
+			<!-- BARRA LATERALE -->
+			<nav id="sidebar">
+				<div class="sidebar-header">
+					<h3>Home</h3>
 				</div>
+
+				<ul class="list-unstyled components">
+
+					<li class="active"><a href="#homeSubmenu"
+						data-toggle="collapse" aria-expanded="false"
+						class="dropdown-toggle">Business Unit</a>
+						<ul class="collapse list-unstyled" id="homeSubmenu">
+							<li><c:forEach var="business" items="${businessList}">
+									<a class="dropdown-item"
+										href="/ProgettoHR/Home/${business.business}">${business.business}</a>
+								</c:forEach></li>
+
+						</ul></li>
+					<li><a href="/ProgettoHR/Candidati/${businessUnit}"
+						type="button"><i class="fas fa-plus"></i> Nuovo candidato</a></li>
+
+					<li><c:choose>
+							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
+								<a href="" data-toggle="modal" data-target="#mansioneModal"
+									type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
+							</c:when>
+						</c:choose></li>
+
+					<li><a href="/ProgettoHR/Filter/${businessUnit}" type="button"
+						class="text-center">Filtri</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<!-- FILTRO STATO CANDIDATO -->
+		<div class="col-md">
+
+			<div class="col mb-2">
+				<form action="/ProgettoHR/Home/filter/${businessUnit}" method="post">
+					<div class="form-row">
+						<div class="col-auto">
+
+							<select class="select" onchange="validateOption()" id="stati"
+								name="stato">
+
+								<option disabled selected>Stato candidato</option>
+								<option value="noFiltro">Tutti gli stati</option>
+								<c:forEach var="stato" items="${statoCandidatoList}">
+									<option value="${stato.descrizione}">${stato.descrizione}</option>
+								</c:forEach>
+
+							</select> <span class="custom-arrow"></span>
+						</div>
+
+						<div class="col-auto ">
+							<button id="filterButton" class="btn btn-block" type="submit">
+								<svg width="1em" height="1em" viewBox="0 0 16 16"
+									class="bi bi-funnel" fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"> <path
+										fill-rule="evenodd"
+										d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" /></svg>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col">
+				<!-- TABELLA CANDIDATO -->
+				<table class="tabellaHome">
+
+					<thead class="head">
+						<tr>
+							<th scope="col">Stato</th>
+							<th scope="col">Business unit</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Cognome</th>
+							<th scope="col">Area Competenza</th>
+							<th scope="col">Mansione</th>
+							<th scope="col">Seniority</th>
+						</tr>
+					</thead>
+
+					<tbody class="body">
+						<c:forEach var="cand" items="${list}">
+							<tr>
+								<td><c:choose>
+										<c:when test="${ cand.stato.descrizione == 'Attivo'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Attivo" class="dot bg-success"></span>
+										</c:when>
+										<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Selezionato" class="dot bg-primary"></span>
+										</c:when>
+										<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Da contattare" class="dot bg-warning"></span>
+										</c:when>
+										<c:when test="${ cand.stato.descrizione == 'Scartato'}">
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Scartato" class="dot bg-danger"></span>
+										</c:when>
+										<c:otherwise>
+											<span id="dot" data-toggle="tooltip" data-placement="top"
+												title="Nuovo inserito" class="dot bg-secondary"></span>
+										</c:otherwise>
+									</c:choose></td>
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.business.business}</td>
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.nome}</td>
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.cognome}</td>
+
+								<td><c:forEach var="area" items="${cand.area}">
+										<span
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${area.area}</span>
+									</c:forEach></td>
+
+								<td><c:forEach var="mansione" items="${cand.mansione}">
+										<span
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${mansione.mansione}</span>
+									</c:forEach></td>
+
+								<td
+									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+									${cand.seniority.seniority}</td>
+
+							</tr>
+
+						</c:forEach>
+					</tbody>
+
+					<tfoot class="footer">
+						<tr>
+							<td></td>
+
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -475,10 +505,9 @@ ul ul a {
 			}
 		}
 
-		//
-		//$(function() {
-		//$('[data-toggle="tooltip"]').tooltip()
-		//})
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
 
 		function validate() {
 			var mansione = document.getElementById("mansione").value;
@@ -510,8 +539,7 @@ ul ul a {
 		}
 	</script>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
