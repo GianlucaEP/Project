@@ -238,8 +238,6 @@ ul ul a {
 	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
 	top: 65%;
 }
-
-
 </style>
 
 </head>
@@ -357,6 +355,7 @@ ul ul a {
 							<thead class="head">
 								<tr>
 									<th scope="col">Stato</th>
+									<th scope="col">Dettaglio</th>
 									<th scope="col">Business unit</th>
 									<th scope="col">Nome</th>
 									<th scope="col">Cognome</th>
@@ -391,6 +390,9 @@ ul ul a {
 														title="Nuovo inserito" class="dot bg-secondary"></span>
 												</c:otherwise>
 											</c:choose></td>
+										<td><i
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'"
+											class="fas fa-user"></i></td>
 										<td
 											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 											${cand.business.business}</td>
