@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import it.rt.corso.DAO.UtenteDAO;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.utility.Utility;
 
 @Controller
 @SessionAttributes("utente")
@@ -52,6 +53,8 @@ public class LoginController {
 	public String Logout(/* HttpServletRequest request */ WebRequest webRequest, SessionStatus status) {
 		status.setComplete();
 		webRequest.removeAttribute("utente", WebRequest.SCOPE_SESSION);
+		
+		//  chiudo la sessione del database in quanto sto facendo logout
 
 //		 HttpSession session=request.getSession(); 
 //		 System.out.println("session id before invalidating it:"+session.getId());
