@@ -236,7 +236,9 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<select id="selectBusiness" name="business" class="custom-select mb-3">
+								<select id="selectBusiness" name="business"
+									class="custom-select mb-3">
+									<option selected></option>
 									<c:forEach var="bus" items="${businessList}">
 										<option value="${bus.business}">${bus.business}</option>
 									</c:forEach>
@@ -263,7 +265,8 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<select id=selectSeniority name="seniority" class="custom-select mb-3">
+								<select id=selectSeniority name="seniority"
+									class="custom-select mb-3">
 									<option selected></option>
 									<c:forEach var="sen" items="${seniorityList}">
 										<option value="${sen.seniority}">${sen.seniority}</option>
