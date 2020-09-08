@@ -114,11 +114,17 @@ public class CandidatiController {
 		for (Map.Entry<String, String> entry : mappaCandidato.entrySet()) {
 			if (entry.getKey().contains("area")) {
 
-				AreaCompetenza area = areaCompetenzaDAO.get(entry.getValue());
-				listaCompetenza.add(area);
+				
+				AreaCompetenza areaDaInserire = new AreaCompetenza();
+				areaDaInserire.setArea(entry.getValue());
+				listaCompetenza.add(areaDaInserire);
+				
 			} else if (entry.getKey().contains("mansione")) {
-				Mansione mansione = mansioneDAO.get(entry.getValue());
-				listaMansione.add(mansione);
+				
+				Mansione mansioneDaInserire = new Mansione();
+				mansioneDaInserire.setMansione(entry.getValue());
+				listaMansione.add(mansioneDaInserire);
+				
 			} else if (entry.getKey().contains("specializzazione")) {
 
 				// da jsp mi arriva la specializzazione come stringa in formato
@@ -126,9 +132,11 @@ public class CandidatiController {
 				// di candidatoSpecializzazione
 				String[] specializzazioneCorretta = entry.getValue().split(" ");
 				CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
-				Specializzazione specializzazione = specializzazioneDAO.get(specializzazioneCorretta[0]);
+				
+				Specializzazione specializzazioneDaInserire = new Specializzazione();
+				specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
 				candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
-				candidatoSpecializzazione.setSpecializzazione(specializzazione);
+				candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
 				candidatoSpecializzazione.setCandidato(candidato);
 				listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
 			}
