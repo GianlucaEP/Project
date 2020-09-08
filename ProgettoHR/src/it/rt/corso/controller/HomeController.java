@@ -25,6 +25,7 @@ import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.singleton.Singleton;
 
 // ------------------------------------------------------------------------
 // @RequestMapping("/Home")
@@ -56,27 +57,22 @@ public class HomeController {
 	
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+		
+		Singleton singleton = Singleton.getInstance();
 
 		// Business business= bdao.get(businessUnit);
-		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
-		List<Business> businessList = businessDAO.getLista();
-
-		
-		//fare una classe singleton che carica mansioni ruoli stato
+		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);		
 		
 		if (utente.getUsername()==null) {
 			return "redirect:/Login";
 		}
 		
-		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("businessList", businessList);
+		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneList);
-		m.addAttribute("statoCandidatoList", statoCandidatoList);
+		m.addAttribute("mansioneList", singleton.getMansioneList());
+		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		return "Home";
 	}
 
@@ -87,6 +83,8 @@ public class HomeController {
 			@RequestParam Map<String, String> requestParams) {
 
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
+		
+		Singleton singleton = Singleton.getInstance();
 
 //		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
 		List<Candidato> list = new ArrayList<>();
@@ -96,15 +94,11 @@ public class HomeController {
 			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
 		}
 
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<StatoCandidato> statoCandidatoList = statoCandidatoDAO.getAllFromStato();
-		List<Business> businessList = businessDAO.getLista();
 
-		m.addAttribute("mansioneList", mansioneList);
-		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
+		m.addAttribute("mansioneList", singleton.getMansioneList());
 		m.addAttribute("list", list);
-		m.addAttribute("statoCandidatoList", statoCandidatoList);
-		m.addAttribute("businessList", businessList);
+		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
+		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("mansione", new Mansione());
 

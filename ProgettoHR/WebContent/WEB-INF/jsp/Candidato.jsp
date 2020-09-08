@@ -77,7 +77,7 @@
 				style="opacity: 0.9; border-radius: 1px 10px 10px 5px; background-color: #0466c8;">
 
 
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when test="${funz.funzionalita == 'aggiunta mansione'}">
 							<button data-toggle="modal" data-target="#aggiungiMansione"
@@ -91,7 +91,7 @@
 				</c:forEach>
 
 
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when
 							test="${funz.funzionalita == 'aggiunta qualification meeting'}">
@@ -106,7 +106,7 @@
 					</c:choose>
 				</c:forEach>
 
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when test="${funz.funzionalita == 'aggiunta economics'}">
 							<button type="button" data-toggle="modal"
@@ -120,7 +120,7 @@
 					</c:choose>
 				</c:forEach>
 
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when test="${funz.funzionalita == 'aggiunta costi'}">
 							<button type="button" data-toggle="modal"
@@ -135,7 +135,7 @@
 				</c:forEach>
 
 				<!-- Dropdown feedback -->
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when test="${funz.funzionalita == 'aggiunta feedback'}">
 							<div>
@@ -199,7 +199,7 @@
 				</c:forEach>
 
 				<!-- Bottone AGGIUNTA FILE -->
-				<c:forEach var="funz" items="${ruolo.funzionalita}">
+				<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 					<c:choose>
 						<c:when test="${funz.funzionalita == 'aggiunta allegati'}">
 							<button type="button"
@@ -228,7 +228,7 @@
 									<tr>
 										<th colspan=2 class="text-center table-info"
 											style="background-color: #90e0ef">ANAGRAFICA <c:forEach
-												var="funz" items="${ruolo.funzionalita}">
+												var="funz" items="${utente.ruolo.funzionalita}">
 												<c:choose>
 													<c:when
 														test="${funz.funzionalita == 'modifica anagrafica'}">
@@ -244,7 +244,7 @@
 
 										</th>
 									</tr>
-									<c:forEach var="funz" items="${ruolo.funzionalita}">
+									<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 										<c:choose>
 											<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
 												<tr>
@@ -293,7 +293,7 @@
 										<th scope="col">Codice Fiscale</th>
 										<td scope="col">${mostraCandidato.codiceFiscale}</td>
 									</tr>
-									<c:forEach var="funz" items="${ruolo.funzionalita}">
+									<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 										<c:choose>
 											<c:when
 												test="${funz.funzionalita == 'visualizza anagrafica completa'}">
@@ -315,7 +315,7 @@
 						</div>
 
 						<!-- tabella ECONOMICS -->
-						<c:forEach var="funz" items="${ruolo.funzionalita}">
+						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza economics'}">
 									<table id="economicsTable"
@@ -324,7 +324,7 @@
 
 											<tr>
 												<th colspan=2 class="text-center table-warning ">ECONOMICS
-													<c:forEach var="funz" items="${ruolo.funzionalita}">
+													<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica economics'}">
@@ -371,7 +371,7 @@
 					<!-- COLONNA 2 -->
 					<div class="col-6 justify-content-start">
 						<!-- tabella BUSINESS-->
-						<c:forEach var="funz" items="${ruolo.funzionalita}">
+						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 							<c:choose>
 								<c:when
 									test="${funz.funzionalita == 'visualizza profilo professionale'}">
@@ -384,7 +384,7 @@
 
 												<th colspan=3 class="text-center table-success"
 													style="background-color: #77bfa3">BUSINESS <c:forEach
-														var="funz" items="${ruolo.funzionalita}">
+														var="funz" items="${utente.ruolo.funzionalita}">
 													</c:forEach>
 												</th>
 
@@ -395,7 +395,7 @@
 
 												<th scope="col">Business unit</th>
 												<td scope="col">${mostraCandidato.business.business}</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -423,7 +423,7 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -451,7 +451,7 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -473,7 +473,7 @@
 
 												<th scope="col">Seniority</th>
 												<td scope="col">${mostraCandidato.seniority.seniority}</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -503,7 +503,7 @@
 														</c:forEach>
 													</ul>
 												</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -525,7 +525,7 @@
 
 												<th scope="col">Inserimento azienda</th>
 												<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
-												<th><c:forEach var="funz" items="${ruolo.funzionalita}">
+												<th><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when
 																test="${funz.funzionalita == 'modifica profilo professionale'}">
@@ -549,7 +549,7 @@
 						</c:forEach>
 
 						<!--tabella COSTI -->
-						<c:forEach var="funz" items="${ruolo.funzionalita}">
+						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza costi'}">
 									<table id="costiTable"
@@ -558,7 +558,7 @@
 
 											<tr>
 												<th colspan=2 class="text-center table-danger">COSTI <c:forEach
-														var="funz" items="${ruolo.funzionalita}">
+														var="funz" items="${utente.ruolo.funzionalita}">
 														<c:choose>
 															<c:when test="${funz.funzionalita == 'modifica costi'}">
 																<!-- Bottone modifica costi-->
@@ -634,7 +634,7 @@
 										<td>${qualificationMeeting.riferimentoGara}</td>
 										<td>${qualificationMeeting.dataColloquio}</td>
 										<td>${qualificationMeeting.feedback}</td>
-										<td><c:forEach var="funz" items="${ruolo.funzionalita}">
+										<td><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 												<c:choose>
 													<c:when
 														test="${funz.funzionalita == 'modifica qualification meeting'}">
@@ -681,7 +681,7 @@
 										<td>${feed.data}</td>
 										<td>${feed.tipo.tipo}</td>
 										<td>${feed.commento}</td>
-										<td><c:forEach var="funz" items="${ruolo.funzionalita}">
+										<td><c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 												<c:choose>
 													<c:when test="${funz.funzionalita == 'modifica feedback'}">
 														<button
@@ -701,7 +701,7 @@
 						</table>
 
 						<!-- Tabella ALLEGATI -->
-						<c:forEach var="funz" items="${ruolo.funzionalita}">
+						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 							<c:choose>
 								<c:when test="${funz.funzionalita == 'visualizza allegati'}">
 									<table id="allegatiTable"

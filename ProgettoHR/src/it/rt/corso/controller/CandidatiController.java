@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.*;
 import it.rt.corso.beans.*;
+import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class CandidatiController {
@@ -56,101 +57,25 @@ public class CandidatiController {
 
 	@RequestMapping("/Candidati/{businessUnit}")
 	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit) {
-
-		List<Business> businessList = businessDAO.getLista();
-		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
-		List<Seniority> seniorityList = seniorityDAO.getLista();
-
-		List<String> mansioneListString = new ArrayList<String>();
-		List<String> areaCompetenzaListString = new ArrayList<String>();
-		List<String> specializzazioneListString = new ArrayList<String>();
-
-		for (Mansione mansione : mansioneList) {
-
-			mansioneListString.add(mansione.getMansione());
-		}
-
-		for (AreaCompetenza area : areaCompetenzaList) {
-
-			areaCompetenzaListString.add(area.getArea());
-		}
-
-		for (Specializzazione spec : specializzazioneList) {
-
-			specializzazioneListString.add(spec.getSpecializzazione());
-		}
-
+		
+		Singleton singleton = Singleton.getInstance();
+		
 		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("businessList", businessList);
-		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
+		m.addAttribute("businessList", singleton.getBusinessList());
+		
 		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", mansioneListString);
-		m.addAttribute("specializzazioneList", specializzazioneListString);
-		m.addAttribute("seniorityList", seniorityList);
+		m.addAttribute("mansioneList", singleton.getMansioneListString());
+		
+		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
+		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
+		m.addAttribute("seniorityList", singleton.getSeniorityList());
 
 		m.addAttribute("candidato", new Candidato());
 
 		return "InserimentoCandidati";
 	}
 
-//	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
-//	public String aggiungiCandidato(@ModelAttribute("candidato") Candidato candidato,
-//			@PathVariable String businessUnit) {
-//
-//		// Inserisce lo stato di default "nuovo inserito"
-//		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-//		candidato.setStato(stato);
-//
-//		// Ciclo for per Mansione
-//		List<Mansione> listMansione = new ArrayList<>();
-//		for (Mansione m : candidato.getMansione()) {
-//
-//			if (m.getMansione() != null) {
-//				Mansione mansione = mansioneDAO.get(m.getMansione());
-//				listMansione.add(mansione);
-//			}
-//		}
-//		candidato.setMansione(listMansione);
-//
-//		Seniority seniority = seniorityDAO.get(candidato.getSeniority().getSeniority());
-//		candidato.setSeniority(seniority);
-//
-//		// Ciclo for per AreaCompetenza
-//		List<AreaCompetenza> listArea = new ArrayList<>();
-//		for (AreaCompetenza a : candidato.getArea()) {
-//
-//			if (a.getArea() != null) {
-//				AreaCompetenza area = areaCompetenzaDAO.get(a.getArea());
-//				listArea.add(area);
-//			}
-//
-//		}
-//		candidato.setArea(listArea);
-//
-//		// Inserisce il Business
-//		Business business = businessDAO.get(candidato.getBusiness().getBusiness());
-//		candidato.setBusiness(business);
-//
-//		// Ciclo for per CandidatoSpecializzazione
-//		List<CandidatoSpecializzazione> listCandidatoSpecializzazione = new ArrayList<>();
-//		for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
-//
-//			if (cs.getSpecializzazione().getSpecializzazione() != null) {
-//				Specializzazione s = specializzazioneDAO.get(cs.getSpecializzazione().getSpecializzazione());
-//				cs.setSpecializzazione(s);
-//				cs.setCandidato(candidato);
-//				listCandidatoSpecializzazione.add(cs);
-//			}
-//
-//		}
-//		candidato.setCandidatoSpecializzazione(listCandidatoSpecializzazione);
-//
-//		candidatoDAO.inserisci(candidato);
-//		return "redirect:/Home/{businessUnit}";
-//	}
-//
+
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(@RequestParam Map<String, String> mappaCandidato,
 			@PathVariable String businessUnit) {
@@ -228,6 +153,7 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/ModificaAnagrafica/{id}", method = RequestMethod.POST)
 	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+		
 		Candidato candidato = candidatoDAO.get(id);
 
 		candidato.setNome(c.getNome());
@@ -325,7 +251,6 @@ public class CandidatiController {
 		if (areeCompetenza != null) {
 
 			for (String area : areeCompetenza) {
-				// AreaCompetenza areaCompetenza = areaCompetenzaDAO.get(area);
 
 				AreaCompetenza areaCompetenza = new AreaCompetenza();
 				areaCompetenza.setArea(area);
@@ -449,67 +374,27 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
+		
+		Singleton singleton = Singleton.getInstance();
 
 		Candidato c = candidatoDAO.get(id);
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
-		List<Business> businessList = businessDAO.getLista();
-		List<AreaCompetenza> areaCompetenzaList = areaCompetenzaDAO.getLista();
-		List<Mansione> mansioneList = mansioneDAO.getLista();
-		List<Specializzazione> specializzazioneList = specializzazioneDAO.getLista();
-		List<Seniority> seniorityList = seniorityDAO.getLista();
-
-		List<String> mansioneListString = new ArrayList<String>();
-		List<String> areaCompetenzaListString = new ArrayList<String>();
-		List<String> specializzazioneListString = new ArrayList<String>();
-
-		for (Mansione mansione : mansioneList) {
-
-			mansioneListString.add(mansione.getMansione());
-		}
-
-		for (AreaCompetenza area : areaCompetenzaList) {
-
-			areaCompetenzaListString.add(area.getArea());
-		}
-
-		for (Specializzazione spec : specializzazioneList) {
-
-			specializzazioneListString.add(spec.getSpecializzazione());
-		}
+		
 
 		m.addAttribute("mostraFeedback", f);
-
-		// m.addAttribute("listaMansione", listaMansione);
-
-		// m.addAttribute("listaAreaComp", listaAreaComp);
-
-		// List<Feedback> feedbacks = c.getFeedback();
-		// List<QualificationMeeting> listQM = c.getFeedback();
 		m.addAttribute("mansione", new Mansione());
-
 		m.addAttribute("mostraCandidato", c);
-
-		m.addAttribute("businessList", businessList);
-
-		m.addAttribute("areaCompetenzaList", areaCompetenzaListString);
-
-		m.addAttribute("mansioneList", mansioneListString);
-
-		m.addAttribute("specializzazioneList", specializzazioneListString);
-
-		m.addAttribute("seniorityList", seniorityList);
-
+		m.addAttribute("businessList", singleton.getBusinessList());
+		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
+		m.addAttribute("mansioneList", singleton.getMansioneListString());
+		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
+    	m.addAttribute("seniorityList", singleton.getSeniorityList());
 		m.addAttribute("feedback", new Feedback());
-
 		m.addAttribute("tipoFeedback", new TipoFeedback());
-
 		m.addAttribute("qualificationMeeting", new QualificationMeeting());
 
-		m.addAttribute("ruolo", utente.getRuolo());
 
-		// m.addAttribute("listaFeedback", feedbacks);
-		// m.addAttribute("listaFeedback", listQM);
 		return "Candidato";
 	}
 
