@@ -1,6 +1,8 @@
 package it.rt.corso.utility;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -61,6 +63,13 @@ public class Utility {
 		factory.close();
 		session.close();
 	}
-
+	
+	public static CriteriaBuilder createCriteriaBuilder() {
+		Utility.buildSession();
+		Session session = Utility.getSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		
+		return criteriaBuilder;
+	}
 	
 }

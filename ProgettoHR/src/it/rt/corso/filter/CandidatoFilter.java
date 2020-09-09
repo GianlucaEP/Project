@@ -14,14 +14,18 @@ import it.rt.corso.beans.Candidato;
 public class CandidatoFilter implements CandidatoFilterInterface {
 
 	@Override
-	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root,
-			String valore, String nomeFiltro) {
+	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
+			String valore) {
 		ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 		List<CandidatoFilter> filterList = (List<CandidatoFilter>) factory.getBean("filterList");
-		for(CandidatoFilter filter : filterList) {
-			listaPredicati = filter.checkFilter(listaPredicati, root, valore, nomeFiltro);
+		for (CandidatoFilter filter : filterList) {
+			listaPredicati = filter.checkFilter(listaPredicati, root, nomeFiltro,valore);
 		}
-		
+
+		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
+			MansioneFilter.buildMansionePredicate(listaPredicati);
+		}
+
 		return listaPredicati;
 
 	}

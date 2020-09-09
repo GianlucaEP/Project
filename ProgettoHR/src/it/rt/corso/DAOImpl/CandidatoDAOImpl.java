@@ -131,7 +131,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		
 		CandidatoFilter candidatoFilter = new CandidatoFilter();
 		
-		candidatoFilter.checkFilter(listaPredicates, root, "business", "ICT");
+		candidatoFilter.checkFilter(listaPredicates, root, "mansione", "CAD");
 		
 		// Lista per gestire le mansioni da inserire nella or
 		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();

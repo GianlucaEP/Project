@@ -89,12 +89,17 @@
 	<bean id="businessFilter"
 		class="it.rt.corso.filter.BusinessFilter">
 	</bean>
+	
+	<bean id="mansioneFilter"
+		class="it.rt.corso.filter.MansioneFilter">
+	</bean>
 
 
 	<util:list id="filterList"
 		value-type="it.rt.corso.filter.CandidatoFilter">
 		<ref bean="nomeFilter" />
 		<ref bean="businessFilter" />
+		<ref bean="mansioneFilter" />
 	</util:list>
 
 </beans> 
