@@ -62,26 +62,14 @@ a, a:hover, a:focus {
 	border-radius: 50%;
 }
 
-.navbar-expand-xl .navbar-collapse {
-	text-align: center;
-}
 
-.svg-inline--fa.fa-w-16 {
-	margin-top: 4px;
-	margin-left: 3px;
-	width: 25px;
-	height: 25px;
-	width: 25px;
-}
 
 .navbar .navbar-brand .logo {
 	width: auto;
 	height: 70px;
 }
 
-.navbar-toggler-icon {
-	background-color: white;
-}
+
 
 /* Barra Laterale */
 .container1 {
@@ -262,10 +250,679 @@ svg {
 	overflow: hidden;
 	vertical-align: middle;
 }
-/* Media */
-@media ( min-width : 992px) {
+
+
+
+/* Media ------------------------------------------------------------------------------------------------------ */
+@media screen and (min-device-width: 481px) and (max-device-width: 992px) {
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+/* Pallini dello stato del candidato*/
+.dot {
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+/* Navbar */
+.navbar {
+	background: #5aa9e6;
+	border: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Barra Laterale */
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: rows;
+	justify-content: flex-start;
+}
+
+#sidebar {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 0px 5px 5px 0px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	background: #5aa9e6;
+	color: #fff;
+	border-collapse: collapse;
+	height: 100%;
+}
+
+#sidebar .sidebar-header {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background: #7fc8f8;
+}
+
+#sidebar ul.components {
+	padding: 10px 0px 0px 0px;
+}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	margin: 5px 0px;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #000000;
+	background: #fff;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #7fc8f8;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #cae9ff;
+}
+
+/* Tabella Home */
+.tabellaHome {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaHome .head {
+	background-color: #5aa9e6;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tabellaHome .body tr {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tabellaHome .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaHome .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaHome th {
+	padding: 8px;
+}
+
+.tabellaHome td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+/* filtro stato candidato */
+.select {
+	position: relative;
+	padding: 0.5em 4em 0.5em 1.5em;
+	color: #333333;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+	appearance: none;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.select option {
+	background-color: white;
+}
+
+.custom-arrow {
+	position: absolute;
+	top: 0;
+	right: 0.3em;
+	display: block;
+	background-color: #5aa9e6;
+	height: 100%;
+	width: 2.5em;
+	pointer-events: none;
+	border-radius: 0px 3px 0px 0px;
+}
+
+.custom-arrow::before, .custom-arrow::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.custom-arrow::before {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-bottom: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 35%;
+}
+
+.custom-arrow::after {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 65%;
+}
+
+.btn {
+	margin-top: 0.06em;
+	padding: 0;
+	height: 40px;
+	width: 40px;
+	background-color: #5aa9e6;
+	padding: 0;
+}
+
+svg {
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+}
+
+@media screen and (min-device-width: 992px) and (max-device-width: 1200px) {
+
+.col-lg {
+		max-width: 50%;
+	}
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+/* Pallini dello stato del candidato*/
+.dot {
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+/* Navbar */
+.navbar {
+	background: #5aa9e6;
+	border: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+/* Barra Laterale */
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: rows;
+	justify-content: flex-start;
+}
+
+#sidebar {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 0px 5px 5px 0px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	background: #5aa9e6;
+	color: #fff;
+	border-collapse: collapse;
+	height: 100%;
+}
+
+#sidebar .sidebar-header {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background: #7fc8f8;
+}
+
+#sidebar ul.components {
+	padding: 10px 0px 0px 0px;
+}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	margin: 5px 0px;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #000000;
+	background: #fff;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #7fc8f8;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #cae9ff;
+}
+
+/* Tabella Home */
+.tabellaHome {
+width:100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaHome .head {
+	background-color: #5aa9e6;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tabellaHome .body tr {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tabellaHome .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaHome .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaHome th {
+	padding: 8px;
+}
+
+.tabellaHome td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+/* filtro stato candidato */
+.select {
+	position: relative;
+	padding: 0.5em 4em 0.5em 1.5em;
+	color: #333333;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+	appearance: none;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.select option {
+	background-color: white;
+}
+
+.custom-arrow {
+	position: absolute;
+	top: 0;
+	right: 0.3em;
+	display: block;
+	background-color: #5aa9e6;
+	height: 100%;
+	width: 2.5em;
+	pointer-events: none;
+	border-radius: 0px 3px 0px 0px;
+}
+
+.custom-arrow::before, .custom-arrow::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.custom-arrow::before {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-bottom: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 35%;
+}
+
+.custom-arrow::after {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 65%;
+}
+
+.btn {
+	margin-top: 0.06em;
+	padding: 0;
+	height: 40px;
+	width: 40px;
+	background-color: #5aa9e6;
+	padding: 0;
+}
+
+svg {
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+}
+
+
+
+@media ( min-width : 1200px){
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+/* Pallini dello stato del candidato*/
+.dot {
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+/* Navbar */
+.navbar {
+	background: #5aa9e6;
+	border: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.svg-inline--fa.fa-w-16 {
+	margin-top: 4px;
+	margin-left: 3px;
+	width: 25px;
+	height: 25px;
+	width: 25px;
+}
+
+
+
+/* Barra Laterale */
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: rows;
+	justify-content: flex-start;
+}
+
+#sidebar {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 0px 5px 5px 0px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	background: #5aa9e6;
+	color: #fff;
+	border-collapse: collapse;
+	height: 100%;
+}
+
+#sidebar .sidebar-header {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background: #7fc8f8;
+}
+
+#sidebar ul.components {
+	padding: 10px 0px 0px 0px;
+}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	margin: 5px 0px;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #000000;
+	background: #fff;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #7fc8f8;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #cae9ff;
+}
+
+/* Tabella Home */
+.tabellaHome {
+width:100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaHome .head {
+	background-color: #5aa9e6;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tabellaHome .body tr {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tabellaHome .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaHome .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaHome th {
+	padding: 8px;
+}
+
+.tabellaHome td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+/* filtro stato candidato */
+.select {
+	position: relative;
+	padding: 0.5em 4em 0.5em 1.5em;
+	color: #333333;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+	appearance: none;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.select option {
+	background-color: white;
+}
+
+.custom-arrow {
+	position: absolute;
+	top: 0;
+	right: 0.3em;
+	display: block;
+	background-color: #5aa9e6;
+	height: 100%;
+	width: 2.5em;
+	pointer-events: none;
+	border-radius: 0px 3px 0px 0px;
+}
+
+.custom-arrow::before, .custom-arrow::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.custom-arrow::before {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-bottom: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 35%;
+}
+
+.custom-arrow::after {
+	border-right: 0.50em solid transparent;
+	border-left: 0.50em solid transparent;
+	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
+	top: 65%;
+}
+
+.btn {
+	margin-top: 0.06em;
+	padding: 0;
+	height: 40px;
+	width: 40px;
+	background-color: #5aa9e6;
+	padding: 0;
+}
+
+svg {
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+}
+
+/*@media ( min-width : 992px) {
 	.tabellaHome {
-		width: 60%;
+		width: 100%;
 	}
 	.col-lg {
 		max-width: 50%;
@@ -279,7 +936,7 @@ svg {
 	.tabellaHome {
 		width: 100%;
 	}
-}
+}*/
 </style>
 
 </head>
@@ -297,11 +954,11 @@ svg {
 			</a>
 
 			<!-- BOTTONE PROFILO -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			<!--  <button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-expanded="false"
 				aria-controls="navbarCollapse" aria-label="Toggle navigation">
 				<i class="fas fa-bars"></i>
-			</button>
+			</button>-->
 
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">

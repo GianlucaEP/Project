@@ -21,13 +21,13 @@ public class Economics implements Bean {
 	@Column(name = "inquadramento")
 	private String inquadramento; // TODO modificare nel database Inquadramento
 	@Column(name = "RAL")
-	private double ral;
+	private int ral;
 	@Column(name = "benefit")
 	private String benefit;
 	@Column(name = "preavviso")
 	private String preavviso;
 	@Column(name = "desiderata")
-	private String desiderata;
+	private int desiderata;
 
 	// ONE-TO-ONE con Candidato
 	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "economics")
@@ -49,11 +49,11 @@ public class Economics implements Bean {
 		this.inquadramento = inquadramento;
 	}
 
-	public double getRal() {
+	public int getRal() {
 		return ral;
 	}
 
-	public void setRal(double ral) {
+	public void setRal(int ral) {
 		this.ral = ral;
 	}
 
@@ -73,11 +73,11 @@ public class Economics implements Bean {
 		this.preavviso = preavviso;
 	}
 
-	public String getDesiderata() {
+	public int getDesiderata() {
 		return desiderata;
 	}
 
-	public void setDesiderata(String desiderata) {
+	public void setDesiderata(int desiderata) {
 		this.desiderata = desiderata;
 	}
 
