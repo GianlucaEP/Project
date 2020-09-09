@@ -29,6 +29,8 @@ public class CategoriaProtettaFilter extends CandidatoFilter{
 				listaPredicati.add(criteriaBuilder.equal(root.get("categoriaProtetta"), 0));
 			}
 			
+			CandidatoFilter.setAddedCriteria(true);
+			
 			return listaPredicati;
 		} else {
 			return listaPredicati;

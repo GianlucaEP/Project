@@ -22,6 +22,9 @@ public class TelefonoFilter extends CandidatoFilter{
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(root.get("telelfono"), "%" + valore + "%"));
+			
+			CandidatoFilter.setAddedCriteria(true);
+			
 			return listaPredicati;
 		} else {
 			return listaPredicati;

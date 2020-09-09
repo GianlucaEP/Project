@@ -22,6 +22,9 @@ public class EmailFilter extends CandidatoFilter{
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(root.get("email"), "%" + valore + "%"));
+			
+			CandidatoFilter.setAddedCriteria(true);
+			
 			return listaPredicati;
 		} else {
 			return listaPredicati;

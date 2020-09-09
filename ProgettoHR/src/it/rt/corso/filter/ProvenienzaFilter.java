@@ -22,6 +22,9 @@ public class ProvenienzaFilter extends CandidatoFilter{
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(root.get("provenienza"), "%" + valore + "%"));
+			
+			CandidatoFilter.setAddedCriteria(true);
+			
 			return listaPredicati;
 		} else {
 			return listaPredicati;

@@ -38,6 +38,8 @@ public class MansioneFilter extends CandidatoFilter{
 			
 			listaPredicatesMansioni
 			.add(criteriaBuilder.like(mansione.get("mansione"), "%" + valore + "%"));
+			CandidatoFilter.setAddedCriteria(true);
+			System.out.println(CandidatoFilter.isAddedCriteria());
 			return listaPredicati;
 		} else {
 			return listaPredicati;
@@ -52,6 +54,7 @@ public class MansioneFilter extends CandidatoFilter{
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
 		listaPredicati.add(criteriaBuilder.or(predicatesMansioni));
+		CandidatoFilter.setAddedCriteria(true);
 		
 		return listaPredicati;
 	}

@@ -12,6 +12,8 @@ import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.beans.Candidato;
 
 public class CandidatoFilter implements CandidatoFilterInterface {
+	
+	private static boolean addedCriteria = false;
 
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
@@ -19,15 +21,30 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 		ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 		List<CandidatoFilter> filterList = (List<CandidatoFilter>) factory.getBean("filterList");
 		for (CandidatoFilter filter : filterList) {
-			listaPredicati = filter.checkFilter(listaPredicati, root, nomeFiltro,valore);
+			if(!addedCriteria) {
+				listaPredicati = filter.checkFilter(listaPredicati, root, nomeFiltro,valore);	
+			} else {
+				break;
+			}
+			
 		}
 
 		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
 			MansioneFilter.buildMansionePredicate(listaPredicati);
 		}
+		
+		CandidatoFilter.setAddedCriteria(false);
 
 		return listaPredicati;
 
+	}
+
+	public static boolean isAddedCriteria() {
+		return addedCriteria;
+	}
+
+	public static void setAddedCriteria(boolean addedCriteria) {
+		CandidatoFilter.addedCriteria = addedCriteria;
 	}
 
 }

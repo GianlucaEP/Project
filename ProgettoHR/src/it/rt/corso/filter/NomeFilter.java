@@ -22,6 +22,7 @@ public class NomeFilter extends CandidatoFilter {
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(root.get("nome"), "%" + valore + "%"));
+			CandidatoFilter.setAddedCriteria(true);
 			return listaPredicati;
 		} else {
 			return listaPredicati;
