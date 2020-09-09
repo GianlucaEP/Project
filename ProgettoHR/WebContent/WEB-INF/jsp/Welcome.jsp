@@ -4,41 +4,36 @@
 <html>
 <head>
 
-<!-- Link -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- CSS -->
-<style type="text/css">
+<title>Welcome</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<style>
+html, body {
+	height: 100%;
+}
+
 #colonna1 {
-	background-color: rgb(8, 212, 239)
+	background-color: #ba181b;
 }
 
 #colonna2 {
-	background-color: rgb(248, 173, 67)
+	background-color: #90e0ef;
 }
 
 #colonna3 {
-	background-color: rgb(238, 15, 15)
+	background-color: #ffc600;
 }
-
-#telco {
-	background-color: black;
-	opacity: 0.3;
-}
-
-#ict {
-	background-color: black;
-	opacity: 0.3;
-}
-
-#ingegneria {
-	background-color: black;
-	opacity: 0.3;
-}
-
+/*
 #ingegneria:hover {
 	background-color: transparent;
 	opacity: 1;
@@ -54,18 +49,10 @@
 #telco:hover {
 	background-color: transparent;
 	opacity: 1;
-	transition: 0.3s;
+	transition: 0.3s;*/
 }
 
-html, body {
-	height: 100%;
-}
 </style>
-
-<!-- META -->
-<meta charset="ISO-8859-1">
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
 
 </head>
 <body>
@@ -79,7 +66,7 @@ html, body {
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
 						<a href="/ProgettoHR/Home/Telco"><img alt="logo"
-							src="/ProgettoHR/img/Erre_pro_blu.png" class="col-4"></a>Telco
+							src="/ProgettoHR/img/errelab.png" class="col-4"></a>Telco
 					</div>
 				</div>
 			</div>
@@ -90,7 +77,7 @@ html, body {
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
 						<a href="/ProgettoHR/Home/ICT"><img alt="logo"
-							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>ICT
+							src="/ProgettoHR/img/errepro.png" class="col-4"></a>ICT
 					</div>
 				</div>
 			</div>
@@ -101,12 +88,12 @@ html, body {
 					<div class="col center-content align-self-center "
 						style="text-align: center;">
 						<a href="/ProgettoHR/Home/Ingegneria"><img alt="logo"
-							src="/ProgettoHR/img/Erre_technology_group_NEW.png" class="col-4"></a>Ingegneria
+							src="/ProgettoHR/img/erretechnologygroup.png" class="col-4"></a>Ingegneria
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>
