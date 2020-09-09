@@ -1021,6 +1021,8 @@ svg {
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.seniority.seniority}</td>
+								<td data-toggle="modal" onclick="impostaParametriCandidatoId(${cand.id})" data-target="#EliminaModal"><i
+									class="fas fa-trash-alt"></i></td>
 
 							</tr>
 
@@ -1089,7 +1091,7 @@ svg {
 						onsubmit="return validateArea();">
 						<div class="form-group">
 							<form:input path="area" type="text" class="form-control"
-								placeholder="Area di Competenza" id="area" ></form:input>
+								placeholder="Area di Competenza" id="area"></form:input>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>
@@ -1101,8 +1103,36 @@ svg {
 		</div>
 	</div>
 
+	<!-- MODAL cancella candidato -->
+
+	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					Sei sicuro di voler cancellare il candidato selezionato?
+					<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
+						<div style="visibility: hidden;">
+							<input name="idCandidato" id="candidatoId" />
+						</div>
+						<div class="modal-body" id="errorModalBody"></div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-success">si</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script>
+		function impostaParametriCandidatoId(id) {
+			document.getElementById("candidatoId").value = id;
+
+		}
 		function changeDotColor(stato) {
 			if (stato === "attivo") {
 				document.getElementById("dot").className = "dot bg-success";
@@ -1140,7 +1170,8 @@ svg {
 
 				var tagDiv = document.createElement("div");
 				tagDiv.style = "color:red; font-size: small;"
-				var textnode = document.createTextNode("Inserisci Area di competenza")
+				var textnode = document
+						.createTextNode("Inserisci Area di competenza")
 				tagDiv.appendChild(textnode)
 				document.getElementById("area").appendChild(tagDiv);
 				control = false;

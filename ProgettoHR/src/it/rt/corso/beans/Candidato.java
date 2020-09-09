@@ -96,7 +96,7 @@ public class Candidato implements Bean {
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.PERSIST })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey
@@ -113,7 +113,7 @@ public class Candidato implements Bean {
 
 	// MANY-TO-MANY Con Area
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.PERSIST })
 	@JoinTable(name = "candidato_area", joinColumns = { @JoinColumn(name = "candidato") }, inverseJoinColumns = {
 			@JoinColumn(name = "area") })
 	List<AreaCompetenza> area = new ArrayList<AreaCompetenza>();
