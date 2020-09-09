@@ -22,5 +22,5 @@ public interface CandidatoFilterInterface {
 	 *  @param valore the value that is used in the like predicate
 	 *  
 	 *  */
-	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro, String valore);
+	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String valore, String nomeFiltro);
 }

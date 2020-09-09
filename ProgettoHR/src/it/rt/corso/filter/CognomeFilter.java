@@ -10,27 +10,23 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
-import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.utility.Utility;
 
-public class BusinessFilter extends CandidatoFilter {
+public class CognomeFilter extends CandidatoFilter{
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
 
-		if (nomeFiltro.contains("business")) {
+		if (nomeFiltro.contains("cognome")) {
 
-			Utility.buildSession();
 			Session session = Utility.getSession();
-			Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-			listaPredicati.add(criteriaBuilder.like(business.get("business"), "%" + valore + "%"));
+			listaPredicati.add(criteriaBuilder.like(root.get("cognome"), "%" + valore + "%"));
 			return listaPredicati;
 		} else {
 			return listaPredicati;
-
 		}
 		
 	}
