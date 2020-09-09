@@ -20,6 +20,7 @@ import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
+import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
@@ -71,6 +72,7 @@ public class HomeController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("areaCompetenza", new AreaCompetenza());
 		m.addAttribute("mansioneList", singleton.getMansioneList());
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		return "Home";

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class AreaCompetenza implements Bean{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "area")
 	private String area;
 	
