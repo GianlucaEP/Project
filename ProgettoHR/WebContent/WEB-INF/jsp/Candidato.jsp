@@ -587,11 +587,12 @@
 												<th scope="col">Costo giornaliero</th>
 												<td scope="col">${mostraCandidato.costo.giornaliero}</td>
 											</tr>
-											<tr>
-												<th scope="col">Commenti</th>
-												<td scope="col">${mostraCandidato.costo.commento}</td>
-											</tr>
-
+											<c:if test="${not empty mostraCandidato.costo.commento}">
+												<tr>
+													<th scope="col">Commenti</th>
+													<td scope="col">${mostraCandidato.costo.commento}</td>
+												</tr>
+											</c:if>
 										</tbody>
 									</table>
 								</c:when>
@@ -797,14 +798,15 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-						onsubmit="return validateForm('idSubmitModificaAnagrafica', 'idNome', 'idCognome', 'idAnno', 'idTelefono', 'idEmail');"
+							onsubmit="return validateForm('idSubmitModificaAnagrafica', 'idNome', 'idCognome', 'idAnno', 'idTelefono', 'idEmail');"
 							action="/ProgettoHR/ModificaAnagrafica/${mostraCandidato.id}">
 
 
 							<div class="form-group">
 								<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
 								<form:input type="text" class="form-control" id="idNome"
-									name="nome" path="nome" value="${mostraCandidato.nome}" required="required"></form:input>
+									name="nome" path="nome" value="${mostraCandidato.nome}"
+									required="required"></form:input>
 							</div>
 
 
@@ -820,7 +822,8 @@
 								<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
 									di nascita:</div>
 								<form:input type="text" class="form-control" id="idAnno"
-									name="anno" path="anno" value="${mostraCandidato.anno}" required="required"></form:input>
+									name="anno" path="anno" value="${mostraCandidato.anno}"
+									required="required"></form:input>
 							</div>
 
 
@@ -835,7 +838,8 @@
 							<div class="form-group">
 								<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
 								<form:input type="text" class="form-control" id="idEmail"
-									name="email" path="email" value="${mostraCandidato.email}" required="required"></form:input>
+									name="email" path="email" value="${mostraCandidato.email}"
+									required="required"></form:input>
 							</div>
 
 
@@ -868,8 +872,10 @@
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaAnagrafica" class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla Modifiche</button>
+									<button type="submit" id="idSubmitModificaAnagrafica"
+										class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										Modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1211,7 +1217,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-						onsubmit="return validateForm('idSubmitAggiungiEconomics', 'idInquadramento', 'idRAL', 'idBenefit', 'idPreavviso', 'idDesiderata')"
+							onsubmit="return validateForm('idSubmitAggiungiEconomics', 'idInquadramento', 'idRAL', 'idBenefit', 'idPreavviso', 'idDesiderata')"
 							action="/ProgettoHR/AggiungiModificaEconomics/${mostraCandidato.id}">
 
 
@@ -1233,7 +1239,8 @@
 										<div class="row w-100 p-0 m-0 justify-content-md-start">RAL:
 										</div>
 										<form:input type="text" class="form-control" id="idRAL"
-											name="RAL" path="economics.ral" value="${economics.ral}" required="required"></form:input>
+											name="RAL" path="economics.ral" value="${economics.ral}"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1270,7 +1277,8 @@
 							</div>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiEconomics" class="btn btn-primary btn-block">Salva</button>
+									<button type="submit" id="idSubmitAggiungiEconomics"
+										class="btn btn-primary btn-block">Salva</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
@@ -1297,7 +1305,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-						onsubmit="return validateForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero', 'idCommentiCosto')"
+							onsubmit="return validateForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
 							action="/ProgettoHR/AggiungiModificaCosto/${mostraCandidato.id}">
 
 
@@ -1306,8 +1314,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											orario:</div>
-										<form:input type="text" class="form-control" id="idCostoOrario"
-											name="costoOrario" path="costo.orario"
+										<form:input type="text" class="form-control"
+											id="idCostoOrario" name="costoOrario" path="costo.orario"
 											value="${costo.orario}" required="required"></form:input>
 									</div>
 								</div>
@@ -1319,7 +1327,8 @@
 											giornaliero:</div>
 										<form:input type="text" class="form-control"
 											id="idCostoGiornaliero" name="costoGiornaliero"
-											path="costo.giornaliero" value="${costo.giornaliero}" required="required"></form:input>
+											path="costo.giornaliero" value="${costo.giornaliero}"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1327,15 +1336,16 @@
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
-										<form:input type="text" class="form-control" id="idCommentiCosto"
-											name="commenti" path="costo.commento"
-											value="${costo.commento}" required="required"></form:input>
+										<form:input type="text" class="form-control"
+											id="idCommentiCosto" name="commenti" path="costo.commento"
+											value="${costo.commento}"></form:input>
 									</div>
 								</div>
 							</div>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiCosto" class="btn btn-primary btn-block">Salva</button>
+									<button type="submit" id="idSubmitAggiungiCosto"
+										class="btn btn-primary btn-block">Salva</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
@@ -1364,7 +1374,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="qualificationMeeting"
-						onsubmit="return validateForm('idSubmitModificaQM', 'clienteQualificationMeeting', 'dataPresentatoQualificationMeeting', 'riferimentoGaraQualificationMeeting', 'dataColloquioQualificationMeeting', 'feedbackQualificationMeeting');"
+							onsubmit="return validateForm('idSubmitModificaQM', 'clienteQualificationMeeting', 'dataPresentatoQualificationMeeting', 'riferimentoGaraQualificationMeeting', 'dataColloquioQualificationMeeting', 'feedbackQualificationMeeting');"
 							action="/ProgettoHR/ModificaQualificationMeeting/${mostraCandidato.id}">
 
 							<div style="visibility: hidden"
@@ -1384,7 +1394,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
 										<form:input id="clienteQualificationMeeting" type="text"
-											class="form-control" path="cliente" name="costoOrario" required="required"></form:input>
+											class="form-control" path="cliente" name="costoOrario"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1395,7 +1406,8 @@
 											di presentazione:</div>
 										<form:input id="dataPresentatoQualificationMeeting"
 											type="date" pattern="yyyy-MM-dd" class="form-control"
-											path="dataPresentato" name="costoGiornaliero" required="required"></form:input>
+											path="dataPresentato" name="costoGiornaliero"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1433,7 +1445,8 @@
 							</div>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaQM" class="btn btn-primary btn-block">Modifica</button>
+									<button type="submit" id="idSubmitModificaQM"
+										class="btn btn-primary btn-block">Modifica</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
@@ -1460,7 +1473,7 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="feedback"
-						onsubmit="return validateForm('idSubmitModificaFeedback', 'dataFeedback', 'commentoFeedback')"
+							onsubmit="return validateForm('idSubmitModificaFeedback', 'dataFeedback', 'commentoFeedback')"
 							action="/ProgettoHR/ModificaFeedback/${mostraCandidato.id}">
 
 							<div style="visibility: hidden"
@@ -1489,7 +1502,8 @@
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
 										<form:input id="dataFeedback" path="data" type="date"
-											pattern="yyyy-MM-dd" class="form-control" name="data" required="required"></form:input>
+											pattern="yyyy-MM-dd" class="form-control" name="data"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1504,7 +1518,8 @@
 							</div>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaFeedback" class="btn btn-primary btn-block">Salva</button>
+									<button type="submit" id="idSubmitModificaFeedback"
+										class="btn btn-primary btn-block">Salva</button>
 									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 								</div>
 							</div>
@@ -1535,7 +1550,8 @@
 							<table>
 								<tr>
 									<td>Pick file:</td>
-									<td><input type="file" name="fileUpload" size="50" required="required"/></td>
+									<td><input type="file" name="fileUpload" size="50"
+										required="required" /></td>
 								</tr>
 
 							</table>
