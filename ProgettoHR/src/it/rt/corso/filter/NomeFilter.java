@@ -11,23 +11,21 @@ import org.hibernate.Session;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.utility.Utility;
 
-public class NomeFilter {
-	
-	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro, String valore) {
+public class NomeFilter extends CandidatoFilter {
+	@Override
+	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
+			String valore) {
 
 		if (nomeFiltro.contains("nome")) {
 
 			Session session = Utility.getSession();
-			
+
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(root.get("nome"), "%" + valore + "%"));
-		} else {
-			
-			BusinessFilter businessFilter = new BusinessFilter();
-			listaPredicati = businessFilter.checkFilter(listaPredicati, root, nomeFiltro, valore);
-			
-		}
 			return listaPredicati;
-
+		} else {
+			return listaPredicati;
+		}
+		
 	}
 }

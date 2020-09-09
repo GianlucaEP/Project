@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util 
+   		   http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<bean id="candidatoDAO"
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
@@ -40,7 +43,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="qualificationMeetingDAO"
 		class="it.rt.corso.DAOImpl.QualificationMeetingDAOImpl">
 	</bean>
-	
+
 	<bean id="uploadFileDAO"
 		class="it.rt.corso.DAOImpl.UploadFileDAOImpl">
 	</bean>
@@ -48,14 +51,16 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 	<bean id="utenteDAO" class="it.rt.corso.DAOImpl.UtenteDAOImpl">
 	</bean>
-	
-	<bean id="economicsDAO" class="it.rt.corso.DAOImpl.EconomicsDAOImpl">
+
+	<bean id="economicsDAO"
+		class="it.rt.corso.DAOImpl.EconomicsDAOImpl">
 	</bean>
-	
+
 	<bean id="costoDAO" class="it.rt.corso.DAOImpl.CostoDAOImpl">
 	</bean>
-	
-	<bean id="statoCandidatoDAO" class="it.rt.corso.DAOImpl.StatoCandidatoDAOImpl">
+
+	<bean id="statoCandidatoDAO"
+		class="it.rt.corso.DAOImpl.StatoCandidatoDAOImpl">
 	</bean>
 
 	<bean id="inserito" class="it.rt.corso.beans.StatoCandidato">
@@ -78,7 +83,18 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		<property name="descrizione" value="Selezionato" />
 	</bean>
 
+	<bean id="nomeFilter" class="it.rt.corso.filter.NomeFilter">
+	</bean>
+
+	<bean id="businessFilter"
+		class="it.rt.corso.filter.BusinessFilter">
+	</bean>
 
 
+	<util:list id="filterList"
+		value-type="it.rt.corso.filter.CandidatoFilter">
+		<ref bean="nomeFilter" />
+		<ref bean="businessFilter" />
+	</util:list>
 
 </beans> 

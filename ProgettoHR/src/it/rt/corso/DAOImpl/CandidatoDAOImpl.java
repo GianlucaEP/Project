@@ -21,6 +21,7 @@ import org.hibernate.query.Query;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.*;
+import it.rt.corso.filter.CandidatoFilter;
 import it.rt.corso.utility.Utility;
 
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
@@ -127,6 +128,11 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 		// della Map dei filtri
 		List<Predicate> listaPredicates = new ArrayList<Predicate>();
+		
+		CandidatoFilter candidatoFilter = new CandidatoFilter();
+		
+		candidatoFilter.checkFilter(listaPredicates, root, "business", "ICT");
+		
 		// Lista per gestire le mansioni da inserire nella or
 		List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
 
@@ -157,15 +163,14 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 				listaPredicatesSpecializzazioni.add(
 						criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + entry.getValue() + "%"));
 			} else if (entry.getKey().contains("categoriaProtetta")) {
-				int x = -1;
+				
 
 				if (entry.getValue().equalsIgnoreCase("on")) {
-					x = 1;
+					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), 1));
 				} else if (entry.getValue().equalsIgnoreCase("off")) {
-					x = 0;
+					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), 0));
 				}
-				if (x != -1)
-					listaPredicates.add(criteriaBuilder.equal(root.get(entry.getKey()), x));
+				
 
 			} else if (entry.getKey().contains("costoMin")) {
 				if (!entry.getValue().equals("")) {
