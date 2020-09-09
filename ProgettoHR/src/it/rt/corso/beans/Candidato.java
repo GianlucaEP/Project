@@ -104,7 +104,7 @@ public class Candidato implements Bean {
 	 */
 	@JoinTable(name = "candidato_mansione", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "mansione") })
-	List<Mansione> mansione = new ArrayList<Mansione>();
+	List<Mansione> mansione;
 
 	// ONE-TO-MANY con la classe CandidatoSpecializzazione
 	@LazyCollection(LazyCollectionOption.FALSE)

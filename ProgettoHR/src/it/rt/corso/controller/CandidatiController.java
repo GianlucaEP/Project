@@ -57,15 +57,15 @@ public class CandidatiController {
 
 	@RequestMapping("/Candidati/{businessUnit}")
 	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit) {
-		
+
 		Singleton singleton = Singleton.getInstance();
-		
+
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
-		
+
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
-		
+
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("seniorityList", singleton.getSeniorityList());
@@ -75,93 +75,44 @@ public class CandidatiController {
 		return "InserimentoCandidati";
 	}
 
-
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
-	public String aggiungiCandidato(@RequestParam Map<String, String> mappaCandidato,
-			@PathVariable String businessUnit) {
-
-		Candidato candidato = new Candidato();
+	public String aggiungiCandidato(HttpServletRequest request, @PathVariable String businessUnit,
+			@ModelAttribute("candidato") Candidato c) {
 
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-		candidato.setStato(stato);
+		c.setStato(stato);
 
-		candidato.setNome(mappaCandidato.get("nome"));
-		candidato.setCognome(mappaCandidato.get("cognome"));
-		String annoString = mappaCandidato.get("anno");
-		Integer anno = Integer.parseInt(annoString);
-		candidato.setAnno(anno);
-		candidato.setTelefono(mappaCandidato.get("telefono"));
-		candidato.setEmail(mappaCandidato.get("email"));
-		candidato.setCodiceFiscale(mappaCandidato.get("codiceFiscale"));
-
-		Seniority seniority = seniorityDAO.get(mappaCandidato.get("seniority"));
-		candidato.setSeniority(seniority);
-
-		Business business = businessDAO.get(mappaCandidato.get("business"));
-		candidato.setBusiness(business);
-
-		candidato.setProvenienza(mappaCandidato.get("provenienza"));
-
-		if (mappaCandidato.get("categoriaProtetta") != null) {
-			candidato.setCategoriaProtetta(true);
-		} else
-			candidato.setCategoriaProtetta(false);
-
-		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
-		List<Mansione> listaMansione = new ArrayList<Mansione>();
-		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
-
-		for (Map.Entry<String, String> entry : mappaCandidato.entrySet()) {
-			if (entry.getKey().contains("area")) {
-
-				
-				AreaCompetenza areaDaInserire = new AreaCompetenza();
-				areaDaInserire.setArea(entry.getValue());
-				listaCompetenza.add(areaDaInserire);
-				
-			} else if (entry.getKey().contains("mansione")) {
-				
-				Mansione mansioneDaInserire = new Mansione();
-				mansioneDaInserire.setMansione(entry.getValue());
-				listaMansione.add(mansioneDaInserire);
-				
-			} else if (entry.getKey().contains("specializzazione")) {
-
-				// da jsp mi arriva la specializzazione come stringa in formato
-				// "specializzazione anniEsperienza e devo dividerla per assengnarla ai 2 campi
-				// di candidatoSpecializzazione
-				String[] specializzazioneCorretta = entry.getValue().split(" ");
-				CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
-				
-				Specializzazione specializzazioneDaInserire = new Specializzazione();
-				specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
-				candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
-				candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
-				candidatoSpecializzazione.setCandidato(candidato);
-				listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
-			}
+		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
+		if (areeCompetenza != null) {
+			c.setArea(aggiungiAreaCompetenza(areeCompetenza));
 		}
 
-		candidato.setArea(listaCompetenza);
-		candidato.setMansione(listaMansione);
-		candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
+		String[] mansioni = request.getParameterValues("mansioni");
+		if (mansioni != null) {
+			c.setMansione(aggiungiMansione(mansioni));
+		}
 
-		candidatoDAO.inserisci(candidato);
+		String[] specializzazioni = request.getParameterValues("specializzazione");
+		if (specializzazioni != null) {
+			c.setCandidatoSpecializzazione(aggiungiSpecializzazione(specializzazioni, c));
+		}
+
+		candidatoDAO.inserisci(c);
 
 		return "redirect:/Home/{businessUnit}";
 
 	}
 
-	@RequestMapping(value = "/Elimina/{id}", method = RequestMethod.GET)
-	public String elimina(@PathVariable int id) {
-		Candidato c = candidatoDAO.get(id);
+	@RequestMapping(value = "/Elimina/{businessUnit}", method = RequestMethod.POST)
+	public String elimina(@RequestParam("idCandidato") int idCandidato, @PathVariable String businessUnit) {
+		Candidato c = candidatoDAO.get(idCandidato);
 		candidatoDAO.cancella(c);
-		return "redirect:/Home";
+		return "redirect:/Home/{businessUnit}";
 	}
 
 	@RequestMapping(value = "/ModificaAnagrafica/{id}", method = RequestMethod.POST)
 	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
-		
+
 		Candidato candidato = candidatoDAO.get(id);
 
 		candidato.setNome(c.getNome());
@@ -180,6 +131,7 @@ public class CandidatiController {
 		candidatoDAO.aggiorna(candidato);
 		return "redirect:/Candidato/{id}";
 	}
+	
 
 	@RequestMapping(value = "/AggiungiModificaCosto/{id}", method = RequestMethod.POST)
 	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
@@ -201,6 +153,7 @@ public class CandidatiController {
 
 		return "redirect:/Candidato/{id}";
 	}
+	
 
 	@RequestMapping(value = "/AggiungiModificaEconomics/{id}", method = RequestMethod.POST)
 	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
@@ -224,6 +177,7 @@ public class CandidatiController {
 
 		return "redirect:/Candidato/{id}";
 	}
+	
 
 	// metodo per aggiornare la seniority del candidato dalla pagina del candidato
 	// stesso
@@ -235,6 +189,7 @@ public class CandidatiController {
 
 		return "redirect:/Candidato/{id}";
 	}
+	
 
 	// metodo per aggiornare la businessUnit del candidato dalla pagina del
 	// candidato stesso
@@ -246,6 +201,7 @@ public class CandidatiController {
 
 		return "redirect:/Candidato/{id}";
 	}
+	
 
 	// metodo per aggiornare l'area competenza del candidato dalla pagina del
 	// candidato stesso
@@ -253,20 +209,15 @@ public class CandidatiController {
 	public String modificaAreaCompetenza(HttpServletRequest request, @PathVariable int id) {
 
 		Candidato candidato = candidatoDAO.get(id);
-		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
 		if (areeCompetenza != null) {
-
-			for (String area : areeCompetenza) {
-
-				AreaCompetenza areaCompetenza = new AreaCompetenza();
-				areaCompetenza.setArea(area);
-
-				listaCompetenza.add(areaCompetenza);
-			}
+			candidato.setArea(aggiungiAreaCompetenza(areeCompetenza));
 		}
-		candidato.setArea(listaCompetenza);
+		else {
+		candidato.setArea(new ArrayList<AreaCompetenza>());
+		}
+		
 		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{id}";
@@ -278,19 +229,15 @@ public class CandidatiController {
 	public String modificaMansione(HttpServletRequest request, @PathVariable int id) {
 
 		Candidato candidato = candidatoDAO.get(id);
-		List<Mansione> listaMansione = new ArrayList<Mansione>();
 
 		String[] mansioni = request.getParameterValues("mansione");
 		if (mansioni != null) {
-			for (String mansione : mansioni) {
-
-				Mansione mansioneDaInserire = new Mansione();
-				mansioneDaInserire.setMansione(mansione);
-
-				listaMansione.add(mansioneDaInserire);
-			}
+			candidato.setMansione(aggiungiMansione(mansioni));
+		}		
+		else {
+		candidato.setMansione(new ArrayList<Mansione>());
 		}
-		candidato.setMansione(listaMansione);
+		
 		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{id}";
@@ -304,7 +251,7 @@ public class CandidatiController {
 
 		String[] specializzazioni = request.getParameterValues("specializzazione");
 		if (specializzazioni != null) {
-			
+
 			List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
 			int trovato = 0;
 			// controllo che non siano stati cancellati delle specializzazioni e nel caso la
@@ -323,21 +270,7 @@ public class CandidatiController {
 			}
 
 			// aggiorno tutte le specializzazioni
-			for (String specializzazione : specializzazioni) {
-				String[] specializzazioneCorretta = specializzazione.split(" ");
-
-				CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
-
-				Specializzazione specializzazioneDaInserire = new Specializzazione();
-				specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
-
-				candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
-				candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
-				candidatoSpecializzazione.setCandidato(candidato);
-				listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
-			}
-
-			candidato.setCandidatoSpecializzazione(listaCandidatoSpecializzazione);
+			candidato.setCandidatoSpecializzazione(aggiungiSpecializzazione(specializzazioni, candidato));
 			candidatoDAO.aggiorna(candidato);
 
 		} else {
@@ -382,13 +315,12 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
-		
+
 		Singleton singleton = Singleton.getInstance();
 
 		Candidato c = candidatoDAO.get(id);
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
-		
 
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
@@ -397,13 +329,63 @@ public class CandidatiController {
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
-    	m.addAttribute("seniorityList", singleton.getSeniorityList());
+		m.addAttribute("seniorityList", singleton.getSeniorityList());
 		m.addAttribute("feedback", new Feedback());
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		m.addAttribute("qualificationMeeting", new QualificationMeeting());
 
-
 		return "Candidato";
+	}
+
+	public List<AreaCompetenza> aggiungiAreaCompetenza(String[] areeCompetenza) {
+
+		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
+
+		for (String area : areeCompetenza) {
+
+			AreaCompetenza areaCompetenza = new AreaCompetenza();
+			areaCompetenza.setArea(area);
+
+			listaCompetenza.add(areaCompetenza);
+		}
+
+		return listaCompetenza;
+	}
+
+	public List<Mansione> aggiungiMansione(String[] mansioni) {
+
+		List<Mansione> listaMansione = new ArrayList<Mansione>();
+
+		for (String mansione : mansioni) {
+
+			Mansione mansioneDaInserire = new Mansione();
+			mansioneDaInserire.setMansione(mansione);
+
+			listaMansione.add(mansioneDaInserire);
+		}
+
+		return listaMansione;
+	}
+
+	public List<CandidatoSpecializzazione> aggiungiSpecializzazione(String[] specializzazioni, Candidato c) {
+
+		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
+
+		for (String specializzazione : specializzazioni) {
+			String[] specializzazioneCorretta = specializzazione.split(" ");
+
+			CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
+
+			Specializzazione specializzazioneDaInserire = new Specializzazione();
+			specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
+
+			candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
+			candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
+			candidatoSpecializzazione.setCandidato(c);
+			listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
+		}
+
+		return listaCandidatoSpecializzazione;
 	}
 
 }

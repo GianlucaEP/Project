@@ -152,8 +152,7 @@ ul ul a {
 
 </head>
 
-<body
-	onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
+<body>
 
 	<!-- NAVBAR -->
 	<div class="container-fluid">
@@ -211,7 +210,8 @@ ul ul a {
 			<!-- COLONNA INSERIMENTO CANDIDATO -->
 			<div class="col-auto">
 
-				<form class="border rounded p-3" autocomplete="off" method="POST"
+				<form:form class="border rounded p-3" autocomplete="off" method="POST"
+					onsubmit="return validateForm()" modelAttribute="candidato"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 
 					<h4 class="text-center">Nuovo candidato</h4>
@@ -222,12 +222,12 @@ ul ul a {
 					<div class="form-row">
 
 						<div class="form-group col-6">
-							<label>Nome: </label><input type="text" class="form-control"
-								id="nome" name="nome"></input>
+							<label>Nome: </label><form:input path="nome" type="text" class="form-control"
+								id="nome"  required="required"></form:input>
 						</div>
 						<div class="form-group col-6">
-							<label>Cognome: </label><input type="text" class="form-control"
-								id="cognome" name="cognome"></input>
+							<label>Cognome: </label><form:input type="text" path="cognome" class="form-control"
+								id="cognome"  required="required"></form:input>
 						</div>
 
 					</div>
@@ -235,48 +235,48 @@ ul ul a {
 					<div class="form-row">
 
 						<div class="form-group col-4">
-							<label>Anno di nascita: </label> <input type="text"
-								class="form-control" id="anno" name="anno"></input>
+							<label>Anno di nascita: </label> <form:input type="text" path="anno"
+								class="form-control" id="anno" ></form:input>
 						</div>
 
 						<div class="form-group col-8">
-							<label>Telefono:</label> <input type="text" class="form-control"
-								id="telefono" name="telefono"></input>
+							<label>Telefono:</label> <form:input type="text" path="telefono" class="form-control"
+								id="telefono"  required="required"></form:input>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label>E-mail:</label> <input type="text" class="form-control"
-							id="email" name="email"></input>
+						<label>E-mail:</label> <form:input type="text" path="email" class="form-control"
+							id="email"  required="required"></form:input>
 					</div>
 
 					<div class="form-group">
-						<label>Codice fiscale:</label> <input type="text"
-							class="form-control" id="codiceFiscale" name="codiceFiscale"></input>
+						<label>Codice fiscale:</label> <form:input type="text" path="codiceFiscale"
+							class="form-control" id="codiceFiscale"></form:input>
 					</div>
 
 					<div class="form-group">
-						<label>Seniority:</label> <select name="seniority"
+						<label>Seniority:</label> <form:select path="seniority.seniority" 
 							class="custom-select">
 
 							<c:forEach var="sen" items="${seniorityList}">
 								<option value="${sen.seniority}">${sen.seniority}</option>
 							</c:forEach>
-						</select>
+						</form:select>
 					</div>
 
 					<div class="form-group">
-						<label>Business unit:</label> <select name="business"
+						<label>Business unit:</label> <form:select path="business.business" 
 							class="custom-select">
 							<c:forEach var="bus" items="${businessList}">
 								<option value="${bus.business}">${bus.business}</option>
 							</c:forEach>
-						</select>
+						</form:select>
 					</div>
 
 					<div class="form-group">
-						<label>Provenienza candidatura:</label> <input type="text"
-							class="form-control" id="provenienza" name="provenienza"></input>
+						<label>Provenienza candidatura:</label> <form:input type="text" path="provenienza"
+							class="form-control" id="provenienza" name="provenienza"></form:input>
 					</div>
 
 
@@ -306,18 +306,18 @@ ul ul a {
 							<input autocomplete="off" placeholder="aggiungi"
 								list="mansioniDisponibili" id="mansioneInput">
 							<datalist id="mansioniDisponibili">
-								<c:forEach var="mansione" items="${mansioneList}">
-									<option value="${mansione}"></option>
+								<c:forEach var="mans" items="${mansioneList}">
+									<option value="${mans}"></option>
 								</c:forEach>
 							</datalist>
-							<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+							<div
+								onclick="stampaMansioneSelezionata('${mansioneList}')"
 								class="btn">
 								<i class="fas fa-plus-square mr-1"></i>
 							</div>
 						</div>
-
-
 					</div>
+					
 
 					<div class="form-group">
 
@@ -345,8 +345,8 @@ ul ul a {
 
 					<div class="form-group mt-2">
 						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input"
-								id="customSwitch1" name="categoriaProtetta"> <label
+							<form:checkbox  path="categoriaProtetta" class="custom-control-input"
+								id="customSwitch1" name="categoriaProtetta"></form:checkbox> <label
 								class="custom-control-label" for="customSwitch1">Categoria
 								protetta</label>
 						</div>
@@ -359,7 +359,7 @@ ul ul a {
 						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 					</div>
 
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -446,7 +446,7 @@ ul ul a {
 					areaCnt++;
 					
 					tagInput.id = areaName;
-					tagInput.name = areaName;
+					tagInput.name = "areaCompetenza";
 					tagInput.readOnly = true;
 					
 					tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
@@ -496,7 +496,7 @@ ul ul a {
 			mansioneCnt++;
 			
 			tagInput.id = mansioneName;
-			tagInput.name = mansioneName;
+			tagInput.name = "mansioni";
 			tagInput.readOnly = true;
 			
 			tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
@@ -546,7 +546,7 @@ ul ul a {
 					specializzazioneCnt++;
 					
 					tagInput.id = specializzazioneName;
-					tagInput.name = specializzazioneName;
+					tagInput.name = "specializzazione";
 					tagInput.readOnly = true;
 					
 					tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
@@ -574,18 +574,18 @@ ul ul a {
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
 
-		function getMansione(listMansione, specializzazioneList,
-				areaCompetenzaList) {
-			var mansioneString = buildString(listMansione);
-			var specializzazioneString = buildString(specializzazioneList);
-			var areaCompetenzaString = buildString(areaCompetenzaList);
-			autocomplete(document.getElementById("mansioneInput"),
-					mansioneString);
-			autocomplete(document.getElementById("specializzazioneInput"),
-					specializzazioneString);
-			autocomplete(document.getElementById("areaCompetenzaInput"),
-					areaCompetenzaString);
-		}
+		
+		function validateForm(){
+			
+			if(document.getElementById("nome").value == "" || document.getElementById("cognome").value == "" || document.getElementById("telefono").value == "" || document.getElementById("email").value == ""){
+				return false;
+			}
+		
+			document.getElementById(idSubmit).disabled = "true";
+			return true;
+			}
+		
+		
 	</script>
 
 	<!-- jQuery CDN - Slim version (=without AJAX) -->
