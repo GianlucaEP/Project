@@ -50,6 +50,12 @@ html, body {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"> 
+</script>
+<script
+	src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"> 
+</script>
 <!--Meta-->
 <meta charset="ISO-8859-1">
 <title>Filtro avanzato</title>
@@ -1112,11 +1118,13 @@ html, body {
 			</div>-->
 			<div class="col-10">
 
-				<table class="table table-bordered text-center ">
+				<button type="button" id="exportButton" class="btn btn-primary "
+					style="border-color: transparent;">Esporta Risultati</button>
+				<table id="risultatiTable" class="table table-bordered text-center ">
 					<!-- Testa della tabella -->
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">Stato</th>
+							<th class="noExport" scope="col">Stato</th>
 							<th scope="col">Business unit</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Cognome</th>
@@ -1126,14 +1134,14 @@ html, body {
 							<th scope="col">Specializzazione</th>
 							<th scope="col">Inserimento Azienda</th>
 							<th scope="col">costo orario</th>
-							<th scope="col"></th>
+							<th class="noExport" scope="col"></th>
 						</tr>
 					</thead>
 					<!-- Corpo della tabella -->
 					<tbody>
 						<c:forEach var="cand" items="${list}">
 							<tr>
-								<td><c:choose>
+								<td class="noExport"><c:choose>
 										<c:when test="${ cand.stato.descrizione == 'Attivo'}">
 											<span id="dot" data-toggle="tooltip" data-placement="top"
 												title="Attivo" class="dot bg-success"></span>
@@ -1166,15 +1174,15 @@ html, body {
 									${cand.cognome}</td>
 
 								<td><c:forEach var="area" items="${cand.area}">
-										<span
+										<div
 											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${area.area}</span>
+											${area.area}</div>
 									</c:forEach></td>
 
 								<td><c:forEach var="mansione" items="${cand.mansione}">
-										<span
+										<div
 											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-											${mansione.mansione}</span>
+											${mansione.mansione}</div>
 									</c:forEach></td>
 
 								<td
@@ -1184,8 +1192,8 @@ html, body {
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									<c:forEach var="specializzazione"
 										items="${cand.candidatoSpecializzazione}">
-										<span>${specializzazione.specializzazione.specializzazione}
-											&nbsp ${specializzazione.anni} anni esperienza</span>
+										<div>${specializzazione.specializzazione.specializzazione}
+											&nbsp ${specializzazione.anni} anni esperienza </div>
 									</c:forEach>
 								</td>
 								<td
@@ -1196,7 +1204,7 @@ html, body {
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.costo.orario} &#8364; /H</td>
 
-								<td data-toggle="modal" data-target="#EliminaModal"><i
+								<td class="noExport" data-toggle="modal" data-target="#EliminaModal"><i
 									class="fas fa-trash-alt"></i></td>
 							</tr>
 
@@ -1451,6 +1459,19 @@ function controlloMappa() {
 			document.getElementById("aggiuntaNome").innerHTML = nome;
 		}
 	</script>
+
+	<script> 
+  
+ $(document).ready(function () { 
+	 $("#exportButton").click(function(){
+    $("#risultatiTable").table2excel({ 
+    	exclude: ".noExport",
+        filename: "Risultati.xls" 
+    }); 
+ }); 
+ });
+  
+</script>
 
 </body>
 
