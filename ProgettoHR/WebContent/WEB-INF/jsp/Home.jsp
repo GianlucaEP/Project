@@ -930,7 +930,8 @@ svg {
 						</c:choose></li>
 
 					<li><a href="/ProgettoHR/Filter/${businessUnit}" type="button"
-						class="text-center">Filtri</a></li>
+						class="text-center"><i
+									class="fas fa-search"></i> Ricercha per filtri</a></li>
 				</ul>
 			</nav>
 		</div>
