@@ -105,6 +105,8 @@ public class HomeController {
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("areaCompetenza", new AreaCompetenza());
+		m.addAttribute("specializzazione", new Specializzazione());
 		m.addAttribute("mansione", new Mansione());
 
 		return "Home";

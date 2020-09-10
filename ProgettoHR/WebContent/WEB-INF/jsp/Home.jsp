@@ -629,7 +629,7 @@ svg {
 		vertical-align: middle;
 	}
 }
-
+/* MEDIA PER SCHERMO DESKTOP GRANDE */
 @media ( min-width : 1200px) {
 	html, body {
 		height: 100%;
@@ -644,7 +644,7 @@ svg {
 		transition: all 0.3s;
 	}
 
-	/* Pallini dello stato del candidato*/
+	/* PALLINI STATO CANDIDATO */
 	.dot {
 		height: 25px;
 		width: 25px;
@@ -653,21 +653,24 @@ svg {
 		margin-top: 5px;
 	}
 
-	/* Navbar */
+	/* NAVBAR */
 	.navbar {
 		background: #5aa9e6;
 		border: none;
 		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 	}
+
+	/* ICONA LOGOUT */
 	.svg-inline--fa.fa-w-16 {
-		margin-top: 4px;
-		margin-left: 3px;
+		margin-left: 5px;
+		margin-top: 5px;
+		overflow: hidden;
+		vertical-align: middle;
 		width: 25px;
 		height: 25px;
-		width: 25px;
 	}
 
-	/* Barra Laterale */
+	/* SIDEBAR */
 	.container1 {
 		margin-top: 20px;
 		display: flex;
@@ -731,7 +734,7 @@ svg {
 		background: #cae9ff;
 	}
 
-	/* Tabella Home */
+	/* TABELLA HOME */
 	.tabellaHome {
 		width: 100%;
 		border-collapse: collapse;
@@ -810,39 +813,43 @@ svg {
 		border-top: 0.50em solid rgba(255, 255, 255, 0.5);
 		top: 65%;
 	}
-	.btn {
-		margin-top: 0.06em;
-		padding: 0;
+	#bottoneFiltro {
+		margin-top: 0.07em;
 		height: 40px;
 		width: 40px;
 		background-color: #5aa9e6;
-		padding: 0;
 	}
-	svg {
-		width: 25px;
-		height: 25px;
-		overflow: hidden;
-		vertical-align: middle;
+	#bottone-salva-mansione {
+		margin: 3px;
+		padding: 3px;
+		width: auto;
+	}
+	#bottone-cancella-mansione {
+		padding: 3px;
+		width: auto;
+		margin: 0;
+	}
+	#bottone-salva-specializzazione {
+		margin: 3px;
+		padding: 3px;
+		width: auto;
+	}
+	#bottone-cancella-specializzazione {
+		padding: 3px;
+		width: auto;
+		margin: 0;
+	}
+	#bottone-salva-area {
+		margin: 3px;
+		padding: 3px;
+		width: auto;
+	}
+	#bottone-cancella-area {
+		padding: 3px;
+		width: auto;
+		margin: 0;
 	}
 }
-
-/*@media ( min-width : 992px) {
-	.tabellaHome {
-		width: 100%;
-	}
-	.col-lg {
-		max-width: 50%;
-	}
-}
-
-@media ( min-width : 1200px) {
-	#sidebar {
-		width: 100%;
-	}
-	.tabellaHome {
-		width: 100%;
-	}
-}*/
 </style>
 
 </head>
@@ -855,8 +862,7 @@ svg {
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo"
-				src="/ProgettoHR/img/Erre_technology_group_NEW.png">
+				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
 			<!-- BOTTONE PROFILO -->
@@ -950,7 +956,7 @@ svg {
 						</div>
 
 						<div class="col-auto ">
-							<button id="filterButton" class="btn btn-block" type="submit">
+							<button id="bottoneFiltro" class="btn btn-block" type="submit">
 								<svg width="1em" height="1em" viewBox="0 0 16 16"
 									class="bi bi-funnel" fill="currentColor"
 									xmlns="http://www.w3.org/2000/svg"> <path
@@ -968,13 +974,14 @@ svg {
 
 					<thead class="head">
 						<tr>
-							<th scope="col">Stato</th>
-							<th scope="col">Business unit</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Cognome</th>
-							<th scope="col">Area Competenza</th>
-							<th scope="col">Mansione</th>
-							<th scope="col">Seniority</th>
+							<th colspan="1" scope="col">Stato</th>
+							<th colspan="1" scope="col">Business unit</th>
+							<th colspan="1" scope="col">Nome</th>
+							<th colspan="1" scope="col">Cognome</th>
+							<th colspan="1" scope="col">Area Competenza</th>
+							<th colspan="1" scope="col">Mansione</th>
+							<th colspan="1" scope="col">Seniority</th>
+							<th colspan="1" scope="col"></th>
 						</tr>
 					</thead>
 
@@ -1028,6 +1035,7 @@ svg {
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.seniority.seniority}</td>
+
 								<td data-toggle="modal"
 									onclick="impostaParametriCandidatoId(${cand.id})"
 									data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
@@ -1053,119 +1061,137 @@ svg {
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
-						Mansione</h5>
+					<h5 class="modal-title">Aggiungi Mansione</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
-						onsubmit="return validate();">
-						<div class="form-group">
-							<form:input path="mansione" type="text" class="form-control"
-								placeholder="Mansione" id="mansione" name="mansione"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="mansione" id="formMansione" method="POST"
+					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
+					onsubmit="return validate();">
+					<div class="modal-body">
+
+
+						<form:input path="mansione" type="text" class="form-control"
+							placeholder="Mansione" id="mansione" name="mansione"></form:input>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-mansione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-mansione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
 	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Area
+					<h5 class="modal-title" id="exampleModalLabel">Aggiungi Area
 						Competenza</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
-						method="POST"
-						action="/ProgettoHR/AreaCompetenzaSave/${businessUnit}"
-						onsubmit="return validateArea();">
-						<div class="form-group">
-							<form:input path="area" type="text" class="form-control"
-								placeholder="Area di Competenza" id="area"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
+					method="POST"
+					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
+					onsubmit="return validateArea();">
+					<div class="modal-body">
+
+						<form:input path="area" type="text" class="form-control"
+							placeholder="Area di Competenza" id="area"></form:input>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-area"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-area"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
+
 			</div>
 		</div>
 	</div>
+
 	<!-- MODAL AGGIUNTA SPECIALIZZAZIONE -->
 	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Specializzazione</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Aggiungi
+						Specializzazione</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="specializzazione" id="formSpecializzazione"
-						method="POST"
-						action="/ProgettoHR/SpecializzazioneSave/${businessUnit}"
-						onsubmit="return validateSpecializzazione();">
-						<div class="form-group">
-							<form:input path="specializzazione" type="text" class="form-control"
-								placeholder="Specializzazione" id="specializzazione"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="specializzazione"
+					id="formSpecializzazione" method="POST"
+					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
+					onsubmit="return validateSpecializzazione();">
+					<div class="modal-body">
+
+						<form:input path="specializzazione" type="text"
+							class="form-control" placeholder="Specializzazione"
+							id="specializzazione"></form:input>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-specializzazione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-specializzazione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+
+				</form:form>
 			</div>
 		</div>
 	</div>
-	
 
-	<!-- MODAL cancella candidato -->
 
+	<!-- MODAL CANCELLA CANDIDATO -->
 	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					Sei sicuro di voler cancellare il candidato selezionato?
-					<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
-						<div style="visibility: hidden;">
-							<input name="idCandidato" id="candidatoId" />
-						</div>
-						<div class="modal-body" id="errorModalBody"></div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-success">si</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
-						</div>
+					<div class="modal-header">
+						Sei sicuro di voler cancellare il candidato selezionato? <input
+							style="visibility: hidden;" name="idCandidato" id="candidatoId" />
+					</div>
 
-					</form>
-				</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
+					</div>
+
+				</form>
 			</div>
 		</div>
 	</div>
+
 
 	<script>
 		function impostaParametriCandidatoId(id) {
