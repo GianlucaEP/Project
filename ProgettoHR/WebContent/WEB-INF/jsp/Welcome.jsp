@@ -23,35 +23,69 @@ html, body {
 }
 
 #colonna1 {
-	background-color: #ba181b;
+	background-color: #490a09;
+	transition: 0.5s;
 }
 
 #colonna2 {
-	background-color: #90e0ef;
+	background-color: #145667;
+	transition: 0.5s;
 }
 
 #colonna3 {
-	background-color: #ffc600;
+	background-color: #945805;
+	transition: 0.5s;
 }
-/*
-#ingegneria:hover {
-	background-color: transparent;
-	opacity: 1;
-	transition: 0.3s;
+
+/*#telco:hover {
+	background-color: #7f1210;
+	transition: 0.5s;
 }
 
 #ict:hover {
-	background-color: transparent;
-	opacity: 1;
-	transition: 0.3s;
+	background-color: #1e8199;
+	transition: 0.5s;
 }
 
-#telco:hover {
-	background-color: transparent;
-	opacity: 1;
-	transition: 0.3s;*/
+#ingegneria:hover {
+	background-color: #f69309;
+	transition: 0.5s;
+}
+*/
+
+
+#proImg{
+	width: 40%;
+	transition: 0.5s;
 }
 
+#labImg{
+	width: 40%;
+	transition: 0.5s;
+}
+
+#techImg {
+	width: 40%;
+	transition: 0.5s;
+}
+
+#proImg:hover {
+	width: 80%;
+	opacity: 1;
+	transition: 0.5s;
+}
+#labImg:hover {
+	width: 80%;
+	opacity: 1;
+	transition: 0.5s;
+}
+
+
+#techImg:hover {
+	width: 80%;
+	opacity: 1;
+	transition: 0.5s;
+}
 </style>
 
 </head>
@@ -65,8 +99,8 @@ html, body {
 				<div id="telco" class="row h-100 ">
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/Telco"><img alt="logo"
-							src="/ProgettoHR/img/errelab.png" class="col-4"></a>Telco
+						<a href="/ProgettoHR/Home/Telco"><img  onmouseover="changeColorBg('#7f1210', 'colonna1')" onmouseleave="changeColorBg('#490a09', 'colonna1')" id="labImg" alt="logo"
+							src="/ProgettoHR/img/errelab.png"></a>
 					</div>
 				</div>
 			</div>
@@ -76,8 +110,8 @@ html, body {
 				<div id="ict" class="row h-100 ">
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/ICT"><img alt="logo"
-							src="/ProgettoHR/img/errepro.png" class="col-4"></a>ICT
+						<a  href="/ProgettoHR/Home/ICT"><img onmouseover="changeColorBg('#1e8199', 'colonna2')" onmouseleave="changeColorBg('#145667', 'colonna2')" id="proImg" alt="logo"
+							src="/ProgettoHR/img/errepro.png"></a>
 					</div>
 				</div>
 			</div>
@@ -87,13 +121,16 @@ html, body {
 				<div id="ingegneria" class="row h-100 ">
 					<div class="col center-content align-self-center "
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/Ingegneria"><img alt="logo"
-							src="/ProgettoHR/img/erretechnologygroup.png" class="col-4"></a>Ingegneria
+						<a  href="/ProgettoHR/Home/Ingegneria"><img onmouseover="changeColorBg('#f69309', 'colonna3')" onmouseleave="changeColorBg('#945805', 'colonna3')" id="techImg"
+							alt="logo" src="/ProgettoHR/img/erretechnologygroup.png"></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript">
+function changeColorBg(color, id) {
+	document.getElementById(id).style.background=color
+}</script>
 </body>
 </html>
