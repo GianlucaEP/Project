@@ -1074,11 +1074,8 @@ svg {
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
 					onsubmit="return validate();">
 					<div class="modal-body">
-
-
 						<form:input path="mansione" type="text" class="form-control"
 							placeholder="Mansione" id="mansione" name="mansione"></form:input>
-
 					</div>
 
 					<div class="modal-footer">
