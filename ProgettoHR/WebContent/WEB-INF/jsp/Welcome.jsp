@@ -22,67 +22,22 @@ html, body {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
-}
-
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-
-/* Pallini dello stato del candidato*/
-.dot {
-	height: 25px;
-	width: 25px;
-	border-radius: 50%;
-	display: inline-block;
-	margin-top: 5px;
-}
-
-/* Navbar */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
 #colonna1 {
 	background-color: #490a09;
 	transition: 0.5s;
-	border-style: solid;
-	border-color: black;
-	border: 5px;
+
 }
 
 #colonna2 {
 	background-color: #145667;
 	transition: 0.5s;
-	border-style: solid;
-	border-color: black;
-	border: 5px;
+
 }
 
 #colonna3 {
 	background-color: #945805;
 	transition: 0.5s;
-	border-style: solid;
-	border-color: black;
+
 }
 
 #telco{
