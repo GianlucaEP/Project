@@ -16,7 +16,7 @@ public class Specializzazione implements Bean {
 
 	// Attributi
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "specializzazione")
 	private String specializzazione;
 	

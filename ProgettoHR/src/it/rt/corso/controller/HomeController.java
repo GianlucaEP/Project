@@ -24,6 +24,7 @@ import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.Utente;
 import it.rt.corso.singleton.Singleton;
@@ -54,6 +55,7 @@ public class HomeController {
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
+	
 
 	
 	@RequestMapping("/Home/{businessUnit}")
@@ -73,6 +75,7 @@ public class HomeController {
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
+		m.addAttribute("specializzazione", new Specializzazione());
 		m.addAttribute("mansioneList", singleton.getMansioneList());
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		return "Home";

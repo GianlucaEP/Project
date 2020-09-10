@@ -899,12 +899,12 @@ svg {
 
 						</ul></li>
 					<li><a href="/ProgettoHR/Candidati/${businessUnit}"
-						type="button"><i class="fas fa-plus"></i> Nuovo candidato</a></li>
+						type="button"><i class="fas fa-plus"></i> Nuovo Candidato</a></li>
 
 					<li><c:choose>
 							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
 								<a href="" data-toggle="modal" data-target="#mansioneModal"
-									type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
+									type="button"><i class="fas fa-plus"></i> Nuova Mansione</a>
 							</c:when>
 						</c:choose></li>
 
@@ -913,6 +913,13 @@ svg {
 								<a href="" data-toggle="modal"
 									data-target="#areaCompetenzaModal" type="button"><i
 									class="fas fa-plus"></i> Nuova Area </a>
+							</c:when>
+						</c:choose></li>
+					<li><c:choose>
+							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
+								<a href="" data-toggle="modal"
+									data-target="#specializzazioneModal" type="button"><i
+									class="fas fa-plus"></i> Nuova Specializzazione </a>
 							</c:when>
 						</c:choose></li>
 
@@ -1021,8 +1028,9 @@ svg {
 								<td
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.seniority.seniority}</td>
-								<td data-toggle="modal" onclick="impostaParametriCandidatoId(${cand.id})" data-target="#EliminaModal"><i
-									class="fas fa-trash-alt"></i></td>
+								<td data-toggle="modal"
+									onclick="impostaParametriCandidatoId(${cand.id})"
+									data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
 
 							</tr>
 
@@ -1102,6 +1110,37 @@ svg {
 			</div>
 		</div>
 	</div>
+	<!-- MODAL AGGIUNTA SPECIALIZZAZIONE -->
+	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Specializzazione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form:form modelAttribute="specializzazione" id="formSpecializzazione"
+						method="POST"
+						action="/ProgettoHR/SpecializzazioneSave/${businessUnit}"
+						onsubmit="return validateSpecializzazione();">
+						<div class="form-group">
+							<form:input path="specializzazione" type="text" class="form-control"
+								placeholder="Specializzazione" id="specializzazione"></form:input>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<!-- MODAL cancella candidato -->
 
@@ -1177,6 +1216,24 @@ svg {
 				control = false;
 
 			}
+			return control;
+		}
+			function validateSpecializzazione() {
+				var areaCompetenza = document.getElementById("specializzazione").value;
+				var list = document.getElementById("formSpecializzazione");
+				var control = true;
+
+				if (specializzazione === "") {
+
+					var tagDiv = document.createElement("div");
+					tagDiv.style = "color:red; font-size: small;"
+					var textnode = document
+							.createTextNode("Inserisci Specializzazione")
+					tagDiv.appendChild(textnode)
+					document.getElementById("specializzazione").appendChild(tagDiv);
+					control = false;
+
+				}
 
 			return control;
 		}
