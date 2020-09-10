@@ -96,13 +96,13 @@ a, a:hover, a:focus {
 	
 	border-style: solid;
 	border-color: black;
+
 }
 
 #ingegneria{
 	
 	border-style: solid;
 	border-color: black;
-	border: 5px;
 }
 
 #proImg {
