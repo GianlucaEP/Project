@@ -46,23 +46,13 @@ public class LoginController {
 		}
 		m.addAttribute("info", "error");
 		return "redirect:/Login";
-//	CHIEDERE AL PROF: il link della pagina sembra non essere corretto(logginIn) anche se tutto fila liscio come l olio (info === error)	
 	}
 
 	@RequestMapping(value = "/Logout", method = RequestMethod.GET)
-	public String Logout(/* HttpServletRequest request */ WebRequest webRequest, SessionStatus status) {
+	public String Logout(WebRequest webRequest, SessionStatus status) {
 		status.setComplete();
 		webRequest.removeAttribute("utente", WebRequest.SCOPE_SESSION);
-		
-		//  chiudo la sessione del database in quanto sto facendo logout
 
-//		 HttpSession session=request.getSession(); 
-//		 System.out.println("session id before invalidating it:"+session.getId());
-//		          Utente utente=(Utente)session.getAttribute("utente");
-//		          System.out.println("utente obje"+utente.getUsername());
-//		          session.removeAttribute("utente");   
-//		    session.invalidate(); 
-//		System.out.println("session id after invalidating session is:"+session.getId());
 		return "redirect:/Login";
 	}
 
