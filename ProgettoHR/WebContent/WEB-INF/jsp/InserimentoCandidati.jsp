@@ -152,7 +152,7 @@ ul ul a {
 
 </head>
 
-<body>
+<body onload="impostaAnno()">
 
 	<!-- NAVBAR -->
 	<div class="container-fluid">
@@ -252,7 +252,7 @@ ul ul a {
 						<div class="form-group col-4">
 							<label>Anno di nascita: </label>
 							<form:input type="text" path="anno" class="form-control"
-								id="anno"></form:input>
+								placeholder="dddd" id="anno"></form:input>
 						</div>
 
 						<div class="form-group col-8">
@@ -399,7 +399,8 @@ ul ul a {
 				</div>
 				<div class="modal-body">
 					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST" action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
+						method="POST"
+						action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
 						onsubmit="return validate();">
 						<div class="form-group">
 							<form:input path="mansione" type="text" class="form-control"
@@ -414,7 +415,7 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
 	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -446,27 +447,29 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- MODAL AGGIUNTA SPECIALIZZAZOINE -->
 	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Specializzazione</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
+						Specializzazione</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form modelAttribute="specializzazione" id="formSpecializzazione"
-						method="POST"
+					<form:form modelAttribute="specializzazione"
+						id="formSpecializzazione" method="POST"
 						action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
 						onsubmit="return validateArea();">
 						<div class="form-group">
-							<form:input path="specializzazione" type="text" class="form-control"
-								placeholder="Specializzazione" id="specializzazione"></form:input>
+							<form:input path="specializzazione" type="text"
+								class="form-control" placeholder="Specializzazione"
+								id="specializzazione"></form:input>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>
@@ -504,7 +507,11 @@ ul ul a {
 		areaCnt = 0;
 		mansioneCnt = 0;
 		specializzazioneCnt = 0;
-
+		
+		function impostaAnno(){
+			document.getElementById("anno").value = "";
+		}
+		
 
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
 			if(document.getElementById("area0") !== null){   
@@ -659,6 +666,26 @@ ul ul a {
 
 		
 		function validateForm(){
+			
+			if(document.getElementById("anno").value != ""){
+				if(document.getElementById("anno").value.length != 4 || isNaN(document.getElementById("anno").value)){
+					$('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
+					return false
+			}
+		}
+			
+			if(document.getElementById("telefono").value.length != 10 || isNaN(document.getElementById("telefono").value)){
+				$('#errorModal').modal('toggle');
+				document.getElementById("errorModalBody").innerHTML = "Telefono deve essere composto da 10 cifre"
+				return false;
+			}
+			
+			if(document.getElementById("codiceFiscale").value != "" && document.getElementById("codiceFiscale").value.length != 16){
+				$('#errorModal').modal('toggle');
+				document.getElementById("errorModalBody").innerHTML = "Codice Fiscale deve essere composto da 16 lettere/cifre"
+				return false;
+			}
 			
 			if(document.getElementById("nome").value == "" || document.getElementById("cognome").value == "" || document.getElementById("telefono").value == "" || document.getElementById("email").value == ""){
 				return false;
