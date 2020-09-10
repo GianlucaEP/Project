@@ -104,26 +104,34 @@
 		class="it.rt.corso.filter.BusinessFilter">
 	</bean>
 
-	<!--  <bean id="seniorityFilter"
+	<bean id="seniorityFilter"
 		class="it.rt.corso.filter.SeniorityFilter">
-	</bean>-->
-	
+	</bean>
+
 	<bean id="provenienzaFilter"
 		class="it.rt.corso.filter.ProvenienzaFilter">
 	</bean>
-	
+
+	<bean id="areaCompetenzaFilter"
+		class="it.rt.corso.filter.AreaCompetenzaFilter">
+	</bean>
+
 	<bean id="mansioneFilter"
 		class="it.rt.corso.filter.MansioneFilter">
 	</bean>
-	
+
+	<bean id="specializzazioneFilter"
+		class="it.rt.corso.filter.AreaCompetenzaFilter">
+	</bean>
+
 	<bean id="costoMaxFilter"
 		class="it.rt.corso.filter.CostoMaxFilter">
 	</bean>
-	
+
 	<bean id="costoMinimoFilter"
 		class="it.rt.corso.filter.CostoMinimoFilter">
 	</bean>
-	
+
 	<bean id="categoriaProtettaFilter"
 		class="it.rt.corso.filter.CategoriaProtettaFilter">
 	</bean>
@@ -132,14 +140,16 @@
 		value-type="it.rt.corso.filter.CandidatoFilter">
 		<ref bean="nomeFilter" />
 		<ref bean="cognomeFilter" />
-		<ref bean="annoDiNascitaFilter"/>
-		<ref bean="telefonoFilter"/>
-		<ref bean="emailFilter"/>
-		<ref bean="businessFilter"/>
-		<!--  <ref bean="seniorityFilter"/>-->
-		<ref bean="provenienzaFilter"/>
-		<ref bean="mansioneFilter"/>
-		<ref bean="costoMaxFilter"/>
+		<ref bean="annoDiNascitaFilter" />
+		<ref bean="telefonoFilter" />
+		<ref bean="emailFilter" />
+		<ref bean="businessFilter" />
+		<ref bean="seniorityFilter" />
+		<ref bean="provenienzaFilter" />
+		<ref bean="areaCompetenzaFilter" />
+		<ref bean="mansioneFilter" />
+		<ref bean="specializzazioneFilter" />
+		<ref bean="costoMaxFilter" />
 		<ref bean="costoMinimoFilter" />
 		<ref bean="categoriaProtettaFilter" />
 	</util:list>

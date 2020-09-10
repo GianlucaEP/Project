@@ -24,6 +24,7 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 			if(!addedCriteria) {
 				listaPredicati = filter.checkFilter(listaPredicati, root, nomeFiltro,valore);	
 			} else {
+				CandidatoFilter.setAddedCriteria(false);
 				break;
 			}
 			
@@ -31,6 +32,14 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 
 		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
 			MansioneFilter.buildMansionePredicate(listaPredicati);
+		}
+		
+		if(!AreaCompetenzaFilter.getListaPredicatesAreaCompetenza().isEmpty()) {
+			AreaCompetenzaFilter.buildAreaCompetenzaPredicate(listaPredicati);
+		}
+		
+		if(!SpecializzazioneFilter.getListaPredicatesSpecializzazione().isEmpty()) {
+			SpecializzazioneFilter.buildSpecializzazionePredicate(listaPredicati);
 		}
 		
 		CandidatoFilter.setAddedCriteria(false);

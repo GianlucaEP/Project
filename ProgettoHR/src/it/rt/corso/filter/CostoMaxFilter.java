@@ -21,7 +21,7 @@ public class CostoMaxFilter extends CandidatoFilter {
 			Session session = Utility.getSession();
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-			listaPredicati.add(criteriaBuilder.greaterThan(root.get("costo"), Integer.parseInt(valore)));
+			listaPredicati.add(criteriaBuilder.lessThan(root.get("costo"), Integer.parseInt(valore)));
 			
 			CandidatoFilter.setAddedCriteria(true);
 

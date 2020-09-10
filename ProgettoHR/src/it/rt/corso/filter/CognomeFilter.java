@@ -18,7 +18,7 @@ public class CognomeFilter extends CandidatoFilter{
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
 
-		if (nomeFiltro.contains("cognome")) {
+		if (nomeFiltro.equals("cognome")) {
 
 			Session session = Utility.getSession();
 

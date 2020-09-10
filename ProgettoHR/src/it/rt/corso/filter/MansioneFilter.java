@@ -15,14 +15,14 @@ import it.rt.corso.utility.Utility;
 
 public class MansioneFilter extends CandidatoFilter{
 
-	private static List<Predicate> listaPredicatesMansioni = new ArrayList<Predicate>();
+	private static List<Predicate> listaPredicatesMansione = new ArrayList<Predicate>();
 
 	public static List<Predicate> getListaPredicatesMansioni() {
-		return listaPredicatesMansioni;
+		return listaPredicatesMansione;
 	}
 
 	public static void setListaPredicatesMansioni(List<Predicate> listaPredicatesMansioni) {
-		MansioneFilter.listaPredicatesMansioni = listaPredicatesMansioni;
+		MansioneFilter.listaPredicatesMansione = listaPredicatesMansioni;
 	}
 	
 	@Override
@@ -36,10 +36,10 @@ public class MansioneFilter extends CandidatoFilter{
 			Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
 
 			
-			listaPredicatesMansioni
+			listaPredicatesMansione
 			.add(criteriaBuilder.like(mansione.get("mansione"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
-			System.out.println(CandidatoFilter.isAddedCriteria());
+			
 			return listaPredicati;
 		} else {
 			return listaPredicati;
@@ -57,11 +57,12 @@ public class MansioneFilter extends CandidatoFilter{
 	 * 
 	 * */
 	public static List<Predicate> buildMansionePredicate(List<Predicate> listaPredicati){
-		Predicate[] predicatesMansioni = listaPredicatesMansioni
-				.toArray(new Predicate[listaPredicatesMansioni.size()]);
+		Predicate[] predicatesMansioni = listaPredicatesMansione
+				.toArray(new Predicate[listaPredicatesMansione.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
 		listaPredicati.add(criteriaBuilder.or(predicatesMansioni));
+		listaPredicatesMansione = new ArrayList<Predicate>();
 		
 		return listaPredicati;
 	}

@@ -1,5 +1,15 @@
 package it.rt.corso.filter;
 
-public class InserimentoToFilter{
+import java.util.Date;
 
+public class InserimentoToFilter{
+	private static Date inserimentoTo;
+
+	public static Date getInserimentoTo() {
+		return inserimentoTo;
+	}
+
+	public static void setInserimentoTo(Date inserimentoTo) {
+		InserimentoToFilter.inserimentoTo = inserimentoTo;
+	}
 }

@@ -16,7 +16,7 @@ public class NomeFilter extends CandidatoFilter {
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
 
-		if (nomeFiltro.contains("nome")) {
+		if (nomeFiltro.equals("nome")) {
 
 			Session session = Utility.getSession();
 

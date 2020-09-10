@@ -21,7 +21,8 @@ public class AnnoDiNascitaFilter extends CandidatoFilter{
 			Session session = Utility.getSession();
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-			listaPredicati.add(criteriaBuilder.like(root.get("anno"), "%" + valore + "%"));
+			
+			listaPredicati.add(criteriaBuilder.equal(root.get("anno"), Integer.parseInt(valore)));
 			return listaPredicati;
 		} else {
 			return listaPredicati;
