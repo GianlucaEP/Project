@@ -18,12 +18,12 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 /* Body e html generale*/
 html, body {
@@ -35,30 +35,34 @@ body {
 	background: #fafafa;
 }
 
-p {
-	font-family: 'Poppins', sans-serif;
-	font-size: 1.1em;
-	font-weight: 300;
-	line-height: 1.7em;
-	color: #999;
-}
-
 a, a:hover, a:focus {
 	color: inherit;
 	text-decoration: none;
 	transition: all 0.3s;
 }
 
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
 /* Navbar */
 .navbar {
-	position: absolute;
 	background: #5aa9e6;
 	border: none;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-	width: 100%;
+}
+/* ICONA LOGOUT */
+.svg-inline--fa.fa-w-16 {
+	margin-left: 5px;
+	margin-top: 5px;
+	overflow: hidden;
+	vertical-align: middle;
+	width: 25px;
+	height: 25px;
+}
+
+.navbar-nav .nav-link {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #7fc8f8;
+	border-radius: 50%;
 }
 
 .navbar .navbar-brand .logo {
@@ -66,35 +70,26 @@ a, a:hover, a:focus {
 	height: 70px;
 }
 
-.navbar .btn {
-	background: #7fc8f8;
-	width: 50%;
-	margin-left: 60px;
-}
-
-.line {
-	width: 100%;
-	height: 1px;
-	border-bottom: 1px dashed #ddd;
-	margin: 40px 0;
-}
-
 /* Barra Laterale */
-.container-fluid2 {
-	margin-top: 110px;
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: rows;
+	justify-content: flex-start;
 }
 
 #sidebar {
+	width: 100%;
+	height: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	min-width: 250px;
-	max-width: 250px;
 	border-radius: 0px 5px 5px 0px;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
 	background: #5aa9e6;
 	color: #fff;
+	border-collapse: collapse;
 	height: 100%;
 }
 
@@ -155,38 +150,35 @@ ul ul a {
 <body onload="impostaAnno()">
 
 	<!-- NAVBAR -->
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="navbar">
+	<nav class="navbar navbar-expand-xl ">
+		<div class="container-fluid">
 
-				<!-- LOGO -->
-				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-					<img class="logo"
-					src="/ProgettoHR/img/Erre_technology_group_NEW.png">
-				</a>
+			<!-- LOGO -->
+			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			</a>
 
-				<!-- BOTTONE PROFILO -->
-				<div class="col-1">
+			<!-- BOTTONE PROFILO -->
+			<!--  <button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-expanded="false"
+				aria-controls="navbarCollapse" aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>-->
 
-					<button class="btn" id="logout" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-cog"></i>
-					</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
 
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="/ProgettoHR/Logout">Logout</a>
-					</div>
-
-				</div>
-
-			</nav>
+				</ul>
+			</div>
 		</div>
-	</div>
+	</nav>
 
-	<div class="container-fluid2 ">
+	<div class="container-fluid container1 p-0">
 		<div class="row">
 			<!-- COLONNA BOTTONI LATERALI -->
-			<div class="col-auto">
+			<div class="col-3">
 
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
@@ -252,20 +244,20 @@ ul ul a {
 						<div class="form-group col-4">
 							<label>Anno di nascita: </label>
 							<form:input type="text" path="anno" class="form-control"
-								placeholder="dddd" id="anno"></form:input>
+								placeholder="yyyy" id="anno"></form:input>
 						</div>
 
 						<div class="form-group col-8">
 							<label>Telefono:</label>
 							<form:input type="text" path="telefono" class="form-control"
-								id="telefono" required="required"></form:input>
+								id="telefono" required="required" placeholder="123-456-7890"></form:input>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label>E-mail:</label>
-						<form:input type="text" path="email" class="form-control"
-							id="email" required="required"></form:input>
+						<form:input type="email" path="email" pattern=".+@globex.com"
+							size="30" class="form-control" id="email" required="required"></form:input>
 					</div>
 
 					<div class="form-group">
@@ -273,24 +265,25 @@ ul ul a {
 						<form:input type="text" path="codiceFiscale" class="form-control"
 							id="codiceFiscale"></form:input>
 					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Seniority:</label>
+							<form:select path="seniority.seniority" class="custom-select">
 
-					<div class="form-group">
-						<label>Seniority:</label>
-						<form:select path="seniority.seniority" class="custom-select">
+								<c:forEach var="sen" items="${seniorityList}">
+									<option value="${sen.seniority}">${sen.seniority}</option>
+								</c:forEach>
+							</form:select>
+						</div>
 
-							<c:forEach var="sen" items="${seniorityList}">
-								<option value="${sen.seniority}">${sen.seniority}</option>
-							</c:forEach>
-						</form:select>
-					</div>
-
-					<div class="form-group">
-						<label>Business unit:</label>
-						<form:select path="business.business" class="custom-select">
-							<c:forEach var="bus" items="${businessList}">
-								<option value="${bus.business}">${bus.business}</option>
-							</c:forEach>
-						</form:select>
+						<div class="form-group col-6">
+							<label>Business unit:</label>
+							<form:select path="business.business" class="custom-select">
+								<c:forEach var="bus" items="${businessList}">
+									<option value="${bus.business}">${bus.business}</option>
+								</c:forEach>
+							</form:select>
+						</div>
 					</div>
 
 					<div class="form-group">
@@ -299,65 +292,83 @@ ul ul a {
 							id="provenienza" name="provenienza"></form:input>
 					</div>
 
-
-					<div class="form-group">
-
+					<div class="form-group mb-3">
 						<label>Area competenza:</label>
-						<div id="areeCompetenzaDiv">
-							<input autocomplete="off" placeholder="aggiungi"
-								list="areeCompetenzeDisponibili" id="areaCompetenzaInput">
-							<datalist id="areeCompetenzeDisponibili">
-								<c:forEach var="area" items="${areaCompetenzaList}">
-									<option value="${area}"></option>
-								</c:forEach>
-							</datalist>
-							<div
-								onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-								class="btn">
-								<i class="fas fa-plus-square mr-1"></i>
+						<div class="form-row">
+							<div class="col-11">
+								<div id="areeCompetenzaDiv">
+									<input autocomplete="off" placeholder="aggiungi"
+										list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
+										class="form-control">
+									<datalist id="areeCompetenzeDisponibili">
+										<c:forEach var="area" items="${areaCompetenzaList}">
+											<option value="${area}"></option>
+										</c:forEach>
+									</datalist>
+								</div>
+							</div>
+							<div class="col-1">
+								<button
+									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+									class="btn btn-block form-control">
+									<i class="fas fa-plus"></i>
+								</button>
 							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-
+					<div class="form-group mb-3">
 						<label>Mansione:</label>
-						<div id="mansioneDiv">
-							<input autocomplete="off" placeholder="aggiungi"
-								list="mansioniDisponibili" id="mansioneInput">
-							<datalist id="mansioniDisponibili">
-								<c:forEach var="mans" items="${mansioneList}">
-									<option value="${mans}"></option>
-								</c:forEach>
-							</datalist>
-							<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-								class="btn">
-								<i class="fas fa-plus-square mr-1"></i>
+						<div class="form-row">
+							<div class="col-11">
+
+								<div id="mansioneDiv">
+									<input autocomplete="off" placeholder="aggiungi"
+										list="mansioniDisponibili" id="mansioneInput"
+										class="form-control">
+									<datalist id="mansioniDisponibili">
+										<c:forEach var="mans" items="${mansioneList}">
+											<option value="${mans}"></option>
+										</c:forEach>
+									</datalist>
+
+								</div>
+							</div>
+							<div class="col-1">
+								<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+									class="btn">
+									<i class="fas fa-plus"></i>
+								</div>
 							</div>
 						</div>
 					</div>
 
-
 					<div class="form-group">
-
 						<label>Specializzazione:</label>
-
-						<div id="specializzazioneDiv">
-							<input autocomplete="off" placeholder="aggiungi"
-								list="specializzazioniDisponibili" id="specializzazioneInput">
-							<datalist id="specializzazioniDisponibili">
-								<c:forEach var="specializzazione"
-									items="${specializzazioneList}">
-									<option value="${specializzazione}"></option>
-								</c:forEach>
-							</datalist>
-
-							<input id="anniEsperienzaInput" class="text-left" type="number"
-								placeholder="anni esperienza">
-							<div
-								onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-								class="btn">
-								<i class="fas fa-plus-square mr-1"></i>
+						<div class="form-row">
+							<div class="col-6">
+								<div id="specializzazioneDiv">
+									<input autocomplete="off" placeholder="aggiungi"
+										list="specializzazioniDisponibili" id="specializzazioneInput"
+										class="form-control">
+									<datalist id="specializzazioniDisponibili">
+										<c:forEach var="specializzazione"
+											items="${specializzazioneList}">
+											<option value="${specializzazione}"></option>
+										</c:forEach>
+									</datalist>
+								</div>
+							</div>
+							<div class="col-5">
+								<input id="anniEsperienzaInput" class="text-left form-control" type="number"
+									placeholder="anni esperienza">
+							</div>
+							<div class="col-1">
+								<div
+									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+									class="btn">
+									<i class="fas fa-plus"></i>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -375,10 +386,9 @@ ul ul a {
 					<hr class="my-4">
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block">Salva</button>
+						<button type="submit" class="btn btn-success btn-block">Salva</button>
 						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
 					</div>
-
 				</form:form>
 			</div>
 		</div>
@@ -390,28 +400,28 @@ ul ul a {
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
+					<h5 class="modal-title" id="exampleModalLabel">Aggiungi
 						Mansione</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST"
-						action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
-						onsubmit="return validate();">
-						<div class="form-group">
-							<form:input path="mansione" type="text" class="form-control"
-								placeholder="Mansione" id="mansione" name="mansione"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="mansione" id="formMansione" method="POST"
+					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
+					onsubmit="return validate();">
+					<div class="modal-body">
+						<form:input path="mansione" type="text" class="form-control"
+							placeholder="Mansione" id="mansione" name="mansione"></form:input>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-mansione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-mansione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -429,21 +439,23 @@ ul ul a {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
-						method="POST"
-						action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
-						onsubmit="return validateArea();">
-						<div class="form-group">
-							<form:input path="area" type="text" class="form-control"
-								placeholder="Area di Competenza" id="area"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
+					method="POST"
+					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
+					onsubmit="return validateArea();">
+					<div class="modal-body">
+
+						<form:input path="area" type="text" class="form-control"
+							placeholder="Area di Competenza" id="area"></form:input>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-area"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-area"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -461,22 +473,26 @@ ul ul a {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form:form modelAttribute="specializzazione"
-						id="formSpecializzazione" method="POST"
-						action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
-						onsubmit="return validateArea();">
-						<div class="form-group">
-							<form:input path="specializzazione" type="text"
-								class="form-control" placeholder="Specializzazione"
-								id="specializzazione"></form:input>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Salva</button>
-							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-						</div>
-					</form:form>
-				</div>
+				<form:form modelAttribute="specializzazione"
+					id="formSpecializzazione" method="POST"
+					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
+					onsubmit="return validateSpecializzazione();">
+					<div class="modal-body">
+
+						<form:input path="specializzazione" type="text"
+							class="form-control" placeholder="Specializzazione"
+							id="specializzazione"></form:input>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-specializzazione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-specializzazione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -539,7 +555,7 @@ ul ul a {
 					tagInput.name = "areaCompetenza";
 					tagInput.readOnly = true;
 					
-					tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
+					tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
 					
 					tagDivButton.onclick = function(){				              	              	          				
 						tagDiv.remove();
@@ -589,7 +605,7 @@ ul ul a {
 			tagInput.name = "mansioni";
 			tagInput.readOnly = true;
 			
-			tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
+			tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
 			
 			tagDivButton.onclick = function(){				              	              	          				
 				tagDiv.remove();
@@ -644,7 +660,7 @@ ul ul a {
 					tagInput.name = "specializzazione";
 					tagInput.readOnly = true;
 					
-					tagDivButton.innerHTML = '<i class="material-icons">delete</i>';
+					tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
 					
 					tagDivButton.onclick = function(){				              	              	          				
 						tagDiv.remove();
@@ -704,8 +720,6 @@ ul ul a {
 		
 	</script>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
