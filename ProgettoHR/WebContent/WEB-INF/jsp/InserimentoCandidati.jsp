@@ -619,8 +619,13 @@ ul ul a {
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
               		}           
-				} 
+				} 	
+			}
 			
+			if(document.getElementById("anniEsperienzaInput").value < 0){
+				$('#errorModal').modal('toggle');   
+				document.getElementById("errorModalBody").innerHTML = "Gli anni di esperienza non possono essere meno di zero";  
+				return; 
 			}
 			
 			for(specializzazione of buildString(specializzazioneList)){
@@ -650,6 +655,7 @@ ul ul a {
 					
 					document.getElementById("specializzazioneDiv").appendChild(tagDiv);
 					document.getElementById("specializzazioneInput").value = "";
+					document.getElementById("anniEsperienzaInput").value = "";
 					document.getElementById("specializzazioneInput").focus();
 					return;
 				}
