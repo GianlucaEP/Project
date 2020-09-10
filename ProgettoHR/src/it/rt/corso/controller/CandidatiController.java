@@ -317,8 +317,8 @@ public class CandidatiController {
 
 	}
 
-	@RequestMapping(value = "/Candidato/{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, Model m, @SessionAttribute("utente") Utente utente) {
+	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
+	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m, @SessionAttribute("utente") Utente utente) {
 
 		Singleton singleton = Singleton.getInstance();
 
@@ -329,6 +329,7 @@ public class CandidatiController {
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mostraCandidato", c);
+		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
