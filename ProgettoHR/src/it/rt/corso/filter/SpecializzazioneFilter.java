@@ -30,7 +30,7 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 			String valore) {
 
 		if (nomeFiltro.contains("specializzazione")) {
-
+			System.out.println("sas");
 			CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 			// join tra candidato e candidatoSpecializzazione
 			Join<Candidato, CandidatoSpecializzazione> candidatoSpecializzazione = root.join("candidatoSpecializzazione",

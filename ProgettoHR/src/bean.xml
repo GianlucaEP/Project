@@ -121,7 +121,7 @@
 	</bean>
 
 	<bean id="specializzazioneFilter"
-		class="it.rt.corso.filter.AreaCompetenzaFilter">
+		class="it.rt.corso.filter.SpecializzazioneFilter">
 	</bean>
 
 	<bean id="costoMaxFilter"
