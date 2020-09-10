@@ -64,6 +64,12 @@ public class Utility {
 		session.close();
 	}
 	
+	/**
+	 * 
+	 * Build a session and create a CriteriaBuilder object 
+	 *  
+	 *  @return an instantiated CriteriaBuilder object 
+	 **/
 	public static CriteriaBuilder createCriteriaBuilder() {
 		Utility.buildSession();
 		Session session = Utility.getSession();

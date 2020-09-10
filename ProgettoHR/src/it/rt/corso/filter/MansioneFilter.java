@@ -47,14 +47,21 @@ public class MansioneFilter extends CandidatoFilter{
 		}
 		
 	}
-	
+	/** 
+	 * 
+	 * add an or predicate to the given List of predicates
+	 * 
+	 * @param listaPredicati the list of predicates to which the or predicate will be added
+	 * 
+	 * @return the given list of predicates with the added predicate
+	 * 
+	 * */
 	public static List<Predicate> buildMansionePredicate(List<Predicate> listaPredicati){
 		Predicate[] predicatesMansioni = listaPredicatesMansioni
 				.toArray(new Predicate[listaPredicatesMansioni.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
 		listaPredicati.add(criteriaBuilder.or(predicatesMansioni));
-		CandidatoFilter.setAddedCriteria(true);
 		
 		return listaPredicati;
 	}
