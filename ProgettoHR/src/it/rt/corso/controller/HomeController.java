@@ -9,6 +9,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,21 +57,19 @@ public class HomeController {
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
-	
 
-	
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
-		
+
 		Singleton singleton = Singleton.getInstance();
 
 		// Business business= bdao.get(businessUnit);
-		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);		
-		
-		if (utente.getUsername()==null) {
+		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
+
+		if (utente.getUsername() == null) {
 			return "redirect:/Login";
 		}
-		
+
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
@@ -81,14 +81,12 @@ public class HomeController {
 		return "Home";
 	}
 
-	
-	
 	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
 
 //		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
-		
+
 		Singleton singleton = Singleton.getInstance();
 
 //		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
@@ -99,7 +97,6 @@ public class HomeController {
 			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
 		}
 
-
 		m.addAttribute("mansioneList", singleton.getMansioneList());
 		m.addAttribute("list", list);
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
@@ -112,13 +109,10 @@ public class HomeController {
 		return "Home";
 	}
 
-	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Some parameters are invalid")
-	void onIllegalArgumentException(IllegalArgumentException exception) {
-		
-	}
-
-	
-	
+//	@ResponseStatus(HttpStatus.BAD_REQUEST)
+//	@ExceptionHandler({ ServletRequestBindingException.class })
+//	public String sessionClosed() {
+//		return "redirect:/Login";
+//	}
 
 }
