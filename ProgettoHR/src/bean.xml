@@ -135,6 +135,9 @@
 	<bean id="categoriaProtettaFilter"
 		class="it.rt.corso.filter.CategoriaProtettaFilter">
 	</bean>
+	<bean id="inserimentoFilter"
+		class="it.rt.corso.filter.InserimentoFilter">
+	</bean>
 
 	<util:list id="filterList"
 		value-type="it.rt.corso.filter.CandidatoFilter">
@@ -152,6 +155,7 @@
 		<ref bean="costoMaxFilter" />
 		<ref bean="costoMinimoFilter" />
 		<ref bean="categoriaProtettaFilter" />
+		<ref bean="inserimentoFilter" />
 	</util:list>
 
 </beans> 

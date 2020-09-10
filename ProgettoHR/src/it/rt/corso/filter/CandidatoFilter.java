@@ -42,6 +42,8 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 			SpecializzazioneFilter.buildSpecializzazionePredicate(listaPredicati);
 		}
 		
+		InserimentoFilter.buildInserimentoPredicate(listaPredicati);
+		
 		CandidatoFilter.setAddedCriteria(false);
 
 		return listaPredicati;
