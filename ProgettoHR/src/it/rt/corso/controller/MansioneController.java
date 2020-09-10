@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.rt.corso.DAO.MansioneDAO;
+import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Mansione;
+import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class MansioneController {
@@ -18,15 +20,32 @@ public class MansioneController {
 
 	MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
 	
-	@RequestMapping(value = "/MansioniSave/{businessUnit}", method = RequestMethod.POST)
+	//aggiungo una mansione dalla Home
+	@RequestMapping(value = "/MansioniSaveDaHome/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiMansioneHome(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
-		dao.inserisci(mansione); 
+		aggiungiMansione(mansione); 
 		return "redirect:/Home/{businessUnit}";
 	}
 	
+	//aggiungo una mansione dalla pagina di inserimento candidato
+	@RequestMapping(value = "/MansioniSaveDaInserimentoCandidato/{businessUnit}", method = RequestMethod.POST)
+	public String aggiungiMansioneInserimentoCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable String businessUnit) {
+		aggiungiMansione(mansione); 
+		return "redirect:/Candidati/{businessUnit}";
+	}
+	
+	//aggiungo una mansione dalla pagina del candidato
 	@RequestMapping(value = "/MansioniSaveInCandidato/{id}", method = RequestMethod.POST)
 	public String aggiungiMansioneCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable int id) {
-		dao.inserisci(mansione); 
+		aggiungiMansione(mansione); 
 		return "redirect:/Candidato/{id}";
+	}
+	
+	public void aggiungiMansione(Mansione mansione) {
+		dao.inserisci(mansione);
+
+		// aggiorno la lista di mansione
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaMansione();
 	}
 }

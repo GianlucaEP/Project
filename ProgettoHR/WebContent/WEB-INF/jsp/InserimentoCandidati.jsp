@@ -196,13 +196,25 @@ ul ul a {
 					</div>
 
 					<ul class="list-unstyled components">
-						<li><c:choose>
-								<c:when
-									test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-									<a href="" data-toggle="modal" data-target="#mansioneModal"
-										type="button"><i class="fas fa-plus"></i> Nuova mansione</a>
-								</c:when>
-							</c:choose></li>
+
+						<c:if test="${utente.ruolo.ruolo == 'admin'}">
+							<li><a href="" data-toggle="modal"
+								data-target="#mansioneModal" type="button"><i
+									class="fas fa-plus"></i> Nuova mansione</a></li>
+						</c:if>
+
+						<c:if test="${utente.ruolo.ruolo == 'admin'}">
+							<li><a href="" data-toggle="modal"
+								data-target="#areaCompetenzaModal" type="button"><i
+									class="fas fa-plus"></i> Nuova Area</a></li>
+						</c:if>
+
+						<c:if test="${ utente.ruolo.ruolo == 'admin'}">
+							<li><a href="" data-toggle="modal"
+								data-target="#specializzazioneModal" type="button"><i
+									class="fas fa-plus"></i> Nuova Specializzazione</a></li>
+						</c:if>
+
 					</ul>
 				</nav>
 			</div>
@@ -210,8 +222,9 @@ ul ul a {
 			<!-- COLONNA INSERIMENTO CANDIDATO -->
 			<div class="col-auto">
 
-				<form:form class="border rounded p-3" autocomplete="off" method="POST"
-					onsubmit="return validateForm()" modelAttribute="candidato"
+				<form:form class="border rounded p-3" autocomplete="off"
+					method="POST" onsubmit="return validateForm()"
+					modelAttribute="candidato"
 					action="/ProgettoHR/CandidatiSave/${businessUnit}">
 
 					<h4 class="text-center">Nuovo candidato</h4>
@@ -222,12 +235,14 @@ ul ul a {
 					<div class="form-row">
 
 						<div class="form-group col-6">
-							<label>Nome: </label><form:input path="nome" type="text" class="form-control"
-								id="nome"  required="required"></form:input>
+							<label>Nome: </label>
+							<form:input path="nome" type="text" class="form-control"
+								id="nome" required="required"></form:input>
 						</div>
 						<div class="form-group col-6">
-							<label>Cognome: </label><form:input type="text" path="cognome" class="form-control"
-								id="cognome"  required="required"></form:input>
+							<label>Cognome: </label>
+							<form:input type="text" path="cognome" class="form-control"
+								id="cognome" required="required"></form:input>
 						</div>
 
 					</div>
@@ -235,29 +250,33 @@ ul ul a {
 					<div class="form-row">
 
 						<div class="form-group col-4">
-							<label>Anno di nascita: </label> <form:input type="text" path="anno"
-								class="form-control" id="anno" ></form:input>
+							<label>Anno di nascita: </label>
+							<form:input type="text" path="anno" class="form-control"
+								id="anno"></form:input>
 						</div>
 
 						<div class="form-group col-8">
-							<label>Telefono:</label> <form:input type="text" path="telefono" class="form-control"
-								id="telefono"  required="required"></form:input>
+							<label>Telefono:</label>
+							<form:input type="text" path="telefono" class="form-control"
+								id="telefono" required="required"></form:input>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label>E-mail:</label> <form:input type="text" path="email" class="form-control"
-							id="email"  required="required"></form:input>
+						<label>E-mail:</label>
+						<form:input type="text" path="email" class="form-control"
+							id="email" required="required"></form:input>
 					</div>
 
 					<div class="form-group">
-						<label>Codice fiscale:</label> <form:input type="text" path="codiceFiscale"
-							class="form-control" id="codiceFiscale"></form:input>
+						<label>Codice fiscale:</label>
+						<form:input type="text" path="codiceFiscale" class="form-control"
+							id="codiceFiscale"></form:input>
 					</div>
 
 					<div class="form-group">
-						<label>Seniority:</label> <form:select path="seniority.seniority" 
-							class="custom-select">
+						<label>Seniority:</label>
+						<form:select path="seniority.seniority" class="custom-select">
 
 							<c:forEach var="sen" items="${seniorityList}">
 								<option value="${sen.seniority}">${sen.seniority}</option>
@@ -266,8 +285,8 @@ ul ul a {
 					</div>
 
 					<div class="form-group">
-						<label>Business unit:</label> <form:select path="business.business" 
-							class="custom-select">
+						<label>Business unit:</label>
+						<form:select path="business.business" class="custom-select">
 							<c:forEach var="bus" items="${businessList}">
 								<option value="${bus.business}">${bus.business}</option>
 							</c:forEach>
@@ -275,8 +294,9 @@ ul ul a {
 					</div>
 
 					<div class="form-group">
-						<label>Provenienza candidatura:</label> <form:input type="text" path="provenienza"
-							class="form-control" id="provenienza" name="provenienza"></form:input>
+						<label>Provenienza candidatura:</label>
+						<form:input type="text" path="provenienza" class="form-control"
+							id="provenienza" name="provenienza"></form:input>
 					</div>
 
 
@@ -310,14 +330,13 @@ ul ul a {
 									<option value="${mans}"></option>
 								</c:forEach>
 							</datalist>
-							<div
-								onclick="stampaMansioneSelezionata('${mansioneList}')"
+							<div onclick="stampaMansioneSelezionata('${mansioneList}')"
 								class="btn">
 								<i class="fas fa-plus-square mr-1"></i>
 							</div>
 						</div>
 					</div>
-					
+
 
 					<div class="form-group">
 
@@ -345,9 +364,10 @@ ul ul a {
 
 					<div class="form-group mt-2">
 						<div class="custom-control custom-switch">
-							<form:checkbox  path="categoriaProtetta" class="custom-control-input"
-								id="customSwitch1" name="categoriaProtetta"></form:checkbox> <label
-								class="custom-control-label" for="customSwitch1">Categoria
+							<form:checkbox path="categoriaProtetta"
+								class="custom-control-input" id="customSwitch1"
+								name="categoriaProtetta"></form:checkbox>
+							<label class="custom-control-label" for="customSwitch1">Categoria
 								protetta</label>
 						</div>
 					</div>
@@ -379,11 +399,74 @@ ul ul a {
 				</div>
 				<div class="modal-body">
 					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST" action="/ProgettoHR/MansioniSave/${businessUnit}"
+						method="POST" action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
 						onsubmit="return validate();">
 						<div class="form-group">
 							<form:input path="mansione" type="text" class="form-control"
 								placeholder="Mansione" id="mansione" name="mansione"></form:input>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
+	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Area
+						Competenza</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
+						method="POST"
+						action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
+						onsubmit="return validateArea();">
+						<div class="form-group">
+							<form:input path="area" type="text" class="form-control"
+								placeholder="Area di Competenza" id="area"></form:input>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Salva</button>
+							<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- MODAL AGGIUNTA SPECIALIZZAZOINE -->
+	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Specializzazione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form:form modelAttribute="specializzazione" id="formSpecializzazione"
+						method="POST"
+						action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
+						onsubmit="return validateArea();">
+						<div class="form-group">
+							<form:input path="specializzazione" type="text" class="form-control"
+								placeholder="Specializzazione" id="specializzazione"></form:input>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>

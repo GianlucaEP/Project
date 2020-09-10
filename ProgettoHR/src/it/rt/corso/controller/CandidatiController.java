@@ -63,7 +63,11 @@ public class CandidatiController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 
+		// model attribute per l' eventuale aggiunta di mansione, area o specializzazione
 		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("areaCompetenza", new AreaCompetenza());
+		m.addAttribute("specializzazione", new Specializzazione());
+		
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
