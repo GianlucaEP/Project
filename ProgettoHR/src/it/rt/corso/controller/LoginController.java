@@ -14,7 +14,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import it.rt.corso.DAO.UtenteDAO;
 import it.rt.corso.beans.Utente;
-import it.rt.corso.utility.Utility;
 
 @Controller
 @SessionAttributes("utente")
