@@ -1,6 +1,5 @@
 package it.rt.corso.filter;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
