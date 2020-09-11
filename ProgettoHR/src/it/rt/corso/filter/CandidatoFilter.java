@@ -5,12 +5,11 @@ import java.util.List;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.beans.Candidato;
-
+@SuppressWarnings("unchecked")
 public class CandidatoFilter implements CandidatoFilterInterface {
 	
 	private static boolean addedCriteria = false;
@@ -18,7 +17,7 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
-		ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+		ConfigurableApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 		List<CandidatoFilter> filterList = (List<CandidatoFilter>) factory.getBean("filterList");
 		for (CandidatoFilter filter : filterList) {
 			if(!addedCriteria) {
@@ -31,9 +30,8 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 		}
 
 		
-		
 		CandidatoFilter.setAddedCriteria(false);
-
+		factory.close();
 		return listaPredicati;
 
 	}
