@@ -63,7 +63,9 @@ html, body {
 #proImg {
 	width: 40%;
 	transition: 0.5s;
+	
 }
+
 
 #labImg {
 	width: 40%;
@@ -76,19 +78,19 @@ html, body {
 }
 
 #proImg:hover {
-	width: 80%;
+	width: 68%;
 	opacity: 1;
 	transition: 0.5s;
 }
 
 #labImg:hover {
-	width: 80%;
+	width: 68%;
 	opacity: 1;
 	transition: 0.5s;
 }
 
 #techImg:hover {
-	width: 80%;
+	width: 68%;
 	opacity: 1;
 	transition: 0.5s;
 }
@@ -106,7 +108,7 @@ html, body {
 				<div id="telco" class="row h-100 ">
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/Telco"><img
+						<a  href="/ProgettoHR/Home/Telco"><img
 							onmouseover="changeColorBg('#7f1210', 'colonna1')"
 							onmouseleave="changeColorBg('#490a09', 'colonna1')" id="labImg"
 							alt="logo" src="/ProgettoHR/img/errelab.png"></a>
@@ -119,7 +121,7 @@ html, body {
 				<div id="ict" class="row h-100 ">
 					<div class="col center-content align-self-center"
 						style="text-align: center;">
-						<a href="/ProgettoHR/Home/ICT"><img
+						<a  href="/ProgettoHR/Home/ICT"><img
 							onmouseover="changeColorBg('#1e8199', 'colonna2')"
 							onmouseleave="changeColorBg('#145667', 'colonna2')" id="proImg"
 							alt="logo" src="/ProgettoHR/img/errepro.png"></a>

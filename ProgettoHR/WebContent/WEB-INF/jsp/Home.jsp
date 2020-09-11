@@ -16,6 +16,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
@@ -27,15 +28,22 @@ html, body {
 	height: 100%;
 }
 
+.dark-mode {
+	background-color: black;
+	color: white;
+	transition:  0.5s;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
 	background: #fafafa;
+	transition:  0.5s;
 }
 
 a, a:hover, a:focus {
 	color: inherit;
 	text-decoration: none;
-	transition: all 0.3s;
+	transition:  all  0.3s;
 }
 
 /* Pallini dello stato del candidato*/
@@ -880,6 +888,11 @@ svg {
 					<li class="nav-item"><a class="nav-link"
 						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
 
+
+				
+
+
+
 				</ul>
 			</div>
 
@@ -943,7 +956,12 @@ svg {
 		<div class="col-md">
 
 			<div class="col mb-2">
-				<form action="/ProgettoHR/Home/filter/${businessUnit}" onsubmit=""
+				<button class="btn"onclick="darkMode()" style="float:right;" >
+					<span  data-toggle="tooltip" data-placement="top"
+						title="attiva la modalità dark"><i class="far fa-moon"></i></span></button>
+				
+			
+				<form action="/ProgettoHR/Home/filter/${businessUnit}" 
 					method="post">
 					<div class="form-row">
 						<div class="col-auto">
@@ -1295,7 +1313,12 @@ svg {
 				document.getElementById("bottoneFiltro").disabled = false;
 			}
 		}
+		function darkMode() {
+			   var element = document.body;
+			   element.classList.toggle("dark-mode");
+			}
 	</script>
+
 
 
 	<!-- Popper.JS -->
