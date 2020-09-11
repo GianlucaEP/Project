@@ -91,10 +91,10 @@ public class HomeController {
 
 //		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
 		List<Candidato> list = new ArrayList<>();
-		if (requestParams.get("stato").equals("noFiltro")) {
+		if (requestParams.get("statoSelezionato").equals("noFiltro")) {
 			list = cdao.getListaByBusinessUnit(businessUnit);
 		} else {
-			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("stato"));
+			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("statoSelezionato"));
 		}
 
 		m.addAttribute("mansioneList", singleton.getMansioneList());
@@ -105,6 +105,7 @@ public class HomeController {
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
 		m.addAttribute("specializzazione", new Specializzazione());
 		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("statoSelezionato", requestParams.get("statoSelezionato"));
 
 		return "Home";
 	}

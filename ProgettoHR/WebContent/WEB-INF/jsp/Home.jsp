@@ -857,7 +857,7 @@ svg {
 
 </head>
 
-<body onload="validateOption()">
+<body onload="validateOption(); x('${statoSelezionato}')" >
 
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
@@ -942,17 +942,17 @@ svg {
 		<div class="col-md">
 
 			<div class="col mb-2">
-				<form action="/ProgettoHR/Home/filter/${businessUnit}" method="post">
+				<form action="/ProgettoHR/Home/filter/${businessUnit}" onsubmit="" method="post">
 					<div class="form-row">
 						<div class="col-auto">
 
 							<select class="select" onchange="validateOption()" id="stati"
-								name="stato">
+								name="statoSelezionato">
 
 								<option disabled selected>Stato candidato</option>
-								<option value="noFiltro">Tutti gli stati</option>
+								<option id="noFiltro" value="noFiltro">Tutti gli stati</option>
 								<c:forEach var="stato" items="${statoCandidatoList}">
-									<option value="${stato.descrizione}">${stato.descrizione}</option>
+									<option id="${stato.descrizione}" value="${stato.descrizione}">${stato.descrizione}</option>
 								</c:forEach>
 
 							</select> <span class="custom-arrow"></span>
@@ -1271,10 +1271,22 @@ svg {
 
 			return control;
 		}
-		function validateOption() {
+		function x(statoSelezionato) {
+
+			if (statoSelezionato!==""){
+				document.getElementById(statoSelezionato).selected=true;
+			}
+			
+
+			
+			
+		}
+		
+		function validateOption(){
 			var e = document.getElementById("stati");
 			var value = e.options[e.selectedIndex].value;
-
+	
+			
 			if (value === "Stato candidato") {
 				document.getElementById("bottoneFiltro").disabled = true;
 			} else {
