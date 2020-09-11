@@ -450,38 +450,6 @@ html, body {
 					<h2 class="">
 						<button class="btn btn-block text-left collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-							type="button" data-toggle="collapse" data-target="#collapse12"
-							aria-expanded="false" aria-controls="collapse12">
-							<i class="fa fa-plus" aria-hidden="true"></i> Costo giornaliero <i
-								class="fas fa-briefcase float-right pt-1"></i>
-						</button>
-					</h2>
-
-					<div id="collapse12" class="collapse" aria-labelledby="heading12">
-						<div id="specializzazioneDiv" class="card-body">
-
-							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="costoMinInput" name="costoGiornalieroMin" class="text-left"
-									style="border-color: transparent;" type="text"
-									placeholder="costo minimo"> <input id="costoMaxInput"
-									name="costoGiornalieroMax" class="text-left"
-									style="border-color: transparent;" type="text"
-									placeholder="costo massimo">
-								<!--  <input
-									id="anniEsperienzaInput" class="text-left"
-									style="border-color: transparent;" type="number"
-									placeholder="anni esperienza">-->
-
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="card" style="border-color: transparent;">
-					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
-							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse13"
 							aria-expanded="false" aria-controls="collapse13">
 							<i class="fa fa-plus" aria-hidden="true"></i> Inserimento Azienda
