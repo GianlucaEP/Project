@@ -5,25 +5,37 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
-//import org.springframework.web.bind.annotation.ResponseStatus;
-//import org.springframework.http.HttpStatus;
 
-@ControllerAdvice              
+@ControllerAdvice
 public class ExceptionController {
-//	 @ResponseStatus(HttpStatus.BAD_REQUEST)
-	 @ExceptionHandler({ServletRequestBindingException.class, HttpRequestMethodNotSupportedException.class})
-		public String sessionClosed(){
-			 return "/notAuthenticated";
-		}
-	 
-	 @ExceptionHandler({NoHandlerFoundException.class})
-	 public String pageNotFound(NoHandlerFoundException  ex) {
-	     return "/PageNotFound";
-	 }
-	 
-	 @ExceptionHandler(Exception.class)
-	  public String notFoundHandler() {
-		 return "/InternalServerError";
-	  }
+	/**
+	 * 
+	 * Handles 400 and 405 Http errors
+	 * 
+	 */
+	@ExceptionHandler({ ServletRequestBindingException.class, HttpRequestMethodNotSupportedException.class })
+	public String sessionClosed() {
+		return "/notAuthenticated";
+	}
+
+	/**
+	 * 
+	 * Handles 404 Http error
+	 * 
+	 */
+	@ExceptionHandler({ NoHandlerFoundException.class })
+	public String pageNotFound(NoHandlerFoundException ex) {
+		return "/PageNotFound";
+	}
+
+	/**
+	 * 
+	 * Handles 500 Http error
+	 * 
+	 */
+	@ExceptionHandler(Exception.class)
+	public String notFoundHandler() {
+		return "/InternalServerError";
+	}
 
 }
