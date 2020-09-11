@@ -53,7 +53,6 @@ public class Candidato implements Bean {
 	private boolean categoriaProtetta;
 	@Column(name = "codice_fiscale")
 	private String codiceFiscale;
-//	private File allegato; TODO aggiungere successivamente il file allegato
 
 	// MANY-TO-ONE con Business
 	@ManyToOne

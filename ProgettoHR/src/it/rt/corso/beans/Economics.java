@@ -19,7 +19,7 @@ public class Economics implements Bean {
 	@Column(name = "id_economics")
 	private int id;
 	@Column(name = "inquadramento")
-	private String inquadramento; // TODO modificare nel database Inquadramento
+	private String inquadramento;
 	@Column(name = "RAL")
 	private int ral;
 	@Column(name = "benefit")

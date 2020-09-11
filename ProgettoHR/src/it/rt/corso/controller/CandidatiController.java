@@ -32,8 +32,6 @@ public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	// TODO su quale base, scelgo come istanziare un oggetto(dai bean o da
-	// java(new))??
 
 	// Inizializzazione DAO
 	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
