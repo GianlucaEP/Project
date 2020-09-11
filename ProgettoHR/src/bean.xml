@@ -131,6 +131,14 @@
 	<bean id="costoMinimoFilter"
 		class="it.rt.corso.filter.CostoMinimoFilter">
 	</bean>
+	
+	<bean id="costoGiornalieroMaxFilter"
+		class="it.rt.corso.filter.CostoGiornalieroMaxFilter">
+	</bean>
+
+	<bean id="costoGiornalieroMinFilter"
+		class="it.rt.corso.filter.CostoGiornalieroMinFilter">
+	</bean>
 
 	<bean id="categoriaProtettaFilter"
 		class="it.rt.corso.filter.CategoriaProtettaFilter">
@@ -154,6 +162,8 @@
 		<ref bean="specializzazioneFilter" />
 		<ref bean="costoMaxFilter" />
 		<ref bean="costoMinimoFilter" />
+		<ref bean="costoGiornalieroMaxFilter" />
+		<ref bean="costoGiornalieroMinFilter" />
 		<ref bean="categoriaProtettaFilter" />
 		<ref bean="inserimentoFilter" />
 	</util:list>

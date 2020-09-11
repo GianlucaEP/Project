@@ -243,7 +243,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 			listaPredicates = candidatoFilter.checkFilter(listaPredicates, root, entry.getKey(), entry.getValue());
 		}
 		
-		listaPredicates = candidatoFilter.buildFilter(listaPredicates);
+		listaPredicates = candidatoFilter.buildCompundPredicate(listaPredicates);
 		
 		// trasforma in array la lista di tutti i predicati
 		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);

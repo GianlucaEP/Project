@@ -38,7 +38,17 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 
 	}
 	
-	public List<Predicate> buildFilter(List<Predicate> listaPredicati){
+	
+	/**	
+	 * 
+	 *	Call build methods to create compound predicates that will be added to the given list in case they exist.
+	 *
+	 *	@param a list of predicates to which compound predicates will be added.
+	 *
+	 *  @return the list of predicate with the added compound predicates or the unaltered given list in case none of the compound predicates exists.
+	 * 
+	 * */
+	public List<Predicate> buildCompundPredicate(List<Predicate> listaPredicati){
 		
 		
 		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
