@@ -23,7 +23,7 @@ public class ExceptionController {
 	 
 	 @ExceptionHandler(Exception.class)
 	  public String notFoundHandler() {
-		 return "/ServerError";
+		 return "/InternalServerError";
 	  }
 
 }
