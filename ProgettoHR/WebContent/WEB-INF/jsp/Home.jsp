@@ -141,6 +141,9 @@ ul ul a {
 	background: #cae9ff;
 }
 
+#zeroRecord{
+text-align: center;
+}
 /* Tabella Home */
 .tabellaHome {
 	border-collapse: collapse;
@@ -970,88 +973,96 @@ svg {
 
 			<div class="col">
 				<!-- TABELLA CANDIDATO -->
-				<table class="tabellaHome">
+				<c:choose>
+					<c:when test="${empty list}">
+						<h2 id="zeroRecord">La ricerca non ha prodotto alcun
+							risultato</h2>
+					</c:when>
+					<c:otherwise>
+						<table class="tabellaHome">
 
-					<thead class="head">
-						<tr>
-							<th colspan="1" scope="col">Stato</th>
-							<th colspan="1" scope="col">Business unit</th>
-							<th colspan="1" scope="col">Nome</th>
-							<th colspan="1" scope="col">Cognome</th>
-							<th colspan="1" scope="col">Area Competenza</th>
-							<th colspan="1" scope="col">Mansione</th>
-							<th colspan="1" scope="col">Seniority</th>
-							<th colspan="1" scope="col"></th>
-						</tr>
-					</thead>
+							<thead class="head">
+								<tr>
+									<th colspan="1" scope="col">Stato</th>
+									<th colspan="1" scope="col">Business unit</th>
+									<th colspan="1" scope="col">Nome</th>
+									<th colspan="1" scope="col">Cognome</th>
+									<th colspan="1" scope="col">Area Competenza</th>
+									<th colspan="1" scope="col">Mansione</th>
+									<th colspan="1" scope="col">Seniority</th>
+									<th colspan="1" scope="col"></th>
+								</tr>
+							</thead>
 
-					<tbody class="body">
-						<c:forEach var="cand" items="${list}">
-							<tr>
-								<td><c:choose>
-										<c:when test="${ cand.stato.descrizione == 'Attivo'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Attivo" class="dot bg-success"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Selezionato" class="dot bg-primary"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Da contattare" class="dot bg-warning"></span>
-										</c:when>
-										<c:when test="${ cand.stato.descrizione == 'Scartato'}">
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Scartato" class="dot bg-danger"></span>
-										</c:when>
-										<c:otherwise>
-											<span id="dot" data-toggle="tooltip" data-placement="top"
-												title="Nuovo inserito" class="dot bg-secondary"></span>
-										</c:otherwise>
-									</c:choose></td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-									${cand.business.business}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-									${cand.nome}</td>
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-									${cand.cognome}</td>
+							<tbody class="body">
+								<c:forEach var="cand" items="${list}">
+									<tr>
+										<td><c:choose>
+												<c:when test="${ cand.stato.descrizione == 'Attivo'}">
+													<span id="dot" data-toggle="tooltip" data-placement="top"
+														title="Attivo" class="dot bg-success"></span>
+												</c:when>
+												<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
+													<span id="dot" data-toggle="tooltip" data-placement="top"
+														title="Selezionato" class="dot bg-primary"></span>
+												</c:when>
+												<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
+													<span id="dot" data-toggle="tooltip" data-placement="top"
+														title="Da contattare" class="dot bg-warning"></span>
+												</c:when>
+												<c:when test="${ cand.stato.descrizione == 'Scartato'}">
+													<span id="dot" data-toggle="tooltip" data-placement="top"
+														title="Scartato" class="dot bg-danger"></span>
+												</c:when>
+												<c:otherwise>
+													<span id="dot" data-toggle="tooltip" data-placement="top"
+														title="Nuovo inserito" class="dot bg-secondary"></span>
+												</c:otherwise>
+											</c:choose></td>
+										<td
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${cand.business.business}</td>
+										<td
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${cand.nome}</td>
+										<td
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${cand.cognome}</td>
 
-								<td><c:forEach var="area" items="${cand.area}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-											${area.area}</span>
-									</c:forEach></td>
+										<td><c:forEach var="area" items="${cand.area}">
+												<span
+													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+													${area.area}</span>
+											</c:forEach></td>
 
-								<td><c:forEach var="mansione" items="${cand.mansione}">
-										<span
-											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-											${mansione.mansione}</span>
-									</c:forEach></td>
+										<td><c:forEach var="mansione" items="${cand.mansione}">
+												<span
+													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+													${mansione.mansione}</span>
+											</c:forEach></td>
 
-								<td
-									onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
-									${cand.seniority.seniority}</td>
+										<td
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											${cand.seniority.seniority}</td>
 
-								<td data-toggle="modal"
-									onclick="impostaParametriCandidatoId(${businessUnit}/${cand.id})"
-									data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
+										<td data-toggle="modal"
+											onclick="impostaParametriCandidatoId(${cand.id})"
+											data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
 
-							</tr>
+									</tr>
 
-						</c:forEach>
-					</tbody>
+								</c:forEach>
+							</tbody>
 
-					<tfoot class="footer">
-						<tr>
-							<td></td>
+							<tfoot class="footer">
+								<tr>
+									<td></td>
 
-						</tr>
-					</tfoot>
-				</table>
+								</tr>
+							</tfoot>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -1264,10 +1275,10 @@ svg {
 			var e = document.getElementById("stati");
 			var value = e.options[e.selectedIndex].value;
 
-			if (value === "Stati") {
-				document.getElementById("filterButton").disabled = true;
+			if (value === "Stato candidato") {
+				document.getElementById("bottoneFiltro").disabled = true;
 			} else {
-				document.getElementById("filterButton").disabled = false;
+				document.getElementById("bottoneFiltro").disabled = false;
 			}
 		}
 	</script>
