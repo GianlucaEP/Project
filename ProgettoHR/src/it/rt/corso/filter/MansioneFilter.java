@@ -61,7 +61,7 @@ public class MansioneFilter extends CandidatoFilter{
 				.toArray(new Predicate[listaPredicatesMansione.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
-		listaPredicati.add(criteriaBuilder.or(predicatesMansioni));
+		listaPredicati.add(criteriaBuilder.and(predicatesMansioni));
 		listaPredicatesMansione = new ArrayList<Predicate>();
 		
 		return listaPredicati;
