@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.rt.corso.DAO.MansioneDAO;
-import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.singleton.Singleton;
 

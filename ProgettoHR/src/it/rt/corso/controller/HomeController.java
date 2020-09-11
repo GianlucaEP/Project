@@ -6,16 +6,12 @@ import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.BusinessDAO;
@@ -23,11 +19,9 @@ import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.Specializzazione;
-import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.Utente;
 import it.rt.corso.singleton.Singleton;
 

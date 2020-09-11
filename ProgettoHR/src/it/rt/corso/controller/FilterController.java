@@ -1,7 +1,6 @@
 package it.rt.corso.controller;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,18 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import it.rt.corso.DAO.AreaCompetenzaDAO;
-import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
-import it.rt.corso.DAO.MansioneDAO;
-import it.rt.corso.DAO.SeniorityDAO;
-import it.rt.corso.DAO.SpecializzazioneDAO;
-import it.rt.corso.beans.AreaCompetenza;
-import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
-import it.rt.corso.beans.Seniority;
-import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.Utente;
 import it.rt.corso.singleton.Singleton;
 

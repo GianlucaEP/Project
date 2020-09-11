@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import it.rt.corso.DAO.SpecializzazioneDAO;
-import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.singleton.Singleton;
 
