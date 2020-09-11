@@ -39,7 +39,7 @@ public abstract class BaseDAO {
 	 *  @return a Bean object containing the result of the select.
 	 *  
 	 *  */	
-	protected Object get(Class classe, Serializable id) {
+	protected Object get(Class<?> classe, Serializable id) {
 
 		Utility.buildSession();
 		Transaction t = Utility.getSession().beginTransaction();	
