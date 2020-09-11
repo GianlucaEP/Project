@@ -7,7 +7,7 @@ import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 
 	public AreaCompetenza inserisci(AreaCompetenza area) {
@@ -17,6 +17,7 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 	public List<AreaCompetenza> getLista() {
 
 		Utility.buildSession();
+		
 		List<AreaCompetenza> listaArea= Utility.getSession().createQuery("FROM AreaCompetenza").getResultList();
 		
 		return listaArea;

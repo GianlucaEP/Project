@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.UploadFileDAO;
 import it.rt.corso.beans.UploadFile;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class UploadFileDAOImpl extends BaseDAO implements UploadFileDAO {
 
 	@Override

@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.EconomicsDAO;
 import it.rt.corso.beans.Economics;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class EconomicsDAOImpl extends BaseDAO implements EconomicsDAO {
 
 	@Override

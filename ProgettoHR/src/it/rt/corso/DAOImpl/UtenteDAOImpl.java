@@ -9,7 +9,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.UtenteDAO;
 import it.rt.corso.beans.Utente;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 
 	public Utente get(String id) {

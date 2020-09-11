@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.beans.Business;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class BusinessDAOImpl extends BaseDAO implements BusinessDAO{
 
 	public Business inserisci(Business business) {

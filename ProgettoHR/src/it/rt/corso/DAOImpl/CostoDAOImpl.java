@@ -5,7 +5,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.CostoDAO;
 import it.rt.corso.beans.Costo;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class CostoDAOImpl extends BaseDAO implements CostoDAO{
 
 	@Override

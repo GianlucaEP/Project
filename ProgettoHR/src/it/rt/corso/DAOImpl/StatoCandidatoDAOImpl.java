@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class StatoCandidatoDAOImpl extends BaseDAO implements StatoCandidatoDAO{
 
 	public StatoCandidato get(String id) {

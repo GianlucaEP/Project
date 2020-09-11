@@ -7,7 +7,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.FunzionalitaDAO;
 import it.rt.corso.beans.Funzionalita;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class FunzionalitaDAOImpl extends BaseDAO implements FunzionalitaDAO{
 
 	public Funzionalita getFunzionalita(String id) {

@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.beans.Seniority;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class SeniorityDAOImpl extends BaseDAO implements SeniorityDAO {
 
 	public Seniority inserisci(Seniority seniority) {

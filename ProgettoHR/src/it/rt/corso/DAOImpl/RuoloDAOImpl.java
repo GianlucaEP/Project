@@ -7,7 +7,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.RuoloDAO;
 import it.rt.corso.beans.Ruolo;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class RuoloDAOImpl extends BaseDAO implements RuoloDAO{
 
 	public Ruolo getRuolo(String id) {

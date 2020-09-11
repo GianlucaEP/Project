@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 
 	public Mansione inserisci(Mansione mansione) {

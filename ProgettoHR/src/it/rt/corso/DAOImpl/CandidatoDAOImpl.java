@@ -21,7 +21,7 @@ import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.*;
 import it.rt.corso.filter.CandidatoFilter;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 
 	@Override

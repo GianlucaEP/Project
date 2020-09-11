@@ -6,7 +6,7 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.beans.Feedback;
 import it.rt.corso.utility.Utility;
-
+@SuppressWarnings("unchecked")
 public class FeedbackDAOImpl extends BaseDAO implements FeedbackDAO {
 
 	public Feedback inserisci(Feedback feedback) {
