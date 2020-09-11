@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,8 +33,10 @@ public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
+// TODO su quale base, scelgo come istanziare un oggetto(dai bean o da
+// java(new))??
 
-	// Inizializzazione DAO
+// Inizializzazione DAO
 	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 	SpecializzazioneDAO specializzazioneDAO = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
@@ -60,11 +63,11 @@ public class CandidatiController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 
-		// model attribute per l' eventuale aggiunta di mansione, area o specializzazione
+// model attribute per l' eventuale aggiunta di mansione, area o specializzazione
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
 		m.addAttribute("specializzazione", new Specializzazione());
-		
+
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
@@ -111,8 +114,9 @@ public class CandidatiController {
 		return "redirect:/Home/{businessUnit}";
 	}
 
-	@RequestMapping(value = "/ModificaAnagrafica/{id}", method = RequestMethod.POST)
-	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+	@RequestMapping(value = "/ModificaAnagrafica/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+			@PathVariable String businessUnit) {
 
 		Candidato candidato = candidatoDAO.get(id);
 
@@ -130,44 +134,44 @@ public class CandidatiController {
 			candidato.setCategoriaProtetta(false);
 
 		candidatoDAO.aggiorna(candidato);
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
 
-	@RequestMapping(value = "/AggiungiModificaCosto/{id}", method = RequestMethod.POST)
-	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+	@RequestMapping(value = "/AggiungiModificaCosto/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+			@PathVariable String businessUnit) {
 		Candidato candidato = candidatoDAO.get(id);
 
 		if (candidato.getCosto() == null) {
-			// aggiungi costo per la prima volta di un dato candidato
+// aggiungi costo per la prima volta di un dato candidato
 			candidato.setCosto(c.getCosto());
 			candidatoDAO.aggiorna(candidato);
 		}
 
 		else {
-			// modifica costo di un dato candidato
+// modifica costo di un dato candidato
 			candidato.getCosto().setOrario(c.getCosto().getOrario());
 			candidato.getCosto().setGiornaliero(c.getCosto().getGiornaliero());
 			candidato.getCosto().setCommento(c.getCosto().getCommento());
 			costoDAO.aggiorna(candidato.getCosto());
 		}
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
 
-	@RequestMapping(value = "/AggiungiModificaEconomics/{id}", method = RequestMethod.POST)
-	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id) {
+	@RequestMapping(value = "/AggiungiModificaEconomics/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+			@PathVariable String businessUnit) {
 		Candidato candidato = candidatoDAO.get(id);
 
 		if (candidato.getEconomics() == null) {
-			// aggiungi economics per la prima volta di un dato candidato
+// aggiungi economics per la prima volta di un dato candidato
 			candidato.setEconomics(c.getEconomics());
 			candidatoDAO.aggiorna(candidato);
 		}
 
 		else {
-			// modifica economics di un dato candidato
+// modifica economics di un dato candidato
 			candidato.getEconomics().setInquadramento(c.getEconomics().getInquadramento());
 			candidato.getEconomics().setRal(c.getEconomics().getRal());
 			candidato.getEconomics().setBenefit(c.getEconomics().getBenefit());
@@ -176,86 +180,86 @@ public class CandidatiController {
 			economicsDAO.aggiorna(candidato.getEconomics());
 		}
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
 
-	// metodo per aggiornare la seniority del candidato dalla pagina del candidato
-	// stesso
-	@RequestMapping("/ModificaSeniority/{id}")
-	public String modificaSeniority(@RequestParam(name = "seniority") String seniority, @PathVariable int id) {
+// metodo per aggiornare la seniority del candidato dalla pagina del candidato
+// stesso
+	@RequestMapping("/ModificaSeniority/{businessUnit}/{id}")
+	public String modificaSeniority(@RequestParam(name = "seniority") String seniority, @PathVariable int id,
+			@PathVariable String businessUnit) {
 		Candidato candidato = candidatoDAO.get(id);
 		candidato.getSeniority().setSeniority(seniority);
 		candidatoDAO.aggiorna(candidato);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
 
-	// metodo per aggiornare la businessUnit del candidato dalla pagina del
-	// candidato stesso
-	@RequestMapping("/ModificaBusinessUnit/{id}")
+// metodo per aggiornare la businessUnit del candidato dalla pagina del
+// candidato stesso
+	@RequestMapping("/ModificaBusinessUnit/{businessUnit}/{id}")
 	public String modificaBusinessUnit(@RequestParam(name = "businessUnit") String businessUnit, @PathVariable int id) {
 		Candidato candidato = candidatoDAO.get(id);
 		candidato.getBusiness().setBusiness(businessUnit);
 		candidatoDAO.aggiorna(candidato);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
 
-	// metodo per aggiornare l'area competenza del candidato dalla pagina del
-	// candidato stesso
-	@RequestMapping("/ModificaAreaCompetenza/{id}")
-	public String modificaAreaCompetenza(HttpServletRequest request, @PathVariable int id) {
+// metodo per aggiornare l'area competenza del candidato dalla pagina del
+// candidato stesso
+	@RequestMapping("/ModificaAreaCompetenza/{businessUnit}/{id}")
+	public String modificaAreaCompetenza(HttpServletRequest request, @PathVariable int id,
+			@PathVariable String businessUnit) {
 
 		Candidato candidato = candidatoDAO.get(id);
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
 		if (areeCompetenza != null) {
 			candidato.setArea(aggiungiAreaCompetenza(areeCompetenza));
+		} else {
+			candidato.setArea(new ArrayList<AreaCompetenza>());
 		}
-		else {
-		candidato.setArea(new ArrayList<AreaCompetenza>());
-		}
-		
+
 		candidatoDAO.aggiorna(candidato);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-	// metodo per aggiornare la mansione del candidato dalla pagina del
-	// candidato stesso
-	@RequestMapping("/ModificaMansione/{id}")
-	public String modificaMansione(HttpServletRequest request, @PathVariable int id) {
+// metodo per aggiornare la mansione del candidato dalla pagina del
+// candidato stesso
+	@RequestMapping("/ModificaMansione/{businessUnit}/{id}")
+	public String modificaMansione(HttpServletRequest request, @PathVariable int id,
+			@PathVariable String businessUnit) {
 
 		Candidato candidato = candidatoDAO.get(id);
 
 		String[] mansioni = request.getParameterValues("mansione");
 		if (mansioni != null) {
 			candidato.setMansione(aggiungiMansione(mansioni));
-		}		
-		else {
-		candidato.setMansione(new ArrayList<Mansione>());
+		} else {
+			candidato.setMansione(new ArrayList<Mansione>());
 		}
-		
+
 		candidatoDAO.aggiorna(candidato);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-	// metodo per aggiornare la specializzazione del candidato dalla pagina del
-	// candidato stesso
-	@RequestMapping("/ModificaSpecializzazione/{id}")
-	public String modificaSpecializzazione(HttpServletRequest request, @PathVariable int id) {
+// metodo per aggiornare la specializzazione del candidato dalla pagina del
+// candidato stesso
+	@RequestMapping("/ModificaSpecializzazione/{businessUnit}/{id}")
+	public String modificaSpecializzazione(HttpServletRequest request, @PathVariable int id,
+			@PathVariable String businessUnit) {
 		Candidato candidato = candidatoDAO.get(id);
 
 		String[] specializzazioni = request.getParameterValues("specializzazione");
 		if (specializzazioni != null) {
 
+			List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
 			int trovato = 0;
-			// controllo che non siano stati cancellati delle specializzazioni e nel caso la
-			// elimino dalla tabella di mezzo
+// controllo che non siano stati cancellati delle specializzazioni e nel caso la
+// elimino dalla tabella di mezzo
 			for (CandidatoSpecializzazione cs : candidato.getCandidatoSpecializzazione()) {
 				for (String specializzazione : specializzazioni) {
 					String[] specializzazioneCorretta = specializzazione.split(" ");
@@ -269,7 +273,7 @@ public class CandidatiController {
 					trovato = 0;
 			}
 
-			// aggiorno tutte le specializzazioni
+// aggiorno tutte le specializzazioni
 			candidato.setCandidatoSpecializzazione(aggiungiSpecializzazione(specializzazioni, candidato));
 			candidatoDAO.aggiorna(candidato);
 
@@ -279,16 +283,16 @@ public class CandidatiController {
 			}
 		}
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-	// metodo per aggiornare la data di inserimento azienda del candidato dalla
-	// pagina del
-	// candidato stesso
-	@RequestMapping("/ModificaDataInserimentoAzienda/{id}")
+// metodo per aggiornare la data di inserimento azienda del candidato dalla
+// pagina del
+// candidato stesso
+	@RequestMapping("/ModificaDataInserimentoAzienda/{businessUnit}/{id}")
 	public String modificaDataInserimentoAzienda(
-			@RequestParam(name = "dataInserimentoAzienda") String dataInserimentoAzienda, @PathVariable int id)
-			throws ParseException {
+			@RequestParam(name = "dataInserimentoAzienda") String dataInserimentoAzienda, @PathVariable int id,
+			@PathVariable String businessUnit) throws ParseException {
 		Candidato candidato = candidatoDAO.get(id);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -297,11 +301,12 @@ public class CandidatiController {
 		candidato.setInserimentoAzienda(dataFormattata);
 		candidatoDAO.aggiorna(candidato);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-	@RequestMapping("/Aggiorna/{id}/{stato}")
-	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato) {
+	@RequestMapping("/Aggiorna/{businessUnit}/{id}/{stato}")
+	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato,
+			@PathVariable String businessUnit) {
 		Candidato c = candidatoDAO.get(id);
 		StatoCandidato statoCandidato = (StatoCandidato) factory.getBean(stato);
 
@@ -309,12 +314,13 @@ public class CandidatiController {
 
 		candidatoDAO.aggiorna(c);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
 
 	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
-	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m, @SessionAttribute("utente") Utente utente) {
+	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m,
+			@SessionAttribute("utente") Utente utente) {
 
 		Singleton singleton = Singleton.getInstance();
 
