@@ -141,8 +141,8 @@ ul ul a {
 	background: #cae9ff;
 }
 
-#zeroRecord{
-text-align: center;
+#zeroRecord {
+	text-align: center;
 }
 /* Tabella Home */
 .tabellaHome {
@@ -857,7 +857,7 @@ svg {
 
 </head>
 
-<body onload="validateOption(); x('${statoSelezionato}')" >
+<body onload="validateOption(); x('${statoSelezionato}')">
 
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
@@ -910,27 +910,28 @@ svg {
 					<li><a href="/ProgettoHR/Candidati/${businessUnit}"
 						type="button"><i class="fas fa-plus"></i> Nuovo Candidato</a></li>
 
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal" data-target="#mansioneModal"
-									type="button"><i class="fas fa-plus"></i> Nuova Mansione</a>
-							</c:when>
-						</c:choose></li>
+					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+						<c:choose>
+							<c:when test="${funz.funzionalita == 'aggiunta mansione'}">
+								<li><a href="" data-toggle="modal"
+									data-target="#mansioneModal" type="button"><i
+										class="fas fa-plus"></i> Nuova Mansione</a></li>
 
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal"
+							</c:when>
+							<c:when test="${funz.funzionalita == 'aggiunta area'}">
+								<li><a href="" data-toggle="modal"
 									data-target="#areaCompetenzaModal" type="button"><i
-									class="fas fa-plus"></i> Nuova Area </a>
+										class="fas fa-plus"></i> Nuova Area </a></li>
 							</c:when>
-						</c:choose></li>
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal"
+							<c:when
+								test="${funz.funzionalita == 'aggiunta specializzazione'}">
+								<li><a href="" data-toggle="modal"
 									data-target="#specializzazioneModal" type="button"><i
-									class="fas fa-plus"></i> Nuova Specializzazione </a>
+										class="fas fa-plus"></i> Nuova Specializzazione </a></li>
 							</c:when>
-						</c:choose></li>
+						</c:choose>
+					</c:forEach>
+
 
 					<li><a href="/ProgettoHR/Filter/${businessUnit}" type="button"
 						class="text-center">Filtri</a></li>
@@ -942,7 +943,8 @@ svg {
 		<div class="col-md">
 
 			<div class="col mb-2">
-				<form action="/ProgettoHR/Home/filter/${businessUnit}" onsubmit="" method="post">
+				<form action="/ProgettoHR/Home/filter/${businessUnit}" onsubmit=""
+					method="post">
 					<div class="form-row">
 						<div class="col-auto">
 

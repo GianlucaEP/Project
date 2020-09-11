@@ -188,25 +188,25 @@ ul ul a {
 					</div>
 
 					<ul class="list-unstyled components">
+						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+							<c:if test="${funz.funzionalita == 'aggiunta mansione'}">
+								<li><a href="" data-toggle="modal"
+									data-target="#mansioneModal" type="button"><i
+										class="fas fa-plus"></i> Nuova mansione</a></li>
+							</c:if>
 
-						<c:if test="${utente.ruolo.ruolo == 'admin'}">
-							<li><a href="" data-toggle="modal"
-								data-target="#mansioneModal" type="button"><i
-									class="fas fa-plus"></i> Nuova mansione</a></li>
-						</c:if>
+							<c:if test="${funz.funzionalita == 'aggiunta area'}">
+								<li><a href="" data-toggle="modal"
+									data-target="#areaCompetenzaModal" type="button"><i
+										class="fas fa-plus"></i> Nuova Area</a></li>
+							</c:if>
 
-						<c:if test="${utente.ruolo.ruolo == 'admin'}">
-							<li><a href="" data-toggle="modal"
-								data-target="#areaCompetenzaModal" type="button"><i
-									class="fas fa-plus"></i> Nuova Area</a></li>
-						</c:if>
-
-						<c:if test="${ utente.ruolo.ruolo == 'admin'}">
-							<li><a href="" data-toggle="modal"
-								data-target="#specializzazioneModal" type="button"><i
-									class="fas fa-plus"></i> Nuova Specializzazione</a></li>
-						</c:if>
-
+							<c:if test="${funz.funzionalita == 'aggiunta specializzazione'}">
+								<li><a href="" data-toggle="modal"
+									data-target="#specializzazioneModal" type="button"><i
+										class="fas fa-plus"></i> Nuova Specializzazione</a></li>
+							</c:if>
+						</c:forEach>
 					</ul>
 				</nav>
 			</div>
@@ -360,8 +360,8 @@ ul ul a {
 								</div>
 							</div>
 							<div class="col-5">
-								<input id="anniEsperienzaInput" class="text-left form-control" type="number"
-									placeholder="anni esperienza">
+								<input id="anniEsperienzaInput" class="text-left form-control"
+									type="number" placeholder="anni esperienza">
 							</div>
 							<div class="col-1">
 								<div
