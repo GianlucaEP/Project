@@ -28,9 +28,9 @@ public class UploadFileController {
 	UploadFileDAO uploadFileDAO = (UploadFileDAO) factory.getBean("uploadFileDAO");
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping(value = "/doUpload/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/doUpload/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload,
-			@PathVariable int id) throws Exception {
+			@PathVariable int id, @PathVariable String businessUnit) throws Exception {
 
 		Candidato c = candidatoDAO.get(id);
 
@@ -52,11 +52,11 @@ public class UploadFileController {
 			}
 		}
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-	@RequestMapping(value = "/download/{candidatoId}/{fileId}", method = RequestMethod.GET)
-	public String downloadDocument(@PathVariable int candidatoId, @PathVariable int fileId,
+	@RequestMapping(value = "/download/{businessUnit}/{candidatoId}/{fileId}", method = RequestMethod.GET)
+	public String downloadDocument(@PathVariable int candidatoId, @PathVariable int fileId, @PathVariable String businessUnit,
 			HttpServletResponse response) throws IOException {
 		UploadFile file = uploadFileDAO.get(fileId);
 		response.setContentType(file.getTipo());
@@ -65,17 +65,17 @@ public class UploadFileController {
 
 		FileCopyUtils.copy(file.getFileData(), response.getOutputStream());
 
-		return "redirect:/Candidato/{candidatoId}";
+		return "redirect:/Candidato/{businessUnit}/{candidatoId}";
 
 	}
 
-	@RequestMapping(value = { "/delete/{candidatoId}" }, method = RequestMethod.GET)
-	public String deleteDocument(@PathVariable int candidatoId, @RequestParam(name = "idAllegato") int idAllegato) {
+	@RequestMapping(value = { "/delete/{businessUnit}/{candidatoId}" }, method = RequestMethod.GET)
+	public String deleteDocument(@PathVariable int candidatoId, @PathVariable String businessUnit, @RequestParam(name = "idAllegato") int idAllegato) {
 		
 		
 		UploadFile file = uploadFileDAO.get(idAllegato);
 		uploadFileDAO.cancella(file);
-		return "redirect:/Candidato/{candidatoId}";
+		return "redirect:/Candidato/{businessUnit}/{candidatoId}";
 	}
 
 }

@@ -28,8 +28,8 @@ public class FeedbackController {
 	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping(value = "/AggiungiFeedback/{id}", method = RequestMethod.POST)
-	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id) {
+	@RequestMapping(value = "/AggiungiFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id, @PathVariable String businessUnit) {
 		 Candidato c = dao.get(id);
 		 TipoFeedback tp = tipoFeedbackDAO.get(feedback.getTipo().getTipo());
 		 feedback.setTipo(tp);
@@ -40,12 +40,12 @@ public class FeedbackController {
 		 feedbackDAO.inserisci(feedback);
 
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
 	
-	@RequestMapping(value = "/ModificaFeedback/{id}", method = RequestMethod.POST)
-	public String modificaFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id) {
+	@RequestMapping(value = "/ModificaFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String modificaFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id, @PathVariable String businessUnit) {
 		 Feedback f = feedbackDAO.get(feedback.getId());
 		 TipoFeedback tp = tipoFeedbackDAO.get(f.getTipo().getTipo());
 		 f.setTipo(tp);
@@ -57,7 +57,7 @@ public class FeedbackController {
 		 feedbackDAO.aggiorna(f);
 
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
 

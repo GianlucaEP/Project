@@ -26,9 +26,9 @@ public class QualificationMeetingController {
 			.getBean("qualificationMeetingDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
-	@RequestMapping(value = "/AggiungiQualificationMeeting/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/AggiungiQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String aggiungiQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@PathVariable int id, @SessionAttribute("utente") Utente utente) {
+			@PathVariable int id, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 		Candidato c = dao.get(id);
 		qualificationMeeting.setUserInsert(utente.getUsername());
 		Date ora = new Date();
@@ -36,13 +36,13 @@ public class QualificationMeetingController {
 		qualificationMeeting.setCandidato(c);
 		quafilicationMeetingDAO.inserisci(qualificationMeeting);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
 	
-	@RequestMapping(value = "/ModificaQualificationMeeting/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/ModificaQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@PathVariable int id, @SessionAttribute("utente") Utente utente) {
+			@PathVariable int id, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 		QualificationMeeting qm = quafilicationMeetingDAO.get(qualificationMeeting.getId());
 		qm.setUserInsert(utente.getUsername());
 		qm.setCliente(qualificationMeeting.getCliente());
@@ -54,7 +54,7 @@ public class QualificationMeetingController {
 		qualificationMeeting.setDateInsert(ora);
 		quafilicationMeetingDAO.aggiorna(qm);
 
-		return "redirect:/Candidato/{id}";
+		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
 }

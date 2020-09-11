@@ -1040,33 +1040,33 @@ svg {
 												</c:otherwise>
 											</c:choose></td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 											${cand.business.business}</td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 											${cand.nome}</td>
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 											${cand.cognome}</td>
 
 										<td><c:forEach var="area" items="${cand.area}">
 												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+													onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 													${area.area}</span>
 											</c:forEach></td>
 
 										<td><c:forEach var="mansione" items="${cand.mansione}">
 												<span
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+													onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 													${mansione.mansione}</span>
 											</c:forEach></td>
 
 										<td
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 											${cand.seniority.seniority}</td>
 
 										<td data-toggle="modal"
-											onclick="impostaParametriCandidatoId(${cand.id})"
+											onclick="impostaParametriCandidatoId(${businessUnit}/${cand.id})"
 											data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
 
 									</tr>
