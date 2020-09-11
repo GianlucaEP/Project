@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -256,7 +255,6 @@ public class CandidatiController {
 		String[] specializzazioni = request.getParameterValues("specializzazione");
 		if (specializzazioni != null) {
 
-			List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
 			int trovato = 0;
 // controllo che non siano stati cancellati delle specializzazioni e nel caso la
 // elimino dalla tabella di mezzo
