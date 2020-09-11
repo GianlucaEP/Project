@@ -73,14 +73,14 @@ a, a:hover, a:focus {
 		<div class="container-fluid">
 
 			<!-- LOGO -->
-			<a class="navbar-brand">
+			<a class="navbar-brand"">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 		</div>
 	</nav>
-	<h1>Pagina non trovata</h1>
+	<h1>Errore del server</h1>
 	<div>
-		Clicca <a style="color:blue;" href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+		Georghe ha rotto qualcosa.<br> Clicca <a style="color:blue;" href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
 	</div>
 
 	<!-- Popper.JS -->

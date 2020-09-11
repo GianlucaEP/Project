@@ -13,12 +13,17 @@ public class ExceptionController {
 //	 @ResponseStatus(HttpStatus.BAD_REQUEST)
 	 @ExceptionHandler({ServletRequestBindingException.class, HttpRequestMethodNotSupportedException.class})
 		public String sessionClosed(){
-			 return "redirect:/Login";
+			 return "/notAuthenticated";
 		}
 	 
 	 @ExceptionHandler({NoHandlerFoundException.class})
 	 public String pageNotFound(NoHandlerFoundException  ex) {
 	     return "/PageNotFound";
 	 }
+	 
+	 @ExceptionHandler(Exception.class)
+	  public String notFoundHandler() {
+		 return "/ServerError";
+	  }
 
 }

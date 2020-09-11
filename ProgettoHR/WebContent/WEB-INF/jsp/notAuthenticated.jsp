@@ -7,7 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>404 - Pagina non trovata</title>
+<title>Non autenticato</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -78,9 +78,9 @@ a, a:hover, a:focus {
 			</a>
 		</div>
 	</nav>
-	<h1>Pagina non trovata</h1>
+	<h1>Non autenticato</h1>
 	<div>
-		Clicca <a style="color:blue;" href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+		Utente non autenticato, clicca <a style="color:blue;" href="/ProgettoHR/Login">qui</a> per tornare alla pagina di login.
 	</div>
 
 	<!-- Popper.JS -->
