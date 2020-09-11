@@ -73,7 +73,7 @@ a, a:hover, a:focus {
 		<div class="container-fluid">
 
 			<!-- LOGO -->
-			<a class="navbar-brand"">
+			<a class="navbar-brand">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 		</div>
