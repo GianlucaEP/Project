@@ -59,8 +59,7 @@ body {
 
 				<!-- LOGO -->
 				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-					<img class="logo"
-					src="/ProgettoHR/img/Erre_technology_group_NEW.png">
+					<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 				</a>
 
 			</nav>
