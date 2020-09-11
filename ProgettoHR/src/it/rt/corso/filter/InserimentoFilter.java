@@ -32,10 +32,12 @@ public class InserimentoFilter extends CandidatoFilter {
 				if (nomeFiltro.contains("dataInserimentoFrom")) {
 
 					InserimentoFromFilter.setInserimentoFrom(date.parse(valore));
+					InserimentoFromFilter.setFromIsSelected(true);
 
 				} else if (nomeFiltro.contains("dataInserimentoTo")) {
 
 					InserimentoToFilter.setInserimentoTo(date.parse(valore));
+					InserimentoToFilter.setToSelected(true);
 
 				}
 //			Date dataFrom = date.parse(valore);
@@ -53,20 +55,29 @@ public class InserimentoFilter extends CandidatoFilter {
 
 	public static List<Predicate> buildInserimentoPredicate(List<Predicate> listaPredicati) {
 
-		if (InserimentoFromFilter.getInserimentoFrom() != null && InserimentoFromFilter.getInserimentoFrom() != null) {
+		if (InserimentoFromFilter.isFromIsSelected() && InserimentoToFilter.isToSelected()) {
 			Session session = Utility.getSession();
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 
 			listaPredicati.add(criteriaBuilder.between(getRoot().<Date>get("inserimentoAzienda"),
-					InserimentoFromFilter.getInserimentoFrom(), InserimentoFromFilter.getInserimentoFrom()));
-		} else if (InserimentoFromFilter.getInserimentoFrom() != null
-				&& InserimentoFromFilter.getInserimentoFrom() == null) {
+					InserimentoFromFilter.getInserimentoFrom(), InserimentoToFilter.getInserimentoTo()));
+
+		} else if (InserimentoFromFilter.isFromIsSelected() && !InserimentoToFilter.isToSelected()) {
 			Session session = Utility.getSession();
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 
 			listaPredicati.add(criteriaBuilder.greaterThanOrEqualTo(getRoot().<Date>get("inserimentoAzienda"),
-					criteriaBuilder.currentDate()));
+					InserimentoFromFilter.getInserimentoFrom()));
+		} else if (!InserimentoFromFilter.isFromIsSelected() && InserimentoToFilter.isToSelected()) {
+			Session session = Utility.getSession();
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+			listaPredicati.add(criteriaBuilder.lessThanOrEqualTo(getRoot().<Date>get("inserimentoAzienda"),
+					InserimentoToFilter.getInserimentoTo()));
 		}
+
+		InserimentoFromFilter.setFromIsSelected(false);
+		InserimentoToFilter.setToSelected(false);
 
 		return listaPredicati;
 

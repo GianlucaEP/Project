@@ -30,6 +30,17 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 			
 		}
 
+		
+		
+		CandidatoFilter.setAddedCriteria(false);
+
+		return listaPredicati;
+
+	}
+	
+	public List<Predicate> buildFilter(List<Predicate> listaPredicati){
+		
+		
 		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
 			MansioneFilter.buildMansionePredicate(listaPredicati);
 		}
@@ -42,12 +53,15 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 			SpecializzazioneFilter.buildSpecializzazionePredicate(listaPredicati);
 		}
 		
-		InserimentoFilter.buildInserimentoPredicate(listaPredicati);
+		if(InserimentoFromFilter.isFromIsSelected() || InserimentoToFilter.isToSelected()) {
+			InserimentoFilter.buildInserimentoPredicate(listaPredicati);
+		}
 		
-		CandidatoFilter.setAddedCriteria(false);
-
+		
+		
+		
 		return listaPredicati;
-
+		
 	}
 
 	public static boolean isAddedCriteria() {
