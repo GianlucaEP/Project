@@ -36,6 +36,11 @@ a, a:hover, a:focus {
 	transition: all 0.3s;
 }
 
+#content {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
 /* Navbar */
 .navbar {
 	background: #5aa9e6;
@@ -73,15 +78,19 @@ a, a:hover, a:focus {
 		<div class="container-fluid">
 
 			<!-- LOGO -->
-			<a class="navbar-brand">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			<a class="navbar-brand"> <img class="logo"
+				src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 		</div>
 	</nav>
-	<h1>Pagina non trovata</h1>
-	<div>
-		Clicca <a style="color:blue;" href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+	<div id="content">
+		<h1>Pagina non trovata</h1>
+		<div>
+			Clicca <a style="color: blue;" href="/ProgettoHR/">qui</a> per
+			tornare alla pagina iniziale.
+		</div>
 	</div>
+
 
 	<!-- Popper.JS -->
 	<script

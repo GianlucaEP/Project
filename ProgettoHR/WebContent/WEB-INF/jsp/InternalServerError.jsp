@@ -7,7 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>404 - Pagina non trovata</title>
+<title>Errore Interno al server</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,6 +34,11 @@ a, a:hover, a:focus {
 	color: inherit;
 	text-decoration: none;
 	transition: all 0.3s;
+}
+
+#content {
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 /* Navbar */
@@ -73,15 +78,19 @@ a, a:hover, a:focus {
 		<div class="container-fluid">
 
 			<!-- LOGO -->
-			<a class="navbar-brand">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			<a class="navbar-brand"> <img class="logo"
+				src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 		</div>
 	</nav>
-	<h1>Errore del server</h1>
-	<div>
-		Georghe ha rotto qualcosa.<br> Clicca <a style="color:blue;" href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+	<div id="content">
+		<h1>Errore del server</h1>
+		<div>
+			Georghe ha rotto qualcosa.<br> Clicca <a style="color: blue;"
+				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+		</div>
 	</div>
+
 
 	<!-- Popper.JS -->
 	<script

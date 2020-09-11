@@ -36,6 +36,10 @@ a, a:hover, a:focus {
 	transition: all 0.3s;
 }
 
+#content {
+	margin-top: 10px;
+	margin-left: 10px;
+}
 /* Navbar */
 .navbar {
 	background: #5aa9e6;
@@ -73,15 +77,19 @@ a, a:hover, a:focus {
 		<div class="container-fluid">
 
 			<!-- LOGO -->
-			<a class="navbar-brand">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			<a class="navbar-brand"> <img class="logo"
+				src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 		</div>
 	</nav>
-	<h1>Non autenticato</h1>
-	<div>
-		Utente non autenticato, clicca <a style="color:blue;" href="/ProgettoHR/Login">qui</a> per tornare alla pagina di login.
+	<div id="content">
+		<h1>Non autenticato</h1>
+		<div>
+			Utente non autenticato, clicca <a style="color: blue;"
+				href="/ProgettoHR/Login">qui</a> per tornare alla pagina di login.
+		</div>
 	</div>
+
 
 	<!-- Popper.JS -->
 	<script
