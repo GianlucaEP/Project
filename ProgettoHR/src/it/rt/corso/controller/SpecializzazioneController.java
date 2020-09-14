@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.SpecializzazioneDAO;
@@ -56,4 +57,16 @@ public class SpecializzazioneController {
 		singleton.aggiornaSpecializzazione();
 	}
 
+	@RequestMapping(value = "/EliminaSpecializzazione/{businessUnit}", method = RequestMethod.POST)
+	public String elimina(@RequestParam("specializzazione") String specializzazione, @PathVariable String businessUnit) {
+		
+		Specializzazione spec = dao.get(specializzazione);
+		
+		dao.cancella(spec);
+		
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaSpecializzazione();
+		
+		return "redirect:/Specializzazione/{businessUnit}";
+	}
 }

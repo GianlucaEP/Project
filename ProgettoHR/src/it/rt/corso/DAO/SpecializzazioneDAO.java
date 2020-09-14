@@ -9,5 +9,6 @@ public interface SpecializzazioneDAO {
 	public Specializzazione inserisci(Specializzazione specializzazione);
 	public Specializzazione get(String id); 
 	public List<Specializzazione> getLista();
+	public Specializzazione cancella(Specializzazione specializzazione);
 	
 }

@@ -24,4 +24,9 @@ public class SpecializzazioneDAOImpl extends BaseDAO implements Specializzazione
 		return listaSpecilazzazione;
 	}
 
+	@Override
+	public Specializzazione cancella(Specializzazione specializzazione) {
+		return (Specializzazione) super.cancella(specializzazione);
+	}
+
 }
