@@ -179,7 +179,7 @@ a, a:hover, a:focus {
 		</div>
 	</div>
 
-	<!-- MODAL CANCELLA AREA -->
+	<!-- MODAL CANCELLA SPECIALIZZAZIONE -->
 	<div class="modal fade" id="EliminaSpecializzazioneModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
