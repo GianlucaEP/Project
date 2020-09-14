@@ -990,7 +990,6 @@ svg {
 					</div>
 				</form>
 			</div>
-
 			<div class="col">
 				<!-- TABELLA CANDIDATO -->
 				<c:choose>
