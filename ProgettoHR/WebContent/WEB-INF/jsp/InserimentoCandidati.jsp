@@ -717,7 +717,6 @@ ul ul a {
 				}
 			}
 		
-			//document.getElementById(idSubmit).disabled = "true";
 			return true;
 			}
 		
