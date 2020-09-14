@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.MansioneDAO;
@@ -62,5 +63,18 @@ public class MansioneController {
 		// aggiorno la lista di mansione
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();
+	}
+	
+	@RequestMapping(value = "/EliminaArea/{businessUnit}", method = RequestMethod.POST)
+	public String elimina(@RequestParam("mansione") String mansione, @PathVariable String businessUnit) {
+		
+		Mansione m = dao.get(mansione);
+		
+		dao.cancella(m);
+		
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaMansione();
+		
+		return "redirect:/Mansione/{businessUnit}";
 	}
 }
