@@ -3,6 +3,7 @@ package it.rt.corso.controller;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,10 @@ public class AreaCompetenzaController {
 	AreaCompetenzaDAO dao = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 	
 	@RequestMapping(value = "/AreaCompetenza/{businessUnit}")
-	public String displayAreaCompetenza( @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+	public String displayAreaCompetenza(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+		Singleton singleton = Singleton.getInstance();
+		
+		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaList());
 		
 		return "/AreaCompetenza";
 	}

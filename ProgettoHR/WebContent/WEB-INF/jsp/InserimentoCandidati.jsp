@@ -262,7 +262,7 @@ ul ul a {
 
 					<div class="form-group">
 						<label>Codice fiscale:</label>
-						<form:input type="text" path="codiceFiscale" class="form-control"
+						<form:input type="text" path="codiceFiscale" maxlength="16" class="form-control"
 							id="codiceFiscale"></form:input>
 					</div>
 					<div class="form-row">
