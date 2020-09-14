@@ -796,7 +796,7 @@ svg {
 	.custom-arrow {
 		position: absolute;
 		top: 0;
-		right: 0.3em;
+		right: 0;
 		display: block;
 		background-color: #5aa9e6;
 		height: 100%;
@@ -876,26 +876,12 @@ svg {
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-			<!-- BOTTONE PROFILO -->
-			<!--  <button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-expanded="false"
-				aria-controls="navbarCollapse" aria-label="Toggle navigation">
-				<i class="fas fa-bars"></i>
-			</button>-->
-
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-
-
-				
-
-
-
 				</ul>
 			</div>
-
 		</div>
 	</nav>
 
@@ -964,7 +950,7 @@ svg {
 				<form action="/ProgettoHR/Home/filter/${businessUnit}" 
 					method="post">
 					<div class="form-row">
-						<div class="col-auto">
+						<div class="col-auto p-0">
 
 							<select class="select" onchange="validateOption()" id="stati"
 								name="statoSelezionato">
