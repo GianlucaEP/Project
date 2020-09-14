@@ -6,92 +6,400 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!--Link CSS -->
+<title>Home</title>
+
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
 	crossorigin="anonymous">
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+/* Body e html generale*/
 html, body {
 	height: 100%;
 }
 
+.dark-mode {
+	background-color: black;
+	color: white;
+	transition: 0.5s;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
+	transition: 0.5s;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+/* Pallini dello stato del candidato*/
 .dot {
 	height: 25px;
 	width: 25px;
 	border-radius: 50%;
 	display: inline-block;
+	margin-top: 5px;
+}
+
+/* Navbar */
+.navbar {
+	background: #5aa9e6;
+	border: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-link {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #7fc8f8;
+	border-radius: 50%;
+}
+
+.navbar .navbar-brand .logo {
+	width: auto;
+	height: 70px;
+}
+
+/* Barra Laterale */
+.container1 {
+	width: 100%;
+	margin-top: 20px;
+}
+
+#sidebar {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 0px 5px 5px 0px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	background: #5aa9e6;
+	color: #fff;
+	border-collapse: collapse;
+}
+
+#sidebar .sidebar-header {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background: #7fc8f8;
+}
+
+#sidebar ul.components {
+	padding: 10px 0px 0px 0px;
+}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	margin: 5px 0px;
+	padding: 10px 10px 10px 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #000000;
+	background: #fff;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #7fc8f8;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #cae9ff;
+}
+
+#zeroRecord {
+	text-align: center;
+}
+/* Tabella Home */
+.tabellaHome {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaHome .head {
+	background-color: #5aa9e6;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tabellaHome .body tr {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tabellaHome .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaHome .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaHome th {
+	padding: 8px;
+}
+
+.tabellaHome td {
+	font-size: 14px;
+	padding: 4px;
 }
 </style>
 
-<!--Script-->
-<script src="https://kit.fontawesome.com/053b00be10.js"
-	crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"> 
-</script>
-<script
-	src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"> 
-</script>
-<!--Meta-->
-<meta charset="ISO-8859-1">
-<title>Filtro avanzato</title>
-
 </head>
-
 <body
 	onload="getMansione('${mansioneList}', '${specializzazioneList}', '${areaCompetenzaList}')">
 
-	<!-- Navbar -->
-	<div class="container-fluid">
-		<div class="row w-100">
-			<nav class="navbar navbar-light fixed-top bg-primary w-100 "
-				style="opacity: 0.9;">
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-xl ">
+		<div class="container-fluid">
 
-				<!-- Logo -->
-				<nav class="navbar">
-					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-						<img src="/ProgettoHR/img/Erre_technology_group_NEW.png"
-						style="width: 170px;">
-					</a>
-				</nav>
+			<!-- LOGO -->
+			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			</a>
 
-				<!-- bottone profilo -->
-				<div class="col-auto text-right">
-					<button class="btn btn-primary dropdown-toggle"
-						style="border-radius: 10px; box-shadow: 0px 0px 2px black;"
-						role="button" id="logout" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user"></i>
-					</button>
+
+
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
+
+
+
+
+
+
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+	<div class="container-fluid container1 p-0">
+		<!-- COLONNA BARRA LATERALE -->
+		<div class="col-auto p-0 ">
+			<!-- BARRA LATERALE -->
+			<nav id="sidebar">
+				<div class="sidebar-header">
+					<h3>Filtreria</h3>
 				</div>
 
+
+				<form autocomplete="off" method="POST"
+					action="/ProgettoHR/Filter/advanced/${businessUnit}"
+					onsubmit="controlloMappa()">
+					<div class="form-row" id="divForm">
+
+						<div class="col-3">
+							<label for="nome">nome</label> <input id="nome" name="nome"
+								type="text" class="form-control" placeholder=" nome">
+						</div>
+						<div class="col-3">
+							<label>cognome</label> <input id="cognome" name="cognome"
+								type="text" class="form-control" placeholder="cognome">
+						</div>
+						<div class="col-1">
+							<label>anno di nascita</label> <input id="anno" maxlength="4"
+								name="anno" class="form-control" type="text" placeholder="anno">
+						</div>
+						<div class="col-2">
+							<label>num telefono</label> <input id="telefono" name="telefono"
+								class="form-control" type="text" placeholder="num telefono">
+						</div>
+
+						<div class="col-3">
+							<label>email</label> <input id="email" name="email"
+								class="form-control" type="text" placeholder="email">
+						</div>
+					</div>
+
+
+					<div class="form-row" id="divForm">
+						<div class="col-2">
+							<label>business Unit</label> <select id="selectBusiness"
+								name="business" class=" form-control custom-select">
+								<option selected></option>
+								<c:forEach var="bus" items="${businessList}">
+									<option value="${bus.business}">${bus.business}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-2">
+							<label>seniority</label> <select id=selectSeniority
+								name="seniority" class="custom-select  form-control">
+								<option selected></option>
+								<c:forEach var="sen" items="${seniorityList}">
+									<option value="${sen.seniority}">${sen.seniority}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-2">
+							<label>provenienza</label> <input id="provenienza"
+								name="provenienza" class="form-control" type="text"
+								placeholder="provenienza">
+						</div>
+
+
+					</div>
+					<div class="form-row" id="divForm">
+						<div class="col-2">
+
+							<div id="areeCompetenzaDiv">
+								<label>area di competenza</label>
+								
+									<input autocomplete="off" placeholder="aggiungi"
+										list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
+										class="form-control">
+									<datalist id="areeCompetenzeDisponibili">
+										<c:forEach var="area" items="${areaCompetenzaList}">
+											<option value="${area}"></option>
+										</c:forEach>
+									</datalist>
+
+
+
+									<div
+										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+										class="btn">
+										<i class="fas fa-plus"></i>
+									</div>
+							
+							</div>
+						</div>
+						<div class="col-2">
+
+							<div id="mansioneDiv">
+								<label>mansione</label>
+								
+									<input autocomplete="off" placeholder="aggiungi"
+										list="mansioniDisponibili" id="mansioneInput"
+										class="form-control">
+									<datalist id="mansioniDisponibili">
+										<c:forEach var="mans" items="${mansioneList}">
+											<option value="${mans}"></option>
+										</c:forEach>
+									</datalist>
+
+
+
+									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+										class="btn">
+										<i class="fas fa-plus"></i>
+									</div>
+								
+							</div>
+						</div>
+						<div class="col-2">
+
+							<div id="specializzazioneDiv">
+								<label>specializzazione</label>
+								
+									<input autocomplete="off" placeholder="aggiungi"
+										list="specializzazioniDisponibili" id="specializzazioneInput"
+										class="form-control">
+									<datalist id="specializzazioniDisponibili">
+										<c:forEach var="specializzazione"
+											items="${specializzazioneList}">
+											<option value="${specializzazione}"></option>
+										</c:forEach>
+									</datalist>
+								</div>
+								<div
+									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+									class="btn">
+									<i class="fas fa-plus"></i>
+								</div>
+							
+						</div>
+					</div>
+
+					<div class="form-row" id="divForm">
+						<div class="col-2">
+							<label>costo unitario all'ora</label> Da <input
+								id="costoMinInput" name="costoMin" class="form-control"
+								style="border-color: transparent;" type="text"
+								placeholder="costo minimo"> A<input id="costoMaxInput"
+								name="costoMax" class="form-control"
+								style="border-color: transparent;" type="text"
+								placeholder="costo massimo">
+						</div>
+						<div class="col-2">
+
+							<div id="specializzazioneDiv" >
+
+							
+									Dal <input type="date" id="dataInserimentoInputFrom"
+										name="dataInserimentoFrom" class="form-control"
+										style="border-color: transparent;"> Al <input
+										type="date" id="dataInserimentoInputTo"
+										name="dataInserimentoTo" class="form-control"
+										style="border-color: transparent;">
+
+									<!--  <input
+									id="anniEsperienzaInput" class="form-control"
+									style="border-color: transparent;" type="number"
+									placeholder="anni esperienza">-->
+
+
+								</div>
+
+							</div>
+						</div>
+
+					
+				</form>
 			</nav>
 		</div>
 	</div>
+
+
+
 
 	<!-- COLONNA CON FILTRO -->
 	<div style="margin-top: 110px;" class="container-fluid ">
@@ -102,7 +410,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse1"
 							aria-expanded="false" aria-controls="collapse1">
@@ -115,7 +423,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="nome" name="nome" class="text-left"
+								<input id="nome" name="nome" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder=" nome">
 
@@ -127,7 +435,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse2"
 							aria-expanded="false" aria-controls="collapse2">
@@ -140,7 +448,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="cognome" name="cognome" class="text-left"
+								<input id="cognome" name="cognome" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="cognome">
 
@@ -152,7 +460,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse3"
 							aria-expanded="false" aria-controls="collapse3">
@@ -165,7 +473,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="anno" maxlength="4" name="anno" class="text-left"
+								<input id="anno" maxlength="4" name="anno" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="anno">
 
@@ -177,7 +485,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse4"
 							aria-expanded="false" aria-controls="collapse4">
@@ -190,7 +498,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="telefono" name="telefono" class="text-left"
+								<input id="telefono" name="telefono" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="cognome">
 
@@ -202,7 +510,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse5"
 							aria-expanded="false" aria-controls="collapse5">
@@ -215,7 +523,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="email" name="email" class="text-left"
+								<input id="email" name="email" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="email">
 
@@ -229,7 +537,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse6"
 							aria-expanded="false" aria-controls="collapse6">
@@ -258,7 +566,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse7"
 							aria-expanded="false" aria-controls="collapse7">
@@ -287,7 +595,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse8"
 							aria-expanded="false" aria-controls="collapse8">
@@ -300,7 +608,7 @@ html, body {
 						<div class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="provenienza" name="provenienza" class="text-left"
+								<input id="provenienza" name="provenienza" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="provenienza">
 
@@ -316,7 +624,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse9"
 							aria-expanded="false" aria-controls="collapse9">
@@ -329,7 +637,7 @@ html, body {
 						<div id="areaCompetenzaDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="areaCompetenzaInput" class="text-left"
+								<input id="areaCompetenzaInput" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder=" area competenza">
 
@@ -349,7 +657,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse10"
 							aria-expanded="false" aria-controls="collapse10">
@@ -362,7 +670,7 @@ html, body {
 						<div id="mansioneDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="mansioneInput" class="text-left"
+								<input id="mansioneInput" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="mansione">
 
@@ -381,7 +689,7 @@ html, body {
 
 				<div class="card" style="border-color: transparent;">
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse11"
 							aria-expanded="false" aria-controls="collapse11">
@@ -394,11 +702,11 @@ html, body {
 						<div id="specializzazioneDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="specializzazioneInput" class="text-left"
+								<input id="specializzazioneInput" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="specializzazione">
 								<!--  <input
-									id="anniEsperienzaInput" class="text-left"
+									id="anniEsperienzaInput" class="form-control"
 									style="border-color: transparent;" type="number"
 									placeholder="anni esperienza">-->
 
@@ -416,7 +724,7 @@ html, body {
 
 				<div class="card" style="border-color: transparent;">
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse12"
 							aria-expanded="false" aria-controls="collapse12">
@@ -429,14 +737,14 @@ html, body {
 						<div id="specializzazioneDiv" class="card-body">
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<input id="costoMinInput" name="costoMin" class="text-left"
+								<input id="costoMinInput" name="costoMin" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="costo minimo"> <input id="costoMaxInput"
-									name="costoMax" class="text-left"
+									name="costoMax" class="form-control"
 									style="border-color: transparent;" type="text"
 									placeholder="costo massimo">
 								<!--  <input
-									id="anniEsperienzaInput" class="text-left"
+									id="anniEsperienzaInput" class="form-control"
 									style="border-color: transparent;" type="number"
 									placeholder="anni esperienza">-->
 
@@ -448,7 +756,7 @@ html, body {
 				</div>
 				<div class="card" style="border-color: transparent;">
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse13"
 							aria-expanded="false" aria-controls="collapse13">
@@ -462,14 +770,14 @@ html, body {
 
 							<div class="autocomplete" style="border-bottom-style: ridge;">
 								Dal <input type="date" id="dataInserimentoInputFrom"
-									name="dataInserimentoFrom" class="text-left"
+									name="dataInserimentoFrom" class="form-control"
 									style="border-color: transparent;"> Al <input
 									type="date" id="dataInserimentoInputTo"
-									name="dataInserimentoTo" class="text-left"
+									name="dataInserimentoTo" class="form-control"
 									style="border-color: transparent;">
 
 								<!--  <input
-									id="anniEsperienzaInput" class="text-left"
+									id="anniEsperienzaInput" class="form-control"
 									style="border-color: transparent;" type="number"
 									placeholder="anni esperienza">-->
 
@@ -483,7 +791,7 @@ html, body {
 				<div class="card" style="border-color: transparent;">
 
 					<h2 class="">
-						<button class="btn btn-block text-left collapsed"
+						<button class="btn btn-block form-control collapsed"
 							style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
 							type="button" data-toggle="collapse" data-target="#collapse15"
 							aria-expanded="false" aria-controls="collapse15">
@@ -521,601 +829,7 @@ html, body {
 				</div>
 			</form>
 
-			<!--    <div class="col-2 pl-0" style="background-color: #ffffff;">
-				<form autocomplete="off" action="/FiltroAvanzato_jsp.html"
-					style="box-shadow: 0px 0px 2px black; border-bottom-style: ridge; border-color: rgb(37, 137, 204);">
 
-					NOME
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading1">
-							<h2>
-
-								<button class="btn btn-block text-left"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse1"
-									aria-expanded="true" aria-controls="collapse1">
-									<i class="fa fa-plus" aria-hidden="true"></i> Nome <i
-										class="fas fa-user-circle float-right pt-1"></i>
-								</button>
-
-							</h2>
-						</div>
-						<div id="collapse1" class="collapse show"
-							aria-labelledby="heading1">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-
-									<input id="inputNome" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="nomeCandidato" placeholder=" nome candidato">
-									<button class="btn" onclick="aggiungiNome()">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-
-								</div>
-
-								<div id="aggiuntaNome"></div>
-							</div>
-						</div>
-					</div>
-
-
-					COGNOME
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading2">
-							<h2>
-
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse2"
-									aria-expanded="false" aria-controls="collapse2">
-									<i class="fa fa-plus" aria-hidden="true"></i> Cognome <i
-										class="fas fa-user-circle float-right pt-1"></i>
-								</button>
-
-							</h2>
-						</div>
-						<div id="collapse2" class="collapse" aria-labelledby="heading2">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-
-									<input id="inputCognome" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="cognomeCandidato" placeholder=" cognome candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-				DATA DI NASCITA
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading3">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse3"
-									aria-expanded="false" aria-controls="collapse3">
-									<i class="fa fa-plus" aria-hidden="true"></i> Data nascita <i
-										class="far fa-calendar-alt float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse3" class="collapse" aria-labelledby="heading3">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-									<input type="date" style="border-color: transparent;"
-										pattern="yyyy-MM-dd" class="form-control text-center"
-										id="inputNascita" path="dataPresentato" name="dataCandidato">
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 TELEFONO 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading4">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse4"
-									aria-expanded="false" aria-controls="collapse4">
-									<i class="fa fa-plus" aria-hidden="true"></i> Telefono <i
-										class="fas fa-phone float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse4" class="collapse" aria-labelledby="heading4">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-									<input type="tel" style="border-color: transparent;"
-										id="inputTelefono" name="telefonoCandidato"
-										pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="nnn/nnn/nnnn">
-									<button onclick="telefono()" class="btn" type="submit">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				 E-MAIL 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading5">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse5"
-									aria-expanded="false" aria-controls="collapse5">
-									<i class="fa fa-plus" aria-hidden="true"></i> E-mail <i
-										class="fas fa-envelope float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse5" class="collapse" aria-labelledby="heading5">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputE-mail" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="e-mailCandidato" placeholder=" e-mail candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					PROVENIENZA CANDIDATURA 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading6">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse6"
-									aria-expanded="false" aria-controls="collapse6">
-									<i class="fa fa-plus" aria-hidden="true"></i> Provenienza <i
-										class="fas fa-network-wired float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse6" class="collapse" aria-labelledby="heading6">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputProvenienza" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="provenienzaCandidato"
-										placeholder=" provenienza candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-				 CATEGORIA PROTETTA 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading7">
-							<h2>
-
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse7"
-									aria-expanded="false" aria-controls="collapse7">
-									<i class="fa fa-plus" aria-hidden="true"></i> Categoria
-									protetta
-								</button>
-
-							</h2>
-
-						</div>
-
-						<div id="collapse7" class="collapse" aria-labelledby="heading7">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-
-									<div class="custom-control custom-checkbox text-center">
-										<input type="checkbox" class="custom-control-input"
-											id="categoriaProtettaCandidato" unchecked> <label
-											class="custom-control-label" for="categoriaProtettaCandidato">Categoria
-											protetta</label>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					 BUSINESS UNIT 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading8">
-							<h2>
-
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse8"
-									aria-expanded="false" aria-controls="collapse8">
-									<i class="fa fa-plus" aria-hidden="true"></i> Business unit
-								</button>
-
-							</h2>
-						</div>
-						<div id="collapse8" class="collapse" aria-labelledby="heading8">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputBusinessUnit" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="businessUnitCandidato"
-										placeholder=" business unit candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 AREA DI COMPETENZA 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading9">
-							<h2>
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse9"
-									aria-expanded="false" aria-controls="collapse9">
-									<i class="fa fa-plus" aria-hidden="true"></i> Area competenza <i
-										class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse9" class="collapse" aria-labelledby="heading9">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputArea" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="areaCandidato" placeholder=" area competenza candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 MANSIONE 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading10">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse10"
-									aria-expanded="false" aria-controls="collapse10">
-									<i class="fa fa-plus" aria-hidden="true"></i> Mansione <i
-										class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse10" class="collapse" aria-labelledby="heading10">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="myInput" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="mansioneCandidato" placeholder=" mansione candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 SENIORITY 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading11">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse11"
-									aria-expanded="false" aria-controls="collapse11">
-									<i class="fa fa-plus" aria-hidden="true"></i> Seniority <i
-										class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse11" class="collapse" aria-labelledby="heading11">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputSeniority" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="seniorityCandidato" placeholder=" seniority candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 SPECIALIZZAZIONE 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading12">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse12"
-									aria-expanded="false" aria-controls="collapse12">
-									<i class="fa fa-plus" aria-hidden="true"></i> Specializzazione
-									<i class="fas fa-briefcase float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse12" class="collapse" aria-labelledby="heading12">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputSpecializzazione" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="specializzazioneCandidato"
-										placeholder=" specializzazione candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 INSERIMENTO AZIENDA 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading13">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse13"
-									aria-expanded="false" aria-controls="collapse13">
-									<i class="fa fa-plus" aria-hidden="true"></i> Inserimento <i
-										class="far fa-calendar-alt float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse13" class="collapse" aria-labelledby="heading13">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-
-									<input type="date" style="border-color: transparent;"
-										pattern="yyyy-MM-dd" class="form-control text-center"
-										id="inputInserimento" path="dataPresentato"
-										name="inserimentoCandidato">
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-					 INQUADRAMENTO 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading14">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse14"
-									aria-expanded="false" aria-controls="collapse14">
-									<i class="fa fa-plus" aria-hidden="true"></i> Inquadramento
-								</button>
-							</h2>
-						</div>
-						<div id="collapse14" class="collapse" aria-labelledby="heading14">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputInquadramento" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="inquadramentoCandidato"
-										placeholder=" inquadramento candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					RAL 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading15">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse15"
-									aria-expanded="false" aria-controls="collapse15">
-									<i class="fa fa-plus" aria-hidden="true"></i> RAL <i
-										class="fas fa-euro-sign float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse15" class="collapse" aria-labelledby="heading15">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-									<input style="border-color: transparent;" id="inputRAL"
-										name="RALCandidato" placeholder=" RAL candidato">
-									<button class="btn" type="submit">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					 BENEFIT 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading16">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse16"
-									aria-expanded="false" aria-controls="collapse16">
-									<i class="fa fa-plus" aria-hidden="true"></i> Benefit
-								</button>
-							</h2>
-						</div>
-						<div id="collapse16" class="collapse" aria-labelledby="heading16">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputBenefit" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="benefitCandidato" placeholder=" benefit candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 PREAVVISO 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading17">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse17"
-									aria-expanded="false" aria-controls="collapse17">
-									<i class="fa fa-plus" aria-hidden="true"></i> Preavviso
-								</button>
-							</h2>
-						</div>
-						<div id="collapse17" class="collapse" aria-labelledby="heading17">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputPreavviso" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="preavvisoCandidato" placeholder=" preavviso candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					DESIDERATA 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading18">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse18"
-									aria-expanded="false" aria-controls="collapse18">
-									<i class="fa fa-plus" aria-hidden="true"></i> Desiderata
-								</button>
-							</h2>
-						</div>
-						<div id="collapse18" class="collapse" aria-labelledby="heading18">
-							<div class="card-body">
-
-								<div class="autocomplete" style="border-bottom-style: ridge;">
-									<input id="inputDesiderata" class="text-left"
-										style="border-color: transparent;" type="text"
-										name="desiderataCandidato" placeholder=" desiderata candidato">
-									<button class="btn">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					 COSTO ORARIO 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading19">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse19"
-									aria-expanded="false" aria-controls="collapse19">
-									<i class="fa fa-plus" aria-hidden="true"></i> Costo orario <i
-										class="fas fa-euro-sign float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse19" class="collapse" aria-labelledby="heading19">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-									<input style="border-color: transparent;" id="inputCostoOrario"
-										name="costoOrarioCandidato"
-										placeholder=" costo orario candidato">
-									<button class="btn" type="submit">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					 COSTO GIORNALIERO 
-					<div class="card" style="border-color: transparent;">
-						<div class="card-header" id="heading20">
-							<h2 class="">
-								<button class="btn btn-block text-left collapsed"
-									style="border-radius: 0px 0px 0px 0px; box-shadow: 0px 0px 2px black;"
-									type="button" data-toggle="collapse" data-target="#collapse20"
-									aria-expanded="false" aria-controls="collapse20">
-									<i class="fa fa-plus" aria-hidden="true"></i> Costo giornaliero
-									<i class="fas fa-euro-sign float-right pt-1"></i>
-								</button>
-							</h2>
-						</div>
-						<div id="collapse20" class="collapse" aria-labelledby="heading20">
-							<div class="card-body">
-
-								<div style="border-bottom-style: ridge;">
-									<input style="border-color: transparent;"
-										id="inputCostoGiornaliero" name="costoGiornalieroCandidato"
-										placeholder=" costo giornaliero candidato">
-									<button class="btn" type="submit">
-										<i class="fas fa-arrow-circle-down"></i>
-									</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>-->
 			<div class="col-10">
 
 				<button type="button" id="exportButton" class="btn btn-primary "
@@ -1193,7 +907,7 @@ html, body {
 									<c:forEach var="specializzazione"
 										items="${cand.candidatoSpecializzazione}">
 										<div>${specializzazione.specializzazione.specializzazione}
-											&nbsp ${specializzazione.anni} anni esperienza </div>
+											&nbsp ${specializzazione.anni} anni esperienza</div>
 									</c:forEach>
 								</td>
 								<td
@@ -1204,8 +918,8 @@ html, body {
 									onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 									${cand.costo.orario} &#8364; /H</td>
 
-								<td class="noExport" data-toggle="modal" data-target="#EliminaModal"><i
-									class="fas fa-trash-alt"></i></td>
+								<td class="noExport" data-toggle="modal"
+									data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
 							</tr>
 
 						</c:forEach>
