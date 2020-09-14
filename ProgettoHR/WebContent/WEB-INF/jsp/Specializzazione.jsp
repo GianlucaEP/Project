@@ -189,7 +189,7 @@ a, a:hover, a:focus {
 
 					<div class="modal-header">
 						Sei sicuro di voler cancellare la specializzazione selezionata? <input
-							style="visibility: hidden;" name="mansione" id="mansione" />
+							style="visibility: hidden;" name="specializzazione" id="specializzazione" />
 					</div>
 
 					<div class="modal-footer">
