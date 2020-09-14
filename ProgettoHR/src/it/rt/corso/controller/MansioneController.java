@@ -65,7 +65,7 @@ public class MansioneController {
 		singleton.aggiornaMansione();
 	}
 	
-	@RequestMapping(value = "/EliminaArea/{businessUnit}", method = RequestMethod.POST)
+	@RequestMapping(value = "/EliminaMansione/{businessUnit}", method = RequestMethod.POST)
 	public String elimina(@RequestParam("mansione") String mansione, @PathVariable String businessUnit) {
 		
 		Mansione m = dao.get(mansione);

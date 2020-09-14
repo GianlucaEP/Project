@@ -935,7 +935,7 @@ svg {
 					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 						<c:choose>
 							<c:when test="${funz.funzionalita == 'visualizza mansione'}">
-								<li><a href="" type="button"><i
+								<li><a href="/ProgettoHR/Mansione/{businessUnit}" type="button"><i
 										class="fas fa-long-arrow-alt-right"></i> Vedi Mansioni </a></li>
 							</c:when>
 							<c:when test="${funz.funzionalita == 'visualizza area'}">
@@ -945,7 +945,7 @@ svg {
 							</c:when>
 							<c:when
 								test="${funz.funzionalita == 'visualizza specializzazione'}">
-								<li><a href="" type="button"><i
+								<li><a href="/ProgettoHR/Specializzazione/{businessUnit}" type="button"><i
 										class="fas fa-long-arrow-alt-right"></i> Vedi Specializzazione
 								</a></li>
 							</c:when>
