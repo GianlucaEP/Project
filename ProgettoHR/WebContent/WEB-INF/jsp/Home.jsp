@@ -16,7 +16,8 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
@@ -31,19 +32,19 @@ html, body {
 .dark-mode {
 	background-color: black;
 	color: white;
-	transition:  0.5s;
+	transition: 0.5s;
 }
 
 body {
 	font-family: 'Poppins', sans-serif;
 	background: #fafafa;
-	transition:  0.5s;
+	transition: 0.5s;
 }
 
 a, a:hover, a:focus {
 	color: inherit;
 	text-decoration: none;
-	transition:  all  0.3s;
+	transition: all 0.3s;
 }
 
 /* Pallini dello stato del candidato*/
@@ -931,6 +932,26 @@ svg {
 						</c:choose>
 					</c:forEach>
 
+					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+						<c:choose>
+							<c:when test="${funz.funzionalita == 'visualizza mansione'}">
+								<li><a href="" type="button"><i
+										class="fas fa-long-arrow-alt-right"></i> Vedi Mansioni </a></li>
+							</c:when>
+							<c:when test="${funz.funzionalita == 'visualizza area'}">
+								<li><a href="/ProgettoHR/AreaCompetenza/${businessUnit}"
+									type="button"><i class="fas fa-long-arrow-alt-right"></i>
+										Vedi Area </a></li>
+							</c:when>
+							<c:when
+								test="${funz.funzionalita == 'visualizza specializzazione'}">
+								<li><a href="" type="button"><i
+										class="fas fa-long-arrow-alt-right"></i> Vedi Specializzazione
+								</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+
 
 					<li><a href="/ProgettoHR/Filter/${businessUnit}" type="button"
 						class="text-center">Filtri</a></li>
@@ -942,13 +963,13 @@ svg {
 		<div class="col-md">
 
 			<div class="col mb-2">
-				<button class="btn"onclick="darkMode()" style="float:right;" >
-					<span  data-toggle="tooltip" data-placement="top"
-						title="attiva la modalità dark"><i class="far fa-moon"></i></span></button>
-				
-			
-				<form action="/ProgettoHR/Home/filter/${businessUnit}" 
-					method="post">
+				<button class="btn" onclick="darkMode()" style="float: right;">
+					<span data-toggle="tooltip" data-placement="top"
+						title="attiva la modalità dark"><i class="far fa-moon"></i></span>
+				</button>
+
+
+				<form action="/ProgettoHR/Home/filter/${businessUnit}" method="post">
 					<div class="form-row">
 						<div class="col-auto p-0">
 
@@ -1050,9 +1071,9 @@ svg {
 											onclick="window.location = '/ProgettoHR/Candidato/${businessUnit}/${cand.id}'">
 											${cand.seniority.seniority}</td>
 
-										<td data-toggle="modal"
+										<td><a href="" data-toggle="modal"
 											onclick="impostaParametriCandidatoId(${cand.id})"
-											data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
+											data-target="#EliminaModal"> <i class="fas fa-trash-alt"></i></a></td>
 
 									</tr>
 
@@ -1257,41 +1278,37 @@ svg {
 			}
 			return control;
 		}
-			function validateSpecializzazione() {
-				var areaCompetenza = document.getElementById("specializzazione").value;
-				var list = document.getElementById("formSpecializzazione");
-				var control = true;
+		function validateSpecializzazione() {
+			var areaCompetenza = document.getElementById("specializzazione").value;
+			var list = document.getElementById("formSpecializzazione");
+			var control = true;
 
-				if (specializzazione === "") {
+			if (specializzazione === "") {
 
-					var tagDiv = document.createElement("div");
-					tagDiv.style = "color:red; font-size: small;"
-					var textnode = document
-							.createTextNode("Inserisci Specializzazione")
-					tagDiv.appendChild(textnode)
-					document.getElementById("specializzazione").appendChild(tagDiv);
-					control = false;
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				var textnode = document
+						.createTextNode("Inserisci Specializzazione")
+				tagDiv.appendChild(textnode)
+				document.getElementById("specializzazione").appendChild(tagDiv);
+				control = false;
 
-				}
+			}
 
 			return control;
 		}
 		function x(statoSelezionato) {
 
-			if (statoSelezionato!==""){
-				document.getElementById(statoSelezionato).selected=true;
+			if (statoSelezionato !== "") {
+				document.getElementById(statoSelezionato).selected = true;
 			}
-			
 
-			
-			
 		}
-		
-		function validateOption(){
+
+		function validateOption() {
 			var e = document.getElementById("stati");
 			var value = e.options[e.selectedIndex].value;
-	
-			
+
 			if (value === "Stato candidato") {
 				document.getElementById("bottoneFiltro").disabled = true;
 			} else {
@@ -1299,9 +1316,9 @@ svg {
 			}
 		}
 		function darkMode() {
-			   var element = document.body;
-			   element.classList.toggle("dark-mode");
-			}
+			var element = document.body;
+			element.classList.toggle("dark-mode");
+		}
 	</script>
 
 

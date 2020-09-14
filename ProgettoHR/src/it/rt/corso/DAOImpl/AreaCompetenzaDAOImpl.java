@@ -2,7 +2,6 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
-
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
@@ -36,6 +35,11 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 				.setParameter("id", id).getResultList();
 
 		return listaAreaCompetenza;
+	}
+
+	@Override
+	public AreaCompetenza cancella(AreaCompetenza area) {
+		return (AreaCompetenza) super.cancella(area);
 	}
 	
 }

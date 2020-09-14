@@ -10,4 +10,5 @@ public interface AreaCompetenzaDAO {
 	public List<AreaCompetenza> getLista();
 	public AreaCompetenza get(String id);
 	public List<AreaCompetenza> getIdByCandidato(int id);
+	public AreaCompetenza cancella(AreaCompetenza area);
 }
