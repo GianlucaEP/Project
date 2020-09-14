@@ -1723,7 +1723,7 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitAggiungiEconomics"
 										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1790,7 +1790,7 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitAggiungiCosto"
 										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1890,7 +1890,7 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitModificaQM"
 										class="btn btn-primary btn-block">Modifica</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1989,20 +1989,20 @@ ul ul a {
 					<div class="container-fluid">
 						<form method="post"
 							action="/ProgettoHR/doUpload/${businessUnit}/${mostraCandidato.id}"
-							enctype="multipart/form-data">
+							enctype="multipart/form-data"  onsubmit="return validateFileForm()">
 							<table>
 								<tr>
 									<td>Pick file:</td>
-									<td><input type="file" name="fileUpload" size="50"
+									<td><input type="file" name="fileUpload" id="fileUpload" size="50"
 										required="required" /></td>
 								</tr>
 
 							</table>
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Aggiunti
+									<button type="submit" class="btn btn-primary btn-block">Aggiungi
 										Allegati</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
+									
 								</div>
 							</div>
 						</form>
@@ -2505,6 +2505,19 @@ ul ul a {
               		}           
 				} 			
 			}
+		}
+		
+		function validateFileForm(){
+			var uploadField = document.getElementById("fileUpload");
+
+			    if(uploadField.files[0].size > 20971520){
+			    	$('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Dimensione del file troppo grande."
+					return false;
+			    }
+			    
+			    return true;
+	
 		}
 		
 		//funzione che mi salva le modifiche solo in caso non ci sia nulla all'interno dell'input
