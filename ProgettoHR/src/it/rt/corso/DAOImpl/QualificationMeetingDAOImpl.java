@@ -26,4 +26,9 @@ public class QualificationMeetingDAOImpl extends BaseDAO implements Qualificatio
 		return null;
 	}
 
+	@Override
+	public QualificationMeeting cancella(QualificationMeeting qualificationMeeting) {
+		return (QualificationMeeting) super.cancella(qualificationMeeting);
+	}
+
 }

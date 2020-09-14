@@ -13,4 +13,6 @@ public interface QualificationMeetingDAO {
 	public QualificationMeeting get(int id);
 
 	public List<QualificationMeeting> getLista();
+	
+	public QualificationMeeting cancella(QualificationMeeting qualificationMeeting);
 }

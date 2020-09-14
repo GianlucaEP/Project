@@ -35,6 +35,10 @@ body {
 	background: #fafafa;
 }
 
+.customButton {
+	min-width: 34px;
+}
+
 a, a:hover, a:focus {
 	color: inherit;
 	text-decoration: none;
@@ -1043,8 +1047,15 @@ ul ul a {
 														onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
 														type="button" data-toggle="modal" id="bottoneFeedback"
 														data-target="#modificaFeedbackModal"
-														class="btn p-1 float-right">
+														 class="btn customButton p-1 float-right">
 														<i class="fas fa-cogs m-0"></i>
+													</button>
+													<button
+														onclick="impostaParametriEliminaFeedback('${feed.id}')"
+														type="button" data-toggle="modal"
+														id="bottoneFeedback" data-target="#eliminaFeedbackModal"
+														class="btn customButton p-1 mr-1 float-right">
+														<i class="fas fa-trash m-0"></i>
 													</button>
 												</c:when>
 											</c:choose>
@@ -1099,8 +1110,15 @@ ul ul a {
 														type="button" data-toggle="modal"
 														id="bottoneQualification"
 														data-target="#modificaQualificationMeetingModal"
-														class="btn p-1 float-right">
+														class="btn customButton p-1 float-right">
 														<i class="fas fa-cogs m-0"></i>
+													</button>
+													<button
+														onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
+														type="button" data-toggle="modal"
+														id="bottoneQualification" data-target="#eliminaQualificationMeetingModal"
+														class="btn customButton p-1 mr-1 float-right">
+														<i class="fas fa-trash m-0"></i>
 													</button>
 												</c:when>
 											</c:choose>
@@ -1719,7 +1737,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitAggiungiEconomics"
 										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1786,7 +1805,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitAggiungiCosto"
 										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										modifiche</button>
 								</div>
 							</div>
 						</form:form>
@@ -1886,12 +1906,63 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitModificaQM"
 										class="btn btn-primary btn-block">Modifica</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla modifiche</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										modifiche</button>
 								</div>
 							</div>
 						</form:form>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- MODAL CANCELLA QUALIFICATION MEETING -->
+	<div class="modal fade" id="eliminaQualificationMeetingModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/EliminaQualificationMeeting/${businessUnit}/${id}"
+					method="POST">
+
+					<div class="modal-header">
+						Sei sicuro di voler cancellare il Qualification meeting selezionato? <input
+							style="visibility: hidden;" name="qualification" id="qualification" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL CANCELLA FEEDBACK -->
+	<div class="modal fade" id="eliminaFeedbackModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/EliminaFeedback/${businessUnit}/${id}"
+					method="POST">
+
+					<div class="modal-header">
+						Sei sicuro di voler cancellare il feedback selezionato? <input
+							style="visibility: hidden;" name="feedback" id="feedback" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
+					</div>
+
+				</form>
 			</div>
 		</div>
 	</div>
@@ -1985,12 +2056,13 @@ ul ul a {
 					<div class="container-fluid">
 						<form method="post"
 							action="/ProgettoHR/doUpload/${businessUnit}/${mostraCandidato.id}"
-							enctype="multipart/form-data"  onsubmit="return validateFileForm()">
+							enctype="multipart/form-data"
+							onsubmit="return validateFileForm()">
 							<table>
 								<tr>
 									<td>Pick file:</td>
-									<td><input type="file" name="fileUpload" id="fileUpload" size="50"
-										required="required" /></td>
+									<td><input type="file" name="fileUpload" id="fileUpload"
+										size="50" required="required" /></td>
 								</tr>
 
 							</table>
@@ -1998,7 +2070,7 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" class="btn btn-primary btn-block">Aggiungi
 										Allegati</button>
-									
+
 								</div>
 							</div>
 						</form>
@@ -2269,6 +2341,9 @@ ul ul a {
 			document.getElementById("commentoFeedback").value = commento;
 		}
 		
+		function impostaParametriEliminaFeedback(id) {
+			document.getElementById("feedback").value = id;
+		}
 		function impostaParametriAllegati(id) {
 			document.getElementById("Allegato").value = id;
 		
@@ -2283,6 +2358,10 @@ ul ul a {
 			document.getElementById("riferimentoGaraQualificationMeeting").value = riferimentoGara;
 			document.getElementById("dataColloquioQualificationMeeting").value = dataColloquio;
 			document.getElementById("feedbackQualificationMeeting").value = feedback;
+		}
+		
+		function impostaParametriEliminaQualificationMeeting(id){
+			document.getElementById("qualification").value = id;
 		}
 		
 		

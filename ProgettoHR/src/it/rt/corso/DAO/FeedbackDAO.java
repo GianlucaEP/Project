@@ -13,4 +13,6 @@ public interface FeedbackDAO {
 	public Feedback get(int id);
 
 	public List<Feedback> getByIdCandidato(int id);
+	
+	public Feedback cancella(Feedback feedback);
 }

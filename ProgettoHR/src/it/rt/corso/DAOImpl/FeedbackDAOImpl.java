@@ -36,4 +36,9 @@ public class FeedbackDAOImpl extends BaseDAO implements FeedbackDAO {
 		return listaFeedback;
 	}
 
+	@Override
+	public Feedback cancella(Feedback feedback) {
+		return (Feedback) super.cancella(feedback);
+	}
+
 }

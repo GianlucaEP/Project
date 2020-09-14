@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.CandidatoDAO;
@@ -27,8 +28,9 @@ public class QualificationMeetingController {
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/AggiungiQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String aggiungiQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@PathVariable int id, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+	public String aggiungiQualificationMeeting(
+			@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting, @PathVariable int id,
+			@PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 		Candidato c = dao.get(id);
 		qualificationMeeting.setUserInsert(utente.getUsername());
 		Date ora = new Date();
@@ -39,10 +41,11 @@ public class QualificationMeetingController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 
 	}
-	
+
 	@RequestMapping(value = "/ModificaQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String modificaQualificationMeeting(@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting,
-			@PathVariable int id, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+	public String modificaQualificationMeeting(
+			@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting, @PathVariable int id,
+			@PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 		QualificationMeeting qm = quafilicationMeetingDAO.get(qualificationMeeting.getId());
 		qm.setUserInsert(utente.getUsername());
 		qm.setCliente(qualificationMeeting.getCliente());
@@ -56,5 +59,16 @@ public class QualificationMeetingController {
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 
+	}
+
+	@RequestMapping(value = "/EliminaQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String elimina(@RequestParam("qualification") int idQualificationMeeting, @PathVariable String businessUnit,
+			@PathVariable int id) {
+		
+		QualificationMeeting qm = quafilicationMeetingDAO.get(idQualificationMeeting);
+		
+		quafilicationMeetingDAO.cancella(qm);
+		
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 }

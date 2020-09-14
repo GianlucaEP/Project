@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.CandidatoDAO;
@@ -16,8 +17,10 @@ import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
+import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.TipoFeedback;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class FeedbackController {
@@ -59,6 +62,19 @@ public class FeedbackController {
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 
+	}
+	
+	@RequestMapping(value = "/EliminaFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String elimina(@RequestParam("feedback") int idFeedback, @PathVariable String businessUnit, @PathVariable int id ) {
+		
+		Feedback f = feedbackDAO.get(idFeedback);
+		
+		feedbackDAO.cancella(f);
+		
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaMansione();
+		
+		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
 }
