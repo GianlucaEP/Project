@@ -84,6 +84,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
+
 	width: 100%;
 	height: 100%;
 	border-collapse: collapse;
@@ -95,13 +96,12 @@ a, a:hover, a:focus {
 	background: #5aa9e6;
 	color: #fff;
 	border-collapse: collapse;
-	height: 100%;
+	
 }
 
 #sidebar .sidebar-header {
 	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	padding: 15px;
 	background: #7fc8f8;
 }
 
