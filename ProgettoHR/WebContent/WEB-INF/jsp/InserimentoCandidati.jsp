@@ -256,7 +256,7 @@ ul ul a {
 
 					<div class="form-group">
 						<label>E-mail:</label>
-						<form:input type="email" path="email" pattern=".+@globex.com"
+						<form:input type="email" path="email" 
 							size="30" class="form-control" id="email" required="required"></form:input>
 					</div>
 
@@ -308,11 +308,11 @@ ul ul a {
 								</div>
 							</div>
 							<div class="col-1">
-								<button
+								<div
 									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
 									class="btn btn-block form-control">
 									<i class="fas fa-plus"></i>
-								</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -711,11 +711,28 @@ ul ul a {
 			
 			if(document.getElementById("nome").value == "" || document.getElementById("cognome").value == "" || document.getElementById("telefono").value == "" || document.getElementById("email").value == ""){
 				return false;
+			} else {
+				if(!validateEmail()){
+					return false
+				}
 			}
 		
-			document.getElementById(idSubmit).disabled = "true";
+			//document.getElementById(idSubmit).disabled = "true";
 			return true;
 			}
+		
+		function validateEmail(){
+			var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if(document.getElementById("email").value.match(mailformat))
+			 {
+			    return true
+			 }
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
+			return false
+		}
+		
+		
 		
 		
 	</script>

@@ -14,7 +14,9 @@ public class ExceptionController {
 	 * 
 	 */
 	@ExceptionHandler({ ServletRequestBindingException.class, HttpRequestMethodNotSupportedException.class })
-	public String sessionClosed() {
+	public String sessionClosed(Exception e) {
+		e.printStackTrace();
+
 		return "/notAuthenticated";
 	}
 
@@ -24,7 +26,9 @@ public class ExceptionController {
 	 * 
 	 */
 	@ExceptionHandler({ NoHandlerFoundException.class })
-	public String pageNotFound(NoHandlerFoundException ex) {
+	public String pageNotFound(NoHandlerFoundException e) {
+		e.printStackTrace();
+
 		return "/PageNotFound";
 	}
 
@@ -34,7 +38,9 @@ public class ExceptionController {
 	 * 
 	 */
 	@ExceptionHandler(Exception.class)
-	public String notFoundHandler() {
+	public String notFoundHandler(Exception e) {
+		e.printStackTrace();
+
 		return "/InternalServerError";
 	}
 

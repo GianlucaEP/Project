@@ -1066,7 +1066,7 @@ svg {
 											${cand.seniority.seniority}</td>
 
 										<td data-toggle="modal"
-											onclick="impostaParametriCandidatoId(${businessUnit}/${cand.id})"
+											onclick="impostaParametriCandidatoId(${cand.id})"
 											data-target="#EliminaModal"><i class="fas fa-trash-alt"></i></td>
 
 									</tr>

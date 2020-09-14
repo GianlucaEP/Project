@@ -32,9 +32,6 @@ public class CandidatiController {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-// TODO su quale base, scelgo come istanziare un oggetto(dai bean o da
-// java(new))??
-
 // Inizializzazione DAO
 	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
@@ -55,7 +52,7 @@ public class CandidatiController {
 	}
 
 	@RequestMapping("/Candidati/{businessUnit}")
-	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit) {
+	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
 		Singleton singleton = Singleton.getInstance();
 
