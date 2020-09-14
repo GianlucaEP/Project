@@ -131,7 +131,7 @@ a[data-toggle="collapse"] {
 	position: relative;
 }
 
-.dropdown-toggle::after {
+#frecciaSidebar::after {
 	display: block;
 	position: absolute;
 	top: 50%;
@@ -143,6 +143,372 @@ ul ul a {
 	font-size: 0.9em !important;
 	padding-left: 30px !important;
 	background: #cae9ff;
+}
+
+/* TABELLA ANAGRAFICA */
+.tabellaAnagrafica {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaAnagrafica .head {
+	background-color: #8cc8ef;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaAnagrafica .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaAnagrafica .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaAnagrafica .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaAnagrafica .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaAnagrafica .footer {
+	background-color: #8cc8ef;
+}
+
+.tabellaAnagrafica th {
+	padding: 8px;
+}
+
+.tabellaAnagrafica td {
+	font-size: 14px;
+	padding: 4px;
+}
+/* TABELLA BUSINESS */
+.tabellaBusiness {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaBusiness .head {
+	background-color: #a7d3a6;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaBusiness .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaBusiness .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaBusiness .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaBusiness .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaBusiness .footer {
+	background-color: #a7d3a6;
+}
+
+.tabellaBusiness th {
+	padding: 8px;
+}
+
+.tabellaBusiness td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+#bottoneBusiness {
+	background-color: #a7d3a6;
+}
+/* TABELLA ECONOMICS */
+.tabellaEconomics {
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaEconomics .head {
+	background-color: #ffd670;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaEconomics .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaEconomics .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaEconomics .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaEconomics .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaEconomics .footer {
+	background-color: #ffd670;
+}
+
+.tabellaEconomics th {
+	padding: 8px;
+}
+
+.tabellaEconomics td {
+	font-size: 14px;
+	padding: 4px;
+}
+/* TABELLA COSTI */
+.tabellaCosti {
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaCosti .head {
+	background-color: #ff686b;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaCosti .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaCosti .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaCosti .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaCosti .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaCosti .footer {
+	background-color: #ff686b;
+}
+
+.tabellaCosti th {
+	padding: 8px;
+}
+
+.tabellaCosti td {
+	font-size: 14px;
+	padding: 4px;
+}
+/* TABELLA FEEDBACK */
+.tabellaFeedback {
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaFeedback .head {
+	background-color: #d0b8ac;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaFeedback .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaFeedback .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaFeedback .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaFeedback .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaFeedback .footer {
+	background-color: #d0b8ac;
+}
+
+.tabellaFeedback th {
+	padding: 8px;
+}
+
+.tabellaFeedback td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+#bottoneFeedback {
+	background-color: #d0b8ac;
+}
+/* TABELLA QUALIFICATION MEETING */
+.tabellaQualification {
+	margin-bottom: 25px;
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	margin-top: 25px;
+}
+
+.tabellaQualification .head {
+	background-color: #f2a359;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaQualification .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaQualification .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaQualification .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaQualification .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaQualification .footer {
+	background-color: #f2a359;
+}
+
+.tabellaQualification th {
+	padding: 8px;
+}
+
+.tabellaQualification td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+#bottoneQualification {
+	background-color: #f2a359;
+}
+
+/* TABELLA ALLEGATI */
+.tabellaAllegati {
+	margin-bottom: 25px;
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaAllegati .head {
+	background-color: #cfd4dd;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tabellaAllegati .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaAllegati .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaAllegati .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaAllegati .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaAllegati .footer {
+	background-color: #cfd4dd;
+}
+
+.tabellaAllegati th {
+	padding: 8px;
+}
+
+.tabellaAllegati td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+#bottone-salva-allegato {
+	background-color: #a7d3a6;
+}
+
+#bottone-cancella-allegato {
+	background-color: #ee6055;
 }
 </style>
 
@@ -204,7 +570,7 @@ ul ul a {
 							</c:when>
 						</c:choose></li>
 
-					<li class="active"><a href="#homeSubmenu"
+					<li class="active"><a href="#homeSubmenu" id="frecciaSidebar"
 						data-toggle="collapse" aria-expanded="false"
 						class="dropdown-toggle">Feedback</a>
 						<ul class="collapse list-unstyled" id="homeSubmenu">
@@ -260,127 +626,145 @@ ul ul a {
 		<div class="col-10">
 			<!-- Row principale che tiene tutte le collone-->
 			<div class="row">
-
 				<!-- COLONNA 1-->
 				<div class="col-6">
+
 					<!-- Tabella ANAGRAFICA -->
-					<div class="table-responsive-md">
-						<table
-							class="table table-hover table-md table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-							<tbody>
-								<tr>
-									<th colspan=2 class="text-center table-info"
-										style="background-color: #90e0ef">ANAGRAFICA <c:forEach
-											var="funz" items="${utente.ruolo.funzionalita}">
-											<c:choose>
-												<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-													<!-- Bottone modifica anagrafica -->
-													<button type="button" data-toggle="modal"
-														data-target="#modificaAnagraficaModal"
-														class="btn btn-info float-md-right">
-														<i class="fas fa-pen "></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach>
+					<table class="tabellaAnagrafica">
 
-									</th>
-								</tr>
-								<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-									<c:choose>
-										<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-											<tr>
+						<thead class="head">
+							<tr>
+								<th><h3>ANAGRAFICA</h3></th>
+								<th colspan=2><c:forEach var="funz"
+										items="${utente.ruolo.funzionalita}">
+										<c:choose>
+											<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
+												<!-- Bottone modifica anagrafica -->
+												<button type="button" data-toggle="modal"
+													data-target="#modificaAnagraficaModal"
+													class="btn p-2 float-right">
+													<i class="fas fa-cog m-0"></i>
+												</button>
+											</c:when>
+										</c:choose>
+									</c:forEach></th>
+							</tr>
+						</thead>
 
-												<th scope="col">Stato</th>
-												<td scope="col"><button
-														class="btn btn-primary dropdown-toggle" role="button"
-														id="menuStato" data-toggle="dropdown" aria-haspopup="true"
-														aria-expanded="false"></button> <!-- Dropdown per stati candidato -->
-													<div class="dropdown-menu"
-														aria-labelledby="dropdownMenuLink">
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/daContattare">Da
-															contattare</a> <a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/scartato">Scartato</a>
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/attivo">Attivo</a>
-														<a class="dropdown-item"
-															href="/ProgettoHR/Aggiorna/${ mostraCandidato.id }/selezionato">Selezionato</a>
-													</div></td>
-											</tr>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-								<tr>
-									<th style="width: 10%" scope="col">Nome</th>
-									<td style="width: 30%" scope="col">${mostraCandidato.nome}</td>
-								</tr>
-								<tr>
-									<th scope="col">Cognome</th>
-									<td scope="col">${mostraCandidato.cognome}</td>
-								</tr>
-								<tr>
-									<th scope="col">Anno di nascita</th>
-									<td scope="col">${mostraCandidato.anno}</td>
-								</tr>
-								<tr>
-									<th scope="col">Telefono</th>
-									<td scope="col">${mostraCandidato.telefono}</td>
-								</tr>
-								<tr>
-									<th scope="col">E-mail</th>
-									<td scope="col">${mostraCandidato.email}</td>
-								</tr>
-								<tr>
-									<th scope="col">Codice Fiscale</th>
-									<td scope="col">${mostraCandidato.codiceFiscale}</td>
-								</tr>
-								<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-									<c:choose>
-										<c:when
-											test="${funz.funzionalita == 'visualizza anagrafica completa'}">
-											<tr>
-												<th scope="col">Provenienza candidatura</th>
-												<td scope="col">${mostraCandidato.provenienza}</td>
-											</tr>
+						<tbody class="body">
 
-											<tr>
-												<th scope="col">Categoria protetta</th>
-												<td scope="col" id="categoriaProtetta"></td>
-											</tr>
-										</c:when>
-									</c:choose>
-								</c:forEach>
+							<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+								<c:choose>
+									<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
+										<tr>
 
-							</tbody>
-						</table>
-					</div>
+
+											<th scope="col">Stato</th>
+											<td scope="col">
+
+												<button type="button" class="btn" id="menuStato"
+													data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false"></button>
+												<div class="dropdown-menu">
+													<a class="dropdown-item"
+														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/daContattare">
+														Da contattare</a> <a class="dropdown-item"
+														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/scartato">
+														Scartato</a> <a class="dropdown-item"
+														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/attivo">
+														Attivo</a> <a class="dropdown-item"
+														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/selezionato">
+														Selezionato</a>
+												</div>
+											</td>
+										</tr>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<tr>
+								<th scope="col">Nome</th>
+								<td scope="col">${mostraCandidato.nome}</td>
+							</tr>
+							<tr>
+								<th scope="col">Cognome</th>
+								<td scope="col">${mostraCandidato.cognome}</td>
+							</tr>
+							<tr>
+								<th scope="col">Cognome</th>
+								<td scope="col">${mostraCandidato.cognome}</td>
+							</tr>
+							<tr>
+								<th scope="col">Anno di nascita</th>
+								<td scope="col">${mostraCandidato.anno}</td>
+							</tr>
+							<tr>
+								<th scope="col">Telefono</th>
+								<td scope="col">${mostraCandidato.telefono}</td>
+							</tr>
+							<tr>
+								<th scope="col">E-mail</th>
+								<td scope="col">${mostraCandidato.email}</td>
+							</tr>
+							<tr>
+								<th scope="col">Codice Fiscale</th>
+								<td scope="col">${mostraCandidato.codiceFiscale}</td>
+							</tr>
+							<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+								<c:choose>
+									<c:when
+										test="${funz.funzionalita == 'visualizza anagrafica completa'}">
+										<tr>
+											<th scope="col">Provenienza candidatura</th>
+											<td scope="col">${mostraCandidato.provenienza}</td>
+										</tr>
+
+										<tr>
+											<th scope="col">Categoria protetta</th>
+											<td scope="col" id="categoriaProtetta"></td>
+										</tr>
+
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</tbody>
+
+						<tfoot class="footer">
+							<tr>
+								<td colspan=2></td>
+
+							</tr>
+						</tfoot>
+					</table>
+
 
 					<!-- tabella ECONOMICS -->
 					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 						<c:choose>
 							<c:when test="${funz.funzionalita == 'visualizza economics'}">
-								<table id="economicsTable"
-									class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
-									<tbody>
-
+								<table id="economicsTable" class="tabellaEconomics">
+									<thead class="head">
 										<tr>
-											<th colspan=2 class="text-center table-warning ">ECONOMICS
-												<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+											<th><h3>ECONOMICS</h3></th>
+											<th colspan=2><c:forEach var="funz"
+													items="${utente.ruolo.funzionalita}">
 													<c:choose>
 														<c:when
 															test="${funz.funzionalita == 'modifica economics'}">
 															<!-- Bottone modifica economics-->
 															<button type="button" data-toggle="modal"
 																data-target="#modificaEconomicsModal"
-																class="btn btn-warning float-md-right">
-																<i class="fas fa-pen "></i>
+																class="btn p-2 float-right">
+																<i class="fas fa-cog m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
-												</c:forEach>
-											</th>
+												</c:forEach></th>
+
 										</tr>
+									</thead>
+
+									<tbody>
+
 										<tr>
 											<th scope="col">Inquadramento</th>
 											<td scope="col">${mostraCandidato.economics.inquadramento}</td>
@@ -403,6 +787,13 @@ ul ul a {
 										</tr>
 
 									</tbody>
+
+									<tfoot class="footer">
+										<tr>
+											<td colspan=2></td>
+
+										</tr>
+									</tfoot>
 								</table>
 							</c:when>
 						</c:choose>
@@ -411,30 +802,26 @@ ul ul a {
 
 
 				<!-- COLONNA 2 -->
-				<div class="col-6 justify-content-start">
+				<div class="col-6">
 					<!-- tabella BUSINESS-->
 					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 						<c:choose>
 							<c:when
 								test="${funz.funzionalita == 'visualizza profilo professionale'}">
-								<table
-									class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
+								<table class="tabellaBusiness">
 
-									<tbody>
-
+									<thead class="head">
 										<tr>
-
-											<th colspan=3 class="text-center table-success"
-												style="background-color: #77bfa3">BUSINESS <c:forEach
-													var="funz" items="${utente.ruolo.funzionalita}">
-												</c:forEach>
-											</th>
-
+											<th><h3>BUSINESS</h3></th>
+											<th colspan=3><c:forEach var="funz"
+													items="${utente.ruolo.funzionalita}">
+												</c:forEach></th>
 										</tr>
+									</thead>
 
+									<tbody class="body">
 										<!-- BUSINESS UNIT -->
 										<tr>
-
 											<th scope="col">Business unit</th>
 											<td scope="col">${mostraCandidato.business.business}</td>
 											<th><c:forEach var="funz"
@@ -444,28 +831,22 @@ ul ul a {
 															test="${funz.funzionalita == 'modifica profilo professionale'}">
 															<!-- Bottone modifica business unit -->
 															<button type="button" data-toggle="modal"
-																data-target="#modificaBusinessUnit"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																id="bottoneBusiness" data-target="#modificaBusinessUnit"
+																class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
+
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
-
 										<!-- AREA COMPETENZA -->
 										<tr>
-
 											<th scope="col">Area di competenza</th>
-											<td scope="col">
-												<ul>
-													<c:forEach var="area" items="${mostraCandidato.area}">
-														<li>${area.area}</li>
-													</c:forEach>
-												</ul>
-											</td>
+											<td scope="col"><c:forEach var="area"
+													items="${mostraCandidato.area}">
+													<li>${area.area}</li>
+												</c:forEach></td>
 											<th><c:forEach var="funz"
 													items="${utente.ruolo.funzionalita}">
 													<c:choose>
@@ -474,27 +855,20 @@ ul ul a {
 															<!-- Bottone modifica area di competenza-->
 															<button type="button" data-toggle="modal"
 																data-target="#modificaAreaCompetenza"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																id="bottoneBusiness" class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
-
 										<!-- MANSIONE -->
 										<tr>
 											<th scope="col">Mansione</th>
-											<td scope="col">
-												<ul>
-													<c:forEach var="mansione"
-														items="${mostraCandidato.mansione}">
-														<li>${mansione.mansione}</li>
-													</c:forEach>
-												</ul>
-											</td>
+											<td scope="col"><c:forEach var="mansione"
+													items="${mostraCandidato.mansione}">
+													<li>${mansione.mansione}</li>
+												</c:forEach></td>
 											<th><c:forEach var="funz"
 													items="${utente.ruolo.funzionalita}">
 													<c:choose>
@@ -502,20 +876,16 @@ ul ul a {
 															test="${funz.funzionalita == 'modifica profilo professionale'}">
 															<!-- Bottone modifica mansione -->
 															<button type="button" data-toggle="modal"
-																data-target="#modificaMansione"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																data-target="#modificaMansione" id="bottoneBusiness"
+																class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
-
 										<!-- SENIORITY -->
 										<tr>
-
 											<th scope="col">Seniority</th>
 											<td scope="col">${mostraCandidato.seniority.seniority}</td>
 											<th><c:forEach var="funz"
@@ -525,30 +895,22 @@ ul ul a {
 															test="${funz.funzionalita == 'modifica profilo professionale'}">
 															<!-- Bottone modifica seniority -->
 															<button type="button" data-toggle="modal"
-																data-target="#modificaSeniority"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																data-target="#modificaSeniority" id="bottoneBusiness"
+																class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
-
 										<!-- SPECIALIZZAZIONE -->
 										<tr>
-
 											<th scope="col">Specializzazione</th>
-											<td scope="col">
-												<ul>
-													<c:forEach var="specializzazione"
-														items="${mostraCandidato.candidatoSpecializzazione}">
-														<li>${specializzazione.specializzazione.specializzazione}
-															&nbsp ${specializzazione.anni} anni esperienza</li>
-													</c:forEach>
-												</ul>
-											</td>
+											<td scope="col"><c:forEach var="specializzazione"
+													items="${mostraCandidato.candidatoSpecializzazione}">
+													<li>${specializzazione.specializzazione.specializzazione}
+														&nbsp ${specializzazione.anni} anni esperienza</li>
+												</c:forEach></td>
 											<th><c:forEach var="funz"
 													items="${utente.ruolo.funzionalita}">
 													<c:choose>
@@ -557,19 +919,15 @@ ul ul a {
 															<!-- Bottone modifica specializzazione -->
 															<button type="button" data-toggle="modal"
 																data-target="#modificaSpecializzazione"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																id="bottoneBusiness" class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
-
 										<!-- INSERIMENTO AZIENDA -->
 										<tr>
-
 											<th scope="col">Inserimento azienda</th>
 											<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
 											<th><c:forEach var="funz"
@@ -580,17 +938,20 @@ ul ul a {
 															<!-- Bottone modifica inserimento azienda -->
 															<button type="button" data-toggle="modal"
 																data-target="#modificaInserimentoAzienda"
-																class="btn btn-light btn-block"
-																style="background-color: #52b788; border-color: transparent;">
-																<i class="fas fa-cogs"></i>
+																id="bottoneBusiness" class="btn p-1 float-right">
+																<i class="fas fa-cogs m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
 												</c:forEach></th>
-
 										</tr>
 									</tbody>
 
+									<tfoot class="footer">
+										<tr>
+											<td colspan=3></td>
+										</tr>
+									</tfoot>
 								</table>
 							</c:when>
 						</c:choose>
@@ -600,27 +961,27 @@ ul ul a {
 					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 						<c:choose>
 							<c:when test="${funz.funzionalita == 'visualizza costi'}">
-								<table id="costiTable"
-									class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
-									<tbody>
+								<table id="costiTable" class="tabellaCosti">
 
+									<thead class="head">
 										<tr>
-											<th colspan=2 class="text-center table-danger">COSTI <c:forEach
-													var="funz" items="${utente.ruolo.funzionalita}">
+											<th><h3>COSTI</h3></th>
+											<th colspan=2><c:forEach var="funz"
+													items="${utente.ruolo.funzionalita}">
 													<c:choose>
 														<c:when test="${funz.funzionalita == 'modifica costi'}">
 															<!-- Bottone modifica costi-->
 															<button type="button" data-toggle="modal"
 																data-target="#modificaCostiModal"
-																class="btn btn-danger float-md-right"
-																style="border-color: transparent;">
-																<i class="fas fa-pen "></i>
+																class="btn p-2 float-right">
+																<i class="fas fa-cog m-0"></i>
 															</button>
 														</c:when>
 													</c:choose>
-												</c:forEach>
-											</th>
+												</c:forEach></th>
 										</tr>
+									</thead>
+									<tbody class="body">
 										<tr>
 											<th scope="col">Costo orario</th>
 											<td scope="col">${mostraCandidato.costo.orario}</td>
@@ -636,6 +997,12 @@ ul ul a {
 											</tr>
 										</c:if>
 									</tbody>
+
+									<tfoot class="footer">
+										<tr>
+											<td colspan=2></td>
+										</tr>
+									</tfoot>
 								</table>
 							</c:when>
 						</c:choose>
@@ -644,35 +1011,78 @@ ul ul a {
 				</div>
 			</div>
 
-			<div class="row justify-content-center">
+			<div class="row">
 				<!-- COLONNA 3 -->
 				<div class="col-12">
+					<!-- Tabella FEEDBACK -->
+					<table class="tabellaFeedback" id="feedbackTable">
 
-					<!-- tabella QUALIFICATION MEETING-->
-					<table id="qualificationMeetingTable"
-						class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white">
-						<thead>
+						<thead class="head">
 
 							<tr>
-								<th colspan=6 class="text-center table-success"
-									style="background-color: #fca311">QUALIFICATION MEETING <!-- Bottone modifica qualification meeting-->
-
-								</th>
+								<th colspan="4"><h3>FEEDBACK</h3></th>
 							</tr>
 
 							<tr>
 
+								<th scope="col">Data</th>
+								<th scope="col">Tipo</th>
+								<th scope="col">Feedback</th>
+								<th scope="col"></th>
+
+							</tr>
+
+						</thead>
+						<tbody class="body">
+							<c:forEach var="feed" items="${mostraFeedback}">
+								<tr>
+									<td>${feed.data}</td>
+									<td>${feed.tipo.tipo}</td>
+									<td>${feed.commento}</td>
+									<td><c:forEach var="funz"
+											items="${utente.ruolo.funzionalita}">
+											<c:choose>
+												<c:when test="${funz.funzionalita == 'modifica feedback'}">
+													<button
+														onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
+														type="button" data-toggle="modal" id="bottoneFeedback"
+														data-target="#modificaFeedbackModal"
+														class="btn p-1 float-right">
+														<i class="fas fa-cogs m-0"></i>
+													</button>
+												</c:when>
+											</c:choose>
+										</c:forEach></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+
+						<tfoot class="footer">
+							<tr>
+								<td colspan=4></td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<!-- tabella QUALIFICATION MEETING-->
+					<table id="qualificationMeetingTable" class="tabellaQualification">
+						<thead class="head">
+
+							<tr>
+								<th colspan=6><h3>QUALIFICATION MEETING</h3></th>
+							</tr>
+
+							<tr>
 								<th scope="col">Cliente</th>
 								<th scope="col">Data di presentazione</th>
 								<th scope="col">Riferimento gara</th>
 								<th scope="col">Data colloquio</th>
 								<th scope="col">Feedback</th>
-
+								<th scope="col"></th>
 							</tr>
-
 						</thead>
 
-						<tbody>
+						<tbody class="body">
 
 
 							<c:forEach var="qualificationMeeting"
@@ -691,57 +1101,10 @@ ul ul a {
 													<button
 														onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}', '${qualificationMeeting.cliente}', '${qualificationMeeting.dataPresentato}', '${qualificationMeeting.riferimentoGara}', '${qualificationMeeting.dataColloquio}', '${qualificationMeeting.feedback}' )"
 														type="button" data-toggle="modal"
+														id="bottoneQualification"
 														data-target="#modificaQualificationMeetingModal"
-														class="btn btn-light float-md-right"
-														style="background-color: #fcbf49; border-color: transparent;">
-														<i class="fas fa-pen "></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach></td>
-								</tr>
-							</c:forEach>
-
-
-						</tbody>
-					</table>
-
-					<!-- Tabella FEEDBACK -->
-					<table
-						class="table table-hover table-md table-bordered shadow p-4 ml-2 mb-4 bg-white"
-						id="feedbackTable">
-						<thead>
-
-							<tr>
-								<th colspan=4 class="text-center table-secondary"
-									style="background-color: #e7d8c9">FEEDBACK <!-- Bottone modifica feedback -->
-								</th>
-							</tr>
-
-							<tr>
-								<th scope="col">Data</th>
-								<th scope="col">Tipo</th>
-								<th scope="col">Feedback</th>
-							</tr>
-
-						</thead>
-						<tbody>
-							<c:forEach var="feed" items="${mostraFeedback}">
-								<tr>
-									<td>${feed.data}</td>
-									<td>${feed.tipo.tipo}</td>
-									<td>${feed.commento}</td>
-									<td><c:forEach var="funz"
-											items="${utente.ruolo.funzionalita}">
-											<c:choose>
-												<c:when test="${funz.funzionalita == 'modifica feedback'}">
-													<button
-														onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
-														type="button" data-toggle="modal"
-														data-target="#modificaFeedbackModal"
-														class="btn btn-light float-md-right"
-														style="background-color: #ddbea9; border-color: transparent;">
-														<i class="fas fa-pen "></i>
+														class="btn p-1 float-right">
+														<i class="fas fa-cogs m-0"></i>
 													</button>
 												</c:when>
 											</c:choose>
@@ -749,46 +1112,52 @@ ul ul a {
 								</tr>
 							</c:forEach>
 						</tbody>
+
+						<tfoot class="footer">
+							<tr>
+								<td colspan=6></td>
+							</tr>
+						</tfoot>
 					</table>
 
 					<!-- Tabella ALLEGATI -->
 					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
 						<c:choose>
 							<c:when test="${funz.funzionalita == 'visualizza allegati'}">
-								<table id="allegatiTable"
-									class="table table-hover table-md table-bordered text-left shadow p-4 ml-2 mb-4 bg-white">
-									<thead>
-
+								<table id="allegatiTable" class="tabellaAllegati">
+									<thead class="head">
 										<tr>
-											<th colspan=5 class="text-center table-secondary"
-												style="background-color: #98c1d9">ALLEGATI</th>
+											<th colspan=3><h3>ALLEGATI</h3></th>
 										</tr>
-
 										<tr>
-											<th scope="col">Nome Allegato</th>
-
+											<th scope="col">Nome allegato</th>
+											<th scope="col"></th>
+											<th scope="col"></th>
 										</tr>
-
 									</thead>
 
-									<tbody>
+									<tbody class="body">
 										<c:forEach var="allegato" items="${mostraCandidato.file}">
 											<tr>
 												<td>${allegato.nomeFile}</td>
-
 												<td><a
-													href="<c:url value='/download/${mostraCandidato.id}/${allegato.id}' />"
-													class="btn btn-success custom-width">Scarica</a></td>
+													href="<c:url value='/download/${businessUnit}/${mostraCandidato.id}/${allegato.id}' />"
+													class="btn btn-block" id="bottone-salva-allegato">Scarica</a></td>
 												<td>
 													<button onclick="impostaParametriAllegati(${allegato.id})"
-														type="button" class="btn btn-danger custom-width"
-														data-toggle="modal" data-target="#deleteModal">
-														Cancella</button>
+														type="button" class="btn btn-block"
+														id="bottone-cancella-allegato" data-toggle="modal"
+														data-target="#deleteModal">Cancella</button>
 												</td>
-
 											</tr>
 										</c:forEach>
 									</tbody>
+
+									<tfoot class="footer">
+										<tr>
+											<td colspan=5></td>
+										</tr>
+									</tfoot>
 								</table>
 							</c:when>
 						</c:choose>
@@ -797,21 +1166,21 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
-	<!-- MODAL cancella allegati -->
 
+	<!-- MODAL CANCELLA ALLEGATI -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					Sei sicuro di voler cancellare l'allegato selezionato?
-					<form action="/ProgettoHR/delete/${mostraCandidato.id}"
+					<form
+						action="/ProgettoHR/delete/${businessUnit}/${mostraCandidato.id}"
 						method="GET">
 						<div style="visibility: hidden;">
 							<input name="idAllegato" id="Allegato" />
 						</div>
-						<div class="modal-body" id="errorModalBody"></div>
+						<div class="modal-body"></div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-success">si</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
@@ -823,7 +1192,8 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	<!-- MODAL modifica ANAGRAFICA -->
+
+	<!-- MODAL MODIFICA ANAGRAFICA -->
 	<div class="modal fade" id="modificaAnagraficaModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -840,7 +1210,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
 							onsubmit="return validateForm('idSubmitModificaAnagrafica', 'idNome', 'idCognome', 'idAnno', 'idTelefono', 'idEmail');"
-							action="/ProgettoHR/ModificaAnagrafica/${mostraCandidato.id}">
+							action="/ProgettoHR/ModificaAnagrafica/${businessUnit}/${mostraCandidato.id}">
 
 
 							<div class="form-group">
@@ -942,7 +1312,7 @@ ul ul a {
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaBusinessUnit/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaBusinessUnit/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
 						<div class="form-row justify-content-center">
 
@@ -983,47 +1353,60 @@ ul ul a {
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaAreaCompetenza/${mostraCandidato.id}"
+					action="/ProgettoHR/ModificaAreaCompetenza/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('areaCompetenzaInput')">
 					<div class="modal-body">
-						<div style="border-color: transparent;">
-							<div>
-								<h5>Aree di competenza:</h5>
+
+						<h5>Aree di competenza:</h5>
+
+						<div id="areaCompetenzeCandidato">
+							<c:forEach var="area" items="${mostraCandidato.area}">
+								<div class="form-row">
+
+									<div class="col-11">
+										<input readonly type="text" name="areaCompetenza"
+											class="form-control mb-2" style="background-color: #a7d8bb;"
+											value="${area.area}"></input>
+									</div>
+									<div class="col-1">
+										<span
+											onclick="eliminaCampo('${area.area}', 'areaCompetenzeCandidato')"
+											class="btn"><i class="fas fa-minus"></i> </span>
+									</div>
+
+								</div>
+							</c:forEach>
+						</div>
+
+						<div class="form-row">
+
+							<div class="col-11">
+								<input autocomplete="off" placeholder="aggiungi"
+									list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
+									class="form-control mt-2">
+								<datalist id="areeCompetenzeDisponibili">
+									<c:forEach var="area" items="${areaCompetenzaList}">
+										<option value="${area}"></option>
+									</c:forEach>
+								</datalist>
 							</div>
 
-							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<div id="areaCompetenzeCandidato">
-									<c:forEach var="area" items="${mostraCandidato.area}">
-										<div>
-											<input style="background: #3CBC8D" readonly type="text"
-												name="areaCompetenza" value="${area.area}"></input> <span
-												onclick="eliminaCampo('${area.area}', 'areaCompetenzeCandidato')"
-												class="btn"> <i class="fa fa-close"></i>
-											</span>
-										</div>
-									</c:forEach>
-								</div>
-								<div>
-									<input autocomplete="off" placeholder="aggiungi"
-										list="areeCompetenzeDisponibili" id="areaCompetenzaInput">
-									<datalist id="areeCompetenzeDisponibili">
-										<c:forEach var="area" items="${areaCompetenzaList}">
-											<option value="${area}"></option>
-										</c:forEach>
-									</datalist>
-									<div
-										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-										class="btn">
-										<i class="fas fa-plus-square mr-1"></i>
-									</div>
+							<div class="col-1">
+								<div
+									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+									class="btn mt-2">
+									<i class="fas fa-plus"></i>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
 					</div>
+
 				</form>
 			</div>
 		</div>
@@ -1044,51 +1427,62 @@ ul ul a {
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaMansione/${mostraCandidato.id}"
+					action="/ProgettoHR/ModificaMansione/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('mansioneInput');">
 					<div class="modal-body">
-						<div style="border-color: transparent;">
 
-							<div>
-								<h5>Mansioni:</h5>
-							</div>
-							<div class="autocomplete" style="border-bottom-style: ridge;">
-								<div id="mansioniCandidato">
-									<c:forEach var="mansione" items="${mostraCandidato.mansione}">
-										<div>
-											<input style="background: #3CBC8D" readonly type="text"
-												name="mansione" value="${mansione.mansione}"></input> <span
-												onclick="eliminaCampo('${mansione.mansione}', 'mansioniCandidato')"
-												class="btn"> <i class="fa fa-close"></i>
-											</span>
-										</div>
-									</c:forEach>
-								</div>
-								<div>
-									<input autocomplete="off" placeholder="aggiungi"
-										list="mansioniDisponibili" id="mansioneInput">
-									<datalist id="mansioniDisponibili">
-										<c:forEach var="mansione" items="${mansioneList}">
-											<option value="${mansione}"></option>
-										</c:forEach>
-									</datalist>
-									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-										class="btn">
-										<i class="fas fa-plus-square mr-1"></i>
+						<h5>Mansioni:</h5>
+
+						<div id="mansioniCandidato">
+							<c:forEach var="mansione" items="${mostraCandidato.mansione}">
+								<div class="form-row">
+
+									<div class="col-11">
+										<input style="background-color: #a7d8bb;" readonly type="text"
+											class="form-control mb-2" name="mansione"
+											value="${mansione.mansione}"></input>
 									</div>
+
+									<div class="col-1">
+										<span
+											onclick="eliminaCampo('${mansione.mansione}', 'mansioniCandidato')"
+											class="btn"><i class="fas fa-minus"></i> </span>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+
+						<div class="form-row">
+							<div class="col-11">
+
+								<input autocomplete="off" placeholder="aggiungi"
+									list="mansioniDisponibili" id="mansioneInput"
+									class="form-control mt-2">
+								<datalist id="mansioniDisponibili">
+									<c:forEach var="mansione" items="${mansioneList}">
+										<option value="${mansione}"></option>
+									</c:forEach>
+								</datalist>
+
+							</div>
+							<div class="col-1">
+								<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+									class="btn mt-2">
+									<i class="fas fa-plus"></i>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success" name="submitButton">Salva</button>
+						<button type="submit" class="btn btn-success">Salva</button>
 					</div>
+
 				</form>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- MODAL MODIFICA SENIORITY-->
 	<div class="modal fade" id="modificaSeniority" tabindex="-1"
@@ -1105,7 +1499,7 @@ ul ul a {
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaSeniority/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaSeniority/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
 						<div class="form-row justify-content-center">
 
@@ -1144,61 +1538,71 @@ ul ul a {
 					</button>
 				</div>
 
+				<!-- FORM DEL MODAL BODY -->
 				<form method="POST"
-					action="/ProgettoHR/ModificaSpecializzazione/${mostraCandidato.id}"
+					action="/ProgettoHR/ModificaSpecializzazione/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('specializzazioneInput');">
 					<div class="modal-body">
-						<div style="border-color: transparent;">
 
-							<div>
-								<h5>Specializzazioni:</h5>
-							</div>
+						<h5>Specializzazioni:</h5>
 
-							<div id="specializzazioniCandidato">
-								<c:forEach var="spec"
-									items="${mostraCandidato.candidatoSpecializzazione}">
-									<div>
-										<input style="background: #3CBC8D" readonly type="text"
-											name="specializzazione"
+						<div id="specializzazioniCandidato">
+							<c:forEach var="spec"
+								items="${mostraCandidato.candidatoSpecializzazione}">
+								<div class="form-row">
+									<div class="col-11">
+
+										<input readonly type="text" class="form-control mb-2"
+											style="background-color: #a7d8bb;" name="specializzazione"
 											value="${spec.specializzazione.specializzazione} ${spec.anni}"></input>
+									</div>
+
+									<div class="col-1">
 										<span
 											onclick="eliminaCampo('${spec.specializzazione.specializzazione} ${spec.anni}', 'specializzazioniCandidato')"
-											class="btn"> <i class="fa fa-close"></i>
-										</span>
+											class="btn"><i class="fas fa-minus"></i> </span>
 									</div>
-								</c:forEach>
-							</div>
-							<div>
-								<input autocomplete="off" placeholder="aggiungi"
-									list="specializzazioniDisponibili" id="specializzazioneInput">
-								<datalist id="specializzazioniDisponibili">
-									<c:forEach var="specializzazione"
-										items="${specializzazioneList}">
-										<option value="${specializzazione}"></option>
-									</c:forEach>
-								</datalist>
+								</div>
+							</c:forEach>
+						</div>
 
-								<input id="anniEsperienzaInput" class="text-left" type="number"
-									placeholder="anni esperienza">
+						<div class="form-row">
+							<div class="col-6">
+								<div>
+									<input autocomplete="off" placeholder="aggiungi"
+										list="specializzazioniDisponibili" id="specializzazioneInput"
+										class="form-control mt-2">
+									<datalist id="specializzazioniDisponibili">
+										<c:forEach var="specializzazione"
+											items="${specializzazioneList}">
+											<option value="${specializzazione}"></option>
+										</c:forEach>
+									</datalist>
+								</div>
+							</div>
+							<div class="col-5">
+								<input id="anniEsperienzaInput" class="form-control mt-2"
+									type="number" placeholder="anni esperienza">
+							</div>
+							<div class="col-1">
 								<div
 									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-									class="btn">
-									<i class="fas fa-plus-square mr-1"></i>
+									class="btn mt-2">
+									<i class="fas fa-plus"></i>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
 					</div>
+
 				</form>
 			</div>
 		</div>
-
-
 	</div>
-
 
 	<!-- MODIFICA INSERIMENTO AZIENDA -->
 	<div class="modal fade" id="modificaInserimentoAzienda" tabindex="-1"
@@ -1216,7 +1620,7 @@ ul ul a {
 				</div>
 
 				<form method="POST"
-					action="/ProgettoHR/ModificaDataInserimentoAzienda/${mostraCandidato.id}">
+					action="/ProgettoHR/ModificaDataInserimentoAzienda/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
 						<div class="row w-100 p-2 m-0 justify-content-md-start">
 							<div class="col w-100 p-0 justify-content-md-start">
@@ -1241,14 +1645,13 @@ ul ul a {
 		</div>
 	</div>
 
-
-	<!--MODAL modifica ECONOMICS-->
+	<!--MODAL MODIFICA ECONOMICS-->
 	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
+					<h5 class="modal-title" id="modificaModalLabel">Aggiungi/Modifica
 						economics</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -1259,7 +1662,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
 							onsubmit="return validateForm('idSubmitAggiungiEconomics', 'idInquadramento', 'idRAL', 'idBenefit', 'idPreavviso', 'idDesiderata')"
-							action="/ProgettoHR/AggiungiModificaEconomics/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiModificaEconomics/${businessUnit}/${mostraCandidato.id}">
 
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -1331,7 +1734,7 @@ ul ul a {
 		</div>
 	</div>
 
-	<!--  MODAL modifica COSTI-->
+	<!--  MODAL MODIFICA COSTI-->
 	<div class="modal fade" id="modificaCostiModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -1347,7 +1750,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
 							onsubmit="return validateForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
-							action="/ProgettoHR/AggiungiModificaCosto/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiModificaCosto/${businessUnit}/${mostraCandidato.id}">
 
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -1397,7 +1800,6 @@ ul ul a {
 		</div>
 	</div>
 
-
 	<!--  MODAL MODIFICA QUALIFICATION MEETING-->
 	<div class="modal fade" id="modificaQualificationMeetingModal"
 		tabindex="-1" role="dialog" aria-labelledby="modificaModalLabel"
@@ -1416,7 +1818,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="qualificationMeeting"
 							onsubmit="return validateForm('idSubmitModificaQM', 'clienteQualificationMeeting', 'dataPresentatoQualificationMeeting', 'riferimentoGaraQualificationMeeting', 'dataColloquioQualificationMeeting', 'feedbackQualificationMeeting');"
-							action="/ProgettoHR/ModificaQualificationMeeting/${mostraCandidato.id}">
+							action="/ProgettoHR/ModificaQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
 
 							<div style="visibility: hidden"
 								class="row w-100 p-2 m-0 justify-content-md-start">
@@ -1515,7 +1917,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="feedback"
 							onsubmit="return validateForm('idSubmitModificaFeedback', 'dataFeedback', 'commentoFeedback')"
-							action="/ProgettoHR/ModificaFeedback/${mostraCandidato.id}">
+							action="/ProgettoHR/ModificaFeedback/${businessUnit}/${mostraCandidato.id}">
 
 							<div style="visibility: hidden"
 								class="row w-100 p-2 m-0 justify-content-md-start">
@@ -1586,7 +1988,7 @@ ul ul a {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form method="post"
-							action="/ProgettoHR/doUpload/${mostraCandidato.id}"
+							action="/ProgettoHR/doUpload/${businessUnit}/${mostraCandidato.id}"
 							enctype="multipart/form-data">
 							<table>
 								<tr>
@@ -1610,7 +2012,6 @@ ul ul a {
 		</div>
 	</div>
 
-
 	<!-- MODAL FEEDBACK per AGGIUNTA FEEDBACK -->
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
 		aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -1627,7 +2028,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="feedback"
 							onsubmit="return validateForm('idSubmitAggiungiFeedback', 'idDataFeedback', 'idCommentoFeedback')"
-							action="/ProgettoHR/AggiungiFeedback/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiFeedback/${businessUnit}/${mostraCandidato.id}">
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
@@ -1689,7 +2090,7 @@ ul ul a {
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="qualificationMeeting"
 							onsubmit="return validateForm('idSubmitAggiungiQM', 'idClienteQM', 'idDataPresentazioneQM', 'idRiferimentoGaraQM', 'idDataColloquioQM', 'idCommentiQM');"
-							action="/ProgettoHR/AggiungiQualificationMeeting/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -1777,7 +2178,6 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-
 
 	<script type="text/javascript">
 	
@@ -1896,14 +2296,14 @@ ul ul a {
 		
 	
 		
-		// gestione modal di modifica area competenza
+		// gestione MODAL DI MODIFICA AREA COMPETENZA
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
 			
 			var areeCompetenzaEsistenti = document.getElementById("areaCompetenzeCandidato").children;
 			if(areeCompetenzaEsistenti != null){   
 				for(var i=0; i<areeCompetenzaEsistenti.length; i++){    
-					var input = areeCompetenzaEsistenti[i].children;
-					if(input[0].value === document.getElementById("areaCompetenzaInput").value){  
+					var input = areeCompetenzaEsistenti[i].children[0].children[0];
+					if(input.value === document.getElementById("areaCompetenzaInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
@@ -1920,19 +2320,33 @@ ul ul a {
 			var tagInput = document.createElement("input");
 			var tagDivButton = document.createElement("span");
 			tagInput.value = document.getElementById("areaCompetenzaInput").value;
+			
+			
+			tagInput.classList.add("form-control");
+			
+			tagDiv.classList.add("form-row");
+			var ColDiv1 = document.createElement("div");
+				ColDiv1.classList.add("col-11");
+			var ColDiv2 = document.createElement("div");
+				ColDiv2.classList.add("col-1");
 												
 			tagInput.name = "areaCompetenza";
-			tagInput.readOnly = true;			
-			tagInput.style.backgroundColor = "#3CBC8D";
+			tagInput.readOnly = true;		
 			
-			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';
+			tagInput.style.backgroundColor = "#a7d8bb";
+			
+			tagDivButton.classList.add("btn");
+			tagDivButton.style.margin = "0px 0px 8px 0px";
+			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 			
 			tagDivButton.onclick = function(){				              	              	          				
 				tagDiv.remove();
 			};
 			
-			tagDiv.appendChild(tagInput);
-			tagDiv.appendChild(tagDivButton);
+			ColDiv1.appendChild(tagInput)
+			tagDiv.appendChild(ColDiv1);
+			ColDiv2.appendChild(tagDivButton)
+			tagDiv.appendChild(ColDiv2);
 			
 			document.getElementById("areaCompetenzeCandidato").appendChild(tagDiv);
 			document.getElementById("areaCompetenzaInput").value = "";
@@ -1944,7 +2358,7 @@ ul ul a {
 			document.getElementById("errorModalBody").innerHTML = "Area Competenza inserita non esistente"		
 		}
 		
-		// gestione modal di modifica mansioni
+		// gestione MODAL DI MODIFICA MANSIONE
 		function stampaMansioneSelezionata(mansioneList) {
 			
 			//controllo che non sia già stato inserito il valore selezionato
@@ -1952,8 +2366,8 @@ ul ul a {
 			var mansioniEsistenti = document.getElementById("mansioniCandidato").children;
 			if(mansioniEsistenti != null){   
 				for(var i=0; i<mansioniEsistenti.length; i++){    
-					var input = mansioniEsistenti[i].children;
-					if(input[0].value === document.getElementById("mansioneInput").value){  
+					var input = mansioniEsistenti[i].children[0].children[0];
+					if(input.value === document.getElementById("mansioneInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
@@ -1972,21 +2386,35 @@ ul ul a {
 			var tagInput = document.createElement("input");
 			var tagDivButton = document.createElement("span");
 			tagInput.value = document.getElementById("mansioneInput").value;
-												
+			
+			tagInput.classList.add("form-control");
+			
+			tagDiv.classList.add("form-row");
+			var ColDiv1 = document.createElement("div");
+				ColDiv1.classList.add("col-11");
+			var ColDiv2 = document.createElement("div");
+				ColDiv2.classList.add("col-1");
+			
+			
 			tagInput.name = "mansione";
 			tagInput.readOnly = true;
 			
-			tagInput.style.backgroundColor = "#3CBC8D";
+			tagInput.style.backgroundColor = "#a7d8bb";
 			
 			//var mansioneDaCercare = document.getElementById("mansioneInput").value;
-			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';
+			tagDivButton.classList.add("btn");
+			tagDivButton.style.margin = "0px 0px 8px 0px";
+			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 			
 			tagDivButton.onclick = function(){				              	              	          				
 				tagDiv.remove();
 			};
 			
-			tagDiv.appendChild(tagInput);
-			tagDiv.appendChild(tagDivButton);
+			ColDiv1.appendChild(tagInput)
+			tagDiv.appendChild(ColDiv1);
+			ColDiv2.appendChild(tagDivButton)
+			tagDiv.appendChild(ColDiv2);
+			
 			
 			document.getElementById("mansioniCandidato").appendChild(tagDiv);
 			document.getElementById("mansioneInput").value = "";
@@ -1998,16 +2426,16 @@ ul ul a {
 			document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
 		}
 		
-		
+		// gestione MODAL MODIFICA SPECIALIZZAZIONE
 		function stampaSpecializzazioneSelezionata(specializzazioneList) {
 			
 			var specializzazioniEsistenti = document.getElementById("specializzazioniCandidato").children;
 			if(specializzazioniEsistenti != null){   
 				for(var i=0; i<specializzazioniEsistenti.length; i++){    
-					var input = specializzazioniEsistenti[i].children;
-					input = input[0].value;
+					var input = specializzazioniEsistenti[i].children[0].children[0];
+					input = input.value;
 					input = input.split(" ");
-					if(input[0] === document.getElementById("specializzazioneInput").value){  
+					if(input === document.getElementById("specializzazioneInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
@@ -2024,18 +2452,33 @@ ul ul a {
 			var tagInput = document.createElement("input");
 			var tagDivButton = document.createElement("span");
 			tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
+			
+			
+			tagInput.classList.add("form-control");
+			
+			tagDiv.classList.add("form-row");
+			var ColDiv1 = document.createElement("div");
+				ColDiv1.classList.add("col-11");
+			var ColDiv2 = document.createElement("div");
+				ColDiv2.classList.add("col-1");
 												
 			tagInput.name = "specializzazione";
 			tagInput.readOnly = true;
-			tagInput.style.backgroundColor = "#3CBC8D";
 			
-			tagDivButton.innerHTML = '&nbsp&nbsp&nbsp <i class="fa fa-close"></i>';			
+			tagInput.style.backgroundColor = "#a7d8bb";
+			
+			tagDivButton.classList.add("btn");
+			tagDivButton.style.margin = "0px 0px 8px 0px";
+			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+			
 			tagDivButton.onclick = function(){				              	              	          				
 				tagDiv.remove();
 			};
 			
-			tagDiv.appendChild(tagInput);
-			tagDiv.appendChild(tagDivButton);
+			ColDiv1.appendChild(tagInput)
+			tagDiv.appendChild(ColDiv1);
+			ColDiv2.appendChild(tagDivButton)
+			tagDiv.appendChild(ColDiv2);
 			
 			document.getElementById("specializzazioniCandidato").appendChild(tagDiv);
 			document.getElementById("specializzazioneInput").value = "";
@@ -2055,8 +2498,8 @@ ul ul a {
 			var campiEsistenti = document.getElementById(tipoCampo).children;
 			if(campiEsistenti != null){   
 				for(var i=0; i<campiEsistenti.length; i++){    
-					var input = campiEsistenti[i].children;
-					if(input[0].value === campo){ 
+					var input = campiEsistenti[i].children[0].children[0];
+					if(input.value === campo){ 
 						campiEsistenti[i].remove();
 						return;              
               		}           
@@ -2089,8 +2532,6 @@ ul ul a {
 			return true;
 			
 	}
-	
-
 	</script>
 
 	<!-- Popper.JS -->
