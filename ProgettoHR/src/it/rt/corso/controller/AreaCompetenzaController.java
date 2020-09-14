@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.beans.AreaCompetenza;
+import it.rt.corso.beans.Utente;
 import it.rt.corso.singleton.Singleton;
 
 @Controller
@@ -16,6 +19,12 @@ public class AreaCompetenzaController {
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	AreaCompetenzaDAO dao = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
+	
+	@RequestMapping(value = "/AreaCompetenza/{businessUnit}")
+	public String displayAreaCompetenza( @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+		
+		return "/AreaCompetenza";
+	}
 
 	//aggiungo un'area di competenza dalla Home
 	@RequestMapping(value = "/AreaCompetenzaSaveDaHome/{businessUnit}", method = RequestMethod.POST)

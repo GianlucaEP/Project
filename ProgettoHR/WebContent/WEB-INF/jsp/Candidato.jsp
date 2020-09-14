@@ -2510,7 +2510,7 @@ ul ul a {
 		function validateFileForm(){
 			var uploadField = document.getElementById("fileUpload");
 
-			    if(uploadField.files[0].size > 20971520){
+			    if(uploadField.files[0].size > 4194304){
 			    	$('#errorModal').modal('toggle');
 					document.getElementById("errorModalBody").innerHTML = "Dimensione del file troppo grande."
 					return false;

@@ -10,10 +10,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class ExceptionController {
 	/**
 	 * 
-	 * Handles 400 and 405 Http errors
+	 * Handles 400 Http errors
 	 * 
 	 */
-	@ExceptionHandler({ ServletRequestBindingException.class, HttpRequestMethodNotSupportedException.class })
+	@ExceptionHandler({ ServletRequestBindingException.class})
 	public String sessionClosed(Exception e) {
 		e.printStackTrace();
 
@@ -22,11 +22,11 @@ public class ExceptionController {
 
 	/**
 	 * 
-	 * Handles 404 Http error
+	 * Handles 404 and 405 Http errors
 	 * 
 	 */
-	@ExceptionHandler({ NoHandlerFoundException.class })
-	public String pageNotFound(NoHandlerFoundException e) {
+	@ExceptionHandler({ NoHandlerFoundException.class, HttpRequestMethodNotSupportedException.class  })
+	public String pageNotFound(Exception e) {
 		e.printStackTrace();
 
 		return "/PageNotFound";
