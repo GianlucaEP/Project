@@ -18,16 +18,48 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <style>
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+/* MEDIA PER SCHERMO DESKTOP GRANDE */
+html, body {
+	height: 100%;
+}
+
 body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
 	background-image: url("/ProgettoHR/img/Login_background.jpg");
 }
-/* Navbar */
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+/* NAVBAR */
 .navbar {
-	position: absolute;
 	background: #5aa9e6;
 	border: none;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-	width: 100%;
+}
+
+/* ICONA LOGOUT */
+.svg-inline--fa.fa-w-16 {
+	margin-left: 5px;
+	margin-top: 5px;
+	overflow: hidden;
+	vertical-align: middle;
+	width: 25px;
+	height: 25px;
+}
+
+.navbar-nav .nav-link {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #7fc8f8;
+	border-radius: 50%;
 }
 
 .navbar .navbar-brand .logo {
@@ -35,46 +67,47 @@ body {
 	height: 70px;
 }
 
-.navbar .btn {
-	background: #7fc8f8;
-	width: 50%;
-	margin-left: 60px;
+.container1 {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
 }
 
-.line {
-	width: 100%;
-	height: 1px;
-	border-bottom: 1px dashed #ddd;
-	margin: 40px 0;
+#colonnaLogin {
+	background-color: white;
+	border-radius: 10px;
+}
+#utenteForm{
+
+	margin: 20px;
 }
 </style>
+
 </head>
 
 <body onload="badCredentials()">
 
 	<!-- NAVBAR -->
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="navbar">
+	<nav class="navbar navbar-expand-xl ">
+		<div class="container-fluid">
 
-				<!-- LOGO -->
-				<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-					<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-				</a>
+			<!-- LOGO -->
+			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			</a>
 
-			</nav>
 		</div>
-	</div>
+	</nav>
 
-	<div class="container-fluid" style="margin-top: 110px;">
-		<div class="row justify-content-md-center">
-			<div class="col-2"
-				style="background-color: white; border-radius: 10px 10px 10px 10px;">
+	<div class="container-fluid container1">
+		<div class="row">
+			<div class="col-12" id="colonnaLogin">
 
 				<h4 class="text-center mt-4">Login</h4>
 				<form:form id="utenteForm" method="POST"
 					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
 					onsubmit="return validate();">
+					
 					<div class="form-group" id="formUtente">
 						<label for="Utente">Utente:</label>
 						<form:input path="username" type="text" class="form-control"
@@ -83,10 +116,15 @@ body {
 
 					</div>
 					<div class="form-group" id="formPassword">
-						<label for="Password">Password</label>
+						<label for="Password">Password:</label>
 						<form:input path="password" type="password" class="form-control"
 							id="password" placeholder="Inserisci Password"
 							required="required" />
+					</div>
+					<div class="checkbox mb-3">
+						<label> <input type="checkbox" value="remember-me">
+							Remember me
+						</label>
 					</div>
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 					<hr class="my-4">
@@ -100,7 +138,6 @@ body {
 			</div>
 		</div>
 	</div>
-
 
 	<script type="text/javascript">
 		function badCredentials() {
