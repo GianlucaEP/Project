@@ -690,10 +690,6 @@ ul ul a {
 								<td scope="col">${mostraCandidato.cognome}</td>
 							</tr>
 							<tr>
-								<th scope="col">Cognome</th>
-								<td scope="col">${mostraCandidato.cognome}</td>
-							</tr>
-							<tr>
 								<th scope="col">Anno di nascita</th>
 								<td scope="col">${mostraCandidato.anno}</td>
 							</tr>
