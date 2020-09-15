@@ -203,6 +203,7 @@ ul ul a {
 	background-color: #ffffff;
 	border: 1px solid #dddddd;
 	cursor: pointer;
+	 border-radius: .25rem 0px 0px .25rem;
 	/*appearance: none;*/
 }
 
