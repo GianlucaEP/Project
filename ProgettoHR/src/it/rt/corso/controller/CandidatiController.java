@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -323,6 +324,8 @@ public class CandidatiController {
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
+		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita).collect(Collectors.toList());
+		
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mostraCandidato", c);
@@ -335,6 +338,7 @@ public class CandidatiController {
 		m.addAttribute("feedback", new Feedback());
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		m.addAttribute("qualificationMeeting", new QualificationMeeting());
+		m.addAttribute("funzionalita", listaFunzionalita);
 
 		return "Candidato";
 	}

@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -84,7 +85,6 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-
 	width: 100%;
 	height: 100%;
 	border-collapse: collapse;
@@ -96,7 +96,6 @@ a, a:hover, a:focus {
 	background: #5aa9e6;
 	color: #fff;
 	border-collapse: collapse;
-	
 }
 
 #sidebar .sidebar-header {
@@ -551,78 +550,58 @@ ul ul a {
 
 				<ul class="list-unstyled components">
 
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal"
-									data-target="#qualificationMeetingModal" type="button"><i
-									class="fas fa-plus"></i> Qualification meeting</a>
-							</c:when>
-						</c:choose></li>
+					<c:if
+						test='${fn:contains(funzionalita, "aggiunta qualification meeting")}'>
+						<li><a href="" data-toggle="modal"
+							data-target="#qualificationMeetingModal" type="button"><i
+								class="fas fa-plus"></i> Qualification meeting</a></li>
+					</c:if>
 
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal"
-									data-target="#modificaEconomicsModal" type="button"><i
-									class="fas fa-plus"></i> Economics</a>
-							</c:when>
-						</c:choose></li>
+					<c:if test='${fn:contains(funzionalita, "aggiunta economics")}'>
+						<li><a href="" data-toggle="modal"
+							data-target="#modificaEconomicsModal" type="button"><i
+								class="fas fa-plus"></i> Economics</a></li>
+					</c:if>
 
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal" data-target="#modificaCostiModal"
-									type="button"><i class="fas fa-plus"></i> Costi</a>
-							</c:when>
-						</c:choose></li>
+					<li><c:if
+							test='${fn:contains(funzionalita, "aggiunta costi")}'>
+							<a href="" data-toggle="modal" data-target="#modificaCostiModal"
+								type="button"><i class="fas fa-plus"></i> Costi</a>
+						</c:if></li>
 
-					<li class="active"><a href="#homeSubmenu" id="frecciaSidebar"
-						data-toggle="collapse" aria-expanded="false"
-						class="dropdown-toggle">Feedback</a>
-						<ul class="collapse list-unstyled" id="homeSubmenu">
-							<li><c:forEach var="funz"
-									items="${utente.ruolo.funzionalita}">
-									<c:choose>
-										<c:when test="${funz.funzionalita == 'aggiunta feedback'}">
-
-											<a onclick="impostaTipoFeedback('Colloquio HR')"
-												class="dropdown-item" href="" type="button"
-												data-toggle="modal" data-target="#feedbackModal"><i
-												class="fas fa-plus"></i> Colloquio HR </a>
-
-											<a onclick="impostaTipoFeedback('Colloquio Tecnico')"
-												type="button" data-toggle="modal"
-												data-target="#feedbackModal" class="dropdown-item" href=""><i
-												class="fas fa-plus"></i> Colloquio tecnico </a>
-
-											<a class="dropdown-item" href=""
-												onclick="impostaTipoFeedback('Mail')" type="button"
-												data-toggle="modal" data-target="#feedbackModal"><i
-												class="fas fa-plus"></i> E-mail </a>
-
-											<a class="dropdown-item" href=""
-												onclick="impostaTipoFeedback('Social')" type="button"
-												data-toggle="modal" data-target="#feedbackModal"><i
-												class="fas fa-plus"></i> Social network </a>
-
-											<a class="dropdown-item" href=""
-												onclick="impostaTipoFeedback('Telefonata')" type="button"
-												data-toggle="modal" data-target="#feedbackModal"><i
-												class="fas fa-plus"></i> Telefonata </a>
-
-										</c:when>
-									</c:choose>
-								</c:forEach></li>
-
-						</ul></li>
-
-					<li><c:choose>
-							<c:when test="${ utente!=null and utente.ruolo.ruolo == 'admin'}">
-								<a href="" data-toggle="modal" data-target="#allegatiModal"
-									type="button" class="text-center">Allegati <i
-									class="fas fa-folder-open"></i></a>
-							</c:when>
-						</c:choose></li>
-
+					<c:if test='${fn:contains(funzionalita, "aggiunta feedback")}'>
+						<li class="active"><a href="#homeSubmenu" id="frecciaSidebar"
+							data-toggle="collapse" aria-expanded="false"
+							class="dropdown-toggle">Feedback</a>
+							<ul class="collapse list-unstyled" id="homeSubmenu">
+								<li><a onclick="impostaTipoFeedback('Colloquio HR')"
+									class="dropdown-item" href="" type="button" data-toggle="modal"
+									data-target="#feedbackModal"><i class="fas fa-plus"></i>
+										Colloquio HR </a> <a
+									onclick="impostaTipoFeedback('Colloquio Tecnico')"
+									type="button" data-toggle="modal" data-target="#feedbackModal"
+									class="dropdown-item" href=""><i class="fas fa-plus"></i>
+										Colloquio tecnico </a> <a class="dropdown-item" href=""
+									onclick="impostaTipoFeedback('Mail')" type="button"
+									data-toggle="modal" data-target="#feedbackModal"><i
+										class="fas fa-plus"></i> E-mail </a> <a class="dropdown-item"
+									href="" onclick="impostaTipoFeedback('Social')" type="button"
+									data-toggle="modal" data-target="#feedbackModal"><i
+										class="fas fa-plus"></i> Social network </a> <a
+									class="dropdown-item" href=""
+									onclick="impostaTipoFeedback('Telefonata')" type="button"
+									data-toggle="modal" data-target="#feedbackModal"><i
+										class="fas fa-plus"></i> Telefonata </a></li>
+							</ul></li>
+					</c:if>
+					<c:if test='${fn:contains(funzionalita, "aggiunta allegati")}'>
+						<li><a href="" data-toggle="modal"
+							data-target="#allegatiModal" type="button" class="text-center">Allegati
+								<i class="fas fa-folder-open"></i>
+						</a></li>
+					</c:if>
 				</ul>
+
 			</nav>
 		</div>
 
@@ -639,52 +618,45 @@ ul ul a {
 						<thead class="head">
 							<tr>
 								<th><h3>ANAGRAFICA</h3></th>
-								<th colspan=2><c:forEach var="funz"
-										items="${utente.ruolo.funzionalita}">
-										<c:choose>
-											<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-												<!-- Bottone modifica anagrafica -->
-												<button type="button" data-toggle="modal"
-													data-target="#modificaAnagraficaModal"
-													class="btn p-2 float-right">
-													<i class="fas fa-cog m-0"></i>
-												</button>
-											</c:when>
-										</c:choose>
-									</c:forEach></th>
+								<th colspan=2><c:if
+										test='${fn:contains(funzionalita, "modifica anagrafica")}'>
+										<!-- Bottone modifica anagrafica -->
+										<button type="button" data-toggle="modal"
+											data-target="#modificaAnagraficaModal"
+											class="btn p-2 float-right">
+											<i class="fas fa-cog m-0"></i>
+										</button>
+									</c:if></th>
 							</tr>
 						</thead>
 
 						<tbody class="body">
 
-							<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-								<c:choose>
-									<c:when test="${funz.funzionalita == 'modifica anagrafica'}">
-										<tr>
 
+							<c:if test='${fn:contains(funzionalita, "modifica anagrafica")}'>
+								<tr>
 
-											<th scope="col">Stato</th>
-											<td scope="col">
+									<th scope="col">Stato</th>
+									<td scope="col">
 
-												<button type="button" class="btn" id="menuStato"
-													data-toggle="dropdown" aria-haspopup="true"
-													aria-expanded="false"></button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item"
-														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/daContattare">
-														Da contattare</a> <a class="dropdown-item"
-														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/scartato">
-														Scartato</a> <a class="dropdown-item"
-														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/attivo">
-														Attivo</a> <a class="dropdown-item"
-														href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/selezionato">
-														Selezionato</a>
-												</div>
-											</td>
-										</tr>
-									</c:when>
-								</c:choose>
-							</c:forEach>
+										<button type="button" class="btn" id="menuStato"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"></button>
+										<div class="dropdown-menu">
+											<a class="dropdown-item"
+												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/daContattare">
+												Da contattare</a> <a class="dropdown-item"
+												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/scartato">
+												Scartato</a> <a class="dropdown-item"
+												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/attivo">
+												Attivo</a> <a class="dropdown-item"
+												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/selezionato">
+												Selezionato</a>
+										</div>
+									</td>
+								</tr>
+							</c:if>
+
 							<tr>
 								<th scope="col">Nome</th>
 								<td scope="col">${mostraCandidato.nome}</td>
@@ -709,23 +681,19 @@ ul ul a {
 								<th scope="col">Codice Fiscale</th>
 								<td scope="col">${mostraCandidato.codiceFiscale}</td>
 							</tr>
-							<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-								<c:choose>
-									<c:when
-										test="${funz.funzionalita == 'visualizza anagrafica completa'}">
-										<tr>
-											<th scope="col">Provenienza candidatura</th>
-											<td scope="col">${mostraCandidato.provenienza}</td>
-										</tr>
+							<c:if
+								test='${fn:contains(funzionalita, "visualizza anagrafica completa")}'>
+								<tr>
+									<th scope="col">Provenienza candidatura</th>
+									<td scope="col">${mostraCandidato.provenienza}</td>
+								</tr>
 
-										<tr>
-											<th scope="col">Categoria protetta</th>
-											<td scope="col" id="categoriaProtetta"></td>
-										</tr>
+								<tr>
+									<th scope="col">Categoria protetta</th>
+									<td scope="col" id="categoriaProtetta"></td>
+								</tr>
 
-									</c:when>
-								</c:choose>
-							</c:forEach>
+							</c:if>
 						</tbody>
 
 						<tfoot class="footer">
@@ -738,276 +706,222 @@ ul ul a {
 
 
 					<!-- tabella ECONOMICS -->
-					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-						<c:choose>
-							<c:when test="${funz.funzionalita == 'visualizza economics'}">
-								<table id="economicsTable" class="tabellaEconomics">
-									<thead class="head">
-										<tr>
-											<th><h3>ECONOMICS</h3></th>
-											<th colspan=2><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica economics'}">
-															<!-- Bottone modifica economics-->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaEconomicsModal"
-																class="btn p-2 float-right">
-																<i class="fas fa-cog m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
+					<c:if test='${fn:contains(funzionalita, "visualizza economics")}'>
+						<table id="economicsTable" class="tabellaEconomics">
+							<thead class="head">
+								<tr>
+									<th><h3>ECONOMICS</h3></th>
+									<th colspan=2><c:if
+											test='${fn:contains(funzionalita, "modifica economics")}'>
+											<!-- Bottone modifica economics-->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaEconomicsModal"
+												class="btn p-2 float-right">
+												<i class="fas fa-cog m-0"></i>
+											</button>
+										</c:if></th>
 
-										</tr>
-									</thead>
+								</tr>
+							</thead>
 
-									<tbody>
+							<tbody>
 
-										<tr>
-											<th scope="col">Inquadramento</th>
-											<td scope="col">${mostraCandidato.economics.inquadramento}</td>
-										</tr>
-										<tr>
-											<th scope="col">RAL</th>
-											<td scope="col">${mostraCandidato.economics.ral}</td>
-										</tr>
-										<tr>
-											<th scope="col">Benefit</th>
-											<td scope="col">${mostraCandidato.economics.benefit}</td>
-										</tr>
-										<tr>
-											<th scope="col">Preavviso</th>
-											<td scope="col">${mostraCandidato.economics.preavviso}</td>
-										</tr>
-										<tr>
-											<th scope="col">Desiderata</th>
-											<td scope="col">${mostraCandidato.economics.desiderata}</td>
-										</tr>
+								<tr>
+									<th scope="col">Inquadramento</th>
+									<td scope="col">${mostraCandidato.economics.inquadramento}</td>
+								</tr>
+								<tr>
+									<th scope="col">RAL</th>
+									<td scope="col">${mostraCandidato.economics.ral}</td>
+								</tr>
+								<tr>
+									<th scope="col">Benefit</th>
+									<td scope="col">${mostraCandidato.economics.benefit}</td>
+								</tr>
+								<tr>
+									<th scope="col">Preavviso</th>
+									<td scope="col">${mostraCandidato.economics.preavviso}</td>
+								</tr>
+								<tr>
+									<th scope="col">Desiderata</th>
+									<td scope="col">${mostraCandidato.economics.desiderata}</td>
+								</tr>
 
-									</tbody>
+							</tbody>
 
-									<tfoot class="footer">
-										<tr>
-											<td colspan=2></td>
+							<tfoot class="footer">
+								<tr>
+									<td colspan=2></td>
 
-										</tr>
-									</tfoot>
-								</table>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 
 
 				<!-- COLONNA 2 -->
 				<div class="col-6">
 					<!-- tabella BUSINESS-->
-					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-						<c:choose>
-							<c:when
-								test="${funz.funzionalita == 'visualizza profilo professionale'}">
-								<table class="tabellaBusiness">
+					<c:if
+						test='${fn:contains(funzionalita, "visualizza profilo professionale")}'>
+						<table class="tabellaBusiness">
 
-									<thead class="head">
-										<tr>
-											<th><h3>BUSINESS</h3></th>
-											<th colspan=3><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-												</c:forEach></th>
-										</tr>
-									</thead>
+							<thead class="head">
+								<tr>
+									<th><h3>BUSINESS</h3></th>
+									<th colspan=3></th>
+								</tr>
+							</thead>
 
-									<tbody class="body">
-										<!-- BUSINESS UNIT -->
-										<tr>
-											<th scope="col">Business unit</th>
-											<td scope="col">${mostraCandidato.business.business}</td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica business unit -->
-															<button type="button" data-toggle="modal"
-																id="bottoneBusiness" data-target="#modificaBusinessUnit"
-																class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
+							<tbody class="body">
+								<!-- BUSINESS UNIT -->
+								<tr>
+									<th scope="col">Business unit</th>
+									<td scope="col">${mostraCandidato.business.business}</td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica business unit -->
+											<button type="button" data-toggle="modal"
+												id="bottoneBusiness" data-target="#modificaBusinessUnit"
+												class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
 
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-										<!-- AREA COMPETENZA -->
-										<tr>
-											<th scope="col">Area di competenza</th>
-											<td scope="col"><c:forEach var="area"
-													items="${mostraCandidato.area}">
-													<li>${area.area}</li>
-												</c:forEach></td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica area di competenza-->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaAreaCompetenza"
-																id="bottoneBusiness" class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-										<!-- MANSIONE -->
-										<tr>
-											<th scope="col">Mansione</th>
-											<td scope="col"><c:forEach var="mansione"
-													items="${mostraCandidato.mansione}">
-													<li>${mansione.mansione}</li>
-												</c:forEach></td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica mansione -->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaMansione" id="bottoneBusiness"
-																class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-										<!-- SENIORITY -->
-										<tr>
-											<th scope="col">Seniority</th>
-											<td scope="col">${mostraCandidato.seniority.seniority}</td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica seniority -->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaSeniority" id="bottoneBusiness"
-																class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-										<!-- SPECIALIZZAZIONE -->
-										<tr>
-											<th scope="col">Specializzazione</th>
-											<td scope="col"><c:forEach var="specializzazione"
-													items="${mostraCandidato.candidatoSpecializzazione}">
-													<li>${specializzazione.specializzazione.specializzazione}
-														&nbsp ${specializzazione.anni} anni esperienza</li>
-												</c:forEach></td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica specializzazione -->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaSpecializzazione"
-																id="bottoneBusiness" class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-										<!-- INSERIMENTO AZIENDA -->
-										<tr>
-											<th scope="col">Inserimento azienda</th>
-											<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
-											<th><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when
-															test="${funz.funzionalita == 'modifica profilo professionale'}">
-															<!-- Bottone modifica inserimento azienda -->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaInserimentoAzienda"
-																id="bottoneBusiness" class="btn p-1 float-right">
-																<i class="fas fa-cogs m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-									</tbody>
+										</c:if></th>
+								</tr>
+								<!-- AREA COMPETENZA -->
+								<tr>
+									<th scope="col">Area di competenza</th>
+									<td scope="col"><c:forEach var="area"
+											items="${mostraCandidato.area}">
+											<li>${area.area}</li>
+										</c:forEach></td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica area di competenza-->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaAreaCompetenza" id="bottoneBusiness"
+												class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+								<!-- MANSIONE -->
+								<tr>
+									<th scope="col">Mansione</th>
+									<td scope="col"><c:forEach var="mansione"
+											items="${mostraCandidato.mansione}">
+											<li>${mansione.mansione}</li>
+										</c:forEach></td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica mansione -->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaMansione" id="bottoneBusiness"
+												class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+								<!-- SENIORITY -->
+								<tr>
+									<th scope="col">Seniority</th>
+									<td scope="col">${mostraCandidato.seniority.seniority}</td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica seniority -->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaSeniority" id="bottoneBusiness"
+												class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+								<!-- SPECIALIZZAZIONE -->
+								<tr>
+									<th scope="col">Specializzazione</th>
+									<td scope="col"><c:forEach var="specializzazione"
+											items="${mostraCandidato.candidatoSpecializzazione}">
+											<li>${specializzazione.specializzazione.specializzazione}
+												&nbsp ${specializzazione.anni} anni esperienza</li>
+										</c:forEach></td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica specializzazione -->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaSpecializzazione" id="bottoneBusiness"
+												class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+								<!-- INSERIMENTO AZIENDA -->
+								<tr>
+									<th scope="col">Inserimento azienda</th>
+									<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
+									<th><c:if
+											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+											<!-- Bottone modifica inserimento azienda -->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaInserimentoAzienda"
+												id="bottoneBusiness" class="btn p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+							</tbody>
 
-									<tfoot class="footer">
-										<tr>
-											<td colspan=3></td>
-										</tr>
-									</tfoot>
-								</table>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+							<tfoot class="footer">
+								<tr>
+									<td colspan=3></td>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 
 					<!--tabella COSTI -->
-					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-						<c:choose>
-							<c:when test="${funz.funzionalita == 'visualizza costi'}">
-								<table id="costiTable" class="tabellaCosti">
+					<c:if test='${fn:contains(funzionalita, "visualizza costi")}'>
+						<table id="costiTable" class="tabellaCosti">
 
-									<thead class="head">
-										<tr>
-											<th><h3>COSTI</h3></th>
-											<th colspan=2><c:forEach var="funz"
-													items="${utente.ruolo.funzionalita}">
-													<c:choose>
-														<c:when test="${funz.funzionalita == 'modifica costi'}">
-															<!-- Bottone modifica costi-->
-															<button type="button" data-toggle="modal"
-																data-target="#modificaCostiModal"
-																class="btn p-2 float-right">
-																<i class="fas fa-cog m-0"></i>
-															</button>
-														</c:when>
-													</c:choose>
-												</c:forEach></th>
-										</tr>
-									</thead>
-									<tbody class="body">
-										<tr>
-											<th scope="col">Costo orario</th>
-											<td scope="col">${mostraCandidato.costo.orario}</td>
-										</tr>
-										<tr>
-											<th scope="col">Costo giornaliero</th>
-											<td scope="col">${mostraCandidato.costo.giornaliero}</td>
-										</tr>
-										<c:if test="${not empty mostraCandidato.costo.commento}">
-											<tr>
-												<th scope="col">Commenti</th>
-												<td scope="col">${mostraCandidato.costo.commento}</td>
-											</tr>
-										</c:if>
-									</tbody>
+							<thead class="head">
+								<tr>
+									<th><h3>COSTI</h3></th>
+									<th colspan=2><c:if
+											test='${fn:contains(funzionalita, "modifica costi")}'>
+											<!-- Bottone modifica costi-->
+											<button type="button" data-toggle="modal"
+												data-target="#modificaCostiModal"
+												class="btn p-2 float-right">
+												<i class="fas fa-cog m-0"></i>
+											</button>
+										</c:if></th>
+								</tr>
+							</thead>
+							<tbody class="body">
+								<tr>
+									<th scope="col">Costo orario</th>
+									<td scope="col">${mostraCandidato.costo.orario}</td>
+								</tr>
+								<tr>
+									<th scope="col">Costo giornaliero</th>
+									<td scope="col">${mostraCandidato.costo.giornaliero}</td>
+								</tr>
+								<c:if test="${not empty mostraCandidato.costo.commento}">
+									<tr>
+										<th scope="col">Commenti</th>
+										<td scope="col">${mostraCandidato.costo.commento}</td>
+									</tr>
+								</c:if>
+							</tbody>
 
-									<tfoot class="footer">
-										<tr>
-											<td colspan=2></td>
-										</tr>
-									</tfoot>
-								</table>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-
+							<tfoot class="footer">
+								<tr>
+									<td colspan=2></td>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 			</div>
 
@@ -1039,27 +953,23 @@ ul ul a {
 									<td>${feed.data}</td>
 									<td>${feed.tipo.tipo}</td>
 									<td>${feed.commento}</td>
-									<td><c:forEach var="funz"
-											items="${utente.ruolo.funzionalita}">
-											<c:choose>
-												<c:when test="${funz.funzionalita == 'modifica feedback'}">
-													<button
-														onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
-														type="button" data-toggle="modal" id="bottoneFeedback"
-														data-target="#modificaFeedbackModal"
-														 class="btn customButton p-1 float-right">
-														<i class="fas fa-cogs m-0"></i>
-													</button>
-													<button
-														onclick="impostaParametriEliminaFeedback('${feed.id}')"
-														type="button" data-toggle="modal"
-														id="bottoneFeedback" data-target="#eliminaFeedbackModal"
-														class="btn customButton p-1 mr-1 float-right">
-														<i class="fas fa-trash m-0"></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach></td>
+									<td><c:if
+											test='${fn:contains(funzionalita, "modifica feedback")}'>
+											<button
+												onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
+												type="button" data-toggle="modal" id="bottoneFeedback"
+												data-target="#modificaFeedbackModal"
+												class="btn customButton p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+											<button
+												onclick="impostaParametriEliminaFeedback('${feed.id}')"
+												type="button" data-toggle="modal" id="bottoneFeedback"
+												data-target="#eliminaFeedbackModal"
+												class="btn customButton p-1 mr-1 float-right">
+												<i class="fas fa-trash m-0"></i>
+											</button>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -1100,29 +1010,23 @@ ul ul a {
 									<td>${qualificationMeeting.riferimentoGara}</td>
 									<td>${qualificationMeeting.dataColloquio}</td>
 									<td>${qualificationMeeting.feedback}</td>
-									<td><c:forEach var="funz"
-											items="${utente.ruolo.funzionalita}">
-											<c:choose>
-												<c:when
-													test="${funz.funzionalita == 'modifica qualification meeting'}">
-													<button
-														onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}', '${qualificationMeeting.cliente}', '${qualificationMeeting.dataPresentato}', '${qualificationMeeting.riferimentoGara}', '${qualificationMeeting.dataColloquio}', '${qualificationMeeting.feedback}' )"
-														type="button" data-toggle="modal"
-														id="bottoneQualification"
-														data-target="#modificaQualificationMeetingModal"
-														class="btn customButton p-1 float-right">
-														<i class="fas fa-cogs m-0"></i>
-													</button>
-													<button
-														onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
-														type="button" data-toggle="modal"
-														id="bottoneQualification" data-target="#eliminaQualificationMeetingModal"
-														class="btn customButton p-1 mr-1 float-right">
-														<i class="fas fa-trash m-0"></i>
-													</button>
-												</c:when>
-											</c:choose>
-										</c:forEach></td>
+									<td><c:if
+											test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
+											<button
+												onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}', '${qualificationMeeting.cliente}', '${qualificationMeeting.dataPresentato}', '${qualificationMeeting.riferimentoGara}', '${qualificationMeeting.dataColloquio}', '${qualificationMeeting.feedback}' )"
+												type="button" data-toggle="modal" id="bottoneQualification"
+												data-target="#modificaQualificationMeetingModal"
+												class="btn customButton p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+											<button
+												onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
+												type="button" data-toggle="modal" id="bottoneQualification"
+												data-target="#eliminaQualificationMeetingModal"
+												class="btn customButton p-1 mr-1 float-right">
+												<i class="fas fa-trash m-0"></i>
+											</button>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -1135,47 +1039,43 @@ ul ul a {
 					</table>
 
 					<!-- Tabella ALLEGATI -->
-					<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-						<c:choose>
-							<c:when test="${funz.funzionalita == 'visualizza allegati'}">
-								<table id="allegatiTable" class="tabellaAllegati">
-									<thead class="head">
-										<tr>
-											<th colspan=3><h3>ALLEGATI</h3></th>
-										</tr>
-										<tr>
-											<th scope="col">Nome allegato</th>
-											<th scope="col"></th>
-											<th scope="col"></th>
-										</tr>
-									</thead>
+					<c:if test='${fn:contains(funzionalita, "visualizza allegati")}'>
+						<table id="allegatiTable" class="tabellaAllegati">
+							<thead class="head">
+								<tr>
+									<th colspan=3><h3>ALLEGATI</h3></th>
+								</tr>
+								<tr>
+									<th scope="col">Nome allegato</th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
 
-									<tbody class="body">
-										<c:forEach var="allegato" items="${mostraCandidato.file}">
-											<tr>
-												<td>${allegato.nomeFile}</td>
-												<td><a
-													href="<c:url value='/download/${businessUnit}/${mostraCandidato.id}/${allegato.id}' />"
-													class="btn btn-block" id="bottone-salva-allegato">Scarica</a></td>
-												<td>
-													<button onclick="impostaParametriAllegati(${allegato.id})"
-														type="button" class="btn btn-block"
-														id="bottone-cancella-allegato" data-toggle="modal"
-														data-target="#deleteModal">Cancella</button>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
+							<tbody class="body">
+								<c:forEach var="allegato" items="${mostraCandidato.file}">
+									<tr>
+										<td>${allegato.nomeFile}</td>
+										<td><a
+											href="<c:url value='/download/${businessUnit}/${mostraCandidato.id}/${allegato.id}' />"
+											class="btn btn-block" id="bottone-salva-allegato">Scarica</a></td>
+										<td>
+											<button onclick="impostaParametriAllegati(${allegato.id})"
+												type="button" class="btn btn-block"
+												id="bottone-cancella-allegato" data-toggle="modal"
+												data-target="#deleteModal">Cancella</button>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
-									<tfoot class="footer">
-										<tr>
-											<td colspan=5></td>
-										</tr>
-									</tfoot>
-								</table>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+							<tfoot class="footer">
+								<tr>
+									<td colspan=5></td>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -1916,18 +1816,21 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- MODAL CANCELLA QUALIFICATION MEETING -->
-	<div class="modal fade" id="eliminaQualificationMeetingModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="eliminaQualificationMeetingModal"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<form action="/ProgettoHR/EliminaQualificationMeeting/${businessUnit}/${id}"
+				<form
+					action="/ProgettoHR/EliminaQualificationMeeting/${businessUnit}/${id}"
 					method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare il Qualification meeting selezionato? <input
-							style="visibility: hidden;" name="qualification" id="qualification" />
+						Sei sicuro di voler cancellare il Qualification meeting
+						selezionato? <input style="visibility: hidden;"
+							name="qualification" id="qualification" />
 					</div>
 
 					<div class="modal-footer">
@@ -2250,6 +2153,7 @@ ul ul a {
 	<script type="text/javascript">
 	
 		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics) {
+			if(document.getElementById("menuStato")!= null){
 			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Nuovo inserito";
@@ -2266,7 +2170,7 @@ ul ul a {
 				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
 				document.getElementById("menuStato").innerHTML = "Selezionato";
 			}
-
+		}
 			removeFeedbackTable(feedback);
 			removeAllegatiTable(allegati);
 			removeCostiTable(costi);
@@ -2279,6 +2183,7 @@ ul ul a {
 		function removeFeedbackTable(feedback) {
 			if (feedback === "[]") {
 				var myobj = document.getElementById("feedbackTable");
+				if(myobj != null)
 				myobj.remove();
 			}
 		}
@@ -2287,6 +2192,7 @@ ul ul a {
 			if (qualificationMeeting === "[]") {
 				var myobj = document
 						.getElementById("qualificationMeetingTable");
+				if(myobj != null)
 				myobj.remove();
 			}
 		}
@@ -2294,6 +2200,7 @@ ul ul a {
 		function removeAllegatiTable(allegati) {
 			if (allegati === "[]") {
 				var myobj = document.getElementById("allegatiTable");
+				if(myobj != null)
 				myobj.remove();
 			}
 		}
@@ -2301,6 +2208,7 @@ ul ul a {
 		function removeCostiTable(costi) {
 			if (costi === "") {
 				var myobj = document.getElementById("costiTable");
+				if(myobj != null)
 				myobj.remove();
 			}
 		}
@@ -2308,17 +2216,20 @@ ul ul a {
 		function removeEconomicsTable(economics) {
 			if (economics === "") {
 				var myobj = document.getElementById("economicsTable");
+				if(myobj != null)
 				myobj.remove();
 			}
 		}
 
 		function checkCategoriaProtetta(categoriaProtetta) {
+			if(document.getElementById("categoriaProtetta") != null){
 			if (categoriaProtetta === "true") {
 				document.getElementById("categoriaProtetta").innerHTML = "Si";
 			} else {
 				document.getElementById("categoriaProtetta").innerHTML = "No";
 			}
 		}
+	}
 
 		function impostaTipoFeedback(tipoFeedback) {
 			if (tipoFeedback === "Mail") {
