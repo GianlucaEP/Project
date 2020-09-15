@@ -470,58 +470,58 @@ ul ul a {
 									</c:otherwise>
 								</c:choose></td>
 							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.business.business}</td>
 							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.nome}</td>
 							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.cognome}</td>
 							<c:forEach items="${filterList}" var="filter">
 								<c:if test="${ filter.key == 'anno' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.anno}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'telefono' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.telefono}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'email' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.email}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'seniority' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.seniority.seniority}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'provenienza' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.provenienza}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'area' }">
 									<td><c:forEach var="area" items="${cand.area}">
 											<div
-												onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												${area.area}</div>
 										</c:forEach></td>
 								</c:if>
 								<c:if test="${ filter.key == 'mansione' }">
 									<td><c:forEach var="mansione" items="${cand.mansione}">
 											<div
-												onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												${mansione.mansione}</div>
 										</c:forEach></td>
 
 								</c:if>
 								<c:if test="${ filter.key == 'specializzazione' }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										<c:forEach var="specializzazione"
 											items="${cand.candidatoSpecializzazione}">
 											<div>${specializzazione.specializzazione.specializzazione}
@@ -531,12 +531,12 @@ ul ul a {
 								</c:if>
 								<c:if test="${fn:contains( filter.key, 'data') }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.inserimentoAzienda}</td>
 								</c:if>
 								<c:if test="${fn:contains( filter.key, 'costo') }">
 									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.costo.orario} &#8364; /H</td>
 								</c:if>
 							</c:forEach>
