@@ -152,24 +152,15 @@ ul ul a {
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
 		<div class="container-fluid">
-
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-			<!-- BOTTONE PROFILO -->
-			<!--  <button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-expanded="false"
-				aria-controls="navbarCollapse" aria-label="Toggle navigation">
-				<i class="fas fa-bars"></i>
-			</button>-->
-
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-
 				</ul>
 			</div>
 		</div>
@@ -179,7 +170,6 @@ ul ul a {
 		<div class="row">
 			<!-- COLONNA BOTTONI LATERALI -->
 			<div class="col-3">
-
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
 
@@ -256,14 +246,14 @@ ul ul a {
 
 					<div class="form-group">
 						<label>E-mail:</label>
-						<form:input type="email" path="email" 
-							size="30" class="form-control" id="email" required="required"></form:input>
+						<form:input type="email" path="email" size="30"
+							class="form-control" id="email" required="required"></form:input>
 					</div>
 
 					<div class="form-group">
 						<label>Codice fiscale:</label>
-						<form:input type="text" path="codiceFiscale" maxlength="16" class="form-control"
-							id="codiceFiscale"></form:input>
+						<form:input type="text" path="codiceFiscale" maxlength="16"
+							class="form-control" id="codiceFiscale"></form:input>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6">
@@ -294,9 +284,9 @@ ul ul a {
 
 					<div class="form-group mb-3">
 						<label>Area competenza:</label>
-						<div class="form-row">
-							<div class="col-11">
-								<div id="areeCompetenzaDiv">
+						<div id="areeCompetenzaDiv">
+							<div class="form-row">
+								<div class="col-11">
 									<input autocomplete="off" placeholder="aggiungi"
 										list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
 										class="form-control">
@@ -306,12 +296,13 @@ ul ul a {
 										</c:forEach>
 									</datalist>
 								</div>
-							</div>
-							<div class="col-1">
-								<div
-									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-									class="btn btn-block form-control">
-									<i class="fas fa-plus"></i>
+
+								<div class="col-1">
+									<div
+										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+										class="btn btn-block form-control">
+										<i class="fas fa-plus"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -319,10 +310,9 @@ ul ul a {
 
 					<div class="form-group mb-3">
 						<label>Mansione:</label>
-						<div class="form-row">
-							<div class="col-11">
-
-								<div id="mansioneDiv">
+						<div id="mansioneDiv">
+							<div class="form-row">
+								<div class="col-11">
 									<input autocomplete="off" placeholder="aggiungi"
 										list="mansioniDisponibili" id="mansioneInput"
 										class="form-control">
@@ -331,13 +321,13 @@ ul ul a {
 											<option value="${mans}"></option>
 										</c:forEach>
 									</datalist>
-
 								</div>
-							</div>
-							<div class="col-1">
-								<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-									class="btn">
-									<i class="fas fa-plus"></i>
+
+								<div class="col-1">
+									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+										class="btn">
+										<i class="fas fa-plus"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -345,9 +335,9 @@ ul ul a {
 
 					<div class="form-group">
 						<label>Specializzazione:</label>
-						<div class="form-row">
-							<div class="col-6">
-								<div id="specializzazioneDiv">
+						<div id="specializzazioneDiv">
+							<div class="form-row">
+								<div class="col-6">
 									<input autocomplete="off" placeholder="aggiungi"
 										list="specializzazioniDisponibili" id="specializzazioneInput"
 										class="form-control">
@@ -358,16 +348,17 @@ ul ul a {
 										</c:forEach>
 									</datalist>
 								</div>
-							</div>
-							<div class="col-5">
-								<input id="anniEsperienzaInput" class="text-left form-control"
-									type="number" placeholder="anni esperienza">
-							</div>
-							<div class="col-1">
-								<div
-									onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-									class="btn">
-									<i class="fas fa-plus"></i>
+
+								<div class="col-5">
+									<input id="anniEsperienzaInput" class="text-left form-control"
+										type="number" placeholder="anni esperienza">
+								</div>
+								<div class="col-1">
+									<div
+										onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+										class="btn">
+										<i class="fas fa-plus"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -548,6 +539,14 @@ ul ul a {
 					var tagDivButton = document.createElement("span");
 					tagInput.value = document.getElementById("areaCompetenzaInput").value;
 					
+					tagInput.classList.add("form-control");
+					
+					tagDiv.classList.add("form-row");
+					var ColDiv1 = document.createElement("div");
+						ColDiv1.classList.add("col-11");
+					var ColDiv2 = document.createElement("div");
+						ColDiv2.classList.add("col-1");
+					
 					areaName = "area" + areaCnt;
 					areaCnt++;
 					
@@ -555,14 +554,18 @@ ul ul a {
 					tagInput.name = "areaCompetenza";
 					tagInput.readOnly = true;
 					
-					tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
+					tagDivButton.classList.add("btn");
+					tagDivButton.style.margin = "0px 0px 8px 0px";
+					tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 					
 					tagDivButton.onclick = function(){				              	              	          				
 						tagDiv.remove();
 					};
 					
-					tagDiv.appendChild(tagInput);
-					tagDiv.appendChild(tagDivButton);
+					ColDiv1.appendChild(tagInput)
+					tagDiv.appendChild(ColDiv1);
+					ColDiv2.appendChild(tagDivButton)
+					tagDiv.appendChild(ColDiv2);
 					
 					document.getElementById("areeCompetenzaDiv").appendChild(tagDiv);
 					document.getElementById("areaCompetenzaInput").value = "";
@@ -597,6 +600,14 @@ ul ul a {
 					var tagInput = document.createElement("input");
 					var tagDivButton = document.createElement("span");
 					tagInput.value = document.getElementById("mansioneInput").value;
+					
+					tagInput.classList.add("form-control");
+					
+					tagDiv.classList.add("form-row");
+					var ColDiv1 = document.createElement("div");
+						ColDiv1.classList.add("col-11");
+					var ColDiv2 = document.createElement("div");
+						ColDiv2.classList.add("col-1");
 			
 			mansioneName = "mansione" + mansioneCnt;
 			mansioneCnt++;
@@ -605,14 +616,18 @@ ul ul a {
 			tagInput.name = "mansioni";
 			tagInput.readOnly = true;
 			
-			tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
+			tagDivButton.classList.add("btn");
+			tagDivButton.style.margin = "0px 0px 8px 0px";
+			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 			
 			tagDivButton.onclick = function(){				              	              	          				
 				tagDiv.remove();
 			};
 			
-			tagDiv.appendChild(tagInput);
-			tagDiv.appendChild(tagDivButton);
+			ColDiv1.appendChild(tagInput)
+			tagDiv.appendChild(ColDiv1);
+			ColDiv2.appendChild(tagDivButton)
+			tagDiv.appendChild(ColDiv2);
 			
 			document.getElementById("mansioneDiv").appendChild(tagDiv);
 			document.getElementById("mansioneInput").value = "";
@@ -652,6 +667,14 @@ ul ul a {
 					var tagInput = document.createElement("input");
 					var tagDivButton = document.createElement("span");
 					tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
+					
+					tagInput.classList.add("form-control");
+					
+					tagDiv.classList.add("form-row");
+					var ColDiv1 = document.createElement("div");
+						ColDiv1.classList.add("col-11");
+					var ColDiv2 = document.createElement("div");
+						ColDiv2.classList.add("col-1");
 
 					specializzazioneName = "specializzazione" + specializzazioneCnt;
 					specializzazioneCnt++;
@@ -660,14 +683,18 @@ ul ul a {
 					tagInput.name = "specializzazione";
 					tagInput.readOnly = true;
 					
-					tagDivButton.innerHTML = '<i class="material-icons"> cancella</i>';
+					tagDivButton.classList.add("btn");
+					tagDivButton.style.margin = "0px 0px 8px 0px";
+					tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 					
 					tagDivButton.onclick = function(){				              	              	          				
 						tagDiv.remove();
 					};
 					
-					tagDiv.appendChild(tagInput);
-					tagDiv.appendChild(tagDivButton);
+					ColDiv1.appendChild(tagInput)
+					tagDiv.appendChild(ColDiv1);
+					ColDiv2.appendChild(tagDivButton)
+					tagDiv.appendChild(ColDiv2);
 					
 					document.getElementById("specializzazioneDiv").appendChild(tagDiv);
 					document.getElementById("specializzazioneInput").value = "";
@@ -730,10 +757,6 @@ ul ul a {
 			document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
 			return false
 		}
-		
-		
-		
-		
 	</script>
 
 	<!-- Popper.JS -->
