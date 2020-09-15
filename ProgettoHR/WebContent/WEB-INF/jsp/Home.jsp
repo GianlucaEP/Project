@@ -84,12 +84,7 @@ body {
 }
 
 /* SIDEBAR */
-.container1 {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: rows;
-	justify-content: flex-start;
-}
+
 
 #sidebar {
 	width: 100%;
@@ -208,8 +203,7 @@ ul ul a {
 	background-color: #ffffff;
 	border: 1px solid #dddddd;
 	cursor: pointer;
-	appearance: none;
-	border-radius: 5px 5px 0px 0px;
+	/*appearance: none;*/
 }
 
 .select option {
@@ -217,15 +211,15 @@ ul ul a {
 }
 
 .custom-arrow {
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
-	right: 0.3em;
+	/*right: 0.3em;*/
 	display: block;
 	background-color: #5aa9e6;
 	height: 42px;
 	width: 2.5em;
 	pointer-events: none;
-	border-radius: 0px 3px 0px 0px;
+	/*border-radius: 0px 3px 0px 0px;*/
 }
 
 .custom-arrow::before, .custom-arrow::after {
@@ -267,10 +261,9 @@ svg {
 	vertical-align: middle;
 }
 
-#bottoneFiltro {
-	margin-top: 0.07em;
-	height: 40px;
-	width: 40px;
+.bottoneFiltro {
+	height: 43px;
+	width: 43px;
 	background-color: #5aa9e6;
 }
 
@@ -314,7 +307,11 @@ svg {
 	margin-top: 0;
 }
 
-@media screen and (max-width: 848px) {
+.fa-sort {
+	color: white;
+}
+
+@media screen and (max-width: 855px) {
 	body {
 		
 	}
@@ -330,10 +327,10 @@ svg {
 </head>
 
 <body onload="validateOption(); x('${statoSelezionato}')">
-
+	<div class="container-fluid p-0">
 	<!-- NAVBAR -->
 	<nav class="navbar">
-		<div class="container-fluid">
+	
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
@@ -364,13 +361,13 @@ svg {
 				</ul>
 			</div>
 
-		</div>
+		
 	</nav>
 
-	<div class="container-fluid container1 p-0">
+	
 		<!-- COLONNA BARRA LATERALE -->
-		<div class="row">
-			<div id="colonnaTable" class="col-auto p-0 ">
+		<div class="row mt-4">
+			<div id="colonnaTable" class="col-auto">
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
 					<div class="sidebar-header">
@@ -424,28 +421,27 @@ svg {
 			</div>
 
 			<!-- FILTRO STATO CANDIDATO -->
-			<div class="col">
-				<div class="row">
+			<div class="col p-0 mr-4">
+				<div class="row mb-1">
 					<div class="col">
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
 							method="post">
-							<div class="form-row">
-								<div class="col-auto">
+							<div class="input-group" style="display: inline-flex;">
 
-									<select class="select" onchange="validateOption()" id="stati"
-										name="statoSelezionato">
 
-										<option disabled selected>Stato candidato</option>
-										<option id="noFiltro" value="noFiltro">Tutti gli
-											stati</option>
-										<c:forEach var="stato" items="${statoCandidatoList}">
-											<option id="${stato.descrizione}"
-												value="${stato.descrizione}">${stato.descrizione}</option>
-										</c:forEach>
+								<select class="select" onchange="validateOption()" id="stati"
+									name="statoSelezionato">
 
-									</select> <span class="custom-arrow"></span>
-							
-									<button id="bottoneFiltro" class="btn btn-block" type="submit">
+									<option disabled selected>Stato candidato</option>
+									<option id="noFiltro" value="noFiltro">Tutti gli stati</option>
+									<c:forEach var="stato" items="${statoCandidatoList}">
+										<option id="${stato.descrizione}" value="${stato.descrizione}">${stato.descrizione}</option>
+									</c:forEach>
+
+								</select>
+								<div class="input-group-append">
+									<button id="bottoneFiltro" class="btn bottoneFiltro mt-0"
+										type="submit">
 										<svg width="1em" height="1em" viewBox="0 0 16 16"
 											class="bi bi-funnel" fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg"> <path
@@ -453,7 +449,9 @@ svg {
 												d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" /></svg>
 									</button>
 								</div>
+
 							</div>
+
 						</form>
 					</div>
 					<div class="col">
@@ -466,7 +464,7 @@ svg {
 				</div>
 
 				<div class="row">
-					<div class="col">
+					<div class="col w-100 table-responsive">
 						<!-- TABELLA CANDIDATO -->
 						<c:choose>
 							<c:when test="${empty list}">
@@ -551,9 +549,9 @@ svg {
 										</c:forEach>
 									</tbody>
 
-									<tfoot class="footer">
+									<tfoot class="footer" style="background-color: #5aa9e6">
 										<tr>
-											<td></td>
+											<td colspan="8"></td>
 
 										</tr>
 									</tfoot>
@@ -564,143 +562,143 @@ svg {
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- MODAL AGGIUNTA MANSIONE -->
-		<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
+	<!-- MODAL AGGIUNTA MANSIONE -->
+	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
 
+
+				<div class="modal-header">
+					<h5 class="modal-title">Aggiungi Mansione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form modelAttribute="mansione" id="formMansione" method="POST"
+					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
+					onsubmit="return validate();">
+					<div class="modal-body">
+						<form:input path="mansione" type="text" class="form-control"
+							placeholder="Mansione" id="mansione" name="mansione"></form:input>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-mansione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-mansione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
+	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiungi Area
+						Competenza</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
+					method="POST"
+					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
+					onsubmit="return validateArea();">
+					<div class="modal-body">
+
+						<form:input path="area" type="text" class="form-control"
+							placeholder="Area di Competenza" id="area"></form:input>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-area"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-area"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+				</form:form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL AGGIUNTA SPECIALIZZAZIONE -->
+	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Aggiungi
+						Specializzazione</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form modelAttribute="specializzazione"
+					id="formSpecializzazione" method="POST"
+					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
+					onsubmit="return validateSpecializzazione();">
+					<div class="modal-body">
+
+						<form:input path="specializzazione" type="text"
+							class="form-control" placeholder="Specializzazione"
+							id="specializzazione"></form:input>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" id="bottone-salva-specializzazione"
+							class="btn btn-success" style="background-color: green;">Salva</button>
+						<button type="reset" id="bottone-cancella-specializzazione"
+							class="btn btn-danger" style="background-color: red;">Cancella</button>
+					</div>
+
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- MODAL CANCELLA CANDIDATO -->
+	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						<h5 class="modal-title">Aggiungi Mansione</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						Sei sicuro di voler cancellare il candidato selezionato? <input
+							style="visibility: hidden;" name="idCandidato" id="candidatoId" />
 					</div>
-					<form:form modelAttribute="mansione" id="formMansione"
-						method="POST"
-						action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
-						onsubmit="return validate();">
-						<div class="modal-body">
-							<form:input path="mansione" type="text" class="form-control"
-								placeholder="Mansione" id="mansione" name="mansione"></form:input>
-						</div>
 
-						<div class="modal-footer">
-							<button type="submit" id="bottone-salva-mansione"
-								class="btn btn-success" style="background-color: green;">Salva</button>
-							<button type="reset" id="bottone-cancella-mansione"
-								class="btn btn-danger" style="background-color: red;">Cancella</button>
-						</div>
-					</form:form>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- MODAL AGGIUNTA AREA COMPETENZA -->
-		<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Aggiungi Area
-							Competenza</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
 					</div>
-					<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
-						method="POST"
-						action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
-						onsubmit="return validateArea();">
-						<div class="modal-body">
 
-							<form:input path="area" type="text" class="form-control"
-								placeholder="Area di Competenza" id="area"></form:input>
-						</div>
-
-						<div class="modal-footer">
-							<button type="submit" id="bottone-salva-area"
-								class="btn btn-success" style="background-color: green;">Salva</button>
-							<button type="reset" id="bottone-cancella-area"
-								class="btn btn-danger" style="background-color: red;">Cancella</button>
-						</div>
-					</form:form>
-
-				</div>
+				</form>
 			</div>
 		</div>
-
-		<!-- MODAL AGGIUNTA SPECIALIZZAZIONE -->
-		<div class="modal fade" id="specializzazioneModal" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Aggiungi
-							Specializzazione</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<form:form modelAttribute="specializzazione"
-						id="formSpecializzazione" method="POST"
-						action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
-						onsubmit="return validateSpecializzazione();">
-						<div class="modal-body">
-
-							<form:input path="specializzazione" type="text"
-								class="form-control" placeholder="Specializzazione"
-								id="specializzazione"></form:input>
-
-						</div>
-
-						<div class="modal-footer">
-							<button type="submit" id="bottone-salva-specializzazione"
-								class="btn btn-success" style="background-color: green;">Salva</button>
-							<button type="reset" id="bottone-cancella-specializzazione"
-								class="btn btn-danger" style="background-color: red;">Cancella</button>
-						</div>
-
-					</form:form>
-				</div>
-			</div>
-		</div>
+	</div>
 
 
-		<!-- MODAL CANCELLA CANDIDATO -->
-		<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
-
-						<div class="modal-header">
-							Sei sicuro di voler cancellare il candidato selezionato? <input
-								style="visibility: hidden;" name="idCandidato" id="candidatoId" />
-						</div>
-
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-success"
-								style="background-color: green;">sì</button>
-							<button type="button" class="btn btn-danger"
-								style="background-color: red;" data-dismiss="modal">no</button>
-						</div>
-
-					</form>
-				</div>
-			</div>
-		</div>
-
-
-		<script>
+	<script>
 		function impostaParametriCandidatoId(id) {
 			document.getElementById("candidatoId").value = id;
 
@@ -800,18 +798,18 @@ svg {
 
 
 
-		<!-- Popper.JS -->
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-		<!-- Bootstrap JS -->
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-		<!-- Font Awesome JS -->
-		<script defer
-			src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<!-- Font Awesome JS -->
+	<script defer
+		src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
 
-		<script defer
-			src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+	<script defer
+		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 </body>
 
 </html>
