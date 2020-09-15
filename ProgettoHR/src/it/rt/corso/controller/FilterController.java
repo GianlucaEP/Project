@@ -1,6 +1,7 @@
 package it.rt.corso.controller;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class FilterController {
 		// Business business= bdao.get(businessUnit);
 		
 		List<Candidato> list = cdao.getListaByBusinessUnit(businessUnit);
+		Map<String, String> filterLsit = new HashMap<String, String>();
 		
 
 		m.addAttribute("businessList", singleton.getBusinessList());
@@ -42,7 +44,7 @@ public class FilterController {
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("seniorityList", singleton.getSeniorityList());
-
+		m.addAttribute("filterLsit", filterLsit);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
@@ -54,20 +56,18 @@ public class FilterController {
 
 	@RequestMapping(value = "/Filter/advanced/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
-			@RequestParam Map<String, String> requestParams) throws ParseException {
-
-//		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
+			@RequestParam Map<String, String> filterLsit) throws ParseException {
 		
 		Singleton singleton = Singleton.getInstance();
 
-		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(requestParams);
+		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(filterLsit);
 
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("seniorityList", singleton.getSeniorityList());
-
+		m.addAttribute("filterList", filterLsit);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());

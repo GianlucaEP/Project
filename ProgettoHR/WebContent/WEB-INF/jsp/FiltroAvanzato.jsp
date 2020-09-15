@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 
@@ -265,7 +266,7 @@ ul ul a {
 						</div>
 
 						<div class="form-group">
-							<label>business unit:</label> <select id="selectBusiness"
+							<label>Business unit:</label> <select id="selectBusiness"
 								name="business" class="form-control custom-select">
 								<option selected></option>
 								<c:forEach var="bus" items="${businessList}">
@@ -274,7 +275,7 @@ ul ul a {
 							</select>
 						</div>
 						<div class="form-group">
-							<label>seniority:</label> <select id=selectSeniority
+							<label>Seniority:</label> <select id=selectSeniority
 								name="seniority" class="custom-select form-control">
 								<option selected></option>
 								<c:forEach var="sen" items="${seniorityList}">
@@ -283,13 +284,13 @@ ul ul a {
 							</select>
 						</div>
 						<div class="form-group">
-							<label>provenienza:</label> <input id="provenienza"
+							<label>Provenienza:</label> <input id="provenienza"
 								name="provenienza" class="form-control" type="text">
 						</div>
 
 						<div class="form-group">
 							<div id="areeCompetenzaDiv">
-								<label>area di competenza:</label>
+								<label>Area di competenza:</label>
 								<div class="form-row">
 									<div class="col-10">
 										<input autocomplete="off" placeholder="aggiungi"
@@ -314,7 +315,7 @@ ul ul a {
 
 						<div class="form-group">
 							<div id="mansioneDiv">
-								<label>mansione</label>
+								<label>Mansione</label>
 								<div class="form-row">
 									<div class="col-10">
 										<input autocomplete="off" placeholder="aggiungi"
@@ -338,7 +339,7 @@ ul ul a {
 
 						<div class="form-group">
 							<div id="specializzazioneDiv">
-								<label>specializzazione</label>
+								<label>Specializzazione</label>
 								<div class="form-row">
 									<div class="col-10">
 										<input autocomplete="off" placeholder="aggiungi"
@@ -364,7 +365,7 @@ ul ul a {
 
 
 						<div class="form-group">
-							<label>costo unitario all'ora</label> da <input
+							<label>Costo unitario all'ora</label> da <input
 								id="costoMinInput" name="costoMin" class="form-control"
 								style="border-color: transparent;" type="text"
 								placeholder="costo minimo"> A<input id="costoMaxInput"
@@ -408,13 +409,38 @@ ul ul a {
 						<th scope="col">Business unit</th>
 						<th scope="col">Nome</th>
 						<th scope="col">Cognome</th>
-						<th scope="col">Area Competenza</th>
-						<th scope="col">Mansione</th>
-						<th scope="col">Seniority</th>
-						<th scope="col">Specializzazione</th>
-						<th scope="col">Inserimento Azienda</th>
-						<th scope="col">costo orario</th>
-						<th class="noExport" scope="col"></th>
+						<c:forEach items="${filterList}" var="filter">
+							<c:if test="${ filter.key == 'anno' }">
+								<th scope="col">Anno</th>
+							</c:if>
+							<c:if test="${ filter.key == 'telefono' }">
+								<th scope="col">Telefono</th>
+							</c:if>
+							<c:if test="${ filter.key == 'email' }">
+								<th scope="col">E-mail</th>
+							</c:if>
+							<c:if test="${ filter.key == 'seniority' }">
+								<th scope="col">Seniority</th>
+							</c:if>
+							<c:if test="${ filter.key == 'provenienza' }">
+								<th scope="col">Provenienza</th>
+							</c:if>
+							<c:if test="${ filter.key == 'area' }">
+								<th scope="col">Area Competenza</th>
+							</c:if>
+							<c:if test="${ filter.key == 'mansione' }">
+								<th scope="col">Mansione</th>
+							</c:if>
+							<c:if test="${ filter.key == 'specializzazione' }">
+								<th scope="col">Specializzazione</th>
+							</c:if>
+							<c:if test="${fn:contains( filter.key, 'data') }">
+								<th scope="col">Inserimento Azienda</th>
+							</c:if>
+							<c:if test="${fn:contains( filter.key, 'costo') }">
+								<th scope="col">costo orario</th>
+							</c:if>
+						</c:forEach>
 					</tr>
 				</thead>
 				<!-- Corpo della tabella -->
@@ -452,38 +478,68 @@ ul ul a {
 							<td
 								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
 								${cand.cognome}</td>
-
-							<td><c:forEach var="area" items="${cand.area}">
-									<div
+							<c:forEach items="${filterList}" var="filter">
+								<c:if test="${ filter.key == 'anno' }">
+									<td
 										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-										${area.area}</div>
-								</c:forEach></td>
-
-							<td><c:forEach var="mansione" items="${cand.mansione}">
-									<div
+										${cand.anno}</td>
+								</c:if>
+								<c:if test="${ filter.key == 'telefono' }">
+									<td
 										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-										${mansione.mansione}</div>
-								</c:forEach></td>
+										${cand.telefono}</td>
+								</c:if>
+								<c:if test="${ filter.key == 'email' }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${cand.email}</td>
+								</c:if>
+								<c:if test="${ filter.key == 'seniority' }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${cand.seniority.seniority}</td>
+								</c:if>
+								<c:if test="${ filter.key == 'provenienza' }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${cand.provenienza}</td>
+								</c:if>
+								<c:if test="${ filter.key == 'area' }">
+									<td><c:forEach var="area" items="${cand.area}">
+											<div
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+												${area.area}</div>
+										</c:forEach></td>
+								</c:if>
+								<c:if test="${ filter.key == 'mansione' }">
+									<td><c:forEach var="mansione" items="${cand.mansione}">
+											<div
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+												${mansione.mansione}</div>
+										</c:forEach></td>
 
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-								${cand.seniority.seniority}</td>
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-								<c:forEach var="specializzazione"
-									items="${cand.candidatoSpecializzazione}">
-									<div>${specializzazione.specializzazione.specializzazione}
-										&nbsp ${specializzazione.anni} anni esperienza</div>
-								</c:forEach>
-							</td>
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-								${cand.inserimentoAzienda}</td>
-
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
-								${cand.costo.orario} &#8364; /H</td>
-
+								</c:if>
+								<c:if test="${ filter.key == 'specializzazione' }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										<c:forEach var="specializzazione"
+											items="${cand.candidatoSpecializzazione}">
+											<div>${specializzazione.specializzazione.specializzazione}
+												&nbsp ${specializzazione.anni} anni esperienza</div>
+										</c:forEach>
+									</td>
+								</c:if>
+								<c:if test="${fn:contains( filter.key, 'data') }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${cand.inserimentoAzienda}</td>
+								</c:if>
+								<c:if test="${fn:contains( filter.key, 'costo') }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.id}'">
+										${cand.costo.orario} &#8364; /H</td>
+								</c:if>
+							</c:forEach>
 						</tr>
 
 					</c:forEach>
