@@ -121,11 +121,7 @@ a, a:hover, a:focus {
 							id="password" placeholder="Inserisci Password"
 							required="required" />
 					</div>
-					<div class="checkbox mb-3">
-						<label> <input type="checkbox" value="remember-me">
-							Remember me
-						</label>
-					</div>
+
 					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
 					<hr class="my-4">
 				</form:form>
