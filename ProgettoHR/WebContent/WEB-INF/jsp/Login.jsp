@@ -67,11 +67,6 @@ a, a:hover, a:focus {
 	height: 70px;
 }
 
-.container1 {
-	margin-top: 20px;
-	display: flex;
-	justify-content: center;
-}
 
 #colonnaLogin {
 	background-color: white;
@@ -98,7 +93,7 @@ a, a:hover, a:focus {
 	</nav>
 
 	
-		<div class="row justify-content-center mt-4">
+		<div class="row mr-0 justify-content-center mt-4">
 			<div class="col-auto" id="colonnaLogin">
 
 				<h4 class="text-center mt-4">Login</h4>
