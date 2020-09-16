@@ -67,13 +67,12 @@ a, a:hover, a:focus {
 	height: 70px;
 }
 
-
 #colonnaLogin {
 	background-color: white;
 	border-radius: 10px;
 }
-#utenteForm{
 
+#utenteForm {
 	margin: 20px;
 }
 </style>
@@ -81,18 +80,18 @@ a, a:hover, a:focus {
 </head>
 
 <body onload="badCredentials()">
-<div class="container-fluid p-0">
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
+	<div class="container-fluid p-0">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-expand-xl ">
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-	</nav>
+		</nav>
 
-	
+
 		<div class="row mr-0 justify-content-center mt-4">
 			<div class="col-auto" id="colonnaLogin">
 
@@ -100,7 +99,7 @@ a, a:hover, a:focus {
 				<form:form id="utenteForm" method="POST"
 					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
 					onsubmit="return validate();">
-					
+
 					<div class="form-group" id="formUtente">
 						<label for="Utente">Utente:</label>
 						<form:input path="username" type="text" class="form-control"
