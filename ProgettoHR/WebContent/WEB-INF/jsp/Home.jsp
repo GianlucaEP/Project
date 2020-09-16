@@ -367,8 +367,8 @@ svg {
 
 	
 		<!-- COLONNA BARRA LATERALE -->
-		<div class="row mt-4">
-			<div id="colonnaTable" class="col-auto">
+		<div class="row w-100 mr-0 mt-4">
+			<div id="colonnaTable" class="col-auto align-self-stretch">
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
 					<div class="sidebar-header">
@@ -400,7 +400,7 @@ svg {
 
 								</c:when>
 								<c:when test="${funz.funzionalita == 'aggiunta area'}">
-									<li><a href="" data-toggle="modal"
+									<li><a id="aSidebar" href="" data-toggle="modal"
 										data-target="#areaCompetenzaModal" type="button"><i
 											class="fas fa-plus"></i> Nuova Area </a></li>
 								</c:when>
@@ -423,7 +423,7 @@ svg {
 
 			<!-- FILTRO STATO CANDIDATO -->
 			<div class="col p-0 mr-4">
-				<div class="row mb-1">
+				<div class="row w-100 mb-1">
 					<div class="col">
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
 							method="post">
@@ -464,7 +464,7 @@ svg {
 
 				</div>
 
-				<div class="row">
+				<div class="row w-100">
 					<div class="col w-100 table-responsive">
 						<!-- TABELLA CANDIDATO -->
 						<c:choose>

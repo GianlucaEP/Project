@@ -1673,7 +1673,7 @@ ul ul a {
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											orario:</div>
-										<form:input type="text" class="form-control"
+										<form:input type="number" class="form-control"
 											id="idCostoOrario" name="costoOrario" path="costo.orario"
 											value="${costo.orario}" required="required"></form:input>
 									</div>
@@ -1684,7 +1684,7 @@ ul ul a {
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											giornaliero:</div>
-										<form:input type="text" class="form-control"
+										<form:input type="number" class="form-control"
 											id="idCostoGiornaliero" name="costoGiornaliero"
 											path="costo.giornaliero" value="${costo.giornaliero}"
 											required="required"></form:input>
