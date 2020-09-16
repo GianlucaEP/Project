@@ -17,7 +17,6 @@ import it.rt.corso.DAO.FeedbackDAO;
 import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Feedback;
-import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.TipoFeedback;
 import it.rt.corso.beans.Utente;
 import it.rt.corso.singleton.Singleton;
