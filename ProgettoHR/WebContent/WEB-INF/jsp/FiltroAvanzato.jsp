@@ -203,6 +203,26 @@ ul ul a {
 	font-size: 14px;
 	padding: 4px;
 }
+
+#plusButton{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #7fc8f8;
+	border-radius: 50%;
+}
+
+@media screen and (max-width: 848px) {
+	body {
+		background-color: black;
+	}
+	#colonnaTable {
+		
+	}
+	[class*="col-"] {
+		width: 100%;
+	}
+}
 </style>
 
 </head>
@@ -289,10 +309,10 @@ ul ul a {
 						</div>
 
 						<div class="form-group">
-							<div id="areeCompetenzaDiv">
+							<div id="areaCompetenzaDiv">
 								<label>Area di competenza:</label>
 								<div class="form-row">
-									<div class="col-10">
+									<div class="col-11">
 										<input autocomplete="off" placeholder="aggiungi"
 											list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
 											class="form-control">
@@ -305,7 +325,7 @@ ul ul a {
 									<div class="col-1">
 										<div
 											onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-											class="btn">
+											class="btn p-0 mt-1">
 											<i class="fas fa-plus"></i>
 										</div>
 									</div>
@@ -317,7 +337,7 @@ ul ul a {
 							<div id="mansioneDiv">
 								<label>Mansione</label>
 								<div class="form-row">
-									<div class="col-10">
+									<div class="col-11">
 										<input autocomplete="off" placeholder="aggiungi"
 											list="mansioniDisponibili" id="mansioneInput"
 											class="form-control">
@@ -329,7 +349,7 @@ ul ul a {
 									</div>
 									<div class="col-1">
 										<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-											class="btn">
+											class="btn p-0 mt-1">
 											<i class="fas fa-plus"></i>
 										</div>
 									</div>
@@ -339,9 +359,9 @@ ul ul a {
 
 						<div class="form-group">
 							<div id="specializzazioneDiv">
-								<label>Specializzazione</label>
+								<label>Specializzazione & anni di esperienza</label>
 								<div class="form-row">
-									<div class="col-10">
+									<div class="col-7">
 										<input autocomplete="off" placeholder="aggiungi"
 											list="specializzazioniDisponibili" id="specializzazioneInput"
 											class="form-control">
@@ -352,10 +372,16 @@ ul ul a {
 											</c:forEach>
 										</datalist>
 									</div>
-									<div class="col-1">
+							
+										<div class="col-4">
+										<!-- <label>Anni di esperienza</label> -->
+									<input id="anniEsperienzaInput" class="text-left form-control"
+										type="number" placeholder="nn" maxlength = "2"  min="0" max="99">
+								</div>
+									<div class="col-1 ">
 										<div
 											onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-											class="btn">
+											class="btn p-0 mt-1">
 											<i class="fas fa-plus"></i>
 										</div>
 									</div>
@@ -425,13 +451,13 @@ ul ul a {
 							<c:if test="${ filter.key == 'provenienza' }">
 								<th scope="col">Provenienza</th>
 							</c:if>
-							<c:if test="${ filter.key == 'area' }">
+							<c:if test="${fn:contains( filter.key, 'area') }">
 								<th scope="col">Area Competenza</th>
 							</c:if>
-							<c:if test="${ filter.key == 'mansione' }">
+							<c:if test="${fn:contains( filter.key, 'mansione') }">
 								<th scope="col">Mansione</th>
 							</c:if>
-							<c:if test="${ filter.key == 'specializzazione' }">
+							<c:if test="${fn:contains( filter.key, 'specializzazione') }">
 								<th scope="col">Specializzazione</th>
 							</c:if>
 							<c:if test="${fn:contains( filter.key, 'data') }">
@@ -446,7 +472,7 @@ ul ul a {
 				<!-- Corpo della tabella -->
 				<tbody class="body">
 					<c:forEach var="cand" items="${list}">
-						<tr onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+						<tr>
 							<td class="noExport"><c:choose>
 									<c:when test="${ cand.stato.descrizione == 'Attivo'}">
 										<span id="dot" data-toggle="tooltip" data-placement="top"
@@ -469,48 +495,59 @@ ul ul a {
 											title="Nuovo inserito" class="dot bg-secondary"></span>
 									</c:otherwise>
 								</c:choose></td>
-							<td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.business.business}</td>
-							<td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.nome}</td>
-							<td>
+							<td
+								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 								${cand.cognome}</td>
 							<c:forEach items="${filterList}" var="filter">
 								<c:if test="${ filter.key == 'anno' }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.anno}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'telefono' }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.telefono}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'email' }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.email}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'seniority' }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.seniority.seniority}</td>
 								</c:if>
 								<c:if test="${ filter.key == 'provenienza' }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.provenienza}</td>
 								</c:if>
-								<c:if test="${ filter.key == 'area' }">
+								<c:if test="${fn:contains( filter.key, 'area') }">
 									<td><c:forEach var="area" items="${cand.area}">
-											<div>
+											<div
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												${area.area}</div>
 										</c:forEach></td>
 								</c:if>
-								<c:if test="${ filter.key == 'mansione' }">
+								<c:if test="${fn:contains( filter.key, 'mansione') }">
 									<td><c:forEach var="mansione" items="${cand.mansione}">
-											<div>
+											<div
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												${mansione.mansione}</div>
 										</c:forEach></td>
 
 								</c:if>
-								<c:if test="${ filter.key == 'specializzazione' }">
-									<td>
+								<c:if test="${fn:contains( filter.key, 'specializzazione') }">
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										<c:forEach var="specializzazione"
 											items="${cand.candidatoSpecializzazione}">
 											<div>${specializzazione.specializzazione.specializzazione}
@@ -519,11 +556,13 @@ ul ul a {
 									</td>
 								</c:if>
 								<c:if test="${fn:contains( filter.key, 'data') }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.inserimentoAzienda}</td>
 								</c:if>
 								<c:if test="${fn:contains( filter.key, 'costo') }">
-									<td>
+									<td
+										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 										${cand.costo.orario} &#8364; /H</td>
 								</c:if>
 							</c:forEach>
@@ -532,6 +571,25 @@ ul ul a {
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="errorModalBody"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Chiudi</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -561,81 +619,198 @@ function controlloMappa() {
 	
 }
 	// STAMPA AREA
-	function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
 	
-				for(area of buildString(areaCompetenzaList)){
+	function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
+		if(document.getElementById("area0") !== null){   
+			for(var i = 0; i<areaCnt; i++){       
+			 	var areaId = "area"+i;
+				if(document.getElementById(areaId).value === document.getElementById("areaCompetenzaInput").value){  
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+					return;              
+          		}           
+			} 
+		
+		}
+		for(area of buildString(areaCompetenzaList)){
 			if(document.getElementById("areaCompetenzaInput").value === area){
+				var tagDiv = document.createElement("div");		
 				var tagInput = document.createElement("input");
+				var tagDivButton = document.createElement("span");
 				tagInput.value = document.getElementById("areaCompetenzaInput").value;
+				
+				tagInput.classList.add("form-control");
+				
+				tagDiv.classList.add("form-row");
+				var ColDiv1 = document.createElement("div");
+					ColDiv1.classList.add("col-10", "mt-2");
+				var ColDiv2 = document.createElement("div");
+					ColDiv2.classList.add("col-1");
 				
 				areaName = "area" + areaCnt;
 				areaCnt++;
 				
-				tagInput.name = areaName;
+				
+				
+				tagInput.id = areaName;
+				tagInput.name = "areaCompetenza";
 				tagInput.readOnly = true;
 				
-				document.getElementById("areaCompetenzaDiv").appendChild(tagInput);
+				tagDivButton.classList.add("btn", "mt-2");
+				tagDivButton.style.margin = "0px 0px 12px 0px";
+				tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+				
+				tagDivButton.onclick = function(){				              	              	          				
+					tagDiv.remove();
+				};
+				
+				ColDiv1.appendChild(tagInput)
+				tagDiv.appendChild(ColDiv1);
+				ColDiv2.appendChild(tagDivButton)
+				tagDiv.appendChild(ColDiv2);
+				
+				document.getElementById("areaCompetenzaDiv").appendChild(tagDiv);
 				document.getElementById("areaCompetenzaInput").value = "";
 				document.getElementById("areaCompetenzaInput").focus();
 				return;
 			}	
 		}
-		alert("Area competenza scelta non esistente");
+		$('#errorModal').modal('toggle');
+		document.getElementById("errorModalBody").innerHTML = "Area inserita non esistente"
 		
-		
-		
-
 	}
+	
 	
  	// STAMPA MANSIONE
 	function stampaMansioneSelezionata(mansioneList) {
+		if(document.getElementById("mansione0") !== null){   
+			for(var i = 0; i<mansioneCnt; i++){       
+			 	var mansioneId = "mansione"+i;
+				if(document.getElementById(mansioneId).value === document.getElementById("mansioneInput").value){  
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+					return;              
+          		}           
+			} 
+		
+		}
 		
 		for(mansione of buildString(mansioneList)){
 			if(document.getElementById("mansioneInput").value === mansione){
 		
-		var tagInput = document.createElement("input");
-		tagInput.value = document.getElementById("mansioneInput").value;
+				var tagDiv = document.createElement("div");		
+				var tagInput = document.createElement("input");
+				var tagDivButton = document.createElement("span");
+				tagInput.value = document.getElementById("mansioneInput").value;
+				
+				tagInput.classList.add("form-control");
+				
+				tagDiv.classList.add("form-row");
+				var ColDiv1 = document.createElement("div");
+					ColDiv1.classList.add("col-10", "mt-2");
+				var ColDiv2 = document.createElement("div");
+					ColDiv2.classList.add("col-1");
 		
 		mansioneName = "mansione" + mansioneCnt;
 		mansioneCnt++;
 		
-		tagInput.name = mansioneName;
+		tagInput.id = mansioneName;
+		tagInput.name = "mansioni";
 		tagInput.readOnly = true;
 		
-		document.getElementById("mansioneDiv").appendChild(tagInput);
+		tagDivButton.classList.add("btn", "mt-2");
+		tagDivButton.style.margin = "0px 0px 12px 0px";
+		tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+		
+		tagDivButton.onclick = function(){				              	              	          				
+			tagDiv.remove();
+		};
+		
+		ColDiv1.appendChild(tagInput)
+		tagDiv.appendChild(ColDiv1);
+		ColDiv2.appendChild(tagDivButton)
+		tagDiv.appendChild(ColDiv2);
+		
+		document.getElementById("mansioneDiv").appendChild(tagDiv);
 		document.getElementById("mansioneInput").value = "";
 		document.getElementById("mansioneInput").focus();
 		return;
 			}
 		}
-		alert("Mansione scelta non esistente");
+		$('#errorModal').modal('toggle');
+		document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
 	}
 	
 	// STAMPA SPECIALIZZAZIONE
 	function stampaSpecializzazioneSelezionata(specializzazioneList) {
+		if(document.getElementById("specializzazione0") !== null){   
+			for(var i = 0; i<specializzazioneCnt; i++){       
+			 	var specializzazioneId = "specializzazione"+i;
+			 	var spec = document.getElementById(specializzazioneId).value;
+				if(spec.split(" ")[0] === document.getElementById("specializzazioneInput").value){  
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+					return;              
+          		}           
+			} 	
+		}
+		
+		if(document.getElementById("anniEsperienzaInput").value < 0){
+			$('#errorModal').modal('toggle');   
+			document.getElementById("errorModalBody").innerHTML = "Gli anni di esperienza non possono essere meno di zero";  
+			return; 
+		}
 		
 		for(specializzazione of buildString(specializzazioneList)){
 			if(document.getElementById("specializzazioneInput").value === specializzazione){
 				
 			
+				var tagDiv = document.createElement("div");		
 				var tagInput = document.createElement("input");
-				tagInput.value = document.getElementById("specializzazioneInput").value;// + " " + document.getElementById("anniEsperienzaInput").value;
+				var tagDivButton = document.createElement("span");
+				tagInput.value = document.getElementById("specializzazioneInput").value + " " + document.getElementById("anniEsperienzaInput").value;
+				
+				tagInput.classList.add("form-control");
+				
+				tagDiv.classList.add("form-row");
+				var ColDiv1 = document.createElement("div");
+					ColDiv1.classList.add("col-10", "mt-2");
+				var ColDiv2 = document.createElement("div");
+					ColDiv2.classList.add("col-1");
 
 				specializzazioneName = "specializzazione" + specializzazioneCnt;
 				specializzazioneCnt++;
 				
-				tagInput.name = specializzazioneName;
+				tagInput.id = specializzazioneName;
+				tagInput.name = "specializzazione";
 				tagInput.readOnly = true;
 				
-				document.getElementById("specializzazioneDiv").appendChild(tagInput);
+				tagDivButton.classList.add("btn", "mt-2");
+				
+				tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+				
+				tagDivButton.onclick = function(){				              	              	          				
+					tagDiv.remove();
+				};
+				
+				ColDiv1.appendChild(tagInput)
+				tagDiv.appendChild(ColDiv1);
+				ColDiv2.appendChild(tagDivButton)
+				tagDiv.appendChild(ColDiv2);
+				
+				document.getElementById("specializzazioneDiv").appendChild(tagDiv);
 				document.getElementById("specializzazioneInput").value = "";
+				document.getElementById("anniEsperienzaInput").value = "";
 				document.getElementById("specializzazioneInput").focus();
 				return;
 			}
 		}
-		alert("Specializzazione scelta non esistente");
+		$('#errorModal').modal('toggle');
+		document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"
 		
 	}
+
+
 
 
 	function buildString(string) {
