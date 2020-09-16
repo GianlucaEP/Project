@@ -86,22 +86,20 @@ a, a:hover, a:focus {
 </head>
 
 <body onload="badCredentials()">
-
+<div class="container-fluid p-0">
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-		</div>
 	</nav>
 
-	<div class="container-fluid container1">
-		<div class="row">
-			<div class="col-12" id="colonnaLogin">
+	
+		<div class="row justify-content-center mt-4">
+			<div class="col-auto" id="colonnaLogin">
 
 				<h4 class="text-center mt-4">Login</h4>
 				<form:form id="utenteForm" method="POST"
