@@ -143,15 +143,25 @@ ul ul a {
 	padding-left: 30px !important;
 	background: #cae9ff;
 }
+
+@media screen and (max-width: 951px) {
+	.responsiveSidebar {
+		width: 100%;
+		margin-bottom: 25px;
+	}
+	#sidebar{
+		border-radius: 0px 0px 0px 0px;
+	}
+}
 </style>
 
 </head>
 
 <body onload="impostaAnno()">
+	<div class="container-fluid p-0">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-expand-xl ">
 
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
@@ -163,17 +173,17 @@ ul ul a {
 						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
 				</ul>
 			</div>
-		</div>
-	</nav>
 
-	<div class="container-fluid container1 p-0">
-		<div class="row">
+		</nav>
+
+
+		<div class="row justify-content-start w-100 mt-4 mr-0 ml-0">
 			<!-- COLONNA BOTTONI LATERALI -->
-			<div class="col-3">
+			<div class="col-auto responsiveSidebar p-0">
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
 
-					<div class="sidebar-header">
+					<div class="sidebar-header p-2 pt-4">
 						<h3>Inserimento candidato</h3>
 					</div>
 
