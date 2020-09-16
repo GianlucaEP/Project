@@ -519,10 +519,10 @@ ul ul a {
 
 <body
 	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}')">
-<div class="container-fluid p-0">
+
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
-		
+		<div class="container-fluid">
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
@@ -536,9 +536,10 @@ ul ul a {
 						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
 				</ul>
 			</div>
+		</div>
 	</nav>
 
-	
+	<div class="container-fluid container1 p-0">
 		<!-- COLONNA BARRA LATERALE -->
 		<div class="col-auto p-0 ">
 			<!-- BARRA LATERALE -->
