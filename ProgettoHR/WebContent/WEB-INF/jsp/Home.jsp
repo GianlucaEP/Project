@@ -84,8 +84,6 @@ body {
 }
 
 /* SIDEBAR */
-
-
 #sidebar {
 	width: 100%;
 	height: 100%;
@@ -203,7 +201,7 @@ ul ul a {
 	background-color: #ffffff;
 	border: 1px solid #dddddd;
 	cursor: pointer;
-	 border-radius: .25rem 0px 0px .25rem;
+	border-radius: .25rem 0px 0px .25rem;
 	/*appearance: none;*/
 }
 
@@ -329,9 +327,9 @@ svg {
 
 <body onload="validateOption(); x('${statoSelezionato}')">
 	<div class="container-fluid p-0">
-	<!-- NAVBAR -->
-	<nav class="navbar">
-	
+		<!-- NAVBAR -->
+		<nav class="navbar">
+
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
@@ -362,10 +360,10 @@ svg {
 				</ul>
 			</div>
 
-		
-	</nav>
 
-	
+		</nav>
+
+
 		<!-- COLONNA BARRA LATERALE -->
 		<div class="row w-100 mr-0 mt-4">
 			<div id="colonnaTable" class="col-auto align-self-stretch">
@@ -514,36 +512,38 @@ svg {
 																title="Nuovo inserito" class="dot bg-secondary"></span>
 														</c:otherwise>
 													</c:choose></td>
-												<td
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-													${cand.business.business}</td>
-												<td
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-													${cand.nome}</td>
-												<td
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-													${cand.cognome}</td>
+												<td>${cand.business.business}</td>
+												<td>${cand.nome}</td>
+												<td>${cand.cognome}</td>
 
 												<td><c:forEach var="area" items="${cand.area}">
-														<span
-															onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-															${area.area}</span>
+														
+															${area.area}
 													</c:forEach></td>
 
 												<td><c:forEach var="mansione" items="${cand.mansione}">
-														<span
-															onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-															${mansione.mansione}</span>
+													
+															${mansione.mansione}
 													</c:forEach></td>
 
-												<td
-													onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-													${cand.seniority.seniority}</td>
+												<td>${cand.seniority.seniority}</td>
 
-												<td data-toggle="modal"
-													onclick="impostaParametriCandidatoId(${cand.id})"
-													data-target="#EliminaModal"><i
-													class="fas fa-trash-alt"></i></td>
+												<td><button class="btn mr-1"
+														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+														<span data-toggle="tooltip" data-placement="top"
+															title="Modifica candidato"><i
+															class="fas fa-user-edit"></i></span>
+
+													</button>
+													<button class="btn" data-toggle="modal" class="btn mr-1"
+														onclick="impostaParametriCandidatoId(${cand.id})"
+														data-target="#EliminaModal">
+														<span data-toggle="tooltip" data-placement="top"
+															title="Elimina candidato"> <i
+															class="fas fa-trash-alt"></i>
+														</span>
+
+													</button></td>
 
 											</tr>
 

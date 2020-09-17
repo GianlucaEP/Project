@@ -519,7 +519,8 @@ ul ul a {
 
 <body
 	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}')">
-
+	<c:set var="singlequote" value="'" />
+	<c:set var="backslash" value="&apos" />
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
 		<div class="container-fluid">
@@ -927,7 +928,7 @@ ul ul a {
 
 			<div class="row">
 				<!-- COLONNA 3 -->
-				<div class="col-12">
+				<div class="col-auto">
 					<!-- Tabella FEEDBACK -->
 					<table class="tabellaFeedback" id="feedbackTable">
 
@@ -952,11 +953,15 @@ ul ul a {
 								<tr>
 									<td>${feed.data}</td>
 									<td>${feed.tipo.tipo}</td>
-									<td>${feed.commento}</td>
+									<c:set var="commento"
+										value="${fn:replace(feed.commento, singlequote, backslash)}"></c:set>
+									<c:set var="commentoXSS"
+										value="${fn:escapeXml(feed.commento)}"></c:set>
+									<td>${commentoXSS}</td>
 									<td><c:if
 											test='${fn:contains(funzionalita, "modifica feedback")}'>
 											<button
-												onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${feed.commento}')"
+												onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${commento}')"
 												type="button" data-toggle="modal" id="bottoneFeedback"
 												data-target="#modificaFeedbackModal"
 												class="btn customButton p-1 float-right">
@@ -1005,15 +1010,28 @@ ul ul a {
 							<c:forEach var="qualificationMeeting"
 								items="${mostraCandidato.qm}">
 								<tr>
-									<td>${qualificationMeeting.cliente}</td>
+
+									<c:set var="cliente"
+										value="${fn:replace(qualificationMeeting.cliente, singlequote, backslash)}"></c:set>
+									<c:set var="clienteXSS"
+										value="${fn:escapeXml(qualificationMeeting.cliente)}"></c:set>
+									<td>${clienteXSS}</td>
 									<td>${qualificationMeeting.dataPresentato}</td>
-									<td>${qualificationMeeting.riferimentoGara}</td>
+									<c:set var="riferimentoGara"
+										value="${fn:replace(qualificationMeeting.riferimentoGara, singlequote, backslash)}"></c:set>
+									<c:set var="riferimentoGaraXSS"
+										value="${fn:escapeXml(qualificationMeeting.riferimentoGara)}"></c:set>
+									<td>${riferimentoGaraXSS}</td>
 									<td>${qualificationMeeting.dataColloquio}</td>
-									<td>${qualificationMeeting.feedback}</td>
+									<c:set var="feedback"
+										value="${fn:replace(qualificationMeeting.feedback, singlequote, backslash)}"></c:set>
+									<c:set var="feedbackXSS"
+										value="${fn:escapeXml(qualificationMeeting.feedback)}"></c:set>
+									<td>${feedbackXSS}</td>
 									<td><c:if
 											test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
 											<button
-												onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}', '${qualificationMeeting.cliente}', '${qualificationMeeting.dataPresentato}', '${qualificationMeeting.riferimentoGara}', '${qualificationMeeting.dataColloquio}', '${qualificationMeeting.feedback}' )"
+												onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}','${cliente}','${qualificationMeeting.dataPresentato}','${riferimentoGara}','${qualificationMeeting.dataColloquio}','${feedback}')"
 												type="button" data-toggle="modal" id="bottoneQualification"
 												data-target="#modificaQualificationMeetingModal"
 												class="btn customButton p-1 float-right">
@@ -1027,6 +1045,7 @@ ul ul a {
 												<i class="fas fa-trash m-0"></i>
 											</button>
 										</c:if></td>
+									<!-- "${fn:escapeXml(param.foo)}" -->
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -1753,7 +1772,7 @@ ul ul a {
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
 										<form:input id="clienteQualificationMeeting" type="text"
-											class="form-control" path="cliente" name="costoOrario"
+											class="form-control" path="cliente" name="cliente"
 											required="required"></form:input>
 									</div>
 								</div>
@@ -1765,7 +1784,7 @@ ul ul a {
 											di presentazione:</div>
 										<form:input id="dataPresentatoQualificationMeeting"
 											type="date" pattern="yyyy-MM-dd" class="form-control"
-											path="dataPresentato" name="costoGiornaliero"
+											path="dataPresentato" name="dataPresentato"
 											required="required"></form:input>
 									</div>
 								</div>
@@ -1777,7 +1796,8 @@ ul ul a {
 											gara:</div>
 										<form:input type="text" class="form-control"
 											id="riferimentoGaraQualificationMeeting"
-											path="riferimentoGara" name="commenti" required="required"></form:input>
+											path="riferimentoGara" name="riferimentoGara"
+											required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -2246,6 +2266,7 @@ ul ul a {
 		}
 
 		function impostaParametriFeedback(id, tipo, data, commento) {
+			commento = commento.replace("&apos", "'");
 			document.getElementById("idFeedback").value = id;
 			document.getElementById("tipoModificaFeedback").value = tipo;
 			document.getElementById("dataFeedback").value = data;
@@ -2263,6 +2284,9 @@ ul ul a {
 
 		function impostaParametriQualificationMeeting(id, cliente,
 				dataPresentato, riferimentoGara, dataColloquio, feedback) {
+			cliente = cliente.replace("&apos", "'");
+			riferimentoGara = riferimentoGara.replace("&apos", "'");
+			feedback = feedback.replace("&apos", "'");
 			document.getElementById("idQualificationMeeting").value = id;
 			document.getElementById("clienteQualificationMeeting").value = cliente;
 			document.getElementById("dataPresentatoQualificationMeeting").value = dataPresentato;
