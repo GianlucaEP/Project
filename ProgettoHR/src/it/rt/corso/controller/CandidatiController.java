@@ -378,20 +378,30 @@ public class CandidatiController {
 		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
 
 		for (String specializzazione : specializzazioni) {
-			String[] specializzazioneCorretta = specializzazione.split(" ");
+//			String[] specializzazioneCorretta = specializzazione.split(" ");
 
 			CandidatoSpecializzazione candidatoSpecializzazione = new CandidatoSpecializzazione();
 
 			Specializzazione specializzazioneDaInserire = new Specializzazione();
-			specializzazioneDaInserire.setSpecializzazione(specializzazioneCorretta[0]);
+			specializzazioneDaInserire.setSpecializzazione(getSpecializzazioneName(specializzazione));
 
-			candidatoSpecializzazione.setAnni(Integer.parseInt(specializzazioneCorretta[1]));
+			candidatoSpecializzazione.setAnni(getAnniSpecializzazione(specializzazione));
 			candidatoSpecializzazione.setSpecializzazione(specializzazioneDaInserire);
 			candidatoSpecializzazione.setCandidato(c);
 			listaCandidatoSpecializzazione.add(candidatoSpecializzazione);
 		}
 
 		return listaCandidatoSpecializzazione;
+	}
+	
+	private static int getAnniSpecializzazione(String specializzazione) {
+		
+		return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
+		
+	}
+	
+	private static String getSpecializzazioneName(String specializzazione) {
+		return specializzazione.substring(0, specializzazione.length() - 2);
 	}
 
 }

@@ -70,7 +70,9 @@ public class HomeController {
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
 		m.addAttribute("specializzazione", new Specializzazione());
-		m.addAttribute("mansioneList", singleton.getMansioneList());
+		m.addAttribute("mansioneList", singleton.getMansioneListString());
+		m.addAttribute("areaList", singleton.getAreaCompetenzaListString());
+		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
 		return "Home";
 	}

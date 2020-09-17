@@ -325,7 +325,8 @@ svg {
 
 </head>
 
-<body onload="validateOption(); x('${statoSelezionato}')">
+<body
+	onload="validateOption(); x('${statoSelezionato}'); ">
 	<div class="container-fluid p-0">
 		<!-- NAVBAR -->
 		<nav class="navbar">
@@ -581,7 +582,7 @@ svg {
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
-					onsubmit="return validate();">
+					onsubmit="return validate('Mansione', '${mansioneList}' );"><!-- tipo, valoreInserito, lista -->
 					<div class="modal-body">
 						<form:input path="mansione" type="text" class="form-control"
 							placeholder="Mansione" id="mansione" name="mansione"></form:input>
@@ -616,7 +617,7 @@ svg {
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
-					onsubmit="return validateArea();">
+					onsubmit="return validateArea('Area Competenza', '${areaList}');">
 					<div class="modal-body">
 
 						<form:input path="area" type="text" class="form-control"
@@ -652,7 +653,7 @@ svg {
 				<form:form modelAttribute="specializzazione"
 					id="formSpecializzazione" method="POST"
 					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
-					onsubmit="return validateSpecializzazione();">
+					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
 					<div class="modal-body">
 
 						<form:input path="specializzazione" type="text"
@@ -698,6 +699,27 @@ svg {
 		</div>
 	</div>
 
+	<!-- MODAL ERRORE -->
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="errorModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="errorModalBody"></div>
+				<div class="modal-footer">
+					<button type="reset" id="bottone-cancella-specializzazione"
+							class="btn btn-danger" data-dismiss="modal" style="background-color: red;">Chiudi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script>
 		function impostaParametriCandidatoId(id) {
@@ -713,12 +735,17 @@ svg {
 		$(function() {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
+		
+		function buildString(string) {
+			return string.replace("[", "").replace("]", "").split(", ");
+		}
 
-		function validate() {
+		function validate(tipo, lista) {
 			var mansione = document.getElementById("mansione").value;
 			var list = document.getElementById("formMansione");
 			var control = true;
-
+			
+			
 			if (mansione === "") {
 
 				var tagDiv = document.createElement("div");
@@ -727,12 +754,15 @@ svg {
 				tagDiv.appendChild(textnode)
 				document.getElementById("mansione").appendChild(tagDiv);
 				control = false;
-
+				
+				return control;
 			}
+			
+			control = insertionMessage(tipo, 'mansione', lista);
 
 			return control;
 		}
-		function validateArea() {
+		function validateArea(tipo, lista) {
 			var areaCompetenza = document.getElementById("area").value;
 			var list = document.getElementById("formAreaCompetenza");
 			var control = true;
@@ -746,12 +776,17 @@ svg {
 				tagDiv.appendChild(textnode)
 				document.getElementById("area").appendChild(tagDiv);
 				control = false;
+				
+				return control;
 
 			}
+			
+			control = insertionMessage(tipo,'area', lista);
+			
 			return control;
 		}
-			function validateSpecializzazione() {
-				var areaCompetenza = document.getElementById("specializzazione").value;
+		function validateSpecializzazione(tipo, lista) {
+				var specializzazione = document.getElementById("specializzazione").value;
 				var list = document.getElementById("formSpecializzazione");
 				var control = true;
 
@@ -764,10 +799,14 @@ svg {
 					tagDiv.appendChild(textnode)
 					document.getElementById("specializzazione").appendChild(tagDiv);
 					control = false;
+					
+					return control;
 
 				}
-
-			return control;
+	
+				control = insertionMessage(tipo,'specializzazione', lista);
+				
+				return control;
 		}
 		function x(statoSelezionato) {
 
@@ -778,6 +817,18 @@ svg {
 
 			
 			
+		} 
+		
+		function insertionMessage(tipo, id, lista){
+			lista = buildString(lista);
+			if(lista.indexOf(document.getElementById(id).value) !== -1){
+				$('#errorModal').modal('toggle');   
+				document.getElementById("errorModalLabel").innerHTML = tipo;
+				document.getElementById("errorModalBody").innerHTML = tipo + "già inserita.";  
+				return false;
+			}
+			
+			return true;
 		}
 		
 		function validateOption(){
