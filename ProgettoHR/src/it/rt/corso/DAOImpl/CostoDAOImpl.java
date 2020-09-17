@@ -26,11 +26,10 @@ public class CostoDAOImpl extends BaseDAO implements CostoDAO{
 	@Override
 	public List<Costo> getByIdCandidato(int id) {
 
-		Utility.buildSession();
 
 		List<Costo> listaCosto = Utility.getSession().createQuery(" FROM Costo WHERE id_candidato=:id")
 				.setParameter("id", id).getResultList();
-
+		Utility.destroySession();
 		return listaCosto;
 	}
 

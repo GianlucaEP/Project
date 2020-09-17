@@ -14,25 +14,26 @@ import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Seniority;
 import it.rt.corso.utility.Utility;
 
-public class SeniorityFilter extends CandidatoFilter{
+public class SeniorityFilter extends CandidatoFilter {
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
 
 		if (nomeFiltro.contains("seniority")) {
 
-			Utility.buildSession();
 			Session session = Utility.getSession();
 			Join<Candidato, Seniority> seniority = root.join("seniority", JoinType.INNER);
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(seniority.get("seniority"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
+			Utility.destroySession();
 			return listaPredicati;
 		} else {
+			Utility.destroySession();
 			return listaPredicati;
 
 		}
-		
+
 	}
 }

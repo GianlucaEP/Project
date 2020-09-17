@@ -15,10 +15,10 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 
 	public List<AreaCompetenza> getLista() {
 
-		Utility.buildSession();
+		
 		
 		List<AreaCompetenza> listaArea= Utility.getSession().createQuery("FROM AreaCompetenza").getResultList();
-		
+		Utility.destroySession();
 		return listaArea;
 	}
 
@@ -29,11 +29,11 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 	@Override
 	public List<AreaCompetenza> getIdByCandidato(int id) {
 		
-		Utility.buildSession();
+		
 
 		List<AreaCompetenza> listaAreaCompetenza = Utility.getSession().createQuery("SELECT a FROM AreaCompetenza a JOIN a.candidato c WHERE c.id = :id")
 				.setParameter("id", id).getResultList();
-
+		Utility.destroySession();
 		return listaAreaCompetenza;
 	}
 

@@ -15,9 +15,9 @@ public class StatoCandidatoDAOImpl extends BaseDAO implements StatoCandidatoDAO{
 
 	@Override
 	public List<StatoCandidato> getAllFromStato() {
-		Utility.buildSession();
-		List<StatoCandidato> listaCandidato= Utility.getSession().createQuery("FROM StatoCandidato").getResultList();
 		
+		List<StatoCandidato> listaCandidato= Utility.getSession().createQuery("FROM StatoCandidato").getResultList();
+		Utility.destroySession();
 		return listaCandidato;
 	}
 

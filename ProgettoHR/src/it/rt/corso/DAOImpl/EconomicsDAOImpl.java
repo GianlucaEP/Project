@@ -27,11 +27,10 @@ public class EconomicsDAOImpl extends BaseDAO implements EconomicsDAO {
 	@Override
 	public List<Economics> getByIdCandidato(int id) {
 
-		Utility.buildSession();
 
 		List<Economics> listaEconomics = Utility.getSession().createQuery(" FROM Economics WHERE id_candidato=:id")
 				.setParameter("id", id).getResultList();
-
+		Utility.destroySession();
 		return listaEconomics;
 	}
 

@@ -18,9 +18,10 @@ public class SpecializzazioneDAOImpl extends BaseDAO implements Specializzazione
 
 	public List<Specializzazione> getLista() {
 
-		Utility.buildSession();
+	
 
 		List<Specializzazione> listaSpecilazzazione = Utility.getSession().createQuery(" FROM Specializzazione ").getResultList();
+		Utility.destroySession();
 		return listaSpecilazzazione;
 	}
 

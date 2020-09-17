@@ -15,9 +15,9 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 
 	public List<Mansione> getLista() {
 
-		Utility.buildSession();
 
 		List<Mansione> listaMansione = Utility.getSession().createQuery(" FROM Mansione ").getResultList();
+		Utility.destroySession();
 		return listaMansione;
 	}
 
@@ -28,11 +28,10 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 	@Override
 	public List<Mansione> getIdByCandidato(int id) {
 		
-		Utility.buildSession();
 
 		List<Mansione> listaMansione = Utility.getSession().createQuery("SELECT m FROM Mansione m JOIN m.candidato c WHERE c.id = :id")
 				.setParameter("id", id).getResultList();
-
+		Utility.destroySession();
 		return listaMansione;
 	}
 

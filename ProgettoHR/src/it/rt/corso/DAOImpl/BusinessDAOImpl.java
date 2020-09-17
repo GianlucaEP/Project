@@ -15,9 +15,9 @@ public class BusinessDAOImpl extends BaseDAO implements BusinessDAO{
 
 	public List<Business> getLista() {
 		
-		Utility.buildSession();
-		List<Business> listabusiness= Utility.getSession().createQuery("FROM Business").getResultList();
 		
+		List<Business> listabusiness= Utility.getSession().createQuery("FROM Business").getResultList();
+		Utility.destroySession();
 		return listabusiness;
 	}
 
