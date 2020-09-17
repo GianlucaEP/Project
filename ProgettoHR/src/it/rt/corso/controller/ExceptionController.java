@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import it.rt.corso.utility.Utility;
+
 @ControllerAdvice
 public class ExceptionController {
 	/**
@@ -16,7 +18,7 @@ public class ExceptionController {
 	@ExceptionHandler({ ServletRequestBindingException.class})
 	public String sessionClosed(Exception e) {
 		e.printStackTrace();
-
+		Utility.destroySessionFactory();
 		return "/notAuthenticated";
 	}
 

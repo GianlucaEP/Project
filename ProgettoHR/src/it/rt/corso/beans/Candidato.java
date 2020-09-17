@@ -39,7 +39,7 @@ public class Candidato implements Bean {
 	@Column(name = "cognome")
 	private String cognome;
 	@Column(name = "anno_di_nascita")
-	private int anno;
+	private String anno;
 	@Column(name = "num_tel")
 	private String telefono;
 	@Column(name = "email")
@@ -141,11 +141,11 @@ public class Candidato implements Bean {
 		this.cognome = cognome;
 	}
 
-	public int getAnno() {
+	public String getAnno() {
 		return anno;
 	}
 
-	public void setAnno(int anno) {
+	public void setAnno(String anno) {
 		this.anno = anno;
 	}
 
