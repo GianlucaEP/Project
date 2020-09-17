@@ -955,8 +955,7 @@ ul ul a {
 									<td>${feed.tipo.tipo}</td>
 									<c:set var="commento"
 										value="${fn:replace(feed.commento, singlequote, backslash)}"></c:set>
-									<c:set var="commentoXSS"
-										value="${fn:escapeXml(feed.commento)}"></c:set>
+									<c:set var="commentoXSS" value="${fn:escapeXml(feed.commento)}"></c:set>
 									<td>${commentoXSS}</td>
 									<td><c:if
 											test='${fn:contains(funzionalita, "modifica feedback")}'>
@@ -1683,7 +1682,7 @@ ul ul a {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
+							onsubmit="return validateCostoForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
 							action="/ProgettoHR/AggiungiModificaCosto/${businessUnit}/${mostraCandidato.id}">
 
 
@@ -1692,7 +1691,7 @@ ul ul a {
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											orario:</div>
-										<form:input type="number" class="form-control"
+										<form:input type="number" step="0.01" class="form-control"
 											id="idCostoOrario" name="costoOrario" path="costo.orario"
 											value="${costo.orario}" required="required"></form:input>
 									</div>
@@ -1703,7 +1702,7 @@ ul ul a {
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
 											giornaliero:</div>
-										<form:input type="number" class="form-control"
+										<form:input type="number" step="0.01" class="form-control"
 											id="idCostoGiornaliero" name="costoGiornaliero"
 											path="costo.giornaliero" value="${costo.giornaliero}"
 											required="required"></form:input>
@@ -2555,6 +2554,29 @@ ul ul a {
 			return true;
 			
 	}
+		
+		function validateCostoForm(idSubmit, idCostoOrario, idCostoGiornaliero){
+			
+			 if(document.getElementById(idCostoOrario).value == "" || document.getElementById(idCostoGiornaliero).value == ""){
+				 return false;
+			 }
+			 
+			 if(document.getElementById(idCostoOrario).value.length > 13){
+				 $('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo COSTO ORARIO"
+					return false;
+			 }
+			 if(document.getElementById(idCostoGiornaliero).value.length > 13){
+				 $('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo COSTO GIORNALIERO"
+					return false;
+			 }
+			 
+			 document.getElementById(idSubmit).disabled = "true";
+				return true;
+			 
+			
+		}
 	</script>
 
 	<!-- Popper.JS -->
