@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import it.rt.corso.DAO.UtenteDAO;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.utility.Utility;
 
 @Controller
 @SessionAttributes("utente")
@@ -29,13 +30,15 @@ public class LoginController {
 
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String display() {
-
+		 
 		return "Login";
 	}
 
 	@RequestMapping(value = "/LogginIn", method = RequestMethod.POST)
 	public String Login(@ModelAttribute Utente utente, Model m) {
 
+		// creo la sessionFactory che rimarrà aperta fino a fine sessione
+		Utility.buildSessionFactory();
 		Utente u = udao.getByUsernamePassword(utente.getUsername(), utente.getPassword());
 
 		if (u != null) {
@@ -51,7 +54,7 @@ public class LoginController {
 	public String Logout(WebRequest webRequest, SessionStatus status) {
 		status.setComplete();
 		webRequest.removeAttribute("utente", WebRequest.SCOPE_SESSION);
-
+		Utility.destroySessionFactory();
 		return "redirect:/Login";
 	}
 

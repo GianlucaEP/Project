@@ -149,7 +149,7 @@ ul ul a {
 		width: 100%;
 		margin-bottom: 25px;
 	}
-	#sidebar{
+	#sidebar {
 		border-radius: 0px 0px 0px 0px;
 	}
 }
@@ -730,9 +730,13 @@ ul ul a {
 				if(document.getElementById("anno").value.length != 4 || isNaN(document.getElementById("anno").value)){
 					$('#errorModal').modal('toggle');
 					document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
-					return false
+					return false;
+				}
 			}
-		}
+				else{
+					document.getElementById("anno").value = 0;
+					}
+			
 			
 			if(document.getElementById("telefono").value.length != 10 || isNaN(document.getElementById("telefono").value)){
 				$('#errorModal').modal('toggle');

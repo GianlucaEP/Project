@@ -19,7 +19,7 @@ public class Utility {
 	private static SessionFactory factory;
 	private static Session session;
 
-	static {
+	public static void buildSessionFactory() {
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 
 		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
@@ -63,7 +63,14 @@ public class Utility {
 
 		session.close();
 	}
+	
+	
+	public static void destroySessionFactory() {
 
+		factory.close();
+	}
+	
+	
 	/**
 	 * 
 	 * Build a session and create a CriteriaBuilder object
