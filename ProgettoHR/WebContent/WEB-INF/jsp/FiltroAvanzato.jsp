@@ -214,7 +214,6 @@ ul ul a {
 
 @media screen and (max-width: 848px) {
 	body {
-		background-color: black;
 	}
 	#colonnaTable {
 		

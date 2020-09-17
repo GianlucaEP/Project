@@ -87,7 +87,7 @@ a, a:hover, a:focus {
 		<h1>Errore del server</h1>
 		<div>
 			Georghe ha rotto qualcosa.<br> Clicca <a style="color: blue;"
-				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.
+				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.<br>Placeholder text - da modificare in successive release
 		</div>
 	</div>
 
