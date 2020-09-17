@@ -7,16 +7,17 @@ import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.RuoloDAO;
 import it.rt.corso.beans.Ruolo;
 import it.rt.corso.utility.Utility;
+
 @SuppressWarnings("unchecked")
-public class RuoloDAOImpl extends BaseDAO implements RuoloDAO{
+public class RuoloDAOImpl extends BaseDAO implements RuoloDAO {
 
 	public Ruolo getRuolo(String id) {
 		return (Ruolo) super.get(Ruolo.class, id);
 	}
 
 	public List<Ruolo> getLista() {
-		Utility.buildSession();
-		 List<Ruolo> listaRuolo= Utility.getSession().createQuery("FROM Ruolo ").getResultList();
+		List<Ruolo> listaRuolo = Utility.getSession().createQuery("FROM Ruolo ").getResultList();
+		Utility.destroySession();
 		return listaRuolo;
 	}
 

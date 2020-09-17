@@ -21,15 +21,17 @@ public class BusinessFilter extends CandidatoFilter {
 
 		if (nomeFiltro.contains("business")) {
 
-			Utility.buildSession();
+			
 			Session session = Utility.getSession();
 			Join<Candidato, Business> business = root.join("business", JoinType.INNER);
 
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(business.get("business"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
+			Utility.destroySession();
 			return listaPredicati;
 		} else {
+			Utility.destroySession();
 			return listaPredicati;
 
 		}

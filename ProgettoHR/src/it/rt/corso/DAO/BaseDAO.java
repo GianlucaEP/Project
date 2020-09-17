@@ -20,7 +20,7 @@ public abstract class BaseDAO {
 	 *  */	
 	protected Object inserisci(Bean bean) {
 		
-		Utility.buildSession();
+		
 		Transaction t = Utility.getSession().beginTransaction();	
 		Utility.getSession().save(bean);
 		
@@ -41,8 +41,9 @@ public abstract class BaseDAO {
 	 *  */	
 	protected Object get(Class<?> classe, Serializable id) {
 
-		Utility.buildSession();
-		Transaction t = Utility.getSession().beginTransaction();	
+		
+		Transaction t = Utility.getSession().beginTransaction();
+		
 		Bean b = (Bean) Utility.getSession().get(classe, id);
 
 		t.commit();
@@ -61,7 +62,7 @@ public abstract class BaseDAO {
 	 *  */	
 	protected Object cancella(Bean bean) {
 		
-		Utility.buildSession();
+		
 		Transaction t = Utility.getSession().beginTransaction();	
 		Utility.getSession().delete(bean);
 		
@@ -81,7 +82,7 @@ public abstract class BaseDAO {
 	 *  */
 	protected Object aggiorna(Bean bean) {
 		
-		Utility.buildSession();
+	
 		Transaction t = Utility.getSession().beginTransaction();	
 		Utility.getSession().update(bean);
 		

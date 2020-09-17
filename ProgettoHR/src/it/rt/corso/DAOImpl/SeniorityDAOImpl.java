@@ -15,9 +15,8 @@ public class SeniorityDAOImpl extends BaseDAO implements SeniorityDAO {
 
 	public List<Seniority> getLista() {
 		
-		Utility.buildSession();
 		List<Seniority> listaSeniority= Utility.getSession().createQuery("FROM Seniority").getResultList();
-		
+		Utility.destroySession();
 		return listaSeniority;
 	}
 

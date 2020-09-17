@@ -1,6 +1,5 @@
 package it.rt.corso.utility;
 
-
 import javax.persistence.criteria.CriteriaBuilder;
 
 import org.hibernate.Session;
@@ -9,7 +8,6 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
 
 /**
  * 
@@ -21,6 +19,13 @@ public class Utility {
 	private static SessionFactory factory;
 	private static Session session;
 
+	static {
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+
+		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+
+		factory = meta.getSessionFactoryBuilder().build();
+	}
 	/**
 	 * 
 	 * Build an hibernate session to connect to database
@@ -28,16 +33,12 @@ public class Utility {
 	 * @return the builded session
 	 * 
 	 */
-	public static Session buildSession() {
-		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-
-		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
-
-		factory = meta.getSessionFactoryBuilder().build();
-		session = factory.openSession();
-
-		return session;
-	}
+//	public static Session buildSession() {
+//
+//		session = factory.openSession();
+//
+//		return session;
+//	}
 
 	/**
 	 * 
@@ -47,10 +48,9 @@ public class Utility {
 	 * 
 	 */
 	public static Session getSession() {
-		if (session == null) {
-			session = buildSession();
+		if (session==null || !session.isOpen()) {
+			session = factory.openSession();
 		}
-
 		return session;
 	}
 
@@ -60,22 +60,23 @@ public class Utility {
 	 * 
 	 */
 	public static void destroySession() {
-		factory.close();
+
 		session.close();
 	}
-	
+
 	/**
 	 * 
-	 * Build a session and create a CriteriaBuilder object 
-	 *  
-	 *  @return an instantiated CriteriaBuilder object 
+	 * Build a session and create a CriteriaBuilder object
+	 * 
+	 * @return an instantiated CriteriaBuilder object
 	 **/
 	public static CriteriaBuilder createCriteriaBuilder() {
-		Utility.buildSession();
+
 		Session session = Utility.getSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		
+		Utility.destroySession();
+
 		return criteriaBuilder;
 	}
-	
+
 }

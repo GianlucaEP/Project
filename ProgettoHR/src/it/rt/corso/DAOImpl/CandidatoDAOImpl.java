@@ -32,9 +32,8 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	@Override
 	public List<Candidato> getLista() {
 
-		Utility.buildSession();
 		List<Candidato> listacandidato = Utility.getSession().createQuery("FROM Candidato ").getResultList();
-
+		Utility.destroySession();
 		return listacandidato;
 	}
 
@@ -56,7 +55,6 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	@Override
 	public List<Candidato> getListaByBusinessUnit(String businessUnit) {
 
-		Utility.buildSession();
 
 		Session session = Utility.getSession();
 		
@@ -75,14 +73,13 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		//List<Candidato> listacandidatoByBusinessUnit = new ArrayList<>(lista);
 		//return listacandidatoByBusinessUnit;
 		//---------------------------------------------------------------------
-		
+		Utility.destroySession();
 		return results;
 	}
 
 	@Override
 	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) throws ParseException {
 
-		Utility.buildSession();
 		
 		Session session = Utility.getSession();
 
@@ -112,12 +109,12 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 
 		List<Candidato> lista = query.getResultList();
+		Utility.destroySession();
 		return lista;
 	}
 
 	@Override
 	public List<Candidato> getListaByBusinessUnitFilteredByStato(String businessUnit, String stato) {
-		Utility.buildSession();
 
 		Session session = Utility.getSession();
 
@@ -150,6 +147,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		Query<Candidato> query = session.createQuery(criteriaQuery);
 
 		List<Candidato> lista = (List<Candidato>) query.getResultList();
+		Utility.destroySession();
 		return lista;
 	}
 
