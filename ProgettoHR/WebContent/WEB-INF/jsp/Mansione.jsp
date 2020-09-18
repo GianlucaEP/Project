@@ -141,7 +141,7 @@ a, a:hover, a:focus {
 			<!-- TABELLA CANDIDATO -->
 			<c:choose>
 				<c:when test="${empty mansioneList}">
-					<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
+					<h2 id="zeroRecord">Nessuna mansione ancora inserita</h2>
 				</c:when>
 				<c:otherwise>
 					<table class="tabellaMansione">
@@ -150,20 +150,25 @@ a, a:hover, a:focus {
 							<tr>
 								<th><h3>MANSIONE</h3></th>
 								<th scope="col"></th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 
 						<tbody class="body">
 							<c:forEach var="mansione" items="${mansioneList}">
 								<tr>
-									<td><span
-										onclick="window.location = '/ProgettoHR/Mansione/${businessUnit}'">
-											${mansione.mansione}</span></td>
+									<td>${mansione.mansione}</td>
 
-									<td><a href="" data-toggle="modal"
-										onclick="impostaParametriMansione('${mansione.mansione}')"
-										data-target="#EliminaMansioneModal"><i
-											class="fas fa-trash-alt"></i></a>
+									<td><button class="btn btn-primary" data-toggle="modal"
+											onclick="impostaParametriMansione('${mansione.mansione}')"
+											data-target="#ModificaMansioneModal">
+											<i class="fas fa-cogs"></i>
+										</button>
+									<td><button class="btn btn-primary" data-toggle="modal"
+											onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
+											data-target="#EliminaMansioneModal">
+											<i class="fas fa-trash-alt"></i>
+										</button>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -180,7 +185,36 @@ a, a:hover, a:focus {
 		</div>
 	</div>
 
-	<!-- MODAL CANCELLA AREA -->
+	<!-- MODAL MODIFICA MANSIONE -->
+	<div class="modal fade" id="ModificaMansioneModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/AggiornaMansione/${businessUnit}"
+					method="POST">
+
+					<div class="modal-header">
+						Aggiorna mansione <input style="visibility: hidden;"
+							name="oldMansione" id="oldMansione" />
+					</div>
+
+					<div class="modal-body">
+						<input type="text" class="form-control" name="newMansione" id="newMansione">
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">Aggiorna</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">Annulla</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL CANCELLA MANSIONE -->
 	<div class="modal fade" id="EliminaMansioneModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -207,6 +241,10 @@ a, a:hover, a:focus {
 
 	<script>
 		function impostaParametriMansione(id) {
+			document.getElementById("oldMansione").value = id;
+			document.getElementById("newMansione").value = id;
+		}
+		function impostaParametriMansioneEliminazione(id) {
 			document.getElementById("mansione").value = id;
 
 		}

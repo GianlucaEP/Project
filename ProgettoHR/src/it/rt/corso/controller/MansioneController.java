@@ -30,7 +30,6 @@ public class MansioneController {
 		Singleton singleton = Singleton.getInstance();
 
 		m.addAttribute("mansioneList", singleton.getMansioneList());
-
 		return "/Mansione";
 	}
 
@@ -71,6 +70,23 @@ public class MansioneController {
 		Mansione m = dao.get(mansione);
 		
 		dao.cancella(m);
+		
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaMansione();
+		
+		return "redirect:/Mansione/{businessUnit}";
+	}
+	
+	@RequestMapping(value = "/AggiornaMansione/{businessUnit}", method = RequestMethod.POST)
+	public String aggiorna(@RequestParam("oldMansione") String mansione,@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {
+		
+		Mansione m = dao.get(mansione);
+		
+		m.setMansione(newMansione);
+		
+		m = dao.aggiorna(m);
+		
+		m = dao.get(m.getMansione());
 		
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();

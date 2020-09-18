@@ -40,4 +40,10 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 		return (Mansione) super.cancella(mansione);
 	}
 
+	@Override
+	public Mansione aggiorna(Mansione mansione) {
+		
+		return (Mansione) super.aggiorna(mansione);
+	}
+
 }

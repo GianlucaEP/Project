@@ -11,4 +11,5 @@ public interface MansioneDAO {
 	public Mansione get(String id);
 	public List<Mansione> getIdByCandidato(int id);
 	public Mansione cancella(Mansione mansione);
+	public Mansione aggiorna(Mansione mansione);
 }

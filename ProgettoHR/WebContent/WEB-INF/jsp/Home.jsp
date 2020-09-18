@@ -325,8 +325,7 @@ svg {
 
 </head>
 
-<body
-	onload="validateOption(); x('${statoSelezionato}'); ">
+<body onload="validateOption(); x('${statoSelezionato}'); ">
 	<div class="container-fluid p-0">
 		<!-- NAVBAR -->
 		<nav class="navbar">
@@ -396,6 +395,9 @@ svg {
 									<li><a id="aSidebar" href="" data-toggle="modal"
 										data-target="#mansioneModal" type="button"><i
 											class="fas fa-plus"></i> Nuova Mansione</a></li>
+									<li><a id="aSidebar"
+										href="/ProgettoHR/Mansione/${businessUnit}" type="button"><i
+											class="fas fa-long-arrow-alt-right"></i> Visualizza Mansione</a></li>
 
 								</c:when>
 								<c:when test="${funz.funzionalita == 'aggiunta area'}">
@@ -582,7 +584,8 @@ svg {
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
-					onsubmit="return validate('Mansione', '${mansioneList}' );"><!-- tipo, valoreInserito, lista -->
+					onsubmit="return validate('Mansione', '${mansioneList}' );">
+					<!-- tipo, valoreInserito, lista -->
 					<div class="modal-body">
 						<form:input path="mansione" type="text" class="form-control"
 							placeholder="Mansione" id="mansione" name="mansione"></form:input>
@@ -714,7 +717,8 @@ svg {
 				<div class="modal-body" id="errorModalBody"></div>
 				<div class="modal-footer">
 					<button type="reset" id="bottone-cancella-specializzazione"
-							class="btn btn-danger" data-dismiss="modal" style="background-color: red;">Chiudi</button>
+						class="btn btn-danger" data-dismiss="modal"
+						style="background-color: red;">Chiudi</button>
 				</div>
 			</div>
 		</div>
