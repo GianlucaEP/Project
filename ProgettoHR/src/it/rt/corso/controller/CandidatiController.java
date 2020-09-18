@@ -335,6 +335,7 @@ public class CandidatiController {
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("seniorityList", singleton.getSeniorityList());
+		m.addAttribute("tipoFeedbackList", singleton.getTipoFeedbackList());
 		m.addAttribute("feedback", new Feedback());
 		m.addAttribute("tipoFeedback", new TipoFeedback());
 		m.addAttribute("qualificationMeeting", new QualificationMeeting());

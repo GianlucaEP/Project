@@ -733,9 +733,6 @@ ul ul a {
 					return false;
 				}
 			}
-				else{
-					document.getElementById("anno").value = 0;
-					}
 			
 			
 			if(document.getElementById("telefono").value.length != 10 || isNaN(document.getElementById("telefono").value)){
