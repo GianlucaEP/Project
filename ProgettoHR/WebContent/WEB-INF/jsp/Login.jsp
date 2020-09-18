@@ -85,9 +85,9 @@ a, a:hover, a:focus {
 		<nav class="navbar navbar-expand-xl ">
 
 			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+			<span class="navbar-brand">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+			</span>
 
 		</nav>
 
