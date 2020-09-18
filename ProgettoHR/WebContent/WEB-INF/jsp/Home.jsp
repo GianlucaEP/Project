@@ -404,6 +404,9 @@ svg {
 									<li><a id="aSidebar" href="" data-toggle="modal"
 										data-target="#areaCompetenzaModal" type="button"><i
 											class="fas fa-plus"></i> Nuova Area </a></li>
+											<li><a id="aSidebar"
+										href="/ProgettoHR/AreaCompetenza/${businessUnit}" type="button"><i
+											class="fas fa-long-arrow-alt-right"></i> Visualizza Area</a></li>
 								</c:when>
 								<c:when
 									test="${funz.funzionalita == 'aggiunta specializzazione'}">

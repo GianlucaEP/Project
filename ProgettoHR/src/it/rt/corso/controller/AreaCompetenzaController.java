@@ -72,5 +72,21 @@ public class AreaCompetenzaController {
 		return "redirect:/AreaCompetenza/{businessUnit}";
 
 	}
+	
+	@RequestMapping(value = "/AggiornaArea/{businessUnit}", method = RequestMethod.POST)
+	public String aggiorna(@RequestParam("oldArea") String oldArea,@RequestParam("newArea") String newArea, @PathVariable String businessUnit) {
+
+		AreaCompetenza ac = dao.get(oldArea);
+		
+		ac.setArea(newArea);
+		
+		dao.aggiorna(ac);
+
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaAreaCompetenza();
+
+		return "redirect:/AreaCompetenza/{businessUnit}";
+
+	}
 
 }

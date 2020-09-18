@@ -41,5 +41,10 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 	public AreaCompetenza cancella(AreaCompetenza area) {
 		return (AreaCompetenza) super.cancella(area);
 	}
+
+	@Override
+	public AreaCompetenza aggiorna(AreaCompetenza area) {
+		return (AreaCompetenza) super.aggiorna(area);
+	}
 	
 }

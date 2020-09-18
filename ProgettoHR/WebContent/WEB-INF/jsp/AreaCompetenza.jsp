@@ -153,20 +153,25 @@ a, a:hover, a:focus {
 							<tr>
 								<th><h3>AREA DI COMPETENZA</h3></th>
 								<th scope="col"></th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 
 						<tbody class="body">
 							<c:forEach var="area" items="${areaCompetenzaList}">
 								<tr>
-									<td><span
-										onclick="window.location = '/ProgettoHR/AreaCompetenza/${businessUnit}'">
-											${area.area}</span></td>
+									<td>${area.area}</td>
 
-									<td><a href=""  data-toggle="modal"
-										onclick="impostaParametriArea('${area.area}')"
-										data-target="#EliminaAreaModal"><i
-											class="fas fa-trash-alt"></i></a>
+									<td><button class="btn btn-primary" data-toggle="modal"
+											onclick="impostaParametriArea('${area.area}')"
+											data-target="#ModificaAreaModal">
+											<i class="fas fa-cogs"></i>
+										</button>
+									<td><button class="btn btn-primary" data-toggle="modal"
+											onclick="impostaParametriAreaEliminazione('${area.area}')"
+											data-target="#EliminaAreaModal">
+											<i class="fas fa-trash-alt"></i>
+										</button>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -180,6 +185,35 @@ a, a:hover, a:focus {
 					</table>
 				</c:otherwise>
 			</c:choose>
+		</div>
+	</div>
+
+	<!-- MODAL MODIFICA AREA -->
+	<div class="modal fade" id="ModificaAreaModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/AggiornaArea/${businessUnit}" method="POST">
+
+					<div class="modal-header">
+						Aggiorna Area<input style="visibility: hidden;" name="oldArea"
+							id="oldArea" />
+					</div>
+
+					<div class="modal-body">
+						<input type="text" class="form-control" name="newArea"
+							id="newArea">
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">Aggiorna</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">Annulla</button>
+					</div>
+
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -209,6 +243,10 @@ a, a:hover, a:focus {
 
 	<script>
 		function impostaParametriArea(id) {
+			document.getElementById("oldArea").value = id;
+			document.getElementById("newArea").value = id;
+		}
+		function impostaParametriAreaEliminazione(id) {
 			document.getElementById("area").value = id;
 
 		}
