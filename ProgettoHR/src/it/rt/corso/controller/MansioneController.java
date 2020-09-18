@@ -82,11 +82,13 @@ public class MansioneController {
 		
 		Mansione m = dao.get(mansione);
 		
+		dao.cancella(m);
+		
+		m = new Mansione();
+		
 		m.setMansione(newMansione);
 		
-		m = dao.aggiorna(m);
-		
-		m = dao.get(m.getMansione());
+		m = dao.inserisci(m);
 		
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();

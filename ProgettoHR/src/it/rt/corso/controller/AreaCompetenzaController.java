@@ -78,9 +78,13 @@ public class AreaCompetenzaController {
 
 		AreaCompetenza ac = dao.get(oldArea);
 		
+		dao.cancella(ac);
+		
+		ac = new AreaCompetenza();
+		
 		ac.setArea(newArea);
 		
-		dao.aggiorna(ac);
+		dao.inserisci(ac);
 
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaAreaCompetenza();

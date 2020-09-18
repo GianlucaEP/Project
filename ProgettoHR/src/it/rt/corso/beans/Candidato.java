@@ -95,7 +95,7 @@ public class Candidato implements Bean {
 	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany(cascade = { CascadeType.REFRESH })
+	@ManyToMany(cascade = { CascadeType.ALL })
 	/*
 	 * JoinTable specifica la tabella di mezzo JoinColumn = inzialmente si specifica
 	 * la foreignKey della classe in cui mi trovo InverseJoinColumn = foreignKey

@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ public class Mansione implements Bean{
 	private String mansione;
 	
 	//MANY-TO-MANY Con Candidato
-	@ManyToMany(mappedBy = "mansione", cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "mansione", cascade = CascadeType.ALL)
 	private Set<Candidato> candidato = new HashSet<>();
 
 	public String getMansione() {
