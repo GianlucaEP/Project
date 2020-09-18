@@ -14,12 +14,14 @@ import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
+import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.Seniority;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.StatoCandidato;
+import it.rt.corso.beans.TipoFeedback;
 
 public class Singleton {
 
@@ -33,6 +35,7 @@ public class Singleton {
 	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
 	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
+	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
 
 	// static variable single_instance of type Singleton
 	private static Singleton single_instance = null;
@@ -42,7 +45,8 @@ public class Singleton {
 	private static List<Mansione> mansioneList = new ArrayList<Mansione>();
 	private static List<Specializzazione> specializzazioneList = new ArrayList<Specializzazione>();
 	private static List<Seniority> seniorityList = new ArrayList<Seniority>();
-	List<StatoCandidato> statoCandidatoList = new ArrayList<StatoCandidato>();
+	private static List<StatoCandidato> statoCandidatoList = new ArrayList<StatoCandidato>();
+	private static List<TipoFeedback> tipoFeedbackList = new ArrayList<TipoFeedback>();
 
 	// private constructor restricted to this class itself
 	private Singleton() {
@@ -52,6 +56,7 @@ public class Singleton {
 		specializzazioneList = specializzazioneDAO.getLista();
 		seniorityList = seniorityDAO.getLista();
 		statoCandidatoList = statoCandidatoDAO.getAllFromStato();
+		tipoFeedbackList = tipoFeedbackDAO.getLista();
 	}
 
 	// static method to create instance of Singleton class
@@ -84,6 +89,10 @@ public class Singleton {
 
 	public List<StatoCandidato> getStatoCandidatoList() {
 		return statoCandidatoList;
+	}
+	
+	public List<TipoFeedback> getTipoFeedbackList() {
+		return tipoFeedbackList;
 	}
 
 	public List<String> getAreaCompetenzaListString() {

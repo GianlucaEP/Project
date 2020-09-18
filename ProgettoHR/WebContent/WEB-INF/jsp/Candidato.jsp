@@ -1141,7 +1141,7 @@ ul ul a {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateForm('idSubmitModificaAnagrafica', 'idNome', 'idCognome', 'idAnno', 'idTelefono', 'idEmail');"
+							onsubmit="return validateAnagraficaForm();"
 							action="/ProgettoHR/ModificaAnagrafica/${businessUnit}/${mostraCandidato.id}">
 
 
@@ -1165,15 +1165,15 @@ ul ul a {
 								<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
 									di nascita:</div>
 								<form:input type="text" class="form-control" id="idAnno"
-									name="anno" path="anno" value="${mostraCandidato.anno}"
-									required="required"></form:input>
+									placeholder="yyyy" name="anno" path="anno"
+									value="${mostraCandidato.anno}"></form:input>
 							</div>
 
 
 							<div class="form-group">
 								<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
 								<form:input type="text" class="form-control" id="idTelefono"
-									name="telefono" path="telefono"
+									name="telefono" path="telefono" placeholder="123-456-7890"
 									value="${mostraCandidato.telefono}" required="required"></form:input>
 							</div>
 
@@ -1181,15 +1181,15 @@ ul ul a {
 							<div class="form-group">
 								<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
 								<form:input type="text" class="form-control" id="idEmail"
-									name="email" path="email" value="${mostraCandidato.email}"
-									required="required"></form:input>
+									size="30" name="email" path="email"
+									value="${mostraCandidato.email}" required="required"></form:input>
 							</div>
 
 
 							<div class="form-group">
 								<div class="row w-100 p-0 m-0 justify-content-md-start">Codice
 									Fiscale:</div>
-								<form:input type="text" class="form-control"
+								<form:input type="text" class="form-control" maxlength="16"
 									id="idCodiceFiscale" name="codiceFiscale" path="codiceFiscale"
 									value="${mostraCandidato.codiceFiscale}"></form:input>
 							</div>
@@ -1593,7 +1593,7 @@ ul ul a {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateForm('idSubmitAggiungiEconomics', 'idInquadramento', 'idRAL', 'idBenefit', 'idPreavviso', 'idDesiderata')"
+							onsubmit="return validateEconomicsForm()"
 							action="/ProgettoHR/AggiungiModificaEconomics/${businessUnit}/${mostraCandidato.id}">
 
 
@@ -1615,8 +1615,8 @@ ul ul a {
 										<div class="row w-100 p-0 m-0 justify-content-md-start">RAL:
 										</div>
 										<form:input type="text" class="form-control" id="idRAL"
-											name="RAL" path="economics.ral" value="${economics.ral}"
-											required="required"></form:input>
+											maxlength="9" name="RAL" path="economics.ral"
+											value="${economics.ral}" required="required"></form:input>
 									</div>
 								</div>
 							</div>
@@ -1646,7 +1646,7 @@ ul ul a {
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Desiderata:
 										</div>
 										<form:input type="text" class="form-control" id="idDesiderata"
-											name="desiderata" path="economics.desiderata"
+											name="desiderata" path="economics.desiderata" maxlength="9"
 											value="${economics.desiderata}" required="required"></form:input>
 									</div>
 								</div>
@@ -1923,8 +1923,14 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<form:input path="tipo.tipo" type="text" class="form-control"
-											id="tipoModificaFeedback" name="tipoFeedback" value=""></form:input>
+										<form:select id="tipoModificaFeedback"
+											class="form-control text-center" name="tipoFeedback"
+											path="tipo.tipo">
+											
+											<c:forEach var="tipo" items="${tipoFeedbackList}">
+												<option value="${tipo.tipo}">${tipo.tipo}</option>
+											</c:forEach>
+										</form:select>
 									</div>
 								</div>
 							</div>
@@ -2542,6 +2548,7 @@ ul ul a {
 			}
 		}
 		
+		
 		function validateForm(idSubmit, ...campi){
 			
 			for(campo of campi){
@@ -2554,6 +2561,65 @@ ul ul a {
 			return true;
 			
 	}
+		
+		
+		function validateAnagraficaForm(){
+			
+			if(document.getElementById("idNome").value == "" || document.getElementById("idCognome").value == "" || document.getElementById("idTelefono").value == "" || document.getElementById("idEmail").value == ""){
+				return false;
+			}
+			
+			if(document.getElementById("idAnno").value != ""){
+				if(document.getElementById("idAnno").value.length != 4 || isNaN(document.getElementById("idAnno").value)){
+					$('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
+					return false;
+				}
+			}
+						
+			if(document.getElementById("idTelefono").value.length != 10 || isNaN(document.getElementById("idTelefono").value)){
+				$('#errorModal').modal('toggle');
+				document.getElementById("errorModalBody").innerHTML = "Telefono deve essere composto da 10 cifre"
+				return false;
+			}
+			
+			if(document.getElementById("idCodiceFiscale").value != "" && document.getElementById("idCodiceFiscale").value.length != 16){
+				$('#errorModal').modal('toggle');
+				document.getElementById("errorModalBody").innerHTML = "Codice Fiscale deve essere composto da 16 lettere/cifre"
+				return false;
+			}
+			
+			if(!validateEmail()){
+				return false
+			}
+			
+			document.getElementById("idSubmitModificaAnagrafica").disabled = "true"; 
+			return true;
+		}
+		
+		
+		function validateEconomicsForm(){
+			if(document.getElementById("idInquadramento").value == "" || document.getElementById("idRAL").value == "" || document.getElementById("idBenefit").value == "" || document.getElementById("idPreavviso").value == "" || document.getElementById("idDesiderata").value == ""){
+				return false;
+			}
+			
+			if(document.getElementById("idRAL").value.length > 9){
+				 $('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo RAL"
+					return false;
+			 }
+			 if(document.getElementById("idDesiderata").value.length > 9){
+				 $('#errorModal').modal('toggle');
+					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo DESIDERATA"
+					return false;
+			 }
+			 
+			 document.getElementById("idSubmitAggiungiEconomics").disabled = "true"; 
+				return true;
+			
+		}
+		
+		
 		
 		function validateCostoForm(idSubmit, idCostoOrario, idCostoGiornaliero){
 			
@@ -2576,6 +2642,18 @@ ul ul a {
 				return true;
 			 
 			
+		}
+		
+		
+		function validateEmail(){
+			var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if(document.getElementById("idEmail").value.match(mailformat))
+			 {
+			    return true
+			 }
+			$('#errorModal').modal('toggle');
+			document.getElementById("errorModalBody").innerHTML = "Email non inserito in modo corretto"
+			return false
 		}
 	</script>
 

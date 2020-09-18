@@ -49,7 +49,7 @@ public class FeedbackController {
 	@RequestMapping(value = "/ModificaFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id, @PathVariable String businessUnit) {
 		 Feedback f = feedbackDAO.get(feedback.getId());
-		 TipoFeedback tp = tipoFeedbackDAO.get(f.getTipo().getTipo());
+		 TipoFeedback tp = tipoFeedbackDAO.get(feedback.getTipo().getTipo());
 		 f.setTipo(tp);
 		 f.setData(feedback.getData());
 		 f.setCommento(feedback.getCommento());
