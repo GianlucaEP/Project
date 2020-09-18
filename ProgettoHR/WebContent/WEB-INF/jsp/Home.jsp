@@ -831,7 +831,7 @@ svg {
 			if(lista.indexOf(document.getElementById(id).value) !== -1){
 				$('#errorModal').modal('toggle');   
 				document.getElementById("errorModalLabel").innerHTML = tipo;
-				document.getElementById("errorModalBody").innerHTML = tipo + "già inserita.";  
+				document.getElementById("errorModalBody").innerHTML = tipo + " già inserita.";  
 				return false;
 			}
 			
