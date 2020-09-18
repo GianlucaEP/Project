@@ -3,6 +3,7 @@ package it.rt.corso.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Mansione implements Bean{
 	private String mansione;
 	
 	//MANY-TO-MANY Con Candidato
-	@ManyToMany(mappedBy = "mansione")
+	@ManyToMany(mappedBy = "mansione", cascade = CascadeType.MERGE)
 	private Set<Candidato> candidato = new HashSet<>();
 
 	public String getMansione() {
