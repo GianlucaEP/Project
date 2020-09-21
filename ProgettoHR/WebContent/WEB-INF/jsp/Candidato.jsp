@@ -1949,8 +1949,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input id="commentoFeedback" path="commento" type="text"
-											class="form-control" name="feedback" required="required"></form:input>
+										<form:textarea id="commentoFeedback" path="commento" maxlength="1000" rows="6" style="resize: none;"
+											class="form-control" name="feedback" required="required"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -2049,8 +2049,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input path="commento" type="text" class="form-control"
-											id="idCommentoFeedback" name="feedback"></form:input>
+										<form:textarea path="commento" style="resize: none;" rows="6" class="form-control"
+											id="idCommentoFeedback" name="feedback"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -2604,11 +2604,14 @@ ul ul a {
 			}
 			
 			if(document.getElementById("idRAL").value.length > 9 || isNaN(document.getElementById("idRAL").value)){
-				 $('#errorModal').modal('toggle');
+				$('#errorModal').modal('toggle');
+				$('#modalMansione').modal('dispose');   
+				 
 					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo RAL"
 					return false;
 			 }
 			 if(document.getElementById("idDesiderata").value.length > 9 || isNaN(document.getElementById("idDesiderata").value)){
+				 $('#modalMansione').modal('toggle'); 
 				 $('#errorModal').modal('toggle');
 					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo DESIDERATA"
 					return false;
