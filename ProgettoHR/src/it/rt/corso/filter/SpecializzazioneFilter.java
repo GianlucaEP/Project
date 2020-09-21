@@ -66,7 +66,7 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 				.toArray(new Predicate[listaPredicatesSpecializzazione.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
-		listaPredicati.add(criteriaBuilder.or(predicatesSpecializzazioni));
+		listaPredicati.add(criteriaBuilder.and(predicatesSpecializzazioni));
 		listaPredicatesSpecializzazione = new ArrayList<Predicate>();
 		
 		return listaPredicati;

@@ -59,7 +59,7 @@ public class AreaCompetenzaFilter extends CandidatoFilter{
 				.toArray(new Predicate[listaPredicatesAreaCompetenza.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
-		listaPredicati.add(criteriaBuilder.or(predicatesAreaCompetenza));
+		listaPredicati.add(criteriaBuilder.and(predicatesAreaCompetenza));
 		listaPredicatesAreaCompetenza = new ArrayList<Predicate>();
 		return listaPredicati;
 	}

@@ -670,7 +670,7 @@ function controlloMappa() {
 				
 				
 				tagInput.id = areaName;
-				tagInput.name = "areaCompetenza";
+				tagInput.name = areaName;
 				tagInput.readOnly = true;
 				
 				tagDivButton.classList.add("btn", "mt-2");
@@ -732,7 +732,7 @@ function controlloMappa() {
 		mansioneCnt++;
 		
 		tagInput.id = mansioneName;
-		tagInput.name = "mansioni";
+		tagInput.name = mansioneName;
 		tagInput.readOnly = true;
 		
 		tagDivButton.classList.add("btn", "mt-2");
@@ -799,7 +799,7 @@ function controlloMappa() {
 				specializzazioneCnt++;
 				
 				tagInput.id = specializzazioneName;
-				tagInput.name = "specializzazione";
+				tagInput.name = specializzazioneName;
 				tagInput.readOnly = true;
 				
 				tagDivButton.classList.add("btn", "mt-2");
