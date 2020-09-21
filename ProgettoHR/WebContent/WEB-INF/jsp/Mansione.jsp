@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +132,8 @@ a, a:hover, a:focus {
 
 </head>
 <body>
-
+	<c:set var="singlequote" value="'" />
+	<c:set var="backslash" value="&apos" />
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
 		<div class="container-fluid">
@@ -169,7 +173,12 @@ a, a:hover, a:focus {
 						<tbody class="body">
 							<c:forEach var="mansione" items="${mansioneList}">
 								<tr>
-									<td>${mansione.mansione}</td>
+
+
+									<c:set var="mansioneRaplaced"
+										value="${fn:replace(mansione.mansione, singlequote, backslash)}"></c:set>
+									<c:set var="mansioneXSS" value="${fn:escapeXml(mansione.mansione)}"></c:set>
+									<td>${mansioneXSS}</td>
 
 									<td><button class="btn" id="bottoneEliminaMansione"
 											data-toggle="modal"
@@ -179,7 +188,7 @@ a, a:hover, a:focus {
 										</button>
 										<button class="btn" id="bottoneModificaMansione"
 											data-toggle="modal"
-											onclick="impostaParametriMansione('${mansione.mansione}')"
+											onclick="impostaParametriMansione('${mansioneRaplaced}')"
 											data-target="#ModificaMansioneModal">
 											<i class="fas fa-cogs"></i>
 										</button></td>
@@ -252,6 +261,7 @@ a, a:hover, a:focus {
 
 	<script>
 		function impostaParametriMansione(id) {
+			id = id.replace("&apos", "'");
 			document.getElementById("oldMansione").value = id;
 			document.getElementById("newMansione").value = id;
 		}
