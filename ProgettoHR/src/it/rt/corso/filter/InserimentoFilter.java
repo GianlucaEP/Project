@@ -38,8 +38,6 @@ public class InserimentoFilter extends CandidatoFilter {
 					InserimentoToFilter.setToSelected(true);
 
 				}
-//			Date dataFrom = date.parse(valore);
-//			listaPredicati.add(criteriaBuilder.lessThanOrEqualTo(root.get("dateCreated").as(Date.class), valore));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

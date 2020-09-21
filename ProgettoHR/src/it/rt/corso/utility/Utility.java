@@ -81,7 +81,7 @@ public class Utility {
 
 		Session session = Utility.getSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		Utility.destroySession();
+		
 
 		return criteriaBuilder;
 	}

@@ -23,6 +23,7 @@ public class AnnoDiNascitaFilter extends CandidatoFilter{
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			
 			listaPredicati.add(criteriaBuilder.equal(root.get("anno"), Integer.parseInt(valore)));
+			CandidatoFilter.setAddedCriteria(true);
 			return listaPredicati;
 		} else {
 			return listaPredicati;

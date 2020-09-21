@@ -38,7 +38,6 @@ public class AreaCompetenzaFilter extends CandidatoFilter{
 			listaPredicatesAreaCompetenza
 			.add(criteriaBuilder.like(areaCompetenza.get("area"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
-			System.out.println(CandidatoFilter.isAddedCriteria());
 			return listaPredicati;
 		} else {
 			return listaPredicati;

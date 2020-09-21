@@ -27,10 +27,8 @@ public class SeniorityFilter extends CandidatoFilter {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			listaPredicati.add(criteriaBuilder.like(seniority.get("seniority"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
-			Utility.destroySession();
 			return listaPredicati;
 		} else {
-			Utility.destroySession();
 			return listaPredicati;
 
 		}
