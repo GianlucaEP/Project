@@ -17,8 +17,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
-	crossorigin="anonymous">
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
@@ -73,14 +72,9 @@ body {
 	height: 70px;
 }
 
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
+#iconaLogout {
 	width: 25px;
-	height: 25px;
+	height: 48px;
 }
 
 /* SIDEBAR */
@@ -202,55 +196,6 @@ ul ul a {
 	border: 1px solid #dddddd;
 	cursor: pointer;
 	border-radius: .25rem 0px 0px .25rem;
-	/*appearance: none;*/
-}
-
-.select option {
-	background-color: white;
-}
-
-.custom-arrow {
-	/*position: absolute;*/
-	top: 0;
-	/*right: 0.3em;*/
-	display: block;
-	background-color: #5aa9e6;
-	height: 42px;
-	width: 2.5em;
-	pointer-events: none;
-	/*border-radius: 0px 3px 0px 0px;*/
-}
-
-.custom-arrow::before, .custom-arrow::after {
-	content: '';
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.custom-arrow::before {
-	border-right: 0.50em solid transparent;
-	border-left: 0.50em solid transparent;
-	border-bottom: 0.50em solid rgba(255, 255, 255, 0.5);
-	top: 35%;
-}
-
-.custom-arrow::after {
-	border-right: 0.50em solid transparent;
-	border-left: 0.50em solid transparent;
-	border-top: 0.50em solid rgba(255, 255, 255, 0.5);
-	top: 65%;
-}
-
-.btn {
-	margin-top: 0.06em;
-	padding: 0;
-	height: 40px;
-	width: 40px;
-	background-color: #5aa9e6;
-	padding: 0;
 }
 
 svg {
@@ -260,50 +205,24 @@ svg {
 	vertical-align: middle;
 }
 
-.bottoneFiltro {
+#bottoneDarkMode {
 	height: 43px;
-	width: 43px;
+	float: right;
+	background-color: #5aa9e6;
+	float: right;
+}
+
+#bottoneFiltro {
 	background-color: #5aa9e6;
 }
 
-#bottone-salva-mansione {
-	margin: 3px;
-	padding: 3px;
-	width: auto;
+#bottoneEliminaCandidato {
+	padding: 8px;
+	background-color: #5aa9e6;
 }
 
-#bottone-cancella-mansione {
-	padding: 3px;
-	width: auto;
-	margin: 0;
-}
-
-#bottone-salva-specializzazione {
-	margin: 3px;
-	padding: 3px;
-	width: auto;
-}
-
-#bottone-cancella-specializzazione {
-	padding: 3px;
-	width: auto;
-	margin: 0;
-}
-
-#bottone-salva-area {
-	margin: 3px;
-	padding: 3px;
-	width: auto;
-}
-
-#bottone-cancella-area {
-	padding: 3px;
-	width: auto;
-	margin: 0;
-}
-
-#iconaLogout {
-	margin-top: 0;
+#bottoneModificaCandidato {
+	background-color: #5aa9e6;
 }
 
 .fa-sort {
@@ -330,39 +249,24 @@ svg {
 		<!-- NAVBAR -->
 		<nav class="navbar">
 
-
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-			<!-- BOTTONE PROFILO -->
-			<!--  <button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-expanded="false"
-				aria-controls="navbarCollapse" aria-label="Toggle navigation">
-				<i class="fas fa-bars"></i>
-			</button>-->
-
 			<div id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 
-					<li class="nav-item"><form action="/ProgettoHR/Logout">
-							<button type="submit" class="btn nav-link ">
+					<li class="nav-item">
+						<form action="/ProgettoHR/Logout">
+							<button type="submit" class="btn nav-link p-0">
 								<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
 							</button>
-						</form></li>
-
-
-
-
-
-
+						</form>
+					</li>
 				</ul>
 			</div>
-
-
 		</nav>
-
 
 		<!-- COLONNA BARRA LATERALE -->
 		<div class="row w-100 mr-0 mt-4">
@@ -404,15 +308,20 @@ svg {
 									<li><a id="aSidebar" href="" data-toggle="modal"
 										data-target="#areaCompetenzaModal" type="button"><i
 											class="fas fa-plus"></i> Nuova Area </a></li>
-											<li><a id="aSidebar"
-										href="/ProgettoHR/AreaCompetenza/${businessUnit}" type="button"><i
-											class="fas fa-long-arrow-alt-right"></i> Visualizza Area</a></li>
+									<li><a id="aSidebar"
+										href="/ProgettoHR/AreaCompetenza/${businessUnit}"
+										type="button"><i class="fas fa-long-arrow-alt-right"></i>
+											Visualizza Area</a></li>
 								</c:when>
 								<c:when
 									test="${funz.funzionalita == 'aggiunta specializzazione'}">
 									<li><a id="aSidebar" href="" data-toggle="modal"
 										data-target="#specializzazioneModal" type="button"><i
 											class="fas fa-plus"></i> Nuova Specializzazione </a></li>
+									<li><a id="aSidebar"
+										href="/ProgettoHR/Specializzazione/${businessUnit}"
+										type="button"><i class="fas fa-long-arrow-alt-right"></i>
+											Visualizza Specializzazione</a></li>
 								</c:when>
 							</c:choose>
 						</c:forEach>
@@ -426,7 +335,7 @@ svg {
 			</div>
 
 			<!-- FILTRO STATO CANDIDATO -->
-			<div class="col p-0 mr-4">
+			<div class="col p-0 mr-4 ">
 				<div class="row w-100 mb-1">
 					<div class="col">
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
@@ -445,8 +354,7 @@ svg {
 
 								</select>
 								<div class="input-group-append">
-									<button id="bottoneFiltro" class="btn bottoneFiltro mt-0"
-										type="submit">
+									<button id="bottoneFiltro" class="btn" type="submit">
 										<svg width="1em" height="1em" viewBox="0 0 16 16"
 											class="bi bi-funnel" fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg"> <path
@@ -460,7 +368,7 @@ svg {
 						</form>
 					</div>
 					<div class="col">
-						<button class="btn" onclick="darkMode()" style="float: right;">
+						<button class="btn" id="bottoneDarkMode" onclick="darkMode()">
 							<span data-toggle="tooltip" data-placement="top"
 								title="attiva la modalità dark"><i class="far fa-moon"></i></span>
 						</button>
@@ -481,14 +389,14 @@ svg {
 
 									<thead class="head">
 										<tr>
-											<th colspan="1" scope="col">Stato</th>
-											<th colspan="1" scope="col">Business unit</th>
-											<th colspan="1" scope="col">Nome</th>
-											<th colspan="1" scope="col">Cognome</th>
-											<th colspan="1" scope="col">Area Competenza</th>
-											<th colspan="1" scope="col">Mansione</th>
-											<th colspan="1" scope="col">Seniority</th>
-											<th colspan="1" scope="col"></th>
+											<th scope="col">Stato</th>
+											<th scope="col">Business unit</th>
+											<th scope="col">Nome</th>
+											<th scope="col">Cognome</th>
+											<th scope="col">Area Competenza</th>
+											<th scope="col">Mansione</th>
+											<th scope="col">Seniority</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 
@@ -534,19 +442,20 @@ svg {
 
 												<td>${cand.seniority.seniority}</td>
 
-												<td><button class="btn mr-1"
+												<td><button class="btn p-2"
+														id="bottoneModificaCandidato"
 														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 														<span data-toggle="tooltip" data-placement="top"
 															title="Modifica candidato"><i
 															class="fas fa-user-edit"></i></span>
 
 													</button>
-													<button class="btn" data-toggle="modal" class="btn mr-1"
+													<button class="btn" id="bottoneEliminaCandidato"
+														data-toggle="modal"
 														onclick="impostaParametriCandidatoId(${cand.id})"
 														data-target="#EliminaModal">
 														<span data-toggle="tooltip" data-placement="top"
-															title="Elimina candidato"> <i
-															class="fas fa-trash-alt"></i>
+															title="Elimina candidato"> <i class="fas fa-trash"></i>
 														</span>
 
 													</button></td>
@@ -577,7 +486,6 @@ svg {
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 
-
 				<div class="modal-header">
 					<h5 class="modal-title">Aggiungi Mansione</h5>
 					<button type="button" class="close" data-dismiss="modal"
@@ -595,10 +503,8 @@ svg {
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-mansione"
-							class="btn btn-success" style="background-color: green;">Salva</button>
-						<button type="reset" id="bottone-cancella-mansione"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="reset" class="btn btn-danger">Cancella</button>
 					</div>
 				</form:form>
 			</div>
@@ -632,9 +538,9 @@ svg {
 
 					<div class="modal-footer">
 						<button type="submit" id="bottone-salva-area"
-							class="btn btn-success" style="background-color: green;">Salva</button>
+							class="btn btn-success">Salva</button>
 						<button type="reset" id="bottone-cancella-area"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+							class="btn btn-danger">Cancella</button>
 					</div>
 				</form:form>
 
@@ -670,16 +576,15 @@ svg {
 
 					<div class="modal-footer">
 						<button type="submit" id="bottone-salva-specializzazione"
-							class="btn btn-success" style="background-color: green;">Salva</button>
+							class="btn btn-success">Salva</button>
 						<button type="reset" id="bottone-cancella-specializzazione"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+							class="btn btn-danger">Cancella</button>
 					</div>
 
 				</form:form>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- MODAL CANCELLA CANDIDATO -->
 	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
@@ -694,10 +599,8 @@ svg {
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="submit" class="btn btn-success">sì</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
 					</div>
 
 				</form>
@@ -720,8 +623,7 @@ svg {
 				<div class="modal-body" id="errorModalBody"></div>
 				<div class="modal-footer">
 					<button type="reset" id="bottone-cancella-specializzazione"
-						class="btn btn-danger" data-dismiss="modal"
-						style="background-color: red;">Chiudi</button>
+						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 				</div>
 			</div>
 		</div>
