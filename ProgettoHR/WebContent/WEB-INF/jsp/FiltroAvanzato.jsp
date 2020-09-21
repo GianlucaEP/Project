@@ -204,7 +204,11 @@ ul ul a {
 	padding: 4px;
 }
 
-#plusButton{
+#zeroRecord {
+	text-align: center;
+}
+
+#plusButton {
 	height: 50px;
 	width: 50px;
 	border-radius: 50%;
@@ -214,6 +218,7 @@ ul ul a {
 
 @media screen and (max-width: 848px) {
 	body {
+		
 	}
 	#colonnaTable {
 		
@@ -371,12 +376,12 @@ ul ul a {
 											</c:forEach>
 										</datalist>
 									</div>
-							
-										<div class="col-4">
+
+									<div class="col-4">
 										<!-- <label>Anni di esperienza</label> -->
-									<input id="anniEsperienzaInput" class="text-left form-control"
-										type="number" placeholder="nn" maxlength = "2"  min="0" max="99">
-								</div>
+										<input id="anniEsperienzaInput" class="text-left form-control"
+											type="number" placeholder="nn" maxlength="2" min="0" max="99">
+									</div>
 									<div class="col-1 ">
 										<div
 											onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
@@ -421,155 +426,162 @@ ul ul a {
 		</div>
 
 		<div class="col-10">
+			<c:choose>
+				<c:when test="${empty list}">
+					<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
+				</c:when>
+				<c:otherwise>
+					<button type="button" id="exportButton" class="btn mb-2"
+						style="border-color: transparent; background: #5aa9e6;">Esporta
+						Risultati</button>
 
-			<button type="button" id="exportButton" class="btn mb-2"
-				style="border-color: transparent; background: #5aa9e6;">Esporta
-				Risultati</button>
 
-			<table id="risultatiTable" class="tabellaFiltri">
-				<!-- Testa della tabella -->
-				<thead class="head">
-					<tr>
-						<th class="noExport" scope="col">Stato</th>
-						<th scope="col">Business unit</th>
-						<th scope="col">Nome</th>
-						<th scope="col">Cognome</th>
-						<c:forEach items="${filterList}" var="filter">
-							<c:if test="${ filter.key == 'anno' }">
-								<th scope="col">Anno</th>
-							</c:if>
-							<c:if test="${ filter.key == 'telefono' }">
-								<th scope="col">Telefono</th>
-							</c:if>
-							<c:if test="${ filter.key == 'email' }">
-								<th scope="col">E-mail</th>
-							</c:if>
-							<c:if test="${ filter.key == 'seniority' }">
-								<th scope="col">Seniority</th>
-							</c:if>
-							<c:if test="${ filter.key == 'provenienza' }">
-								<th scope="col">Provenienza</th>
-							</c:if>
-							<c:if test="${fn:contains( filter.key, 'area') }">
-								<th scope="col">Area Competenza</th>
-							</c:if>
-							<c:if test="${fn:contains( filter.key, 'mansione') }">
-								<th scope="col">Mansione</th>
-							</c:if>
-							<c:if test="${fn:contains( filter.key, 'specializzazione') }">
-								<th scope="col">Specializzazione</th>
-							</c:if>
-							<c:if test="${fn:contains( filter.key, 'data') }">
-								<th scope="col">Inserimento Azienda</th>
-							</c:if>
-							<c:if test="${fn:contains( filter.key, 'costo') }">
-								<th scope="col">costo orario</th>
-							</c:if>
-						</c:forEach>
-					</tr>
-				</thead>
-				<!-- Corpo della tabella -->
-				<tbody class="body">
-					<c:forEach var="cand" items="${list}">
-						<tr>
-							<td class="noExport"><c:choose>
-									<c:when test="${ cand.stato.descrizione == 'Attivo'}">
-										<span id="dot" data-toggle="tooltip" data-placement="top"
-											title="Attivo" class="dot bg-success"></span>
-									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
-										<span id="dot" data-toggle="tooltip" data-placement="top"
-											title="Selezionato" class="dot bg-primary"></span>
-									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
-										<span id="dot" data-toggle="tooltip" data-placement="top"
-											title="Da contattare" class="dot bg-warning"></span>
-									</c:when>
-									<c:when test="${ cand.stato.descrizione == 'Scartato'}">
-										<span id="dot" data-toggle="tooltip" data-placement="top"
-											title="Scartato" class="dot bg-danger"></span>
-									</c:when>
-									<c:otherwise>
-										<span id="dot" data-toggle="tooltip" data-placement="top"
-											title="Nuovo inserito" class="dot bg-secondary"></span>
-									</c:otherwise>
-								</c:choose></td>
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-								${cand.business.business}</td>
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-								${cand.nome}</td>
-							<td
-								onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-								${cand.cognome}</td>
-							<c:forEach items="${filterList}" var="filter">
-								<c:if test="${ filter.key == 'anno' }">
+					<table id="risultatiTable" class="tabellaFiltri">
+						<!-- Testa della tabella -->
+						<thead class="head">
+							<tr>
+								<th class="noExport" scope="col">Stato</th>
+								<th scope="col">Business unit</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Cognome</th>
+								<c:forEach items="${filterList}" var="filter">
+									<c:if test="${ filter.key == 'anno' }">
+										<th scope="col">Anno</th>
+									</c:if>
+									<c:if test="${ filter.key == 'telefono' }">
+										<th scope="col">Telefono</th>
+									</c:if>
+									<c:if test="${ filter.key == 'email' }">
+										<th scope="col">E-mail</th>
+									</c:if>
+									<c:if test="${ filter.key == 'seniority' }">
+										<th scope="col">Seniority</th>
+									</c:if>
+									<c:if test="${ filter.key == 'provenienza' }">
+										<th scope="col">Provenienza</th>
+									</c:if>
+									<c:if test="${fn:contains( filter.key, 'area') }">
+										<th scope="col">Area Competenza</th>
+									</c:if>
+									<c:if test="${fn:contains( filter.key, 'mansione') }">
+										<th scope="col">Mansione</th>
+									</c:if>
+									<c:if test="${fn:contains( filter.key, 'specializzazione') }">
+										<th scope="col">Specializzazione</th>
+									</c:if>
+									<c:if test="${fn:contains( filter.key, 'data') }">
+										<th scope="col">Inserimento Azienda</th>
+									</c:if>
+									<c:if test="${fn:contains( filter.key, 'costo') }">
+										<th scope="col">costo orario</th>
+									</c:if>
+								</c:forEach>
+							</tr>
+						</thead>
+						<!-- Corpo della tabella -->
+						<tbody class="body">
+							<c:forEach var="cand" items="${list}">
+								<tr>
+									<td class="noExport"><c:choose>
+											<c:when test="${ cand.stato.descrizione == 'Attivo'}">
+												<span id="dot" data-toggle="tooltip" data-placement="top"
+													title="Attivo" class="dot bg-success"></span>
+											</c:when>
+											<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
+												<span id="dot" data-toggle="tooltip" data-placement="top"
+													title="Selezionato" class="dot bg-primary"></span>
+											</c:when>
+											<c:when test="${ cand.stato.descrizione == 'Da contattare'}">
+												<span id="dot" data-toggle="tooltip" data-placement="top"
+													title="Da contattare" class="dot bg-warning"></span>
+											</c:when>
+											<c:when test="${ cand.stato.descrizione == 'Scartato'}">
+												<span id="dot" data-toggle="tooltip" data-placement="top"
+													title="Scartato" class="dot bg-danger"></span>
+											</c:when>
+											<c:otherwise>
+												<span id="dot" data-toggle="tooltip" data-placement="top"
+													title="Nuovo inserito" class="dot bg-secondary"></span>
+											</c:otherwise>
+										</c:choose></td>
 									<td
 										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.anno}</td>
-								</c:if>
-								<c:if test="${ filter.key == 'telefono' }">
+										${cand.business.business}</td>
 									<td
 										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.telefono}</td>
-								</c:if>
-								<c:if test="${ filter.key == 'email' }">
+										${cand.nome}</td>
 									<td
 										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.email}</td>
-								</c:if>
-								<c:if test="${ filter.key == 'seniority' }">
-									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.seniority.seniority}</td>
-								</c:if>
-								<c:if test="${ filter.key == 'provenienza' }">
-									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.provenienza}</td>
-								</c:if>
-								<c:if test="${fn:contains( filter.key, 'area') }">
-									<td><c:forEach var="area" items="${cand.area}">
-											<div
+										${cand.cognome}</td>
+									<c:forEach items="${filterList}" var="filter">
+										<c:if test="${ filter.key == 'anno' }">
+											<td
 												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-												${area.area}</div>
-										</c:forEach></td>
-								</c:if>
-								<c:if test="${fn:contains( filter.key, 'mansione') }">
-									<td><c:forEach var="mansione" items="${cand.mansione}">
-											<div
+												${cand.anno}</td>
+										</c:if>
+										<c:if test="${ filter.key == 'telefono' }">
+											<td
 												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-												${mansione.mansione}</div>
-										</c:forEach></td>
+												${cand.telefono}</td>
+										</c:if>
+										<c:if test="${ filter.key == 'email' }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												${cand.email}</td>
+										</c:if>
+										<c:if test="${ filter.key == 'seniority' }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												${cand.seniority.seniority}</td>
+										</c:if>
+										<c:if test="${ filter.key == 'provenienza' }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												${cand.provenienza}</td>
+										</c:if>
+										<c:if test="${fn:contains( filter.key, 'area') }">
+											<td><c:forEach var="area" items="${cand.area}">
+													<div
+														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+														${area.area}</div>
+												</c:forEach></td>
+										</c:if>
+										<c:if test="${fn:contains( filter.key, 'mansione') }">
+											<td><c:forEach var="mansione" items="${cand.mansione}">
+													<div
+														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+														${mansione.mansione}</div>
+												</c:forEach></td>
 
-								</c:if>
-								<c:if test="${fn:contains( filter.key, 'specializzazione') }">
-									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										<c:forEach var="specializzazione"
-											items="${cand.candidatoSpecializzazione}">
-											<div>${specializzazione.specializzazione.specializzazione}
-												&nbsp ${specializzazione.anni} anni esperienza</div>
-										</c:forEach>
-									</td>
-								</c:if>
-								<c:if test="${fn:contains( filter.key, 'data') }">
-									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.inserimentoAzienda}</td>
-								</c:if>
-								<c:if test="${fn:contains( filter.key, 'costo') }">
-									<td
-										onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-										${cand.costo.orario} &#8364; /H</td>
-								</c:if>
+										</c:if>
+										<c:if test="${fn:contains( filter.key, 'specializzazione') }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												<c:forEach var="specializzazione"
+													items="${cand.candidatoSpecializzazione}">
+													<div>${specializzazione.specializzazione.specializzazione}
+														&nbsp ${specializzazione.anni} anni esperienza</div>
+												</c:forEach>
+											</td>
+										</c:if>
+										<c:if test="${fn:contains( filter.key, 'data') }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												${cand.inserimentoAzienda}</td>
+										</c:if>
+										<c:if test="${fn:contains( filter.key, 'costo') }">
+											<td
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												${cand.costo.orario} &#8364; /H</td>
+										</c:if>
+									</c:forEach>
+								</tr>
+
 							</c:forEach>
-						</tr>
-
-					</c:forEach>
-				</tbody>
-			</table>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
