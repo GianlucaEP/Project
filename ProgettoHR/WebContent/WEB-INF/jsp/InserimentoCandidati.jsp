@@ -25,14 +25,10 @@
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-/* Body e html generale*/
-html, body {
-	height: 100%;
-}
-
 body {
 	font-family: 'Poppins', sans-serif;
 	background: #fafafa;
+	transition: 0.5s;
 }
 
 a, a:hover, a:focus {
@@ -41,26 +37,16 @@ a, a:hover, a:focus {
 	transition: all 0.3s;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
 	background: #5aa9e6;
 	border: none;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
-}
 
 .navbar-nav .nav-link {
 	height: 50px;
 	width: 50px;
-	border-radius: 50%;
 	background-color: #7fc8f8;
 	border-radius: 50%;
 }
@@ -70,14 +56,12 @@ a, a:hover, a:focus {
 	height: 70px;
 }
 
-/* Barra Laterale */
-.container1 {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: rows;
-	justify-content: flex-start;
+#iconaLogout {
+	width: 25px;
+	height: 48px;
 }
 
+/* SIDEBAR */
 #sidebar {
 	width: 100%;
 	height: 100%;
@@ -90,7 +74,6 @@ a, a:hover, a:focus {
 	background: #5aa9e6;
 	color: #fff;
 	border-collapse: collapse;
-	height: 100%;
 }
 
 #sidebar .sidebar-header {
@@ -160,22 +143,25 @@ ul ul a {
 <body onload="impostaAnno()">
 	<div class="container-fluid p-0">
 		<!-- NAVBAR -->
-		<nav class="navbar navbar-expand-xl ">
+		<nav class="navbar">
 
 			<!-- LOGO -->
 			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
 				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
 			</a>
 
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
+					<li class="nav-item">
+						<form action="/ProgettoHR/Logout">
+							<button type="submit" class="btn nav-link p-0">
+								<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
+							</button>
+						</form>
+					</li>
 				</ul>
 			</div>
-
 		</nav>
-
 
 		<div class="row justify-content-start w-100 mt-4 mr-0 ml-0">
 			<!-- COLONNA BOTTONI LATERALI -->
@@ -418,9 +404,9 @@ ul ul a {
 
 					<div class="modal-footer">
 						<button type="submit" id="bottone-salva-mansione"
-							class="btn btn-success" style="background-color: green;">Salva</button>
+							class="btn btn-success">Salva</button>
 						<button type="reset" id="bottone-cancella-mansione"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+							class="btn btn-danger">Cancella</button>
 					</div>
 				</form:form>
 			</div>
@@ -452,9 +438,9 @@ ul ul a {
 
 					<div class="modal-footer">
 						<button type="submit" id="bottone-salva-area"
-							class="btn btn-success" style="background-color: green;">Salva</button>
+							class="btn btn-success">Salva</button>
 						<button type="reset" id="bottone-cancella-area"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+							class="btn btn-danger">Cancella</button>
 					</div>
 				</form:form>
 			</div>
@@ -488,9 +474,9 @@ ul ul a {
 
 					<div class="modal-footer">
 						<button type="submit" id="bottone-salva-specializzazione"
-							class="btn btn-success" style="background-color: green;">Salva</button>
+							class="btn btn-success">Salva</button>
 						<button type="reset" id="bottone-cancella-specializzazione"
-							class="btn btn-danger" style="background-color: red;">Cancella</button>
+							class="btn btn-danger">Cancella</button>
 					</div>
 
 				</form:form>
