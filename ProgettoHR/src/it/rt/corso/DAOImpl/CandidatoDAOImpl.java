@@ -150,5 +150,6 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		Utility.destroySession();
 		return lista;
 	}
+	
 
 }

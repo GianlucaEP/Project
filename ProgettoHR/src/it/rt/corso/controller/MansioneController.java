@@ -80,16 +80,8 @@ public class MansioneController {
 	@RequestMapping(value = "/AggiornaMansione/{businessUnit}", method = RequestMethod.POST)
 	public String aggiorna(@RequestParam("oldMansione") String mansione,@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {
 		
-		Mansione m = dao.get(mansione);
-		
-		dao.cancella(m);
-		
-		m = new Mansione();
-		
-		m.setMansione(newMansione);
-		
-		m = dao.inserisci(m);
-		
+		dao.updade(mansione, newMansione);
+
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();
 		
