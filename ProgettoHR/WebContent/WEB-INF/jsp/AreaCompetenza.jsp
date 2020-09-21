@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -131,6 +134,8 @@ a, a:hover, a:focus {
 </head>
 
 <body>
+	<c:set var="singlequote" value="'" />
+	<c:set var="backslash" value="&apos" />
 
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-expand-xl ">
@@ -171,7 +176,11 @@ a, a:hover, a:focus {
 						<tbody class="body">
 							<c:forEach var="area" items="${areaCompetenzaList}">
 								<tr>
-									<td>${area.area}</td>
+								
+								<c:set var="areaReplaced"
+										value="${fn:replace(area.area, singlequote, backslash)}"></c:set>
+									<c:set var="areaXSS" value="${fn:escapeXml(area.area)}"></c:set>
+									<td>${areaXSS}</td>
 
 									<td><button class="btn" data-toggle="modal"
 											id="bottoneEliminaArea"
@@ -181,7 +190,7 @@ a, a:hover, a:focus {
 										</button>
 										<button class="btn" data-toggle="modal"
 											id="bottoneModificaArea"
-											onclick="impostaParametriArea('${area.area}')"
+											onclick="impostaParametriArea('${areaReplaced}')"
 											data-target="#ModificaAreaModal">
 											<i class="fas fa-cogs"></i>
 										</button></td>
@@ -254,6 +263,7 @@ a, a:hover, a:focus {
 
 	<script>
 		function impostaParametriArea(id) {
+			id = id.replace("&apos", "'");
 			document.getElementById("oldArea").value = id;
 			document.getElementById("newArea").value = id;
 		}
