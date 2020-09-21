@@ -500,7 +500,7 @@ svg {
 					onsubmit="return validate('Mansione', '${mansioneList}' );">
 					<!-- tipo, valoreInserito, lista -->
 					<div class="modal-body">
-						<form:input path="mansione" type="text" class="form-control"
+						<form:input path="mansione" type="text" class="form-control" maxlength="45"
 							placeholder="Mansione" id="mansione" name="mansione"></form:input>
 					</div>
 
@@ -534,7 +534,7 @@ svg {
 					onsubmit="return validateArea('Area Competenza', '${areaList}');">
 					<div class="modal-body">
 
-						<form:input path="area" type="text" class="form-control"
+						<form:input path="area" type="text" class="form-control" maxlength="45"
 							placeholder="Area di Competenza" id="area"></form:input>
 					</div>
 
@@ -570,7 +570,7 @@ svg {
 					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
 					<div class="modal-body">
 
-						<form:input path="specializzazione" type="text"
+						<form:input path="specializzazione" type="text" maxlength="45"
 							class="form-control" placeholder="Specializzazione"
 							id="specializzazione"></form:input>
 
