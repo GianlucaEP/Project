@@ -2,6 +2,7 @@ package it.rt.corso.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class CandidatoSpecializzazione implements Bean,  Serializable{
 	
 	// MANY-TO-ONE con Specializzazione
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "specializzazione_fk")
 	private Specializzazione specializzazione;
 

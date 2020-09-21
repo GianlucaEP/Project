@@ -69,4 +69,15 @@ public class SpecializzazioneController {
 		
 		return "redirect:/Specializzazione/{businessUnit}";
 	}
+	
+	@RequestMapping(value = "/AggiornaSpecializzazione/{businessUnit}", method = RequestMethod.POST)
+	public String aggiorna(@RequestParam("oldSpecializzazione") String oldSpecializzazione,@RequestParam("newSpecializzazione") String newSpecializzazione, @PathVariable String businessUnit) {
+		
+		dao.updade(oldSpecializzazione, newSpecializzazione);
+
+		Singleton singleton = Singleton.getInstance();
+		singleton.aggiornaSpecializzazione();
+		
+		return "redirect:/Specializzazione/{businessUnit}";
+	}
 }

@@ -1,6 +1,10 @@
 package it.rt.corso.DAOImpl;
 
 import java.util.List;
+
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
 import it.rt.corso.beans.Specializzazione;
@@ -28,6 +32,20 @@ public class SpecializzazioneDAOImpl extends BaseDAO implements Specializzazione
 	@Override
 	public Specializzazione cancella(Specializzazione specializzazione) {
 		return (Specializzazione) super.cancella(specializzazione);
+	}
+	
+	
+	public int updade(String oldSpecializzazione, String newSpecializzazione) {
+
+		Transaction t = Utility.getSession().beginTransaction();	
+		Query query = Utility.getSession()
+				.createQuery("UPDATE Specializzazione set specializzazione = :newSpecializzazione WHERE specializzazione = :oldSpecializzazione");
+		query.setParameter("oldSpecializzazione", oldSpecializzazione);
+		query.setParameter("newSpecializzazione", newSpecializzazione);
+		int result = query.executeUpdate();
+		t.commit();
+		Utility.destroySession();
+		return result;
 	}
 
 }

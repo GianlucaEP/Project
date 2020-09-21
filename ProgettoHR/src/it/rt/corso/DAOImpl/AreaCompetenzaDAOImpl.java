@@ -2,6 +2,9 @@ package it.rt.corso.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
@@ -42,9 +45,18 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		return (AreaCompetenza) super.cancella(area);
 	}
 
-	@Override
-	public AreaCompetenza aggiorna(AreaCompetenza area) {
-		return (AreaCompetenza) super.aggiorna(area);
+	
+	public int updade(String oldArea, String newArea) {
+
+		Transaction t = Utility.getSession().beginTransaction();	
+		Query query = Utility.getSession()
+				.createQuery("UPDATE AreaCompetenza set area = :newArea WHERE area = :oldArea");
+		query.setParameter("oldArea", oldArea);
+		query.setParameter("newArea", newArea);
+		int result = query.executeUpdate();
+		t.commit();
+		Utility.destroySession();
+		return result;
 	}
 	
 }

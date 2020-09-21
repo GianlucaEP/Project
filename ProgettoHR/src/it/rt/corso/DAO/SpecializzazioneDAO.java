@@ -10,5 +10,6 @@ public interface SpecializzazioneDAO {
 	public Specializzazione get(String id); 
 	public List<Specializzazione> getLista();
 	public Specializzazione cancella(Specializzazione specializzazione);
+	public int updade(String oldSpecializzazione, String newSpecializzazione);
 	
 }

@@ -2,6 +2,8 @@ package it.rt.corso.beans;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ public class AreaCompetenza implements Bean{
 	private String area;
 	
 	//MANY-TO-MANY Con candidato
-	@ManyToMany( mappedBy = "area")
+	@ManyToMany( mappedBy = "area", cascade = CascadeType.ALL)
 	private Set<Candidato> candidato = new HashSet<>();
 	
 	

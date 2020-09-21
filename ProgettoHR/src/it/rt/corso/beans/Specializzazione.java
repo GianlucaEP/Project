@@ -19,7 +19,7 @@ public class Specializzazione implements Bean {
 	private String specializzazione;
 	
 	//ONE-TO-MANY con la classe CandidatoSpecializzazione
-	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "specializzazione")
+	@OneToMany(mappedBy = "specializzazione")
 	Set<CandidatoSpecializzazione> candidatoSpecializzazione;
 	
 

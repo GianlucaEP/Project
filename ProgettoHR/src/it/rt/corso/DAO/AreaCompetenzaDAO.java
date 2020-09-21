@@ -11,5 +11,5 @@ public interface AreaCompetenzaDAO {
 	public AreaCompetenza get(String id);
 	public List<AreaCompetenza> getIdByCandidato(int id);
 	public AreaCompetenza cancella(AreaCompetenza area);
-	public AreaCompetenza aggiorna(AreaCompetenza area);
+	public int updade(String oldArea, String newArea);
 }

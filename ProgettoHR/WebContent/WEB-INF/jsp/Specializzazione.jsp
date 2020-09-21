@@ -255,8 +255,12 @@ a, a:hover, a:focus {
 
 	<script>
 		function impostaParametriSpecializzazione(id) {
+			document.getElementById("oldSpecializzazione").value = id;
+			document.getElementById("newSpecializzazione").value = id;
+		}
+		
+		function impostaParametriSpecializzazioneEliminazione(id) {
 			document.getElementById("specializzazione").value = id;
-
 		}
 	</script>
 
