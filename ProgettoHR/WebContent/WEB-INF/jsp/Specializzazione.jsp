@@ -113,7 +113,20 @@ a, a:hover, a:focus {
 	font-size: 14px;
 	padding: 4px;
 }
+
+#bottoneModificaSpecializzazione {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
+
+#bottoneEliminaSpecializzazione {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
 </style>
+
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -159,10 +172,18 @@ a, a:hover, a:focus {
 										onclick="window.location = '/ProgettoHR/Specializzazione/${businessUnit}'">
 											${specializzazione.specializzazione}</span></td>
 
-									<td><a href="" data-toggle="modal"
-										onclick="impostaParametriSpecializzazione('${specializzazione.specializzazione}')"
-										data-target="#EliminaSpecializzazioneModal"><i
-											class="fas fa-trash-alt"></i></a>
+									<td><button class="btn"
+											id="bottoneEliminaSpecializzazione" data-toggle="modal"
+											onclick="impostaParametriSpecializzazioneEliminazione('${specializzazione.specializzazione}')"
+											data-target="#EliminaSpecializzazioneModal">
+											<i class="fas fa-trash"></i>
+										</button>
+										<button class="btn" id="bottoneModificaSpecializzazione"
+											data-toggle="modal"
+											onclick="impostaParametriSpecializzazione('${specializzazione.specializzazione}')"
+											data-target="#ModificaSpecializzazioneModal">
+											<i class="fas fa-cogs"></i>
+										</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -179,6 +200,35 @@ a, a:hover, a:focus {
 		</div>
 	</div>
 
+	<!-- MODAL MODIFICA MANSIONE -->
+	<div class="modal fade" id="ModificaSpecializzazioneModal"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/AggiornaSpecializzazione/${businessUnit}"
+					method="POST">
+
+					<div class="modal-header">
+						Aggiorna Specializzazione <input style="visibility: hidden;"
+							name="oldSpecializzazione" id="oldSpecializzazione" />
+					</div>
+
+					<div class="modal-body">
+						<input type="text" class="form-control" name="newSpecializzazione"
+							id="newSpecializzazione">
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success">Aggiorna</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- MODAL CANCELLA SPECIALIZZAZIONE -->
 	<div class="modal fade" id="EliminaSpecializzazioneModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,14 +239,13 @@ a, a:hover, a:focus {
 
 					<div class="modal-header">
 						Sei sicuro di voler cancellare la specializzazione selezionata? <input
-							style="visibility: hidden;" name="specializzazione" id="specializzazione" />
+							style="visibility: hidden;" name="specializzazione"
+							id="specializzazione" />
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="submit" class="btn btn-success">sì</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
 					</div>
 
 				</form>

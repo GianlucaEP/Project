@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Area competenza</title>
+<title>Mansione</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -74,7 +74,7 @@ a, a:hover, a:focus {
 	margin-top: 20px;
 }
 
-/* TABELLA AREE */
+/* TABELLA MANSIONI */
 .tabellaMansione {
 	width: 100%;
 	border-collapse: collapse;
@@ -113,7 +113,20 @@ a, a:hover, a:focus {
 	font-size: 14px;
 	padding: 4px;
 }
+
+#bottoneModificaMansione {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
+
+#bottoneEliminaMansione {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
 </style>
+
 </head>
 <body>
 
@@ -150,7 +163,6 @@ a, a:hover, a:focus {
 							<tr>
 								<th><h3>MANSIONE</h3></th>
 								<th scope="col"></th>
-								<th scope="col"></th>
 							</tr>
 						</thead>
 
@@ -159,16 +171,18 @@ a, a:hover, a:focus {
 								<tr>
 									<td>${mansione.mansione}</td>
 
-									<td><button class="btn btn-primary" data-toggle="modal"
+									<td><button class="btn" id="bottoneEliminaMansione"
+											data-toggle="modal"
+											onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
+											data-target="#EliminaMansioneModal">
+											<i class="fas fa-trash"></i>
+										</button>
+										<button class="btn" id="bottoneModificaMansione"
+											data-toggle="modal"
 											onclick="impostaParametriMansione('${mansione.mansione}')"
 											data-target="#ModificaMansioneModal">
 											<i class="fas fa-cogs"></i>
-										</button>
-									<td><button class="btn btn-primary" data-toggle="modal"
-											onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
-											data-target="#EliminaMansioneModal">
-											<i class="fas fa-trash-alt"></i>
-										</button>
+										</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -199,14 +213,13 @@ a, a:hover, a:focus {
 					</div>
 
 					<div class="modal-body">
-						<input type="text" class="form-control" name="newMansione" id="newMansione">
+						<input type="text" class="form-control" name="newMansione"
+							id="newMansione">
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">Aggiorna</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">Annulla</button>
+						<button type="submit" class="btn btn-success">Aggiorna</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
 					</div>
 
 				</form>
@@ -228,10 +241,8 @@ a, a:hover, a:focus {
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="submit" class="btn btn-success">sì</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
 					</div>
 
 				</form>
