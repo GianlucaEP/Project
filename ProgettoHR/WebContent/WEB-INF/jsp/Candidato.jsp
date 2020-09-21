@@ -1713,9 +1713,9 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
-										<form:input type="text" class="form-control"
+										<form:textarea class="form-control"  maxlength="1000" rows="6" style="resize: none;"
 											id="idCommentiCosto" name="commenti" path="costo.commento"
-											value="${costo.commento}"></form:input>
+											value="${costo.commento}"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -1815,9 +1815,9 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input type="text" class="form-control"
+										<form:textarea class="form-control"  maxlength="1000" rows="6" style="resize: none;"
 											id="feedbackQualificationMeeting" path="feedback"
-											name="commenti" required="required"></form:input>
+											name="commenti" required="required"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -2049,7 +2049,7 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea path="commento" style="resize: none;" rows="6" class="form-control"
+										<form:textarea path="commento"  maxlength="1000" rows="6" style="resize: none;" class="form-control"
 											id="idCommentoFeedback" name="feedback"></form:textarea>
 									</div>
 								</div>
@@ -2134,8 +2134,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:input type="text" class="form-control" id="idCommentiQM"
-											path="feedback" name="commenti"></form:input>
+										<form:textarea maxlength="1000" rows="6" style="resize: none;" class="form-control" id="idCommentiQM"
+											path="feedback" name="commenti"></form:textarea>
 									</div>
 								</div>
 							</div>

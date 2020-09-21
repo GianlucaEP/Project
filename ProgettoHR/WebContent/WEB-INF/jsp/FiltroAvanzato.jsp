@@ -258,7 +258,7 @@ ul ul a {
 
 				<form autocomplete="off" method="POST"
 					action="/ProgettoHR/Filter/advanced/${businessUnit}"
-					onsubmit="controlloMappa()">
+					onsubmit="return controlloMappa()">
 
 					<div class="col">
 
@@ -606,6 +606,12 @@ function controlloMappa() {
 			  	inputFormArray[i].name="";
 		  }
 	}
+	  if(isNaN(document.getElementById("costoMinInput").value) || isNaN(document.getElementById("costoMaxInput").value)){
+		  $('#errorModal').modal('toggle');   
+			document.getElementById("errorModalBody").innerHTML = "Valore non numerico inserito nel filtro per costi.";  
+			return false;  
+	  }
+	  
 	  if (document.getElementById("selectSeniority").value === ""){
 		  document.getElementById("selectSeniority").name="" 
 	  }
