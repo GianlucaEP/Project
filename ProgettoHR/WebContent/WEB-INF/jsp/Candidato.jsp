@@ -2603,12 +2603,12 @@ ul ul a {
 				return false;
 			}
 			
-			if(document.getElementById("idRAL").value.length > 9){
+			if(document.getElementById("idRAL").value.length > 9 || isNaN(document.getElementById("idRAL").value)){
 				 $('#errorModal').modal('toggle');
 					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo RAL"
 					return false;
 			 }
-			 if(document.getElementById("idDesiderata").value.length > 9){
+			 if(document.getElementById("idDesiderata").value.length > 9 || isNaN(document.getElementById("idDesiderata").value)){
 				 $('#errorModal').modal('toggle');
 					document.getElementById("errorModalBody").innerHTML = "Errore inserimento campo DESIDERATA"
 					return false;
