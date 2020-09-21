@@ -442,7 +442,17 @@ svg {
 
 												<td>${cand.seniority.seniority}</td>
 
-												<td><button class="btn p-2"
+												<td>
+													<button class="btn float-right"
+														id="bottoneEliminaCandidato" data-toggle="modal"
+														onclick="impostaParametriCandidatoId(${cand.id})"
+														data-target="#EliminaModal">
+														<span data-toggle="tooltip" data-placement="top"
+															title="Elimina candidato"> <i class="fas fa-trash"></i>
+														</span>
+
+													</button>
+													<button class="btn p-2 mr-1 float-right"
 														id="bottoneModificaCandidato"
 														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 														<span data-toggle="tooltip" data-placement="top"
@@ -450,15 +460,7 @@ svg {
 															class="fas fa-user-edit"></i></span>
 
 													</button>
-													<button class="btn" id="bottoneEliminaCandidato"
-														data-toggle="modal"
-														onclick="impostaParametriCandidatoId(${cand.id})"
-														data-target="#EliminaModal">
-														<span data-toggle="tooltip" data-placement="top"
-															title="Elimina candidato"> <i class="fas fa-trash"></i>
-														</span>
-
-													</button></td>
+												</td>
 
 											</tr>
 
