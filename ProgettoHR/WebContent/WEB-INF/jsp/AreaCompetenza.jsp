@@ -114,6 +114,18 @@ a, a:hover, a:focus {
 	font-size: 14px;
 	padding: 4px;
 }
+
+#bottoneModificaArea {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
+
+#bottoneEliminaArea {
+	float: right;
+	background-color: #5aa9e6;
+	margin-left: 2px;
+}
 </style>
 
 </head>
@@ -153,7 +165,6 @@ a, a:hover, a:focus {
 							<tr>
 								<th><h3>AREA DI COMPETENZA</h3></th>
 								<th scope="col"></th>
-								<th scope="col"></th>
 							</tr>
 						</thead>
 
@@ -162,16 +173,19 @@ a, a:hover, a:focus {
 								<tr>
 									<td>${area.area}</td>
 
-									<td><button class="btn btn-primary" data-toggle="modal"
+									<td><button class="btn" data-toggle="modal"
+											id="bottoneEliminaArea"
+											onclick="impostaParametriAreaEliminazione('${area.area}')"
+											data-target="#EliminaAreaModal">
+											<i class="fas fa-trash"></i>
+										</button>
+										<button class="btn" data-toggle="modal"
+											id="bottoneModificaArea"
 											onclick="impostaParametriArea('${area.area}')"
 											data-target="#ModificaAreaModal">
 											<i class="fas fa-cogs"></i>
-										</button>
-									<td><button class="btn btn-primary" data-toggle="modal"
-											onclick="impostaParametriAreaEliminazione('${area.area}')"
-											data-target="#EliminaAreaModal">
-											<i class="fas fa-trash-alt"></i>
-										</button>
+										</button></td>
+
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -193,7 +207,8 @@ a, a:hover, a:focus {
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<form action="/ProgettoHR/AggiornaArea/${businessUnit}" method="POST">
+				<form action="/ProgettoHR/AggiornaArea/${businessUnit}"
+					method="POST">
 
 					<div class="modal-header">
 						Aggiorna Area<input style="visibility: hidden;" name="oldArea"
@@ -206,10 +221,8 @@ a, a:hover, a:focus {
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">Aggiorna</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">Annulla</button>
+						<button type="submit" class="btn btn-success">Aggiorna</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
 					</div>
 
 				</form>
@@ -230,10 +243,8 @@ a, a:hover, a:focus {
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="submit" class="btn btn-success">sì</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
 					</div>
 
 				</form>
