@@ -460,13 +460,13 @@ ul ul a {
 									<c:if test="${ filter.key == 'provenienza' }">
 										<th scope="col">Provenienza</th>
 									</c:if>
-									<c:if test="${fn:contains( filter.key, 'area') }">
+									<c:if test="${fn:contains( filter.key, 'area0') }">
 										<th scope="col">Area Competenza</th>
 									</c:if>
-									<c:if test="${fn:contains( filter.key, 'mansione') }">
+									<c:if test="${fn:contains( filter.key, 'mansione0') }">
 										<th scope="col">Mansione</th>
 									</c:if>
-									<c:if test="${fn:contains( filter.key, 'specializzazione') }">
+									<c:if test="${fn:contains( filter.key, 'specializzazione0') }">
 										<th scope="col">Specializzazione</th>
 									</c:if>
 									<c:if test="${fn:contains( filter.key, 'data') }">
@@ -539,14 +539,14 @@ ul ul a {
 												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												${cand.provenienza}</td>
 										</c:if>
-										<c:if test="${fn:contains( filter.key, 'area') }">
+										<c:if test="${fn:contains( filter.key, 'area0') }">
 											<td><c:forEach var="area" items="${cand.area}">
 													<div
 														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 														${area.area}</div>
 												</c:forEach></td>
 										</c:if>
-										<c:if test="${fn:contains( filter.key, 'mansione') }">
+										<c:if test="${fn:contains( filter.key, 'mansione0') }">
 											<td><c:forEach var="mansione" items="${cand.mansione}">
 													<div
 														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
@@ -554,7 +554,7 @@ ul ul a {
 												</c:forEach></td>
 
 										</c:if>
-										<c:if test="${fn:contains( filter.key, 'specializzazione') }">
+										<c:if test="${fn:contains( filter.key, 'specializzazione0') }">
 											<td
 												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 												<c:forEach var="specializzazione"
