@@ -86,8 +86,8 @@ a, a:hover, a:focus {
 	<div id="content">
 		<h1>Errore del server</h1>
 		<div>
-			Georghe ha rotto qualcosa.<br> Clicca <a style="color: blue;"
-				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.<br>Placeholder text - da modificare in successive release
+			Oops! Qualcosa è andato storto.<br> Clicca <a style="color: blue;"
+				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.<br>Se il problema persiste contattare l'amministratore.
 		</div>
 	</div>
 
