@@ -595,12 +595,15 @@ ul ul a {
 										class="fas fa-plus"></i> Telefonata </a></li>
 							</ul></li>
 					</c:if>
+
 					<c:if test='${fn:contains(funzionalita, "aggiunta allegati")}'>
 						<li><a href="" data-toggle="modal"
 							data-target="#allegatiModal" type="button" class="text-center">Allegati
 								<i class="fas fa-folder-open"></i>
 						</a></li>
 					</c:if>
+					<li><a id="aSidebar" href="/ProgettoHR/Filter/${businessUnit}"
+						type="button" class="text-center">Filtri</a></li>
 				</ul>
 
 			</nav>
@@ -1713,9 +1716,9 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
-										<form:textarea class="form-control"  maxlength="1000" rows="6" style="resize: none;"
-											id="idCommentiCosto" name="commenti" path="costo.commento"
-											value="${costo.commento}"></form:textarea>
+										<form:textarea class="form-control" maxlength="1000" rows="6"
+											style="resize: none;" id="idCommentiCosto" name="commenti"
+											path="costo.commento" value="${costo.commento}"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -1815,9 +1818,9 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea class="form-control"  maxlength="1000" rows="6" style="resize: none;"
-											id="feedbackQualificationMeeting" path="feedback"
-											name="commenti" required="required"></form:textarea>
+										<form:textarea class="form-control" maxlength="1000" rows="6"
+											style="resize: none;" id="feedbackQualificationMeeting"
+											path="feedback" name="commenti" required="required"></form:textarea>
 									</div>
 								</div>
 							</div>
@@ -1926,7 +1929,7 @@ ul ul a {
 										<form:select id="tipoModificaFeedback"
 											class="form-control text-center" name="tipoFeedback"
 											path="tipo.tipo">
-											
+
 											<c:forEach var="tipo" items="${tipoFeedbackList}">
 												<option value="${tipo.tipo}">${tipo.tipo}</option>
 											</c:forEach>
@@ -1949,7 +1952,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea id="commentoFeedback" path="commento" maxlength="1000" rows="6" style="resize: none;"
+										<form:textarea id="commentoFeedback" path="commento"
+											maxlength="1000" rows="6" style="resize: none;"
 											class="form-control" name="feedback" required="required"></form:textarea>
 									</div>
 								</div>
@@ -2049,7 +2053,8 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea path="commento"  maxlength="1000" rows="6" style="resize: none;" class="form-control"
+										<form:textarea path="commento" maxlength="1000" rows="6"
+											style="resize: none;" class="form-control"
 											id="idCommentoFeedback" name="feedback"></form:textarea>
 									</div>
 								</div>
@@ -2134,8 +2139,9 @@ ul ul a {
 								<div class="col w-100 p-0 justify-content-md-start">
 									<div class="form-group">
 										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea maxlength="1000" rows="6" style="resize: none;" class="form-control" id="idCommentiQM"
-											path="feedback" name="commenti"></form:textarea>
+										<form:textarea maxlength="1000" rows="6" style="resize: none;"
+											class="form-control" id="idCommentiQM" path="feedback"
+											name="commenti"></form:textarea>
 									</div>
 								</div>
 							</div>
