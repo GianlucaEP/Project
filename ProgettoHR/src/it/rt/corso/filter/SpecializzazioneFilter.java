@@ -25,6 +25,9 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 		SpecializzazioneFilter.listaPredicatesSpecializzazione = listaPredicatesSpecializzazione;
 	}
 
+	// TODO gestione della stringa dividere anni e specializzazione, fare query con
+	// greater than. se anni "" query solo specializzazioni
+
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
@@ -33,17 +36,28 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 			System.out.println("sas");
 			CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 			// join tra candidato e candidatoSpecializzazione
-			Join<Candidato, CandidatoSpecializzazione> candidatoSpecializzazione = root.join("candidatoSpecializzazione",
-					JoinType.INNER);
+			Join<Candidato, CandidatoSpecializzazione> candidatoSpecializzazione = root
+					.join("candidatoSpecializzazione", JoinType.INNER);
 
 			// join tra candidato e candidatoSpecializzazione
 			Join<Specializzazione, CandidatoSpecializzazione> specializzazione = candidatoSpecializzazione
 					.join("specializzazione", JoinType.INNER);
+			if (Character.isDigit(valore.charAt(valore.length() - 1))) {
+				int anniSpecializzazione = getAnniSpecializzazione(valore);
+				valore = valore.substring(0, valore.length() - 2);
+				listaPredicatesSpecializzazione
+						.add(criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + valore + "%"));
+				listaPredicatesSpecializzazione.add(criteriaBuilder
+						.greaterThanOrEqualTo(candidatoSpecializzazione.get("anni"), +anniSpecializzazione));
+				CandidatoFilter.setAddedCriteria(true);
+
+				return listaPredicati;
+			}
 
 			listaPredicatesSpecializzazione
-					.add(criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + valore + "%"));
+					.add(criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + valore.trim() + "%"));
 			CandidatoFilter.setAddedCriteria(true);
-			
+
 			return listaPredicati;
 		} else {
 			return listaPredicati;
@@ -51,24 +65,30 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 		}
 
 	}
-	
-	/** 
+
+	/**
 	 * 
 	 * add an or predicate to the given List of predicates
 	 * 
-	 * @param listaPredicati the list of predicates to which the or predicate will be added
+	 * @param listaPredicati the list of predicates to which the or predicate will
+	 *                       be added
 	 * 
 	 * @return the given list of predicates with the added predicate
 	 * 
-	 * */
-	public static List<Predicate> buildSpecializzazionePredicate(List<Predicate> listaPredicati){
+	 */
+	public static List<Predicate> buildSpecializzazionePredicate(List<Predicate> listaPredicati) {
 		Predicate[] predicatesSpecializzazioni = listaPredicatesSpecializzazione
 				.toArray(new Predicate[listaPredicatesSpecializzazione.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
 		// aggiunge alla lista di tutti i predicati la or delle mansioni
 		listaPredicati.add(criteriaBuilder.and(predicatesSpecializzazioni));
 		listaPredicatesSpecializzazione = new ArrayList<Predicate>();
-		
+
 		return listaPredicati;
+	}
+
+	private static int getAnniSpecializzazione(String specializzazione) {
+		return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
+
 	}
 }
