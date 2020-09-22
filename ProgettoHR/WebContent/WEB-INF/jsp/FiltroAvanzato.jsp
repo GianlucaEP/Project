@@ -101,7 +101,7 @@ a, a:hover, a:focus {
 	height: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 0px 5px 5px 0px;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
