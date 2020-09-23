@@ -507,9 +507,9 @@ ul ul a {
 
 
 	<script type="text/javascript">
-		areaCnt = 0;
-		mansioneCnt = 0;
-		specializzazioneCnt = 0;
+		//areaCnt = 0;
+		//mansioneCnt = 0;
+		//specializzazioneCnt = 0;
 		
 		function impostaAnno(){
 			document.getElementById("anno").value = "";
@@ -517,16 +517,16 @@ ul ul a {
 		
 
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
-			if(document.getElementById("area0") !== null){   
-				for(var i = 0; i<areaCnt; i++){       
-				 	var areaId = "area"+i;
-					if(document.getElementById(areaId).value === document.getElementById("areaCompetenzaInput").value){  
+			var areeCompetenzaEsistenti = document.getElementById("areeCompetenzaDiv").children;
+			if(areeCompetenzaEsistenti.length > 1){   
+				for(var i=1; i<areeCompetenzaEsistenti.length; i++){    
+					var input = areeCompetenzaEsistenti[i].children[0].children[0];
+					if(input.value === document.getElementById("areaCompetenzaInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
               		}           
-				} 
-			
+				} 			
 			}
 			for(area of buildString(areaCompetenzaList)){
 				if(document.getElementById("areaCompetenzaInput").value === area){
@@ -543,10 +543,10 @@ ul ul a {
 					var ColDiv2 = document.createElement("div");
 						ColDiv2.classList.add("col-1");
 					
-					areaName = "area" + areaCnt;
-					areaCnt++;
+					//areaName = "area" + areaCnt;
+					//areaCnt++;
 					
-					tagInput.id = areaName;
+					//tagInput.id = areaName;
 					tagInput.name = "areaCompetenza";
 					tagInput.readOnly = true;
 					
@@ -577,16 +577,16 @@ ul ul a {
 		
 
 		function stampaMansioneSelezionata(mansioneList) {
-			if(document.getElementById("mansione0") !== null){   
-				for(var i = 0; i<mansioneCnt; i++){       
-				 	var mansioneId = "mansione"+i;
-					if(document.getElementById(mansioneId).value === document.getElementById("mansioneInput").value){  
+			var mansioniEsistenti = document.getElementById("mansioneDiv").children;
+			if(mansioniEsistenti.length > 1){   
+				for(var i=1; i<mansioniEsistenti.length; i++){    
+					var input = mansioniEsistenti[i].children[0].children[0];
+					if(input.value === document.getElementById("mansioneInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
               		}           
-				} 
-			
+				} 			
 			}
 			
 			for(mansione of buildString(mansioneList)){
@@ -605,10 +605,10 @@ ul ul a {
 					var ColDiv2 = document.createElement("div");
 						ColDiv2.classList.add("col-1");
 			
-			mansioneName = "mansione" + mansioneCnt;
-			mansioneCnt++;
+			//mansioneName = "mansione" + mansioneCnt;
+			//mansioneCnt++;
 			
-			tagInput.id = mansioneName;
+			//tagInput.id = mansioneName;
 			tagInput.name = "mansioni";
 			tagInput.readOnly = true;
 			
@@ -637,16 +637,18 @@ ul ul a {
 		
 		
 		function stampaSpecializzazioneSelezionata(specializzazioneList) {
-			if(document.getElementById("specializzazione0") !== null){   
-				for(var i = 0; i<specializzazioneCnt; i++){       
-				 	var specializzazioneId = "specializzazione"+i;
-				 	var spec = document.getElementById(specializzazioneId).value;
-					if(spec.split(" ")[0] === document.getElementById("specializzazioneInput").value){  
+			var specializzazioniEsistenti = document.getElementById("specializzazioneDiv").children;
+			if(specializzazioniEsistenti.length > 1){   
+				for(var i=1; i<specializzazioniEsistenti.length; i++){    
+					var input = specializzazioniEsistenti[i].children[0].children[0];
+					input = input.value;
+					input = input.split(" ");
+					if(input[0] === document.getElementById("specializzazioneInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              
               		}           
-				} 	
+				} 			
 			}
 			
 			if(document.getElementById("anniEsperienzaInput").value < 0){
@@ -672,10 +674,10 @@ ul ul a {
 					var ColDiv2 = document.createElement("div");
 						ColDiv2.classList.add("col-1");
 
-					specializzazioneName = "specializzazione" + specializzazioneCnt;
-					specializzazioneCnt++;
+					//specializzazioneName = "specializzazione" + specializzazioneCnt;
+					//specializzazioneCnt++;
 					
-					tagInput.id = specializzazioneName;
+					//tagInput.id = specializzazioneName;
 					tagInput.name = "specializzazione";
 					tagInput.readOnly = true;
 					
