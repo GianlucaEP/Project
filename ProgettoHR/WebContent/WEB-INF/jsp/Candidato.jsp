@@ -2456,7 +2456,7 @@ ul ul a {
 					var input = specializzazioniEsistenti[i].children[0].children[0];
 					input = input.value;
 					input = input.split(" ");
-					if(input === document.getElementById("specializzazioneInput").value){  
+					if(input[0] === document.getElementById("specializzazioneInput").value){  
 						$('#errorModal').modal('toggle');   
 						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 						return;              

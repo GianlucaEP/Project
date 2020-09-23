@@ -53,7 +53,8 @@ public class CandidatiController {
 	}
 
 	@RequestMapping("/Candidati/{businessUnit}")
-	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit,
+			@SessionAttribute("utente") Utente utente) {
 
 		Singleton singleton = Singleton.getInstance();
 
@@ -324,8 +325,9 @@ public class CandidatiController {
 
 		List<Feedback> f = feedbackDAO.getByIdCandidato(id);
 
-		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita).collect(Collectors.toList());
-		
+		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita)
+				.collect(Collectors.toList());
+
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mostraCandidato", c);
@@ -394,15 +396,21 @@ public class CandidatiController {
 
 		return listaCandidatoSpecializzazione;
 	}
-	
+
 	private static int getAnniSpecializzazione(String specializzazione) {
-		
-		return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
-		
+
+		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
+			return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
+		}
+		return 0;
 	}
-	
+
 	private static String getSpecializzazioneName(String specializzazione) {
-		return specializzazione.substring(0, specializzazione.length() - 2);
+		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
+			return specializzazione.substring(0, specializzazione.length() - 2);
+		}
+		return specializzazione.substring(0, specializzazione.length() - 1);
+
 	}
 
 }
