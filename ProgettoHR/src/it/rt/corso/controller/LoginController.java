@@ -1,5 +1,6 @@
 package it.rt.corso.controller;
 
+import java.security.NoSuchAlgorithmException;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import it.rt.corso.DAO.UtenteDAO;
 import it.rt.corso.beans.Utente;
+import it.rt.corso.filter.PasswordEncrypter;
 import it.rt.corso.utility.Utility;
 
 @Controller
@@ -30,17 +32,18 @@ public class LoginController {
 
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String display() {
-		 
+
 		return "Login";
 	}
 
 	@RequestMapping(value = "/LogginIn", method = RequestMethod.POST)
-	public String Login(@ModelAttribute Utente utente, Model m) {
-
+	public String Login(@ModelAttribute Utente utente, Model m) throws NoSuchAlgorithmException {
 		// creo la sessionFactory che rimarrà aperta fino a fine sessione
 		Utility.buildSessionFactory();
-		Utente u = udao.getByUsernamePassword(utente.getUsername(), utente.getPassword());
-
+		
+		String encryptedPassword = PasswordEncrypter.encryptPassword(utente.getPassword());
+		Utente u = udao.getByUsernamePassword(utente.getUsername(), encryptedPassword);
+		
 		if (u != null) {
 
 			m.addAttribute("utente", u);
