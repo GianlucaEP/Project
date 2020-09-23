@@ -323,6 +323,12 @@ svg {
 										type="button"><i class="fas fa-long-arrow-alt-right"></i>
 											Visualizza Specializzazione</a></li>
 								</c:when>
+								<c:when test="${funz.funzionalita == 'aggiunta utente'}">
+									<li><a id="aSidebar"
+										href="/ProgettoHR/Registrati/${businessUnit}" type="button"><i
+											class="fas fa-plus"></i> Nuovo Utente </a></li>
+
+								</c:when>
 							</c:choose>
 						</c:forEach>
 
@@ -500,8 +506,9 @@ svg {
 					onsubmit="return validate('Mansione', '${mansioneList}' );">
 					<!-- tipo, valoreInserito, lista -->
 					<div class="modal-body">
-						<form:input path="mansione" type="text" class="form-control" maxlength="45"
-							placeholder="Mansione" id="mansione" name="mansione"></form:input>
+						<form:input path="mansione" type="text" class="form-control"
+							maxlength="45" placeholder="Mansione" id="mansione"
+							name="mansione"></form:input>
 					</div>
 
 					<div class="modal-footer">
@@ -534,8 +541,8 @@ svg {
 					onsubmit="return validateArea('Area Competenza', '${areaList}');">
 					<div class="modal-body">
 
-						<form:input path="area" type="text" class="form-control" maxlength="45"
-							placeholder="Area di Competenza" id="area"></form:input>
+						<form:input path="area" type="text" class="form-control"
+							maxlength="45" placeholder="Area di Competenza" id="area"></form:input>
 					</div>
 
 					<div class="modal-footer">
