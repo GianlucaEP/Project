@@ -546,18 +546,28 @@ ul ul a {
 											<td>${cand.inserimentoAzienda}</td>
 										</c:if>
 										<c:if test="${fn:contains( filter.key, 'costo') }">
-											<td>${cand.costo.orario} &#8364; /H</td>
+											<td>${cand.costo.orario}&#8364;/H</td>
 										</c:if>
 									</c:forEach>
-									<td>
-										<button class="btn p-2 mr-1" style="border-color: transparent; background: #5aa9e6;"
-											id="bottoneModificaCandidato" onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+									<td><button class="btn"
+											style="border-color: transparent; background: #5aa9e6;"
+											id="bottoneModificaCandidato"
+											onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 											<span data-toggle="tooltip" data-placement="top"
 												title="Modifica candidato"><i
 												class="fas fa-user-edit"></i></span>
 
 										</button>
-									</td>
+										<button class="btn"
+											style="border-color: transparent; background: #5aa9e6;"
+											id="bottoneEliminaCandidato" data-toggle="modal"
+											onclick="impostaParametriCandidatoId(${cand.id})"
+											data-target="#EliminaModal">
+											<span data-toggle="tooltip" data-placement="top"
+												title="Elimina candidato"> <i class="fas fa-trash"></i>
+											</span>
+
+										</button></td>
 								</tr>
 
 							</c:forEach>
@@ -567,6 +577,28 @@ ul ul a {
 			</c:choose>
 		</div>
 	</div>
+	<!-- MODAL CANCELLA CANDIDATO -->
+	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
+
+					<div class="modal-header">
+						Sei sicuro di voler cancellare il candidato selezionato? <input
+							style="visibility: hidden;" name="idCandidato" id="candidatoId" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success">si</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal errore -->
 	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -592,6 +624,11 @@ ul ul a {
 	areaCnt = 0;
 	mansioneCnt = 0;
 	specializzazioneCnt = 0;
+	
+	function impostaParametriCandidatoId(id) {
+		document.getElementById("candidatoId").value = id;
+
+	}
 
 function controlloMappa() {
 	  var inputFormArray = document.getElementsByTagName("input");

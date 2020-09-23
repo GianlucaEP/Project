@@ -685,6 +685,7 @@ ul ul a {
 					
 					tagDivButton.onclick = function(){				              	              	          				
 						tagDiv.remove();
+						specializzazioneCnt--;
 					};
 					
 					ColDiv1.appendChild(tagInput)
