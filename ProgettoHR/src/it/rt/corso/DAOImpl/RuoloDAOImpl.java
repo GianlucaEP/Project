@@ -11,7 +11,7 @@ import it.rt.corso.utility.Utility;
 @SuppressWarnings("unchecked")
 public class RuoloDAOImpl extends BaseDAO implements RuoloDAO {
 
-	public Ruolo getRuolo(String id) {
+	public Ruolo getRuolo(int id) {
 		return (Ruolo) super.get(Ruolo.class, id);
 	}
 
