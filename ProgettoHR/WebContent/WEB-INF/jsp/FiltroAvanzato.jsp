@@ -658,17 +658,18 @@ function controlloMappa() {
 	// STAMPA AREA
 	
 	function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
-		if(document.getElementById("area0") !== null){   
-			for(var i = 0; i<areaCnt; i++){       
-			 	var areaId = "area"+i;
-				if(document.getElementById(areaId).value === document.getElementById("areaCompetenzaInput").value){  
+		var areeCompetenzaEsistenti = document.getElementById("areaCompetenzaDiv").children;
+		if(areeCompetenzaEsistenti.length > 2){   
+			for(var i=2; i<areeCompetenzaEsistenti.length; i++){    
+				var input = areeCompetenzaEsistenti[i].children[0].children[0];
+				if(input.value === document.getElementById("areaCompetenzaInput").value){  
 					$('#errorModal').modal('toggle');   
 					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 					return;              
           		}           
-			} 
-		
+			} 			
 		}
+		
 		for(area of buildString(areaCompetenzaList)){
 			if(document.getElementById("areaCompetenzaInput").value === area){
 				var tagDiv = document.createElement("div");		
@@ -689,7 +690,7 @@ function controlloMappa() {
 				
 				
 				
-				tagInput.id = areaName;
+				//tagInput.id = areaName;
 				tagInput.name = areaName;
 				tagInput.readOnly = true;
 				
@@ -720,16 +721,16 @@ function controlloMappa() {
 	
  	// STAMPA MANSIONE
 	function stampaMansioneSelezionata(mansioneList) {
-		if(document.getElementById("mansione0") !== null){   
-			for(var i = 0; i<mansioneCnt; i++){       
-			 	var mansioneId = "mansione"+i;
-				if(document.getElementById(mansioneId).value === document.getElementById("mansioneInput").value){  
+		var mansioniEsistenti = document.getElementById("mansioneDiv").children;
+		if(mansioniEsistenti.length > 2){   
+			for(var i=2; i<mansioniEsistenti.length; i++){    
+				var input = mansioniEsistenti[i].children[0].children[0];
+				if(input.value === document.getElementById("mansioneInput").value){  
 					$('#errorModal').modal('toggle');   
 					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 					return;              
           		}           
-			} 
-		
+			} 			
 		}
 		
 		for(mansione of buildString(mansioneList)){
@@ -751,7 +752,7 @@ function controlloMappa() {
 		mansioneName = "mansione" + mansioneCnt;
 		mansioneCnt++;
 		
-		tagInput.id = mansioneName;
+		//tagInput.id = mansioneName;
 		tagInput.name = mansioneName;
 		tagInput.readOnly = true;
 		
@@ -780,16 +781,18 @@ function controlloMappa() {
 	
 	// STAMPA SPECIALIZZAZIONE
 	function stampaSpecializzazioneSelezionata(specializzazioneList) {
-		if(document.getElementById("specializzazione0") !== null){   
-			for(var i = 0; i<specializzazioneCnt; i++){       
-			 	var specializzazioneId = "specializzazione"+i;
-			 	var spec = document.getElementById(specializzazioneId).value;
-				if(spec.split(" ")[0] === document.getElementById("specializzazioneInput").value){  
+		var specializzazioniEsistenti = document.getElementById("specializzazioneDiv").children;
+		if(specializzazioniEsistenti.length > 2){   
+			for(var i=2; i<specializzazioniEsistenti.length; i++){    
+				var input = specializzazioniEsistenti[i].children[0].children[0];
+				input = input.value;
+				input = input.split(" ");
+				if(input[0] === document.getElementById("specializzazioneInput").value){  
 					$('#errorModal').modal('toggle');   
 					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
 					return;              
           		}           
-			} 	
+			} 			
 		}
 		
 		if(document.getElementById("anniEsperienzaInput").value < 0){
@@ -818,7 +821,7 @@ function controlloMappa() {
 				specializzazioneName = "specializzazione" + specializzazioneCnt;
 				specializzazioneCnt++;
 				
-				tagInput.id = specializzazioneName;
+				//tagInput.id = specializzazioneName;
 				tagInput.name = specializzazioneName;
 				tagInput.readOnly = true;
 				
