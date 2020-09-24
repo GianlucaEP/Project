@@ -3,7 +3,6 @@ package it.rt.corso.DAO;
 import java.util.List;
 
 import it.rt.corso.beans.Funzionalita;
-import it.rt.corso.beans.Mansione;
 
 public interface FunzionalitaDAO {
 
