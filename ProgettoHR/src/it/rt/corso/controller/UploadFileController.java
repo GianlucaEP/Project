@@ -1,6 +1,11 @@
 package it.rt.corso.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,10 +14,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import it.rt.corso.DAO.CandidatoDAO;
@@ -29,28 +36,25 @@ public class UploadFileController {
 	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/doUpload/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String handleFileUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload,
+	public String handleFileUpload(HttpServletRequest request, @RequestParam MultipartFile fileUpload,
 			@PathVariable int id, @PathVariable String businessUnit) throws Exception {
 
 		Candidato c = candidatoDAO.get(id);
 
-		if (fileUpload != null && fileUpload.length > 0) {
-			for (CommonsMultipartFile aFile : fileUpload) {
-
-				if (aFile.getOriginalFilename().equalsIgnoreCase("")) {
-					continue;
+		if (fileUpload != null) {
+			
+				if (fileUpload.getOriginalFilename().equalsIgnoreCase("")) {
+					return "redirect:/Candidato/{businessUnit}/{id}";
 				}
 
-				System.out.println("Saving file: " + aFile.getOriginalFilename());
-
 				UploadFile uploadFile = new UploadFile();
-				uploadFile.setNomeFile(aFile.getOriginalFilename());
-				uploadFile.setTipo(aFile.getContentType());
-				uploadFile.setFileData(aFile.getBytes());
+				uploadFile.setNomeFile(fileUpload.getOriginalFilename());
+				uploadFile.setTipo(fileUpload.getContentType());
+				uploadFile.setFileData(fileUpload.getBytes());
 				uploadFile.setCandidato(c);
 				uploadFileDAO.inserisci(uploadFile);
 			}
-		}
+		
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
