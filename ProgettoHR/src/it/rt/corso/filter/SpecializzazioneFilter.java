@@ -44,7 +44,7 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 					.join("specializzazione", JoinType.INNER);
 			if (Character.isDigit(valore.charAt(valore.length() - 1))) {
 				int anniSpecializzazione = getAnniSpecializzazione(valore);
-				valore = valore.substring(0, valore.length() - 2);
+				valore = valore.substring(0, valore.lastIndexOf(" "));
 				listaPredicatesSpecializzazione
 						.add(criteriaBuilder.like(specializzazione.get("specializzazione"), "%" + valore + "%"));
 				listaPredicatesSpecializzazione.add(criteriaBuilder
@@ -88,7 +88,7 @@ public class SpecializzazioneFilter extends CandidatoFilter {
 	}
 
 	private static int getAnniSpecializzazione(String specializzazione) {
-		return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
+		return Integer.parseInt(specializzazione.substring(specializzazione.lastIndexOf(" ") + 1, specializzazione.length()));
 
 	}
 }

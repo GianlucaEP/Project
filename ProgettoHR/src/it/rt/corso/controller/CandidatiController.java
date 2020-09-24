@@ -400,14 +400,14 @@ public class CandidatiController {
 	private static int getAnniSpecializzazione(String specializzazione) {
 
 		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
-			return Integer.parseInt(specializzazione.substring(specializzazione.length() - 1));
+			return Integer.parseInt(specializzazione.substring(specializzazione.lastIndexOf(" ") + 1, specializzazione.length()));
 		}
 		return 0;
 	}
 
 	private static String getSpecializzazioneName(String specializzazione) {
 		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
-			return specializzazione.substring(0, specializzazione.length() - 2);
+			return specializzazione.substring(0, specializzazione.lastIndexOf(" "));
 		}
 		return specializzazione.substring(0, specializzazione.length() - 1);
 
