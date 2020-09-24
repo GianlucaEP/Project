@@ -83,9 +83,17 @@ a, a:hover, a:focus {
 		<nav class="navbar navbar-expand-xl ">
 
 			<!-- LOGO -->
-			<span class="navbar-brand"> <img class="logo"
-				src="/ProgettoHR/img/erretechnologygroup.png">
-			</span>
+			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+			</a>
+
+			<!-- LOGOUT -->
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
+				</ul>
+			</div>
 
 		</nav>
 
@@ -95,8 +103,8 @@ a, a:hover, a:focus {
 
 				<h4 class="text-center mt-4">Registrati</h4>
 				<form:form id="utenteForm" method="POST"
-					action="/ProgettoHR/RegistratiIn/${businessUnit}" modelAttribute="nuovoUtente"
-					onsubmit="return validate();">
+					action="/ProgettoHR/RegistratiIn/${businessUnit}"
+					modelAttribute="nuovoUtente" onsubmit="return validate();">
 
 					<div class="form-group" id="formNuovoUtente">
 						<label for="Utente">Utente:</label>
@@ -112,16 +120,18 @@ a, a:hover, a:focus {
 							required="required" />
 					</div>
 					<div class="form-group" id="formRuolo">
-						<label for="Ruolo">Ruolo:</label>
-						<select class="form-control" name="ruoloSelezionato">
-							<option id="noFiltro" value="noFiltro" selected disabled>Seleziona ruolo</option>
+						<label for="Ruolo">Ruolo:</label> <select class="form-control"
+							name="ruoloSelezionato">
+							<option id="noFiltro" value="noFiltro" selected disabled>Seleziona
+								ruolo</option>
 							<c:forEach var="ruolo" items="${ruoli}">
 								<option value="${ruolo.id}">${ruolo.ruolo}</option>
 							</c:forEach>
 						</select>
 					</div>
 
-					<button type="submit" class="btn btn-lg btn-block btn-primary">Registra utente</button>
+					<button type="submit" class="btn btn-lg btn-block btn-primary">Registra
+						utente</button>
 					<hr class="my-4">
 				</form:form>
 
