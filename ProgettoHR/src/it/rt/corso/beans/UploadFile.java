@@ -22,6 +22,8 @@ public class UploadFile implements Bean {
 	private String nomeFile;
 	@Column(name = "tipo")
 	private String tipo;
+	//@Column(name = "url")
+	//private String url;
 	@Lob
 	@Column(name = "file_data")
 	private byte[] fileData;
@@ -70,5 +72,13 @@ public class UploadFile implements Bean {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+//	public String getUrl() {
+//		return url;
+//	}
+//
+//	public void setUrl(String url) {
+//		this.url = url;
+//	}
 
 }
