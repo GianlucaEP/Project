@@ -23,9 +23,9 @@ import it.rt.corso.filter.PasswordEncrypter;
 @Controller
 public class RegistrazioneController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
-	UtenteDAO udao = (UtenteDAO) factory.getBean("utenteDAO");
-	RuoloDAO rdao = (RuoloDAO) factory.getBean("ruoloDAO");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private UtenteDAO udao = (UtenteDAO) factory.getBean("utenteDAO");
+	private RuoloDAO rdao = (RuoloDAO) factory.getBean("ruoloDAO");
 
 	@RequestMapping("/Registrati/{businessUnit}")
 	public String display(Model m, @SessionAttribute("utente") Utente utente, @PathVariable String businessUnit) {
@@ -55,7 +55,7 @@ public class RegistrazioneController {
 		utente.setRuolo(rdao.getRuolo(Integer.parseInt(ruoloSelezionato)));
 
 		udao.inserisci(utente);
-		return "redirect:/Home/{businessUnit}";
+		return "redirect:/Registrati/{businessUnit}";
 
 	}
 

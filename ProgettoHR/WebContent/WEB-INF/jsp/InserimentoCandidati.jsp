@@ -236,7 +236,7 @@ ul ul a {
 						<div class="form-group col-8">
 							<label>Telefono:</label>
 							<form:input type="text" path="telefono" class="form-control"
-								id="telefono" required="required" placeholder="123-456-7890"></form:input>
+								id="telefono" maxlength="10" required="required" placeholder="123-456-7890"></form:input>
 						</div>
 					</div>
 

@@ -22,8 +22,8 @@ import it.rt.corso.utility.Utility;
 @SessionAttributes("utente")
 public class LoginController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
-	UtenteDAO udao = (UtenteDAO) factory.getBean("utenteDAO");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private UtenteDAO udao = (UtenteDAO) factory.getBean("utenteDAO");
 
 	@ModelAttribute("utente")
 	public Utente setUpUserForm() {

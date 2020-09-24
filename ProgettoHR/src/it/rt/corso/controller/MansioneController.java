@@ -19,9 +19,9 @@ import it.rt.corso.singleton.Singleton;
 @Controller
 public class MansioneController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
+	private MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
 
 	@RequestMapping(value = "/Mansione/{businessUnit}")
 	public String displayMansione(Model m, @PathVariable String businessUnit,

@@ -18,9 +18,9 @@ import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class AreaCompetenzaController {
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	AreaCompetenzaDAO dao = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
+	private AreaCompetenzaDAO dao = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 
 	@RequestMapping(value = "/AreaCompetenza/{businessUnit}")
 	public String displayAreaCompetenza(Model m, @PathVariable String businessUnit,

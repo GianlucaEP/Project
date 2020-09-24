@@ -24,9 +24,9 @@ import it.rt.corso.singleton.Singleton;
 @Controller
 public class FilterController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
+	private CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping("/Filter/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {

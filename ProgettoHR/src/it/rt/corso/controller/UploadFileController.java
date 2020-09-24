@@ -30,10 +30,10 @@ import it.rt.corso.beans.UploadFile;
 @Controller
 public class UploadFileController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	UploadFileDAO uploadFileDAO = (UploadFileDAO) factory.getBean("uploadFileDAO");
-	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
+	private UploadFileDAO uploadFileDAO = (UploadFileDAO) factory.getBean("uploadFileDAO");
+	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/doUpload/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request, @RequestParam MultipartFile fileUpload,

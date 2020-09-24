@@ -31,20 +31,15 @@ import it.rt.corso.singleton.Singleton;
 @Controller
 public class CandidatiController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 // Inizializzazione DAO
-	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
-	CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
-	SpecializzazioneDAO specializzazioneDAO = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
-	CandidatoSpecializzazioneDAO candidatoSpecializzazioneDAO = (CandidatoSpecializzazioneDAO) factory
+	private FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
+	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
+	private CandidatoSpecializzazioneDAO candidatoSpecializzazioneDAO = (CandidatoSpecializzazioneDAO) factory
 			.getBean("candidatoSpecializzazioneDAO");
-	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
-	AreaCompetenzaDAO areaCompetenzaDAO = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
-	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
-	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
-	EconomicsDAO economicsDAO = (EconomicsDAO) factory.getBean("economicsDAO");
-	CostoDAO costoDAO = (CostoDAO) factory.getBean("costoDAO");
+	private EconomicsDAO economicsDAO = (EconomicsDAO) factory.getBean("economicsDAO");
+	private CostoDAO costoDAO = (CostoDAO) factory.getBean("costoDAO");
 
 	@InitBinder
 	public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {

@@ -24,11 +24,11 @@ import it.rt.corso.singleton.Singleton;
 @Controller
 public class FeedbackController {
 
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
-	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
-	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
+	private FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
+	private TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
+	private CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping(value = "/AggiungiFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String aggiungiFeedback(@ModelAttribute("feedback") Feedback feedback, @SessionAttribute("utente") Utente utente, @PathVariable int id, @PathVariable String businessUnit) {

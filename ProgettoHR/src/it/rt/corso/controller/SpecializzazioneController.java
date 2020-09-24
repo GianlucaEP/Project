@@ -18,8 +18,8 @@ import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class SpecializzazioneController {
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
-	SpecializzazioneDAO dao = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private SpecializzazioneDAO dao = (SpecializzazioneDAO) factory.getBean("specializzazioneDAO");
 	
 	@RequestMapping(value = "/Specializzazione/{businessUnit}")
 	public String displaySpecializzazione(Model m, @PathVariable String businessUnit,

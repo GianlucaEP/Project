@@ -114,7 +114,7 @@ a, a:hover, a:focus {
 							required="required" />
 					</div>
 
-					<button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
+					<button type="submit" id="loginButton" class="btn btn-lg btn-block btn-primary">Login</button>
 					<hr class="my-4">
 				</form:form>
 
@@ -177,6 +177,11 @@ a, a:hover, a:focus {
 					listpass.removeChild(listpass.childNodes[4]);
 				}
 			}
+			
+			if(control){
+				document.getElementById("loginButton").disabled = true;
+			}
+			
 			return control;
 		}
 	</script>

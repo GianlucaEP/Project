@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
-import it.rt.corso.DAO.MansioneDAO;
-import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Mansione;
@@ -45,12 +42,9 @@ import it.rt.corso.singleton.Singleton;
 
 @Controller
 public class HomeController {
-	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
+	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
-	CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
-	MansioneDAO mansioneDAO = (MansioneDAO) factory.getBean("mansioneDAO");
-	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
-	BusinessDAO businessDAO = (BusinessDAO) factory.getBean("businessDAO");
+	private CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
