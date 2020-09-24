@@ -91,7 +91,7 @@ a, a:hover, a:focus {
 
 
 		<div class="row mr-0 justify-content-center mt-4">
-			<div class="col-auto" id="colonnaLogin">
+			<div class="col-auto border" id="colonnaLogin">
 
 				<h4 class="text-center mt-4">Registrati</h4>
 				<form:form id="utenteForm" method="POST"
@@ -121,7 +121,7 @@ a, a:hover, a:focus {
 						</select>
 					</div>
 
-					<button type="submit" class="btn btn-lg btn-block btn-primary">Registrati</button>
+					<button type="submit" class="btn btn-lg btn-block btn-primary">Registra utente</button>
 					<hr class="my-4">
 				</form:form>
 
