@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.xml.bind.DatatypeConverter;
 
-public class PasswordEncrypter {
+public abstract class PasswordEncrypter {
 	/**
 	 * 
 	 * Encrypt the given password using MD5 encryption
