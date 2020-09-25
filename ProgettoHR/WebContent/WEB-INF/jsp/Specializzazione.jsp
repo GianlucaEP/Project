@@ -248,7 +248,7 @@ a, a:hover, a:focus {
 					method="POST">
 
 					<div class="modal-header">
-						<h5>Elimina</h5> <input
+						<h5>Elimina specializzazione</h5> <input
 							style="visibility: hidden;" name="specializzazione"
 							id="specializzazione" />
 					</div>

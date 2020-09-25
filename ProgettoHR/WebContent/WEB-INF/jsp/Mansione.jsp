@@ -243,7 +243,7 @@ a, a:hover, a:focus {
 			<div class="modal-content">
 				<form action="/ProgettoHR/EliminaMansione/${businessUnit}"
 					method="POST">
-					<div class="modal-header"><h5>Elimina</h5><input
+					<div class="modal-header"><h5>Elimina mansione</h5><input
 							style="visibility: hidden;" name="mansione" id="mansione" />
 					</div>
 

@@ -247,7 +247,7 @@ a, a:hover, a:focus {
 				<form action="/ProgettoHR/EliminaArea/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						<h5>Elimina</h5>
+						<h5>Elimina area competenza</h5>
 						<input style="visibility: hidden;" name="area" id="area" />
 					</div>
 					
