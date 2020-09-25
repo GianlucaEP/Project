@@ -395,7 +395,7 @@ ul ul a {
 					</button>
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
-					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
+					action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validate();">
 					<div class="modal-body">
 						<form:input path="mansione" type="text" class="form-control"
@@ -428,7 +428,7 @@ ul ul a {
 				</div>
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
-					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
+					action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateArea();">
 					<div class="modal-body">
 
@@ -462,7 +462,7 @@ ul ul a {
 				</div>
 				<form:form modelAttribute="specializzazione"
 					id="formSpecializzazione" method="POST"
-					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
+					action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateSpecializzazione();">
 					<div class="modal-body">
 
