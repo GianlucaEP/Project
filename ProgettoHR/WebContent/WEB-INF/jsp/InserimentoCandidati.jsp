@@ -236,7 +236,8 @@ ul ul a {
 						<div class="form-group col-8">
 							<label>Telefono:</label>
 							<form:input type="text" path="telefono" class="form-control"
-								id="telefono" maxlength="10" required="required" placeholder="123-456-7890"></form:input>
+								id="telefono" maxlength="10" required="required"
+								placeholder="123-456-7890"></form:input>
 						</div>
 					</div>
 
@@ -396,7 +397,7 @@ ul ul a {
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
-					onsubmit="return validate();">
+					onsubmit="return validateMansione('Mansione', '${mansioneList}');">
 					<div class="modal-body">
 						<form:input path="mansione" type="text" class="form-control"
 							placeholder="Mansione" id="mansione" name="mansione"></form:input>
@@ -429,7 +430,7 @@ ul ul a {
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
-					onsubmit="return validateArea();">
+					onsubmit="return validateArea('Area Competenza', '${areaCompetenzaList}');">
 					<div class="modal-body">
 
 						<form:input path="area" type="text" class="form-control"
@@ -463,7 +464,7 @@ ul ul a {
 				<form:form modelAttribute="specializzazione"
 					id="formSpecializzazione" method="POST"
 					action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
-					onsubmit="return validateSpecializzazione();">
+					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
 					<div class="modal-body">
 
 						<form:input path="specializzazione" type="text"
@@ -756,6 +757,84 @@ ul ul a {
 			$('#errorModal').modal('toggle');
 			document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
 			return false
+		}
+		function validateMansione(tipo, lista) {
+			var mansione = document.getElementById("mansione").value;
+			var list = document.getElementById("formMansione");
+			var control = true;
+			
+			
+			if (mansione === "") {
+
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				var textnode = document.createTextNode("Inserisci Mansione")
+				tagDiv.appendChild(textnode)
+				document.getElementById("mansione").appendChild(tagDiv);
+				control = false;
+				
+				return control;
+			}
+			
+			control = insertionMessage(tipo, 'mansione', lista);
+
+			return control;
+		}
+		function validateArea(tipo, lista) {
+			var areaCompetenza = document.getElementById("area").value;
+			var list = document.getElementById("formAreaCompetenza");
+			var control = true;
+
+			if (areaCompetenza === "") {
+
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				var textnode = document
+						.createTextNode("Inserisci Area di competenza")
+				tagDiv.appendChild(textnode)
+				document.getElementById("area").appendChild(tagDiv);
+				control = false;
+				
+				return control;
+
+			}
+			
+			control = insertionMessage(tipo,'area', lista);
+			
+			return control;
+		}
+		function validateSpecializzazione(tipo, lista) {
+				var specializzazione = document.getElementById("specializzazione").value;
+				var list = document.getElementById("formSpecializzazione");
+				var control = true;
+
+				if (specializzazione === "") {
+
+					var tagDiv = document.createElement("div");
+					tagDiv.style = "color:red; font-size: small;"
+					var textnode = document
+							.createTextNode("Inserisci Specializzazione")
+					tagDiv.appendChild(textnode)
+					document.getElementById("specializzazione").appendChild(tagDiv);
+					control = false;
+					
+					return control;
+
+				}
+	
+				control = insertionMessage(tipo,'specializzazione', lista);
+				
+				return control;
+		}
+		function insertionMessage(tipo, id, lista){
+			lista = buildString(lista);
+			if(lista.indexOf(document.getElementById(id).value) !== -1){
+				$('#errorModal').modal('toggle');   
+				document.getElementById("errorModalBody").innerHTML = tipo + " già inserita.";  
+				return false;
+			}
+			
+			return true;
 		}
 	</script>
 
