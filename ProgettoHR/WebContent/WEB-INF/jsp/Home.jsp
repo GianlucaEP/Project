@@ -451,7 +451,7 @@ svg {
 												<td>
 													<button class="btn float-right"
 														id="bottoneEliminaCandidato" data-toggle="modal"
-														onclick="impostaParametriCandidatoId(${cand.id})"
+														onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
 														data-target="#EliminaModal">
 														<span data-toggle="tooltip" data-placement="top"
 															title="Elimina candidato"> <i class="fas fa-trash"></i>
@@ -603,9 +603,11 @@ svg {
 				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare il candidato selezionato? <input
-							style="visibility: hidden;" name="idCandidato" id="candidatoId" />
+						<h5 class="modal-title">Modal title</h5>
 					</div>
+					<div class="modal-body" id="modalText"></div>
+					<input style="visibility: hidden;" name="idCandidato"
+						id="candidatoId" />
 
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">sì</button>
@@ -640,8 +642,9 @@ svg {
 
 
 	<script>
-		function impostaParametriCandidatoId(id) {
+		function impostaParametriCandidatoId(id, nome, cognome) {
 			document.getElementById("candidatoId").value = id;
+			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare il candidato "+nome+" "+cognome+"?"
 
 		}
 		function changeDotColor(stato) {

@@ -248,10 +248,12 @@ a, a:hover, a:focus {
 					method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare la specializzazione selezionata? <input
+						<h5>Elimina</h5> <input
 							style="visibility: hidden;" name="specializzazione"
 							id="specializzazione" />
 					</div>
+					
+					<div class="modal-body" id="modalText"></div>
 
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">sì</button>
@@ -270,8 +272,9 @@ a, a:hover, a:focus {
 			document.getElementById("newSpecializzazione").value = id;
 		}
 
-		function impostaParametriSpecializzazioneEliminazione(id) {
-			document.getElementById("specializzazione").value = id;
+		function impostaParametriSpecializzazioneEliminazione(specializzazione) {
+			document.getElementById("specializzazione").value = specializzazione;
+			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare la specializzazione "+specializzazione+"?";
 		}
 	</script>
 

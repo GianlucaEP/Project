@@ -176,8 +176,8 @@ a, a:hover, a:focus {
 						<tbody class="body">
 							<c:forEach var="area" items="${areaCompetenzaList}">
 								<tr>
-								
-								<c:set var="areaReplaced"
+
+									<c:set var="areaReplaced"
 										value="${fn:replace(area.area, singlequote, backslash)}"></c:set>
 									<c:set var="areaXSS" value="${fn:escapeXml(area.area)}"></c:set>
 									<td>${areaXSS}</td>
@@ -247,9 +247,11 @@ a, a:hover, a:focus {
 				<form action="/ProgettoHR/EliminaArea/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare l'area di competenza selezionata? <input
-							style="visibility: hidden;" name="area" id="area" />
+						<h5>Elimina</h5>
+						<input style="visibility: hidden;" name="area" id="area" />
 					</div>
+					
+					<div class="modal-body" id="modalText"></div>
 
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">sì</button>
@@ -267,8 +269,9 @@ a, a:hover, a:focus {
 			document.getElementById("oldArea").value = id;
 			document.getElementById("newArea").value = id;
 		}
-		function impostaParametriAreaEliminazione(id) {
-			document.getElementById("area").value = id;
+		function impostaParametriAreaEliminazione(area) {
+			document.getElementById("area").value = area;
+			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare l'area competenza "+area+"?";
 
 		}
 	</script>
