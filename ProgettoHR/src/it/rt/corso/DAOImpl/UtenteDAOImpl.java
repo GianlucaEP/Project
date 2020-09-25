@@ -13,7 +13,7 @@ import it.rt.corso.utility.Utility;
 @SuppressWarnings("unchecked")
 public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 
-	public Utente get(String id) {
+	public Utente get(int id) {
 		return (Utente) super.get(Utente.class, id);
 	}
 
@@ -30,6 +30,27 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO {
 		Query query = Utility.getSession().createQuery(hql);
 		query.setParameter("user", user);
 		query.setParameter("password", password);
+
+		List<Utente> listaUtente = query.getResultList();
+		if (listaUtente.isEmpty()) {
+			Utente utente = null;
+			Utility.destroySession();
+			return utente;
+		} else {
+			Utente utente = listaUtente.get(0);
+			Utility.destroySession();
+			return utente;
+
+		}
+
+	}
+	
+	public Utente getByUsername(String user) {
+
+		String hql = "FROM Utente U WHERE U.username=:user";
+
+		Query query = Utility.getSession().createQuery(hql);
+		query.setParameter("user", user);
 
 		List<Utente> listaUtente = query.getResultList();
 		if (listaUtente.isEmpty()) {

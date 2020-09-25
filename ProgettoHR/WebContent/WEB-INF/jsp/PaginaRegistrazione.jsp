@@ -77,7 +77,7 @@ a, a:hover, a:focus {
 
 </head>
 
-<body>
+<body onload="control()">
 	<div class="container-fluid p-0">
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-expand-xl ">
@@ -134,12 +134,36 @@ a, a:hover, a:focus {
 						utente</button>
 					<hr class="my-4">
 				</form:form>
+				
+				<div class="row justify-content-center">
+					<div
+						class="alert alert-success btn-block mb-4 ml-2 mr-2 text-center" id="successAlert"
+						role="alert">Nuovo utente inserito con successo</div>
+				</div>
+				
+				<div class="row justify-content-center">
+					<div
+						class="alert alert-danger btn-block mb-4 ml-2 mr-2 text-center" id="errorAlert"
+						role="alert">Nome utente già inserito</div>
+				</div>
 
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
+		function control(){
+			$('#successAlert').hide();
+			$('#errorAlert').hide();
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const info = urlParams.get('info')
+			if (info === "error") {
+				$('#errorAlert').show();
+			} else if(info === "success"){
+				$('#successAlert').show();
+			}
+		}
 		function validate() {
 			$('.alert').hide();
 			var control = true;

@@ -45,7 +45,15 @@ public class RegistrazioneController {
 			@PathVariable String businessUnit) throws NoSuchAlgorithmException {
 
 		m.addAttribute("businessUnit", businessUnit);
-		
+
+		Utente u = udao.getByUsername(utente.getUsername());
+
+		if (u != null) {
+
+			m.addAttribute("info", "error");
+			return "redirect:/Registrati/{businessUnit}";
+		}
+
 		String password = utente.getPassword();
 
 		password = PasswordEncrypter.encryptPassword(password);
@@ -55,6 +63,8 @@ public class RegistrazioneController {
 		utente.setRuolo(rdao.getRuolo(Integer.parseInt(ruoloSelezionato)));
 
 		udao.inserisci(utente);
+		
+		m.addAttribute("info", "success");
 		return "redirect:/Registrati/{businessUnit}";
 
 	}
