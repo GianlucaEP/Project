@@ -121,7 +121,7 @@ a, a:hover, a:focus {
 					</div>
 					<div class="form-group" id="formRuolo">
 						<label for="Ruolo">Ruolo:</label> <select class="form-control"
-							name="ruoloSelezionato">
+							name="ruoloSelezionato" id="ruoloSelezionato">
 							<option id="noFiltro" value="noFiltro" selected disabled>Seleziona
 								ruolo</option>
 							<c:forEach var="ruolo" items="${ruoli}">
@@ -204,6 +204,9 @@ a, a:hover, a:focus {
 				if (listpass.childNodes[4]) {
 					listpass.removeChild(listpass.childNodes[4]);
 				}
+			}
+			if(document.getElementById("ruoloSelezionato").selectedIndex <=0){
+				control = false;
 			}
 			return control;
 		}
