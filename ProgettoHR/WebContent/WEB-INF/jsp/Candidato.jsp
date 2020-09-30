@@ -1255,7 +1255,7 @@ ul ul a {
 								<h5 class="text-center">Scegli:</h5>
 								<select id="inputState" class="form-control text-center"
 									name="businessUnit">
-									<option disabled>business unit</option>
+									<option disabled selected>Business unit</option>
 									<c:forEach var="business" items="${businessList}">
 										<option value="${business.business}">${business.business}</option>
 									</c:forEach>
@@ -1442,6 +1442,7 @@ ul ul a {
 								<h5 class="text-center">Scegli:</h5>
 								<select id="senioritySelezionata"
 									class="form-control text-center" name="seniority">
+									<option disabled selected>Seniority</option>
 									<c:forEach var="seniority" items="${seniorityList}">
 										<option value="${seniority.seniority}">${seniority.seniority}</option>
 									</c:forEach>
