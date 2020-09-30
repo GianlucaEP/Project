@@ -74,10 +74,12 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(HttpServletRequest request, @PathVariable String businessUnit,
-			@ModelAttribute("candidato") Candidato c) {
+			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente) {
 
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		c.setStato(stato);
+		
+		c.setInseritoDa(utente);
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
 		if (areeCompetenza != null) {

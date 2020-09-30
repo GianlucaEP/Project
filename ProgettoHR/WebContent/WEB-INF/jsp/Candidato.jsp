@@ -698,6 +698,11 @@ ul ul a {
 								</tr>
 
 							</c:if>
+							
+							<tr>
+									<th scope="col">Inserito da</th>
+									<td scope="col">${mostraCandidato.inseritoDa.username}</td>
+								</tr>
 						</tbody>
 
 						<tfoot class="footer">

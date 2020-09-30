@@ -53,6 +53,10 @@ public class Candidato implements Bean {
 	private boolean categoriaProtetta;
 	@Column(name = "codice_fiscale")
 	private String codiceFiscale;
+	
+	@ManyToOne
+	@JoinColumn(name = "inserito_da")
+	private Utente inseritoDa;
 
 	// MANY-TO-ONE con Business
 	@ManyToOne
@@ -283,6 +287,14 @@ public class Candidato implements Bean {
 
 	public void setFile(Set<UploadFile> file) {
 		this.file = file;
+	}
+
+	public Utente getInseritoDa() {
+		return inseritoDa;
+	}
+
+	public void setInseritoDa(Utente inseritoDa) {
+		this.inseritoDa = inseritoDa;
 	}
 
 }
