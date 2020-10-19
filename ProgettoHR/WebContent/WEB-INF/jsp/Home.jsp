@@ -331,7 +331,9 @@ svg {
 								</c:when>
 							</c:choose>
 						</c:forEach>
-
+						<li><a id="aSidebar"
+							href="/ProgettoHR/Gantt/${businessUnit}" type="button"
+							class="text-center">Gantt</a></li>
 
 						<li><a id="aSidebar"
 							href="/ProgettoHR/Filter/${businessUnit}" type="button"
