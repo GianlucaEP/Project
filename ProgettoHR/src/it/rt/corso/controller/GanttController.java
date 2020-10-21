@@ -32,5 +32,13 @@ public class GanttController {
 		
 		return "Gantt";
 	}
+	
+	@RequestMapping("/ExcelGantt/{businessUnit}")
+	public String getExcel(Model m,@PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+		
+		m.addAttribute("businessUnit", businessUnit);
+		
+		return "redirect:/Gantt/{businessUnit}";
+	}
 
 }
