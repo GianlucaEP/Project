@@ -17,13 +17,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 @SuppressWarnings("resource")
-public class CreateGanttExcel {
+public abstract class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Create and modify an XSSF workbook from a given XSSFWorkbook type object 
+	 * Creates and modify an <code>XSSFworkbook</code> typeobject from a given <code>XSSFWorkbook</code> type object 
 	 * 
-	 * @param workbook the given XSSFWorkbook that will be used
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be used
 	 * 
 	 * @return the written workbook
 	 * 
@@ -46,7 +46,7 @@ public class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Create a fileName String appending the today date String to the file name.
+	 * Creates a fileName <code>String</code> appending the today date <code>String</code> to the file name.
 	 * 
 	 * @return the file name with today date
 	 * 
@@ -68,7 +68,7 @@ public class CreateGanttExcel {
 	
 	/**
 	 * 
-	 * Instatiate a workbook and call the {@link #downloadFile(File, HttpServletResponse) downloadFile} method to create an HTTP response with the excel file inside
+	 * Instatiates a workbook and calls the {@link #downloadFile(File, HttpServletResponse) downloadFile} method to create an HTTP response with the excel file inside
 	 * 
 	 *  @param request {@link HttpServletRequest HttpServletRequest} type parameter
 	 * 
@@ -95,7 +95,7 @@ public class CreateGanttExcel {
 	
 	/**
 	 * 
-	 *  Build an HTTP response containing the gwiven Excel file UwU
+	 *  Builds an HTTP response containing the gwiven Excel file UwU
 	 *  
 	 *  @param file the given Excel file to be included in the response
 	 *   
