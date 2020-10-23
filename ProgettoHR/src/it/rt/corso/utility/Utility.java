@@ -64,7 +64,11 @@ public class Utility {
 		session.close();
 	}
 	
-	
+	/**
+	 * 
+	 * Destroy the current session factory
+	 * 
+	 */
 	public static void destroySessionFactory() {
 		
 		factory.close();

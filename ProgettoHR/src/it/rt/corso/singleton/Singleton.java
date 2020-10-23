@@ -23,6 +23,12 @@ import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.TipoFeedback;
 
+/**
+ * 
+ * Singleton structored class used to instantiate all DAO classes and make
+ * hibernate queries to get datas from all the tables.
+ * 
+ */
 public class Singleton {
 
 	ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
@@ -59,7 +65,15 @@ public class Singleton {
 		tipoFeedbackList = tipoFeedbackDAO.getLista();
 	}
 
-	// static method to create instance of Singleton class
+	/**
+	 * 
+	 * Static method used to create instance of Singleton class objects if it's not
+	 * have been already instanciated; in that case it will return the already
+	 * instantiated object.
+	 * 
+	 * @return instanciated <code>Singleton</code> type object.
+	 * 
+	 */
 	public static Singleton getInstance() {
 		if (single_instance == null)
 			single_instance = new Singleton();
@@ -90,7 +104,7 @@ public class Singleton {
 	public List<StatoCandidato> getStatoCandidatoList() {
 		return statoCandidatoList;
 	}
-	
+
 	public List<TipoFeedback> getTipoFeedbackList() {
 		return tipoFeedbackList;
 	}

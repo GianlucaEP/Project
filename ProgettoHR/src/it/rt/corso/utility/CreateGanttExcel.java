@@ -19,20 +19,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * 
- * Utility class that creates and download Excel files.
+ * Utility class that creates Excel files and builds HTTP reponses containing said files in order to let the client download them.
  * 
- * */
+ */
 public abstract class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Creates and modify an <code>XSSFworkbook</code> typeobject from a given <code>XSSFWorkbook</code> type object 
+	 * Creates and modify an <code>XSSFworkbook</code> type object from a given
+	 * <code>XSSFWorkbook</code> type object.
 	 * 
-	 * @param workbook the given <code>XSSFWorkbook</code> that will be used
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * 
-	 * @return the written workbook
+	 * @return the written workbook.
 	 * 
-	 * */
+	 */
 	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook) throws IOException {
 
 		XSSFSheet sheet = workbook.createSheet();
@@ -51,9 +52,10 @@ public abstract class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Creates a fileName <code>String</code> appending the today date <code>String</code> to the file name.
+	 * Creates a fileName <code>String</code> appending the today date
+	 * <code>String</code> to the file name.
 	 * 
-	 * @return the file name with today date
+	 * @return the file name with today date.
 	 * 
 	 */
 	public static String getFileName() {
@@ -70,14 +72,16 @@ public abstract class CreateGanttExcel {
 		return name.concat(date);
 	}
 
-	
 	/**
 	 * 
-	 * Instatiates a workbook and calls the {@link #downloadFile(File, HttpServletResponse) downloadFile} method to create an HTTP response with the excel file inside
+	 * Instatiates a workbook and calls the
+	 * {@link #downloadFile(File, HttpServletResponse) downloadFile} method to
+	 * create an HTTP response with the excel file inside.
 	 * 
-	 *  @param request {@link HttpServletRequest HttpServletRequest} type parameter
+	 * @param request  {@link HttpServletRequest HttpServletRequest} type parameter.
 	 * 
-	 *  @param response {@link HttpServletResponse HttpServletResponse} type parameter
+	 * @param response {@link HttpServletResponse HttpServletResponse} type
+	 *                 parameter.
 	 * 
 	 * @author s.schiavone
 	 */
@@ -97,16 +101,16 @@ public abstract class CreateGanttExcel {
 
 	}
 
-	
 	/**
 	 * 
-	 *  Builds an HTTP response containing the gwiven Excel file UwU
-	 *  
-	 *  @param file the given Excel file to be included in the response
-	 *   
-	 *  @param response {@link HttpServletResponse HttpServletResponse} type parameter
-	 *  
-	 *  */
+	 * Builds an HTTP response containing the gwiven Excel file UwU
+	 * 
+	 * @param file     the given Excel file to be included in the response
+	 * 
+	 * @param response {@link HttpServletResponse HttpServletResponse} type
+	 *                 parameter
+	 * 
+	 */
 	public static void downloadFile(File file, HttpServletResponse response) {
 		try {
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
