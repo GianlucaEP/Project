@@ -49,7 +49,7 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 	public int updade(String oldArea, String newArea) {
 
 		Transaction t = Utility.getSession().beginTransaction();	
-		Query query = Utility.getSession()
+		Query<AreaCompetenza> query = Utility.getSession()
 				.createQuery("UPDATE AreaCompetenza set area = :newArea WHERE area = :oldArea");
 		query.setParameter("oldArea", oldArea);
 		query.setParameter("newArea", newArea);

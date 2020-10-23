@@ -38,7 +38,7 @@ public class SpecializzazioneDAOImpl extends BaseDAO implements Specializzazione
 	public int updade(String oldSpecializzazione, String newSpecializzazione) {
 
 		Transaction t = Utility.getSession().beginTransaction();	
-		Query query = Utility.getSession()
+		Query<Specializzazione> query = Utility.getSession()
 				.createQuery("UPDATE Specializzazione set specializzazione = :newSpecializzazione WHERE specializzazione = :oldSpecializzazione");
 		query.setParameter("oldSpecializzazione", oldSpecializzazione);
 		query.setParameter("newSpecializzazione", newSpecializzazione);

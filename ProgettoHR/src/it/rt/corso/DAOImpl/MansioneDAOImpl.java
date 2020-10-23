@@ -47,7 +47,7 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 	public int updade(String oldMansione, String newMansione) {
 
 		Transaction t = Utility.getSession().beginTransaction();	
-		Query query = Utility.getSession()
+		Query<Mansione> query = Utility.getSession()
 				.createQuery("UPDATE Mansione set mansione = :newMansione WHERE mansione = :oldMansione");
 		query.setParameter("oldMansione", oldMansione);
 		query.setParameter("newMansione", newMansione);
