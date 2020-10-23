@@ -68,7 +68,7 @@ public class CreateGanttExcel {
 	
 	/**
 	 * 
-	 * Instatiate a workbook and call the downloadFile() method to create an HTTP response with the excel file inside
+	 * Instatiate a workbook and call the {@link #downloadFile(File, HttpServletResponse) downloadFile} method to create an HTTP response with the excel file inside
 	 * 
 	 *  @param request HTTPServletRequest type parameter
 	 * 
@@ -95,7 +95,7 @@ public class CreateGanttExcel {
 	
 	/**
 	 * 
-	 *  Build an HTTP response containing tthe given Excel file UwU
+	 *  Build an HTTP response containing the gwiven Excel file UwU
 	 *  
 	 *  @param file the given Excel file to be included in the response
 	 *   
