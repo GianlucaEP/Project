@@ -16,9 +16,18 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+@SuppressWarnings("resource")
 public class CreateGanttExcel {
 
+	/**
+	 * 
+	 * Create and modify an XSSF workbook from a given XSSFWorkbook type object 
+	 * 
+	 * @param workbook the given XSSFWorkbook that will be used
+	 * 
+	 * @return the written workbook
+	 * 
+	 * */
 	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook) throws IOException {
 
 		XSSFSheet sheet = workbook.createSheet();
@@ -56,7 +65,17 @@ public class CreateGanttExcel {
 		return name.concat(date);
 	}
 
-	@SuppressWarnings("resource")
+	
+	/**
+	 * 
+	 * Instatiate a workbook and call the downloadFile() method to create an HTTP response with the excel file inside
+	 * 
+	 *  @param request HTTPServletRequest type parameter
+	 * 
+	 *  @param response HTTPServletResponse type parameter
+	 * 
+	 * @author s.schiavone
+	 */
 	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
@@ -73,10 +92,20 @@ public class CreateGanttExcel {
 
 	}
 
+	
+	/**
+	 * 
+	 *  Build an HTTP response containing tthe given Excel file UwU
+	 *  
+	 *  @param file the given Excel file to be included in the response
+	 *   
+	 *  @param response HTTPServletResponse type parameter
+	 *  
+	 *  */
 	public static void downloadFile(File file, HttpServletResponse response) {
 		try {
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			response.addHeader("content-disposition", "attachment; filename="+getFileName() + ".xlsx");
+			response.addHeader("content-disposition", "attachment; filename=" + getFileName() + ".xlsx");
 			response.setHeader("Pragma", "public");
 			response.setHeader("Cache-Control", "no-store");
 			response.addHeader("Cache-Control", "max-age=0");
