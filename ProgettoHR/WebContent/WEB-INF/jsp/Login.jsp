@@ -3,129 +3,190 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>Login</title>
 
+<!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- CSS Bootstrap -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap"
+	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-/* MEDIA PER SCHERMO DESKTOP GRANDE */
+* {
+	font-family: 'Poppins', sans-serif;
+}
+
 html, body {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
-	background-image: url("/ProgettoHR/img/Login_background.jpg");
+header {
+	height: 100%;
+	background-image: url("/ProgettoHR/img/Login.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
-}
-
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-#colonnaLogin {
+form {
+	border-radius: 20px;
 	background-color: white;
-	border-radius: 10px;
+	padding: 50px;
 }
 
-#utenteForm {
-	margin: 20px;
+img {
+	height: 55px;
+}
+
+span {
+	font-size: 25px;
+	letter-spacing: 5px;
+}
+
+#span-erre {
+	color: #004fff;
+}
+
+label {
+	letter-spacing: 3px;
+}
+
+input {
+	padding: 10px 15px;
+	color: #004fff;
+	border: none;
+	border-radius: 10px;
+	letter-spacing: 2px;
+	background-color: whitesmoke;
+	width: 100%;
+}
+
+input:focus {
+	box-shadow: none !important;
+	outline: 0;
+	color: #004fff;
+}
+
+#btn-login {
+	border: 1px solid #004fff;
+	color: #004fff;
+	border-radius: 20px;
+	width: 130px;
+	background-color: transparent;
+	transition: 0.5s;
+}
+
+#btn-login:hover {
+	background-color: #004fff;
+	border-color: #004fff;
+	color: white;
+	transition: 0.5s;
+}
+/* Hr */
+
+.hr {
+	margin-left: 0; /* fa partire l'hr da sinistra verso destra*/
+	padding: 1px 0;
+	background-color: black;
+	border: none;
+}
+
+.trans--grow {
+	transition: width 1s ease-out;
+	width: 0%;
+}
+
+.grow {
+	width: 100%;
 }
 </style>
-
 </head>
 
 <body onload="badCredentials()">
-	<div class="container-fluid p-0">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-expand-xl ">
+	<header>
+		<div class="container h-100">
+			<div class="row h-100 align-items-center">
+				<div class="col d-flex justify-content-center align-self-center">
+					<form:form id="utenteForm" method="POST"
+						action="/ProgettoHR/LogginIn/" modelAttribute="utente"
+						onsubmit="return validate();">
 
-			<!-- LOGO -->
-			<span class="navbar-brand">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</span>
-
-		</nav>
-
-
-		<div class="row mr-0 justify-content-center mt-4">
-			<div class="col-auto" id="colonnaLogin">
-
-				<h4 class="text-center mt-4">Login</h4>
-				<form:form id="utenteForm" method="POST"
-					action="/ProgettoHR/LogginIn/" modelAttribute="utente"
-					onsubmit="return validate();">
-
-					<div class="form-group" id="formUtente">
-						<label for="Utente">Utente:</label>
-						<form:input path="username" type="text" class="form-control"
-							id="utente" aria-describedby="utente"
-							placeholder="Inserisci Utente" required="required" />
-
-					</div>
-					<div class="form-group" id="formPassword">
-						<label for="Password">Password:</label>
-						<form:input path="password" type="password" class="form-control"
-							id="password" placeholder="Inserisci Password"
-							required="required" />
-					</div>
-
-					<button type="submit" id="loginButton" class="btn btn-lg btn-block btn-primary">Login</button>
-					<hr class="my-4">
-				</form:form>
-
-				<div class="row justify-content-center">
-					<div
-						class="alert alert-danger btn-block mb-4 ml-2 mr-2 text-center"
-						role="alert">Credenziali errate</div>
+						<div class="row">
+							<div class="col mb-3">
+								<img src="/ProgettoHR/img/Logo Erre.png" class="pr-3"> <span
+									id="span-signin">Sign in</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<span>Benvenuti in <span id="span-erre">Erre
+										Technology HR</span>.
+								</span>
+							</div>
+						</div>
+						<hr class="trans--grow hr mb-4">
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label for="Utente">Utente:</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col mb-3">
+									<form:input path="username" type="text" required="required"
+										autocomplete="off" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label for="Password">Password:</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col mb-3">
+									<form:input path="password" type="password" required="required" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<button class="btn text-center" id="btn-login" type="submit">Sign
+									in</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mt-4 text-center">
+								<div class="alert alert-danger" role="alert">Credenziali
+									errate!</div>
+							</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>
-	</div>
+	</header>
+
+	<script>
+		jQuery(document).ready(function($) {
+			setTimeout(function() {
+				$('.trans--grow').addClass('grow');
+			}, 275);
+		});
+	</script>
 
 	<script type="text/javascript">
 		function badCredentials() {
@@ -177,29 +238,20 @@ a, a:hover, a:focus {
 					listpass.removeChild(listpass.childNodes[4]);
 				}
 			}
-			
-			if(control){
+
+			if (control) {
 				document.getElementById("loginButton").disabled = true;
 			}
-			
+
 			return control;
 		}
 	</script>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<!-- Popper.JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-	<!-- Font Awesome JS -->
-	<script defer
-		src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
 
-	<script defer
-		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

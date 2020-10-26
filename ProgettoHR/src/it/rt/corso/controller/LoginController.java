@@ -40,12 +40,12 @@ public class LoginController {
 	public String Login(@ModelAttribute Utente utente, Model m) throws NoSuchAlgorithmException {
 		// creo la sessionFactory che rimarrà aperta fino a fine sessione
 		Utility.buildSessionFactory();
-		
+
 		String encryptedPassword = PasswordEncrypter.encryptPassword(utente.getPassword());
 		Utente u = udao.getByUsernamePassword(utente.getUsername(), encryptedPassword);
-		
-		if (u != null) {
 
+		if (u != null) {
+			u.setPassword(utente.getPassword());
 			m.addAttribute("utente", u);
 			return "redirect:/";
 		}
