@@ -111,7 +111,7 @@ input:focus {
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col d-flex justify-content-center align-self-center">
-					<form:form id="utenteForm" method="POST"
+					<form:form method="POST"
 						action="/ProgettoHR/LogginIn/" modelAttribute="utente"
 						onsubmit="return validate();">
 
@@ -129,7 +129,7 @@ input:focus {
 							</div>
 						</div>
 						<hr class="trans--grow hr mb-4">
-						<div class="form-group">
+						<div class="form-group" id="utenteForm">
 							<div class="row">
 								<div class="col">
 									<label for="Utente">Utente:</label>
@@ -137,12 +137,12 @@ input:focus {
 							</div>
 							<div class="row">
 								<div class="col mb-3">
-									<form:input path="username" type="text" required="required"
+									<form:input path="username" type="text"
 										autocomplete="off" />
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="formPassword">
 							<div class="row">
 								<div class="col">
 									<label for="Password">Password:</label>
@@ -150,7 +150,7 @@ input:focus {
 							</div>
 							<div class="row">
 								<div class="col mb-3">
-									<form:input path="password" type="password" required="required" />
+									<form:input path="password" type="password" />
 								</div>
 							</div>
 						</div>
@@ -193,9 +193,9 @@ input:focus {
 		function validate() {
 			$('.alert').hide();
 			var control = true;
-			var utente = document.getElementById("utente").value;
+			var utente = document.getElementById("username").value;
 			var pass = document.getElementById("password").value;
-			var list = document.getElementById("formUtente");
+			var list = document.getElementById("utenteForm");
 			var listpass = document.getElementById("formPassword");
 			if (utente === "") {
 
@@ -206,7 +206,7 @@ input:focus {
 				}
 				var textnode = document.createTextNode("Inserisci Nome Utente")
 				tagDiv.appendChild(textnode)
-				document.getElementById("formUtente").appendChild(tagDiv);
+				document.getElementById("utenteForm").appendChild(tagDiv);
 				control = false;
 
 			} else {
