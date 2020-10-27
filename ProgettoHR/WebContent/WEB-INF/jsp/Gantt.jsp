@@ -192,6 +192,14 @@ ul ul a {
 	visibility: hidden;
 }
 
+#colonnaNavbar{
+padding: 0;
+}
+
+#colonnaSidebar{
+padding-left: 0;
+
+}
 @media screen and (max-width: 855px) {
 	body {
 		
@@ -210,7 +218,7 @@ ul ul a {
 <body>
 	<div id="container" class="container-fluid">
 		<div class="row">
-			<div class="col">
+			<div class="col" id="colonnaNavbar">
 				<!-- NAVBAR -->
 				<nav class="navbar">
 
@@ -237,9 +245,9 @@ ul ul a {
 
 		<!-- COLONNA BARRA LATERALE -->
 		<div id="colonnaBarraLaterale" class="row  mt-4">
-			<div id="colonnaTable" class="col-2">
+			<div id="colonnaSidebar"  class="col-2">
 				<!-- BARRA LATERALE -->
-				<div id="sidebar">
+				<div id="sidebar" >
 					<div class="sidebar-header">
 						<h3>Gantt</h3>
 					</div>
@@ -265,16 +273,14 @@ ul ul a {
 					</div>
 					<div id="divNomeCandidato" class="form-group mb-3">
 						<label>Nome candidato:</label>
-						<div>
-							<div class="form-row">
-								<div>
+							<div class="form-group">
+							
 									<input type="button" id="nomeCandidato" class="btn btn-primary"
 										value="scegli candidato" data-toggle="modal"
 										data-target="#candModal">
 
-								</div>
+								
 
-							</div>
 						</div>
 					</div>
 
@@ -309,7 +315,7 @@ ul ul a {
 					</div>
 				</div>
 				<div>
-					<div class="col" id="chart_div"></div>
+					<div class="col p0" id="chart_div"></div>
 				</div>
 			</div>
 
@@ -436,6 +442,15 @@ ul ul a {
 
 			var chart = new google.visualization.Timeline(document
 					.getElementById('chart_div'));
+
+			
+			/*  google.visualization.events.addListener(chart, 'ready', function () {
+				  var c = document.getElementById("myCanvas");
+				  var ctx = c.getContext("2d");
+				  var img = document.getElementById("chart_div");
+				  ctx.drawImage(img, 10, 10);
+				});*/
+			  
 
 			chart.draw(data);
 		}
@@ -803,6 +818,8 @@ ul ul a {
 				return false;
 			}
 		}
+		
+		
 	</script>
 
 
