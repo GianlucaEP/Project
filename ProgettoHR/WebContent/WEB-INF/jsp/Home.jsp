@@ -341,6 +341,7 @@ svg {
 					</ul>
 				</nav>
 			</div>
+			
 
 			<!-- FILTRO STATO CANDIDATO -->
 			<div class="col p-0 mr-4 ">
