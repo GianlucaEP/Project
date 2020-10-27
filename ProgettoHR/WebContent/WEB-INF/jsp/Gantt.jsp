@@ -28,6 +28,9 @@
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+body, html, #container {
+	height: 100%;
+}
 /* MEDIA PER SCHERMO DESKTOP GRANDE */
 body {
 	font-family: 'Poppins', sans-serif;
@@ -205,32 +208,36 @@ ul ul a {
 </head>
 
 <body>
-	<div class="container-fluid p-0">
-		<!-- NAVBAR -->
-		<nav class="navbar">
+	<div id="container" class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<!-- NAVBAR -->
+				<nav class="navbar">
 
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+					<!-- LOGO -->
+					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+						<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
+					</a>
 
-			<div id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+					<div id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
 
-					<li class="nav-item">
-						<form action="/ProgettoHR/Logout">
-							<button type="submit" class="btn nav-link p-0">
-								<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
-							</button>
-						</form>
-					</li>
-				</ul>
+							<li class="nav-item">
+								<form action="/ProgettoHR/Logout">
+									<button type="submit" class="btn nav-link p-0">
+										<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
+									</button>
+								</form>
+							</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
-		</nav>
+		</div>
 
 		<!-- COLONNA BARRA LATERALE -->
-		<div id="colonnaBarraLaterale" class="row w-100 mr-0 mt-4">
-			<div id="colonnaTable" class="col-auto align-self-stretch">
+		<div id="colonnaBarraLaterale" class="row  mt-4">
+			<div id="colonnaTable" class="col-2">
 				<!-- BARRA LATERALE -->
 				<div id="sidebar">
 					<div class="sidebar-header">
@@ -264,14 +271,7 @@ ul ul a {
 									<input type="button" id="nomeCandidato" class="btn btn-primary"
 										value="scegli candidato" data-toggle="modal"
 										data-target="#candModal">
-									<!--  <input autocomplete="off"
-										list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
-										class="form-control">
-									<datalist id="areeCompetenzeDisponibili">
-										<c:forEach var="candidato" items="${list}">
-											<option value="${candidato.nome}"></option>
-										</c:forEach>
-									</datalist>-->
+
 								</div>
 
 							</div>
@@ -299,8 +299,8 @@ ul ul a {
 					</div>-->
 				</form>
 			</div>
-			<div class="col-6">
-				<div class="row" id="divCandidatoTemp"></div>
+			<div class="col-8" id="colTabellaGantt">
+				<div class="row p-2" id="divCandidatoTemp"></div>
 
 				<div class="row">
 					<div class="col-auto">
@@ -308,14 +308,14 @@ ul ul a {
 							onClick="endGantt()" id="fineButton">
 					</div>
 				</div>
-
+				<div>
+					<div class="col" id="chart_div"></div>
+				</div>
 			</div>
 
 
 		</div>
-		<div>
-			<div class="col" id="chart_div"></div>
-		</div>
+
 	</div>
 	<!-- modal candidato -->
 	<div class="modal fade" id="candModal" tabindex="-1" role="dialog"
@@ -462,7 +462,7 @@ ul ul a {
 			
 			tagDivButton.classList.add("btn");
 			tagDivButton.style.margin = "0px 0px 8px 0px";
-			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+			tagDivButton.innerHTML = '<i id="iconaMeno" class="fa fa-minus"></i>';
 			
 			
 			ColDiv1.appendChild(tagInput)
@@ -504,8 +504,12 @@ ul ul a {
 				tagDivButton.onclick = function(){				              	              	          				
 					tagDiv.remove();
 					tagDivHidden.remove();
+					document.getElementById("nomeCandidato").disabled=false;
+
 				};
+				document.getElementById("nomeCandidato").disabled=true;
 				$('#candModal').modal('toggle');
+				
 				
 		}
 		
@@ -529,7 +533,13 @@ ul ul a {
 			//creo tabella
 			
 			if (document.getElementById("tabellaCandidatiGantt")===null){
-					 var tabella = document.createElement("table");
+				
+				//	var rowTable=document.createElement("div");
+					//rowTable.setAttribute("id", "rowTable");
+					//rowTable.setAttribute("class", "row p-2");
+		  			//document.getElementById("divCandidatoTemp").appendChild(rowTable);
+				
+					var tabella = document.createElement("table");
 		  			tabella.setAttribute("id", "tabellaCandidatiGantt");
 		  			tabella.setAttribute("class", "tabellaHome");
 		  			document.getElementById("divCandidatoTemp").appendChild(tabella);
@@ -651,7 +661,8 @@ ul ul a {
 				if (x<1) {
 					document.getElementById("fineButton").style.visibility="hidden";
 					
-					tabella.remove();
+					document.getElementById("tabellaCandidatiGantt").remove();
+					
 				}
 				
 			};
@@ -705,11 +716,27 @@ ul ul a {
 			
 			drawChart(arrayListCandidatiGantt);
 			
-			 var tabella = document.createElement("table");
+			
+	  			
+	  			
+				printTotalCost(costoTotale, diffDays);
+				document.getElementById("fineButton").style.visibility="hidden";
+			
+			
+		}
+		
+		function printTotalCost(costoTotale, diffDays){
+			
+				var rowTableTotal=document.createElement("div");
+				rowTableTotal.setAttribute("id", "rowTableTotal");
+				rowTableTotal.setAttribute("class", "row p-2");
+	  			document.getElementById("colTabellaGantt").appendChild(rowTableTotal);
+
+				
+				var tabella = document.createElement("table");
 	  			tabella.setAttribute("id", "tabellaTotale");
 	  			tabella.setAttribute("class", "tabellaHome");
-	  			document.getElementById("divCandidatoTemp").appendChild(tabella);
-
+	  			document.getElementById("rowTableTotal").appendChild(tabella);
 	  			document.getElementById("tabellaTotale").style.width="50%";
 	  			
 	  			var thead= document.createElement("thead");
@@ -734,14 +761,14 @@ ul ul a {
 	  			document.getElementById("thGiorniTotali").appendChild(textNode)
 	  			
 	  			var tbody= document.createElement("tbody");
-  				tbody.setAttribute("id", "tbodyTotale");
-  				tbody.setAttribute("class", "body");
-  				document.getElementById("tabellaTotale").appendChild(tbody);
-  			
-  				var trRow = document.createElement("tr");
-  				trRow.setAttribute("id", "trRowTotale");
-  				document.getElementById("tbodyTotale").appendChild(trRow);
-  			
+				tbody.setAttribute("id", "tbodyTotale");
+				tbody.setAttribute("class", "body");
+				document.getElementById("tabellaTotale").appendChild(tbody);
+			
+				var trRow = document.createElement("tr");
+				trRow.setAttribute("id", "trRowTotale");
+				document.getElementById("tbodyTotale").appendChild(trRow);
+			
 	  			var tdPrezzoTotale = document.createElement("td");
 	  			tdPrezzoTotale.setAttribute("id", "tdTotale");
 	  			var textNodePrezzoTotale = document.createTextNode(costoTotale);
@@ -753,20 +780,6 @@ ul ul a {
 	  			var textNodeGiorniTotali = document.createTextNode(diffDays);
 	  			tdGiorniTotali.appendChild(textNodeGiorniTotali);
 	  			document.getElementById("trRowTotale").appendChild(tdGiorniTotali);
-	  			
-	  			
-				printTotalCost(costoTotale);
-				document.getElementById("fineButton").style.visibility="hidden";
-			
-			
-		}
-		
-		function printTotalCost(costoTotale){
-			
-			 var divTotalCost = document.createElement("div");
-			 divTotalCost.innerHTML=costoTotale;
-				
-			 document.getElementById("divCandidatoTemp").appendChild(divTotalCost);
 		}
 		
 		function validate(){
@@ -781,6 +794,7 @@ ul ul a {
 				endDateValue !== ""
 				){
 				aggiungiCandidato();
+				document.getElementById("nomeCandidato").disabled=false;
 				return true;
 				  }
 			else{
