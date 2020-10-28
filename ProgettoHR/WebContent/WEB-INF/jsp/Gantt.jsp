@@ -200,6 +200,13 @@ padding: 0;
 padding-left: 0;
 
 }
+#chart_div{
+overflow-x: scroll;
+overflow-y:hidden;
+  height:150px;
+  margin:20px;
+display:none;
+}
 @media screen and (max-width: 855px) {
 	body {
 		
@@ -259,7 +266,7 @@ padding-left: 0;
 
 				</div>
 			</div>
-			<div class="col-2">
+			<div id="colonnaForm" class="col-2">
 				<!--Gantt -->
 
 				<form>
@@ -305,7 +312,7 @@ padding-left: 0;
 					</div>-->
 				</form>
 			</div>
-			<div class="col-8" id="colTabellaGantt">
+			<div class="col-auto" id="colTabellaGantt">
 				<div class="row p-2" id="divCandidatoTemp"></div>
 
 				<div class="row">
@@ -451,8 +458,14 @@ padding-left: 0;
 				  ctx.drawImage(img, 10, 10);
 				});*/
 			  
+				document.getElementById("chart_div").style.display = "block";
+				document.getElementById("colonnaForm").style.display = "none";
 
-			chart.draw(data);
+			chart.draw(data, {
+				 width: 1200
+			});
+				
+			
 		}
 		
 		function addCandidato(costo, nome) {
@@ -735,7 +748,7 @@ padding-left: 0;
 	  			
 	  			
 				printTotalCost(costoTotale, diffDays);
-				document.getElementById("fineButton").style.visibility="hidden";
+				document.getElementById("fineButton").style.display="none";
 			
 			
 		}
