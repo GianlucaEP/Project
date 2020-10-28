@@ -192,21 +192,31 @@ ul ul a {
 	visibility: hidden;
 }
 
-#colonnaNavbar{
-padding: 0;
+#colonnaNavbar {
+	padding: 0;
 }
 
-#colonnaSidebar{
-padding-left: 0;
+#colonnaSidebar {
+	padding-left: 0;
+}
 
+#chart_div {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	height: 150px;
+	margin: 20px;
+	display: none;
 }
-#chart_div{
-overflow-x: scroll;
-overflow-y:hidden;
-  height:150px;
-  margin:20px;
-display:none;
+
+#modalTableCand {
+	width: 90%;
+	max-width: 1200px;
 }
+
+#candModal {
+	overflow-x: auto;
+}
+
 @media screen and (max-width: 855px) {
 	body {
 		
@@ -252,9 +262,9 @@ display:none;
 
 		<!-- COLONNA BARRA LATERALE -->
 		<div id="colonnaBarraLaterale" class="row  mt-4">
-			<div id="colonnaSidebar"  class="col-2">
+			<div id="colonnaSidebar" class="col-2">
 				<!-- BARRA LATERALE -->
-				<div id="sidebar" >
+				<div id="sidebar">
 					<div class="sidebar-header">
 						<h3>Gantt</h3>
 					</div>
@@ -280,13 +290,13 @@ display:none;
 					</div>
 					<div id="divNomeCandidato" class="form-group mb-3">
 						<label>Nome candidato:</label>
-							<div class="form-group">
-							
-									<input type="button" id="nomeCandidato" class="btn btn-primary"
-										value="scegli candidato" data-toggle="modal"
-										data-target="#candModal">
+						<div class="form-group">
 
-								
+							<input type="button" id="nomeCandidato" class="btn btn-primary"
+								value="scegli candidato" data-toggle="modal"
+								data-target="#candModal">
+
+
 
 						</div>
 					</div>
@@ -333,7 +343,7 @@ display:none;
 	<!-- modal candidato -->
 	<div class="modal fade" id="candModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" id="modalTableCand" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="candidatoModalLabel">Seleziona
@@ -345,24 +355,28 @@ display:none;
 					</button>
 				</div>
 				<div class="modal-body" id="candModal">
+
+
 					<table class="tabellaHome">
 
 						<thead class="head">
 							<tr>
-
+								
 								<th scope="col">Business unit</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Cognome</th>
 								<th scope="col">Area Competenza</th>
-								<th scope="col">Mansione</th>
-								<th scope="col">Costo Giornaliero</th>
+								<th scope="col">Mansione</th><th scope="col">Costo Giornaliero</th>
 								<th scope="col">seleziona</th>
+
 							</tr>
 						</thead>
 
 						<tbody class="body">
 							<c:forEach var="cand" items="${list}">
 								<tr>
+
+									
 									<td>${cand.business.business}</td>
 									<td>${cand.nome}</td>
 									<td>${cand.cognome}</td>
@@ -376,7 +390,6 @@ display:none;
 													
 															${mansione.mansione}
 													</c:forEach></td>
-
 									<td>${cand.costo.giornaliero}</td>
 
 
@@ -385,12 +398,14 @@ display:none;
 											<i class="fas fa-plus"></i>
 										</button></td>
 
+
 								</tr>
 
 							</c:forEach>
 						</tbody>
 
 					</table>
+
 				</div>
 				<div class="modal-footer">
 					<button type="reset" id="bottone-cancella-specializzazione"
@@ -398,6 +413,7 @@ display:none;
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<!-- MODAL ERRORE -->
@@ -821,15 +837,22 @@ display:none;
 				initialDateValue !== "" &&
 				endDateValue !== ""
 				){
+				if(initialDateValue > endDateValue){
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML ="Attenzione! La data di inizio deve essere minore della data di fine.";  
+					return false;
+				}
 				aggiungiCandidato();
 				document.getElementById("nomeCandidato").disabled=false;
 				return true;
 				  }
 			else{
 				$('#errorModal').modal('toggle');   
-				document.getElementById("errorModalBody").innerHTML ="compila tutti i campi e scegli il candidato";  
+				document.getElementById("errorModalBody").innerHTML ="Attenzione! Compila tutti i campi e scegli il candidato.";  
 				return false;
 			}
+			
+			
 		}
 		
 		
