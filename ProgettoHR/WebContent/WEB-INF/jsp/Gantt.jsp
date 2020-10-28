@@ -203,8 +203,7 @@ ul ul a {
 #chart_div {
 	overflow-x: scroll;
 	overflow-y: hidden;
-	height: 150px;
-	margin: 20px;
+	height: 200px;
 	display: none;
 }
 
@@ -285,7 +284,7 @@ ul ul a {
 							type="text" class="form-control" id="idTask">
 					</div>-->
 					<div class="form-group">
-						<label for="exampleFormControlInput1">nome task</label> <input
+						<label for="exampleFormControlInput1">Nome task</label> <input
 							type="text" class="form-control" id="nomeTask">
 					</div>
 					<div id="divNomeCandidato" class="form-group mb-3">
@@ -293,7 +292,7 @@ ul ul a {
 						<div class="form-group">
 
 							<input type="button" id="nomeCandidato" class="btn btn-primary"
-								value="scegli candidato" data-toggle="modal"
+								value="Scegli candidato" data-toggle="modal"
 								data-target="#candModal">
 
 
@@ -302,17 +301,17 @@ ul ul a {
 					</div>
 
 					<div class="form-group">
-						<label for="exampleFormControlInput2">data inizio</label> <input
+						<label for="exampleFormControlInput2">Data inizio</label> <input
 							type="date" class="form-control" id="initialDate">
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlInput3">data fine</label> <input
+						<label for="exampleFormControlInput3">Data fine</label> <input
 							type="date" class="form-control" id="endDate">
 					</div>
 
 					<div class="form-group">
 						<button class="btn btn-primary" type="reset"
-							onClick="return validate();" id="aggiungiButton">aggiungi</button>
+							onClick="return validate();" id="aggiungiButton">Aggiungi</button>
 
 					</div>
 					<!--  	<div class="form-group">
@@ -331,8 +330,8 @@ ul ul a {
 							onClick="endGantt()" id="fineButton">
 					</div>
 				</div>
-				<div>
-					<div class="col p0" id="chart_div"></div>
+				<div class="row p-2">
+					<div class="col p-0 mt-4 mb-4" id="chart_div"></div>
 				</div>
 			</div>
 
@@ -480,6 +479,8 @@ ul ul a {
 			chart.draw(data, {
 				 width: 1200
 			});
+			
+			
 				
 			
 		}
@@ -775,12 +776,17 @@ ul ul a {
 				rowTableTotal.setAttribute("id", "rowTableTotal");
 				rowTableTotal.setAttribute("class", "row p-2");
 	  			document.getElementById("colTabellaGantt").appendChild(rowTableTotal);
+	  			
+	  			var colTableTotal=document.createElement("div");
+				colTableTotal.setAttribute("id", "colTableTotal");
+				colTableTotal.setAttribute("class", "col p-0");
+	  			document.getElementById("rowTableTotal").appendChild(colTableTotal);
 
 				
 				var tabella = document.createElement("table");
 	  			tabella.setAttribute("id", "tabellaTotale");
 	  			tabella.setAttribute("class", "tabellaHome");
-	  			document.getElementById("rowTableTotal").appendChild(tabella);
+	  			document.getElementById("colTableTotal").appendChild(tabella);
 	  			document.getElementById("tabellaTotale").style.width="50%";
 	  			
 	  			var thead= document.createElement("thead");
@@ -824,6 +830,20 @@ ul ul a {
 	  			var textNodeGiorniTotali = document.createTextNode(diffDays);
 	  			tdGiorniTotali.appendChild(textNodeGiorniTotali);
 	  			document.getElementById("trRowTotale").appendChild(tdGiorniTotali);
+	  			
+				var tagDivCol = document.createElement("div");		
+				var tagInput = document.createElement("input");
+				
+				tagDivCol.classList.add("col", "text-right", "align-self-end", "p-0");
+				tagInput.setAttribute("type", "button");
+				tagInput.classList.add("btn", "btn-primary");
+				tagInput.onclick = function() {
+					location.reload();
+				}
+				tagInput.value="Nuovo Gantt";
+				
+				tagDivCol.appendChild(tagInput);
+				document.getElementById("rowTableTotal").appendChild(tagDivCol);
 		}
 		
 		function validate(){
