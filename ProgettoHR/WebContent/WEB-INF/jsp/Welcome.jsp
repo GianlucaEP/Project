@@ -16,10 +16,6 @@
 <!-- CSS Bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap"
-	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
@@ -41,19 +37,29 @@ img:hover {
 }
 
 #colonna-telco {
-	background-color: #490a09;
+	background-image: url("/ProgettoHR/img/welcome-telco-blured.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	
 	transition: 0.5s;
 }
 
 #colonna-ict {
-	background-color: #145667;
+	background-image: url("/ProgettoHR/img/welcome-ict-blured.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	transition: 0.5s;
 	border-right: 1px solid white;
 	border-left: 1px solid white;
 }
 
 #colonna-ingegneria {
-	background-color: #945805;
+	background-image: url("/ProgettoHR/img/welcome-ingegneria-blured.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	transition: 0.5s;
 }
 </style>
@@ -68,8 +74,7 @@ img:hover {
 					<div class="row h-100 align-items-center">
 						<div class="col text-center">
 							<a href="/ProgettoHR/Home/Telco"><img
-								onmouseover="changeColorBg('#7f1210', 'colonna-telco')"
-								onmouseleave="changeColorBg('#490a09', 'colonna-telco')"
+								
 								src="/ProgettoHR/img/errelab.png"></a>
 						</div>
 					</div>
@@ -80,8 +85,7 @@ img:hover {
 					<div class="row h-100 align-items-center">
 						<div class="col text-center">
 							<a href="/ProgettoHR/Home/ICT"><img
-								onmouseover="changeColorBg('#1e8199', 'colonna-ict')"
-								onmouseleave="changeColorBg('#145667', 'colonna-ict')"
+								
 								src="/ProgettoHR/img/errepro.png"></a>
 						</div>
 					</div>
@@ -92,8 +96,7 @@ img:hover {
 					<div class="row h-100 align-items-center">
 						<div class="col text-center">
 							<a href="/ProgettoHR/Home/Engineering"><img
-								onmouseover="changeColorBg('#f69309', 'colonna-ingegneria')"
-								onmouseleave="changeColorBg('#945805', 'colonna-ingegneria')"
+								
 								id="techImg" src="/ProgettoHR/img/erretechnologygroup.png"></a>
 						</div>
 					</div>
@@ -101,12 +104,6 @@ img:hover {
 			</div>
 		</div>
 	</header>
-
-	<script type="text/javascript">
-		function changeColorBg(color, id) {
-			document.getElementById(id).style.background = color
-		}
-	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

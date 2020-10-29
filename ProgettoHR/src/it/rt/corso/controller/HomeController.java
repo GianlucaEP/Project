@@ -71,7 +71,7 @@ public class HomeController {
 		return "Home";
 	}
 
-	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.POST)
+	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.GET)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
 
