@@ -549,25 +549,29 @@ ul ul a {
 											<td>${cand.costo.orario}&#8364;/H</td>
 										</c:if>
 									</c:forEach>
-									<td><button class="btn"
-											style="border-color: transparent; background: #5aa9e6;"
-											id="bottoneModificaCandidato"
-											onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-											<span data-toggle="tooltip" data-placement="top"
-												title="Modifica candidato"><i
-												class="fas fa-user-edit"></i></span>
+									<td>
+										<div class="btn-group">
+											<button class="btn"
+												style="border-color: transparent; background: #5aa9e6;"
+												id="bottoneModificaCandidato"
+												onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+												<span data-toggle="tooltip" data-placement="top"
+													title="Modifica candidato"><i
+													class="fas fa-user-edit"></i></span>
 
-										</button>
-										<button class="btn"
-											style="border-color: transparent; background: #5aa9e6;"
-											id="bottoneEliminaCandidato" data-toggle="modal"
-											onclick="impostaParametriCandidatoId(${cand.id})"
-											data-target="#EliminaModal">
-											<span data-toggle="tooltip" data-placement="top"
-												title="Elimina candidato"> <i class="fas fa-trash"></i>
-											</span>
+											</button>
+											<button class="btn"
+												style="border-color: transparent; background: #5aa9e6;"
+												id="bottoneEliminaCandidato" data-toggle="modal"
+												onclick="impostaParametriCandidatoId(${cand.id})"
+												data-target="#EliminaModal">
+												<span data-toggle="tooltip" data-placement="top"
+													title="Elimina candidato"> <i class="fas fa-trash"></i>
+												</span>
 
-										</button></td>
+											</button>
+										</div>
+									</td>
 								</tr>
 
 							</c:forEach>

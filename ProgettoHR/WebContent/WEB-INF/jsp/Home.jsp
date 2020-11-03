@@ -78,6 +78,85 @@ body {
 }
 
 /* SIDEBAR */
+/* transizione tra menubutton e closebutton */
+:root {
+  --animation-curve: cubic-bezier(1, 0, 0, 1);
+  //cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+label {
+  width: 19px;
+  height: 3px;
+background-color: black;
+  position: absolute;
+  top: 20px;
+    left: 27px;
+  cursor: pointer;
+}
+  label::before,
+  label::after {
+    content: "";
+    width: 19px;
+    height: 3px;
+    background-color: black;
+    position: absolute;
+    display: block;
+    color: red;
+    transition: all 0.6s var(--animation-curve);
+  }
+
+  label::before {
+    top: -200%;
+    left: 0%;
+    transform: rotateZ(0deg);
+    transform-origin: left top;
+  }
+
+  label::after {
+    bottom: -200%;
+    left: 0%;
+    transform: rotateZ(0deg);
+    transform-origin: left bottom;
+  }
+
+#toggle:checked ~ label::before {
+  content: "";
+  background-color: black;
+  transform: rotateZ(41deg);
+  left: 10%;
+}
+
+#toggle:checked ~ label::after {
+  content: "";
+  background-color: black;
+  transform: rotateZ(-41deg);
+  left: 10%;
+}
+
+#toggle:checked ~ label {
+width: 0;}
+
+
+#toggle ~ label {
+  transition: all 0.5s var(--animation-curve);
+}
+
+input {
+  display: none;
+}
+
+/* SIDEBAR */
+#sidenav {
+	transition: 1s;
+	width: 0;
+}
+
+#btn-menu-close {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
 #sidebar {
 	width: 100%;
 	height: 100%;
@@ -116,8 +195,8 @@ body {
 }
 
 #sidebar ul li a:hover {
-	color: #000000;
-	background: #fff;
+	color: #fff;
+	background: #7fc8f8;
 }
 
 #sidebar ul li.active>a, a[aria-expanded="true"] {
@@ -209,8 +288,15 @@ svg {
 	height: 43px;
 	float: right;
 	background-color: #5aa9e6;
-	float: right;
+	
 }
+
+#buttonMenu{
+	height: 43px;
+	width:42px;
+	float: left;
+	background-color: #5aa9e6;
+  transition: all 0.6s var(--animation-curve);}
 
 #bottoneFiltro {
 	background-color: #5aa9e6;
@@ -231,9 +317,6 @@ svg {
 
 @media screen and (max-width: 855px) {
 	body {
-		
-	}
-	#colonnaTable {
 		
 	}
 	[class*="col-"] {
@@ -269,12 +352,14 @@ svg {
 		</nav>
 
 		<!-- COLONNA BARRA LATERALE -->
-		<div class="row w-100 mr-0 mt-4">
-			<div id="colonnaTable" class="col-auto align-self-stretch">
+		<div class="row w-100 mt-4">
+			<div id="sidenav" class="col-auto align-self-stretch">
 				<!-- BARRA LATERALE -->
 				<nav id="sidebar">
 					<div class="sidebar-header">
 						<h3>Home</h3>
+				
+						
 					</div>
 
 					<ul class="list-unstyled components">
@@ -331,9 +416,8 @@ svg {
 								</c:when>
 							</c:choose>
 						</c:forEach>
-						<li><a id="aSidebar"
-							href="/ProgettoHR/Gantt/${businessUnit}" type="button"
-							class="text-center">Gantt</a></li>
+						<li><a id="aSidebar" href="/ProgettoHR/Gantt/${businessUnit}"
+							type="button" class="text-center">Gantt</a></li>
 
 						<li><a id="aSidebar"
 							href="/ProgettoHR/Filter/${businessUnit}" type="button"
@@ -341,12 +425,17 @@ svg {
 					</ul>
 				</nav>
 			</div>
-			
+
 
 			<!-- FILTRO STATO CANDIDATO -->
-			<div class="col p-0 mr-4 ">
+			<div class="col p-0">
 				<div class="row w-100 mb-1">
 					<div class="col">
+						
+						<div id="buttonMenu" onclick="toggleMenu()" class="btn" >
+						<input type="checkbox" id="toggle"> <label for="toggle">
+						</label>
+						</div>
 						<form action="/ProgettoHR/Home/filter/${businessUnit}"
 							method="post">
 							<div class="input-group" style="display: inline-flex;">
@@ -441,34 +530,37 @@ svg {
 
 												<td><c:forEach var="area" items="${cand.area}">
 														
-															${area.area}
+															- ${area.area}  
 													</c:forEach></td>
 
 												<td><c:forEach var="mansione" items="${cand.mansione}">
 													
-															${mansione.mansione}
+														   - ${mansione.mansione}
 													</c:forEach></td>
 
 												<td>${cand.seniority.seniority}</td>
 
 												<td>
-													<button class="btn float-right"
-														id="bottoneEliminaCandidato" data-toggle="modal"
-														onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
-														data-target="#EliminaModal">
-														<span data-toggle="tooltip" data-placement="top"
-															title="Elimina candidato"> <i class="fas fa-trash"></i>
-														</span>
+													<div class="btn-group">
+														<button class="btn " id="bottoneModificaCandidato"
+															onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+															<span data-toggle="tooltip" data-placement="top"
+																title="Modifica candidato"><i
+																class="fas fa-user-edit"></i></span>
 
-													</button>
-													<button class="btn p-2 mr-1 float-right"
-														id="bottoneModificaCandidato"
-														onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-														<span data-toggle="tooltip" data-placement="top"
-															title="Modifica candidato"><i
-															class="fas fa-user-edit"></i></span>
+														</button>
+														<button class="btn" id="bottoneEliminaCandidato"
+															data-toggle="modal"
+															onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
+															data-target="#EliminaModal">
+															<span data-toggle="tooltip" data-placement="top"
+																title="Elimina candidato"> <i
+																class="fas fa-trash"></i>
+															</span>
 
-													</button>
+														</button>
+
+													</div>
 												</td>
 
 											</tr>
@@ -769,6 +861,29 @@ svg {
 		function darkMode() {
 			   var element = document.body;
 			   element.classList.toggle("dark-mode");
+			}
+		
+		
+		function toggleMenu(){
+			if (document.getElementById("toggle").checked===false){
+				openMenu()
+			}
+			else{
+				closeMenu()
+
+			}
+		}
+		function openMenu() {
+			  document.getElementById("sidenav").style.width = "16.666667%";
+			  document.getElementById("toggle").checked=true;
+			  document.getElementById("buttonMenu").style.width="35px"
+			}
+
+			function closeMenu() {
+				document.getElementById("toggle").checked=false;
+			  document.getElementById("sidenav").style.width = "0";
+			  document.getElementById("buttonMenu").style.width="42px"
+
 			}
 	</script>
 
