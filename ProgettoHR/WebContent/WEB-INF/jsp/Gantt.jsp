@@ -321,7 +321,7 @@ ul ul a {
 					</div>-->
 				</form>
 			</div>
-			<div class="col-auto" id="colTabellaGantt">
+			<div class="col-8" id="colTabellaGantt">
 				<div class="row p-2" id="divCandidatoTemp"></div>
 
 				<div class="row">
@@ -505,7 +505,8 @@ ul ul a {
 			  
 				document.getElementById("chart_div").style.display = "block";
 				document.getElementById("colonnaForm").style.display = "none";
-
+				document.getElementById("colTabellaGantt").className = "col-10";
+				
 			chart.draw(data, {
 				 width: 1200
 			});
@@ -550,35 +551,43 @@ ul ul a {
 			
 			
 
-			var tagDivHidden = document.createElement("div");		
-			var tagInputHidden = document.createElement("input");
+			var tagDivCosto = document.createElement("div");		
+			var tagInputCosto = document.createElement("input");
 			
-			tagInputHidden.value = costo;
+			var tagInputRincaro = document.createElement("input");
+		
+			tagInputCosto.value = costo;
 			
-			tagInputHidden.classList.add("form-control");
 			
+			tagInputCosto.classList.add("form-control");
+			tagInputRincaro.classList.add("form-control");
 			
-			tagDivHidden.classList.add("form-row");
-			var ColDiv1Hidden = document.createElement("div");
-				ColDiv1Hidden.classList.add("col-11");
+			tagDivCosto.classList.add("form-row");
 
-				tagInputHidden.name = "costo";
-				tagInputHidden.id="costoInput"
-				tagInputHidden.readOnly = true;
-				
+			var ColDiv1Costo = document.createElement("div");
+			var ColDiv1Rincaro = document.createElement("div");
 			
+				ColDiv1Costo.classList.add("col-6");
+				ColDiv1Rincaro.classList.add("col-5");
+
+				tagInputCosto.name = "costo";
+				tagInputCosto.id="costoInput"
+				tagInputCosto.readOnly = true;
 				
+				tagInputRincaro.name = "rincaro";
+				tagInputRincaro.id="rincaroInput"
 				
-				ColDiv1Hidden.appendChild(tagInputHidden)
-				tagDivHidden.appendChild(ColDiv1Hidden);
-				tagDivHidden.style.display="none";
+				ColDiv1Costo.appendChild(tagInputCosto)
+				tagDivCosto.appendChild(ColDiv1Costo);
 				
-				document.getElementById("CandidatoTemporaneoGantt").appendChild(tagDivHidden);
+				ColDiv1Rincaro.appendChild(tagInputRincaro)
+				tagDivCosto.appendChild(ColDiv1Rincaro);
 				
+				document.getElementById("CandidatoTemporaneoGantt").appendChild(tagDivCosto);
 			
 				tagDivButton.onclick = function(){				              	              	          				
 					tagDiv.remove();
-					tagDivHidden.remove();
+					tagDivCosto.remove();
 					document.getElementById("nomeCandidato").disabled=false;
 
 				};
@@ -596,6 +605,8 @@ ul ul a {
 			var costoInput=document.getElementById("costoInput").value
 			var initialDate=document.getElementById("initialDate").value
 			var endDate=document.getElementById("endDate").value
+			var rincaroInput=document.getElementById("rincaroInput").value
+			var prezzo=parseInt(costoInput)+parseInt(costoInput*(rincaroInput/100));
 			
 			var tagDiv = document.createElement("div");
 			tagDiv.id="candidatoGantt"+countCandidatiGant;
@@ -653,11 +664,23 @@ ul ul a {
 		  			var textNode=document.createTextNode("end Date");
 		  			document.getElementById("thEndDate").appendChild(textNode)
 		  			
+		  			var thCost = document.createElement("th");
+		  			thCost.setAttribute("id", "thCost");
+		  			document.getElementById("trCol").appendChild(thCost);
+		  			var textNode=document.createTextNode("cost");
+		  			document.getElementById("thCost").appendChild(textNode)
+		  			
 		  			var thPrice = document.createElement("th");
 		  			thPrice.setAttribute("id", "thPrice");
 		  			document.getElementById("trCol").appendChild(thPrice);
 		  			var textNode=document.createTextNode("price");
 		  			document.getElementById("thPrice").appendChild(textNode)
+		  			
+		  			var thRincaro = document.createElement("th");
+		  			thRincaro.setAttribute("id", "thRincaro");
+		  			document.getElementById("trCol").appendChild(thRincaro);
+		  			var textNode=document.createTextNode("rincaro");
+		  			document.getElementById("thRincaro").appendChild(textNode)
 		  			
 		  			var thRemove = document.createElement("th");
 		  			thRemove.setAttribute("id", "thRemove");
@@ -702,12 +725,17 @@ ul ul a {
   			tdEndDate.appendChild(textNodeEndDate);
   			document.getElementById("trRow"+countCandidatiGant).appendChild(tdEndDate);
   			
+  			var tdCost = document.createElement("td");
+  			tdCost.setAttribute("id", "tdCost"+countCandidatiGant);
+  			var textNodetdCost= document.createTextNode(costoInput);
+  			tdCost.appendChild(textNodetdCost);
+  			document.getElementById("trRow"+countCandidatiGant).appendChild(tdCost);
+  			
   			var tdPrice = document.createElement("td");
   			tdPrice.setAttribute("id", "tdPrice"+countCandidatiGant);
   			var textNodetdPrice = document.createTextNode(costoInput);
   			tdPrice.appendChild(textNodetdPrice);
   			document.getElementById("trRow"+countCandidatiGant).appendChild(tdPrice);
-  			
   			
 			var tagDivButton = document.createElement("span");
 			tagDivButton.classList.add("btn");
