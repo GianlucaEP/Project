@@ -606,7 +606,18 @@ ul ul a {
 			var initialDate=document.getElementById("initialDate").value
 			var endDate=document.getElementById("endDate").value
 			var rincaroInput=document.getElementById("rincaroInput").value
-			var prezzo=parseInt(costoInput)+parseInt(costoInput*(rincaroInput/100));
+			var prezzo=parseFloat(costoInput)+parseFloat((costoInput*(rincaroInput/100)).toFixed(2));
+		
+			var initialDateFormat=new Date(document.getElementById("initialDate").value)
+			var endDateFormat=new Date(document.getElementById("endDate").value)
+			var diffDays = 0;
+			var diffTime = Math.abs(endDateFormat - initialDateFormat);
+			var tempDiffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+			diffDays= diffDays+tempDiffDays;
+			var parziale=diffDays * prezzo;
+		
+		
+			
 			
 			var tagDiv = document.createElement("div");
 			tagDiv.id="candidatoGantt"+countCandidatiGant;
@@ -617,7 +628,7 @@ ul ul a {
 			divIdTask.innerHTML =idTask;*/
 			
 			//creo tabella
-			
+			//header tabella
 			if (document.getElementById("tabellaCandidatiGantt")===null){
 				
 				//	var rowTable=document.createElement("div");
@@ -668,19 +679,25 @@ ul ul a {
 		  			thCost.setAttribute("id", "thCost");
 		  			document.getElementById("trCol").appendChild(thCost);
 		  			var textNode=document.createTextNode("cost");
-		  			document.getElementById("thCost").appendChild(textNode)
-		  			
-		  			var thPrice = document.createElement("th");
-		  			thPrice.setAttribute("id", "thPrice");
-		  			document.getElementById("trCol").appendChild(thPrice);
-		  			var textNode=document.createTextNode("price");
-		  			document.getElementById("thPrice").appendChild(textNode)
+		  			document.getElementById("thCost").appendChild(textNode);
 		  			
 		  			var thRincaro = document.createElement("th");
 		  			thRincaro.setAttribute("id", "thRincaro");
 		  			document.getElementById("trCol").appendChild(thRincaro);
 		  			var textNode=document.createTextNode("rincaro");
-		  			document.getElementById("thRincaro").appendChild(textNode)
+		  			document.getElementById("thRincaro").appendChild(textNode);
+		  			
+		  			var thPrice = document.createElement("th");
+		  			thPrice.setAttribute("id", "thPrice");
+		  			document.getElementById("trCol").appendChild(thPrice);
+		  			var textNode=document.createTextNode("price");
+		  			document.getElementById("thPrice").appendChild(textNode);
+		  			
+		  			var thParziale = document.createElement("th");
+		  			thParziale.setAttribute("id", "thParziale");
+		  			document.getElementById("trCol").appendChild(thParziale);
+		  			var textNode=document.createTextNode("parziale");
+		  			document.getElementById("thParziale").appendChild(textNode)
 		  			
 		  			var thRemove = document.createElement("th");
 		  			thRemove.setAttribute("id", "thRemove");
@@ -696,7 +713,7 @@ ul ul a {
 			}
   			//------------------------------------------------------------------------------------
   			
-  			
+  			//body tabella
   			var trRow = document.createElement("tr");
   			trRow.setAttribute("id", "trRow"+countCandidatiGant);
   			document.getElementById("myBodyTable").appendChild(trRow);
@@ -731,11 +748,23 @@ ul ul a {
   			tdCost.appendChild(textNodetdCost);
   			document.getElementById("trRow"+countCandidatiGant).appendChild(tdCost);
   			
+  			var tdRincaro = document.createElement("td");
+  			tdRincaro.setAttribute("id", "tdRincaro"+countCandidatiGant);
+  			var textNodetdRincaro= document.createTextNode(rincaroInput+"%");
+  			tdRincaro.appendChild(textNodetdRincaro);
+  			document.getElementById("trRow"+countCandidatiGant).appendChild(tdRincaro);
+  			
   			var tdPrice = document.createElement("td");
   			tdPrice.setAttribute("id", "tdPrice"+countCandidatiGant);
-  			var textNodetdPrice = document.createTextNode(costoInput);
+  			var textNodetdPrice = document.createTextNode(prezzo);
   			tdPrice.appendChild(textNodetdPrice);
   			document.getElementById("trRow"+countCandidatiGant).appendChild(tdPrice);
+  			
+  			var tdParziale = document.createElement("td");
+  			tdParziale.setAttribute("id", "tdParziale"+countCandidatiGant);
+  			var textParziale = document.createTextNode(parziale);
+  			tdParziale.appendChild(textParziale);
+  			document.getElementById("trRow"+countCandidatiGant).appendChild(tdParziale);
   			
 			var tagDivButton = document.createElement("span");
 			tagDivButton.classList.add("btn");
@@ -802,8 +831,8 @@ ul ul a {
 							var diffTime = Math.abs(date2 - date1);
 							var tempDiffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 							diffDays= diffDays+tempDiffDays;
-							var costForDays=tempDiffDays*parseInt(document.getElementById("tdPrice"+i).innerHTML)
-							costoTotale=costoTotale+costForDays;
+							var costForDays=tempDiffDays*parseFloat(document.getElementById("tdPrice"+i).innerHTML)
+							costoTotale=parseFloat(costoTotale+costForDays);
 							
 							var menoButtonTable=document.getElementById("menoButtonTable"+i);
 							menoButtonTable.parentNode.removeChild(menoButtonTable);
@@ -920,10 +949,12 @@ ul ul a {
 			
 			var	nomeTaskValue = document.getElementById("nomeTask").value;
 			var nomeCandidatoValue = document.getElementById("candidatoNameInput");
+			var rincaroValue =  document.getElementById("rincaroInput");
 			var initialDateValue = document.getElementById("initialDate").value;
 			var endDateValue = document.getElementById("endDate").value;
 			if (nomeTaskValue !== "" &&
 				nomeCandidatoValue!== null &&
+				rincaroValue !== "" &&
 				initialDateValue !== "" &&
 				endDateValue !== ""
 				){
