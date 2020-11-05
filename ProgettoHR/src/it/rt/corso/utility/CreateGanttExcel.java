@@ -5,8 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +20,38 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import it.rt.corso.beans.Task;
+
 /**
  * 
  * Utility class that creates Excel files and builds HTTP reponses containing said files in order to let the client download them.
  * 
  */
 public abstract class CreateGanttExcel {
+	
+	private static List<Task> buildDataExcel(List<Object> data) throws ParseException{
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		List<Task> taskList = new ArrayList<Task>();
+		
+		for(int i = 0;i < data.size();i++) {
+			Task task = new Task();
+			
+			task.setNomeTask(data.get(i).toString());
+			i++;
+			task.setNomeCandidiato(data.get(i).toString());
+			i++;
+			task.setDataInizio(formatter.parse(data.get(i).toString()));
+			i++;
+			task.setDataFine(formatter.parse(data.get(i).toString()));
+			i++;
+			
+			taskList.add(task);
+		}
+		
+		return taskList;
+	}
 
 	/**
 	 * 
@@ -30,21 +59,25 @@ public abstract class CreateGanttExcel {
 	 * <code>XSSFWorkbook</code> type object.
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
+	 * @param data 
 	 * 
 	 * @return the written workbook.
+	 * @throws ParseException 
 	 * 
 	 */
-	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook) throws IOException {
+	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<Object> data) throws IOException, ParseException {
+		
+		List<Task> taskList = buildDataExcel(data);
 
 		XSSFSheet sheet = workbook.createSheet();
 
-		writeHeadersGantt(workbook, sheet);
+		writeHeadersGantt(workbook, sheet, taskList);
 
 		return workbook;
 
 	}
 
-	private static void writeHeadersGantt(XSSFWorkbook workbook, XSSFSheet sheet) {
+	private static void writeHeadersGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
 		XSSFRow header = sheet.createRow(0);
 		XSSFCell headerCell = header.createCell(0);
 		headerCell.setCellValue("Testing");
@@ -84,14 +117,15 @@ public abstract class CreateGanttExcel {
 	 *                 parameter.
 	 * 
 	 * @author s.schiavone
+	 * @throws ParseException 
 	 */
-	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<Object> data) throws IOException, ParseException {
 
 		File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
 
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
-		workbook = CreateGanttExcel.createWorkbook(workbook);
+		workbook = CreateGanttExcel.createWorkbook(workbook, data);
 
 		FileOutputStream out = new FileOutputStream(file);
 		workbook.write(out);

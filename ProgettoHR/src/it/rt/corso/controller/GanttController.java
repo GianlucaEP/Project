@@ -1,6 +1,7 @@
 package it.rt.corso.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,13 +44,14 @@ public class GanttController {
 	/**
 	 * 
 	 * Controller for Excel creation and download of them.
+	 * @throws ParseException 
 	 * 
 	 * */
 	@RequestMapping("/ExcelGantt/{businessUnit}")
-	public String getExcel(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,@RequestParam String data,
-			HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String getExcel(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,@RequestParam List<Object> data,
+			HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
 	
-        CreateGanttExcel.downloadExcel(request, response);
+        CreateGanttExcel.downloadExcel(request, response, data);
 
 		return null;
 	}
