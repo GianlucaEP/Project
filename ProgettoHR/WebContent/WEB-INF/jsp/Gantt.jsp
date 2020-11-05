@@ -360,12 +360,13 @@ ul ul a {
 
 						<thead class="head">
 							<tr>
-								
+
 								<th scope="col">Business unit</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Cognome</th>
 								<th scope="col">Area Competenza</th>
-								<th scope="col">Mansione</th><th scope="col">Costo Giornaliero</th>
+								<th scope="col">Mansione</th>
+								<th scope="col">Costo Giornaliero</th>
 								<th scope="col">seleziona</th>
 
 							</tr>
@@ -375,7 +376,7 @@ ul ul a {
 							<c:forEach var="cand" items="${list}">
 								<tr>
 
-									
+
 									<td>${cand.business.business}</td>
 									<td>${cand.nome}</td>
 									<td>${cand.cognome}</td>
@@ -413,6 +414,35 @@ ul ul a {
 			</div>
 		</div>
 
+	</div>
+
+	<!-- MODAL INVIO DATI -->
+	<div class="modal fade" id="sendModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="errorModalLabel">Conferma</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="sendModalBody">
+					Creare un Gantt con i dati inseriti?
+
+					<form action="/ProgettoHR/ExcelGantt/${businessUnit}" method="POST">
+						<div class="form-group" style="display: none">
+							 <input type="text" class="form-control" id="ganttData" name="data">
+						</div>
+						<button type="submit" class="btn btn-primary">Invia</button>
+					</form>
+
+
+				</div>
+
+			</div>
+		</div>
 	</div>
 
 	<!-- MODAL ERRORE -->
@@ -480,7 +510,7 @@ ul ul a {
 				 width: 1200
 			});
 			
-			
+			document.getElementById("ganttData").value = arrayGantt;
 				
 			
 		}
@@ -833,16 +863,28 @@ ul ul a {
 	  			
 				var tagDivCol = document.createElement("div");		
 				var tagInput = document.createElement("input");
+				var tagInputModal = document.createElement("input");
 				
 				tagDivCol.classList.add("col", "text-right", "align-self-end", "p-0");
+				
 				tagInput.setAttribute("type", "button");
 				tagInput.classList.add("btn", "btn-primary");
+				
+				tagInputModal.setAttribute("type", "button");
+				tagInputModal.setAttribute("data-toggle", "modal");
+				tagInputModal.setAttribute("data-target", "#sendModal");
+				tagInputModal.classList.add("btn", "btn-primary");
+				
 				tagInput.onclick = function() {
 					location.reload();
 				}
 				tagInput.value="Nuovo Gantt";
 				
+				tagInputModal.value="Stampa";
+				
+				tagDivCol.appendChild(tagInputModal);
 				tagDivCol.appendChild(tagInput);
+				
 				document.getElementById("rowTableTotal").appendChild(tagDivCol);
 		}
 		
