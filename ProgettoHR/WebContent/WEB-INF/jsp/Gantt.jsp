@@ -302,11 +302,11 @@ ul ul a {
 
 					<div class="form-group">
 						<label for="exampleFormControlInput2">Data inizio</label> <input
-							type="date" class="form-control" id="initialDate">
+							type="date" pattern="dd-MM-yyyy" class="form-control" id="initialDate">
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlInput3">Data fine</label> <input
-							type="date" class="form-control" id="endDate">
+							type="date" pattern="dd-MM-yyyy"  class="form-control" id="endDate">
 					</div>
 
 					<div class="form-group">
