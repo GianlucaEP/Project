@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +17,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -29,22 +33,29 @@ import it.rt.corso.beans.Task;
  */
 public abstract class CreateGanttExcel {
 	
-	private static List<Task> buildDataExcel(List<Object> data) throws ParseException{
+	private static List<Task> buildDataExcel(List<String> data) throws ParseException{
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		  DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		List<Task> taskList = new ArrayList<Task>();
 		
 		for(int i = 0;i < data.size();i++) {
 			Task task = new Task();
 			
-			task.setNomeTask(data.get(i).toString());
+			task.setNomeTask(data.get(i));
 			i++;
-			task.setNomeCandidiato(data.get(i).toString());
+			task.setNomeCandidiato(data.get(i));
 			i++;
-			task.setDataInizio(formatter.parse(data.get(i).toString()));
+			LocalDate dataInizio = LocalDate.parse(data.get(i), formatter);
+			String dataInizioString = dataInizio.format(newFormatter);
+			dataInizio = LocalDate.parse(dataInizioString, newFormatter);
+			task.setDataInizio(dataInizio);
 			i++;
-			task.setDataFine(formatter.parse(data.get(i).toString()));
+			LocalDate dataFine = LocalDate.parse(data.get(i), formatter);
+			String dataFineString = dataFine.format(newFormatter);
+			dataFine = LocalDate.parse(dataFineString, newFormatter);
+			task.setDataFine(dataFine);
 			i++;
 			
 			taskList.add(task);
@@ -65,7 +76,7 @@ public abstract class CreateGanttExcel {
 	 * @throws ParseException 
 	 * 
 	 */
-	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<Object> data) throws IOException, ParseException {
+	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data) throws IOException, ParseException {
 		
 		List<Task> taskList = buildDataExcel(data);
 
@@ -80,7 +91,39 @@ public abstract class CreateGanttExcel {
 	private static void writeHeadersGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
 		XSSFRow header = sheet.createRow(0);
 		XSSFCell headerCell = header.createCell(0);
-		headerCell.setCellValue("Testing");
+		headerCell.setCellValue("Task name");
+		
+		headerCell = header.createCell(1);
+		headerCell.setCellValue("Start");
+		
+		headerCell = header.createCell(2);
+		headerCell.setCellValue("Finish");
+		
+		headerCell = header.createCell(3);
+		headerCell.setCellValue("Duration");
+		
+		writeBodyGantt(workbook,sheet,taskList);
+	}
+	
+	private static void writeBodyGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
+		
+		CellStyle cellStyle = workbook.createCellStyle();
+		CreationHelper createHelper = workbook.getCreationHelper();
+		cellStyle.setDataFormat(
+		    createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+		
+		XSSFRow taskRow = sheet.createRow(1);
+		XSSFCell headerCell = taskRow.createCell(0);		
+		headerCell.setCellValue(taskList.get(0).getNomeTask());
+		
+		headerCell = taskRow.createCell(1);
+		headerCell.setCellValue(taskList.get(0).getDataInizio());
+		headerCell.setCellStyle(cellStyle);
+		
+		headerCell = taskRow.createCell(2);
+		headerCell.setCellValue(taskList.get(0).getDataFine());
+		headerCell.setCellStyle(cellStyle);
+		
 	}
 
 	/**
@@ -119,7 +162,7 @@ public abstract class CreateGanttExcel {
 	 * @author s.schiavone
 	 * @throws ParseException 
 	 */
-	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<Object> data) throws IOException, ParseException {
+	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<String> data) throws IOException, ParseException {
 
 		File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
 
