@@ -480,7 +480,7 @@ ul ul a {
 			return days * 24 * 60 * 60 * 1000;
 		}
 
-		function drawChart(arrayGantt) {
+		function drawChart(arrayGantt, arrayGanttExcel) {
 
 			var data = new google.visualization.DataTable();
 
@@ -511,7 +511,7 @@ ul ul a {
 				 width: 1200
 			});
 			
-			document.getElementById("ganttData").value = arrayGantt;
+			document.getElementById("ganttData").value = arrayGanttExcel;
 				
 			
 		}
@@ -806,6 +806,8 @@ ul ul a {
 			var arrayCandidatoGantt;
 			var costoTotale=0;
 			var diffDays=0;
+			var arrayListCandidatiGanttExcel=[];
+			var arrayCandidatoGanttExcel;
 
 
 			for (var i = 0; i < countCandidatiGant; i++) {
@@ -823,9 +825,16 @@ ul ul a {
 								date2,
 								//document.getElementById("tdPrice"+i).innerHTML
 								];
-							
+							arrayCandidatoGanttExcel=[
+								document.getElementById("tdNomeTask"+i).innerHTML, 
+								document.getElementById("tdCandidatoName"+i).innerHTML,
+								document.getElementById("tdInitialDate"+i).innerHTML,
+								document.getElementById("tdEndDate"+i).innerHTML
+							]
 							
 							arrayListCandidatiGantt.push(arrayCandidatoGantt.valueOf());
+							
+							arrayListCandidatiGanttExcel.push(arrayCandidatoGanttExcel.valueOf());
 							
 							//arrayCandidatoGantt.splice(0, arrayCandidatoGantt.length);
 							var diffTime = Math.abs(date2 - date1);
@@ -846,7 +855,7 @@ ul ul a {
 			}
 
 			
-			drawChart(arrayListCandidatiGantt);
+			drawChart(arrayListCandidatiGantt, arrayListCandidatiGanttExcel);
 			
 			
 	  			
