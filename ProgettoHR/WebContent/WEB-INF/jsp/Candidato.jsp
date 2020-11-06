@@ -346,6 +346,105 @@ ul ul a {
 	font-size: 14px;
 	padding: 4px;
 }
+
+/* TABELLA TITOLI */
+.tabellaTitoli {
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaTitoli .head {
+	background-color: #004fff;
+	color: white;
+	font-weight: bold;
+}
+
+.tabellaTitoli .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaTitoli .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaTitoli .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaTitoli .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaTitoli .footer {
+	background-color: #004fff;
+}
+
+.tabellaTitoli th {
+	padding: 8px;
+}
+
+.tabellaTitoli td {
+	font-size: 14px;
+	padding: 4px;
+}
+
+/* TABELLA COMPETENZE LINGUISTICHE*/
+.tabellaCompetenzeLinguistiche {
+	margin-top: 25px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	border-radius: 5px 5px 5px 5px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+}
+
+.tabellaCompetenzeLinguistiche .head {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+.tabellaCompetenzeLinguistiche .head th h3 {
+	line-height: 50px;
+	margin: 0;
+}
+
+.tabellaCompetenzeLinguistiche .body tr {
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.tabellaCompetenzeLinguistiche .body tr:nth-of-type {
+	background-color: #f3f3f3;
+}
+
+.tabellaCompetenzeLinguistiche .body tr:nth-last-of-type {
+	border-bottom: 2px solid #5aa9e6;
+}
+
+.tabellaCompetenzeLinguistiche .footer {
+	background-color: black;
+}
+
+.tabellaCompetenzeLinguistiche th {
+	padding: 8px;
+}
+
+.tabellaCompetenzeLinguistiche td {
+	font-size: 14px;
+	padding: 4px;
+}
+
 /* TABELLA FEEDBACK */
 .tabellaFeedback {
 	margin-top: 25px;
@@ -569,6 +668,17 @@ ul ul a {
 							<a href="" data-toggle="modal" data-target="#modificaCostiModal"
 								type="button"><i class="fas fa-plus"></i> Costi</a>
 						</c:if></li>
+					<li><c:if
+							test='${fn:contains(funzionalita, "aggiunta titolo di studio")}'>
+							<a href="" data-toggle="modal" data-target="#modificaTitoliModal"
+								type="button"><i class="fas fa-plus"></i> Titolo di studio</a>
+						</c:if></li>
+					<li><c:if
+							test='${fn:contains(funzionalita, "aggiunta competenza linguistica")}'>
+							<a href="" data-toggle="modal"
+								data-target="#modificaCompetenzaLinguisticaModal" type="button"><i
+								class="fas fa-plus"></i> Competenza linguistica</a>
+						</c:if></li>
 
 					<c:if test='${fn:contains(funzionalita, "aggiunta feedback")}'>
 						<li class="active"><a href="#homeSubmenu" id="frecciaSidebar"
@@ -670,8 +780,8 @@ ul ul a {
 								<td scope="col">${mostraCandidato.cognome}</td>
 							</tr>
 							<tr>
-								<th scope="col">Anno di nascita</th>
-								<td scope="col">${mostraCandidato.anno}</td>
+								<th scope="col">Data di nascita</th>
+								<td scope="col">${mostraCandidato.dataNascita}</td>
 							</tr>
 							<tr>
 								<th scope="col">Telefono</th>
@@ -680,6 +790,15 @@ ul ul a {
 							<tr>
 								<th scope="col">E-mail</th>
 								<td scope="col">${mostraCandidato.email}</td>
+							</tr>
+							<tr>
+								<th scope="col">Residenza
+								<th>
+								<td scope="col">${mostraCandidato.residenza}</td>
+							</tr>
+							<tr>
+								<th scope="col">Domicilio</th>
+								<td scope="col">${mostraCandidato.domicilio}</td>
 							</tr>
 							<tr>
 								<th scope="col">Codice Fiscale</th>
@@ -698,16 +817,16 @@ ul ul a {
 								</tr>
 
 							</c:if>
-							
+
 							<tr>
-									<th scope="col">Inserito da</th>
-									<td scope="col">${mostraCandidato.inseritoDa.username}</td>
-								</tr>
+								<th scope="col">Inserito da</th>
+								<td scope="col">${mostraCandidato.inseritoDa.username}</td>
+							</tr>
 						</tbody>
 
 						<tfoot class="footer">
 							<tr>
-								<td colspan=2></td>
+								<td colspan=3></td>
 
 							</tr>
 						</tfoot>
@@ -931,6 +1050,93 @@ ul ul a {
 							</tfoot>
 						</table>
 					</c:if>
+
+
+					<!-- Tabella TITOLI DI STUDIO-->
+					<table id="titoliTable" class="tabellaTitoli">
+
+						<thead class="head">
+							<tr>
+								<th colspan=2><h3>TITOLI DI STUDIO</h3></th>
+							</tr>
+							<tr>
+								<th colspan="2">Titolo studio</th>
+							</tr>
+						</thead>
+						<tbody class="body">
+							<c:forEach var="titolo" items="${mostraCandidato.titoloStudio}">
+								<tr>
+									<td>${titolo.titoloStudio}</td>
+									<td><c:if
+											test='${fn:contains(funzionalita, "modifica titolo studio")}'>
+											<button
+												onclick="impostaParametriTitoloStudio('${titolo.titoloStudio}')"
+												type="button" data-toggle="modal" id="btn-titolo-studio"
+												data-target="#modificaTitoloModal"
+												class="btn customButton p-1 float-right">
+												<i class="fas fa-cogs m-0"></i>
+											</button>
+											<!--  <button
+												onclick="impostaParametriEliminaFeedback('${feed.id}')"
+												type="button" data-toggle="modal" id="btn-titolo-studio"
+												data-target="#eliminaTitoloModal"
+												class="btn customButton p-1 mr-1 float-right">
+												<i class="fas fa-trash m-0"></i>
+											</button>-->
+										</c:if></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+
+						<tfoot class="footer">
+							<tr>
+								<td colspan=2></td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<!-- Tabella COMPETENZE LINGUISTICHE-->
+					<table id="competenzeLinguisticheTable"
+						class="tabellaCompetenzeLinguistiche">
+
+						<thead class="head">
+							<tr>
+								<th><h3>COMPETENZE LINGUISTICHE</h3></th>
+								<th colspan=4><c:if
+										test='${fn:contains(funzionalita, "modifica costi")}'>
+										<!-- Bottone modifica titoli-->
+										<button type="button" data-toggle="modal"
+											data-target="#modificaCompetenzeLinguisticheModal"
+											class="btn p-2 float-right">
+											<i class="fas fa-cog m-0"></i>
+										</button>
+									</c:if></th>
+							</tr>
+							<tr>
+								<th>Lingua</th>
+								<th>Letto</th>
+								<th>Scritto</th>
+								<th>Parlato</th>
+							</tr>
+						</thead>
+						<tbody class="body">
+							<tr>
+								<th scope="col">Madre lingua</th>
+								<td scope="col"></td>
+							</tr>
+							<tr>
+								<th scope="col">Lingua</th>
+								<td scope="col"></td>
+							</tr>
+
+						</tbody>
+
+						<tfoot class="footer">
+							<tr>
+								<td colspan=4></td>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 			</div>
 
@@ -1170,11 +1376,11 @@ ul ul a {
 
 
 							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Anno
+								<div class="row w-100 p-0 m-0 justify-content-md-start">Data
 									di nascita:</div>
-								<form:input type="text" class="form-control" id="idAnno"
-									placeholder="yyyy" name="anno" path="anno"
-									value="${mostraCandidato.anno}"></form:input>
+								<input type="date" pattern="yyyy-MM-dd" class="form-control"
+									id="idDataNascita" name="dataDiNascita"
+									value="${mostraCandidato.dataNascita}"></input>
 							</div>
 
 
@@ -1728,6 +1934,43 @@ ul ul a {
 									</div>
 								</div>
 							</div>
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" id="idSubmitAggiungiCosto"
+										class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										modifiche</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  MODAL MODIFICA TITOLI DI STUDIO-->
+	<div class="modal fade" id="modificaTitoloModal" tabindex="-1"
+		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica
+						titoli di studio</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="titoloStudio"
+							action="/ProgettoHR/AggiungiModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
+
+							<form:input type="text" class="form-control" id="idTitoloStudio"
+								name="titoloStudio" path="titoloStudio"
+								value="${titoloStudio.titoloStudio}" required="required"></form:input>
+
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
 									<button type="submit" id="idSubmitAggiungiCosto"
@@ -2298,7 +2541,9 @@ ul ul a {
 		
 		}
 		
-
+		function impostaParametriTitoloStudio(titolo){
+			document.getElementById("idTitoloStudio").value = titolo;
+		}
 		function impostaParametriQualificationMeeting(id, cliente,
 				dataPresentato, riferimentoGara, dataColloquio, feedback) {
 			cliente = cliente.replace("&apos", "'");
@@ -2577,18 +2822,10 @@ ul ul a {
 		
 		function validateAnagraficaForm(){
 			
-			if(document.getElementById("idNome").value == "" || document.getElementById("idCognome").value == "" || document.getElementById("idTelefono").value == "" || document.getElementById("idEmail").value == ""){
+			if(document.getElementById("idNome").value == "" || document.getElementById("idCognome").value == "" || document.getElementById("idTelefono").value == "" || document.getElementById("idEmail").value == "" || document.getElementById("idDataNascita").value ==""){
 				return false;
 			}
-			
-			if(document.getElementById("idAnno").value != ""){
-				if(document.getElementById("idAnno").value.length != 4 || isNaN(document.getElementById("idAnno").value)){
-					$('#errorModal').modal('toggle');
-					document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
-					return false;
-				}
-			}
-						
+					
 			if(document.getElementById("idTelefono").value.length != 10 || isNaN(document.getElementById("idTelefono").value)){
 				$('#errorModal').modal('toggle');
 				document.getElementById("errorModalBody").innerHTML = "Telefono deve essere composto da 10 cifre"

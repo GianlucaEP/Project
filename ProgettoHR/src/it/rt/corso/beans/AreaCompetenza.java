@@ -15,13 +15,14 @@ import javax.persistence.Table;
 public class AreaCompetenza implements Bean{
 
 	@Id
-	
 	@Column(name = "area")
 	private String area;
 	
-	//MANY-TO-MANY Con candidato
+	// ======================================================= //
+	//MANY-TO-MANY con CANDIDATO
 	@ManyToMany( mappedBy = "area", cascade = CascadeType.ALL)
 	private Set<Candidato> candidato = new HashSet<>();
+	// ======================================================= //
 	
 	
 	public String getArea() {

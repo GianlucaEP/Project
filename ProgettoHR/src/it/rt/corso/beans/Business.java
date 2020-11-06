@@ -20,9 +20,11 @@ public class Business implements Bean {
 	@Column(name = "business")
 	private String business;
 	
-	//ONE-TO-MANY con Candidato
+	// ============================================================= //
+	//ONE-TO-MANY con CANDIDATO
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "business")
 	Set<Candidato> candidato;
+	// ============================================================= //
 
 	public String getBusiness() {
 		return business;

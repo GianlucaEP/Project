@@ -38,12 +38,17 @@ public class Candidato implements Bean {
 	private String nome;
 	@Column(name = "cognome")
 	private String cognome;
-	@Column(name = "anno_di_nascita")
-	private String anno;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascita")
+	private Date dataNascita;
 	@Column(name = "num_tel")
 	private String telefono;
 	@Column(name = "email")
 	private String email;
+	@Column(name = "residenza")
+	private String residenza;
+	@Column(name = "domicilio")
+	private String domicilio;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "inserimento_azienda")
 	private Date inserimentoAzienda;
@@ -53,51 +58,85 @@ public class Candidato implements Bean {
 	private boolean categoriaProtetta;
 	@Column(name = "codice_fiscale")
 	private String codiceFiscale;
-	
+
+	// ============================== //
+	// MANY-TO-ONE con InseritoDa
 	@ManyToOne
 	@JoinColumn(name = "inserito_da")
 	private Utente inseritoDa;
+	// ============================== //
 
-	// MANY-TO-ONE con Business
+	// =========================== //
+	// MANY-TO-ONE con BUSINESS
 	@ManyToOne
 	@JoinColumn(name = "business")
 	private Business business;
+	// =========================== //
 
-	// MANY-TO-ONE con Seniority
+	// ============================ //
+	// MANY-TO-ONE con SENIORITY
 	@ManyToOne
 	@JoinColumn(name = "seniority")
 	private Seniority seniority;
+	// ============================ //
 
-	// MANY-TO-ONE con la classe StatoCandidato
+	// ========================== //
+	// MANY-TO-ONE con StatoCandidato
 	@ManyToOne
 	@JoinColumn(name = "stato")
 	private StatoCandidato stato;
+	// ========================== //
 
-	// ONE-TO-ONE con la classe Costo
-	@OneToOne(cascade = {CascadeType.ALL})
+	// ===================================== //
+	// ONE-TO-ONE con COSTO
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "costo")
 	private Costo costo;
+	// ===================================== //
 
-	// ONE-TO-ONE con la classe Economics
-	@OneToOne(cascade = {CascadeType.ALL})
+	// ===================================== //
+	// ONE-TO-ONE con ECONOMICS
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "economics")
 	private Economics economics;
+	// ===================================== //
 
-	// ONE-TO-MANY con la classe feedback
+	// ============================================================== //
+	// ONE-TO-MANY con FEEDBACK
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<Feedback> feedback;
+	// ============================================================== //
 
-	// ONE-TO-MANY con la classe UploadFile
+	// ============================================================== //
+	// ONE-TO-MANY con UploadFile
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
 	Set<UploadFile> file;
-	
-	
-	// ONE-TO-MANY con la classe QualificationMetting
+	// ============================================================== //
+
+	// ============================================================= //
+	// ONE-TO-MANY con QUALIFICATION MEETING
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "candidato")
-	Set<QualificationMeeting> qm;// MANY-TO-MANY Con Mansione
+	Set<QualificationMeeting> qm;
+	// ============================================================== //
 
+	// ========================================================== //
+	// ONE-TO-MANY con CandidatoSpecializzazione
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidato")
+	List<CandidatoSpecializzazione> candidatoSpecializzazione;
+	// ========================================================== //
+
+	// ========================================================== //
+	// ONE-TO-MANY con CANDIDATO COMPETENZA LINGUISTICA
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidato")
+	List<CandidatoCompetenzaLinguistica> candidatoCompetenzaLingustica;
+	// ========================================================== //
+
+	// ===================================================================================================== //
+	// MANY-TO-MANY Con MANSIONE
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.PERSIST })
 	/*
@@ -108,18 +147,28 @@ public class Candidato implements Bean {
 	@JoinTable(name = "candidato_mansione", joinColumns = {
 			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "mansione") })
 	List<Mansione> mansione;
+	// ====================================================================================================== //
 
-	// ONE-TO-MANY con la classe CandidatoSpecializzazione
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "candidato")
-	List<CandidatoSpecializzazione> candidatoSpecializzazione;
-
-	// MANY-TO-MANY Con Area
+	// ========================================================================================================= //
+	// MANY-TO-MANY Con AREA
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.PERSIST })
 	@JoinTable(name = "candidato_area", joinColumns = { @JoinColumn(name = "candidato") }, inverseJoinColumns = {
 			@JoinColumn(name = "area") })
 	List<AreaCompetenza> area = new ArrayList<AreaCompetenza>();
+	// ========================================================================================================== //
+
+	// ================================================================================================================ //
+	// MANY-TO-MANY Con TITOLO DI STUDIO
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(cascade = { CascadeType.PERSIST })
+	@JoinTable(name = "candidato_titolo_studio", joinColumns = {
+			@JoinColumn(name = "id_candidato_fk") }, inverseJoinColumns = { @JoinColumn(name = "id_titolo_studio_fk") })
+	List<TitoloStudio> titoloStudio = new ArrayList<TitoloStudio>();
+	// ================================================================================================================= //
+
+	// ================================================================================================================= //
+	// GETTER E SETTER //
 
 	public int getId() {
 		return id;
@@ -145,12 +194,12 @@ public class Candidato implements Bean {
 		this.cognome = cognome;
 	}
 
-	public String getAnno() {
-		return anno;
+	public Date getDataNascita() {
+		return dataNascita;
 	}
 
-	public void setAnno(String anno) {
-		this.anno = anno;
+	public void setDataNascita(Date dataNascita) {
+		this.dataNascita = dataNascita;
 	}
 
 	public String getTelefono() {
@@ -297,4 +346,37 @@ public class Candidato implements Bean {
 		this.inseritoDa = inseritoDa;
 	}
 
+	public List<TitoloStudio> getTitoloStudio() {
+		return titoloStudio;
+	}
+
+	public void setTitoloStudio(List<TitoloStudio> titoloStudio) {
+		this.titoloStudio = titoloStudio;
+	}
+
+	public List<CandidatoCompetenzaLinguistica> getCandidatoCompetenzaLingustica() {
+		return candidatoCompetenzaLingustica;
+	}
+
+	public void setCandidatoCompetenzaLingustica(List<CandidatoCompetenzaLinguistica> candidatoCompetenzaLingustica) {
+		this.candidatoCompetenzaLingustica = candidatoCompetenzaLingustica;
+	}
+
+	public String getResidenza() {
+		return residenza;
+	}
+
+	public void setResidenza(String residenza) {
+		this.residenza = residenza;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	
 }

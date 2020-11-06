@@ -41,10 +41,12 @@ public class QualificationMeeting implements Bean{
 	@Column(name = "riferimento_gara")
 	private String riferimentoGara;
 	
-	//MANY-TO-ONE con la classe Candidato
+	// ============================= //
+	//MANY-TO-ONE con CANDIDATO
 	@ManyToOne
     @JoinColumn(name="id_candidato")
 	private Candidato candidato;
+	// ============================= //
 
 	public int getId() {
 		return id;

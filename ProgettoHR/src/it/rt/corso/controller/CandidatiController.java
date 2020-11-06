@@ -34,6 +34,7 @@ public class CandidatiController {
 	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 // Inizializzazione DAO
+	private TitoloStudioDAO titoloStudioDAO = (TitoloStudioDAO) factory.getBean("titoloStudioDAO");
 	private FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 	private CandidatoSpecializzazioneDAO candidatoSpecializzazioneDAO = (CandidatoSpecializzazioneDAO) factory
@@ -56,6 +57,7 @@ public class CandidatiController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 
+		m.addAttribute("titoloStudio", new TitoloStudio());
 // model attribute per l' eventuale aggiunta di mansione, area o specializzazione
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
@@ -74,10 +76,13 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(HttpServletRequest request, @PathVariable String businessUnit,
-			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente) {
+			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente, @RequestParam("dataDiNascita") String dataNascita) throws ParseException {
 
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		c.setStato(stato);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		c.setDataNascita(formatter.parse(dataNascita));
 		
 		c.setInseritoDa(utente);
 
@@ -111,17 +116,19 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/ModificaAnagrafica/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
-			@PathVariable String businessUnit) {
+			@PathVariable String businessUnit, @RequestParam("dataDiNascita")String dataNascita) throws ParseException {
 
 		Candidato candidato = candidatoDAO.get(id);
 
 		candidato.setNome(c.getNome());
 		candidato.setCognome(c.getCognome());
-		candidato.setAnno(c.getAnno());
 		candidato.setTelefono(c.getTelefono());
 		candidato.setEmail(c.getEmail());
 		candidato.setCodiceFiscale(c.getCodiceFiscale());
 		candidato.setProvenienza(c.getProvenienza());
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		candidato.setDataNascita(formatter.parse(dataNascita));
 
 		if (c.isCategoriaProtetta()) {
 			candidato.setCategoriaProtetta(true);
@@ -150,6 +157,20 @@ public class CandidatiController {
 			candidato.getCosto().setCommento(c.getCosto().getCommento());
 			costoDAO.aggiorna(candidato.getCosto());
 		}
+
+		return "redirect:/Candidato/{businessUnit}/{id}";
+	}
+	
+	@RequestMapping(value = "/AggiungiModificaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String aggiungiModificaTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio, @PathVariable int id,
+			@PathVariable String businessUnit) {
+		Candidato candidato = candidatoDAO.get(id);
+	
+		List<TitoloStudio> titoloStudioList = new ArrayList<TitoloStudio>();
+		titoloStudioList = candidato.getTitoloStudio();
+		
+		if (titoloStudioDAO.get())
+		
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}

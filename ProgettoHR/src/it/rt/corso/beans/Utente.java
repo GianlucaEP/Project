@@ -26,14 +26,18 @@ public class Utente implements Bean {
 	@Column(name = "password")
 	private String password;
 
-	// MANY-TO-ONE con Ruolo
+	// =========================== //
+	// MANY-TO-ONE con RUOLO
 	@ManyToOne
 	@JoinColumn(name = "id_ruolo")
 	Ruolo ruolo;
+	// =========================== //
 
-	// ONE-TO-MANY con Candidato
+	// =============================================================== //
+	// ONE-TO-MANY con CANDIDATO
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "inseritoDa")
 	Set<Candidato> candidatiInseriti;
+	// =============================================================== //
 
 	public int getId() {
 		return id;
