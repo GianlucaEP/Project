@@ -19,9 +19,11 @@ public class TipoFeedback implements Bean{
 	@Column(name = "tipo")
 	private String tipo;
 	
-	//ONE-TO-MANY con la classe Candidato
+	// ====================================================== //
+	//ONE-TO-MANY con CANDIDATO
 	@OneToMany(cascade = { CascadeType.ALL },mappedBy="tipo")
 	Set<Feedback> feedback;
+	// ====================================================== //
 
 	public String getTipo() {
 		return tipo;

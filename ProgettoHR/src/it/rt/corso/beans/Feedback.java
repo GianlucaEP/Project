@@ -33,15 +33,19 @@ public class Feedback implements Bean{
 	@Column(name = "data_insert")
 	private Date dateInsert;
 	
-	//MANY-TO-ONE con la classe Candidato
+	// ============================= //
+	//MANY-TO-ONE con CANDIDATO
 	@ManyToOne
     @JoinColumn(name="id_candidato")
 	private Candidato candidato; 
+	// ============================= //
 	
-	//MANY-TO-ONE con la classe TipoFeedback
+	// ======================= //
+	//MANY-TO-ONE con TIPO FEEDBACK
 	@ManyToOne
 	@JoinColumn(name="tipo")
 	private TipoFeedback tipo;
+	// ======================= //
 
 	
 	public int getId() {

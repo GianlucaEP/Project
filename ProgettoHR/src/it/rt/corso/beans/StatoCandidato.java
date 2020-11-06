@@ -19,9 +19,11 @@ public class StatoCandidato implements Bean {
 	@Column(name = "descrizione")
 	private String descrizione;
 
-	//ONE-TO-MANY con la classe Candidato
+	// ======================================================= //
+	//ONE-TO-MANY con CANDIDATO
 	@OneToMany(cascade = CascadeType.ALL,  mappedBy = "stato")
 	Set<Candidato>  candidato;
+	// ======================================================= //
 
 	public String getDescrizione() {
 		return descrizione;

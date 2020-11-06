@@ -26,16 +26,19 @@ public class Ruolo implements Bean{
 	@Column(name = "ruolo")
 	private String ruolo;
 	
-	//ONE-TO-MANY con Utente
+	// ========================================================== //
+	//ONE-TO-MANY con UTENTE
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "ruolo")
 	private Set<Utente> utente = new HashSet<>();
+	// ========================================================== //
 	
-	//MANY-TO-MANY con funzionalità
+	// ================================================================================================================ //
+	//MANY-TO-MANY con FUNZIONALITA'
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
 	@JoinTable(name = "ruolo_funzionalita", joinColumns = { @JoinColumn(name = "id_ruolo_fk") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_funzionalita_fk") })
 	Set<Funzionalita> funzionalita = new HashSet<>();
-	
+	// ================================================================================================================ //
 	
 	public int getId() {
 		return id;

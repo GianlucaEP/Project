@@ -11,15 +11,15 @@ import javax.persistence.Table;
 @Table(name = "specializzazione")
 public class Specializzazione implements Bean {
 
-	// Attributi
 	@Id
-	
 	@Column(name = "specializzazione")
 	private String specializzazione;
 	
-	//ONE-TO-MANY con la classe CandidatoSpecializzazione
+	// ====================================================== //
+	//ONE-TO-MANY con CANDIDATO SPECIALIZZAZIONE
 	@OneToMany(mappedBy = "specializzazione")
 	Set<CandidatoSpecializzazione> candidatoSpecializzazione;
+	// ====================================================== //
 	
 
 	public String getSpecializzazione() {

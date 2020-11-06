@@ -25,9 +25,11 @@ public class Costo implements Bean {
 	@Column(name = "commento")
 	private String commento;
 
-	// ONE-TO-MANY con Candidato
+	// ========================================================= //
+	// ONE-TO-MANY con CANDIDATO
 	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "costo")
 	private Candidato candidato;
+	// ========================================================= //
 
 	public int getId() {
 		return id;

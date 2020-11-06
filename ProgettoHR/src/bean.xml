@@ -11,6 +11,10 @@
 		class="it.rt.corso.DAOImpl.CandidatoDAOImpl">
 	</bean>
 
+	<bean id="titoloStudioDAO"
+		class="it.rt.corso.DAOImpl.TitoloStudioDAOImpl">
+	</bean>
+	
 	<bean id="seniorityDAO"
 		class="it.rt.corso.DAOImpl.SeniorityDAOImpl">
 	</bean>
@@ -62,7 +66,7 @@
 	<bean id="statoCandidatoDAO"
 		class="it.rt.corso.DAOImpl.StatoCandidatoDAOImpl">
 	</bean>
-	
+
 	<bean id="ruoloDAO" class="it.rt.corso.DAOImpl.RuoloDAOImpl">
 	</bean>
 
@@ -85,8 +89,8 @@
 	<bean id="selezionato" class="it.rt.corso.beans.StatoCandidato">
 		<property name="descrizione" value="Selezionato" />
 	</bean>
-	
-	
+
+
 
 	<bean id="nomeFilter" class="it.rt.corso.filter.NomeFilter">
 	</bean>
@@ -136,7 +140,7 @@
 	<bean id="costoMinimoFilter"
 		class="it.rt.corso.filter.CostoMinimoFilter">
 	</bean>
-	
+
 	<bean id="costoGiornalieroMaxFilter"
 		class="it.rt.corso.filter.CostoGiornalieroMaxFilter">
 	</bean>

@@ -29,9 +29,11 @@ public class Economics implements Bean {
 	@Column(name = "desiderata")
 	private int desiderata;
 
-	// ONE-TO-ONE con Candidato
+	// ============================================================= //
+	// ONE-TO-ONE con CANDIDATO
 	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "economics")
 	private Candidato candidato;
+	// ============================================================= //
 
 	public int getId() {
 		return id;

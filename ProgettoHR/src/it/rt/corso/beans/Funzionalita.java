@@ -21,9 +21,11 @@ public class Funzionalita implements Bean{
 	@Column(name = "funzionalita")
 	private String funzionalita;
 	
-	//MANY-TO-MANY con Ruolo
+	// ======================================== //
+	//MANY-TO-MANY con RUOLO
 	@ManyToMany(mappedBy = "funzionalita")
 	private Set<Ruolo> ruolo = new HashSet<>();
+	// ======================================== //
 	
 	public int getId() {
 		return id;

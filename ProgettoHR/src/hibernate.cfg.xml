@@ -15,27 +15,27 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<mapping class="it.rt.corso.beans.Candidato"/>
-		<mapping class="it.rt.corso.beans.Specializzazione"/>
-		<mapping class="it.rt.corso.beans.Mansione"/>
-		<mapping class="it.rt.corso.beans.Feedback"/>
-		<mapping class="it.rt.corso.beans.QualificationMeeting"/>
-		<mapping class="it.rt.corso.beans.StatoCandidato"/>
-		<mapping class="it.rt.corso.beans.TipoFeedback"/>
-		<mapping class="it.rt.corso.beans.Utente"/>
-		<mapping class="it.rt.corso.beans.Funzionalita"/>
-		<mapping class="it.rt.corso.beans.Ruolo"/>
-		<mapping class="it.rt.corso.beans.Business"/>
-		<mapping class="it.rt.corso.beans.AreaCompetenza"/>
-		<mapping class="it.rt.corso.beans.CandidatoSpecializzazione"/>
-		<mapping class="it.rt.corso.beans.Seniority"/>
-		<mapping class="it.rt.corso.beans.Costo"/>
-		<mapping class="it.rt.corso.beans.Economics"/>
-		<mapping class="it.rt.corso.beans.UploadFile"/>
-		
-		
-		
-		
-		</session-factory>
+		<mapping class="it.rt.corso.beans.Candidato" />
+		<mapping class="it.rt.corso.beans.Specializzazione" />
+		<mapping class="it.rt.corso.beans.Mansione" />
+		<mapping class="it.rt.corso.beans.Feedback" />
+		<mapping class="it.rt.corso.beans.QualificationMeeting" />
+		<mapping class="it.rt.corso.beans.StatoCandidato" />
+		<mapping class="it.rt.corso.beans.TipoFeedback" />
+		<mapping class="it.rt.corso.beans.Utente" />
+		<mapping class="it.rt.corso.beans.Funzionalita" />
+		<mapping class="it.rt.corso.beans.Ruolo" />
+		<mapping class="it.rt.corso.beans.Business" />
+		<mapping class="it.rt.corso.beans.AreaCompetenza" />
+		<mapping class="it.rt.corso.beans.CandidatoSpecializzazione" />
+		<mapping class="it.rt.corso.beans.Seniority" />
+		<mapping class="it.rt.corso.beans.Costo" />
+		<mapping class="it.rt.corso.beans.Economics" />
+		<mapping class="it.rt.corso.beans.UploadFile" />
+		<mapping class="it.rt.corso.beans.TitoloStudio" />
+		<mapping class="it.rt.corso.beans.CompetenzaLinguistica" />
+		<mapping class="it.rt.corso.beans.CandidatoCompetenzaLinguistica" />
+
+	</session-factory>
 
 </hibernate-configuration>  

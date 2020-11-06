@@ -20,10 +20,12 @@ public class Seniority implements Bean {
 	@Column(name = "seniority")
 	private String seniority;
 	
-	//ONE-TO-MANY con Candidato
+	// ============================================================== //
+	//ONE-TO-MANY con CANDIDATO
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "seniority")
 	Set<Candidato> candidato;
-
+	// ============================================================== //
+	
 	public String getSeniority() {
 		return seniority;
 	}

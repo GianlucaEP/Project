@@ -18,9 +18,11 @@ public class Mansione implements Bean{
 	@Column(name = "mansione")
 	private String mansione;
 	
-	//MANY-TO-MANY Con Candidato
+	// ========================================================== //
+	//MANY-TO-MANY Con CANDIDATO
 	@ManyToMany(mappedBy = "mansione", cascade = CascadeType.ALL)
 	private Set<Candidato> candidato = new HashSet<>();
+	// ========================================================== //
 
 	public String getMansione() {
 		return mansione;

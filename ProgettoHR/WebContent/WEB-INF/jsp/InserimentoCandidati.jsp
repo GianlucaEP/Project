@@ -228,9 +228,9 @@ ul ul a {
 					<div class="form-row">
 
 						<div class="form-group col-4">
-							<label>Anno di nascita: </label>
-							<form:input type="text" path="anno" class="form-control"
-								placeholder="yyyy" id="anno"></form:input>
+							<label>Data di nascita: </label> <input type="date"
+								pattern="yyyy-MM-dd" name="dataDiNascita" class="form-control"
+								id="data-nascita"></input>
 						</div>
 
 						<div class="form-group col-8">
@@ -241,6 +241,16 @@ ul ul a {
 						</div>
 					</div>
 
+					<div class="form-group">
+						<label>Residenza:</label>
+						<form:input type="text" path="residenza" size="30"
+							class="form-control" id="residenza" required="required"></form:input>
+					</div>
+					<div class="form-group">
+						<label>Domicilio:</label>
+						<form:input type="text" path="domicilio" size="30"
+							class="form-control" id="domicilio" required="required"></form:input>
+					</div>
 					<div class="form-group">
 						<label>E-mail:</label>
 						<form:input type="email" path="email" size="30"
@@ -716,14 +726,6 @@ ul ul a {
 		
 		function validateForm(){
 			
-			if(document.getElementById("anno").value != ""){
-				if(document.getElementById("anno").value.length != 4 || isNaN(document.getElementById("anno").value)){
-					$('#errorModal').modal('toggle');
-					document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
-					return false;
-				}
-			}
-			
 			
 			if(document.getElementById("telefono").value.length != 10 || isNaN(document.getElementById("telefono").value)){
 				$('#errorModal').modal('toggle');
@@ -737,7 +739,7 @@ ul ul a {
 				return false;
 			}
 			
-			if(document.getElementById("nome").value == "" || document.getElementById("cognome").value == "" || document.getElementById("telefono").value == "" || document.getElementById("email").value == ""){
+			if(document.getElementById("nome").value == "" || document.getElementById("cognome").value == "" || document.getElementById("telefono").value == "" || document.getElementById("email").value == "" || document.getElementById("data-nascita".value == "")){
 				return false;
 			} else {
 				if(!validateEmail()){
@@ -755,7 +757,7 @@ ul ul a {
 			    return true
 			 }
 			$('#errorModal').modal('toggle');
-			document.getElementById("errorModalBody").innerHTML = "Anno non inserito in modo corretto"
+			document.getElementById("errorModalBody").innerHTML = "Email non inserito in modo corretto"
 			return false
 		}
 		function validateMansione(tipo, lista) {

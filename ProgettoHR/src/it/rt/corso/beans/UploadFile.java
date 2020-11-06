@@ -28,10 +28,12 @@ public class UploadFile implements Bean {
 	@Column(name = "file_data")
 	private byte[] fileData;
 
-	// MANY-TO-ONE con la classe Candidato
+	// =============================== //
+	// MANY-TO-ONE con CANDIDATO
 	@ManyToOne
 	@JoinColumn(name = "id_candidato")
 	private Candidato candidato;
+	// =============================== //
 
 	public int getId() {
 		return id;
