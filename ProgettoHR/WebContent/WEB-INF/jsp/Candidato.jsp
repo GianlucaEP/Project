@@ -1070,7 +1070,7 @@ ul ul a {
 									<td><c:if
 											test='${fn:contains(funzionalita, "modifica titolo di studio")}'>
 											<button
-												onclick="impostaParametriTitoloStudio('${titolo.titoloStudio}')"
+												onclick="impostaParametriTitoloStudio('${titolo.id}','${titolo.titoloStudio}')"
 												type="button" data-toggle="modal" id="btn-titolo-studio"
 												data-target="#modificaTitoloModal"
 												class="btn customButton p-1 float-right">
@@ -2004,6 +2004,8 @@ ul ul a {
 						<form:form method="POST" modelAttribute="titoloStudio"
 							action="/ProgettoHR/ModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
+							 <form:input
+							style="visibility: hidden;" name="modificaTitoloStudioId" id="modificaTitoloStudioId" path="id" />
 							<form:input type="text" class="form-control" id="idModificaTitoloStudio"
 								name="modificaTitoloStudio" path="titoloStudio"
 								value="${titoloStudio.titoloStudio}" required="required"></form:input>
@@ -2604,7 +2606,8 @@ ul ul a {
 		
 		}
 		
-		function impostaParametriTitoloStudio(titolo){
+		function impostaParametriTitoloStudio(id, titolo){
+			document.getElementById("modificaTitoloStudioId").value = id;
 			document.getElementById("idModificaTitoloStudio").value = titolo;
 		}
 		

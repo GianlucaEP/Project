@@ -20,15 +20,15 @@ import it.rt.corso.beans.TitoloStudio;
 
 @Controller
 public class TitoloStudioController {
-	
+
 	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 	private TitoloStudioDAO titoloStudioDAO = (TitoloStudioDAO) factory.getBean("titoloStudioDAO");
 	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
-	
+
 	// TITOLO DI STUDIO
-	
-	//AGGIUNGO TITOLO DI STUDIO AL CANDIDATO
+
+	// AGGIUNGO TITOLO DI STUDIO AL CANDIDATO
 	@RequestMapping(value = "/AggiungiTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String aggiungiTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio,
 			@PathVariable String businessUnit, @PathVariable int id) {
@@ -38,51 +38,53 @@ public class TitoloStudioController {
 		titoloStudioList = candidato.getTitoloStudio();
 		titoloStudio.setTitoloStudio(titoloStudio.getTitoloStudio().toUpperCase());
 
-			// faccio il save del titolo
-			//controllo se questo titolo è gia stato inserito nel database
-			TitoloStudio titoloStudioTemp = titoloStudioDAO.getByName(titoloStudio.getTitoloStudio());
-			if (titoloStudioTemp != null) {
-				titoloStudioList.add(titoloStudioTemp);
-				candidato.setTitoloStudio(titoloStudioList);
-				candidatoDAO.aggiorna(candidato);
-			} else {
-				titoloStudio = titoloStudioDAO.inserisci(titoloStudio);
-				titoloStudioList.add(titoloStudio);
-				candidato.setTitoloStudio(titoloStudioList);
-				candidatoDAO.aggiorna(candidato);
-			}
-			
+		// faccio il save del titolo
+		// controllo se questo titolo è gia stato inserito nel database
+		TitoloStudio titoloStudioTemp = titoloStudioDAO.getByName(titoloStudio.getTitoloStudio());
+		if (titoloStudioTemp != null) {
+			titoloStudioList.add(titoloStudioTemp);
+			candidato.setTitoloStudio(titoloStudioList);
+			candidatoDAO.aggiorna(candidato);
+		} else {
+			titoloStudio = titoloStudioDAO.inserisci(titoloStudio);
+			titoloStudioList.add(titoloStudio);
+			candidato.setTitoloStudio(titoloStudioList);
+			candidatoDAO.aggiorna(candidato);
+		}
+
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 	
+
+	// MODIFICO TITOLO DI STUDIO DEL CANDIDATO
+	@RequestMapping(value = "/ModificaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
+	public String modificaTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio,
+			@PathVariable String businessUnit, @PathVariable int id) {
+
+		titoloStudio.setTitoloStudio(titoloStudio.getTitoloStudio().toUpperCase());
+		
+		titoloStudioDAO.aggiorna(titoloStudio);
+
+		return "redirect:/Candidato/{businessUnit}/{id}";
+	}
 	
-	//MODIFICO TITOLO DI STUDIO DEL CANDIDATO
-//		@RequestMapping(value = "/ModificaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
-//		public String modificaTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio, @PathVariable String businessUnit, @PathVariable int id ) {
-//			
-//			Candidato candidato = candidatoDAO.get(id);
-//			
-//			candidato.setTitoloStudio(candidato.getTitoloStudio().stream().filter(t -> t.getId() != idTitoloStudio).collect(Collectors.toList()));
-//			candidatoDAO.aggiorna(candidato);
-//			
-//			return "redirect:/Candidato/{businessUnit}/{id}";
-//		}
-	
-	
-	//ELIMINO TITOLO DI STUDIO DEL CANDIDATO
+
+	// ELIMINO TITOLO DI STUDIO DEL CANDIDATO
 	@RequestMapping(value = "/EliminaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String eliminaTitoloStudio(@RequestParam("titoloStudioIdRemove") int idTitoloStudio, @PathVariable String businessUnit, @PathVariable int id ) {
-		
+	public String eliminaTitoloStudio(@RequestParam("titoloStudioIdRemove") int idTitoloStudio,
+			@PathVariable String businessUnit, @PathVariable int id) {
+
 		Candidato candidato = candidatoDAO.get(id);
-		
+
 		TitoloStudio titoloStudioTemp = titoloStudioDAO.get(idTitoloStudio);
-		
+
 		titoloStudioDAO.cancella(titoloStudioTemp);
-		
-		//candidato.setTitoloStudio(candidato.getTitoloStudio().stream().filter(t -> t.getId() != idTitoloStudio).collect(Collectors.toList()));
-		//candidatoDAO.aggiorna(candidato);
-		
+
+		// candidato.setTitoloStudio(candidato.getTitoloStudio().stream().filter(t ->
+		// t.getId() != idTitoloStudio).collect(Collectors.toList()));
+		// candidatoDAO.aggiorna(candidato);
+
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
+
 }
