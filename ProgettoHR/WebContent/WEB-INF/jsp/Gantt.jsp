@@ -393,7 +393,7 @@ ul ul a {
 									<td>${cand.costo.giornaliero}</td>
 
 
-									<td><button type="button" class="btn btn-success"
+									<td><button id="aggiungi${cand.id}" type="button" class="btn btn-success"
 											onclick="addCandidato(${cand.costo.giornaliero}, '${cand.nome}')">
 											<i class="fas fa-plus"></i>
 										</button></td>
@@ -435,7 +435,7 @@ ul ul a {
 						<div class="form-group" style="display: none">
 							 <input type="text" class="form-control" id="ganttData" name="data">
 						</div>
-						<button type="submit" class="btn btn-primary">Invia</button>
+						<button id="inviaDati" type="submit" class="btn btn-primary">Invia</button>
 					</form>
 
 
@@ -947,6 +947,7 @@ ul ul a {
 				tagInput.value="Nuovo Gantt";
 				
 				tagInputModal.value="Stampa";
+				tagInputModal.id="stampaButton"
 				
 				tagDivCol.appendChild(tagInputModal);
 				tagDivCol.appendChild(tagInput);

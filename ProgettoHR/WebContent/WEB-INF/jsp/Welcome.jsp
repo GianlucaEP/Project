@@ -84,7 +84,7 @@ img:hover {
 				<div id="colonna-ict" class="col">
 					<div class="row h-100 align-items-center">
 						<div class="col text-center">
-							<a href="/ProgettoHR/Home/ICT"><img
+							<a id="IctLink" href="/ProgettoHR/Home/ICT"><img
 								
 								src="/ProgettoHR/img/errepro.png"></a>
 						</div>
