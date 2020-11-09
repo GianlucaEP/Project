@@ -670,7 +670,7 @@ ul ul a {
 						</c:if></li>
 					<li><c:if
 							test='${fn:contains(funzionalita, "aggiunta titolo di studio")}'>
-							<a href="" data-toggle="modal" data-target="#modificaTitoliModal"
+							<a href="" data-toggle="modal" data-target="#aggiungiTitoloModal"
 								type="button"><i class="fas fa-plus"></i> Titolo di studio</a>
 						</c:if></li>
 					<li><c:if
@@ -1068,7 +1068,7 @@ ul ul a {
 								<tr>
 									<td>${titolo.titoloStudio}</td>
 									<td><c:if
-											test='${fn:contains(funzionalita, "modifica titolo studio")}'>
+											test='${fn:contains(funzionalita, "modifica titolo di studio")}'>
 											<button
 												onclick="impostaParametriTitoloStudio('${titolo.titoloStudio}')"
 												type="button" data-toggle="modal" id="btn-titolo-studio"
@@ -1076,13 +1076,13 @@ ul ul a {
 												class="btn customButton p-1 float-right">
 												<i class="fas fa-cogs m-0"></i>
 											</button>
-											<!--  <button
-												onclick="impostaParametriEliminaFeedback('${feed.id}')"
+											  <button
+												onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
 												type="button" data-toggle="modal" id="btn-titolo-studio"
-												data-target="#eliminaTitoloModal"
+												data-target="#eliminaTitoloStudioModal"
 												class="btn customButton p-1 mr-1 float-right">
 												<i class="fas fa-trash m-0"></i>
-											</button>-->
+											</button>
 										</c:if></td>
 								</tr>
 							</c:forEach>
@@ -1949,14 +1949,14 @@ ul ul a {
 		</div>
 	</div>
 
-	<!--  MODAL MODIFICA TITOLI DI STUDIO-->
-	<div class="modal fade" id="modificaTitoloModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
+	<!--  MODAL AGGIUNGI TITOLI DI STUDIO-->
+	<div class="modal fade" id="aggiungiTitoloModal" tabindex="-1"
+		role="dialog" aria-labelledby="aggiungiModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						titoli di studio</h5>
+					<h5 class="modal-title" id="aggiungiModalLabel">Aggiungi
+						titolo di studio</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1965,10 +1965,47 @@ ul ul a {
 				<div class="modal-body">
 					<div class="container-fluid">
 						<form:form method="POST" modelAttribute="titoloStudio"
-							action="/ProgettoHR/AggiungiModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
+							action="/ProgettoHR/AggiungiTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
 							<form:input type="text" class="form-control" id="idTitoloStudio"
 								name="titoloStudio" path="titoloStudio"
+								value="" required="required"></form:input>
+
+							<div class="row w-100 p-2 m-0 justify-content-md-start">
+								<div class="col w-100 p-0 justify-content-md-start">
+									<button type="submit" id="idSubmitAggiungiCosto"
+										class="btn btn-primary btn-block">Salva</button>
+									<button type="reset" class="btn btn-danger btn-block">Annulla
+										modifiche</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!--  MODAL MODIFICA TITOLI DI STUDIO-->
+	<div class="modal fade" id="modificaTitoloModal" tabindex="-1"
+		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modificaModalLabel">Modifica
+						titolo di studio</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form:form method="POST" modelAttribute="titoloStudio"
+							action="/ProgettoHR/ModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
+
+							<form:input type="text" class="form-control" id="idModificaTitoloStudio"
+								name="modificaTitoloStudio" path="titoloStudio"
 								value="${titoloStudio.titoloStudio}" required="required"></form:input>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
@@ -1982,6 +2019,31 @@ ul ul a {
 						</form:form>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- MODAL CANCELLA TITOLO STUDIO -->
+	<div class="modal fade" id="eliminaTitoloStudioModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/ProgettoHR/EliminaTitoloStudio/${businessUnit}/${id}"
+					method="POST">
+
+					<div class="modal-header">
+						Sei sicuro di voler cancellare il titolo di studio selezionato? <input
+							style="visibility: hidden;" name="titoloStudioIdRemove" id="titoloStudioRemove" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
+					</div>
+
+				</form>
 			</div>
 		</div>
 	</div>
@@ -2536,14 +2598,22 @@ ul ul a {
 		function impostaParametriEliminaFeedback(id) {
 			document.getElementById("feedback").value = id;
 		}
+		
 		function impostaParametriAllegati(id) {
 			document.getElementById("Allegato").value = id;
 		
 		}
 		
 		function impostaParametriTitoloStudio(titolo){
-			document.getElementById("idTitoloStudio").value = titolo;
+			document.getElementById("idModificaTitoloStudio").value = titolo;
 		}
+		
+		function impostaParametriEliminaTitoloStudio(id){
+			let newId = parseInt(id);
+			document.getElementById("titoloStudioRemove").value = newId;
+		}
+		
+		
 		function impostaParametriQualificationMeeting(id, cliente,
 				dataPresentato, riferimentoGara, dataColloquio, feedback) {
 			cliente = cliente.replace("&apos", "'");

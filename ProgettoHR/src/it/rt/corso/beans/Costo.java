@@ -26,8 +26,8 @@ public class Costo implements Bean {
 	private String commento;
 
 	// ========================================================= //
-	// ONE-TO-MANY con CANDIDATO
-	@OneToOne(cascade = { CascadeType.ALL }, mappedBy = "costo")
+	// ONE-TO-ONE con CANDIDATO
+	@OneToOne(mappedBy = "costo")
 	private Candidato candidato;
 	// ========================================================= //
 

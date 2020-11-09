@@ -1,10 +1,15 @@
 package it.rt.corso.beans;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +22,8 @@ public class TitoloStudio implements Bean{
 	private int id;
 	@Column(name = "titolo_studio")
 	private String titoloStudio;
+	@ManyToMany(mappedBy = "titoloStudio")
+	private Set<Candidato> candidato = new HashSet<>();
 	
 	
 	public String getTitoloStudio() {

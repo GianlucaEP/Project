@@ -28,10 +28,10 @@ public class UploadFileDAOImpl extends BaseDAO implements UploadFileDAO {
 	public List<UploadFile> getByIdCandidato(int id) {
 
 
-		List<UploadFile> listaCosto = Utility.getSession().createQuery(" FROM UploadFile WHERE id_candidato=:id")
+		List<UploadFile> listaUploadFile = Utility.getSession().createQuery(" FROM UploadFile WHERE id_candidato=:id")
 				.setParameter("id", id).getResultList();
 		Utility.destroySession();
-		return listaCosto;
+		return listaUploadFile;
 	}
 
 }

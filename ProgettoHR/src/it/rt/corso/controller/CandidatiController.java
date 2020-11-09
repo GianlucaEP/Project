@@ -57,7 +57,6 @@ public class CandidatiController {
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
 
-		m.addAttribute("titoloStudio", new TitoloStudio());
 // model attribute per l' eventuale aggiunta di mansione, area o specializzazione
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
@@ -76,14 +75,15 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(HttpServletRequest request, @PathVariable String businessUnit,
-			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente, @RequestParam("dataDiNascita") String dataNascita) throws ParseException {
+			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente,
+			@RequestParam("dataDiNascita") String dataNascita) throws ParseException {
 
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
 		c.setStato(stato);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		c.setDataNascita(formatter.parse(dataNascita));
-		
+
 		c.setInseritoDa(utente);
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
@@ -116,7 +116,8 @@ public class CandidatiController {
 
 	@RequestMapping(value = "/ModificaAnagrafica/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
-			@PathVariable String businessUnit, @RequestParam("dataDiNascita")String dataNascita) throws ParseException {
+			@PathVariable String businessUnit, @RequestParam("dataDiNascita") String dataNascita)
+			throws ParseException {
 
 		Candidato candidato = candidatoDAO.get(id);
 
@@ -126,7 +127,7 @@ public class CandidatiController {
 		candidato.setEmail(c.getEmail());
 		candidato.setCodiceFiscale(c.getCodiceFiscale());
 		candidato.setProvenienza(c.getProvenienza());
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		candidato.setDataNascita(formatter.parse(dataNascita));
 
@@ -160,20 +161,9 @@ public class CandidatiController {
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-	
-	@RequestMapping(value = "/AggiungiModificaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String aggiungiModificaTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio, @PathVariable int id,
-			@PathVariable String businessUnit) {
-		Candidato candidato = candidatoDAO.get(id);
-	
-		List<TitoloStudio> titoloStudioList = new ArrayList<TitoloStudio>();
-		titoloStudioList = candidato.getTitoloStudio();
-		
-		if (titoloStudioDAO.get())
-		
 
-		return "redirect:/Candidato/{businessUnit}/{id}";
-	}
+
+	
 
 	@RequestMapping(value = "/AggiungiModificaEconomics/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
@@ -346,6 +336,7 @@ public class CandidatiController {
 		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita)
 				.collect(Collectors.toList());
 
+		m.addAttribute("titoloStudio", new TitoloStudio());
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mostraCandidato", c);
@@ -418,7 +409,8 @@ public class CandidatiController {
 	private static int getAnniSpecializzazione(String specializzazione) {
 
 		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
-			return Integer.parseInt(specializzazione.substring(specializzazione.lastIndexOf(" ") + 1, specializzazione.length()));
+			return Integer.parseInt(
+					specializzazione.substring(specializzazione.lastIndexOf(" ") + 1, specializzazione.length()));
 		}
 		return 0;
 	}

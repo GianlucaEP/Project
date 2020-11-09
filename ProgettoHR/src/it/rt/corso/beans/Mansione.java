@@ -20,7 +20,7 @@ public class Mansione implements Bean{
 	
 	// ========================================================== //
 	//MANY-TO-MANY Con CANDIDATO
-	@ManyToMany(mappedBy = "mansione", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "mansione")
 	private Set<Candidato> candidato = new HashSet<>();
 	// ========================================================== //
 

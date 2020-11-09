@@ -377,6 +377,7 @@ public class Candidato implements Bean {
 	public void setDomicilio(String domicilio) {
 		this.domicilio = domicilio;
 	}
+	
 
 	
 }

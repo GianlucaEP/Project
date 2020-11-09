@@ -6,6 +6,7 @@ public interface TitoloStudioDAO {
 
 	public TitoloStudio inserisci(TitoloStudio titoloStudio);
 	public TitoloStudio cancella(TitoloStudio titoloStudio);
-	public TitoloStudio get(String id);
+	public TitoloStudio get(int id);
+	public TitoloStudio getByName(String name);
 	public TitoloStudio aggiorna(TitoloStudio titoloStudio);
 }

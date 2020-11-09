@@ -20,7 +20,7 @@ public class AreaCompetenza implements Bean{
 	
 	// ======================================================= //
 	//MANY-TO-MANY con CANDIDATO
-	@ManyToMany( mappedBy = "area", cascade = CascadeType.ALL)
+	@ManyToMany( mappedBy = "area")
 	private Set<Candidato> candidato = new HashSet<>();
 	// ======================================================= //
 	
