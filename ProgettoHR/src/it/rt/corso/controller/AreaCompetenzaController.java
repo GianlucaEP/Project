@@ -28,6 +28,7 @@ public class AreaCompetenzaController {
 		Singleton singleton = Singleton.getInstance();
 
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaList());
+		m.addAttribute("areaCompetenza", new AreaCompetenza());
 
 		return "/AreaCompetenza";
 	}
@@ -40,6 +41,16 @@ public class AreaCompetenzaController {
 		aggiungiAreaCompetenza(areaCompetenza);
 
 		return "redirect:/Home/{businessUnit}";
+	}
+	
+	// aggiungo un'area di competenza da Area Competenza Page
+	@RequestMapping(value = "/AreaCompetenzaSaveDaAreaCompetenza/{businessUnit}", method = RequestMethod.POST)
+	public String aggiungiAreaCompetenzaList(@ModelAttribute("areaCompetenza") AreaCompetenza areaCompetenza,
+			@PathVariable String businessUnit) {
+
+		aggiungiAreaCompetenza(areaCompetenza);
+
+		return "redirect:/AreaCompetenza/{businessUnit}";
 	}
 
 	// aggiungo un'area di competenza dalla pagina di inserimento candidato
@@ -61,7 +72,7 @@ public class AreaCompetenzaController {
 	}
 
 	@RequestMapping(value = "/EliminaArea/{businessUnit}", method = RequestMethod.POST)
-	public String elimina(@RequestParam("area") String area, @PathVariable String businessUnit) {
+	public String elimina(@RequestParam("eliminaArea") String area, @PathVariable String businessUnit) {
 
 		AreaCompetenza ac = dao.get(area);
 		dao.cancella(ac);
@@ -76,7 +87,7 @@ public class AreaCompetenzaController {
 	@RequestMapping(value = "/AggiornaArea/{businessUnit}", method = RequestMethod.POST)
 	public String aggiorna(@RequestParam("oldArea") String oldArea,@RequestParam("newArea") String newArea, @PathVariable String businessUnit) {
 
-		dao.updade(oldArea, newArea);
+		dao.update(oldArea, newArea);
 
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaAreaCompetenza();

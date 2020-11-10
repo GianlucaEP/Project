@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -18,30 +21,35 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-/* MEDIA PER SCHERMO DESKTOP GRANDE */
-body {
+* {
 	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
-	transition: 0.5s;
 }
 
-#aSidebar, #aSidebar:hover, #aSidebar:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+body, html {
+	height: 100%;
+	transition: background-color .5s;
 }
 
-.dark-mode {
-	background-color: black;
-	color: white;
-	transition: 0.5s;
+header {
+	height: 100%;
+	background-image: url("/ProgettoHR/img/home.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	transition: margin-left .5s;
+}
+
+h5 {
+	letter-spacing: 3px;
+	color: #004fff;
 }
 
 /* PALLINI STATO CANDIDATO */
@@ -53,177 +61,88 @@ body {
 	margin-top: 5px;
 }
 
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+#zeroRecord {
+	text-align: center;
+	letter-spacing: 5px;
+	margin: 10px;
 }
 
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	background-color: #7fc8f8;
-	border-radius: 50%;
+#img-logo {
+	position: relative;
+	height: 80px;
+	left: 230px;
+	transition: left .5s;
 }
 
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
 }
 
-#iconaLogout {
-	width: 25px;
-	height: 48px;
+#btn-logout, #btn-menu, #btn-filtro {
+	box-shadow: none !important;
+	outline: 0;
+	transition: 0.5s;
 }
 
-/* SIDEBAR */
-/* transizione tra menubutton e closebutton */
-:root {
-  --animation-curve: cubic-bezier(1, 0, 0, 1);
-  //cubic-bezier(0.68, -0.6, 0.32, 1.6);
-}
-
-label {
-  width: 19px;
-  height: 3px;
-background-color: black;
-  position: absolute;
-  top: 20px;
-    left: 27px;
-  cursor: pointer;
-}
-  label::before,
-  label::after {
-    content: "";
-    width: 19px;
-    height: 3px;
-    background-color: black;
-    position: absolute;
-    display: block;
-    color: red;
-    transition: all 0.6s var(--animation-curve);
-  }
-
-  label::before {
-    top: -200%;
-    left: 0%;
-    transform: rotateZ(0deg);
-    transform-origin: left top;
-  }
-
-  label::after {
-    bottom: -200%;
-    left: 0%;
-    transform: rotateZ(0deg);
-    transform-origin: left bottom;
-  }
-
-#toggle:checked ~ label::before {
-  content: "";
-  background-color: black;
-  transform: rotateZ(41deg);
-  left: 10%;
-}
-
-#toggle:checked ~ label::after {
-  content: "";
-  background-color: black;
-  transform: rotateZ(-41deg);
-  left: 10%;
-}
-
-#toggle:checked ~ label {
-width: 0;}
-
-
-#toggle ~ label {
-  transition: all 0.5s var(--animation-curve);
-}
-
-input {
-  display: none;
-}
-
-/* SIDEBAR */
-#sidenav {
-	transition: 1s;
-	width: 0;
-}
-
-#btn-menu-close {
-	position: absolute;
-	right: 0;
-	top: 0;
+#btn-logout:hover, #btn-menu:hover, #btn-filtro:hover {
+	border-radius: 20px;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
 #sidebar {
-	width: 100%;
 	height: 100%;
-	border-collapse: collapse;
-	font-size: 0.9em;
-	border-radius: 0px 5px 5px 0px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-	background: #5aa9e6;
-	color: #fff;
-	border-collapse: collapse;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: white;
+	transition: 0.5s;
+	padding-top: 60px;
+	overflow-x: hidden;
 }
 
-#sidebar .sidebar-header {
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	background: #7fc8f8;
-}
-
-#sidebar ul.components {
-	padding: 10px 0px 0px 0px;
-}
-
-#sidebar ul p {
-	color: #fff;
-	padding: 10px;
-}
-
-#sidebar ul li a {
-	margin: 5px 0px;
-	padding: 10px 10px 10px 10px;
-	font-size: 1.1em;
+#sidebar a {
+	text-decoration: none;
+	font-size: 20px;
+	letter-spacing: 5px;
 	display: block;
+	transition: 0.3s;
+	color: black;
+	text-align: left;
 }
 
-#sidebar ul li a:hover {
-	color: #fff;
-	background: #7fc8f8;
+#sidebar a:hover {
+	color: #004fff;
 }
 
-#sidebar ul li.active>a, a[aria-expanded="true"] {
-	color: #fff;
-	background: #7fc8f8;
-}
-
-a[data-toggle="collapse"] {
-	position: relative;
-}
-
-.dropdown-toggle::after {
-	display: block;
+#sidebar #btn-menu-close {
 	position: absolute;
-	top: 50%;
-	right: 20px;
-	transform: translateY(-50%);
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
-ul ul a {
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #cae9ff;
+.custom-select {
+	width: 35%;
+	border: 1px solid white;
+	border-radius: 20px 20px 0px 0px;
+	box-shadow: none !important;
+	outline: 0;
 }
 
-#zeroRecord {
-	text-align: center;
+option:hover {
+	color: #004fff;
+	background-color: white;
+	transition: 0.5s;
 }
 
 /* TABELLA HOME */
@@ -231,22 +150,33 @@ ul ul a {
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 0px 10px 10px 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
 }
 
 .tabellaHome .head {
-	background-color: #5aa9e6;
-	color: #ffffff;
+	background-color: white;
+	color: black;
 	text-align: center;
-	font-weight: bold;
+	letter-spacing: 5px;
 }
 
 .tabellaHome .body tr {
 	text-align: center;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaHome .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaHome .body {
+	background-color: #e9ecef;
 }
 
 .tabellaHome .body tr:nth-of-type {
@@ -266,334 +196,350 @@ ul ul a {
 	padding: 4px;
 }
 
-/* filtro stato candidato */
-.select {
-	position: relative;
-	padding: 0.5em 4em 0.5em 1.5em;
-	color: #333333;
-	background-color: #ffffff;
-	border: 1px solid #dddddd;
-	cursor: pointer;
-	border-radius: .25rem 0px 0px .25rem;
+.tabellaHome .footer {
+	background-color: white;
 }
 
-svg {
-	width: 25px;
-	height: 25px;
-	overflow: hidden;
-	vertical-align: middle;
+#btn-elimina, #btn-modifica {
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
+#btn-elimina:hover, #btn-modifica:hover {
+	background-color: black;
+	color: white;
+	transition: 0.5s;
+}
+
+#mansione, #area, #specializzazione {
+	border-bottom: 1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0px;
+	box-shadow: none !important;
+	outline: 0;
+	color: #004fff;
+	box-shadow: none !important;
+}
+
+#btn-salva-mansione, #btn-salva-area, #btn-salva-specializzazione,
+	#btn-si {
+	background-color: #52b788;
+	border: 1px solid #52b788;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-salva-mansione:hover, #btn-salva-area:hover,
+	#btn-salva-specializzazione:hover, #btn-si:hover {
+	background-color: #40916c;
+	border: 1px solid #40916c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
+}
+
+#btn-cancella-mansione, #btn-cancella-area,
+	#btn-cancella-specializzazione, #btn-no {
+	background-color: #f25c54;
+	border: 1px solid #f25c54;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-cancella-mansione:hover, #btn-cancella-area:hover,
+	#btn-cancella-specializzazione:hover, #btn-no:hover {
+	background-color: #ef233c;
+	border: 1px solid #ef233c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
+}
+
+.btn-close-modal:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+/* DARK MODE */
 #bottoneDarkMode {
 	height: 43px;
 	float: right;
 	background-color: #5aa9e6;
-	
 }
 
-#buttonMenu{
-	height: 43px;
-	width:42px;
-	float: left;
-	background-color: #5aa9e6;
-  transition: all 0.6s var(--animation-curve);}
-
-#bottoneFiltro {
-	background-color: #5aa9e6;
-}
-
-#bottoneEliminaCandidato {
-	padding: 8px;
-	background-color: #5aa9e6;
-}
-
-#bottoneModificaCandidato {
-	background-color: #5aa9e6;
-}
-
-.fa-sort {
+.dark-mode {
+	background-color: black;
 	color: white;
-}
-
-@media screen and (max-width: 855px) {
-	body {
-		
-	}
-	[class*="col-"] {
-		width: 100%;
-	}
+	transition: 0.5s;
 }
 </style>
 
 </head>
 
 <body onload="validateOption(); x('${statoSelezionato}'); ">
-	<div class="container-fluid p-0">
-		<!-- NAVBAR -->
-		<nav class="navbar">
-
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
-
-			<div id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-
-					<li class="nav-item">
-						<form action="/ProgettoHR/Logout">
-							<button type="submit" class="btn nav-link p-0">
-								<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
+	<header id="header">
+		<!-- NAVBAR E SIDEBAR MENU -->
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button onclick="openMenu()" class="btn" id="btn-menu">
+								<i class="fas fa-bars"></i>
 							</button>
-						</form>
-					</li>
-				</ul>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+					<!-- SIDEBAR MENU -->
+					<div id="sidebar">
+						<ul>
+							<li><c:forEach var="business" items="${businessList}">
+									<a class="dropdown-item"
+										href="/ProgettoHR/Home/${business.business}">${business.business}</a>
+								</c:forEach></li>
+						</ul>
+						<hr>
+						<a href="javascript:void(0)" id="btn-menu-close"
+							onclick="closeMenu()">&times;</a>
+						<hr>
+						<a href="/ProgettoHR/Candidati/${businessUnit}" class="btn">+
+							Nuovo candidato</a>
+
+						<hr>
+						<ul class="list-unstyled components">
+							<c:if test='${fn:contains(funzionalita, "aggiunta utente")}'>
+								<li><a href="/ProgettoHR/Registrati/${businessUnit}"
+									class="btn">+ Nuovo utente </a></li>
+								<hr>
+							</c:if>
+							<c:if test='${fn:contains(funzionalita, "aggiunta mansione")}'>
+								<li><a href="" data-toggle="modal"
+									data-target="#aggiungiMansione" class="btn">+ Nuova
+										mansione</a></li>
+							</c:if>
+							<c:if test='${fn:contains(funzionalita, "visualizza mansione")}'>
+								<li><a href="/ProgettoHR/Mansione/${businessUnit}"
+									class="btn">- Visualizza mansione</a></li>
+								<hr>
+							</c:if>
+
+							<c:if test='${fn:contains(funzionalita, "aggiunta area")}'>
+								<li><a href="" data-toggle="modal"
+									data-target="#aggiungiAreaCompetenza" class="btn">+ Nuova
+										area di competenza </a></li>
+							</c:if>
+							<c:if test='${fn:contains(funzionalita, "visualizza area")}'>
+								<li><a href="/ProgettoHR/AreaCompetenza/${businessUnit}"
+									class="btn">- Visualizza area di competenza</a></li>
+								<hr>
+							</c:if>
+							<c:if
+								test='${fn:contains(funzionalita, "aggiunta specializzazione")}'>
+								<li><a href="" data-toggle="modal"
+									data-target="#aggiungiSpecializzazione" class="btn">+ Nuova
+										specializzazione </a></li>
+							</c:if>
+							<c:if
+								test='${fn:contains(funzionalita, "visualizza specializzazione")}'>
+								<li><a href="/ProgettoHR/Specializzazione/${businessUnit}"
+									class="btn">- Visualizza specializzazione</a></li>
+							</c:if>
+
+						</ul>
+						<hr>
+						<a href="/ProgettoHR/Filter/${businessUnit}" class="btn">-
+							Ricerca candidati</a>
+						<hr>
+						<a href="/ProgettoHR/Gantt/${businessUnit}" type="button"
+							class="btn">- Gantt</a>
+						<hr>
+
+
+					</div>
+					<div class="col">
+						<a class="navbar-brand w-100"
+							href="/ProgettoHR/Home/${businessUnit}"> <img id="img-logo"
+							src="/ProgettoHR/img/erretechnologygroup.png">
+						</a>
+					</div>
+
+				</div>
 			</div>
 		</nav>
 
-		<!-- COLONNA BARRA LATERALE -->
-		<div class="row w-100 mt-4">
-			<div id="sidenav" class="col-auto align-self-stretch">
-				<!-- BARRA LATERALE -->
-				<nav id="sidebar">
-					<div class="sidebar-header">
-						<h3>Home</h3>
-				
-						
-					</div>
+		<!-- CONTENUTO PRINCIPALE -->
+		<div class="container">
+			<div class="row">
+				<div class="col mt-5">
 
-					<ul class="list-unstyled components">
+					<div class="row w-100">
+						<div class="col mb-2">
+							<form action="/ProgettoHR/Home/filter/${businessUnit}"
+								method="get">
 
-						<li class="active"><a href="#homeSubmenu"
-							data-toggle="collapse" aria-expanded="false"
-							class="dropdown-toggle">Business Unit</a>
-							<ul class="collapse list-unstyled" id="homeSubmenu">
-								<li><c:forEach var="business" items="${businessList}">
-										<a class="dropdown-item"
-											href="/ProgettoHR/Home/${business.business}">${business.business}</a>
-									</c:forEach></li>
-
-							</ul></li>
-						<li><a id="aSidebar"
-							href="/ProgettoHR/Candidati/${businessUnit}" type="button"><i
-								class="fas fa-plus"></i> Nuovo Candidato</a></li>
-
-						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-							<c:choose>
-								<c:when test="${funz.funzionalita == 'aggiunta mansione'}">
-									<li><a id="aSidebar" href="" data-toggle="modal"
-										data-target="#mansioneModal" type="button"><i
-											class="fas fa-plus"></i> Nuova Mansione</a></li>
-									<li><a id="aSidebar"
-										href="/ProgettoHR/Mansione/${businessUnit}" type="button"><i
-											class="fas fa-long-arrow-alt-right"></i> Visualizza Mansione</a></li>
-
-								</c:when>
-								<c:when test="${funz.funzionalita == 'aggiunta area'}">
-									<li><a id="aSidebar" href="" data-toggle="modal"
-										data-target="#areaCompetenzaModal" type="button"><i
-											class="fas fa-plus"></i> Nuova Area </a></li>
-									<li><a id="aSidebar"
-										href="/ProgettoHR/AreaCompetenza/${businessUnit}"
-										type="button"><i class="fas fa-long-arrow-alt-right"></i>
-											Visualizza Area</a></li>
-								</c:when>
-								<c:when
-									test="${funz.funzionalita == 'aggiunta specializzazione'}">
-									<li><a id="aSidebar" href="" data-toggle="modal"
-										data-target="#specializzazioneModal" type="button"><i
-											class="fas fa-plus"></i> Nuova Specializzazione </a></li>
-									<li><a id="aSidebar"
-										href="/ProgettoHR/Specializzazione/${businessUnit}"
-										type="button"><i class="fas fa-long-arrow-alt-right"></i>
-											Visualizza Specializzazione</a></li>
-								</c:when>
-								<c:when test="${funz.funzionalita == 'aggiunta utente'}">
-									<li><a id="aSidebar"
-										href="/ProgettoHR/Registrati/${businessUnit}" type="button"><i
-											class="fas fa-plus"></i> Nuovo Utente </a></li>
-
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<li><a id="aSidebard" href="/ProgettoHR/Gantt/${businessUnit}"
-							type="button" class="text-center">Gantt</a></li>
-
-						<li><a id="aSidebar"
-							href="/ProgettoHR/Filter/${businessUnit}" type="button"
-							class="text-center">Filtri</a></li>
-					</ul>
-				</nav>
-			</div>
-
-
-			<!-- FILTRO STATO CANDIDATO -->
-			<div class="col p-0">
-				<div class="row w-100 mb-1">
-					<div class="col">
-						
-						<div id="buttonMenu" onclick="toggleMenu()" class="btn" >
-						<input type="checkbox" id="toggle"> <label for="toggle">
-						</label>
-						</div>
-						<form action="/ProgettoHR/Home/filter/${businessUnit}"
-							method="post">
-							<div class="input-group" style="display: inline-flex;">
-
-
-								<select class="select" onchange="validateOption()" id="stati"
-									name="statoSelezionato">
-
+								<select class="custom-select" onchange="validateOption()"
+									id="stati" name="statoSelezionato">
 									<option disabled selected>Stato candidato</option>
 									<option id="noFiltro" value="noFiltro">Tutti gli stati</option>
 									<c:forEach var="stato" items="${statoCandidatoList}">
 										<option id="${stato.descrizione}" value="${stato.descrizione}">${stato.descrizione}</option>
 									</c:forEach>
-
 								</select>
-								<div class="input-group-append">
-									<button id="bottoneFiltro" class="btn" type="submit">
-										<svg width="1em" height="1em" viewBox="0 0 16 16"
-											class="bi bi-funnel" fill="currentColor"
-											xmlns="http://www.w3.org/2000/svg"> <path
-												fill-rule="evenodd"
-												d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" /></svg>
-									</button>
-								</div>
 
-							</div>
+								<button id="btn-filtro" class="btn" type="submit">
+									<i class="fas fa-filter"></i>
+								</button>
 
-						</form>
-					</div>
-					<div class="col">
-						<button class="btn" id="bottoneDarkMode" onclick="darkMode()">
-							<span data-toggle="tooltip" data-placement="top"
-								title="attiva la modalità dark"><i class="far fa-moon"></i></span>
-						</button>
+							</form>
+						</div>
+						<!--  <div class="col">
+							<button class="btn" id="bottoneDarkMode" onclick="darkMode()">
+								<span data-toggle="tooltip" data-placement="top"
+									title="attiva la modalità dark"><i class="far fa-moon"></i></span>
+							</button>
+						</div>-->
 					</div>
 
-				</div>
+					<div class="row w-100">
+						<div class="col">
+							<div class="table-responsive">
+								<c:choose>
+									<c:when test="${empty list}">
+										<h2 id="zeroRecord">La ricerca non ha prodotto alcun
+											risultato</h2>
+									</c:when>
+									<c:otherwise>
+										<table class="tabellaHome">
 
-				<div class="row w-100">
-					<div class="col w-100 table-responsive">
-						<!-- TABELLA CANDIDATO -->
-						<c:choose>
-							<c:when test="${empty list}">
-								<h2 id="zeroRecord">La ricerca non ha prodotto alcun
-									risultato</h2>
-							</c:when>
-							<c:otherwise>
-								<table class="tabellaHome">
+											<thead class="head">
+												<tr>
+													<th scope="col"><h6>Stato</h6></th>
+													<th scope="col"><h6>Business unit</h6></th>
+													<th scope="col"><h6>Nome</h6></th>
+													<th scope="col"><h6>Cognome</h6></th>
+													<th scope="col"><h6>Area Competenza</h6></th>
+													<th scope="col"><h6>Mansione</h6></th>
+													<th scope="col"><h6>Seniority</h6></th>
+													<th scope="col"></th>
+													<th scope="col"></th>
+												</tr>
+											</thead>
 
-									<thead class="head">
-										<tr>
-											<th scope="col">Stato</th>
-											<th scope="col">Business unit</th>
-											<th scope="col">Nome</th>
-											<th scope="col">Cognome</th>
-											<th scope="col">Area Competenza</th>
-											<th scope="col">Mansione</th>
-											<th scope="col">Seniority</th>
-											<th scope="col"></th>
-										</tr>
-									</thead>
+											<tbody class="body">
+												<c:forEach var="cand" items="${list}">
+													<tr>
+														<td><c:choose>
+																<c:when test="${ cand.stato.descrizione == 'Attivo'}">
+																	<span id="dot" data-toggle="tooltip"
+																		data-placement="top" title="Attivo"
+																		class="dot bg-success"></span>
+																</c:when>
+																<c:when
+																	test="${ cand.stato.descrizione == 'Selezionato'}">
+																	<span id="dot" data-toggle="tooltip"
+																		data-placement="top" title="Selezionato"
+																		class="dot bg-primary"></span>
+																</c:when>
+																<c:when
+																	test="${ cand.stato.descrizione == 'Da contattare'}">
+																	<span id="dot" data-toggle="tooltip"
+																		data-placement="top" title="Da contattare"
+																		class="dot bg-warning"></span>
+																</c:when>
+																<c:when test="${ cand.stato.descrizione == 'Scartato'}">
+																	<span id="dot" data-toggle="tooltip"
+																		data-placement="top" title="Scartato"
+																		class="dot bg-danger"></span>
+																</c:when>
+																<c:otherwise>
+																	<span id="dot" data-toggle="tooltip"
+																		data-placement="top" title="Nuovo inserito"
+																		class="dot bg-secondary"></span>
+																</c:otherwise>
+															</c:choose></td>
+														<td>${cand.business.business}</td>
+														<td>${cand.nome}</td>
+														<td>${cand.cognome}</td>
 
-									<tbody class="body">
-										<c:forEach var="cand" items="${list}">
-											<tr>
-												<td><c:choose>
-														<c:when test="${ cand.stato.descrizione == 'Attivo'}">
-															<span id="dot" data-toggle="tooltip" data-placement="top"
-																title="Attivo" class="dot bg-success"></span>
-														</c:when>
-														<c:when test="${ cand.stato.descrizione == 'Selezionato'}">
-															<span id="dot" data-toggle="tooltip" data-placement="top"
-																title="Selezionato" class="dot bg-primary"></span>
-														</c:when>
-														<c:when
-															test="${ cand.stato.descrizione == 'Da contattare'}">
-															<span id="dot" data-toggle="tooltip" data-placement="top"
-																title="Da contattare" class="dot bg-warning"></span>
-														</c:when>
-														<c:when test="${ cand.stato.descrizione == 'Scartato'}">
-															<span id="dot" data-toggle="tooltip" data-placement="top"
-																title="Scartato" class="dot bg-danger"></span>
-														</c:when>
-														<c:otherwise>
-															<span id="dot" data-toggle="tooltip" data-placement="top"
-																title="Nuovo inserito" class="dot bg-secondary"></span>
-														</c:otherwise>
-													</c:choose></td>
-												<td>${cand.business.business}</td>
-												<td>${cand.nome}</td>
-												<td>${cand.cognome}</td>
-
-												<td><c:forEach var="area" items="${cand.area}">
+														<td><c:forEach var="area" items="${cand.area}">
 														
 															- ${area.area}  
 													</c:forEach></td>
 
-												<td><c:forEach var="mansione" items="${cand.mansione}">
+														<td><c:forEach var="mansione"
+																items="${cand.mansione}">
 													
 														   - ${mansione.mansione}
 													</c:forEach></td>
 
-												<td>${cand.seniority.seniority}</td>
+														<td>${cand.seniority.seniority}</td>
 
-												<td>
-													<div class="btn-group">
-														<button class="btn " id="bottoneModificaCandidato"
-															onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-															<span data-toggle="tooltip" data-placement="top"
-																title="Modifica candidato"><i
-																class="fas fa-user-edit"></i></span>
+														<td>
+															<button class="btn " id="btn-modifica"
+																onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
+																<span data-toggle="tooltip" data-placement="top"
+																	title="Modifica candidato"><i
+																	class="fas fa-user-edit"></i></span>
 
-														</button>
-														<button class="btn" id="bottoneEliminaCandidato"
-															data-toggle="modal"
-															onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
-															data-target="#EliminaModal">
-															<span data-toggle="tooltip" data-placement="top"
-																title="Elimina candidato"> <i
-																class="fas fa-trash"></i>
-															</span>
+															</button>
 
-														</button>
+														</td>
+														<td><button class="btn" id="btn-elimina"
+																data-toggle="modal"
+																onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
+																data-target="#eliminaCandidato">
+																<span data-toggle="tooltip" data-placement="top"
+																	title="Elimina candidato"> <i
+																	class="fas fa-trash"></i>
+																</span>
 
-													</div>
-												</td>
+															</button></td>
+													</tr>
 
-											</tr>
+												</c:forEach>
+											</tbody>
 
-										</c:forEach>
-									</tbody>
+											<tfoot class="footer">
+												<tr>
+													<td colspan="9"></td>
 
-									<tfoot class="footer" style="background-color: #5aa9e6">
-										<tr>
-											<td colspan="8"></td>
-
-										</tr>
-									</tfoot>
-								</table>
-							</c:otherwise>
-						</c:choose>
+												</tr>
+											</tfoot>
+										</table>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</header>
 
 	<!-- MODAL AGGIUNTA MANSIONE -->
-	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiMansione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi Mansione</h5>
+					<h5 class="modal-title">Aggiungi una mansione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
@@ -602,13 +548,12 @@ svg {
 					<!-- tipo, valoreInserito, lista -->
 					<div class="modal-body">
 						<form:input path="mansione" type="text" class="form-control"
-							maxlength="45" placeholder="Mansione" id="mansione"
-							name="mansione"></form:input>
+							maxlength="45" id="mansione" name="mansione"></form:input>
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">Salva</button>
-						<button type="reset" class="btn btn-danger">Cancella</button>
+						<button type="reset" class="btn" id="btn-cancella-mansione">Cancella</button>
+						<button type="submit" class="btn" id="btn-salva-mansione">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -617,17 +562,16 @@ svg {
 
 
 	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
-	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiArea" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiungi Area
-						Competenza</h5>
+					<h5 class="modal-title">Aggiungi un'area di competenza:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
@@ -637,14 +581,12 @@ svg {
 					<div class="modal-body">
 
 						<form:input path="area" type="text" class="form-control"
-							maxlength="45" placeholder="Area di Competenza" id="area"></form:input>
+							maxlength="45" id="area"></form:input>
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-area"
-							class="btn btn-success">Salva</button>
-						<button type="reset" id="bottone-cancella-area"
-							class="btn btn-danger">Cancella</button>
+						<button type="reset" id="btn-cancella-area" class="btn">Cancella</button>
+						<button type="submit" id="btn-salva-area" class="btn">Salva</button>
 					</div>
 				</form:form>
 
@@ -653,17 +595,16 @@ svg {
 	</div>
 
 	<!-- MODAL AGGIUNTA SPECIALIZZAZIONE -->
-	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="aggiungiSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalSpecializzazione"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" role="document">
 			<div class="modal-content">
-
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiungi
-						Specializzazione</h5>
+					<h5 class="modal-title">Aggiungi una specializzazione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
 				<form:form modelAttribute="specializzazione"
@@ -671,18 +612,13 @@ svg {
 					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
 					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
 					<div class="modal-body">
-
 						<form:input path="specializzazione" type="text" maxlength="45"
-							class="form-control" placeholder="Specializzazione"
-							id="specializzazione"></form:input>
-
+							class="form-control" id="specializzazione"></form:input>
 					</div>
-
 					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-specializzazione"
-							class="btn btn-success">Salva</button>
-						<button type="reset" id="bottone-cancella-specializzazione"
-							class="btn btn-danger">Cancella</button>
+						<button type="submit" id="btn-salva-specializzazione" class="btn">Salva</button>
+						<button type="reset" id="btn-cancella-specializzazione"
+							class="btn">Cancella</button>
 					</div>
 
 				</form:form>
@@ -691,22 +627,24 @@ svg {
 	</div>
 
 	<!-- MODAL CANCELLA CANDIDATO -->
-	<div class="modal fade" id="EliminaModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="eliminaCandidato" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaCandidato"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						<h5 class="modal-title">Modal title</h5>
+						<h5 class="modal-title">Cancella candidato selezionato:</h5>
 					</div>
 					<div class="modal-body" id="modalText"></div>
 					<input style="visibility: hidden;" name="idCandidato"
 						id="candidatoId" />
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">sì</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+						<button type="button" class="btn text-center" id="btn-no"
+							data-dismiss="modal">No</button>
+						<button type="submit" class="btn text-center" id="btn-si">Sì</button>
 					</div>
 
 				</form>
@@ -829,10 +767,6 @@ svg {
 			if (statoSelezionato!==""){
 				document.getElementById(statoSelezionato).selected=true;
 			}
-			
-
-			
-			
 		} 
 		
 		function insertionMessage(tipo, id, lista){
@@ -853,9 +787,9 @@ svg {
 	
 			
 			if (value === "Stato candidato") {
-				document.getElementById("bottoneFiltro").disabled = true;
+				document.getElementById("btn-filtro").disabled = true;
 			} else {
-				document.getElementById("bottoneFiltro").disabled = false;
+				document.getElementById("btn-filtro").disabled = false;
 			}
 		}
 		function darkMode() {
@@ -863,27 +797,18 @@ svg {
 			   element.classList.toggle("dark-mode");
 			}
 		
-		
-		function toggleMenu(){
-			if (document.getElementById("toggle").checked===false){
-				openMenu()
-			}
-			else{
-				closeMenu()
-
-			}
-		}
 		function openMenu() {
-			  document.getElementById("sidenav").style.width = "16.666667%";
-			  document.getElementById("toggle").checked=true;
-			  document.getElementById("buttonMenu").style.width="35px"
+			  document.getElementById("sidebar").style.width = "500px";
+			  document.getElementById("header").style.marginLeft = "250px";
+			  document.getElementById("img-logo").style.left = "110px";
+			  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 			}
 
-			function closeMenu() {
-				document.getElementById("toggle").checked=false;
-			  document.getElementById("sidenav").style.width = "0";
-			  document.getElementById("buttonMenu").style.width="42px"
-
+		function closeMenu() {	
+			  document.getElementById("sidebar").style.width = "0";			 
+			  document.getElementById("header").style.marginLeft = "0";
+			  document.getElementById("img-logo").style.left = "230px";
+			  
 			}
 	</script>
 
@@ -902,5 +827,4 @@ svg {
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 </body>
-
 </html>

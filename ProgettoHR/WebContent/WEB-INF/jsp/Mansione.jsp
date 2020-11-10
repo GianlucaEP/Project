@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>Mansione</title>
 
 <link rel="stylesheet"
@@ -20,84 +20,93 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+* {
+	font-family: 'Poppins', sans-serif;
+}
 
-/* Body e html generale*/
-html, body {
+body, html {
+	height: 100%;
+	background-image: url("/ProgettoHR/img/area.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+}
+
+header {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+#zeroRecord {
+	text-align: center;
+	letter-spacing: 5px;
+	margin: 10px;
+	color: white;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
 }
 
-/* Navbar */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
+#btn-logout, #btn-home, #btn-add {
+	border-radius: 100%;
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+	border: 1px solid white;
+	transition: 0.5s;
 }
 
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
+#btn-logout:hover, #btn-home:hover, #btn-add:hover {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-.container {
-	margin-top: 20px;
-}
-
-/* TABELLA MANSIONI */
+/* TABELLA MANSIONE */
 .tabellaMansione {
-	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .tabellaMansione .head {
-	background-color: #5aa9e6;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
+}
+
+.tabellaMansione .body {
+	background-color: #e9ecef;
 }
 
 .tabellaMansione .body tr {
-	text-align: left;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaMansione .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
 }
 
 .tabellaMansione .body tr:nth-of-type {
@@ -117,146 +126,251 @@ a, a:hover, a:focus {
 	padding: 4px;
 }
 
-#bottoneModificaMansione {
-	float: right;
-	background-color: #5aa9e6;
-	margin-left: 2px;
+.tabellaMansione .footer {
+	background-color: white;
 }
 
-#bottoneEliminaMansione {
-	float: right;
-	background-color: #5aa9e6;
-	margin-left: 2px;
+#btn-modifica, #btn-elimina {
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+#btn-elimina:hover, #btn-modifica:hover {
+	background-color: black;
+	color: white;
+	transition: 0.5s;
+}
+
+#mansione, #newMansione {
+	border-bottom: 1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0px;
+	box-shadow: none !important;
+	outline: 0;
+	color: #004fff;
+}
+
+#btn-salva-mansione {
+	background-color: #52b788;
+	border: 1px solid #52b788;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-salva-mansione:hover {
+	background-color: #40916c;
+	border: 1px solid #40916c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
+}
+
+#btn-cancella-mansione {
+	background-color: #f25c54;
+	border: 1px solid #f25c54;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-cancella-mansione:hover {
+	background-color: #ef233c;
+	border: 1px solid #ef233c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
 }
 </style>
 
 </head>
 <body>
-	<c:set var="singlequote" value="'" />
-	<c:set var="backslash" value="&apos" />
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
+	<header>
+		<c:set var="singlequote" value="'" />
+		<c:set var="backslash" value="&apos" />
 
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button class="btn"
+								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+								id="btn-home">
+								<i class="fas fa-home"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button data-toggle="modal" data-target="#aggiungiMansione"
+								class="btn float-right" id="btn-add">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn float-right" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-				</ul>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col mb-5 align-self-center">
+					<c:if test="${empty mansioneList}">
+						<h2 id="zeroRecord">Nessuna mansione ancora inserita</h2>
+					</c:if>
+					<c:if test="${not empty mansioneList}">
+
+						<div class="table-responsive">
+							<table class="tabellaMansione">
+
+								<thead class="head">
+									<tr>
+										<th><h3>MANSIONE</h3></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+
+								<tbody class="body">
+									<c:forEach var="mansione" items="${mansioneList}">
+										<tr>
+											<c:set var="mansioneRaplaced"
+												value="${fn:replace(mansione.mansione, singlequote, backslash)}"></c:set>
+											<c:set var="mansioneXSS"
+												value="${fn:escapeXml(mansione.mansione)}"></c:set>
+											<td>${mansioneXSS}</td>
+
+											<td><button class="btn" id="btn-modifica"
+													data-toggle="modal"
+													onclick="impostaParametriMansione('${mansioneRaplaced}')"
+													data-target="#modificaMansione">
+													<i class="fas fa-cogs"></i>
+												</button>
+												<button class="btn" id="btn-elimina" data-toggle="modal"
+													onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
+													data-target="#eliminaMansione">
+													<i class="fas fa-trash"></i>
+												</button></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan="2"></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</c:if>
+				</div>
 			</div>
 		</div>
-	</nav>
+	</header>
 
-	<div class="container">
+	<!-- MODAL AGGIUNTA MANSIONE -->
+	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiMansione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
 
-		<div class="col">
-			<!-- TABELLA CANDIDATO -->
-			<c:choose>
-				<c:when test="${empty mansioneList}">
-					<h2 id="zeroRecord">Nessuna mansione ancora inserita</h2>
-				</c:when>
-				<c:otherwise>
-					<table class="tabellaMansione">
+				<div class="modal-header">
+					<h5 class="modal-title">Aggiungi mansione:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+					</button>
+				</div>
+				<form:form modelAttribute="mansione" id="formMansione" method="POST"
+					action="/ProgettoHR/MansioniSaveDaMansione/${businessUnit}"
+					onsubmit="return validate('Mansione', '${mansioneList}' );">
+					<div class="modal-body">
 
-						<thead class="head">
-							<tr>
-								<th><h3>MANSIONE</h3></th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
+						<form:input path="mansione" type="text" class="form-control"
+							maxlength="45" id="mansione"></form:input>
+					</div>
 
-						<tbody class="body">
-							<c:forEach var="mansione" items="${mansioneList}">
-								<tr>
+					<div class="modal-footer">
+						<button type="reset" id="btn-cancella-mansione" class="btn">Cancella</button>
+						<button type="submit" id="btn-salva-mansione" class="btn">Salva</button>
+					</div>
+				</form:form>
 
-
-									<c:set var="mansioneRaplaced"
-										value="${fn:replace(mansione.mansione, singlequote, backslash)}"></c:set>
-									<c:set var="mansioneXSS" value="${fn:escapeXml(mansione.mansione)}"></c:set>
-									<td>${mansioneXSS}</td>
-
-									<td><button class="btn" id="bottoneEliminaMansione"
-											data-toggle="modal"
-											onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
-											data-target="#EliminaMansioneModal">
-											<i class="fas fa-trash"></i>
-										</button>
-										<button class="btn" id="bottoneModificaMansione"
-											data-toggle="modal"
-											onclick="impostaParametriMansione('${mansioneRaplaced}')"
-											data-target="#ModificaMansioneModal">
-											<i class="fas fa-cogs"></i>
-										</button></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-
-						<tfoot class="footer">
-							<tr>
-								<td></td>
-
-							</tr>
-						</tfoot>
-					</table>
-				</c:otherwise>
-			</c:choose>
+			</div>
 		</div>
 	</div>
 
 	<!-- MODAL MODIFICA MANSIONE -->
-	<div class="modal fade" id="ModificaMansioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="modificaMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaMansione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/AggiornaMansione/${businessUnit}"
 					method="POST">
 
 					<div class="modal-header">
-						Aggiorna mansione <input style="visibility: hidden;"
-							name="oldMansione" id="oldMansione" />
+						<h5 class="modal-title">Aggiorna mansione:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						</button>
 					</div>
 
 					<div class="modal-body">
 						<input type="text" class="form-control" name="newMansione"
-							id="newMansione">
+							id="newMansione"> <input style="visibility: hidden;"
+							name="oldMansione" id="oldMansione" />
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">Aggiorna</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+						<button type="button" class="btn" data-dismiss="modal"
+							id="btn-cancella-mansione">Annulla</button>
+						<button type="submit" class="btn" id="btn-salva-mansione">Aggiorna</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
 
 	<!-- MODAL CANCELLA MANSIONE -->
-	<div class="modal fade" id="EliminaMansioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="eliminaMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaMansione"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/EliminaMansione/${businessUnit}"
 					method="POST">
-					<div class="modal-header"><h5>Elimina mansione</h5><input
-							style="visibility: hidden;" name="mansione" id="mansione" />
+					<div class="modal-header">
+						<h5 class="modal-title">Elimina mansione:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						</button>
 					</div>
 
-					<div class="modal-body" id="modalText">
-						<input
-							style="visibility: hidden;" name="mansione" id="mansione" />
+					<div class="modal-body" id="eliminaMansioneModalBodyText">
+						<p id="p-elimina-mansione"></p>
+						<input style="visibility: hidden;" name="eliminaMansione"
+							id="elimina-mansione" />
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">sì</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+						<button type="button" class="btn" data-dismiss="modal"
+							id="btn-cancella-mansione">No</button>
+						<button type="submit" class="btn" id="btn-salva-mansione">Sì</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -269,9 +383,31 @@ a, a:hover, a:focus {
 			document.getElementById("newMansione").value = id;
 		}
 		function impostaParametriMansioneEliminazione(mansione) {
-			document.getElementById("mansione").value = mansione;
-			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare la mansione "+mansione+"?" ;
+			document.getElementById("elimina-mansione").value = mansione;
+			document.getElementById("p-elimina-mansione").innerHTML = "Sei sicuro di voler cancellare la mansione "
+					+ mansione + "?";
 
+		}
+		function validate(tipo, lista) {
+			var mansione = document.getElementById("mansione").value;
+			var list = document.getElementById("formMansione");
+			var control = true;
+
+			if (mansione === "") {
+
+				var tagDiv = document.createElement("div");
+				tagDiv.style = "color:red; font-size: small;"
+				var textnode = document.createTextNode("Inserisci Mansione")
+				tagDiv.appendChild(textnode)
+				document.getElementById("mansione").appendChild(tagDiv);
+				control = false;
+
+				return control;
+			}
+
+			control = insertionMessage(tipo, 'mansione', lista);
+
+			return control;
 		}
 	</script>
 
