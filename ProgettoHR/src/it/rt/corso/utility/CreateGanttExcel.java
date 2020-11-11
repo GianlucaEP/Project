@@ -8,26 +8,32 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellUtil;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -131,6 +137,8 @@ public abstract class CreateGanttExcel {
 
 		XSSFSheet sheet = workbook.createSheet();
 
+		sheet.createFreezePane(5, 0, 5, 0);
+
 		writeHeadersGantt(workbook, sheet, taskList);
 
 		return workbook;
@@ -150,7 +158,9 @@ public abstract class CreateGanttExcel {
 	 * 
 	 */
 	private static void writeHeadersGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
-		XSSFRow header = sheet.createRow(2);
+		XSSFRow header = sheet.createRow(0);
+		XSSFRow headerMonth = sheet.createRow(1);
+		XSSFRow headerDates = sheet.createRow(2);
 		XSSFCell headerCell = header.createCell(0);
 
 		sheet.setColumnWidth(1, 1000);
@@ -164,25 +174,37 @@ public abstract class CreateGanttExcel {
 		cellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 		cellStyle.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
 		cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		cellStyle.setLocked(true);
 
 		headerCell.setCellValue("WB");
 		headerCell.setCellStyle(cellStyle);
+
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 0, 0));
 
 		headerCell = header.createCell(1);
 		headerCell.setCellValue("Task Name");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 1, 1));
+
 		headerCell = header.createCell(2);
 		headerCell.setCellValue("Start");
 		headerCell.setCellStyle(cellStyle);
+
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 2, 2));
 
 		headerCell = header.createCell(3);
 		headerCell.setCellValue("Finish");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 3, 3));
+
 		headerCell = header.createCell(4);
 		headerCell.setCellValue("Duration");
 		headerCell.setCellStyle(cellStyle);
+
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 4, 4));
 
 		daysBetween = ChronoUnit.DAYS.between(startingDate, finishingDate);
 
@@ -192,50 +214,171 @@ public abstract class CreateGanttExcel {
 		dateCellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
 		dateCellStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
 		dateCellStyle.setAlignment(HorizontalAlignment.CENTER);
+		dateCellStyle.setBorderBottom(BorderStyle.THIN);
+		dateCellStyle.setBorderTop(BorderStyle.THIN);
+		dateCellStyle.setBorderRight(BorderStyle.THIN);
+		dateCellStyle.setBorderLeft(BorderStyle.THIN);
 
 		CreationHelper createHelper = workbook.getCreationHelper();
-		dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+		dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd"));
 
-		XSSFRow headerYear = sheet.createRow(0);
+		writeYearsInHeader(workbook, sheet, headerCell, header);
 
-		//long daysBetweenMonth = ChronoUnit.MONTHS.between(startingDate, finishingDate);
+		writeMonthsInHeader(workbook, sheet, headerCell, headerMonth);
 
-		for (int i = 0; i <= finishingDate.getMonthValue() - startingDate.getMonthValue(); i++) {
-
-			List<Month> mesi = new ArrayList<Month>();
-			headerCell = headerYear.createCell(5 + i);
-
-//			int x=startingDate.getDayOfMonth()-startingDate.lengthOfMonth();
-
-			headerCell.setCellValue(startingDate.plusDays(i).getYear());
-
-//			for (int j = 0; j < startingDate.plusDays(i).getDayOfMonth(); j++) {
-			// }
-		}
-
-		sheet.addMergedRegion(new CellRangeAddress(0, 0, 5, (int) daysBetween + 5));
-		CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
-
-		XSSFRow headerMonth = sheet.createRow(1);
-		for (int i = 0; i <= daysBetween; i++) {
-			headerCell = headerMonth.createCell(5 + i);
-			headerCell.setCellValue(startingDate.plusDays(i).getMonth().toString());
-
-		}
-
-		sheet.addMergedRegion(new CellRangeAddress(1, 1, 5, (int) daysBetween + 5));
-		CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
+		setBordersToMergedCells(workbook, sheet);
 
 		for (int i = 0; i <= daysBetween; i++) {
 			sheet.setColumnWidth((5 + i), 800);
 
-			headerCell = header.createCell(5 + i);
+			headerCell = headerDates.createCell(5 + i);
 			headerCell.setCellValue(startingDate.plusDays(i).getDayOfMonth());
 			headerCell.setCellStyle(dateCellStyle);
-		}
+		} // print days numbers row
 
 		writeDataTableGantt(workbook, sheet, taskList);
 		drawTimelineGantt(workbook, sheet, taskList);
+	}
+
+	/**
+	 * 
+	 * Write years numbers in the header over the Timeline starting from the cell
+	 * specified by the given <code>XSSFCell</code>.
+	 * 
+	 * @param workbook   the given <code>XSSFWorkbook</code> that will be written
+	 *                   on.
+	 * @param sheet      the sheet contained in the given workbook, instantiated in
+	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
+	 * @param headerCell the given cell from where the years will be written.
+	 * 
+	 */
+	private static void writeYearsInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
+			XSSFRow headerYear) {
+
+		XSSFCellStyle dateCellStyle = workbook.createCellStyle();
+
+		dateCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		dateCellStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+		dateCellStyle.setFillBackgroundColor(IndexedColors.YELLOW.getIndex());
+
+		if (startingDate.getYear() != finishingDate.getYear()) {
+
+			Long diffYearsSFDates = ChronoUnit.YEARS.between(startingDate, finishingDate);
+
+			Long diffDaysFromEndYear = ChronoUnit.DAYS.between(startingDate,
+					startingDate.with(TemporalAdjusters.lastDayOfYear()));
+			headerCell = headerYear.createCell(5);
+
+			headerCell.setCellValue(startingDate.getYear());
+			headerCell.setCellStyle(dateCellStyle);
+
+			int lastCell = (int) (diffDaysFromEndYear + 5);
+
+			sheet.addMergedRegion(new CellRangeAddress(0, 0, 5, lastCell));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
+
+			if (diffYearsSFDates > 1) {
+				for (long i = 1; i < diffYearsSFDates; i++) {
+					lastCell = lastCell + 1;
+
+					headerCell = headerYear.createCell(lastCell);
+					headerCell.setCellValue(startingDate.plusYears(i).getYear());
+					headerCell.setCellStyle(dateCellStyle);
+
+					sheet.addMergedRegion(new CellRangeAddress(0, 0, lastCell, lastCell + 365));
+
+					CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
+
+					lastCell = lastCell + 365;
+				}
+			}
+
+			lastCell = lastCell + 1;
+
+			Long diffDaysFromStartYear = ChronoUnit.DAYS.between(finishingDate.with(TemporalAdjusters.firstDayOfYear()),
+					finishingDate);
+
+			headerCell = headerYear.createCell(lastCell);
+			headerCell.setCellValue(finishingDate.getYear());
+			headerCell.setCellStyle(dateCellStyle);
+
+			sheet.addMergedRegion(new CellRangeAddress(0, 0, lastCell, (int) (diffDaysFromStartYear + lastCell)));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
+
+		} else {
+			headerCell = headerYear.createCell(5);
+
+			headerCell.setCellValue(startingDate.getYear());
+			headerCell.setCellStyle(dateCellStyle);
+
+			sheet.addMergedRegion(new CellRangeAddress(0, 0, 5, (int) (daysBetween + 5)));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
+		}
+
+	}
+
+	private static void writeMonthsInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
+			XSSFRow headerMonth) {
+
+		XSSFCellStyle dateCellStyle = workbook.createCellStyle();
+
+		dateCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		dateCellStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+		dateCellStyle.setFillBackgroundColor(IndexedColors.YELLOW.getIndex());
+
+		if (startingDate.getMonth() != finishingDate.getMonth()) {
+
+			Long diffMonthsSFDates = ChronoUnit.MONTHS.between(startingDate, finishingDate);
+
+			Long diffDaysFromEndOfMonth = ChronoUnit.DAYS.between(startingDate,
+					startingDate.with(TemporalAdjusters.lastDayOfMonth()));
+
+			headerCell = headerMonth.createCell(5);
+			headerCell.setCellValue(startingDate.getMonth().toString());
+			headerCell.setCellStyle(dateCellStyle);
+
+			int lastCell = (int) (diffDaysFromEndOfMonth + 5);
+
+			sheet.addMergedRegion(new CellRangeAddress(1, 1, 5, lastCell));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
+
+			if (diffMonthsSFDates > 1) {
+				for (long i = 1; i < diffMonthsSFDates; i++) {
+					lastCell = lastCell + 1;
+
+					headerCell = headerMonth.createCell(lastCell);
+					headerCell.setCellValue(startingDate.plusMonths(i).getMonth().toString());
+					headerCell.setCellStyle(dateCellStyle);
+
+					sheet.addMergedRegion(new CellRangeAddress(1, 1, lastCell,
+							(lastCell + startingDate.plusMonths(i).lengthOfMonth()) - 1));
+					CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
+
+					lastCell = lastCell + ((startingDate.plusMonths(i).lengthOfMonth()) - 1);
+				}
+			}
+
+			lastCell = lastCell + 1;
+
+			Long diffDaysFromStartMonth = ChronoUnit.DAYS
+					.between(finishingDate.with(TemporalAdjusters.firstDayOfMonth()), finishingDate);
+
+			headerCell = headerMonth.createCell(lastCell);
+			headerCell.setCellValue(finishingDate.getMonth().toString());
+			headerCell.setCellStyle(dateCellStyle);
+
+			sheet.addMergedRegion(new CellRangeAddress(1, 1, lastCell, (int) (diffDaysFromStartMonth + lastCell)));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
+
+		} else {
+			headerCell = headerMonth.createCell(5);
+			headerCell.setCellValue(startingDate.getMonth().toString());
+			headerCell.setCellStyle(dateCellStyle);
+
+			sheet.addMergedRegion(new CellRangeAddress(1, 1, 5, (int) daysBetween + 5));
+			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
+		}
+
 	}
 
 	/**
@@ -292,17 +435,45 @@ public abstract class CreateGanttExcel {
 			LocalDate dataFine = task.getDataFine();
 			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);
 
+			Random rand = new Random();
+
+			// Generate random integers in range 0 to 255
+			int randomRGB1 = rand.nextInt(255);
+			int randomRGB2 = rand.nextInt(255);
+			int randomRGB3 = rand.nextInt(255);
+			byte[] rgb = new byte[3];
+			rgb[0] = (byte) randomRGB1; // red
+			rgb[1] = (byte) randomRGB2; // green
+			rgb[2] = (byte) randomRGB3; // blue
+			// create XSSFColor
+			XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
 			for (int i = 0; i <= diffDaysTask; i++) {
+
 				XSSFCell headerCell = taskRow.createCell(diffDaysFromStart + 5 + i);
 				XSSFCellStyle cellStyle = workbook.createCellStyle();
 				cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-				cellStyle.setFillForegroundColor(cellColorList.getColorList(taskList.indexOf(task)));
+				// cellStyle.setFillForegroundColor(cellColorList.getColorFromList(taskList.indexOf(task)));
+				cellStyle.setFillForegroundColor(color);
 
 				headerCell.setCellStyle(cellStyle);
 
 			}
 
 		}
+	}
+
+	private static void setBordersToMergedCells(XSSFWorkbook workBook, XSSFSheet sheet) {
+		int numMerged = sheet.getNumMergedRegions();
+
+		for (int i = 0; i < numMerged; i++) {
+			CellRangeAddress mergedRegions = sheet.getMergedRegion(i);
+			RegionUtil.setBorderTop(BorderStyle.THIN, mergedRegions, sheet);
+			RegionUtil.setBorderLeft(BorderStyle.THIN, mergedRegions, sheet);
+			RegionUtil.setBorderRight(BorderStyle.THIN, mergedRegions, sheet);
+			RegionUtil.setBorderBottom(BorderStyle.THIN, mergedRegions, sheet);
+		}
+
 	}
 
 	/**
