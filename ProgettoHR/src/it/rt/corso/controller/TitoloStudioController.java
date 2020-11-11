@@ -80,10 +80,6 @@ public class TitoloStudioController {
 
 		titoloStudioDAO.cancella(titoloStudioTemp);
 
-		// candidato.setTitoloStudio(candidato.getTitoloStudio().stream().filter(t ->
-		// t.getId() != idTitoloStudio).collect(Collectors.toList()));
-		// candidatoDAO.aggiorna(candidato);
-
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 

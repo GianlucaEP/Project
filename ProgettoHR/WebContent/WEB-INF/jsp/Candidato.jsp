@@ -617,7 +617,7 @@ ul ul a {
 </head>
 
 <body
-	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}')">
+	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}', '${mostraCandidato.titoloStudio}', '${mostraCandidato.candidatoCompetenzaLingustica}')">
 	<c:set var="singlequote" value="'" />
 	<c:set var="backslash" value="&apos" />
 	<!-- NAVBAR -->
@@ -676,7 +676,7 @@ ul ul a {
 					<li><c:if
 							test='${fn:contains(funzionalita, "aggiunta competenza linguistica")}'>
 							<a href="" data-toggle="modal"
-								data-target="#modificaCompetenzaLinguisticaModal" type="button"><i
+								data-target="#aggiungiCompetenzaLinguisticaModal" type="button"><i
 								class="fas fa-plus"></i> Competenza linguistica</a>
 						</c:if></li>
 
@@ -1076,7 +1076,7 @@ ul ul a {
 												class="btn customButton p-1 float-right">
 												<i class="fas fa-cogs m-0"></i>
 											</button>
-											  <button
+											<button
 												onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
 												type="button" data-toggle="modal" id="btn-titolo-studio"
 												data-target="#eliminaTitoloStudioModal"
@@ -1101,39 +1101,90 @@ ul ul a {
 
 						<thead class="head">
 							<tr>
-								<th><h3>COMPETENZE LINGUISTICHE</h3></th>
-								<th colspan=4><c:if
-										test='${fn:contains(funzionalita, "modifica costi")}'>
-										<!-- Bottone modifica titoli-->
-										<button type="button" data-toggle="modal"
-											data-target="#modificaCompetenzeLinguisticheModal"
-											class="btn p-2 float-right">
-											<i class="fas fa-cog m-0"></i>
-										</button>
-									</c:if></th>
+								<th colspan=5><h3>COMPETENZE LINGUISTICHE</h3></th>
+								<th colspan=5>
 							</tr>
 							<tr>
 								<th>Lingua</th>
 								<th>Letto</th>
 								<th>Scritto</th>
 								<th>Parlato</th>
+								<th colspan=2></th>
 							</tr>
 						</thead>
 						<tbody class="body">
-							<tr>
-								<th scope="col">Madre lingua</th>
-								<td scope="col"></td>
-							</tr>
-							<tr>
-								<th scope="col">Lingua</th>
-								<td scope="col"></td>
-							</tr>
-
+							<c:forEach var="item"
+								items="${mostraCandidato.candidatoCompetenzaLingustica}">
+								<c:choose>
+									<c:when test="${item.madreLingua == true}">
+										<tr>
+											<th scope="col">Madre lingua :
+												${item.competenzaLinguistica.lingua}</th>
+											<td scope="col"></td>
+											<td scope="col"></td>
+											<td scope="col"></td>
+											<c:if
+												test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
+												<td>
+													<button
+														onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
+														type="button" data-toggle="modal"
+														id="btn-competenza-linguistica"
+														data-target="#modificaCompetenzaLinguisticaModal"
+														class="btn customButton p-1 float-right">
+														<i class="fas fa-cogs m-0"></i>
+													</button>
+												<td>
+													<button
+														onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
+														type="button" data-toggle="modal"
+														id="btn-competenza-linguistica"
+														data-target="#eliminaCompetenzaLinguisticaModal"
+														class="btn customButton p-1 mr-1 float-right">
+														<i class="fas fa-trash m-0"></i>
+													</button>
+												</td>
+											</c:if>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<th scope="col">Lingua :
+												${item.competenzaLinguistica.lingua}</th>
+											<td scope="col">${item.letto}</td>
+											<td scope="col">${item.scritto}</td>
+											<td scope="col">${item.parlato}</td>
+											<c:if
+												test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
+												<td>
+													<button
+														onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
+														type="button" data-toggle="modal"
+														id="btn-competenza-linguistica"
+														data-target="#modificaCompetenzaLinguisticaModal"
+														class="btn customButton p-1 float-right">
+														<i class="fas fa-cogs m-0"></i>
+													</button>
+												<td>
+													<button
+														onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
+														type="button" data-toggle="modal"
+														id="btn-competenza-linguistica"
+														data-target="#eliminaCompetenzaLinguisticaModal"
+														class="btn customButton p-1 mr-1 float-right">
+														<i class="fas fa-trash m-0"></i>
+													</button>
+												</td>
+											</c:if>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</tbody>
 
 						<tfoot class="footer">
 							<tr>
-								<td colspan=4></td>
+								<td colspan=6></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -1968,8 +2019,8 @@ ul ul a {
 							action="/ProgettoHR/AggiungiTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
 							<form:input type="text" class="form-control" id="idTitoloStudio"
-								name="titoloStudio" path="titoloStudio"
-								value="" required="required"></form:input>
+								name="titoloStudio" path="titoloStudio" value=""
+								required="required"></form:input>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -1985,8 +2036,8 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
-		<!--  MODAL MODIFICA TITOLI DI STUDIO-->
+
+	<!--  MODAL MODIFICA TITOLI DI STUDIO-->
 	<div class="modal fade" id="modificaTitoloModal" tabindex="-1"
 		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -2004,11 +2055,13 @@ ul ul a {
 						<form:form method="POST" modelAttribute="titoloStudio"
 							action="/ProgettoHR/ModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
-							 <form:input
-							style="visibility: hidden;" name="modificaTitoloStudioId" id="modificaTitoloStudioId" path="id" />
-							<form:input type="text" class="form-control" id="idModificaTitoloStudio"
-								name="modificaTitoloStudio" path="titoloStudio"
-								value="${titoloStudio.titoloStudio}" required="required"></form:input>
+							<form:input style="visibility: hidden;"
+								name="modificaTitoloStudioId" id="modificaTitoloStudioId"
+								path="id" />
+							<form:input type="text" class="form-control"
+								id="idModificaTitoloStudio" name="modificaTitoloStudio"
+								path="titoloStudio" value="${titoloStudio.titoloStudio}"
+								required="required"></form:input>
 
 							<div class="row w-100 p-2 m-0 justify-content-md-start">
 								<div class="col w-100 p-0 justify-content-md-start">
@@ -2024,8 +2077,8 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
-		<!-- MODAL CANCELLA TITOLO STUDIO -->
+
+	<!-- MODAL CANCELLA TITOLO STUDIO -->
 	<div class="modal fade" id="eliminaTitoloStudioModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -2035,7 +2088,8 @@ ul ul a {
 
 					<div class="modal-header">
 						Sei sicuro di voler cancellare il titolo di studio selezionato? <input
-							style="visibility: hidden;" name="titoloStudioIdRemove" id="titoloStudioRemove" />
+							style="visibility: hidden;" name="titoloStudioIdRemove"
+							id="titoloStudioRemove" />
 					</div>
 
 					<div class="modal-footer">
@@ -2049,6 +2103,236 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+
+	<!--  MODAL AGGIUNGI COMPETENZA LINGUISTICA-->
+	<div class="modal fade " id="aggiungiCompetenzaLinguisticaModal"
+		tabindex="-1" role="dialog"
+		aria-labelledby="modalCompetenzaLinguistica" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleSeniority">Aggiungi
+						Competenza Linguistica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form:form method="POST"
+					modelAttribute="candidatoCompetenzaLinguistica"
+					action="/ProgettoHR/AggiungiCompetenzaLinguistica/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="col-auto">
+
+							<div class="form-group">
+								<h5 class="text-center">Scegli:</h5>
+								<form:input autocomplete="off" placeholder="Scegli"
+									list="lingueDisponibili" id="linguaInput"
+									path="competenzaLinguistica.lingua" class="form-control mt-2"></form:input>
+								<datalist id="lingueDisponibili">
+									<c:forEach var="competenzaLinguistica"
+										items="${competenzaLinguisticaList}">
+										<option value="${competenzaLinguistica.lingua}"></option>
+									</c:forEach>
+								</datalist>
+							</div>
+
+							<div class="form-group mt-3">
+								<div class="bootstrap-switch-square ">
+									<form:checkbox onchange="hideOrDisplayLevelsInAggiungiLingua()"
+										data-toggle="switch" name="madrelingua" path="madreLingua"
+										id="madrelingua" value="false" />
+									<label for="madrelingua">Madrelingua ?</label>
+								</div>
+							</div>
+
+
+							<div class="form-row mt-3" id="livelliDiv">
+								<div class="form-group col-4">
+									<label for="letto">Letto</label>
+									<form:select id="idLetto" path="letto" 
+										class="form-control text-center" name="letto">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+
+								<div class="form-group col-4">
+									<label for="scritto">Scritto</label>
+									<form:select id="idScritto" path="scritto" 
+										class="form-control text-center" name="scritto">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+
+								<div class="form-group col-4">
+									<label for="parlato">Parlato</label>
+									<form:select id="idParlato" path="parlato" 
+										class="form-control text-center" name="parlato">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+	<!--  MODAL MODIFICA COMPETENZA LINGUISTICA-->
+	<div class="modal fade " id="modificaCompetenzaLinguisticaModal"
+		tabindex="-1" role="dialog"
+		aria-labelledby="modalCompetenzaLinguistica" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="titleSeniority">Modifica
+						Competenza Linguistica</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form:form method="POST"
+					modelAttribute="candidatoCompetenzaLinguistica"
+					action="/ProgettoHR/ModificaCompetenzaLinguistica/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="col-auto">
+
+							<div class="form-group">
+								<h5 class="text-center">Scegli:</h5>
+								<form:input autocomplete="off" placeholder="Scegli"
+									list="lingueDisponibili"
+									id="linguaModificaCompetenzaLinguistica"
+									path="competenzaLinguistica.lingua" class="form-control mt-2"></form:input>
+								<datalist id="lingueDisponibili">
+									<c:forEach var="competenzaLinguistica"
+										items="${competenzaLinguisticaList}">
+										<option value="${competenzaLinguistica.lingua}"></option>
+									</c:forEach>
+								</datalist>
+							</div>
+
+							<div class="form-group mt-3">
+								<div class="bootstrap-switch-square ">
+									<form:checkbox onchange="hideOrDisplayLevelsInModificaLingua()"
+										data-toggle="switch" name="madrelingua" path="madreLingua"
+										id="madrelinguaModificaCompetenzaLinguistica" value="false" />
+									<label for="madrelingua">Madrelingua ?</label>
+								</div>
+							</div>
+
+
+							<div class="form-row mt-3" id="livelliDiv">
+								<div class="form-group col-4">
+									<label for="letto">Letto</label>
+									<form:select id="idModificaLetto" 
+										path="letto" class="form-control text-center" name="modificaLetto">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+
+								<div class="form-group col-4">
+									<label for="scritto">Scritto</label>
+									<form:select id="idModificaScritto" 
+										path="scritto" class="form-control text-center" name="modificaScritto">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+
+								<div class="form-group col-4">
+									<label for="parlato">Parlato</label>
+									<form:select id="idModificaParlato" 
+										path="parlato" class="form-control text-center" name="modificaParlato">
+										<option disabled selected>Livello</option>
+										<option value="A1">A1</option>
+										<option value="A2">A2</option>
+										<option value="B1">B1</option>
+										<option value="B2">B2</option>
+										<option value="C1">C1</option>
+										<option value="C2">C2</option>
+									</form:select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-success">Salva</button>
+					</div>
+				</form:form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL CANCELLA COMPETENZA LINGUISTICA -->
+	<div class="modal fade" id="eliminaCompetenzaLinguisticaModal"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form
+					action="/ProgettoHR/EliminaCompetenzaLinguistica/${businessUnit}/${id}"
+					method="POST">
+
+					<div class="modal-header">
+						Sei sicuro di voler cancellare la competenza linguistica
+						selezionata? <input style="visibility: hidden;"
+							name="removeCompetenzaLinguistica"
+							id="removeCompetenzaLinguisticaId" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success"
+							style="background-color: green;">sì</button>
+						<button type="button" class="btn btn-danger"
+							style="background-color: red;" data-dismiss="modal">no</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
 
 	<!--  MODAL MODIFICA QUALIFICATION MEETING-->
 	<div class="modal fade" id="modificaQualificationMeetingModal"
@@ -2496,7 +2780,7 @@ ul ul a {
 
 	<script type="text/javascript">
 	
-		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics) {
+		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics, titoloStudio, competenzaLinguistica) {
 			if(document.getElementById("menuStato")!= null){
 			if (stato === "Nuovo inserito") {
 				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
@@ -2520,6 +2804,8 @@ ul ul a {
 			removeCostiTable(costi);
 			removeEconomicsTable(economics);
 			removeQualificationMeetingTable(qualificationMeeting);
+			removeTitoloStudioTable(titoloStudio);
+			removeCompetenzaLinguisticaTable(competenzaLinguistica);
 			checkCategoriaProtetta(categoriaProtetta);
 
 		}
@@ -2527,6 +2813,22 @@ ul ul a {
 		function removeFeedbackTable(feedback) {
 			if (feedback === "[]") {
 				var myobj = document.getElementById("feedbackTable");
+				if(myobj != null)
+				myobj.remove();
+			}
+		}
+		
+		function removeTitoloStudioTable(titoloStudio) {
+			if (titoloStudio === "[]") {
+				var myobj = document.getElementById("titoliTable");
+				if(myobj != null)
+				myobj.remove();
+			}
+		}
+		
+		function removeCompetenzaLinguisticaTable(competenzaLinguistica) {
+			if (competenzaLinguistica === "[]") {
+				var myobj = document.getElementById("competenzeLinguisticheTable");
 				if(myobj != null)
 				myobj.remove();
 			}
@@ -2603,9 +2905,9 @@ ul ul a {
 		
 		function impostaParametriAllegati(id) {
 			document.getElementById("Allegato").value = id;
-		
 		}
 		
+		// GESTIONE TITOLO DI STUDIO
 		function impostaParametriTitoloStudio(id, titolo){
 			document.getElementById("modificaTitoloStudioId").value = id;
 			document.getElementById("idModificaTitoloStudio").value = titolo;
@@ -2614,6 +2916,62 @@ ul ul a {
 		function impostaParametriEliminaTitoloStudio(id){
 			let newId = parseInt(id);
 			document.getElementById("titoloStudioRemove").value = newId;
+		}
+		
+		
+		//GESTIONE COMPETENZA LINGUISTICA
+		function hideOrDisplayLevelsInAggiungiLingua(){
+			if(document.getElementById("madrelingua").checked){
+				document.getElementById("idLetto").disabled = true;
+				document.getElementById("idScritto").disabled = true;
+				document.getElementById("idParlato").disabled = true;
+			}
+			else{
+				document.getElementById("idLetto").disabled = false;
+				document.getElementById("idScritto").disabled = false;
+				document.getElementById("idParlato").disabled = false;
+				
+			}
+		}
+		
+		function hideOrDisplayLevelsInModificaLingua(){
+			if(document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked){
+				document.getElementById("idModificaLetto").disabled = true;
+				document.getElementById("idModificaScritto").disabled = true;
+				document.getElementById("idModificaParlato").disabled = true;
+			}
+			else{
+				document.getElementById("idModificaLetto").disabled = false;
+				document.getElementById("idModificaScritto").disabled = false;
+				document.getElementById("idModificaParlato").disabled = false;
+				
+			}
+		}
+		
+		
+		function impostaParametriEliminaCompetenzaLinguistica(id){
+			document.getElementById("removeCompetenzaLinguisticaId").value = id;
+		}
+		
+		
+		function impostaParametriModificaCompetenzaLinguistica(lingua, madrelingua, letto, scritto, parlato){
+			document.getElementById("linguaModificaCompetenzaLinguistica").value = lingua;
+			
+			if(madrelingua == "true"){
+				document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked = true;
+				hideOrDisplayLevelsInModificaLingua();
+				document.getElementById("idModificaLetto").value = "Livello";
+				document.getElementById("idModificaScritto").value = "Livello";
+				document.getElementById("idModificaParlato").value = "Livello";
+			}
+			
+			else{
+				document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked = false;
+				hideOrDisplayLevelsInModificaLingua();
+				document.getElementById("idModificaLetto").value = letto;
+				document.getElementById("idModificaScritto").value = scritto;
+				document.getElementById("idModificaParlato").value = parlato;
+			}
 		}
 		
 		

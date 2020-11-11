@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BusinessDAO;
 import it.rt.corso.DAO.CandidatoDAO;
+import it.rt.corso.DAO.CompetenzaLinguisticaDAO;
 import it.rt.corso.DAO.MansioneDAO;
 import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
@@ -17,6 +18,7 @@ import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.DAO.TipoFeedbackDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
+import it.rt.corso.beans.CompetenzaLinguistica;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.Seniority;
 import it.rt.corso.beans.Specializzazione;
@@ -42,6 +44,7 @@ public class Singleton {
 	SeniorityDAO seniorityDAO = (SeniorityDAO) factory.getBean("seniorityDAO");
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
+	CompetenzaLinguisticaDAO competenzaLinguisticaDAO = (CompetenzaLinguisticaDAO) factory.getBean("competenzaLinguisticaDAO");
 
 	// static variable single_instance of type Singleton
 	private static Singleton single_instance = null;
@@ -53,6 +56,7 @@ public class Singleton {
 	private static List<Seniority> seniorityList = new ArrayList<Seniority>();
 	private static List<StatoCandidato> statoCandidatoList = new ArrayList<StatoCandidato>();
 	private static List<TipoFeedback> tipoFeedbackList = new ArrayList<TipoFeedback>();
+	private static List<CompetenzaLinguistica> competenzaLinguisticaList = new ArrayList<CompetenzaLinguistica>();
 
 	// private constructor restricted to this class itself
 	private Singleton() {
@@ -63,6 +67,7 @@ public class Singleton {
 		seniorityList = seniorityDAO.getLista();
 		statoCandidatoList = statoCandidatoDAO.getAllFromStato();
 		tipoFeedbackList = tipoFeedbackDAO.getLista();
+		competenzaLinguisticaList = competenzaLinguisticaDAO.getLista();
 	}
 
 	/**
@@ -95,6 +100,10 @@ public class Singleton {
 
 	public List<Seniority> getSeniorityList() {
 		return seniorityList;
+	}
+	
+	public List<CompetenzaLinguistica> getCompetenzaLinguisticaList() {
+		return competenzaLinguisticaList;
 	}
 
 	public List<Specializzazione> getSpecializzazioneList() {
@@ -132,5 +141,9 @@ public class Singleton {
 
 	public void aggiornaSpecializzazione() {
 		specializzazioneList = specializzazioneDAO.getLista();
+	}
+	
+	public void aggiornaCompetenzaLinguistica() {
+		competenzaLinguisticaList = competenzaLinguisticaDAO.getLista();
 	}
 }

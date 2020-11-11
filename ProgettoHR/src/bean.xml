@@ -25,6 +25,14 @@
 	<bean id="candidatoSpecializzazioneDAO"
 		class="it.rt.corso.DAOImpl.CandidatoSpecializzazioneDAOImpl">
 	</bean>
+	
+	<bean id="candidatoCompetenzaLinguisticaDAO"
+		class="it.rt.corso.DAOImpl.CandidatoCompetenzaLinguisticaDAOImpl">
+	</bean>
+	
+	<bean id="competenzaLinguisticaDAO"
+		class="it.rt.corso.DAOImpl.CompetenzaLinguisticaDAOImpl">
+	</bean>
 
 	<bean id="specializzazioneDAO"
 		class="it.rt.corso.DAOImpl.SpecializzazioneDAOImpl">

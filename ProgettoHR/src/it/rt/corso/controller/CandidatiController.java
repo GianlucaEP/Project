@@ -337,11 +337,13 @@ public class CandidatiController {
 				.collect(Collectors.toList());
 
 		m.addAttribute("titoloStudio", new TitoloStudio());
+		m.addAttribute("candidatoCompetenzaLinguistica", new CandidatoCompetenzaLinguistica());
 		m.addAttribute("mostraFeedback", f);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mostraCandidato", c);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
+		m.addAttribute("competenzaLinguisticaList", singleton.getCompetenzaLinguisticaList());
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
