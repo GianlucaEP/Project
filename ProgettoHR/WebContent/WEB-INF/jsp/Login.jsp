@@ -10,16 +10,23 @@
 
 <title>Login</title>
 
-<!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- CSS Bootstrap -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
+* {
+	font-family: 'Poppins', sans-serif;
+}
+
 html, body {
 	height: 100%;
 }
@@ -36,6 +43,7 @@ form {
 	border-radius: 20px;
 	background-color: white;
 	padding: 50px;
+	box-shadow: 10px 15px #d3d3d3;
 }
 
 img {
@@ -78,6 +86,7 @@ input:focus {
 	width: 130px;
 	background-color: transparent;
 	transition: 0.5s;
+	letter-spacing: 3px;
 }
 
 #btn-login:hover {
@@ -87,7 +96,6 @@ input:focus {
 	transition: 0.5s;
 }
 /* Hr */
-
 .hr {
 	margin-left: 0; /* fa partire l'hr da sinistra verso destra*/
 	padding: 1px 0;
@@ -111,9 +119,8 @@ input:focus {
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col d-flex justify-content-center align-self-center">
-					<form:form method="POST"
-						action="/ProgettoHR/LogginIn/" modelAttribute="utente"
-						onsubmit="return validate();">
+					<form:form method="POST" action="/ProgettoHR/LogginIn/"
+						modelAttribute="utente" onsubmit="return validate();">
 
 						<div class="row">
 							<div class="col mb-3">
@@ -137,8 +144,7 @@ input:focus {
 							</div>
 							<div class="row">
 								<div class="col mb-3">
-									<form:input path="username" type="text"
-										autocomplete="off" />
+									<form:input path="username" type="text" autocomplete="off" />
 								</div>
 							</div>
 						</div>
