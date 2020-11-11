@@ -363,7 +363,7 @@ option:hover {
 							Ricerca candidati</a>
 						<hr>
 						<a href="/ProgettoHR/Gantt/${businessUnit}" type="button"
-							class="btn">- Gantt</a>
+							class="btn" id="ganttButton">- Gantt</a>
 						<hr>
 
 
