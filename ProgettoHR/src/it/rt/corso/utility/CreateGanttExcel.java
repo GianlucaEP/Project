@@ -422,9 +422,16 @@ public abstract class CreateGanttExcel {
 
 	}
 
+	
+	/**
+	 * 
+	 * Color cells with random colors to create a timeline correspondinf to days(cells) for task(rows) in the given workbook
+	 * 
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
+	 * @param sheet    the sheet contained in the given workbook, instantiated in
+	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
+	 * */
 	private static void drawTimelineGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
-
-		CellColorList cellColorList = new CellColorList();
 
 		for (Task task : taskList) {
 			XSSFRow taskRow = sheet.getRow(taskList.indexOf(task) + 3);
@@ -453,7 +460,6 @@ public abstract class CreateGanttExcel {
 				XSSFCell headerCell = taskRow.createCell(diffDaysFromStart + 5 + i);
 				XSSFCellStyle cellStyle = workbook.createCellStyle();
 				cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-				// cellStyle.setFillForegroundColor(cellColorList.getColorFromList(taskList.indexOf(task)));
 				cellStyle.setFillForegroundColor(color);
 
 				headerCell.setCellStyle(cellStyle);
@@ -463,6 +469,14 @@ public abstract class CreateGanttExcel {
 		}
 	}
 
+	/**
+	 * Draw borders on merged region cells contained in the given workbook
+	 * 
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
+	 * @param sheet    the sheet contained in the given workbook, instantiated in
+	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
+	 * 
+	 * */
 	private static void setBordersToMergedCells(XSSFWorkbook workBook, XSSFSheet sheet) {
 		int numMerged = sheet.getNumMergedRegions();
 
