@@ -30,6 +30,8 @@ public class MansioneController {
 		Singleton singleton = Singleton.getInstance();
 
 		m.addAttribute("mansioneList", singleton.getMansioneList());
+		m.addAttribute("mansione", new Mansione());
+
 		return "/Mansione";
 	}
 
@@ -39,6 +41,14 @@ public class MansioneController {
 			@PathVariable String businessUnit) {
 		aggiungiMansione(mansione);
 		return "redirect:/Home/{businessUnit}";
+	}
+
+	// aggiungo una mansione dalla Mansione
+	@RequestMapping(value = "/MansioniSaveDaMansione/{businessUnit}", method = RequestMethod.POST)
+	public String aggiungiMansioneDaMansioneList(@ModelAttribute("mansione") Mansione mansione,
+			@PathVariable String businessUnit) {
+		aggiungiMansione(mansione);
+		return "redirect:/Mansione/{businessUnit}";
 	}
 
 	// aggiungo una mansione dalla pagina di inserimento candidato
@@ -63,28 +73,29 @@ public class MansioneController {
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();
 	}
-	
+
 	@RequestMapping(value = "/EliminaMansione/{businessUnit}", method = RequestMethod.POST)
-	public String elimina(@RequestParam("mansione") String mansione, @PathVariable String businessUnit) {
-		
+	public String elimina(@RequestParam("eliminaMansione") String mansione, @PathVariable String businessUnit) {
+
 		Mansione m = dao.get(mansione);
-		
+
 		dao.cancella(m);
-		
+
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();
-		
+
 		return "redirect:/Mansione/{businessUnit}";
 	}
-	
+
 	@RequestMapping(value = "/AggiornaMansione/{businessUnit}", method = RequestMethod.POST)
-	public String aggiorna(@RequestParam("oldMansione") String mansione,@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {
-		
+	public String aggiorna(@RequestParam("oldMansione") String mansione,
+			@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {
+
 		dao.updade(mansione, newMansione);
 
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();
-		
+
 		return "redirect:/Mansione/{businessUnit}";
 	}
 }

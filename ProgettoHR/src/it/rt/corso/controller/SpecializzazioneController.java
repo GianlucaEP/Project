@@ -28,6 +28,7 @@ public class SpecializzazioneController {
 		Singleton singleton = Singleton.getInstance();
 
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneList());
+		m.addAttribute("specializzazione", new Specializzazione());
 		
 		return "/Specializzazione";
 		
@@ -40,6 +41,14 @@ public class SpecializzazioneController {
 		aggiungiSpecializzazione(specializzazione);
 		return "redirect:/Home/{businessUnit}";
 	}
+	
+	//aggiungo una specializzazione da Specializzazione
+		@RequestMapping(value = "/SpecializzazioneSaveDaSpecializzazione/{businessUnit}", method = RequestMethod.POST)
+		public String aggiungiSpecializzazioneList(@ModelAttribute("specializzazione") Specializzazione specializzazione,
+				@PathVariable String businessUnit) {
+			aggiungiSpecializzazione(specializzazione);
+			return "redirect:/Specializzazione/{businessUnit}";
+		}
 	
 	//aggiungo una specializzazione dalla pagina di inserimento candidato
 	@RequestMapping(value = "/SpecializzazioneSaveDaInserimentoCandidato/{businessUnit}", method = RequestMethod.POST)
@@ -58,7 +67,7 @@ public class SpecializzazioneController {
 	}
 
 	@RequestMapping(value = "/EliminaSpecializzazione/{businessUnit}", method = RequestMethod.POST)
-	public String elimina(@RequestParam("specializzazione") String specializzazione, @PathVariable String businessUnit) {
+	public String elimina(@RequestParam("eliminaSpecializzazione") String specializzazione, @PathVariable String businessUnit) {
 		
 		Specializzazione spec = dao.get(specializzazione);
 		

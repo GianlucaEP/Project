@@ -3,6 +3,7 @@ package it.rt.corso.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Candidato;
+import it.rt.corso.beans.Funzionalita;
 import it.rt.corso.beans.Mansione;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.Utente;
@@ -58,6 +60,9 @@ public class HomeController {
 			return "redirect:/Login";
 		}
 
+		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita)
+				.collect(Collectors.toList());
+		
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("businessList", singleton.getBusinessList());
@@ -68,6 +73,8 @@ public class HomeController {
 		m.addAttribute("areaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("statoCandidatoList", singleton.getStatoCandidatoList());
+		m.addAttribute("funzionalita", listaFunzionalita);
+		
 		return "Home";
 	}
 

@@ -2,157 +2,248 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-
 <meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Registrai</title>
+<title>Registrazione</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-/* MEDIA PER SCHERMO DESKTOP GRANDE */
-html, body {
+* {
+	font-family: 'Poppins', sans-serif;
+}
+
+body, html {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+header {
+	height: 100%;
+	background-image: url("/ProgettoHR/img/home.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+img {
+	height: 55px;
 }
 
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+span {
+	font-size: 25px;
+	letter-spacing: 5px;
 }
 
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
+label {
+	letter-spacing: 3px;
 }
 
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-#colonnaLogin {
+form {
+	border-radius: 20px;
+	padding: 50px;
 	background-color: white;
-	border-radius: 10px;
+	box-shadow: 10px 15px #d3d3d3;
 }
 
-#utenteForm {
-	margin: 20px;
+#nuovoUtente, #nuovaPassword {
+	padding: 10px 15px;
+	color: #004fff;
+	border: none;
+	border-radius: 10px;
+	letter-spacing: 2px;
+	background-color: whitesmoke;
+	width: 100%;
+}
+
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
+}
+
+#btn-logout, #btn-home, #btn-add {
+	border-radius: 100%;
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+	border: 1px solid white;
+	transition: 0.5s;
+}
+
+#btn-logout:hover, #btn-home:hover, #btn-add:hover {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+#btn-registrazione {
+	border: 1px solid #004fff;
+	color: #004fff;
+	border-radius: 20px;
+	width: 170px;
+	background-color: transparent;
+	transition: 0.5s;
+	letter-spacing: 3px;
+}
+
+#btn-registrazione:hover {
+	background-color: #004fff;
+	border-color: #004fff;
+	color: white;
+	transition: 0.5s;
+}
+
+#btn-cancella-registrazione {
+	background-color: #f25c54;
+	border: 1px solid #f25c54;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-cancella-registrazione:hover {
+	background-color: #ef233c;
+	border: 1px solid #ef233c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
 }
 </style>
 
 </head>
 
 <body onload="control()">
-	<div class="container-fluid p-0">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-expand-xl ">
-
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
-
-			<!-- LOGOUT -->
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-				</ul>
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button class="btn"
+								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+								id="btn-home">
+								<i class="fas fa-home"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn float-right" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
-
 		</nav>
 
+		<div class="container h-75">
+			<div class="row  h-100 align-items-center">
+				<div class="col d-flex justify-content-center align-self-center">
 
-		<div class="row mr-0 justify-content-center mt-4">
-			<div class="col-auto border" id="colonnaLogin">
+					<form:form id="utenteForm" method="POST"
+						action="/ProgettoHR/RegistratiIn/${businessUnit}"
+						modelAttribute="nuovoUtente" onsubmit="return validate();">
 
-				<h4 class="text-center mt-4">Registrati</h4>
-				<form:form id="utenteForm" method="POST"
-					action="/ProgettoHR/RegistratiIn/${businessUnit}"
-					modelAttribute="nuovoUtente" onsubmit="return validate();">
+						<div class="row">
+							<div class="col mb-3">
+								<img src="/ProgettoHR/img/Logo Erre.png" class="pr-3"> <span>Registrazione</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mb-5">
+								<span>Aggiungi un nuovo <span style="color: #004fff;">utilizzatore</span>.
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mb-3">
+								<div id="formNuovoUtente">
+									<label for="Utente">Utente :</label>
+									<form:input path="username" type="text" class="form-control"
+										id="nuovoUtente" placeholder="Inserisci Utente"
+										required="required" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mb-3">
+								<div id="formNuovaPassword">
+									<label for="Password">Password :</label>
+									<form:input path="password" type="password"
+										class="form-control" id="nuovaPassword"
+										placeholder="Inserisci Password" required="required" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mb-5">
+								<div id="formRuolo">
+									<label for="Ruolo">Ruolo :</label> <select class="form-control"
+										name="ruoloSelezionato" id="ruoloSelezionato">
+										<option id="noFiltro" value="noFiltro" selected disabled>Seleziona
+											ruolo</option>
+										<c:forEach var="ruolo" items="${ruoli}">
+											<option value="${ruolo.id}">${ruolo.ruolo}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<button type="submit" class="btn" id="btn-registrazione">Registrazione</button>
+							</div>
+						</div>
+					</form:form>
 
-					<div class="form-group" id="formNuovoUtente">
-						<label for="Utente">Utente:</label>
-						<form:input path="username" type="text" class="form-control"
-							id="nuovoUtente" placeholder="Inserisci Utente"
-							required="required" />
-
+					<div class="row justify-content-center">
+						<div
+							class="alert alert-success btn-block mb-4 ml-2 mr-2 text-center"
+							id="successAlert" role="alert">Nuovo utente inserito con
+							successo</div>
 					</div>
-					<div class="form-group" id="formNuovaPassword">
-						<label for="Password">Password:</label>
-						<form:input path="password" type="password" class="form-control"
-							id="nuovaPassword" placeholder="Inserisci Password"
-							required="required" />
-					</div>
-					<div class="form-group" id="formRuolo">
-						<label for="Ruolo">Ruolo:</label> <select class="form-control"
-							name="ruoloSelezionato" id="ruoloSelezionato">
-							<option id="noFiltro" value="noFiltro" selected disabled>Seleziona
-								ruolo</option>
-							<c:forEach var="ruolo" items="${ruoli}">
-								<option value="${ruolo.id}">${ruolo.ruolo}</option>
-							</c:forEach>
-						</select>
+
+					<div class="row justify-content-center">
+						<div
+							class="alert alert-danger btn-block mb-4 ml-2 mr-2 text-center"
+							id="errorAlert" role="alert">Nome utente già inserito</div>
 					</div>
 
-					<button type="submit" class="btn btn-lg btn-block btn-primary">Registra
-						utente</button>
-					<hr class="my-4">
-				</form:form>
-				
-				<div class="row justify-content-center">
-					<div
-						class="alert alert-success btn-block mb-4 ml-2 mr-2 text-center" id="successAlert"
-						role="alert">Nuovo utente inserito con successo</div>
 				</div>
-				
-				<div class="row justify-content-center">
-					<div
-						class="alert alert-danger btn-block mb-4 ml-2 mr-2 text-center" id="errorAlert"
-						role="alert">Nome utente già inserito</div>
-				</div>
-
 			</div>
 		</div>
-	</div>
+	</header>
+
+	<!-- MODAL ERRORE -->
 	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="errorModalLabel"></h5>
@@ -163,15 +254,15 @@ a, a:hover, a:focus {
 				</div>
 				<div class="modal-body" id="errorModalBody"></div>
 				<div class="modal-footer">
-					<button type="reset" id="bottone-cancella-specializzazione"
-						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+					<button type="reset" id="btn-cancella-registrazione" class="btn"
+						data-dismiss="modal">Chiudi</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		function control(){
+		function control() {
 			$('#successAlert').hide();
 			$('#errorAlert').hide();
 			const queryString = window.location.search;
@@ -179,7 +270,7 @@ a, a:hover, a:focus {
 			const info = urlParams.get('info')
 			if (info === "error") {
 				$('#errorAlert').show();
-			} else if(info === "success"){
+			} else if (info === "success") {
 				$('#successAlert').show();
 			}
 		}
@@ -224,18 +315,16 @@ a, a:hover, a:focus {
 					listpass.removeChild(listpass.childNodes[4]);
 				}
 			}
-			if(document.getElementById("ruoloSelezionato").selectedIndex <=0){
-				$('#errorModal').modal('toggle');   
+			if (document.getElementById("ruoloSelezionato").selectedIndex <= 0) {
+				$('#errorModal').modal('toggle');
 				document.getElementById("errorModalLabel").innerHTML = "Errore";
-				document.getElementById("errorModalBody").innerHTML = "Inserisci un Ruolo utente";  
+				document.getElementById("errorModalBody").innerHTML = "Inserisci un ruolo utente.";
 				control = false;
 			}
 			return control;
 		}
 	</script>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

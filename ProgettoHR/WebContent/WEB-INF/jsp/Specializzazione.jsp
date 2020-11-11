@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Area competenza</title>
+
+<title>Specializzazione</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,84 +20,93 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+* {
+	font-family: 'Poppins', sans-serif;
+}
 
-/* Body e html generale*/
-html, body {
+body, html {
+	height: 100%;
+	background-image: url("/ProgettoHR/img/area.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+}
+
+header {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+#zeroRecord {
+	text-align: center;
+	letter-spacing: 5px;
+	margin: 10px;
+	color: white;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
 }
 
-/* Navbar */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
+#btn-logout, #btn-home, #btn-add {
+	border-radius: 100%;
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+	border: 1px solid white;
+	transition: 0.5s;
 }
 
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
+#btn-logout:hover, #btn-home:hover, #btn-add:hover {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-.container {
-	margin-top: 20px;
-}
-
-/* TABELLA AREE */
+/* TABELLA SPECIALIZZAZIONE */
 .tabellaSpecializzazione {
-	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .tabellaSpecializzazione .head {
-	background-color: #5aa9e6;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
+}
+
+.tabellaSpecializzazione .body {
+	background-color: #e9ecef;
 }
 
 .tabellaSpecializzazione .body tr {
-	text-align: left;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaSpecializzazione .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
 }
 
 .tabellaSpecializzazione .body tr:nth-of-type {
@@ -117,149 +126,262 @@ a, a:hover, a:focus {
 	padding: 4px;
 }
 
-#bottoneModificaSpecializzazione {
-	float: right;
-	background-color: #5aa9e6;
-	margin-left: 2px;
+.tabellaSpecializzazione .footer {
+	background-color: white;
 }
 
-#bottoneEliminaSpecializzazione {
-	float: right;
-	background-color: #5aa9e6;
-	margin-left: 2px;
+#btn-elimina, #btn-modifica {
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+#btn-elimina:hover, #btn-modifica:hover {
+	background-color: black;
+	color: white;
+	transition: 0.5s;
+}
+
+#specializzazione, #newSpecializzazione {
+	border-bottom: 1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0px;
+	box-shadow: none !important;
+	outline: 0;
+	color: #004fff;
+}
+
+#btn-salva-specializzazione {
+	background-color: #52b788;
+	border: 1px solid #52b788;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-salva-specializzazione:hover {
+	background-color: #40916c;
+	border: 1px solid #40916c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
+}
+
+#btn-cancella-specializzazione {
+	background-color: #f25c54;
+	border: 1px solid #f25c54;
+	border-radius: 20px;
+	color: white;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+#btn-cancella-specializzazione:hover {
+	background-color: #ef233c;
+	border: 1px solid #ef233c;
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
 }
 </style>
 
 </head>
 <body>
+	<header>
+		<c:set var="singlequote" value="'" />
+		<c:set var="backslash" value="&apos" />
 
-	<c:set var="singlequote" value="'" />
-	<c:set var="backslash" value="&apos" />
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button class="btn"
+								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+								id="btn-home">
+								<i class="fas fa-home"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button data-toggle="modal"
+								data-target="#aggiungiSpecializzazione" class="btn float-right"
+								id="btn-add">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn float-right" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col mb-5 align-self-center">
+					<c:if test="${empty specializzazioneList}">
+						<h2 id="zeroRecord">La ricerca non ha prodotto alcun
+							risultato</h2>
+					</c:if>
+					<c:if test="${not empty specializzazioneList}">
 
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-				</ul>
+						<div class="table-responsive">
+							<table class="tabellaSpecializzazione">
+
+								<thead class="head">
+									<tr>
+										<th><h3>SPECIALIZZAZIONE</h3></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+
+								<tbody class="body">
+									<c:forEach var="specializzazione"
+										items="${specializzazioneList}">
+										<tr>
+											<c:set var="specializzazioneRaplaced"
+												value="${fn:replace(specializzazione.specializzazione, singlequote, backslash)}"></c:set>
+											<c:set var="specializzazioneXSS"
+												value="${fn:escapeXml(specializzazione.specializzazione)}"></c:set>
+											<td><span
+												onclick="window.location = '/ProgettoHR/Specializzazione/${businessUnit}'">
+													${specializzazioneXSS}</span></td>
+
+											<td><button class="btn" id="btn-modifica"
+													data-toggle="modal"
+													onclick="impostaParametriSpecializzazione('${specializzazioneRaplaced}')"
+													data-target="#modificaSpecializzazione">
+													<i class="fas fa-cogs"></i>
+												</button>
+												<button class="btn" id="btn-elimina" data-toggle="modal"
+													onclick="impostaParametriSpecializzazioneEliminazione('${specializzazione.specializzazione}')"
+													data-target="#eliminaSpecializzazione">
+													<i class="fas fa-trash"></i>
+												</button></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan="2"></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</c:if>
+				</div>
 			</div>
 		</div>
-	</nav>
+	</header>
 
-	<div class="container">
+	<!-- MODAL AGGIUNTA MANSIONE -->
+	<div class="modal fade" id="aggiungiSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiSpecializzazione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
 
-		<div class="col">
-			<!-- TABELLA CANDIDATO -->
-			<c:choose>
-				<c:when test="${empty specializzazioneList}">
-					<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
-				</c:when>
-				<c:otherwise>
-					<table class="tabellaSpecializzazione">
+				<div class="modal-header">
+					<h5 class="modal-title">Aggiungi specializzazione:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+					</button>
+				</div>
+				<form:form modelAttribute="specializzazione"
+					id="formSpecializzazione" method="POST"
+					action="/ProgettoHR/SpecializzazioneSaveDaSpecializzazione/${businessUnit}"
+					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
+					<div class="modal-body">
 
-						<thead class="head">
-							<tr>
-								<th><h3>SPECIALIZZAZIONE</h3></th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
+						<form:input path="specializzazione" type="text"
+							class="form-control" maxlength="45" id="specializzazione"></form:input>
+					</div>
 
-						<tbody class="body">
-							<c:forEach var="specializzazione" items="${specializzazioneList}">
-								<tr>
-									<c:set var="specializzazioneRaplaced"
-										value="${fn:replace(specializzazione.specializzazione, singlequote, backslash)}"></c:set>
-									<c:set var="specializzazioneXSS"
-										value="${fn:escapeXml(specializzazione.specializzazione)}"></c:set>
-									<td><span
-										onclick="window.location = '/ProgettoHR/Specializzazione/${businessUnit}'">
-											${specializzazioneXSS}</span></td>
+					<div class="modal-footer">
+						<button type="reset" id="btn-cancella-specializzazione"
+							class="btn">Cancella</button>
+						<button type="submit" id="btn-salva-specializzazione" class="btn">Salva</button>
+					</div>
+				</form:form>
 
-									<td><button class="btn"
-											id="bottoneEliminaSpecializzazione" data-toggle="modal"
-											onclick="impostaParametriSpecializzazioneEliminazione('${specializzazione.specializzazione}')"
-											data-target="#EliminaSpecializzazioneModal">
-											<i class="fas fa-trash"></i>
-										</button>
-										<button class="btn" id="bottoneModificaSpecializzazione"
-											data-toggle="modal"
-											onclick="impostaParametriSpecializzazione('${specializzazioneRaplaced}')"
-											data-target="#ModificaSpecializzazioneModal">
-											<i class="fas fa-cogs"></i>
-										</button></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-
-						<tfoot class="footer">
-							<tr>
-								<td></td>
-
-							</tr>
-						</tfoot>
-					</table>
-				</c:otherwise>
-			</c:choose>
+			</div>
 		</div>
 	</div>
 
-	<!-- MODAL MODIFICA MANSIONE -->
-	<div class="modal fade" id="ModificaSpecializzazioneModal"
-		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	<!-- MODAL MODIFICA SPECIALIZZAZIONE -->
+	<div class="modal fade" id="modificaSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaSpecializzazione"
 		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/AggiornaSpecializzazione/${businessUnit}"
 					method="POST">
 
 					<div class="modal-header">
-						Aggiorna Specializzazione <input style="visibility: hidden;"
-							name="oldSpecializzazione" id="oldSpecializzazione" />
+						<h5 class="modal-title">Aggiorna specializzazione:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						</button>
 					</div>
 
 					<div class="modal-body">
 						<input type="text" class="form-control" name="newSpecializzazione"
-							id="newSpecializzazione">
+							id="newSpecializzazione"> <input
+							style="visibility: hidden;" name="oldSpecializzazione"
+							id="oldSpecializzazione" />
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">Aggiorna</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+						<button type="button" class="btn" data-dismiss="modal"
+							id="btn-cancella-specializzazione">Annulla</button>
+						<button type="submit" class="btn" id="btn-salva-specializzazione">Aggiorna</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
 
 	<!-- MODAL CANCELLA SPECIALIZZAZIONE -->
-	<div class="modal fade" id="EliminaSpecializzazioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div class="modal fade" id="eliminaSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaSpecializzazione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/EliminaSpecializzazione/${businessUnit}"
 					method="POST">
 
 					<div class="modal-header">
-						<h5>Elimina specializzazione</h5> <input
-							style="visibility: hidden;" name="specializzazione"
-							id="specializzazione" />
+						<h5 class="modal-title">Elimina specializzazione:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						</button>
+
 					</div>
-					
-					<div class="modal-body" id="modalText"></div>
+
+					<div class="modal-body" id="eliminaSpecializzazioneModalBodyText">
+						<p id="p-elimina-specializzazione"></p>
+						<input style="visibility: hidden;" name="eliminaSpecializzazione"
+							id="elimina-specializzazione" />
+					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">sì</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
+						<button type="button" class="btn" data-dismiss="modal"
+							id="btn-cancella-specializzazione">No</button>
+						<button type="submit" class="btn"
+							id="btn-salva-specializzazione">Sì</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -273,8 +395,10 @@ a, a:hover, a:focus {
 		}
 
 		function impostaParametriSpecializzazioneEliminazione(specializzazione) {
-			document.getElementById("specializzazione").value = specializzazione;
-			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare la specializzazione "+specializzazione+"?";
+			document.getElementById("elimina-specializzazione").value = specializzazione;
+			document.getElementById("p-elimina-specializzazione").innerHTML = "Sei sicuro di voler cancellare la specializzazione "
+					+ specializzazione + "?";
+
 		}
 	</script>
 
