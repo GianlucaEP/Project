@@ -48,8 +48,8 @@ header {
 }
 
 h5 {
-	letter-spacing: 3px;
-	color: #004fff;
+	letter-spacing: 5px;
+
 }
 
 /* PALLINI STATO CANDIDATO */
@@ -214,14 +214,10 @@ option:hover {
 }
 
 #mansione, #area, #specializzazione {
-	border-bottom: 1px solid black;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-radius: 0px;
+	border: 1px solid black;
+	border-radius: 20px;
 	box-shadow: none !important;
 	outline: 0;
-	color: #004fff;
 	box-shadow: none !important;
 }
 
@@ -263,10 +259,6 @@ option:hover {
 	transition: 0.5s;
 }
 
-.btn-close-modal:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
 /* DARK MODE */
 #bottoneDarkMode {
 	height: 43px;
