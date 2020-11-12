@@ -9,183 +9,137 @@
 <html>
 
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Candidato dettaglio</title>
+<title>Candidato</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-/* MEDIA PER SCHERMO DESKTOP GRANDE */
-html, body {
-	height: 100%;
-}
-
-body {
+* {
 	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
 }
 
-.customButton {
-	min-width: 34px;
+body, html {
+	height: 100%;
+	transition: background-color .5s;
+	background-image: url("/ProgettoHR/img/home.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+header {
+	height: 100%;
+	transition: margin-left .5s;
 }
 
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
 }
 
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
+#btn-logout, #btn-home, #btn-menu {
+	border-radius: 100%;
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+	border: 1px solid white;
+	transition: 0.5s;
 }
 
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-/* SIDEBAR */
-.container1 {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: rows;
-	justify-content: flex-start;
+#btn-logout:hover, #btn-home:hover, #btn-menu:hover {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
 #sidebar {
-	width: 100%;
 	height: 100%;
-	border-collapse: collapse;
-	font-size: 0.9em;
-	border-radius: 0px 5px 5px 0px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-	background: #5aa9e6;
-	color: #fff;
-	border-collapse: collapse;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: white;
+	transition: 0.5s;
+	padding-top: 60px;
+	overflow-x: hidden;
 }
 
-#sidebar .sidebar-header {
-	text-align: center;
-	padding: 15px;
-	background: #7fc8f8;
-}
-
-#sidebar ul.components {
-	padding: 10px 0px 0px 0px;
-}
-
-#sidebar ul p {
-	color: #fff;
-	padding: 10px;
-}
-
-#sidebar ul li a {
-	margin: 5px 0px;
-	padding: 10px 10px 10px 10px;
-	font-size: 1.1em;
+#sidebar a {
+	text-decoration: none;
+	font-size: 20px;
+	letter-spacing: 5px;
 	display: block;
+	transition: 0.3s;
+	color: black;
+	text-align: left;
 }
 
-#sidebar ul li a:hover {
-	color: #000000;
-	background: #fff;
+#sidebar a:hover {
+	color: #004fff;
 }
 
-#sidebar ul li.active>a, a[aria-expanded="true"] {
-	color: #fff;
-	background: #7fc8f8;
-}
-
-a[data-toggle="collapse"] {
-	position: relative;
-}
-
-#frecciaSidebar::after {
-	display: block;
+#sidebar #btn-menu-close {
 	position: absolute;
-	top: 50%;
-	right: 20px;
-	transform: translateY(-50%);
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
-ul ul a {
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #cae9ff;
-}
-
-/* TABELLA ANAGRAFICA */
+/* =====================
+ 	TABELLA ANAGRAFICA 
+ ======================= */
 .tabellaAnagrafica {
 	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
 }
 
 .tabellaAnagrafica .head {
-	background-color: #8cc8ef;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaAnagrafica .head th h3 {
-	line-height: 50px;
-	margin: 0;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
 .tabellaAnagrafica .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 4px;
+	transition: 0.5s;
 }
 
-.tabellaAnagrafica .body tr:nth-of-type {
-	background-color: #f3f3f3;
+.tabellaAnagrafica .body tr:hover {
+	color: black;
+	transition: 0.5s;
+	background-color: white;
 }
 
-.tabellaAnagrafica .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaAnagrafica .footer {
-	background-color: #8cc8ef;
+.tabellaAnagrafica .body {
+	background-color: #bde0fe;
 }
 
 .tabellaAnagrafica th {
@@ -196,32 +150,61 @@ ul ul a {
 	font-size: 14px;
 	padding: 4px;
 }
-/* TABELLA BUSINESS */
+
+.tabellaAnagrafica .footer {
+	background-color: white;
+}
+
+#btn-stato {
+	letter-spacing: 5px;
+	border-radius: 10px 0px 0px 10px;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+#dropdown-stato {
+	border-radius: 0px 10px 10px 0px;
+}
+
+.btn-modifica {
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	outline: 0;
+	box-shadow: none !important;
+}
+
+/* =====================
+ 	TABELLA BUSINESS 
+ ======================= */
 .tabellaBusiness {
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
 .tabellaBusiness .head {
-	background-color: #a7d3a6;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaBusiness .head th h3 {
-	line-height: 50px;
-	margin: 0;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
 .tabellaBusiness .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaBusiness .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaBusiness .body {
+	background-color: #e9ecef;
 }
 
 .tabellaBusiness .body tr:nth-of-type {
@@ -230,10 +213,6 @@ ul ul a {
 
 .tabellaBusiness .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaBusiness .footer {
-	background-color: #a7d3a6;
 }
 
 .tabellaBusiness th {
@@ -245,36 +224,41 @@ ul ul a {
 	padding: 4px;
 }
 
-#bottoneBusiness {
-	background-color: #a7d3a6;
+.tabellaBusiness .footer {
+	background-color: white;
 }
-/* TABELLA ECONOMICS */
+
+/* =====================
+ 	TABELLA ECONOMICS
+ ======================= */
 .tabellaEconomics {
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
 .tabellaEconomics .head {
-	background-color: #ffd670;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaEconomics .head th h3 {
-	line-height: 50px;
-	margin: 0;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
 .tabellaEconomics .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaEconomics .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaEconomics .body {
+	background-color: #e9ecef;
 }
 
 .tabellaEconomics .body tr:nth-of-type {
@@ -285,10 +269,6 @@ ul ul a {
 	border-bottom: 2px solid #5aa9e6;
 }
 
-.tabellaEconomics .footer {
-	background-color: #ffd670;
-}
-
 .tabellaEconomics th {
 	padding: 8px;
 }
@@ -297,320 +277,333 @@ ul ul a {
 	font-size: 14px;
 	padding: 4px;
 }
-/* TABELLA COSTI */
+
+.tabellaEconomics .footer {
+	background-color: white;
+}
+
+/* =====================
+ 	  TABELLA COSTI
+ ======================= */
 .tabellaCosti {
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
-.tabellaCosti .head {
-	background-color: #ff686b;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
+.tabellaCosti  .head {
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
-.tabellaCosti .head th h3 {
-	line-height: 50px;
-	margin: 0;
+.tabellaCosti  .body tr {
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
 }
 
-.tabellaCosti .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+.tabellaCosti  .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
 }
 
-.tabellaCosti .body tr:nth-of-type {
+.tabellaCosti  .body {
+	background-color: #e9ecef;
+}
+
+.tabellaCosti  .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaCosti .body tr:nth-last-of-type {
+.tabellaCosti  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
 }
 
-.tabellaCosti .footer {
-	background-color: #ff686b;
-}
-
-.tabellaCosti th {
+.tabellaCosti  th {
 	padding: 8px;
 }
 
-.tabellaCosti td {
+.tabellaCosti  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-/* TABELLA TITOLI */
+.tabellaCosti  .footer {
+	background-color: white;
+}
+
+/* =====================
+ 	  TABELLA TITOLI
+ ======================= */
 .tabellaTitoli {
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
-.tabellaTitoli .head {
-	background-color: #004fff;
-	color: white;
-	font-weight: bold;
+.tabellaTitoli  .head {
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
-.tabellaTitoli .head th h3 {
-	line-height: 50px;
-	margin: 0;
+.tabellaTitoli  .body tr {
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
 }
 
-.tabellaTitoli .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+.tabellaTitoli  .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
 }
 
-.tabellaTitoli .body tr:nth-of-type {
+.tabellaTitoli  .body {
+	background-color: #e9ecef;
+}
+
+.tabellaTitoli  .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaTitoli .body tr:nth-last-of-type {
+.tabellaTitoli  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
 }
 
-.tabellaTitoli .footer {
-	background-color: #004fff;
-}
-
-.tabellaTitoli th {
+.tabellaTitoli  th {
 	padding: 8px;
 }
 
-.tabellaTitoli td {
+.tabellaTitoli  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-/* TABELLA COMPETENZE LINGUISTICHE*/
+.tabellaTitoli  .footer {
+	background-color: white;
+}
+
+/* =====================
+TABELLA COMPETENZE LINGUISTICHE
+ ======================= */
 .tabellaCompetenzeLinguistiche {
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
-.tabellaCompetenzeLinguistiche .head {
-	background-color: black;
-	color: white;
-	font-weight: bold;
+.tabellaCompetenzeLinguistiche  .head {
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
-.tabellaCompetenzeLinguistiche .head th h3 {
-	line-height: 50px;
-	margin: 0;
+.tabellaCompetenzeLinguistiche  .body tr {
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
 }
 
-.tabellaCompetenzeLinguistiche .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+.tabellaCompetenzeLinguistiche .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaCompetenzeLinguistiche .body {
+	background-color: #e9ecef;
 }
 
 .tabellaCompetenzeLinguistiche .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaCompetenzeLinguistiche .body tr:nth-last-of-type {
+.tabellaCompetenzeLinguistiche  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaCompetenzeLinguistiche .footer {
-	background-color: black;
 }
 
 .tabellaCompetenzeLinguistiche th {
 	padding: 8px;
 }
 
-.tabellaCompetenzeLinguistiche td {
+.tabellaCompetenzeLinguistiche  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-/* TABELLA FEEDBACK */
+.tabellaCompetenzeLinguistiche .footer {
+	background-color: white;
+}
+
+/* =====================
+	TABELLA FEEDBACK
+ ======================= */
 .tabellaFeedback {
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
-.tabellaFeedback .head {
-	background-color: #d0b8ac;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
+.tabellaFeedback  .head {
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
-.tabellaFeedback .head th h3 {
-	line-height: 50px;
-	margin: 0;
+.tabellaFeedback  .body tr {
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
 }
 
-.tabellaFeedback .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+.tabellaFeedback .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaFeedback .body {
+	background-color: #e9ecef;
 }
 
 .tabellaFeedback .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaFeedback .body tr:nth-last-of-type {
+.tabellaFeedback  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaFeedback .footer {
-	background-color: #d0b8ac;
 }
 
 .tabellaFeedback th {
 	padding: 8px;
 }
 
-.tabellaFeedback td {
+.tabellaFeedback  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-#bottoneFeedback {
-	background-color: #d0b8ac;
+.tabellaFeedback .footer {
+	background-color: white;
 }
-/* TABELLA QUALIFICATION MEETING */
+
+/* =====================
+	TABELLA QUALIFICATION
+ ======================= */
 .tabellaQualification {
-	margin-bottom: 25px;
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-	margin-top: 25px;
 }
 
-.tabellaQualification .head {
-	background-color: #f2a359;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaQualification .head th h3 {
-	line-height: 50px;
-	margin: 0;
+.tabellaQualification  .head {
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
 .tabellaQualification .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaQualification .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaQualification .body {
+	background-color: #e9ecef;
 }
 
 .tabellaQualification .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaQualification .body tr:nth-last-of-type {
+.tabellaQualification  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaQualification .footer {
-	background-color: #f2a359;
 }
 
 .tabellaQualification th {
 	padding: 8px;
 }
 
-.tabellaQualification td {
+.tabellaQualification  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-#bottoneQualification {
-	background-color: #f2a359;
+.tabellaQualification .footer {
+	background-color: white;
 }
 
-/* TABELLA ALLEGATI */
+/* =====================
+	TABELLA ALLEGATI
+ ======================= */
 .tabellaAllegati {
-	margin-bottom: 25px;
-	margin-top: 25px;
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
 }
 
 .tabellaAllegati .head {
-	background-color: #cfd4dd;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.tabellaAllegati .head th h3 {
-	line-height: 50px;
-	margin: 0;
+	background-color: white;
+	color: black;
+	letter-spacing: 5px;
 }
 
 .tabellaAllegati .body tr {
-	border-bottom: 1px solid #dddddd;
-	text-align: left;
+	border-bottom: 2px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
+}
+
+.tabellaAllegati .body tr:hover {
+	color: #004fff;
+	transition: 0.5s;
+}
+
+.tabellaAllegati .body {
+	background-color: #e9ecef;
 }
 
 .tabellaAllegati .body tr:nth-of-type {
 	background-color: #f3f3f3;
 }
 
-.tabellaAllegati .body tr:nth-last-of-type {
+.tabellaAllegati  .body tr:nth-last-of-type {
 	border-bottom: 2px solid #5aa9e6;
-}
-
-.tabellaAllegati .footer {
-	background-color: #cfd4dd;
 }
 
 .tabellaAllegati th {
 	padding: 8px;
 }
 
-.tabellaAllegati td {
+.tabellaAllegati  td {
 	font-size: 14px;
 	padding: 4px;
 }
 
-#bottone-salva-allegato {
-	background-color: #a7d3a6;
-}
-
-#bottone-cancella-allegato {
-	background-color: #ee6055;
+.tabellaAllegati .footer {
+	background-color: white;
 }
 </style>
 
@@ -618,890 +611,893 @@ ul ul a {
 
 <body
 	onload="changeStato('${mostraCandidato.stato.descrizione}', '${mostraFeedback}', '${mostraCandidato.categoriaProtetta}', '${mostraCandidato.qm}', '${mostraCandidato.file}', '${mostraCandidato.costo}', '${mostraCandidato.economics}', '${mostraCandidato.titoloStudio}', '${mostraCandidato.candidatoCompetenzaLingustica}')">
-	<c:set var="singlequote" value="'" />
-	<c:set var="backslash" value="&apos" />
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
+	<header>
+		<c:set var="singlequote" value="'" />
+		<c:set var="backslash" value="&apos" />
 
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button onclick="openMenu()" class="btn" id="btn-menu">
+								<i class="fas fa-bars"></i>
+							</button>
+						</div>
+						<!-- SIDEBAR MENU -->
+						<div id="sidebar">
 
-			<!-- LOGOUT -->
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/ProgettoHR/Logout"><i class="fas fa-sign-out-alt"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+							<a href="javascript:void(0)" id="btn-menu-close"
+								onclick="closeMenu()">&times;</a>
 
-	<div class="container-fluid container1 p-0">
-		<!-- COLONNA BARRA LATERALE -->
-		<div class="col-auto p-0 ">
-			<!-- BARRA LATERALE -->
-			<nav id="sidebar">
-				<div class="sidebar-header">
-					<h3>Candidato</h3>
-				</div>
+							<ul class="list-unstyled components">
 
-				<ul class="list-unstyled components">
-
-					<c:if
-						test='${fn:contains(funzionalita, "aggiunta qualification meeting")}'>
-						<li><a href="" data-toggle="modal"
-							data-target="#qualificationMeetingModal" type="button"><i
-								class="fas fa-plus"></i> Qualification meeting</a></li>
-					</c:if>
-
-					<c:if test='${fn:contains(funzionalita, "aggiunta economics")}'>
-						<li><a href="" data-toggle="modal"
-							data-target="#modificaEconomicsModal" type="button"><i
-								class="fas fa-plus"></i> Economics</a></li>
-					</c:if>
-
-					<li><c:if
-							test='${fn:contains(funzionalita, "aggiunta costi")}'>
-							<a href="" data-toggle="modal" data-target="#modificaCostiModal"
-								type="button"><i class="fas fa-plus"></i> Costi</a>
-						</c:if></li>
-					<li><c:if
-							test='${fn:contains(funzionalita, "aggiunta titolo di studio")}'>
-							<a href="" data-toggle="modal" data-target="#aggiungiTitoloModal"
-								type="button"><i class="fas fa-plus"></i> Titolo di studio</a>
-						</c:if></li>
-					<li><c:if
-							test='${fn:contains(funzionalita, "aggiunta competenza linguistica")}'>
-							<a href="" data-toggle="modal"
-								data-target="#aggiungiCompetenzaLinguisticaModal" type="button"><i
-								class="fas fa-plus"></i> Competenza linguistica</a>
-						</c:if></li>
-
-					<c:if test='${fn:contains(funzionalita, "aggiunta feedback")}'>
-						<li class="active"><a href="#homeSubmenu" id="frecciaSidebar"
-							data-toggle="collapse" aria-expanded="false"
-							class="dropdown-toggle">Feedback</a>
-							<ul class="collapse list-unstyled" id="homeSubmenu">
-								<li><a onclick="impostaTipoFeedback('Colloquio HR')"
-									class="dropdown-item" href="" type="button" data-toggle="modal"
-									data-target="#feedbackModal"><i class="fas fa-plus"></i>
-										Colloquio HR </a> <a
-									onclick="impostaTipoFeedback('Colloquio Tecnico')"
-									type="button" data-toggle="modal" data-target="#feedbackModal"
-									class="dropdown-item" href=""><i class="fas fa-plus"></i>
-										Colloquio tecnico </a> <a class="dropdown-item" href=""
-									onclick="impostaTipoFeedback('Mail')" type="button"
-									data-toggle="modal" data-target="#feedbackModal"><i
-										class="fas fa-plus"></i> E-mail </a> <a class="dropdown-item"
-									href="" onclick="impostaTipoFeedback('Social')" type="button"
-									data-toggle="modal" data-target="#feedbackModal"><i
-										class="fas fa-plus"></i> Social network </a> <a
-									class="dropdown-item" href=""
-									onclick="impostaTipoFeedback('Telefonata')" type="button"
-									data-toggle="modal" data-target="#feedbackModal"><i
-										class="fas fa-plus"></i> Telefonata </a></li>
-							</ul></li>
-					</c:if>
-
-					<c:if test='${fn:contains(funzionalita, "aggiunta allegati")}'>
-						<li><a href="" data-toggle="modal"
-							data-target="#allegatiModal" type="button" class="text-center">Allegati
-								<i class="fas fa-folder-open"></i>
-						</a></li>
-					</c:if>
-					<li><a id="aSidebar" href="/ProgettoHR/Filter/${businessUnit}"
-						type="button" class="text-center">Filtri</a></li>
-				</ul>
-
-			</nav>
-		</div>
-
-		<!-- Colonna principale che contiene tutte le altre-->
-		<div class="col-10">
-			<!-- Row principale che tiene tutte le collone-->
-			<div class="row">
-				<!-- COLONNA 1-->
-				<div class="col-6">
-
-					<!-- Tabella ANAGRAFICA -->
-					<table class="tabellaAnagrafica">
-
-						<thead class="head">
-							<tr>
-								<th><h3>ANAGRAFICA</h3></th>
-								<th colspan=2><c:if
-										test='${fn:contains(funzionalita, "modifica anagrafica")}'>
-										<!-- Bottone modifica anagrafica -->
-										<button type="button" data-toggle="modal"
-											data-target="#modificaAnagraficaModal"
-											class="btn p-2 float-right">
-											<i class="fas fa-cog m-0"></i>
-										</button>
-									</c:if></th>
-							</tr>
-						</thead>
-
-						<tbody class="body">
-
-
-							<c:if test='${fn:contains(funzionalita, "modifica anagrafica")}'>
-								<tr>
-
-									<th scope="col">Stato</th>
-									<td scope="col">
-
-										<button type="button" class="btn" id="menuStato"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"></button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item"
-												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/daContattare">
-												Da contattare</a> <a class="dropdown-item"
-												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/scartato">
-												Scartato</a> <a class="dropdown-item"
-												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/attivo">
-												Attivo</a> <a class="dropdown-item"
-												href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/selezionato">
-												Selezionato</a>
-										</div>
-									</td>
-								</tr>
-							</c:if>
-
-							<tr>
-								<th scope="col">Nome</th>
-								<td scope="col">${mostraCandidato.nome}</td>
-							</tr>
-							<tr>
-								<th scope="col">Cognome</th>
-								<td scope="col">${mostraCandidato.cognome}</td>
-							</tr>
-							<tr>
-								<th scope="col">Data di nascita</th>
-								<td scope="col">${mostraCandidato.dataNascita}</td>
-							</tr>
-							<tr>
-								<th scope="col">Telefono</th>
-								<td scope="col">${mostraCandidato.telefono}</td>
-							</tr>
-							<tr>
-								<th scope="col">E-mail</th>
-								<td scope="col">${mostraCandidato.email}</td>
-							</tr>
-							<tr>
-								<th scope="col">Residenza
-								<th>
-								<td scope="col">${mostraCandidato.residenza}</td>
-							</tr>
-							<tr>
-								<th scope="col">Domicilio</th>
-								<td scope="col">${mostraCandidato.domicilio}</td>
-							</tr>
-							<tr>
-								<th scope="col">Codice Fiscale</th>
-								<td scope="col">${mostraCandidato.codiceFiscale}</td>
-							</tr>
-							<c:if
-								test='${fn:contains(funzionalita, "visualizza anagrafica completa")}'>
-								<tr>
-									<th scope="col">Provenienza candidatura</th>
-									<td scope="col">${mostraCandidato.provenienza}</td>
-								</tr>
-
-								<tr>
-									<th scope="col">Categoria protetta</th>
-									<td scope="col" id="categoriaProtetta"></td>
-								</tr>
-
-							</c:if>
-
-							<tr>
-								<th scope="col">Inserito da</th>
-								<td scope="col">${mostraCandidato.inseritoDa.username}</td>
-							</tr>
-						</tbody>
-
-						<tfoot class="footer">
-							<tr>
-								<td colspan=3></td>
-
-							</tr>
-						</tfoot>
-					</table>
-
-
-					<!-- tabella ECONOMICS -->
-					<c:if test='${fn:contains(funzionalita, "visualizza economics")}'>
-						<table id="economicsTable" class="tabellaEconomics">
-							<thead class="head">
-								<tr>
-									<th><h3>ECONOMICS</h3></th>
-									<th colspan=2><c:if
-											test='${fn:contains(funzionalita, "modifica economics")}'>
-											<!-- Bottone modifica economics-->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaEconomicsModal"
-												class="btn p-2 float-right">
-												<i class="fas fa-cog m-0"></i>
-											</button>
-										</c:if></th>
-
-								</tr>
-							</thead>
-
-							<tbody>
-
-								<tr>
-									<th scope="col">Inquadramento</th>
-									<td scope="col">${mostraCandidato.economics.inquadramento}</td>
-								</tr>
-								<tr>
-									<th scope="col">RAL</th>
-									<td scope="col">${mostraCandidato.economics.ral}</td>
-								</tr>
-								<tr>
-									<th scope="col">Benefit</th>
-									<td scope="col">${mostraCandidato.economics.benefit}</td>
-								</tr>
-								<tr>
-									<th scope="col">Preavviso</th>
-									<td scope="col">${mostraCandidato.economics.preavviso}</td>
-								</tr>
-								<tr>
-									<th scope="col">Desiderata</th>
-									<td scope="col">${mostraCandidato.economics.desiderata}</td>
-								</tr>
-
-							</tbody>
-
-							<tfoot class="footer">
-								<tr>
-									<td colspan=2></td>
-
-								</tr>
-							</tfoot>
-						</table>
-					</c:if>
-				</div>
-
-
-				<!-- COLONNA 2 -->
-				<div class="col-6">
-					<!-- tabella BUSINESS-->
-					<c:if
-						test='${fn:contains(funzionalita, "visualizza profilo professionale")}'>
-						<table class="tabellaBusiness">
-
-							<thead class="head">
-								<tr>
-									<th><h3>BUSINESS</h3></th>
-									<th colspan=3></th>
-								</tr>
-							</thead>
-
-							<tbody class="body">
-								<!-- BUSINESS UNIT -->
-								<tr>
-									<th scope="col">Business unit</th>
-									<td scope="col">${mostraCandidato.business.business}</td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica business unit -->
-											<button type="button" data-toggle="modal"
-												id="bottoneBusiness" data-target="#modificaBusinessUnit"
-												class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-
-										</c:if></th>
-								</tr>
-								<!-- AREA COMPETENZA -->
-								<tr>
-									<th scope="col">Area di competenza</th>
-									<td scope="col"><c:forEach var="area"
-											items="${mostraCandidato.area}">
-											<li>${area.area}</li>
-										</c:forEach></td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica area di competenza-->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaAreaCompetenza" id="bottoneBusiness"
-												class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-								<!-- MANSIONE -->
-								<tr>
-									<th scope="col">Mansione</th>
-									<td scope="col"><c:forEach var="mansione"
-											items="${mostraCandidato.mansione}">
-											<li>${mansione.mansione}</li>
-										</c:forEach></td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica mansione -->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaMansione" id="bottoneBusiness"
-												class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-								<!-- SENIORITY -->
-								<tr>
-									<th scope="col">Seniority</th>
-									<td scope="col">${mostraCandidato.seniority.seniority}</td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica seniority -->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaSeniority" id="bottoneBusiness"
-												class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-								<!-- SPECIALIZZAZIONE -->
-								<tr>
-									<th scope="col">Specializzazione</th>
-									<td scope="col"><c:forEach var="specializzazione"
-											items="${mostraCandidato.candidatoSpecializzazione}">
-											<li>${specializzazione.specializzazione.specializzazione}
-												&nbsp ${specializzazione.anni} anni esperienza</li>
-										</c:forEach></td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica specializzazione -->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaSpecializzazione" id="bottoneBusiness"
-												class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-								<!-- INSERIMENTO AZIENDA -->
-								<tr>
-									<th scope="col">Inserimento azienda</th>
-									<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
-									<th><c:if
-											test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
-											<!-- Bottone modifica inserimento azienda -->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaInserimentoAzienda"
-												id="bottoneBusiness" class="btn p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-							</tbody>
-
-							<tfoot class="footer">
-								<tr>
-									<td colspan=3></td>
-								</tr>
-							</tfoot>
-						</table>
-					</c:if>
-
-					<!--tabella COSTI -->
-					<c:if test='${fn:contains(funzionalita, "visualizza costi")}'>
-						<table id="costiTable" class="tabellaCosti">
-
-							<thead class="head">
-								<tr>
-									<th><h3>COSTI</h3></th>
-									<th colspan=2><c:if
-											test='${fn:contains(funzionalita, "modifica costi")}'>
-											<!-- Bottone modifica costi-->
-											<button type="button" data-toggle="modal"
-												data-target="#modificaCostiModal"
-												class="btn p-2 float-right">
-												<i class="fas fa-cog m-0"></i>
-											</button>
-										</c:if></th>
-								</tr>
-							</thead>
-							<tbody class="body">
-								<tr>
-									<th scope="col">Costo orario</th>
-									<td scope="col">${mostraCandidato.costo.orario}</td>
-								</tr>
-								<tr>
-									<th scope="col">Costo giornaliero</th>
-									<td scope="col">${mostraCandidato.costo.giornaliero}</td>
-								</tr>
-								<c:if test="${not empty mostraCandidato.costo.commento}">
-									<tr>
-										<th scope="col">Commenti</th>
-										<td scope="col">${mostraCandidato.costo.commento}</td>
-									</tr>
+								<c:if
+									test='${fn:contains(funzionalita, "aggiunta qualification meeting")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#aggiungiQualificationMeeting" type="button">+
+											Qualification meeting</a></li>
+									<hr>
 								</c:if>
-							</tbody>
 
-							<tfoot class="footer">
-								<tr>
-									<td colspan=2></td>
-								</tr>
-							</tfoot>
-						</table>
-					</c:if>
+								<c:if test='${fn:contains(funzionalita, "aggiunta economics")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#modificaEconomics" type="button">+ Economics</a></li>
+									<hr>
+								</c:if>
 
+								<c:if test='${fn:contains(funzionalita, "aggiunta costi")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#modificaCosti" type="button">+ Costi</a></li>
+									<hr>
+								</c:if>
+								<c:if
+									test='${fn:contains(funzionalita, "aggiunta titolo di studio")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#aggiungiTitoloStudio" type="button">+ Titolo
+											di studio</a></li>
+									<hr>
+								</c:if>
+								<c:if
+									test='${fn:contains(funzionalita, "aggiunta competenza linguistica")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#aggiungiCompetenzaLinguistica" type="button">+
+											Competenza linguistica</a></li>
+									<hr>
+								</c:if>
 
-					<!-- Tabella TITOLI DI STUDIO-->
-					<table id="titoliTable" class="tabellaTitoli">
+								<c:if test='${fn:contains(funzionalita, "aggiunta feedback")}'>
+									<li class="active"><a href="#homeSubmenu"
+										id="frecciaSidebar" data-toggle="collapse"
+										aria-expanded="false" class="dropdown-toggle">- Feedback</a>
+										<hr>
+										<ul class="collapse list-unstyled" id="homeSubmenu">
+											<li><a onclick="impostaTipoFeedback('Colloquio HR')"
+												class="dropdown-item" href="" type="button"
+												data-toggle="modal" data-target="#aggiungiFeedback">+
+													Colloquio HR </a>
+												<hr> <a
+												onclick="impostaTipoFeedback('Colloquio Tecnico')"
+												type="button" data-toggle="modal"
+												data-target="#aggiungiFeedback" class="dropdown-item"
+												href="">+ Colloquio tecnico </a>
+												<hr> <a class="dropdown-item" href=""
+												onclick="impostaTipoFeedback('Mail')" type="button"
+												data-toggle="modal" data-target="#aggiungiFeedback">+
+													E-mail </a>
+												<hr> <a class="dropdown-item" href=""
+												onclick="impostaTipoFeedback('Social')" type="button"
+												data-toggle="modal" data-target="#aggiungiFeedback">+
+													Social network </a>
+												<hr> <a class="dropdown-item" href=""
+												onclick="impostaTipoFeedback('Telefonata')" type="button"
+												data-toggle="modal" data-target="#aggiungiFeedback">+
+													Telefonata </a></li>
 
-						<thead class="head">
-							<tr>
-								<th colspan=2><h3>TITOLI DI STUDIO</h3></th>
-							</tr>
-							<tr>
-								<th colspan="2">Titolo studio</th>
-							</tr>
-						</thead>
-						<tbody class="body">
-							<c:forEach var="titolo" items="${mostraCandidato.titoloStudio}">
-								<tr>
-									<td>${titolo.titoloStudio}</td>
-									<td><c:if
-											test='${fn:contains(funzionalita, "modifica titolo di studio")}'>
-											<button
-												onclick="impostaParametriTitoloStudio('${titolo.id}','${titolo.titoloStudio}')"
-												type="button" data-toggle="modal" id="btn-titolo-studio"
-												data-target="#modificaTitoloModal"
-												class="btn customButton p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-											<button
-												onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
-												type="button" data-toggle="modal" id="btn-titolo-studio"
-												data-target="#eliminaTitoloStudioModal"
-												class="btn customButton p-1 mr-1 float-right">
-												<i class="fas fa-trash m-0"></i>
-											</button>
-										</c:if></td>
-								</tr>
-							</c:forEach>
-						</tbody>
+										</ul></li>
+									<hr>
+								</c:if>
 
-						<tfoot class="footer">
-							<tr>
-								<td colspan=2></td>
-							</tr>
-						</tfoot>
-					</table>
+								<c:if test='${fn:contains(funzionalita, "aggiunta allegati")}'>
+									<li><a href="" data-toggle="modal"
+										data-target="#aggiungiAllegato" type="button"
+										class="text-center">Allegati <i class="fas fa-folder-open"></i>
+									</a></li>
+									<hr>
+								</c:if>
+								<li><a href="/ProgettoHR/Filter/${businessUnit}"
+									class="btn">- Ricerca candidati</a></li>
+							</ul>
+						</div>
+						<div class="col-auto align-self-center">
+							<button class="btn"
+								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+								id="btn-home">
+								<i class="fas fa-home"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn float-right" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 
-					<!-- Tabella COMPETENZE LINGUISTICHE-->
-					<table id="competenzeLinguisticheTable"
-						class="tabellaCompetenzeLinguistiche">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col mt-5">
 
-						<thead class="head">
-							<tr>
-								<th colspan=5><h3>COMPETENZE LINGUISTICHE</h3></th>
-								<th colspan=5>
-							</tr>
-							<tr>
-								<th>Lingua</th>
-								<th>Letto</th>
-								<th>Scritto</th>
-								<th>Parlato</th>
-								<th colspan=2></th>
-							</tr>
-						</thead>
-						<tbody class="body">
-							<c:forEach var="item"
-								items="${mostraCandidato.candidatoCompetenzaLingustica}">
-								<c:choose>
-									<c:when test="${item.madreLingua == true}">
+					<div class="row d-flex flex-column">
+						<div class="col mb-3">
+							<!-- Tabella ANAGRAFICA -->
+							<div class="table-responsive">
+								<table class="tabellaAnagrafica">
+
+									<thead class="head">
 										<tr>
-											<th scope="col">Madre lingua :
-												${item.competenzaLinguistica.lingua}</th>
-											<td scope="col"></td>
-											<td scope="col"></td>
-											<td scope="col"></td>
-											<c:if
-												test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
-												<td>
-													<button
-														onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
-														type="button" data-toggle="modal"
-														id="btn-competenza-linguistica"
-														data-target="#modificaCompetenzaLinguisticaModal"
-														class="btn customButton p-1 float-right">
-														<i class="fas fa-cogs m-0"></i>
+											<th><h3>ANAGRAFICA</h3></th>
+											<th colspan=2><c:if
+													test='${fn:contains(funzionalita, "modifica anagrafica")}'>
+													<!-- Bottone modifica anagrafica -->
+													<button type="button" data-toggle="modal"
+														data-target="#modificaAnagrafica"
+														class="btn float-right btn-modifica">
+														<i class="fas fa-user-cog"></i>
 													</button>
-												<td>
-													<button
-														onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
-														type="button" data-toggle="modal"
-														id="btn-competenza-linguistica"
-														data-target="#eliminaCompetenzaLinguisticaModal"
-														class="btn customButton p-1 mr-1 float-right">
-														<i class="fas fa-trash m-0"></i>
-													</button>
-												</td>
-											</c:if>
+												</c:if></th>
 										</tr>
-									</c:when>
-									<c:otherwise>
-										<tr>
-											<th scope="col">Lingua :
-												${item.competenzaLinguistica.lingua}</th>
-											<td scope="col">${item.letto}</td>
-											<td scope="col">${item.scritto}</td>
-											<td scope="col">${item.parlato}</td>
-											<c:if
-												test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
-												<td>
-													<button
-														onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
-														type="button" data-toggle="modal"
-														id="btn-competenza-linguistica"
-														data-target="#modificaCompetenzaLinguisticaModal"
-														class="btn customButton p-1 float-right">
-														<i class="fas fa-cogs m-0"></i>
-													</button>
-												<td>
-													<button
-														onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
-														type="button" data-toggle="modal"
-														id="btn-competenza-linguistica"
-														data-target="#eliminaCompetenzaLinguisticaModal"
-														class="btn customButton p-1 mr-1 float-right">
-														<i class="fas fa-trash m-0"></i>
-													</button>
-												</td>
-											</c:if>
-										</tr>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</tbody>
+									</thead>
 
-						<tfoot class="footer">
-							<tr>
-								<td colspan=6></td>
-							</tr>
-						</tfoot>
-					</table>
+									<tbody class="body">
+										<c:if
+											test='${fn:contains(funzionalita, "modifica anagrafica")}'>
+											<tr>
+
+												<th scope="col">Stato</th>
+												<td scope="col">
+													<div class="btn-group dropright">
+														<button type="button" class="btn" id="btn-stato"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu" id="dropdown-stato">
+															<a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/daContattare">
+																Da contattare</a> <a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/scartato">
+																Scartato</a> <a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/attivo">
+																Attivo</a> <a class="dropdown-item"
+																href="/ProgettoHR/Aggiorna/${businessUnit}/${ mostraCandidato.id }/selezionato">
+																Selezionato</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</c:if>
+										<tr>
+											<th scope="col">Nome</th>
+											<td scope="col">${mostraCandidato.nome}</td>
+										</tr>
+										<tr>
+											<th scope="col">Cognome</th>
+											<td scope="col">${mostraCandidato.cognome}</td>
+										</tr>
+										<tr>
+											<th scope="col">Data di nascita</th>
+											<td scope="col">${mostraCandidato.dataNascita}</td>
+										</tr>
+										<tr>
+											<th scope="col">Telefono</th>
+											<td scope="col">${mostraCandidato.telefono}</td>
+										</tr>
+										<tr>
+											<th scope="col">E-mail</th>
+											<td scope="col">${mostraCandidato.email}</td>
+										</tr>
+										<tr>
+											<th scope="col">Residenza</th>
+											<td scope="col">${mostraCandidato.residenza}</td>
+										</tr>
+										<tr>
+											<th scope="col">Domicilio</th>
+											<td scope="col">${mostraCandidato.domicilio}</td>
+										</tr>
+										<tr>
+											<th scope="col">Codice Fiscale</th>
+											<td scope="col">${mostraCandidato.codiceFiscale}</td>
+										</tr>
+										<c:if
+											test='${fn:contains(funzionalita, "visualizza anagrafica completa")}'>
+											<tr>
+												<th scope="col">Provenienza candidatura</th>
+												<td scope="col">${mostraCandidato.provenienza}</td>
+											</tr>
+
+											<tr>
+												<th scope="col">Categoria protetta</th>
+												<td scope="col" id="categoriaProtetta"></td>
+											</tr>
+
+										</c:if>
+
+										<tr>
+											<th scope="col">Inserito da</th>
+											<td scope="col">${mostraCandidato.inseritoDa.username}</td>
+										</tr>
+									</tbody>
+									<tfoot class="footer">
+										<tr>
+											<td colspan=3></td>
+
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+
+						<div class="col mb-3">
+							<!-- tabella ECONOMICS -->
+							<c:if test='${fn:contains(funzionalita, "visualizza economics")}'>
+								<div class="table-responsive">
+									<table id="economicsTable" class="tabellaEconomics">
+										<thead class="head">
+											<tr>
+												<th><h3>ECONOMICS</h3></th>
+												<th colspan=2><c:if
+														test='${fn:contains(funzionalita, "modifica economics")}'>
+														<!-- Bottone modifica economics-->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaEconomics" class="btn float-right">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+										</thead>
+										<tbody class="body">
+											<tr>
+												<th scope="col">Inquadramento</th>
+												<td scope="col">${mostraCandidato.economics.inquadramento}</td>
+											</tr>
+											<tr>
+												<th scope="col">RAL</th>
+												<td scope="col">${mostraCandidato.economics.ral}</td>
+											</tr>
+											<tr>
+												<th scope="col">Benefit</th>
+												<td scope="col">${mostraCandidato.economics.benefit}</td>
+											</tr>
+											<tr>
+												<th scope="col">Preavviso</th>
+												<td scope="col">${mostraCandidato.economics.preavviso}</td>
+											</tr>
+											<tr>
+												<th scope="col">Desiderata</th>
+												<td scope="col">${mostraCandidato.economics.desiderata}</td>
+											</tr>
+										</tbody>
+										<tfoot class="footer">
+											<tr>
+												<td colspan=2></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</c:if>
+						</div>
+
+						<div class="col">
+							<!-- Tabella TITOLI DI STUDIO-->
+							<table id="titoliTable" class="tabellaTitoli">
+
+								<thead class="head">
+									<tr>
+										<th colspan=2><h3>TITOLI DI STUDIO</h3></th>
+									</tr>
+									<tr>
+										<th colspan="2">Titolo di studio</th>
+									</tr>
+								</thead>
+								<tbody class="body">
+									<c:forEach var="titolo" items="${mostraCandidato.titoloStudio}">
+										<tr>
+											<td>${titolo.titoloStudio}</td>
+											<td><c:if
+													test='${fn:contains(funzionalita, "modifica titolo di studio")}'>
+													<button
+														onclick="impostaParametriTitoloStudio('${titolo.id}','${titolo.titoloStudio}')"
+														type="button" data-toggle="modal" id="btn-modifica-titolo"
+														data-target="#modificaTitoloStudio"
+														class="btn float-right">
+														<i class="fas fa-user-cog"></i>
+													</button>
+													<button
+														onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
+														type="button" data-toggle="modal" id="btn-cancella-titolo"
+														data-target="#eliminaTitoloStudio" class="btn float-right">
+														<i class="fas fa-trash"></i>
+													</button>
+												</c:if></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan=2></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="col mt-5">
+					<div class="row d-flex flex-column">
+						<div class="col mb-3">
+							<!-- tabella BUSINESS-->
+							<c:if
+								test='${fn:contains(funzionalita, "visualizza profilo professionale")}'>
+								<div class="table-responsive">
+									<table class="tabellaBusiness">
+										<thead class="head">
+											<tr>
+												<th><h3>BUSINESS</h3></th>
+												<th colspan=3></th>
+											</tr>
+										</thead>
+
+										<tbody class="body">
+											<!-- BUSINESS UNIT -->
+											<tr>
+												<th scope="col">Business unit</th>
+												<td scope="col">${mostraCandidato.business.business}</td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica business unit -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaBusinessUnit"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+
+													</c:if></th>
+											</tr>
+											<!-- AREA COMPETENZA -->
+											<tr>
+												<th scope="col">Area di competenza</th>
+												<td scope="col"><c:forEach var="area"
+														items="${mostraCandidato.area}">
+														<li>${area.area}</li>
+													</c:forEach></td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica area di competenza-->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaAreaCompetenza"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+											<!-- MANSIONE -->
+											<tr>
+												<th scope="col">Mansione</th>
+												<td scope="col"><c:forEach var="mansione"
+														items="${mostraCandidato.mansione}">
+														<li>${mansione.mansione}</li>
+													</c:forEach></td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica mansione -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaMansione"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+											<!-- SENIORITY -->
+											<tr>
+												<th scope="col">Seniority</th>
+												<td scope="col">${mostraCandidato.seniority.seniority}</td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica seniority -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaSeniority"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+											<!-- SPECIALIZZAZIONE -->
+											<tr>
+												<th scope="col">Specializzazione</th>
+												<td scope="col"><c:forEach var="specializzazione"
+														items="${mostraCandidato.candidatoSpecializzazione}">
+														<li>${specializzazione.specializzazione.specializzazione}
+															&nbsp ${specializzazione.anni} anni esperienza</li>
+													</c:forEach></td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica specializzazione -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaSpecializzazione"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+											<!-- INSERIMENTO AZIENDA -->
+											<tr>
+												<th scope="col">Inserimento azienda</th>
+												<td scope="col">${mostraCandidato.inserimentoAzienda}</td>
+												<th><c:if
+														test='${fn:contains(funzionalita, "modifica profilo professionale")}'>
+														<!-- Bottone modifica inserimento azienda -->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaInserimentoAzienda"
+															class="btn float-right btn-business-unit">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+										</tbody>
+
+										<tfoot class="footer">
+											<tr>
+												<td colspan=3></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</c:if>
+						</div>
+
+						<div class="col mb-3">
+							<!--tabella COSTI -->
+							<c:if test='${fn:contains(funzionalita, "visualizza costi")}'>
+
+								<div class="table-responsive">
+									<table id="costiTable" class="tabellaCosti">
+										<thead class="head">
+											<tr>
+												<th><h3>COSTI</h3></th>
+												<th colspan=2><c:if
+														test='${fn:contains(funzionalita, "modifica costi")}'>
+														<!-- Bottone modifica costi-->
+														<button type="button" data-toggle="modal"
+															data-target="#modificaCosti" class="btn float-right">
+															<i class="fas fa-user-cog"></i>
+														</button>
+													</c:if></th>
+											</tr>
+										</thead>
+										<tbody class="body">
+											<tr>
+												<th scope="col">Costo orario</th>
+												<td scope="col">${mostraCandidato.costo.orario}</td>
+											</tr>
+											<tr>
+												<th scope="col">Costo giornaliero</th>
+												<td scope="col">${mostraCandidato.costo.giornaliero}</td>
+											</tr>
+											<c:if test="${not empty mostraCandidato.costo.commento}">
+												<tr>
+													<th scope="col">Commenti</th>
+													<td scope="col">${mostraCandidato.costo.commento}</td>
+												</tr>
+											</c:if>
+										</tbody>
+
+										<tfoot class="footer">
+											<tr>
+												<td colspan=2></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</c:if>
+						</div>
+
+
+						<div class="col">
+							<!-- Tabella COMPETENZE LINGUISTICHE-->
+							<table id="competenzeLinguisticheTable"
+								class="tabellaCompetenzeLinguistiche">
+
+								<thead class="head">
+									<tr>
+										<th colspan=5><h3>COMPETENZE LINGUISTICHE</h3></th>
+										<th colspan=5>
+									</tr>
+									<tr>
+										<th>Lingua</th>
+										<th>Letto</th>
+										<th>Scritto</th>
+										<th>Parlato</th>
+										<th colspan=2></th>
+									</tr>
+								</thead>
+								<tbody class="body">
+									<c:forEach var="item"
+										items="${mostraCandidato.candidatoCompetenzaLingustica}">
+										<c:choose>
+											<c:when test="${item.madreLingua == true}">
+												<tr>
+													<th scope="col">Madre lingua :
+														${item.competenzaLinguistica.lingua}</th>
+													<td scope="col"></td>
+													<td scope="col"></td>
+													<td scope="col"></td>
+													<c:if
+														test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
+														<td>
+															<button
+																onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
+																type="button" data-toggle="modal"
+																data-target="#eliminaCompetenzaLinguistica"
+																class="btn float-right btn-elimina-competenza">
+																<i class="fas fa-trash"></i>
+															</button>
+														</td>
+														<td>
+															<button
+																onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.id}','${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
+																type="button" data-toggle="modal"
+																data-target="#modificaCompetenzaLinguistica"
+																class="btn float-right btn-modifica-competenza">
+																<i class="fas fa-user-cog"></i>
+															</button>
+														</td>
+													</c:if>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<th scope="col">Lingua :
+														${item.competenzaLinguistica.lingua}</th>
+													<td scope="col">${item.letto}</td>
+													<td scope="col">${item.scritto}</td>
+													<td scope="col">${item.parlato}</td>
+													<c:if
+														test='${fn:contains(funzionalita, "modifica competenza linguistica")}'>
+														<td>
+															<button
+																onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
+																type="button" data-toggle="modal"
+																id="btn-competenza-linguistica"
+																data-target="#eliminaCompetenzaLinguistica"
+																class="btn float-right btn-elimina-competenza">
+																<i class="fas fa-trash "></i>
+															</button>
+														</td>
+														<td>
+															<button
+																onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.id}','${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
+																type="button" data-toggle="modal"
+																data-target="#modificaCompetenzaLinguistica"
+																class="btn float-right btn-modifica-competenza">
+																<i class="fas fa-user-cog"></i>
+															</button>
+														</td>
+													</c:if>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan=6></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<!-- COLONNA 3 -->
-				<div class="col-auto">
+			<div class="row d-flex flex-column">
+				<div class="col mt-5 mb-3">
 					<!-- Tabella FEEDBACK -->
-					<table class="tabellaFeedback" id="feedbackTable">
-
-						<thead class="head">
-
-							<tr>
-								<th colspan="4"><h3>FEEDBACK</h3></th>
-							</tr>
-
-							<tr>
-
-								<th scope="col">Data</th>
-								<th scope="col">Tipo</th>
-								<th scope="col">Feedback</th>
-								<th scope="col"></th>
-
-							</tr>
-
-						</thead>
-						<tbody class="body">
-							<c:forEach var="feed" items="${mostraFeedback}">
-								<tr>
-									<td>${feed.data}</td>
-									<td>${feed.tipo.tipo}</td>
-									<c:set var="commento"
-										value="${fn:replace(feed.commento, singlequote, backslash)}"></c:set>
-									<c:set var="commentoXSS" value="${fn:escapeXml(feed.commento)}"></c:set>
-									<td>${commentoXSS}</td>
-									<td><c:if
-											test='${fn:contains(funzionalita, "modifica feedback")}'>
-											<button
-												onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${commento}')"
-												type="button" data-toggle="modal" id="bottoneFeedback"
-												data-target="#modificaFeedbackModal"
-												class="btn customButton p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-											<button
-												onclick="impostaParametriEliminaFeedback('${feed.id}')"
-												type="button" data-toggle="modal" id="bottoneFeedback"
-												data-target="#eliminaFeedbackModal"
-												class="btn customButton p-1 mr-1 float-right">
-												<i class="fas fa-trash m-0"></i>
-											</button>
-										</c:if></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-
-						<tfoot class="footer">
-							<tr>
-								<td colspan=4></td>
-							</tr>
-						</tfoot>
-					</table>
-
-					<!-- tabella QUALIFICATION MEETING-->
-					<table id="qualificationMeetingTable" class="tabellaQualification">
-						<thead class="head">
-
-							<tr>
-								<th colspan=6><h3>QUALIFICATION MEETING</h3></th>
-							</tr>
-
-							<tr>
-								<th scope="col">Cliente</th>
-								<th scope="col">Data di presentazione</th>
-								<th scope="col">Riferimento gara</th>
-								<th scope="col">Data colloquio</th>
-								<th scope="col">Feedback</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-
-						<tbody class="body">
-
-
-							<c:forEach var="qualificationMeeting"
-								items="${mostraCandidato.qm}">
-								<tr>
-
-									<c:set var="cliente"
-										value="${fn:replace(qualificationMeeting.cliente, singlequote, backslash)}"></c:set>
-									<c:set var="clienteXSS"
-										value="${fn:escapeXml(qualificationMeeting.cliente)}"></c:set>
-									<td>${clienteXSS}</td>
-									<td>${qualificationMeeting.dataPresentato}</td>
-									<c:set var="riferimentoGara"
-										value="${fn:replace(qualificationMeeting.riferimentoGara, singlequote, backslash)}"></c:set>
-									<c:set var="riferimentoGaraXSS"
-										value="${fn:escapeXml(qualificationMeeting.riferimentoGara)}"></c:set>
-									<td>${riferimentoGaraXSS}</td>
-									<td>${qualificationMeeting.dataColloquio}</td>
-									<c:set var="feedback"
-										value="${fn:replace(qualificationMeeting.feedback, singlequote, backslash)}"></c:set>
-									<c:set var="feedbackXSS"
-										value="${fn:escapeXml(qualificationMeeting.feedback)}"></c:set>
-									<td>${feedbackXSS}</td>
-									<td><c:if
-											test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
-											<button
-												onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}','${cliente}','${qualificationMeeting.dataPresentato}','${riferimentoGara}','${qualificationMeeting.dataColloquio}','${feedback}')"
-												type="button" data-toggle="modal" id="bottoneQualification"
-												data-target="#modificaQualificationMeetingModal"
-												class="btn customButton p-1 float-right">
-												<i class="fas fa-cogs m-0"></i>
-											</button>
-											<button
-												onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
-												type="button" data-toggle="modal" id="bottoneQualification"
-												data-target="#eliminaQualificationMeetingModal"
-												class="btn customButton p-1 mr-1 float-right">
-												<i class="fas fa-trash m-0"></i>
-											</button>
-										</c:if></td>
-									<!-- "${fn:escapeXml(param.foo)}" -->
-								</tr>
-							</c:forEach>
-						</tbody>
-
-						<tfoot class="footer">
-							<tr>
-								<td colspan=6></td>
-							</tr>
-						</tfoot>
-					</table>
-
-					<!-- Tabella ALLEGATI -->
-					<c:if test='${fn:contains(funzionalita, "visualizza allegati")}'>
-						<table id="allegatiTable" class="tabellaAllegati">
+					<div class="table-responsive">
+						<table class="tabellaFeedback" id="feedbackTable">
 							<thead class="head">
 								<tr>
-									<th colspan=3><h3>ALLEGATI</h3></th>
+									<th colspan="4"><h3>FEEDBACK</h3></th>
 								</tr>
+
 								<tr>
-									<th scope="col">Nome allegato</th>
-									<th scope="col"></th>
+									<th scope="col">Data</th>
+									<th scope="col">Tipo</th>
+									<th scope="col">Feedback</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 
 							<tbody class="body">
-								<c:forEach var="allegato" items="${mostraCandidato.file}">
+								<c:forEach var="feed" items="${mostraFeedback}">
 									<tr>
-										<td>${allegato.nomeFile}</td>
-										<td><a
-											href="<c:url value='/download/${businessUnit}/${mostraCandidato.id}/${allegato.id}' />"
-											class="btn btn-block" id="bottone-salva-allegato">Scarica</a></td>
-										<td>
-											<button onclick="impostaParametriAllegati(${allegato.id})"
-												type="button" class="btn btn-block"
-												id="bottone-cancella-allegato" data-toggle="modal"
-												data-target="#deleteModal">Cancella</button>
-										</td>
+										<td>${feed.data}</td>
+										<td>${feed.tipo.tipo}</td>
+										<c:set var="commento"
+											value="${fn:replace(feed.commento, singlequote, backslash)}"></c:set>
+										<c:set var="commentoXSS"
+											value="${fn:escapeXml(feed.commento)}"></c:set>
+										<td>${commentoXSS}</td>
+										<td><c:if
+												test='${fn:contains(funzionalita, "modifica feedback")}'>
+												<button
+													onclick="impostaParametriEliminaFeedback('${feed.id}')"
+													type="button" data-toggle="modal" id="btn-elimina-feedback"
+													data-target="#eliminaFeedback" class="btn float-right">
+													<i class="fas fa-trash"></i>
+												</button>
+												<button
+													onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${commento}')"
+													type="button" data-toggle="modal"
+													id="btn-modifica-feedback" data-target="#modificaFeedback"
+													class="btn float-right">
+													<i class="fas fa-user-cog"></i>
+												</button>
+											</c:if></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tfoot class="footer">
 								<tr>
-									<td colspan=5></td>
+									<td colspan=4></td>
 								</tr>
 							</tfoot>
 						</table>
+					</div>
+				</div>
+
+				<div class="col mb-3">
+					<!-- tabella QUALIFICATION MEETING-->
+					<div class="table-responsive">
+						<table id="qualificationMeetingTable" class="tabellaQualification">
+							<thead class="head">
+								<tr>
+									<th colspan=6><h3>QUALIFICATION MEETING</h3></th>
+								</tr>
+								<tr>
+									<th scope="col">Cliente</th>
+									<th scope="col">Data di presentazione</th>
+									<th scope="col">Riferimento gara</th>
+									<th scope="col">Data colloquio</th>
+									<th scope="col">Feedback</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+
+							<tbody class="body">
+								<c:forEach var="qualificationMeeting"
+									items="${mostraCandidato.qm}">
+									<tr>
+
+										<c:set var="cliente"
+											value="${fn:replace(qualificationMeeting.cliente, singlequote, backslash)}"></c:set>
+										<c:set var="clienteXSS"
+											value="${fn:escapeXml(qualificationMeeting.cliente)}"></c:set>
+										<td>${clienteXSS}</td>
+										<td>${qualificationMeeting.dataPresentato}</td>
+										<c:set var="riferimentoGara"
+											value="${fn:replace(qualificationMeeting.riferimentoGara, singlequote, backslash)}"></c:set>
+										<c:set var="riferimentoGaraXSS"
+											value="${fn:escapeXml(qualificationMeeting.riferimentoGara)}"></c:set>
+										<td>${riferimentoGaraXSS}</td>
+										<td>${qualificationMeeting.dataColloquio}</td>
+										<c:set var="feedback"
+											value="${fn:replace(qualificationMeeting.feedback, singlequote, backslash)}"></c:set>
+										<c:set var="feedbackXSS"
+											value="${fn:escapeXml(qualificationMeeting.feedback)}"></c:set>
+										<td>${feedbackXSS}</td>
+										<td><c:if
+												test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
+												<button
+													onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
+													type="button" data-toggle="modal"
+													id="btn-elimina-qualification"
+													data-target="#eliminaQualificationMeeting"
+													class="btn float-right">
+													<i class="fas fa-trash"></i>
+												</button>
+												<button
+													onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}','${cliente}','${qualificationMeeting.dataPresentato}','${riferimentoGara}','${qualificationMeeting.dataColloquio}','${feedback}')"
+													type="button" data-toggle="modal"
+													id="btn-modifica-qualification"
+													data-target="#modificaQualificationMeeting"
+													class="btn float-right">
+													<i class="fas fa-user-cog"></i>
+												</button>
+											</c:if></td>
+										<!-- "${fn:escapeXml(param.foo)}" -->
+									</tr>
+								</c:forEach>
+							</tbody>
+
+							<tfoot class="footer">
+								<tr>
+									<td colspan=6></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+
+				<div class="col mb-5">
+					<!-- Tabella ALLEGATI -->
+					<c:if test='${fn:contains(funzionalita, "visualizza allegati")}'>
+						<div class="table-responsive">
+							<table id="allegatiTable" class="tabellaAllegati">
+								<thead class="head">
+									<tr>
+										<th colspan=3><h3>ALLEGATI</h3></th>
+									</tr>
+									<tr>
+										<th scope="col">Nome allegato</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+
+								<tbody class="body">
+									<c:forEach var="allegato" items="${mostraCandidato.file}">
+										<tr>
+											<td>${allegato.nomeFile}</td>
+											<td><a
+												href="<c:url value='/download/${businessUnit}/${mostraCandidato.id}/${allegato.id}' />"
+												class="btn" id="btn-salva-allegato">Scarica</a></td>
+											<td>
+												<button onclick="impostaParametriAllegati(${allegato.id})"
+													type="button" class="btn" id="btn-cancella-allegato"
+													data-toggle="modal" data-target="#eliminaAllegato">Cancella</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan=5></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
 					</c:if>
 				</div>
 			</div>
 		</div>
-	</div>
+	</header>
 
-	<!-- MODAL CANCELLA ALLEGATI -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- ================================================================================================================= -->
+	<!-- ===  MODAL MODIFICA TABELLA ANAGRAFICA === -->
+	<div class="modal fade" id="modificaAnagrafica" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaAnagrafica"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					Sei sicuro di voler cancellare l'allegato selezionato?
-					<form
-						action="/ProgettoHR/delete/${businessUnit}/${mostraCandidato.id}"
-						method="GET">
-						<div style="visibility: hidden;">
-							<input name="idAllegato" id="Allegato" />
-						</div>
-						<div class="modal-body"></div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-success">si</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
-
-						</div>
-
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- MODAL MODIFICA ANAGRAFICA -->
-	<div class="modal fade" id="modificaAnagraficaModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						anagrafica</h5>
+					<h5 class="modal-title">Modifica anagrafica:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateAnagraficaForm();"
-							action="/ProgettoHR/ModificaAnagrafica/${businessUnit}/${mostraCandidato.id}">
 
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Nome:</div>
-								<form:input type="text" class="form-control" id="idNome"
-									name="nome" path="nome" value="${mostraCandidato.nome}"
-									required="required"></form:input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Cognome:</div>
-								<form:input type="text" class="form-control" id="idCognome"
-									name="cognome" path="cognome"
-									value="${mostraCandidato.cognome}" required="required"></form:input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-									di nascita:</div>
-								<input type="date" pattern="yyyy-MM-dd" class="form-control"
-									id="idDataNascita" name="dataDiNascita"
-									value="${mostraCandidato.dataNascita}"></input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Telefono:</div>
-								<form:input type="text" class="form-control" id="idTelefono"
-									name="telefono" path="telefono" placeholder="123-456-7890"
-									value="${mostraCandidato.telefono}" required="required"></form:input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">E-mail:</div>
-								<form:input type="text" class="form-control" id="idEmail"
-									size="30" name="email" path="email"
-									value="${mostraCandidato.email}" required="required"></form:input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Codice
-									Fiscale:</div>
-								<form:input type="text" class="form-control" maxlength="16"
-									id="idCodiceFiscale" name="codiceFiscale" path="codiceFiscale"
-									value="${mostraCandidato.codiceFiscale}"></form:input>
-							</div>
-
-
-							<div class="form-group">
-								<div class="row w-100 p-0 m-0 justify-content-md-start">Provenienza
-									Candidatura:</div>
-								<form:input type="text" class="form-control"
-									id="idProvenienzaCandidatura" name="provenienzaCandidatura"
-									path="provenienza" value="${mostraCandidato.provenienza}"></form:input>
-							</div>
-
-							<div class="form-group mt-2">
-								<div class="custom-control custom-switch">
-									<form:checkbox class="custom-control-input"
-										path="categoriaProtetta" id="customSwitch1"
-										name="categoriaProtetta"></form:checkbox>
-									<label class="custom-control-label" for="customSwitch1">Categoria
-										protetta</label>
+				<form:form method="POST" modelAttribute="mostraCandidato"
+					onsubmit="return validateAnagraficaForm();"
+					action="/ProgettoHR/ModificaAnagrafica/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
+									<div class="form-group">
+										<label>Nome:</label>
+										<form:input type="text" class="form-control" id="idNome"
+											name="nome" path="nome" value="${mostraCandidato.nome}"
+											required="required"></form:input>
+									</div>
 								</div>
-							</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Cognome:</label>
+										<form:input type="text" class="form-control" id="idCognome"
+											name="cognome" path="cognome"
+											value="${mostraCandidato.cognome}" required="required"></form:input>
+									</div>
 
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaAnagrafica"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										Modifiche</button>
 								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Data di nascita:</label> <input type="date"
+											pattern="yyyy-MM-dd" class="form-control" id="idDataNascita"
+											name="dataDiNascita" value="${mostraCandidato.dataNascita}"></input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Telefono:</label>
+										<form:input type="text" class="form-control" id="idTelefono"
+											name="telefono" path="telefono" placeholder="123-456-7890"
+											value="${mostraCandidato.telefono}" required="required"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>E-mail:</label>
+										<form:input type="text" class="form-control" id="idEmail"
+											size="30" name="email" path="email"
+											value="${mostraCandidato.email}" required="required"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Codice Fiscale:</label>
+										<form:input type="text" class="form-control" maxlength="16"
+											id="idCodiceFiscale" name="codiceFiscale"
+											path="codiceFiscale" value="${mostraCandidato.codiceFiscale}"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Provenienza Candidatura:</label>
+										<form:input type="text" class="form-control"
+											id="idProvenienzaCandidatura" name="provenienzaCandidatura"
+											path="provenienza" value="${mostraCandidato.provenienza}"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<div class="custom-control custom-switch">
+											<form:checkbox class="custom-control-input"
+												path="categoriaProtetta" id="customSwitch1"
+												name="categoriaProtetta"></form:checkbox>
+											<label class="custom-control-label" for="customSwitch1">Categoria
+												protetta</label>
+										</div>
+									</div>
+								</div>
+
 							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitModificaAnagrafica"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ================================================================================================================= -->
 
-	<!-- MODAL MODIFICA BUSINESS UNIT -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE MODIFICANO LA TABELLA BUSINESS === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+
+	<!-- ================================================================================================ -->
+	<!-- === MODAL MODIFICA BUSINESS UNIT === -->
 	<div class="modal fade" id="modificaBusinessUnit" tabindex="-1"
-		role="dialog" aria-labelledby="modalBusinessUnit" aria-hidden="true">
+		role="dialog" aria-labelledby="modalModificaBusinessUnit"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleBusinessUnit">Modifica
-						Business Unit</h5>
+					<h5 class="modal-title">Modifica la business unit:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1511,38 +1507,38 @@ ul ul a {
 				<form method="POST"
 					action="/ProgettoHR/ModificaBusinessUnit/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
-						<div class="form-row justify-content-center">
-
-							<div class="form-group col-auto">
-								<h5 class="text-center">Scegli:</h5>
-								<select id="inputState" class="form-control text-center"
-									name="businessUnit">
-									<option disabled selected>Business unit</option>
-									<c:forEach var="business" items="${businessList}">
-										<option value="${business.business}">${business.business}</option>
-									</c:forEach>
-								</select>
-							</div>
+						<div class="form-group">
+							<h5 class="text-center">Scegli la business unit:</h5>
+							<select id="inputState" class="form-control text-center"
+								name="businessUnit">
+								<option disabled selected>Business unit</option>
+								<c:forEach var="business" items="${businessList}">
+									<option value="${business.business}">${business.business}</option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
+	<!-- ================================================================================================= -->
 
-	<!-- MODAL MODIFICA AREA DI COMPETENZA -->
+	<!-- ===================================================================================================== -->
+	<!-- === MODAL MODIFICA AREA DI COMPETENZA === -->
 	<div class="modal fade" id="modificaAreaCompetenza" tabindex="-1"
-		role="dialog" aria-labelledby="modalAreaCompetenza" aria-hidden="true">
+		role="dialog" aria-labelledby="modalModificaAreaCompetenza"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleAreaCompetenza">Modifica</h5>
+					<h5 class="modal-title">Modifica le aree di competenza:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1553,13 +1549,10 @@ ul ul a {
 					action="/ProgettoHR/ModificaAreaCompetenza/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('areaCompetenzaInput')">
 					<div class="modal-body">
-
 						<h5>Aree di competenza:</h5>
-
 						<div id="areaCompetenzeCandidato">
 							<c:forEach var="area" items="${mostraCandidato.area}">
 								<div class="form-row">
-
 									<div class="col-11">
 										<input readonly type="text" name="areaCompetenza"
 											class="form-control mb-2" style="background-color: #a7d8bb;"
@@ -1570,13 +1563,11 @@ ul ul a {
 											onclick="eliminaCampo('${area.area}', 'areaCompetenzeCandidato')"
 											class="btn"><i class="fas fa-minus"></i> </span>
 									</div>
-
 								</div>
 							</c:forEach>
 						</div>
 
 						<div class="form-row">
-
 							<div class="col-11">
 								<input autocomplete="off" placeholder="aggiungi"
 									list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
@@ -1587,7 +1578,6 @@ ul ul a {
 									</c:forEach>
 								</datalist>
 							</div>
-
 							<div class="col-1">
 								<div
 									onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
@@ -1598,7 +1588,6 @@ ul ul a {
 						</div>
 					</div>
 
-
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
@@ -1608,15 +1597,18 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ===================================================================================================== -->
 
-	<!-- MODAL MODIFICA MANSIONE -->
+	<!-- ===================================================================================================== -->
+	<!-- === MODAL MODIFICA MANSIONE === -->
 	<div class="modal fade" id="modificaMansione" tabindex="-1"
-		role="dialog" aria-labelledby="modalMansione" aria-hidden="true">
+		role="dialog" aria-labelledby="modalModificaMansione"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleMansione">Modifica</h5>
+					<h5 class="modal-title">Modifica le mansioni:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1627,19 +1619,15 @@ ul ul a {
 					action="/ProgettoHR/ModificaMansione/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('mansioneInput');">
 					<div class="modal-body">
-
 						<h5>Mansioni:</h5>
-
 						<div id="mansioniCandidato">
 							<c:forEach var="mansione" items="${mostraCandidato.mansione}">
 								<div class="form-row">
-
 									<div class="col-11">
 										<input style="background-color: #a7d8bb;" readonly type="text"
 											class="form-control mb-2" name="mansione"
 											value="${mansione.mansione}"></input>
 									</div>
-
 									<div class="col-1">
 										<span
 											onclick="eliminaCampo('${mansione.mansione}', 'mansioniCandidato')"
@@ -1660,7 +1648,6 @@ ul ul a {
 										<option value="${mansione}"></option>
 									</c:forEach>
 								</datalist>
-
 							</div>
 							<div class="col-1">
 								<div onclick="stampaMansioneSelezionata('${mansioneList}')"
@@ -1680,15 +1667,18 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ======================================================================================================= -->
 
-	<!-- MODAL MODIFICA SENIORITY-->
+	<!-- ==================================================================================================== -->
+	<!-- === MODAL MODIFICA SENIORITY === -->
 	<div class="modal fade" id="modificaSeniority" tabindex="-1"
-		role="dialog" aria-labelledby="modalSeniority" aria-hidden="true">
+		role="dialog" aria-labelledby="modalModificaSeniority"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleSeniority">Modifica Seniority</h5>
+					<h5 class="modal-title">Modifica la seniority:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1698,20 +1688,18 @@ ul ul a {
 				<form method="POST"
 					action="/ProgettoHR/ModificaSeniority/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
-						<div class="form-row justify-content-center">
-
-							<div class="form-group col-auto">
-								<h5 class="text-center">Scegli:</h5>
-								<select id="senioritySelezionata"
-									class="form-control text-center" name="seniority">
-									<option disabled selected>Seniority</option>
-									<c:forEach var="seniority" items="${seniorityList}">
-										<option value="${seniority.seniority}">${seniority.seniority}</option>
-									</c:forEach>
-								</select>
-							</div>
+						<div class="form-group">
+							<h5 class="text-center">Scegli la seniority:</h5>
+							<select id="senioritySelezionata"
+								class="form-control text-center" name="seniority">
+								<option disabled selected>Seniority</option>
+								<c:forEach var="seniority" items="${seniorityList}">
+									<option value="${seniority.seniority}">${seniority.seniority}</option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
@@ -1720,41 +1708,38 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ==================================================================================================== -->
 
-	<!-- MODAL MODIFICA SPECIALIZZAZIONE -->
+	<!-- ================================================================================================================================================ -->
+	<!-- === MODAL MODIFICA SPECIALIZZAZIONE === -->
 	<div class="modal fade" id="modificaSpecializzazione" tabindex="-1"
-		role="dialog" aria-labelledby="modalSpecializzazione"
+		role="dialog" aria-labelledby="modalModificaSpecializzazione"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleSpecializzazione">Modifica</h5>
+					<h5 class="modal-title">Modifica le specializzazioni:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 
-				<!-- FORM DEL MODAL BODY -->
 				<form method="POST"
 					action="/ProgettoHR/ModificaSpecializzazione/${businessUnit}/${mostraCandidato.id}"
 					onsubmit="return validateMyForm('specializzazioneInput');">
 					<div class="modal-body">
-
 						<h5>Specializzazioni:</h5>
-
 						<div id="specializzazioniCandidato">
 							<c:forEach var="spec"
 								items="${mostraCandidato.candidatoSpecializzazione}">
 								<div class="form-row">
 									<div class="col-11">
-
 										<input readonly type="text" class="form-control mb-2"
 											style="background-color: #a7d8bb;" name="specializzazione"
 											value="${spec.specializzazione.specializzazione} ${spec.anni}"></input>
 									</div>
-
 									<div class="col-1">
 										<span
 											onclick="eliminaCampo('${spec.specializzazione.specializzazione} ${spec.anni}', 'specializzazioniCandidato')"
@@ -1801,16 +1786,18 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ================================================================================================================================================ -->
 
-	<!-- MODIFICA INSERIMENTO AZIENDA -->
+	<!-- ====================================================================================================== -->
+	<!-- === MODIFICA INSERIMENTO AZIENDA === -->
 	<div class="modal fade" id="modificaInserimentoAzienda" tabindex="-1"
-		role="dialog" aria-labelledby="modalInserimentoAzienda"
+		role="dialog" aria-labelledby="modalModificaInserimentoAzienda"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleInserimentoAzienda">Modifica</h5>
+					<h5 class="modal-title">Modifica l'inserimento in azienda:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -1820,17 +1807,12 @@ ul ul a {
 				<form method="POST"
 					action="/ProgettoHR/ModificaDataInserimentoAzienda/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
-						<div class="row w-100 p-2 m-0 justify-content-md-start">
-							<div class="col w-100 p-0 justify-content-md-start">
-								<div class="form-group">
-									<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-										Inserimento azienda:</div>
-									<input type="date" pattern="yyyy-MM-dd"
-										value="${mostraCandidato.inserimentoAzienda}"
-										class="form-control" id="idInserimentoAzienda"
-										name="dataInserimentoAzienda"></input>
-								</div>
-							</div>
+						<div class="form-group">
+							<label>Data d'inserimento in azienda:</label> <input type="date"
+								pattern="yyyy-MM-dd"
+								value="${mostraCandidato.inserimentoAzienda}"
+								class="form-control" id="idInserimentoAzienda"
+								name="dataInserimentoAzienda"></input>
 						</div>
 					</div>
 
@@ -1842,278 +1824,296 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ======================================================================================================== -->
+	<!-- -------------------------------------------------------------------------------------------------------- -->
 
-	<!--MODAL MODIFICA ECONOMICS-->
-	<div class="modal fade" id="modificaEconomicsModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- ============================================================================================================= -->
+	<!-- === MODAL MODIFICA E AGGIUNGI ECONOMICS === -->
+	<div class="modal fade" id="modificaEconomics" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaEconomics"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Aggiungi/Modifica
-						economics</h5>
+					<h5 class="modal-title">Aggiungi/Modifica economics:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateEconomicsForm()"
-							action="/ProgettoHR/AggiungiModificaEconomics/${businessUnit}/${mostraCandidato.id}">
 
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+				<form:form method="POST" modelAttribute="mostraCandidato"
+					onsubmit="return validateEconomicsForm()"
+					action="/ProgettoHR/AggiungiModificaEconomics/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Inquadramento:
-										</div>
+										<label>Inquadramento: </label>
 										<form:input type="text" class="form-control"
 											id="idInquadramento" name="Inquadramento"
 											path="economics.inquadramento"
 											value="${economics.inquadramento}" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">RAL:
-										</div>
+										<label>RAL: </label>
 										<form:input type="text" class="form-control" id="idRAL"
 											maxlength="9" name="RAL" path="economics.ral"
 											value="${economics.ral}" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Benefit:</div>
+										<label>Benefit:</label>
 										<form:input type="text" class="form-control" id="idBenefit"
 											name="benefit" path="economics.benefit"
 											value="${economics.benefit}" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Preavviso:</div>
+										<label>Preavviso:</label>
 										<form:input type="text" class="form-control" id="idPreavviso"
 											name="preavviso" path="economics.preavviso"
 											value="${economics.preavviso}" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Desiderata:
-										</div>
+										<label>Desiderata: </label>
 										<form:input type="text" class="form-control" id="idDesiderata"
 											name="desiderata" path="economics.desiderata" maxlength="9"
 											value="${economics.desiderata}" required="required"></form:input>
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiEconomics"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										modifiche</button>
-								</div>
-							</div>
-						</form:form>
+						</div>
 					</div>
 
-				</div>
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitAggiungiEconomics"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ============================================================================================================= -->
 
-	<!--  MODAL MODIFICA COSTI-->
-	<div class="modal fade" id="modificaCostiModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- ======================================================================================================================= -->
+	<!--  === MODAL MODIFICA COSTI === -->
+	<div class="modal fade" id="modificaCosti" tabindex="-1" role="dialog"
+		aria-labelledby="modalModificaCosti" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica costi</h5>
+					<h5 class="modal-title">Modifica costi:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="mostraCandidato"
-							onsubmit="return validateCostoForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
-							action="/ProgettoHR/AggiungiModificaCosto/${businessUnit}/${mostraCandidato.id}">
 
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+				<form:form method="POST" modelAttribute="mostraCandidato"
+					onsubmit="return validateCostoForm('idSubmitAggiungiCosto', 'idCostoOrario', 'idCostoGiornaliero')"
+					action="/ProgettoHR/AggiungiModificaCosto/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
-											orario:</div>
+										<label>Costo orario:</label>
 										<form:input type="number" step="0.01" class="form-control"
 											id="idCostoOrario" name="costoOrario" path="costo.orario"
 											value="${costo.orario}" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Costo
-											giornaliero:</div>
+										<label>Costo giornaliero:</label>
 										<form:input type="number" step="0.01" class="form-control"
 											id="idCostoGiornaliero" name="costoGiornaliero"
 											path="costo.giornaliero" value="${costo.giornaliero}"
 											required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Commenti:</div>
+										<label>Commenti:</label>
 										<form:textarea class="form-control" maxlength="1000" rows="6"
 											style="resize: none;" id="idCommentiCosto" name="commenti"
 											path="costo.commento" value="${costo.commento}"></form:textarea>
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiCosto"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										modifiche</button>
-								</div>
-							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitAggiungiCosto"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ======================================================================================================================= -->
 
-	<!--  MODAL AGGIUNGI TITOLI DI STUDIO-->
-	<div class="modal fade" id="aggiungiTitoloModal" tabindex="-1"
-		role="dialog" aria-labelledby="aggiungiModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE MODIFICANO,AGGIUNGONO E CANCELLANO LA TABELLA TITOLI DI STUDIO === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+
+	<!-- ====================================================================================================== -->
+	<!-- === MODAL AGGIUNGI TITOLI DI STUDIO === -->
+	<div class="modal fade" id="aggiungiTitoloStudio" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiTitoloStudio"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="aggiungiModalLabel">Aggiungi
-						titolo di studio</h5>
+					<h5 class="modal-title">Aggiungi un titolo di studio:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="titoloStudio"
-							action="/ProgettoHR/AggiungiTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
-							<form:input type="text" class="form-control" id="idTitoloStudio"
-								name="titoloStudio" path="titoloStudio" value=""
-								required="required"></form:input>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiCosto"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										modifiche</button>
+				<form:form method="POST" modelAttribute="titoloStudio"
+					action="/ProgettoHR/AggiungiTitoloStudio/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<form:input type="text" class="form-control"
+										id="idTitoloStudio" name="titoloStudio" path="titoloStudio"
+										value="" required="required"></form:input>
 								</div>
 							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitAggiungiCosto"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ====================================================================================================== -->
 
-	<!--  MODAL MODIFICA TITOLI DI STUDIO-->
-	<div class="modal fade" id="modificaTitoloModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- ====================================================================================================== -->
+	<!-- === MODAL MODIFICA TITOLI DI STUDIO === -->
+	<div class="modal fade" id="modificaTitoloStudio" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaTitoloStudio"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						titolo di studio</h5>
+					<h5 class="modal-title">Modifica il titolo di studio:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="titoloStudio"
-							action="/ProgettoHR/ModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
 
-							<form:input style="visibility: hidden;"
-								name="modificaTitoloStudioId" id="modificaTitoloStudioId"
-								path="id" />
-							<form:input type="text" class="form-control"
-								id="idModificaTitoloStudio" name="modificaTitoloStudio"
-								path="titoloStudio" value="${titoloStudio.titoloStudio}"
-								required="required"></form:input>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiCosto"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										modifiche</button>
+				<form:form method="POST" modelAttribute="titoloStudio"
+					action="/ProgettoHR/ModificaTitoloStudio/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<form:input type="text" class="form-control"
+										id="idModificaTitoloStudio" name="modificaTitoloStudio"
+										path="titoloStudio" value="${titoloStudio.titoloStudio}"
+										required="required"></form:input>
+									<form:input style="visibility: hidden;"
+										name="modificaTitoloStudioId" id="modificaTitoloStudioId"
+										path="id" />
 								</div>
 							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitAggiungiCosto"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ====================================================================================================== -->
 
-	<!-- MODAL CANCELLA TITOLO STUDIO -->
-	<div class="modal fade" id="eliminaTitoloStudioModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- ===================================================================================== -->
+	<!-- === MODAL CANCELLA TITOLO STUDIO === -->
+	<div class="modal fade" id="eliminaTitoloStudio" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaTitoloStudio"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form action="/ProgettoHR/EliminaTitoloStudio/${businessUnit}/${id}"
 					method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare il titolo di studio selezionato? <input
-							style="visibility: hidden;" name="titoloStudioIdRemove"
+						<h5 class="modal-title">Eliminazione del titolo di studio:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+					</div>
+
+					<div class="modal-body">
+						<input style="visibility: hidden;" name="titoloStudioIdRemove"
 							id="titoloStudioRemove" />
+						<p>Sei sicuro di voler cancellare il titolo di studio
+							selezionato?</p>
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-success">Sì</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
+	<!-- ===================================================================================== -->
+	<!-- ------------------------------------------------------------------------------------- -->
 
-	<!--  MODAL AGGIUNGI COMPETENZA LINGUISTICA-->
-	<div class="modal fade " id="aggiungiCompetenzaLinguisticaModal"
+
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE MODIFICANO,AGGIUNGONO E CANCELLANO LA TABELLA COMPETENZE LINGUISTICHE === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+
+	<!-- ===================================================================================================== -->
+	<!-- === MODAL AGGIUNGI COMPETENZA LINGUISTICA === -->
+	<div class="modal fade " id="aggiungiCompetenzaLinguistica"
 		tabindex="-1" role="dialog"
-		aria-labelledby="modalCompetenzaLinguistica" aria-hidden="true">
+		aria-labelledby="modalAggiungiCompetenzaLinguistica"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleSeniority">Aggiungi
-						Competenza Linguistica</h5>
+					<h5 class="modal-title">Aggiungi una competenza linguistica:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -2123,77 +2123,87 @@ ul ul a {
 				<form:form method="POST"
 					modelAttribute="candidatoCompetenzaLinguistica"
 					action="/ProgettoHR/AggiungiCompetenzaLinguistica/${businessUnit}/${mostraCandidato.id}">
+
 					<div class="modal-body">
-						<div class="col-auto">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
+									<div class="form-group">
+										<h5>Inserisci una lingua:</h5>
+										<form:input autocomplete="off" list="lingueDisponibili"
+											id="linguaInput" path="competenzaLinguistica.lingua"
+											class="form-control mt-2"></form:input>
+										<datalist id="lingueDisponibili">
+											<c:forEach var="competenzaLinguistica"
+												items="${competenzaLinguisticaList}">
+												<option value="${competenzaLinguistica.lingua}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+								</div>
 
-							<div class="form-group">
-								<h5 class="text-center">Scegli:</h5>
-								<form:input autocomplete="off" placeholder="Scegli"
-									list="lingueDisponibili" id="linguaInput"
-									path="competenzaLinguistica.lingua" class="form-control mt-2"></form:input>
-								<datalist id="lingueDisponibili">
-									<c:forEach var="competenzaLinguistica"
-										items="${competenzaLinguisticaList}">
-										<option value="${competenzaLinguistica.lingua}"></option>
-									</c:forEach>
-								</datalist>
-							</div>
-
-							<div class="form-group mt-3">
-								<div class="bootstrap-switch-square ">
-									<form:checkbox onchange="hideOrDisplayLevelsInAggiungiLingua()"
-										data-toggle="switch" name="madrelingua" path="madreLingua"
-										id="madrelingua" value="false" />
-									<label for="madrelingua">Madrelingua ?</label>
+								<div class="col">
+									<div class="form-group">
+										<label for="madrelingua">Madrelingua:</label>
+										<form:checkbox
+											onchange="hideOrDisplayLevelsInAggiungiLingua()"
+											data-toggle="switch" name="madrelingua" path="madreLingua"
+											id="madrelingua" value="false" />
+									</div>
 								</div>
 							</div>
 
+							<div class="row">
+								<div class="col">
 
-							<div class="form-row mt-3" id="livelliDiv">
-								<div class="form-group col-4">
-									<label for="letto">Letto</label>
-									<form:select id="idLetto" path="letto" 
-										class="form-control text-center" name="letto">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+									<div class="form-group">
+										<label for="letto">Letto:</label>
+										<form:select id="idLetto" path="letto"
+											class="form-control text-center" name="letto">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
-
-								<div class="form-group col-4">
-									<label for="scritto">Scritto</label>
-									<form:select id="idScritto" path="scritto" 
-										class="form-control text-center" name="scritto">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+								<div class="col">
+									<div class="form-group">
+										<label for="scritto">Scritto:</label>
+										<form:select id="idScritto" path="scritto"
+											class="form-control text-center" name="scritto">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
-
-								<div class="form-group col-4">
-									<label for="parlato">Parlato</label>
-									<form:select id="idParlato" path="parlato" 
-										class="form-control text-center" name="parlato">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+								<div class="col">
+									<div class="form-group">
+										<label for="parlato">Parlato:</label>
+										<form:select id="idParlato" path="parlato"
+											class="form-control text-center" name="parlato">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
@@ -2202,17 +2212,19 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ===================================================================================================== -->
 
-	<!--  MODAL MODIFICA COMPETENZA LINGUISTICA-->
-	<div class="modal fade " id="modificaCompetenzaLinguisticaModal"
+	<!-- ===================================================================================================== -->
+	<!-- === MODAL MODIFICA COMPETENZA LINGUISTICA === -->
+	<div class="modal fade " id="modificaCompetenzaLinguistica"
 		tabindex="-1" role="dialog"
-		aria-labelledby="modalCompetenzaLinguistica" aria-hidden="true">
+		aria-labelledby="modalModificaCompetenzaLinguistica"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="titleSeniority">Modifica
-						Competenza Linguistica</h5>
+					<h5 class="modal-title">Modifica la competenza linguistica:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -2223,306 +2235,437 @@ ul ul a {
 					modelAttribute="candidatoCompetenzaLinguistica"
 					action="/ProgettoHR/ModificaCompetenzaLinguistica/${businessUnit}/${mostraCandidato.id}">
 					<div class="modal-body">
-						<div class="col-auto">
-
-							<div class="form-group">
-								<h5 class="text-center">Scegli:</h5>
-								<form:input autocomplete="off" placeholder="Scegli"
-									list="lingueDisponibili"
-									id="linguaModificaCompetenzaLinguistica"
-									path="competenzaLinguistica.lingua" class="form-control mt-2"></form:input>
-								<datalist id="lingueDisponibili">
-									<c:forEach var="competenzaLinguistica"
-										items="${competenzaLinguisticaList}">
-										<option value="${competenzaLinguistica.lingua}"></option>
-									</c:forEach>
-								</datalist>
-							</div>
-
-							<div class="form-group mt-3">
-								<div class="bootstrap-switch-square ">
-									<form:checkbox onchange="hideOrDisplayLevelsInModificaLingua()"
-										data-toggle="switch" name="madrelingua" path="madreLingua"
-										id="madrelinguaModificaCompetenzaLinguistica" value="false" />
-									<label for="madrelingua">Madrelingua ?</label>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<form:input style="visibility: hidden;"
+										path="competenzaLinguistica.id"
+										name="modificaCompetenzaLinguistica"
+										id="idModificaCompetenzaLinguistica" />
+									<div class="form-group">
+										<h5>Inserisci un'altra lingua:</h5>
+										<form:input autocomplete="off" list="lingueDisponibili"
+											id="linguaModificaCompetenzaLinguistica"
+											path="competenzaLinguistica.lingua" class="form-control mt-2"></form:input>
+										<datalist id="lingueDisponibili">
+											<c:forEach var="competenzaLinguistica"
+												items="${competenzaLinguisticaList}">
+												<option value="${competenzaLinguistica.lingua}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label for="madrelingua">Madrelingua:</label>
+										<form:checkbox
+											onchange="hideOrDisplayLevelsInModificaLingua()"
+											data-toggle="switch" name="madrelingua" path="madreLingua"
+											id="madrelinguaModificaCompetenzaLinguistica" value="false" />
+									</div>
 								</div>
 							</div>
 
-
-							<div class="form-row mt-3" id="livelliDiv">
-								<div class="form-group col-4">
-									<label for="letto">Letto</label>
-									<form:select id="idModificaLetto" 
-										path="letto" class="form-control text-center" name="modificaLetto">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="letto">Letto:</label>
+										<form:select id="idModificaLetto" path="letto"
+											class="form-control text-center" name="modificaLetto">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
 
-								<div class="form-group col-4">
-									<label for="scritto">Scritto</label>
-									<form:select id="idModificaScritto" 
-										path="scritto" class="form-control text-center" name="modificaScritto">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+								<div class="col">
+									<div class="form-group">
+										<label for="scritto">Scritto:</label>
+										<form:select id="idModificaScritto" path="scritto"
+											class="form-control text-center" name="modificaScritto">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
-
-								<div class="form-group col-4">
-									<label for="parlato">Parlato</label>
-									<form:select id="idModificaParlato" 
-										path="parlato" class="form-control text-center" name="modificaParlato">
-										<option disabled selected>Livello</option>
-										<option value="A1">A1</option>
-										<option value="A2">A2</option>
-										<option value="B1">B1</option>
-										<option value="B2">B2</option>
-										<option value="C1">C1</option>
-										<option value="C2">C2</option>
-									</form:select>
+								<div class="col">
+									<div class="form-group">
+										<label for="parlato">Parlato:</label>
+										<form:select id="idModificaParlato" path="parlato"
+											class="form-control text-center" name="modificaParlato">
+											<option disabled selected>Livello</option>
+											<option value="A1">A1</option>
+											<option value="A2">A2</option>
+											<option value="B1">B1</option>
+											<option value="B2">B2</option>
+											<option value="C1">C1</option>
+											<option value="C2">C2</option>
+										</form:select>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
 						<button type="submit" class="btn btn-success">Salva</button>
 					</div>
 				</form:form>
-
 			</div>
 		</div>
 	</div>
+	<!-- ===================================================================================================== -->
 
-	<!-- MODAL CANCELLA COMPETENZA LINGUISTICA -->
-	<div class="modal fade" id="eliminaCompetenzaLinguisticaModal"
-		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	<!-- =================================================================================== -->
+	<!-- === MODAL CANCELLA COMPETENZA LINGUISTICA === -->
+	<div class="modal fade" id="eliminaCompetenzaLinguistica" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaCompetenzaLinguistica"
 		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<form
 					action="/ProgettoHR/EliminaCompetenzaLinguistica/${businessUnit}/${id}"
 					method="POST">
 
 					<div class="modal-header">
-						Sei sicuro di voler cancellare la competenza linguistica
-						selezionata? <input style="visibility: hidden;"
+						<h5 class="modal-title">Eliminazione della competenza
+							linguistica:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<input style="visibility: hidden;"
 							name="removeCompetenzaLinguistica"
 							id="removeCompetenzaLinguisticaId" />
+						<p>Sei sicuro di voler cancellare la competenza linguistica
+							selezionata?</p>
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-success">Sì</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<!-- =================================================================================== -->
+	<!-- ----------------------------------------------------------------------------------- -->
 
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE MODIFICANO,AGGIUNGONO E CANCELLANO LA TABELLA QUALIFICATION MEETING === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
 
-
-	<!--  MODAL MODIFICA QUALIFICATION MEETING-->
-	<div class="modal fade" id="modificaQualificationMeetingModal"
-		tabindex="-1" role="dialog" aria-labelledby="modificaModalLabel"
+	<!-- ================================================================================================================================================================================================= -->
+	<!-- === MODAL MODIFICA QUALIFICATION MEETING === -->
+	<div class="modal fade" id="modificaQualificationMeeting" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaQualificationMeeting"
 		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						qualification meeting</h5>
+					<h5 class="modal-title">Modifica il qualification meeting:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="qualificationMeeting"
-							onsubmit="return validateForm('idSubmitModificaQM', 'clienteQualificationMeeting', 'dataPresentatoQualificationMeeting', 'riferimentoGaraQualificationMeeting', 'dataColloquioQualificationMeeting', 'feedbackQualificationMeeting');"
-							action="/ProgettoHR/ModificaQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
 
-							<div style="visibility: hidden"
-								class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+				<form:form method="POST" modelAttribute="qualificationMeeting"
+					onsubmit="return validateForm('idSubmitModificaQM', 'clienteQualificationMeeting', 'dataPresentatoQualificationMeeting', 'riferimentoGaraQualificationMeeting', 'dataColloquioQualificationMeeting', 'feedbackQualificationMeeting');"
+					action="/ProgettoHR/ModificaQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start"></div>
 										<form:input path="id" type="hidden" class="form-control"
 											id="idQualificationMeeting" name="idQualificationMeeting"
 											value=""></form:input>
 									</div>
 								</div>
-							</div>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
+										<label>Cliente:</label>
 										<form:input id="clienteQualificationMeeting" type="text"
 											class="form-control" path="cliente" name="cliente"
 											required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-											di presentazione:</div>
+										<label>Data di presentazione:</label>
 										<form:input id="dataPresentatoQualificationMeeting"
 											type="date" pattern="yyyy-MM-dd" class="form-control"
 											path="dataPresentato" name="dataPresentato"
 											required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Riferimento
-											gara:</div>
+										<label>Riferimento gara:</label>
 										<form:input type="text" class="form-control"
 											id="riferimentoGaraQualificationMeeting"
 											path="riferimentoGara" name="riferimentoGara"
 											required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-											colloquio:</div>
+										<label>Data colloquio:</label>
 										<form:input type="date" pattern="yyyy-MM-dd"
 											class="form-control" id="dataColloquioQualificationMeeting"
 											path="dataColloquio" name="commenti" required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
+										<label>Feedback:</label>
 										<form:textarea class="form-control" maxlength="1000" rows="6"
 											style="resize: none;" id="feedbackQualificationMeeting"
 											path="feedback" name="commenti" required="required"></form:textarea>
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaQM"
-										class="btn btn-primary btn-block">Modifica</button>
-									<button type="reset" class="btn btn-danger btn-block">Annulla
-										modifiche</button>
-								</div>
-							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Annulla
+							modifiche</button>
+						<button type="submit" id="idSubmitModificaQM"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- ================================================================================================================================================================================================= -->
 
-	<!-- MODAL CANCELLA QUALIFICATION MEETING -->
-	<div class="modal fade" id="eliminaQualificationMeetingModal"
-		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	<!-- ============================================================================================================================================================================= -->
+	<!-- MODAL AGGIUNTA QUALIFICATION MEETING -->
+	<div class="modal fade" id="aggiungiQualificationMeeting" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiQualificationmeeting"
 		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-				<form
-					action="/ProgettoHR/EliminaQualificationMeeting/${businessUnit}/${id}"
-					method="POST">
 
-					<div class="modal-header">
-						Sei sicuro di voler cancellare il Qualification meeting
-						selezionato? <input style="visibility: hidden;"
-							name="qualification" id="qualification" />
-					</div>
-
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!-- MODAL CANCELLA FEEDBACK -->
-	<div class="modal fade" id="eliminaFeedbackModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<form action="/ProgettoHR/EliminaFeedback/${businessUnit}/${id}"
-					method="POST">
-
-					<div class="modal-header">
-						Sei sicuro di voler cancellare il feedback selezionato? <input
-							style="visibility: hidden;" name="feedback" id="feedback" />
-					</div>
-
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-success"
-							style="background-color: green;">sì</button>
-						<button type="button" class="btn btn-danger"
-							style="background-color: red;" data-dismiss="modal">no</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!--  MODAL FEEDBACK per MODIFICA FEEDBACK-->
-	<div class="modal fade" id="modificaFeedbackModal" tabindex="-1"
-		role="dialog" aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Modifica
-						feedback</h5>
+					<h5 class="modal-title">Aggiungi un qualification meeting:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="feedback"
-							onsubmit="return validateForm('idSubmitModificaFeedback', 'dataFeedback', 'commentoFeedback')"
-							action="/ProgettoHR/ModificaFeedback/${businessUnit}/${mostraCandidato.id}">
 
-							<div style="visibility: hidden"
-								class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+				<form:form method="POST" modelAttribute="qualificationMeeting"
+					onsubmit="return validateForm('idSubmitAggiungiQM', 'idClienteQM', 'idDataPresentazioneQM', 'idRiferimentoGaraQM', 'idDataColloquioQM', 'idCommentiQM');"
+					action="/ProgettoHR/AggiungiQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start"></div>
+										<label>Cliente:</label>
+										<form:input type="text" class="form-control" id="idClienteQM"
+											path="cliente" name="costoOrario"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Data di presentazione:</label>
+										<form:input type="date" pattern="yyyy-MM-dd"
+											class="form-control" id="idDataPresentazioneQM"
+											path="dataPresentato" name="costoGiornaliero"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Riferimento gara:</label>
+										<form:input type="text" class="form-control"
+											id="idRiferimentoGaraQM" path="riferimentoGara"
+											name="commenti"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Data colloquio:</label>
+										<form:input type="date" pattern="yyyy-MM-dd"
+											class="form-control" id="idDataColloquioQM"
+											path="dataColloquio" name="commenti"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Feedback:</label>
+										<form:textarea maxlength="1000" rows="6" style="resize: none;"
+											class="form-control" id="idCommentiQM" path="feedback"
+											name="commenti"></form:textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-block"
+							data-dismiss="modal">Chiudi</button>
+						<button type="submit" id="idSubmitAggiungiQM"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	<!-- ============================================================================================================================================================================= -->
+
+	<!-- =================================================================================== -->
+	<!-- === MODAL CANCELLA QUALIFICATION MEETING === -->
+	<div class="modal fade" id="eliminaQualificationMeeting" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaQualificationMeeting"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title">Elimina il qualification meeting:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form
+					action="/ProgettoHR/EliminaQualificationMeeting/${businessUnit}/${id}"
+					method="POST">
+					<div class="modal-body">
+						<p>Sei sicuro di voler cancellare il qualification meeting
+							selezionato?</p>
+						<input style="visibility: hidden;" name="qualification"
+							id="qualification" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-success">Sì</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- =================================================================================== -->
+	<!-- ----------------------------------------------------------------------------------- -->
+
+
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE MODIFICANO,AGGIUNGONO E CANCELLANO LA TABELLA FEEDBACK === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+
+	<!-- ====================================================================================================================== -->
+	<!-- === MODAL AGGIUNTA FEEDBACK === -->
+	<div class="modal fade" id="aggiungiFeedback" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiFeedback"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title">Aggiungi un feedback:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form:form method="POST" modelAttribute="feedback"
+					onsubmit="return validateForm('idSubmitAggiungiFeedback', 'idDataFeedback', 'idCommentoFeedback')"
+					action="/ProgettoHR/AggiungiFeedback/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
+									<div class="form-group">
+										<label>Tipo:</label>
+										<form:input readOnly="true" path="tipo.tipo" type="text"
+											class="form-control" id="tipoAggiungiFeedback"
+											name="tipoFeedback" value=""></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Data:</label>
+										<form:input path="data" type="date" pattern="yyyy-MM-dd"
+											class="form-control" id="idDataFeedback" name="data"></form:input>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label>Feedback:</label>
+										<form:textarea path="commento" maxlength="1000" rows="6"
+											style="resize: none;" class="form-control"
+											id="idCommentoFeedback" name="feedback"></form:textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-block"
+							data-dismiss="modal">Chiudi</button>
+						<button type="submit" id="idSubmitAggiungiFeedback"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	<!-- ====================================================================================================================== -->
+
+	<!-- ============================================================================================================ -->
+	<!-- === MODAL MODIFICA FEEDBACK === -->
+	<div class="modal fade" id="modificaFeedback" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaFeedback"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title">Modifica il feedback:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form:form method="POST" modelAttribute="feedback"
+					onsubmit="return validateForm('idSubmitModificaFeedback', 'dataFeedback', 'commentoFeedback')"
+					action="/ProgettoHR/ModificaFeedback/${businessUnit}/${mostraCandidato.id}">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row d-flex flex-column">
+								<div class="col">
+									<div class="form-group">
 										<form:input path="id" type="hidden" class="form-control"
 											id="idFeedback" name="idFeedback" value=""></form:input>
 									</div>
 								</div>
-							</div>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
+										<label>Tipo:</label>
 										<form:select id="tipoModificaFeedback"
 											class="form-control text-center" name="tipoFeedback"
 											path="tipo.tipo">
@@ -2533,230 +2676,152 @@ ul ul a {
 										</form:select>
 									</div>
 								</div>
-							</div>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
+										<label>Data:</label>
 										<form:input id="dataFeedback" path="data" type="date"
 											pattern="yyyy-MM-dd" class="form-control" name="data"
 											required="required"></form:input>
 									</div>
 								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
+								<div class="col">
 									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
+										<label>Feedback:</label>
 										<form:textarea id="commentoFeedback" path="commento"
 											maxlength="1000" rows="6" style="resize: none;"
 											class="form-control" name="feedback" required="required"></form:textarea>
 									</div>
 								</div>
 							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitModificaFeedback"
-										class="btn btn-primary btn-block">Salva</button>
-									<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-								</div>
-							</div>
-						</form:form>
+						</div>
 					</div>
-				</div>
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-danger btn-block">Chiudi</button>
+						<button type="submit" id="idSubmitModificaFeedback"
+							class="btn btn-primary btn-block">Salva</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
+	<!-- =============================================================================================================== -->
 
-	<!-- Modal AGGIUNTA FILE -->
-	<div class="modal fade" id="allegatiModal" tabindex="-1" role="dialog"
-		aria-labelledby="modificaModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modificaModalLabel">Allegati</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form method="post"
-							action="/ProgettoHR/doUpload/${businessUnit}/${mostraCandidato.id}"
-							enctype="multipart/form-data"
-							onsubmit="return validateFileForm()">
-							<table>
-								<tr>
-									<td>Pick file:</td>
-									<td><input type="file" name="fileUpload" id="fileUpload"
-										size="50" required="required" /></td>
-								</tr>
-
-							</table>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" class="btn btn-primary btn-block">Aggiungi
-										Allegati</button>
-
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- MODAL FEEDBACK per AGGIUNTA FEEDBACK -->
-	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog"
-		aria-labelledby="feedbackModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="feedback"
-							onsubmit="return validateForm('idSubmitAggiungiFeedback', 'idDataFeedback', 'idCommentoFeedback')"
-							action="/ProgettoHR/AggiungiFeedback/${businessUnit}/${mostraCandidato.id}">
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Tipo</div>
-										<form:input readOnly="true" path="tipo.tipo" type="text"
-											class="form-control" id="tipoAggiungiFeedback"
-											name="tipoFeedback" value=""></form:input>
-									</div>
-								</div>
-							</div>
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data:</div>
-										<form:input path="data" type="date" pattern="yyyy-MM-dd"
-											class="form-control" id="idDataFeedback" name="data"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea path="commento" maxlength="1000" rows="6"
-											style="resize: none;" class="form-control"
-											id="idCommentoFeedback" name="feedback"></form:textarea>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiFeedback"
-										class="btn btn-primary btn-block">Aggiungi Feedback</button>
-								</div>
-							</div>
-						</form:form>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- MODAL  per AGGIUNTA QUALIFICATION MEETING -->
-	<div class="modal fade" id="qualificationMeetingModal" tabindex="-1"
-		role="dialog" aria-labelledby="qualificationMeetingModalLabel"
+	<!-- =================================================================================== -->
+	<!-- === MODAL CANCELLA FEEDBACK === -->
+	<div class="modal fade" id="eliminaFeedback" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaFeedback"
 		aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
-					<h5 class="modal-title" id="qualificationMeetingModalLabel">Qualification
-						Meeting</h5>
+					<h5 class="modal-title">Elimina il feedback:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form:form method="POST" modelAttribute="qualificationMeeting"
-							onsubmit="return validateForm('idSubmitAggiungiQM', 'idClienteQM', 'idDataPresentazioneQM', 'idRiferimentoGaraQM', 'idDataColloquioQM', 'idCommentiQM');"
-							action="/ProgettoHR/AggiungiQualificationMeeting/${businessUnit}/${mostraCandidato.id}">
-
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Cliente:</div>
-										<form:input type="text" class="form-control" id="idClienteQM"
-											path="cliente" name="costoOrario"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-											di presentazione:</div>
-										<form:input type="date" pattern="yyyy-MM-dd"
-											class="form-control" id="idDataPresentazioneQM"
-											path="dataPresentato" name="costoGiornaliero"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Riferimento
-											gara:</div>
-										<form:input type="text" class="form-control"
-											id="idRiferimentoGaraQM" path="riferimentoGara"
-											name="commenti"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Data
-											colloquio:</div>
-										<form:input type="date" pattern="yyyy-MM-dd"
-											class="form-control" id="idDataColloquioQM"
-											path="dataColloquio" name="commenti"></form:input>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<div class="form-group">
-										<div class="row w-100 p-0 m-0 justify-content-md-start">Feedback:</div>
-										<form:textarea maxlength="1000" rows="6" style="resize: none;"
-											class="form-control" id="idCommentiQM" path="feedback"
-											name="commenti"></form:textarea>
-									</div>
-								</div>
-							</div>
-							<div class="row w-100 p-2 m-0 justify-content-md-start">
-								<div class="col w-100 p-0 justify-content-md-start">
-									<button type="submit" id="idSubmitAggiungiQM"
-										class="btn btn-primary btn-block">Aggiungi
-										Qualification Meeting</button>
-								</div>
-							</div>
-						</form:form>
+				<form action="/ProgettoHR/EliminaFeedback/${businessUnit}/${id}"
+					method="POST">
+					<div class="modal-body">
+						<p>Sei sicuro di voler cancellare il feedback selezionato?</p>
+						<input style="visibility: hidden;" name="feedback" id="feedback" />
 					</div>
 
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-success">Sì</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	<!-- ==================================================================================== -->
+	<!-- ------------------------------------------------------------------------------------ -->
 
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<!-- === GRUPPO DI MODAL CHE AGGIUNGONO E CANCELLANO LA TABELLA ALLEGATI === -->
+	<!-- ------------------------------------------------------------------------------------------------- -->
+
+	<!-- ============================================================================================ -->
+	<!-- === MODAL AGGIUNGI ALLEGATO === -->
+	<div class="modal fade" id="aggiungiAllegato" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiAllegato"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title">Aggiungi un allegato:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form method="post"
+					action="/ProgettoHR/doUpload/${businessUnit}/${mostraCandidato.id}"
+					enctype="multipart/form-data" onsubmit="return validateFileForm()">
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<label>Pick file:</label> <input type="file" name="fileUpload"
+										id="fileUpload" size="50" required="required" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary btn-block">Salva</button>
+						<button type="button" class="btn btn-danger btn-block"
+							data-dismiss="modal">Chiudi</button>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- =============================================================================================== -->
+
+	<!-- ================================================================================================== -->
+	<!-- MODAL CANCELLA ALLEGATO -->
+	<div class="modal fade" id="eliminaAllegato" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaAllegato"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5>Elimina l'allegato:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form
+					action="/ProgettoHR/delete/${businessUnit}/${mostraCandidato.id}"
+					method="GET">
+					<div class="modal-body">
+						<p>Sei sicuro di voler cancellare l'allegato selezionato?</p>
+						<div style="visibility: hidden;">
+							<input name="idAllegato" id="Allegato" />
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-success">Sì</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- ================================================================================================== -->
+	<!-- -------------------------------------------------------------------------------------------------- -->
+
+	<!-- ===================================================================== -->
 	<!-- MODAL ERRORE -->
 	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2777,26 +2842,28 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	<!-- ===================================================================== -->
 
+	<!-- ================================================================================================================================================================================== -->
 	<script type="text/javascript">
 	
 		function changeStato( stato, feedback, categoriaProtetta, qualificationMeeting, allegati, costi, economics, titoloStudio, competenzaLinguistica) {
-			if(document.getElementById("menuStato")!= null){
+			if(document.getElementById("btn-stato")!= null){
 			if (stato === "Nuovo inserito") {
-				document.getElementById("menuStato").className = "btn btn-secondary dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Nuovo inserito";
+				document.getElementById("btn-stato").className = "btn btn-secondary dropdown-toggle";
+				document.getElementById("btn-stato").innerHTML = "Nuovo inserito";
 			} else if (stato === "Da contattare") {
-				document.getElementById("menuStato").className = "btn btn-warning dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Da contattare";
+				document.getElementById("btn-stato").className = "btn btn-warning dropdown-toggle";
+				document.getElementById("btn-stato").innerHTML = "Da contattare";
 			} else if (stato === "Scartato") {
-				document.getElementById("menuStato").className = "btn btn-danger dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Scartato";
+				document.getElementById("btn-stato").className = "btn btn-danger dropdown-toggle";
+				document.getElementById("btn-stato").innerHTML = "Scartato";
 			} else if (stato === "Attivo") {
-				document.getElementById("menuStato").className = "btn btn-success dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Attivo";
+				document.getElementById("btn-stato").className = "btn btn-success dropdown-toggle";
+				document.getElementById("btn-stato").innerHTML = "Attivo";
 			} else if (stato === "Selezionato") {
-				document.getElementById("menuStato").className = "btn btn-primary dropdown-toggle";
-				document.getElementById("menuStato").innerHTML = "Selezionato";
+				document.getElementById("btn-stato").className = "btn btn-primary dropdown-toggle";
+				document.getElementById("btn-stato").innerHTML = "Selezionato";
 			}
 		}
 			removeFeedbackTable(feedback);
@@ -2954,7 +3021,8 @@ ul ul a {
 		}
 		
 		
-		function impostaParametriModificaCompetenzaLinguistica(lingua, madrelingua, letto, scritto, parlato){
+		function impostaParametriModificaCompetenzaLinguistica(id, lingua, madrelingua, letto, scritto, parlato){
+			document.getElementById("idModificaCompetenzaLinguistica").value = id;
 			document.getElementById("linguaModificaCompetenzaLinguistica").value = lingua;
 			
 			if(madrelingua == "true"){
@@ -3338,6 +3406,16 @@ ul ul a {
 			document.getElementById("errorModalBody").innerHTML = "Email non inserito in modo corretto"
 			return false
 		}
+		function openMenu() {
+			  document.getElementById("sidebar").style.width = "500px";
+			  document.getElementById("header").style.marginLeft = "250px";
+			}
+
+		function closeMenu() {	
+			  document.getElementById("sidebar").style.width = "0";			 
+			  document.getElementById("header").style.marginLeft = "0";
+			  
+			}
 	</script>
 
 	<!-- Popper.JS -->
