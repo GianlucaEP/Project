@@ -1123,7 +1123,7 @@ TABELLA COMPETENZE LINGUISTICHE
 										<th colspan=2></th>
 									</tr>
 								</thead>
-								<tbody class="body">
+								<tbody class="body" id="competenzaLinguisticaBodyTable">
 									<c:forEach var="item"
 										items="${mostraCandidato.candidatoCompetenzaLingustica}">
 										<c:choose>
@@ -2122,6 +2122,7 @@ TABELLA COMPETENZE LINGUISTICHE
 
 				<form:form method="POST"
 					modelAttribute="candidatoCompetenzaLinguistica"
+					onsubmit="return validateCompetenzaLinguisticaForm('linguaInput')"
 					action="/ProgettoHR/AggiungiCompetenzaLinguistica/${businessUnit}/${mostraCandidato.id}">
 
 					<div class="modal-body">
@@ -2146,7 +2147,7 @@ TABELLA COMPETENZE LINGUISTICHE
 									<div class="form-group">
 										<label for="madrelingua">Madrelingua:</label>
 										<form:checkbox
-											onchange="hideOrDisplayLevelsInAggiungiLingua()"
+											onchange="hideOrDisplayLevels('madrelingua', 'idLetto', 'idScritto', 'idParlato')"
 											data-toggle="switch" name="madrelingua" path="madreLingua"
 											id="madrelingua" value="false" />
 									</div>
@@ -2259,7 +2260,7 @@ TABELLA COMPETENZE LINGUISTICHE
 									<div class="form-group">
 										<label for="madrelingua">Madrelingua:</label>
 										<form:checkbox
-											onchange="hideOrDisplayLevelsInModificaLingua()"
+											onchange="hideOrDisplayLevels('madrelinguaModificaCompetenzaLinguistica', 'idModificaLetto', 'idModificaScritto', 'idModificaParlato')"
 											data-toggle="switch" name="madrelingua" path="madreLingua"
 											id="madrelinguaModificaCompetenzaLinguistica" value="false" />
 									</div>
@@ -2725,7 +2726,7 @@ TABELLA COMPETENZE LINGUISTICHE
 					method="POST">
 					<div class="modal-body">
 						<p>Sei sicuro di voler cancellare il feedback selezionato?</p>
-						<input style="visibility: hidden;" name="feedback" id="feedback" />
+						<input style="visibility: hidden;" name="removeFeedback" id="removeFeedback"/>
 					</div>
 
 					<div class="modal-footer">
@@ -2967,7 +2968,7 @@ TABELLA COMPETENZE LINGUISTICHE
 		}
 		
 		function impostaParametriEliminaFeedback(id) {
-			document.getElementById("feedback").value = id;
+			document.getElementById("removeFeedback").value = id;
 		}
 		
 		function impostaParametriAllegati(id) {
@@ -2987,34 +2988,20 @@ TABELLA COMPETENZE LINGUISTICHE
 		
 		
 		//GESTIONE COMPETENZA LINGUISTICA
-		function hideOrDisplayLevelsInAggiungiLingua(){
-			if(document.getElementById("madrelingua").checked){
-				document.getElementById("idLetto").disabled = true;
-				document.getElementById("idScritto").disabled = true;
-				document.getElementById("idParlato").disabled = true;
+		function hideOrDisplayLevels(madrelingua, letto, scritto, parlato){
+			if(document.getElementById(madrelingua).checked){
+				document.getElementById(letto).disabled = true;
+				document.getElementById(scritto).disabled = true;
+				document.getElementById(parlato).disabled = true;
 			}
 			else{
-				document.getElementById("idLetto").disabled = false;
-				document.getElementById("idScritto").disabled = false;
-				document.getElementById("idParlato").disabled = false;
+				document.getElementById(letto).disabled = false;
+				document.getElementById(scritto).disabled = false;
+				document.getElementById(parlato).disabled = false;
 				
 			}
 		}
-		
-		function hideOrDisplayLevelsInModificaLingua(){
-			if(document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked){
-				document.getElementById("idModificaLetto").disabled = true;
-				document.getElementById("idModificaScritto").disabled = true;
-				document.getElementById("idModificaParlato").disabled = true;
-			}
-			else{
-				document.getElementById("idModificaLetto").disabled = false;
-				document.getElementById("idModificaScritto").disabled = false;
-				document.getElementById("idModificaParlato").disabled = false;
-				
-			}
-		}
-		
+			
 		
 		function impostaParametriEliminaCompetenzaLinguistica(id){
 			document.getElementById("removeCompetenzaLinguisticaId").value = id;
@@ -3027,7 +3014,7 @@ TABELLA COMPETENZE LINGUISTICHE
 			
 			if(madrelingua == "true"){
 				document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked = true;
-				hideOrDisplayLevelsInModificaLingua();
+				hideOrDisplayLevels("madrelinguaModificaCompetenzaLinguistica", "idModificaLetto", "idModificaScritto", "idModificaParlato");
 				document.getElementById("idModificaLetto").value = "Livello";
 				document.getElementById("idModificaScritto").value = "Livello";
 				document.getElementById("idModificaParlato").value = "Livello";
@@ -3035,7 +3022,7 @@ TABELLA COMPETENZE LINGUISTICHE
 			
 			else{
 				document.getElementById("madrelinguaModificaCompetenzaLinguistica").checked = false;
-				hideOrDisplayLevelsInModificaLingua();
+				hideOrDisplayLevels("madrelinguaModificaCompetenzaLinguistica", "idModificaLetto", "idModificaScritto", "idModificaParlato");
 				document.getElementById("idModificaLetto").value = letto;
 				document.getElementById("idModificaScritto").value = scritto;
 				document.getElementById("idModificaParlato").value = parlato;
@@ -3391,9 +3378,21 @@ TABELLA COMPETENZE LINGUISTICHE
 			 
 			 document.getElementById(idSubmit).disabled = "true";
 				return true;
-			 
-			
 		}
+		
+		function validateCompetenzaLinguisticaForm(linguaInput){
+			let livelli = document.getElementById("competenzaLinguisticaBodyTable").children;
+			for(let i=0; i<livelli.length; i++){
+				let lingua = livelli[i].children[0].innerText;
+				if(lingua.includes(document.getElementById(linguaInput).value)){
+					 $('#errorModal').modal('toggle');
+						document.getElementById("errorModalBody").innerHTML = "Lingua già inserita"
+					return false;
+				}
+			}
+			return true;
+		}
+		
 		
 		
 		function validateEmail(){

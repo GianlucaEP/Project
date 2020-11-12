@@ -34,6 +34,7 @@ public class CompetenzaLinguisticaController {
 	private CandidatoCompetenzaLinguisticaDAO candidatoCompetenzaLinguisticaDAO = (CandidatoCompetenzaLinguisticaDAO) factory
 			.getBean("candidatoCompetenzaLinguisticaDAO");
 	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
+	
 
 	// AGGIUNGO TITOLO DI STUDIO AL CANDIDATO
 	@RequestMapping(value = "/AggiungiCompetenzaLinguistica/{businessUnit}/{id}", method = RequestMethod.POST)
@@ -45,21 +46,9 @@ public class CompetenzaLinguisticaController {
 
 		List<CandidatoCompetenzaLinguistica> compList = new ArrayList<CandidatoCompetenzaLinguistica>();
 		compList = candidato.getCandidatoCompetenzaLingustica();
-
-		//PRIMA CONTROLLO CHE LA LINGUA INSERITA CI SIA GIA IN DATABASE
-		CompetenzaLinguistica competenzaLinguisticaTemp = competenzaLinguisticaDAO
-				.getByName(comp.getCompetenzaLinguistica().getLingua().toUpperCase());
 		
-		//SE LA LINGUA NON è PRESENTE IN DATABASE LA AGGIUNGO
-		if (competenzaLinguisticaTemp == null) {
-			competenzaLinguisticaTemp = comp.getCompetenzaLinguistica();
-			competenzaLinguisticaTemp = competenzaLinguisticaDAO.inserisci(competenzaLinguisticaTemp);
-			//AGGIORNO IL SINGLETON DELLA LISTA DELLE COMPETENZE LINGUISTICHE PER AGGIUNGERE AL PROGRAMMA IN SESSIONE LA NUOVA COMPETENZA LINGUISTICA
-			Singleton singleton = Singleton.getInstance();
-			singleton.aggiornaCompetenzaLinguistica();
-		} 
-
-		//INFINE INSERISCO LA COMPETENZA LINGUISTICA E AGGIORNO IL CANDIDATO
+		CompetenzaLinguistica competenzaLinguisticaTemp = getCompetenzaLinguistica(comp.getCompetenzaLinguistica());
+		
 		comp.setCompetenzaLinguistica(competenzaLinguisticaTemp);
 		comp.setCandidato(candidato);
 		compList.add(comp);
@@ -79,13 +68,26 @@ public class CompetenzaLinguisticaController {
 		Candidato candidato = candidatoDAO.get(id);
 
 		List<CandidatoCompetenzaLinguistica> compList = new ArrayList<CandidatoCompetenzaLinguistica>();
-		compList = candidato.getCandidatoCompetenzaLingustica();
-
-		//PRIMA CONTROLLO CHE LA LINGUA INSERITA CI SIA GIA IN DATABASE
-		CompetenzaLinguistica competenzaLinguisticaTemp = competenzaLinguisticaDAO
-				.getByName(comp.getCompetenzaLinguistica().getLingua().toUpperCase());
 		
+		int removeCompetenzaLinguisticaId = comp.getCompetenzaLinguistica().getId();
 		
+		compList = candidato.getCandidatoCompetenzaLingustica().stream()
+				.filter(c -> c.getCompetenzaLinguistica().getId() != removeCompetenzaLinguisticaId)
+				.collect(Collectors.toList());
+		
+		Optional<CandidatoCompetenzaLinguistica> compTemp =  candidato.getCandidatoCompetenzaLingustica().stream()
+				.filter(c -> c.getCompetenzaLinguistica().getId() == removeCompetenzaLinguisticaId)
+				.findFirst();
+		
+		candidatoCompetenzaLinguisticaDAO.cancella(compTemp.get()); 
+		
+		CompetenzaLinguistica competenzaLinguisticaTemp = getCompetenzaLinguistica(comp.getCompetenzaLinguistica());
+		comp.setCompetenzaLinguistica(competenzaLinguisticaTemp);
+		comp.setCandidato(candidato);
+		compList.add(comp);
+		candidato.setCandidatoCompetenzaLingustica(compList);
+		
+		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 
@@ -108,22 +110,22 @@ public class CompetenzaLinguisticaController {
 		}
 		
 		
-//		public CompetenzaLinguistica getCompetenzaLinguistica(CandidatoCompetenzaLinguistica comp) {
-//			
-//			CompetenzaLinguistica competenzaLinguisticaTemp = competenzaLinguisticaDAO
-//					.getByName(comp.getCompetenzaLinguistica().getLingua().toUpperCase());
-//			
-//			//SE LA LINGUA NON è PRESENTE IN DATABASE LA AGGIUNGO
-//			if (competenzaLinguisticaTemp == null) {
-//				competenzaLinguisticaTemp = comp.getCompetenzaLinguistica();
-//				competenzaLinguisticaTemp = competenzaLinguisticaDAO.inserisci(competenzaLinguisticaTemp);
-//				//AGGIORNO IL SINGLETON DELLA LISTA DELLE COMPETENZE LINGUISTICHE PER AGGIUNGERE AL PROGRAMMA IN SESSIONE LA NUOVA COMPETENZA LINGUISTICA
-//				Singleton singleton = Singleton.getInstance();
-//				singleton.aggiornaCompetenzaLinguistica();
-//			} 
-//			
-//			return competenzaLinguisticaTemp;
-//
-//			
-//		}
+		public CompetenzaLinguistica getCompetenzaLinguistica(CompetenzaLinguistica comp) {
+			
+			CompetenzaLinguistica competenzaLinguisticaTemp = competenzaLinguisticaDAO
+					.getByName(comp.getLingua().toUpperCase());
+			
+			//SE LA LINGUA NON è PRESENTE IN DATABASE LA AGGIUNGO
+			if (competenzaLinguisticaTemp == null) {
+				competenzaLinguisticaTemp = comp;
+				competenzaLinguisticaTemp = competenzaLinguisticaDAO.inserisci(competenzaLinguisticaTemp);
+				//AGGIORNO IL SINGLETON DELLA LISTA DELLE COMPETENZE LINGUISTICHE PER AGGIUNGERE AL PROGRAMMA IN SESSIONE LA NUOVA COMPETENZA LINGUISTICA
+				Singleton singleton = Singleton.getInstance();
+				singleton.aggiornaCompetenzaLinguistica();
+			} 
+			
+			return competenzaLinguisticaTemp;
+
+			
+		}
 }

@@ -64,7 +64,7 @@ public class FeedbackController {
 	}
 	
 	@RequestMapping(value = "/EliminaFeedback/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String elimina(@RequestParam("feedback") int idFeedback, @PathVariable String businessUnit, @PathVariable int id ) {
+	public String elimina(@RequestParam("removeFeedback") int idFeedback, @PathVariable String businessUnit, @PathVariable int id ) {
 		
 		Feedback f = feedbackDAO.get(idFeedback);
 		
