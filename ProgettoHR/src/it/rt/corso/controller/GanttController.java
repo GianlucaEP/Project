@@ -49,9 +49,9 @@ public class GanttController {
 	 * */
 	@RequestMapping("/ExcelGantt/{businessUnit}")
 	public String getExcel(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,@RequestParam List<String> data,
-			HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+			@RequestParam List<String> costi,@RequestParam String days,HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
 	
-        CreateGanttExcel.downloadExcel(request, response, data);
+         CreateGanttExcel.downloadExcel(request, response, data, costi, days);
 
 		return null;
 	}

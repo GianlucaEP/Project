@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -38,6 +38,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import it.rt.corso.beans.Cost;
 import it.rt.corso.beans.Task;
 
 /**
@@ -51,6 +52,13 @@ public abstract class CreateGanttExcel {
 	private static LocalDate startingDate;
 	private static LocalDate finishingDate;
 	private static long daysBetween;
+	private static String totalDays;
+
+	/**
+	 * Saves a list of <code>XSSFColor</code> type objects used to color the
+	 * timeline.
+	 */
+	private static List<XSSFColor> usedColorList = new ArrayList<XSSFColor>();
 
 	/**
 	 * 
@@ -96,6 +104,37 @@ public abstract class CreateGanttExcel {
 
 	/**
 	 * 
+	 * Build <code>Cost</code> type objects from a given String.
+	 * 
+	 * @param costs String that have to be worked in order to obtain the
+	 *              <code>Cost</code> objects
+	 * 
+	 * @return A List of <code>Cost</code> type objects.
+	 * 
+	 */
+	private static List<Cost> buildCostDataExcel(List<String> costs) {
+
+		List<Cost> costsList = new ArrayList<Cost>();
+
+		for (int i = 0; i < costs.size(); i++) {
+			Cost cost = new Cost();
+
+			cost.setCost(costs.get(i));
+			i++;
+			cost.setInflation(costs.get(i));
+			i++;
+			cost.setPrice(costs.get(i));
+			i++;
+			cost.setPartial(costs.get(i));
+
+			costsList.add(cost);
+		}
+
+		return costsList;
+	}
+
+	/**
+	 * 
 	 * Set startingDate and finishingDate dates based on the lower value for
 	 * dataInizio and greater value for dataFine got by the List of
 	 * <code>Task</code> type objects.
@@ -130,16 +169,26 @@ public abstract class CreateGanttExcel {
 	 * @throws ParseException
 	 * 
 	 */
-	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data)
+	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data, List<String> costs)
 			throws IOException, ParseException {
 
 		List<Task> taskList = buildDataExcel(data);
 
 		XSSFSheet sheet = workbook.createSheet();
+		
+		workbook.setSheetName(0, "Gantt");
 
 		sheet.createFreezePane(5, 0, 5, 0);
 
+		List<Cost> costList = buildCostDataExcel(costs);
+
 		writeHeadersGantt(workbook, sheet, taskList);
+
+		XSSFSheet sheetCosts = workbook.createSheet();
+		
+		workbook.setSheetName(1, "Costs");
+
+		writeCostTable(workbook, sheetCosts, costList, taskList);
 
 		return workbook;
 
@@ -208,33 +257,13 @@ public abstract class CreateGanttExcel {
 
 		daysBetween = ChronoUnit.DAYS.between(startingDate, finishingDate);
 
-		XSSFCellStyle dateCellStyle = workbook.createCellStyle();
-
-		dateCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		dateCellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
-		dateCellStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
-		dateCellStyle.setAlignment(HorizontalAlignment.CENTER);
-		dateCellStyle.setBorderBottom(BorderStyle.THIN);
-		dateCellStyle.setBorderTop(BorderStyle.THIN);
-		dateCellStyle.setBorderRight(BorderStyle.THIN);
-		dateCellStyle.setBorderLeft(BorderStyle.THIN);
-
-		CreationHelper createHelper = workbook.getCreationHelper();
-		dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd"));
-
 		writeYearsInHeader(workbook, sheet, headerCell, header);
 
 		writeMonthsInHeader(workbook, sheet, headerCell, headerMonth);
 
 		setBordersToMergedCells(workbook, sheet);
 
-		for (int i = 0; i <= daysBetween; i++) {
-			sheet.setColumnWidth((5 + i), 800);
-
-			headerCell = headerDates.createCell(5 + i);
-			headerCell.setCellValue(startingDate.plusDays(i).getDayOfMonth());
-			headerCell.setCellStyle(dateCellStyle);
-		} // print days numbers row
+		writeDaysInHeader(workbook, sheet, headerCell, headerDates);
 
 		writeDataTableGantt(workbook, sheet, taskList);
 		drawTimelineGantt(workbook, sheet, taskList);
@@ -381,10 +410,36 @@ public abstract class CreateGanttExcel {
 
 	}
 
+	private static void writeDaysInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
+			XSSFRow headerDates) {
+
+		XSSFCellStyle dateCellStyle = workbook.createCellStyle();
+
+		dateCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		dateCellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+		dateCellStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+		dateCellStyle.setAlignment(HorizontalAlignment.CENTER);
+		dateCellStyle.setBorderBottom(BorderStyle.THIN);
+		dateCellStyle.setBorderTop(BorderStyle.THIN);
+		dateCellStyle.setBorderRight(BorderStyle.THIN);
+		dateCellStyle.setBorderLeft(BorderStyle.THIN);
+
+		CreationHelper createHelper = workbook.getCreationHelper();
+		dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd"));
+
+		for (int i = 0; i <= daysBetween; i++) {
+			sheet.setColumnWidth((5 + i), 800);
+
+			headerCell = headerDates.createCell(5 + i);
+			headerCell.setCellValue(startingDate.plusDays(i).getDayOfMonth());
+			headerCell.setCellStyle(dateCellStyle);
+		} // print days numbers row
+	}
+
 	/**
 	 * 
 	 * Write the data form the given List of <code>Task</code> type objects on the
-	 * left side of the sheets.
+	 * left side of the sheet.
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * @param sheet    the sheet contained in the given workbook, instantiated in
@@ -394,43 +449,68 @@ public abstract class CreateGanttExcel {
 	 */
 	private static void writeDataTableGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
 
-		CellStyle cellStyle = workbook.createCellStyle();
+		XSSFCellStyle dateCell = workbook.createCellStyle();
 		CreationHelper createHelper = workbook.getCreationHelper();
-		cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+		dateCell.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+		dateCell.setAlignment(HorizontalAlignment.CENTER);
+		dateCell.setBorderBottom(BorderStyle.THIN);
+		dateCell.setBorderTop(BorderStyle.THIN);
+		dateCell.setBorderRight(BorderStyle.THIN);
+		dateCell.setBorderLeft(BorderStyle.THIN);
+
+		XSSFCellStyle dataCellStyle = workbook.createCellStyle();
+
+		dataCellStyle.setAlignment(HorizontalAlignment.CENTER);
+		dataCellStyle.setBorderBottom(BorderStyle.THIN);
+		dataCellStyle.setBorderTop(BorderStyle.THIN);
+		dataCellStyle.setBorderRight(BorderStyle.THIN);
+		dataCellStyle.setBorderLeft(BorderStyle.THIN);
 
 		for (Task task : taskList) {
 			XSSFRow taskRow = sheet.createRow(taskList.indexOf(task) + 3);
 			XSSFCell headerCell = taskRow.createCell(0);
 			headerCell.setCellValue(taskList.indexOf(task) + 1);
+			headerCell.setCellStyle(dataCellStyle);
 
 			headerCell = taskRow.createCell(1);
 			headerCell.setCellValue(task.getNomeTask());
+			headerCell.setCellStyle(dataCellStyle);
 
 			headerCell = taskRow.createCell(2);
 			headerCell.setCellValue(task.getDataInizio());
-			headerCell.setCellStyle(cellStyle);
+			headerCell.setCellStyle(dateCell);
 
 			headerCell = taskRow.createCell(3);
 			headerCell.setCellValue(task.getDataFine());
-			headerCell.setCellStyle(cellStyle);
+			headerCell.setCellStyle(dateCell);
 
 			headerCell = taskRow.createCell(4);
 			int sumIndex = taskList.indexOf(task) + 4;
 			String strFormula = "D" + sumIndex + "-C" + sumIndex + "";
 			headerCell.setCellFormula(strFormula);
+			headerCell.setCellStyle(dataCellStyle);
+
 		}
 
+		XSSFRow totalRow = sheet.createRow(taskList.size() + 3);
+		XSSFCell totalCell = totalRow.createCell(3);
+		totalCell.setCellValue("Total Days");
+		totalCell.setCellStyle(dataCellStyle);
+
+		totalCell = totalRow.createCell(4);
+		totalCell.setCellValue(new BigDecimal(totalDays).doubleValue());
+		totalCell.setCellStyle(dataCellStyle);
 	}
 
-	
 	/**
 	 * 
-	 * Color cells with random colors to create a timeline correspondinf to days(cells) for task(rows) in the given workbook
+	 * Color cells with random colors to create a timeline corresponding to
+	 * days(cells) for task(rows) in the given workbook
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * @param sheet    the sheet contained in the given workbook, instantiated in
 	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
-	 * */
+	 */
 	private static void drawTimelineGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
 
 		for (Task task : taskList) {
@@ -444,7 +524,8 @@ public abstract class CreateGanttExcel {
 
 			Random rand = new Random();
 
-			// Generate random integers in range 0 to 255
+			// Generate random integers in range 0 to 255 to generate a random RGB scale
+			// color
 			int randomRGB1 = rand.nextInt(255);
 			int randomRGB2 = rand.nextInt(255);
 			int randomRGB3 = rand.nextInt(255);
@@ -454,6 +535,8 @@ public abstract class CreateGanttExcel {
 			rgb[2] = (byte) randomRGB3; // blue
 			// create XSSFColor
 			XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+			usedColorList.add(color);
 
 			for (int i = 0; i <= diffDaysTask; i++) {
 
@@ -470,13 +553,148 @@ public abstract class CreateGanttExcel {
 	}
 
 	/**
+	 * 
+	 * Write the header for the costs table in the second sheet of the given
+	 * workbook.
+	 * 
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
+	 * @param sheet    the sheet contained in the given workbook, instantiated in
+	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
+	 * @param costList <code>List</code> of Cost type objects used to write the
+	 *                 table.
+	 * @param costList <code>List</code> of Task type objects used to write the
+	 *                 table.
+	 */
+	private static void writeCostTable(XSSFWorkbook workbook, XSSFSheet sheet, List<Cost> costList,
+			List<Task> taskList) {
+		XSSFRow headerRow = sheet.createRow(0);
+
+		XSSFCellStyle cellStyle = workbook.createCellStyle();
+
+		cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+		cellStyle.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+		cellStyle.setBorderBottom(BorderStyle.THIN);
+		cellStyle.setBorderTop(BorderStyle.THIN);
+		cellStyle.setBorderRight(BorderStyle.THIN);
+		cellStyle.setBorderLeft(BorderStyle.THIN);
+
+		XSSFCell headerCell = headerRow.createCell(0);
+		headerCell.setCellValue("Task");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = headerRow.createCell(1);
+		headerCell.setCellValue("Resource");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = headerRow.createCell(2);
+		headerCell.setCellValue("Cost");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = headerRow.createCell(3);
+		headerCell.setCellValue("Inflation");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = headerRow.createCell(4);
+		headerCell.setCellValue("Price");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = headerRow.createCell(5);
+		headerCell.setCellValue("Partial");
+		headerCell.setCellStyle(cellStyle);
+
+		writeCostTableData(workbook, sheet, costList, taskList);
+	}
+
+	/**
+	 * 
+	 * Write the data for the costs table in the second sheet of the given
+	 * workbook.The list of <code>XSSFColor</code> {@link #usedColorList} is used in this method to set the color
+	 * for cells containing the task name with the corresponding color used to draw
+	 * the timeline of that task
+	 * 
+	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
+	 * @param sheet    the sheet contained in the given workbook, instantiated in
+	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
+	 * @param costList <code>List</code> of <code>Cost</code> type objects used to
+	 *                 write the table.
+	 * @param costList <code>List</code> of <code>Task</code> type objects used to
+	 *                 write the table.
+	 */
+	private static void writeCostTableData(XSSFWorkbook workbook, XSSFSheet sheet, List<Cost> costList,
+			List<Task> taskList) {
+		int totalCost = 0;
+
+		XSSFCellStyle cellStyle = workbook.createCellStyle();
+
+		cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		cellStyle.setBorderBottom(BorderStyle.THIN);
+		cellStyle.setBorderTop(BorderStyle.THIN);
+		cellStyle.setBorderRight(BorderStyle.THIN);
+		cellStyle.setBorderLeft(BorderStyle.THIN);
+
+		for (Cost cost : costList) {
+			XSSFRow tableRow = sheet.createRow(costList.indexOf(cost) + 1);
+
+			XSSFCellStyle taskCellStyle = workbook.createCellStyle();
+
+			taskCellStyle.setAlignment(HorizontalAlignment.CENTER);
+			taskCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			taskCellStyle.setFillForegroundColor(usedColorList.get(costList.indexOf(cost)));
+			taskCellStyle.setFillBackgroundColor(usedColorList.get(costList.indexOf(cost)));
+			taskCellStyle.setBorderBottom(BorderStyle.THIN);
+			taskCellStyle.setBorderTop(BorderStyle.THIN);
+			taskCellStyle.setBorderRight(BorderStyle.THIN);
+			taskCellStyle.setBorderLeft(BorderStyle.THIN);
+
+			XSSFCell headerCell = tableRow.createCell(0);
+			headerCell.setCellValue(taskList.get(costList.indexOf(cost)).getNomeTask());
+			headerCell.setCellStyle(taskCellStyle);
+
+			headerCell = tableRow.createCell(1);
+			headerCell.setCellValue(taskList.get(costList.indexOf(cost)).getNomeCandidiato());
+			headerCell.setCellStyle(cellStyle);
+
+			headerCell = tableRow.createCell(2);
+			headerCell.setCellValue(new BigDecimal(cost.getCost()).doubleValue() + "€");
+			headerCell.setCellStyle(cellStyle);
+
+			headerCell = tableRow.createCell(3);
+			headerCell.setCellValue(new BigDecimal(cost.getInflation().replaceAll("%", "")).doubleValue() + "%");
+			headerCell.setCellStyle(cellStyle);
+
+			headerCell = tableRow.createCell(4);
+			headerCell.setCellValue(new BigDecimal(cost.getPrice()).doubleValue() + "€");
+			headerCell.setCellStyle(cellStyle);
+
+			headerCell = tableRow.createCell(5);
+			headerCell.setCellValue(new BigDecimal(cost.getPartial()).doubleValue() + "€");
+			headerCell.setCellStyle(cellStyle);
+
+			totalCost = totalCost + Integer.parseInt(cost.getPartial());
+		}
+
+		XSSFRow totalTableRow = sheet.createRow(costList.size() + 2);
+
+		XSSFCell headerCell = totalTableRow.createCell(0);
+		headerCell.setCellValue("Total cost");
+		headerCell.setCellStyle(cellStyle);
+
+		headerCell = totalTableRow.createCell(1);
+		headerCell.setCellValue(new BigDecimal(totalCost).doubleValue() + "€");
+		headerCell.setCellStyle(cellStyle);
+
+	}
+
+	/**
 	 * Draw borders on merged region cells contained in the given workbook
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * @param sheet    the sheet contained in the given workbook, instantiated in
 	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
 	 * 
-	 * */
+	 */
 	private static void setBordersToMergedCells(XSSFWorkbook workBook, XSSFSheet sheet) {
 		int numMerged = sheet.getNumMergedRegions();
 
@@ -524,16 +742,19 @@ public abstract class CreateGanttExcel {
 	 *                 parameter.
 	 * 
 	 * @author s.schiavone
+	 * @param days
 	 * @throws ParseException
 	 */
-	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<String> data)
-			throws IOException, ParseException {
+	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<String> data,
+			List<String> costs, String days) throws IOException, ParseException {
 
 		File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
 
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
-		workbook = CreateGanttExcel.createWorkbook(workbook, data);
+		totalDays = days;
+
+		workbook = CreateGanttExcel.createWorkbook(workbook, data, costs);
 
 		FileOutputStream out = new FileOutputStream(file);
 		workbook.write(out);

@@ -434,6 +434,8 @@ ul ul a {
 					<form action="/ProgettoHR/ExcelGantt/${businessUnit}" method="POST">
 						<div class="form-group" style="display: none">
 							 <input type="text" class="form-control" id="ganttData" name="data">
+							 <input type="text" class="form-control" id="costData" name="costi">
+							 <input type="text" class="form-control" id="daysData" name="days">
 						</div>
 						<button id="inviaDati" type="submit" class="btn btn-primary">Invia</button>
 					</form>
@@ -480,7 +482,7 @@ ul ul a {
 			return days * 24 * 60 * 60 * 1000;
 		}
 
-		function drawChart(arrayGantt, arrayGanttExcel) {
+		function drawChart(arrayGantt, arrayGanttExcel, arrayCostiCandidato, diffDays) {
 
 			var data = new google.visualization.DataTable();
 
@@ -512,7 +514,8 @@ ul ul a {
 			});
 			
 			document.getElementById("ganttData").value = arrayGanttExcel;
-				
+			document.getElementById("costData").value = arrayCostiCandidato;
+			document.getElementById("daysData").value = diffDays;
 			
 		}
 		
@@ -808,6 +811,7 @@ ul ul a {
 			var diffDays=0;
 			var arrayListCandidatiGanttExcel=[];
 			var arrayCandidatoGanttExcel;
+			var arraListCostiCandidati=[];
 
 
 			for (var i = 0; i < countCandidatiGant; i++) {
@@ -831,10 +835,18 @@ ul ul a {
 								document.getElementById("tdInitialDate"+i).innerHTML,
 								document.getElementById("tdEndDate"+i).innerHTML
 							]
+							arrayCostiCandidato=[
+								document.getElementById("tdCost"+i).innerHTML, 
+								document.getElementById("tdRincaro"+i).innerHTML,
+								document.getElementById("tdPrice"+i).innerHTML,
+								document.getElementById("tdParziale"+i).innerHTML
+							]
 							
 							arrayListCandidatiGantt.push(arrayCandidatoGantt.valueOf());
 							
 							arrayListCandidatiGanttExcel.push(arrayCandidatoGanttExcel.valueOf());
+							
+							arraListCostiCandidati.push(arrayCostiCandidato.valueOf())
 							
 							//arrayCandidatoGantt.splice(0, arrayCandidatoGantt.length);
 							var diffTime = Math.abs(date2 - date1);
@@ -855,7 +867,7 @@ ul ul a {
 			}
 
 			
-			drawChart(arrayListCandidatiGantt, arrayListCandidatiGanttExcel);
+			drawChart(arrayListCandidatiGantt, arrayListCandidatiGanttExcel, arraListCostiCandidati, diffDays);
 			
 			
 	  			
