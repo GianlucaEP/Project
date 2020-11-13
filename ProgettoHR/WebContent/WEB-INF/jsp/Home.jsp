@@ -34,22 +34,21 @@
 
 body, html {
 	height: 100%;
-	transition: background-color .5s;
-}
-
-header {
-	height: 100%;
 	background-image: url("/ProgettoHR/img/home.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
+	transition: background-color .5s;
+}
+
+header {
+	height: 100%;
 	transition: margin-left .5s;
 }
 
 h5 {
 	letter-spacing: 5px;
-
 }
 
 /* PALLINI STATO CANDIDATO */
@@ -160,40 +159,28 @@ option:hover {
 	color: black;
 	text-align: center;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaHome .body tr {
 	text-align: center;
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid white;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaHome .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaHome .body {
-	background-color: #e9ecef;
-}
-
-.tabellaHome .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaHome .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: #f8f9fa;
 }
 
 .tabellaHome th {
-	padding: 8px;
+	padding: 10px;
 }
 
 .tabellaHome td {
 	font-size: 14px;
-	padding: 4px;
+	padding: 5px;
 }
 
 .tabellaHome .footer {
@@ -201,15 +188,17 @@ option:hover {
 }
 
 #btn-elimina, #btn-modifica {
-	background-color: white;
-	color: black;
+	background-color: #d3d3d3;
+	border: 1px solid #d3d3d3;
+	border-radius: 30px;
 	box-shadow: none !important;
 	outline: 0;
+	color: black;
 }
 
 #btn-elimina:hover, #btn-modifica:hover {
-	background-color: black;
-	color: white;
+	background-color: #d3d3d3;
+	color: black;
 	transition: 0.5s;
 }
 
@@ -218,7 +207,25 @@ option:hover {
 	border-radius: 20px;
 	box-shadow: none !important;
 	outline: 0;
-	box-shadow: none !important;
+	border-radius: 30px;
+}
+
+.m-header {
+	background-color: white;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.m-body {
+	padding: 20px;
+	margin-top: 10px;
+	border: 1px solid white;
+	border-radius: 0px 0px 20px 20px;
+	background-color: white;
+}
+
+.m-content {
+	background-color: transparent;
+	border: none;
 }
 
 #btn-salva-mansione, #btn-salva-area, #btn-salva-specializzazione,
@@ -351,7 +358,7 @@ option:hover {
 
 						</ul>
 						<hr>
-						<a href="/ProgettoHR/Filter/${businessUnit}" class="btn">-
+						<a href="/ProgettoHR/Filter/${businessUnit}" class="btn" id="btn-ricerca-candidato">-
 							Ricerca candidati</a>
 						<hr>
 						<a href="/ProgettoHR/Gantt/${businessUnit}" type="button"
@@ -406,13 +413,13 @@ option:hover {
 
 					<div class="row w-100">
 						<div class="col">
-							<div class="table-responsive">
-								<c:choose>
-									<c:when test="${empty list}">
-										<h2 id="zeroRecord">La ricerca non ha prodotto alcun
-											risultato</h2>
-									</c:when>
-									<c:otherwise>
+							<c:choose>
+								<c:when test="${empty list}">
+									<h2 id="zeroRecord">La ricerca non ha prodotto alcun
+										risultato</h2>
+								</c:when>
+								<c:otherwise>
+									<div class="table-responsive">
 										<table class="tabellaHome">
 
 											<thead class="head">
@@ -483,7 +490,7 @@ option:hover {
 																onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
 																<span data-toggle="tooltip" data-placement="top"
 																	title="Modifica candidato"><i
-																	class="fas fa-user-edit"></i></span>
+																	class="fas fa-user"></i></span>
 
 															</button>
 
@@ -510,9 +517,9 @@ option:hover {
 												</tr>
 											</tfoot>
 										</table>
-									</c:otherwise>
-								</c:choose>
-							</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -525,27 +532,33 @@ option:hover {
 		role="dialog" aria-labelledby="modalAggiungiMansione"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content">
 
-				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi una mansione:</h5>
+				<div class="modal-header m-header">
+					<h5 class="modal-title">Inserisci una nuova mansione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						<i class="fas fa-times"></i>
 					</button>
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
 					onsubmit="return validate('Mansione', '${mansioneList}' );">
 					<!-- tipo, valoreInserito, lista -->
-					<div class="modal-body">
-						<form:input path="mansione" type="text" class="form-control"
-							maxlength="45" id="mansione" name="mansione"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="reset" class="btn" id="btn-cancella-mansione">Cancella</button>
-						<button type="submit" class="btn" id="btn-salva-mansione">Salva</button>
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="mansione" type="text" class="form-control"
+										maxlength="45" id="mansione" name="mansione"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn" type="submit" id="btn-salva-mansione">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
 			</div>
@@ -560,11 +573,8 @@ option:hover {
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi un'area di competenza:</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true" class="btn-close-modal">&times;</span>
-					</button>
+					<h5 class="modal-title">Inserisci una nuova area di
+						competenza:</h5>
 				</div>
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
@@ -627,8 +637,9 @@ option:hover {
 				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
 					<div class="modal-header">
-						<h5 class="modal-title">Cancella candidato selezionato:</h5>
+						<h5 class="modal-title">Cancellazione del candidato:</h5>
 					</div>
+
 					<div class="modal-body" id="modalText"></div>
 					<input style="visibility: hidden;" name="idCandidato"
 						id="candidatoId" />
