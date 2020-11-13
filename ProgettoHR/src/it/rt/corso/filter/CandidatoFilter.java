@@ -20,7 +20,7 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 	 * 
 	 */
 	private static boolean addedCriteria = false;
-
+	
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
@@ -65,6 +65,10 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 
 		if (!SpecializzazioneFilter.getListaPredicatesSpecializzazione().isEmpty()) {
 			SpecializzazioneFilter.buildSpecializzazionePredicate(listaPredicati);
+		}
+		
+		if(!LinguaFilter.getListaPredicatesLingue().isEmpty()) {
+			LinguaFilter.buildCompetenzaLinguisticaPredicate(listaPredicati);
 		}
 
 		if (InserimentoFromFilter.isFromIsSelected() || InserimentoToFilter.isToSelected()) {

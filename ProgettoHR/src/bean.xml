@@ -136,6 +136,10 @@
 	<bean id="mansioneFilter"
 		class="it.rt.corso.filter.MansioneFilter">
 	</bean>
+	
+	<bean id="linguaFilter"
+		class="it.rt.corso.filter.LinguaFilter">
+	</bean>
 
 	<bean id="specializzazioneFilter"
 		class="it.rt.corso.filter.SpecializzazioneFilter">
@@ -176,6 +180,7 @@
 		<ref bean="provenienzaFilter" />
 		<ref bean="areaCompetenzaFilter" />
 		<ref bean="mansioneFilter" />
+		<ref bean="linguaFilter"/>
 		<ref bean="specializzazioneFilter" />
 		<ref bean="costoMaxFilter" />
 		<ref bean="costoMinimoFilter" />

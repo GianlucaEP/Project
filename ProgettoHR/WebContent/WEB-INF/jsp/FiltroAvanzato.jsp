@@ -360,6 +360,31 @@ ul ul a {
 								</div>
 							</div>
 						</div>
+						
+						
+						<div class="form-group">
+							<div id="lingueDiv">
+								<label>Competenze Linguistiche</label>
+								<div class="form-row">
+									<div class="col-11">
+										<input autocomplete="off" placeholder="aggiungi"
+											list="lingueDisponibili" id="linguaInput"
+											class="form-control">
+										<datalist id="lingueDisponibili">
+											<c:forEach var="lingua" items="${lingueList}">
+												<option value="${lingua}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+									<div class="col-1">
+										<div onclick="stampaLinguaSelezionata('${lingueList}')"
+											class="btn p-0 mt-1">
+											<i class="fas fa-plus"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<div id="specializzazioneDiv">
@@ -392,7 +417,6 @@ ul ul a {
 								</div>
 							</div>
 						</div>
-
 
 						<div class="form-group">
 							<label>Costo unitario all'ora</label> da <input
@@ -627,6 +651,7 @@ ul ul a {
 
 	areaCnt = 0;
 	mansioneCnt = 0;
+	linguaCnt = 0;
 	specializzazioneCnt = 0;
 	
 	function impostaParametriCandidatoId(id) {
@@ -783,6 +808,67 @@ function controlloMappa() {
 		document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
 	}
 	
+	// STAMPA Lingua
+	function stampaLinguaSelezionata(linguaList) {
+		var lingueEsistenti = document.getElementById("lingueDiv").children;
+		if(lingueEsistenti.length > 2){   
+			for(var i=2; i<lingueEsistenti.length; i++){    
+				var input = lingueEsistenti[i].children[0].children[0];
+				if(input.value === document.getElementById("linguaInput").value){  
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+					return;              
+          		}           
+			} 			
+		}
+		
+		for(lingua of buildString(linguaList)){
+			if(document.getElementById("linguaInput").value === lingua){
+		
+				var tagDiv = document.createElement("div");		
+				var tagInput = document.createElement("input");
+				var tagDivButton = document.createElement("span");
+				tagInput.value = document.getElementById("linguaInput").value;
+				
+				tagInput.classList.add("form-control");
+				
+				tagDiv.classList.add("form-row");
+				var ColDiv1 = document.createElement("div");
+					ColDiv1.classList.add("col-10", "mt-2");
+				var ColDiv2 = document.createElement("div");
+					ColDiv2.classList.add("col-1");
+		
+		linguaName = "lingua" + linguaCnt;
+		linguaCnt++;
+		
+		//tagInput.id = mansioneName;
+		tagInput.name = linguaName;
+		tagInput.readOnly = true;
+		
+		tagDivButton.classList.add("btn", "mt-2");
+		tagDivButton.style.margin = "0px 0px 12px 0px";
+		tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+		
+		tagDivButton.onclick = function(){				              	              	          				
+			tagDiv.remove();
+		};
+		
+		ColDiv1.appendChild(tagInput)
+		tagDiv.appendChild(ColDiv1);
+		ColDiv2.appendChild(tagDivButton)
+		tagDiv.appendChild(ColDiv2);
+		
+		document.getElementById("lingueDiv").appendChild(tagDiv);
+		document.getElementById("linguaInput").value = "";
+		document.getElementById("linguaInput").focus();
+		return;
+			}
+		}
+		$('#errorModal').modal('toggle');
+		document.getElementById("errorModalBody").innerHTML = "Lingua inserita non esistente"
+	}
+	
+ 	
 	// STAMPA SPECIALIZZAZIONE
 	function stampaSpecializzazioneSelezionata(specializzazioneList) {
 		var specializzazioniEsistenti = document.getElementById("specializzazioneDiv").children;

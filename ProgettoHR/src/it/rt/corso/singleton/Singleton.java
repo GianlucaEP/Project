@@ -130,6 +130,10 @@ public class Singleton {
 	public List<String> getSpecializzazioneListString() {
 		return specializzazioneList.stream().map(Specializzazione::getSpecializzazione).collect(Collectors.toList());
 	}
+	
+	public List<String> getCompetenzaLinguisticaListString() {
+		return competenzaLinguisticaList.stream().map(CompetenzaLinguistica::getLingua).collect(Collectors.toList());
+	}
 
 	public void aggiornaAreaCompetenza() {
 		areaCompetenzaList = areaCompetenzaDAO.getLista();
