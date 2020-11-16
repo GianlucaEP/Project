@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.DAO.TitoloStudioDAO;
+import it.rt.corso.beans.TipoFeedback;
 import it.rt.corso.beans.TitoloStudio;
 import it.rt.corso.beans.UploadFile;
 import it.rt.corso.utility.Utility;
@@ -39,6 +40,13 @@ public class TitoloStudioDAOImpl extends BaseDAO implements TitoloStudioDAO{
 	@Override
 	public TitoloStudio aggiorna(TitoloStudio titoloStudio) {
 		return (TitoloStudio) super.aggiorna(titoloStudio);
+	}
+
+	@Override
+	public List<TitoloStudio> getLista() {
+		List<TitoloStudio> listaTitoloStudio = Utility.getSession().createQuery(" FROM TitoloStudio ").getResultList();
+		Utility.destroySession();
+		return listaTitoloStudio;
 	}
 
 

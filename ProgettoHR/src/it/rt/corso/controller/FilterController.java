@@ -50,6 +50,7 @@ public class FilterController {
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("lingueList", singleton.getCompetenzaLinguisticaListString());
+		m.addAttribute("titoloStudioList", singleton.getTitoloStudioListString());
 		
 		return "FiltroAvanzato";
 	}
@@ -73,7 +74,8 @@ public class FilterController {
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
 		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
 		m.addAttribute("lingueList", singleton.getCompetenzaLinguisticaListString());
-
+		m.addAttribute("titoloStudioList", singleton.getTitoloStudioListString());
+		
 		return "FiltroAvanzato";
 	}
 }

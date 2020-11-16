@@ -10,39 +10,36 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import it.rt.corso.beans.Candidato;
-import it.rt.corso.beans.Mansione;
+import it.rt.corso.beans.TitoloStudio;
 import it.rt.corso.utility.Utility;
 
-public class MansioneFilter extends CandidatoFilter{
+public class TitoloStudioFilter extends CandidatoFilter {
+	private static List<Predicate> listaPredicatesTitoloStudio = new ArrayList<Predicate>();
 
-	private static List<Predicate> listaPredicatesMansione = new ArrayList<Predicate>();
-
-	public static List<Predicate> getListaPredicatesMansioni() {
-		return listaPredicatesMansione;
+	public static List<Predicate> getListaPredicatesTitoloStudio() {
+		return listaPredicatesTitoloStudio;
 	}
-	
+
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
 
-		if (nomeFiltro.contains("mansione")) {
+		if (nomeFiltro.contains("titoloStudio")) {
 
-			
 			CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
-			Join<Candidato, Mansione> mansione = root.join("mansione", JoinType.INNER);
+			Join<Candidato, TitoloStudio> mansione = root.join("titoloStudio", JoinType.INNER);
 
-			
-			listaPredicatesMansione
-			.add(criteriaBuilder.like(mansione.get("mansione"), "%" + valore + "%"));
+			listaPredicatesTitoloStudio.add(criteriaBuilder.like(mansione.get("titoloStudio"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
-			
+
 			return listaPredicati;
 		} else {
 			return listaPredicati;
 
 		}
-		
+
 	}
+	
 	/** 
 	 * 
 	 * add an or predicate to the given List of predicates
@@ -52,15 +49,14 @@ public class MansioneFilter extends CandidatoFilter{
 	 * @return the given list of predicates with the added predicate
 	 * 
 	 * */
-	public static List<Predicate> buildMansionePredicate(List<Predicate> listaPredicati){
-		Predicate[] predicatesMansioni = listaPredicatesMansione
-				.toArray(new Predicate[listaPredicatesMansione.size()]);
+	public static List<Predicate> buildTitoloStudioPredicate(List<Predicate> listaPredicati){
+		Predicate[] predicatesTitoloStudio = listaPredicatesTitoloStudio
+				.toArray(new Predicate[listaPredicatesTitoloStudio.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
-		// aggiunge alla lista di tutti i predicati la or delle mansioni
-		listaPredicati.add(criteriaBuilder.and(predicatesMansioni));
-		listaPredicatesMansione = new ArrayList<Predicate>();
+		
+		listaPredicati.add(criteriaBuilder.and(predicatesTitoloStudio));
+		listaPredicatesTitoloStudio = new ArrayList<Predicate>();
 		
 		return listaPredicati;
 	}
-	
 }

@@ -70,6 +70,10 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 		if(!LinguaFilter.getListaPredicatesLingue().isEmpty()) {
 			LinguaFilter.buildCompetenzaLinguisticaPredicate(listaPredicati);
 		}
+		
+		if(!TitoloStudioFilter.getListaPredicatesTitoloStudio().isEmpty()) {
+			TitoloStudioFilter.buildTitoloStudioPredicate(listaPredicati);
+		}
 
 		if (InserimentoFromFilter.isFromIsSelected() || InserimentoToFilter.isToSelected()) {
 			InserimentoFilter.buildInserimentoPredicate(listaPredicati);

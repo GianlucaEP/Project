@@ -16,6 +16,7 @@ import it.rt.corso.DAO.SeniorityDAO;
 import it.rt.corso.DAO.SpecializzazioneDAO;
 import it.rt.corso.DAO.StatoCandidatoDAO;
 import it.rt.corso.DAO.TipoFeedbackDAO;
+import it.rt.corso.DAO.TitoloStudioDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.beans.Business;
 import it.rt.corso.beans.CompetenzaLinguistica;
@@ -24,6 +25,7 @@ import it.rt.corso.beans.Seniority;
 import it.rt.corso.beans.Specializzazione;
 import it.rt.corso.beans.StatoCandidato;
 import it.rt.corso.beans.TipoFeedback;
+import it.rt.corso.beans.TitoloStudio;
 
 /**
  * 
@@ -45,6 +47,7 @@ public class Singleton {
 	StatoCandidatoDAO statoCandidatoDAO = (StatoCandidatoDAO) factory.getBean("statoCandidatoDAO");
 	TipoFeedbackDAO tipoFeedbackDAO = (TipoFeedbackDAO) factory.getBean("tipoFeedbackDAO");
 	CompetenzaLinguisticaDAO competenzaLinguisticaDAO = (CompetenzaLinguisticaDAO) factory.getBean("competenzaLinguisticaDAO");
+	TitoloStudioDAO titoloStudioDAO = (TitoloStudioDAO) factory.getBean("titoloStudioDAO");
 
 	// static variable single_instance of type Singleton
 	private static Singleton single_instance = null;
@@ -57,6 +60,7 @@ public class Singleton {
 	private static List<StatoCandidato> statoCandidatoList = new ArrayList<StatoCandidato>();
 	private static List<TipoFeedback> tipoFeedbackList = new ArrayList<TipoFeedback>();
 	private static List<CompetenzaLinguistica> competenzaLinguisticaList = new ArrayList<CompetenzaLinguistica>();
+	private static List<TitoloStudio> titoloStudioList = new ArrayList<TitoloStudio>();
 
 	// private constructor restricted to this class itself
 	private Singleton() {
@@ -68,6 +72,7 @@ public class Singleton {
 		statoCandidatoList = statoCandidatoDAO.getAllFromStato();
 		tipoFeedbackList = tipoFeedbackDAO.getLista();
 		competenzaLinguisticaList = competenzaLinguisticaDAO.getLista();
+		titoloStudioList = titoloStudioDAO.getLista();
 	}
 
 	/**
@@ -133,6 +138,10 @@ public class Singleton {
 	
 	public List<String> getCompetenzaLinguisticaListString() {
 		return competenzaLinguisticaList.stream().map(CompetenzaLinguistica::getLingua).collect(Collectors.toList());
+	}
+	
+	public List<String> getTitoloStudioListString() {
+		return titoloStudioList.stream().map(TitoloStudio::getTitoloStudio).collect(Collectors.toList());
 	}
 
 	public void aggiornaAreaCompetenza() {

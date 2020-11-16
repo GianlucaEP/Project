@@ -360,8 +360,8 @@ ul ul a {
 								</div>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<div id="lingueDiv">
 								<label>Competenze Linguistiche</label>
@@ -378,6 +378,30 @@ ul ul a {
 									</div>
 									<div class="col-1">
 										<div onclick="stampaLinguaSelezionata('${lingueList}')"
+											class="btn p-0 mt-1">
+											<i class="fas fa-plus"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div id="titoloStudioDiv">
+								<label>Titolo di Studio</label>
+								<div class="form-row">
+									<div class="col-11">
+										<input autocomplete="off" placeholder="aggiungi"
+											list="titoliStudioDisponibili" id="titoloStudioInput"
+											class="form-control">
+										<datalist id="titoliStudioDisponibili">
+											<c:forEach var="titoloStudio" items="${titoloStudioList}">
+												<option value="${titoloStudio}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+									<div class="col-1">
+										<div onclick="stampaTitoloStudioSelezionata('${titoloStudioList}')"
 											class="btn p-0 mt-1">
 											<i class="fas fa-plus"></i>
 										</div>
@@ -652,6 +676,7 @@ ul ul a {
 	areaCnt = 0;
 	mansioneCnt = 0;
 	linguaCnt = 0;
+	titoloStudioCnt = 0;
 	specializzazioneCnt = 0;
 	
 	function impostaParametriCandidatoId(id) {
@@ -868,6 +893,65 @@ function controlloMappa() {
 		document.getElementById("errorModalBody").innerHTML = "Lingua inserita non esistente"
 	}
 	
+	// STAMPA Titoli di studio
+	function stampaTitoloStudioSelezionata(titoliStudioList) {
+		var titoliDiStudioEsistenti = document.getElementById("titoloStudioDiv").children;
+		if(titoliDiStudioEsistenti.length > 2){   
+			for(var i=2; i<titoliDiStudioEsistenti.length; i++){    
+				var input = titoliDiStudioEsistenti[i].children[0].children[0];
+				if(input.value === document.getElementById("titoloStudioInput").value){  
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+					return;              
+          		}           
+			} 			
+		}
+		
+		for(titoloStudio of buildString(titoliStudioList)){
+			if(document.getElementById("titoloStudioInput").value === titoloStudio){
+		
+				var tagDiv = document.createElement("div");		
+				var tagInput = document.createElement("input");
+				var tagDivButton = document.createElement("span");
+				tagInput.value = document.getElementById("titoloStudioInput").value;
+				
+				tagInput.classList.add("form-control");
+				
+				tagDiv.classList.add("form-row");
+				var ColDiv1 = document.createElement("div");
+					ColDiv1.classList.add("col-10", "mt-2");
+				var ColDiv2 = document.createElement("div");
+					ColDiv2.classList.add("col-1");
+		
+		titoloStudioName = "titoloStudio" + titoloStudioCnt;
+		titoloStudioCnt++;
+		
+		//tagInput.id = mansioneName;
+		tagInput.name = titoloStudioName;
+		tagInput.readOnly = true;
+		
+		tagDivButton.classList.add("btn", "mt-2");
+		tagDivButton.style.margin = "0px 0px 12px 0px";
+		tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
+		
+		tagDivButton.onclick = function(){				              	              	          				
+			tagDiv.remove();
+		};
+		
+		ColDiv1.appendChild(tagInput)
+		tagDiv.appendChild(ColDiv1);
+		ColDiv2.appendChild(tagDivButton)
+		tagDiv.appendChild(ColDiv2);
+		
+		document.getElementById("titoloStudioDiv").appendChild(tagDiv);
+		document.getElementById("titoloStudioInput").value = "";
+		document.getElementById("titoloStudioInput").focus();
+		return;
+			}
+		}
+		$('#errorModal').modal('toggle');
+		document.getElementById("errorModalBody").innerHTML = "Titolo di studio inserito non esistente"
+	}
  	
 	// STAMPA SPECIALIZZAZIONE
 	function stampaSpecializzazioneSelezionata(specializzazioneList) {

@@ -167,6 +167,10 @@
 	<bean id="inserimentoFilter"
 		class="it.rt.corso.filter.InserimentoFilter">
 	</bean>
+	
+	<bean id="titoloStudioFilter"
+		class="it.rt.corso.filter.TitoloStudioFilter">
+	</bean>
 
 	<util:list id="filterList"
 		value-type="it.rt.corso.filter.CandidatoFilter">
@@ -188,6 +192,7 @@
 		<ref bean="costoGiornalieroMinFilter" />
 		<ref bean="categoriaProtettaFilter" />
 		<ref bean="inserimentoFilter" />
+		<ref bean="titoloStudioFilter"/>
 	</util:list>
 
 </beans> 
