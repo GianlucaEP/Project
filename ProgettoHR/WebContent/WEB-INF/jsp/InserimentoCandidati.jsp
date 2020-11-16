@@ -1,13 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,500 +19,615 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-body {
+* {
 	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+}
+
+body, html {
+	height: 100%;
+	transition: background-color .5s;
+	background-image: url("/ProgettoHR/img/home.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	transition: background-color .5s;
+}
+
+header {
+	height: 100%;
+	transition: margin-left .5s;
+}
+
+.form-inserimento-candidato {
+	border-radius: 20px;
+	padding: 50px;
+	background-color: white;
+	box-shadow: 10px 15px #d3d3d3;
+}
+
+h4 {
+	letter-spacing: 5px;
+}
+
+p {
+	color: #004fff;
+	letter-spacing: 3px;
+}
+
+label {
+	letter-spacing: 3px;
+}
+
+img {
+	height: 55px;
+}
+
+.custom-input {
+	border: 1px solid #d3d3d3;
+	border-radius: 15px;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+.custom-select {
+	border: 1px solid #d3d3d3;
+	border-radius: 15px 15px 0px 0px;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+.custom-input:focus, .custom-select:focus {
+	border: 1px solid #004fff;
+}
+
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 30px;
+	height: 45px;
+	background-color: white;
+}
+
+#btn-logout, #btn-home, #btn-menu {
+	border-radius: 100%;
+	background-color: white;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
+	border: 1px solid white;
 	transition: 0.5s;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+#btn-logout:hover, #btn-home:hover, #btn-menu:hover {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	transition: 0.5s;
+	color: black;
+	box-shadow: none !important;
+	outline: 0;
 }
 
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-#iconaLogout {
-	width: 25px;
-	height: 48px;
-}
-
-/* SIDEBAR */
 #sidebar {
-	width: 100%;
 	height: 100%;
-	border-collapse: collapse;
-	font-size: 0.9em;
-	border-radius: 0px 5px 5px 0px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-	background: #5aa9e6;
-	color: #fff;
-	border-collapse: collapse;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: white;
+	transition: 0.5s;
+	padding-top: 60px;
+	overflow-x: hidden;
 }
 
-#sidebar .sidebar-header {
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	background: #7fc8f8;
-}
-
-#sidebar ul.components {
-	padding: 10px 0px 0px 0px;
-}
-
-#sidebar ul p {
-	color: #fff;
-	padding: 10px;
-}
-
-#sidebar ul li a {
-	margin: 5px 0px;
-	padding: 10px 10px 10px 10px;
-	font-size: 1.1em;
+#sidebar a {
+	text-decoration: none;
+	font-size: 20px;
+	letter-spacing: 5px;
 	display: block;
+	transition: 0.3s;
+	color: black;
+	text-align: left;
 }
 
-#sidebar ul li a:hover {
-	color: #000000;
-	background: #fff;
+#sidebar a:hover {
+	color: #004fff;
 }
 
-#sidebar ul li.active>a, a[aria-expanded="true"] {
-	color: #fff;
-	background: #7fc8f8;
-}
-
-a[data-toggle="collapse"] {
-	position: relative;
-}
-
-.dropdown-toggle::after {
-	display: block;
+#sidebar #btn-menu-close {
 	position: absolute;
-	top: 50%;
-	right: 20px;
-	transform: translateY(-50%);
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
-ul ul a {
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #cae9ff;
+.btn-salva-candidato {
+	border: 1px solid #d3d3d3;
+	border-radius: 20px;
+	padding: 5px 30px;
+	letter-spacing: 5px;
+	transition: 0.5s;
 }
 
-@media screen and (max-width: 951px) {
-	.responsiveSidebar {
-		width: 100%;
-		margin-bottom: 25px;
-	}
-	#sidebar {
-		border-radius: 0px 0px 0px 0px;
-	}
+.btn-salva-candidato:hover {
+	border: 1px solid #004fff;
+	background: #004fff;
+	color: white;
+	transition: 0.5s;
+}
+
+.m-content {
+	background-color: transparent;
+	border: none;
+}
+
+.m-header {
+	background-color: white;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.m-body {
+	padding: 20px;
+	margin-top: 10px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
+	background-color: #d3d3d3;
+}
+
+.m-input {
+	border: 1px solid white;
+	border-radius: 20px;
+	box-shadow: none !important;
+	outline: 0;
+	border-radius: 30px;
+	transition: 0.5s;
+}
+
+.btn-salva, #btn-si {
+	border: 1px solid white;
+	border-radius: 20px;
+	background: white;
+	color: black;
+	transition: 0.5s;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+.m-errore-body {
+	letter-spacing: 5px;
+	border: 1px solid white;
+	border-radius: 20px;
+	background: white;
+	color: red;
 }
 </style>
 
 </head>
 
 <body onload="impostaAnno()">
-	<div class="container-fluid p-0">
-		<!-- NAVBAR -->
-		<nav class="navbar">
-
-			<!-- LOGO -->
-			<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-				<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
-
-			<div id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<form action="/ProgettoHR/Logout">
-							<button type="submit" class="btn nav-link p-0">
-								<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
+	<header id="header">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row w-100">
+					<div id="btn-nav" class="d-flex flex-row">
+						<div class="col-auto align-self-center">
+							<button onclick="openMenu()" class="btn" id="btn-menu">
+								<i class="fas fa-bars"></i>
 							</button>
-						</form>
-					</li>
-				</ul>
+						</div>
+						<!-- SIDEBAR MENU -->
+						<div id="sidebar">
+
+							<a href="javascript:void(0)" id="btn-menu-close"
+								onclick="closeMenu()">&times;</a>
+
+							<ul class="list-unstyled components">
+								<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
+									<c:if test="${funz.funzionalita == 'aggiunta mansione'}">
+										<li><a href="" data-toggle="modal" class="btn"
+											data-target="#aggiungiMansione" type="button">+ Nuova
+												mansione</a></li>
+										<hr>
+									</c:if>
+
+									<c:if test="${funz.funzionalita == 'aggiunta area'}">
+										<li><a href="" data-toggle="modal" class="btn"
+											data-target="#aggiungiAreaCompetenza" type="button">+
+												Nuova area di competenza</a></li>
+										<hr>
+									</c:if>
+
+									<c:if
+										test="${funz.funzionalita == 'aggiunta specializzazione'}">
+										<li><a href="" data-toggle="modal" class="btn"
+											data-target="#aggiungiSpecializzazione" type="button">+
+												Nuova specializzazione</a></li>
+										<hr>
+									</c:if>
+								</c:forEach>
+							</ul>
+
+						</div>
+						<div class="col-auto align-self-center">
+							<button class="btn"
+								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+								id="btn-home">
+								<i class="fas fa-home"></i>
+							</button>
+						</div>
+						<div class="col-auto align-self-center">
+							<button onclick="location.href = '/ProgettoHR/Login';"
+								class="btn float-right" id="btn-logout">
+								<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</nav>
 
-		<div class="row justify-content-start w-100 mt-4 mr-0 ml-0">
-			<!-- COLONNA BOTTONI LATERALI -->
-			<div class="col-auto responsiveSidebar p-0">
-				<!-- BARRA LATERALE -->
-				<nav id="sidebar">
+		<div class="container">
+			<div class="row">
+				<div class="col mb-5 mt-5">
+					<form:form class="form-inserimento-candidato" autocomplete="off"
+						method="POST" onsubmit="return validateForm()"
+						modelAttribute="candidato"
+						action="/ProgettoHR/CandidatiSave/${businessUnit}">
 
-					<div class="sidebar-header p-2 pt-4">
-						<h3>Inserimento candidato</h3>
-					</div>
-
-					<ul class="list-unstyled components">
-						<c:forEach var="funz" items="${utente.ruolo.funzionalita}">
-							<c:if test="${funz.funzionalita == 'aggiunta mansione'}">
-								<li><a href="" data-toggle="modal"
-									data-target="#mansioneModal" type="button"><i
-										class="fas fa-plus"></i> Nuova mansione</a></li>
-							</c:if>
-
-							<c:if test="${funz.funzionalita == 'aggiunta area'}">
-								<li><a href="" data-toggle="modal"
-									data-target="#areaCompetenzaModal" type="button"><i
-										class="fas fa-plus"></i> Nuova Area</a></li>
-							</c:if>
-
-							<c:if test="${funz.funzionalita == 'aggiunta specializzazione'}">
-								<li><a href="" data-toggle="modal"
-									data-target="#specializzazioneModal" type="button"><i
-										class="fas fa-plus"></i> Nuova Specializzazione</a></li>
-							</c:if>
-						</c:forEach>
-					</ul>
-				</nav>
-			</div>
-
-			<!-- COLONNA INSERIMENTO CANDIDATO -->
-			<div class="col-auto">
-
-				<form:form class="border rounded p-3" autocomplete="off"
-					method="POST" onsubmit="return validateForm()"
-					modelAttribute="candidato"
-					action="/ProgettoHR/CandidatiSave/${businessUnit}">
-
-					<h4 class="text-center">Nuovo candidato</h4>
-					<p class="text-center">Compila i campi presenti per inserire un
-						nuovo candidato</p>
-					<hr class="my-4">
-
-					<div class="form-row">
-
-						<div class="form-group col-6">
-							<label>Nome: </label>
-							<form:input path="nome" type="text" class="form-control"
-								id="nome" required="required"></form:input>
-						</div>
-						<div class="form-group col-6">
-							<label>Cognome: </label>
-							<form:input type="text" path="cognome" class="form-control"
-								id="cognome" required="required"></form:input>
+						<div class="form-group">
+							<img src="/ProgettoHR/img/Logo Erre.png" class="pr-3">
+							<h4 class="text-center">Inserimento candidato</h4>
+							<p class="text-center">Compila i campi presenti nel form per
+								aggiungere un nuovo candidato.</p>
+							<hr>
 						</div>
 
-					</div>
-
-					<div class="form-row">
-
-						<div class="form-group col-4">
-							<label>Data di nascita: </label> <input type="date"
-								pattern="yyyy-MM-dd" name="dataDiNascita" class="form-control"
-								id="data-nascita"></input>
-						</div>
-
-						<div class="form-group col-8">
-							<label>Telefono:</label>
-							<form:input type="text" path="telefono" class="form-control"
-								id="telefono" maxlength="10" required="required"
-								placeholder="123-456-7890"></form:input>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label>Residenza:</label>
-						<form:input type="text" path="residenza" size="30"
-							class="form-control" id="residenza" required="required"></form:input>
-					</div>
-					<div class="form-group">
-						<label>Domicilio:</label>
-						<form:input type="text" path="domicilio" size="30"
-							class="form-control" id="domicilio" required="required"></form:input>
-					</div>
-					<div class="form-group">
-						<label>E-mail:</label>
-						<form:input type="email" path="email" size="30"
-							class="form-control" id="email" required="required"></form:input>
-					</div>
-
-					<div class="form-group">
-						<label>Codice fiscale:</label>
-						<form:input type="text" path="codiceFiscale" maxlength="16"
-							class="form-control" id="codiceFiscale"></form:input>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Seniority:</label>
-							<form:select path="seniority.seniority" class="custom-select">
-
-								<c:forEach var="sen" items="${seniorityList}">
-									<option value="${sen.seniority}">${sen.seniority}</option>
-								</c:forEach>
-							</form:select>
-						</div>
-
-						<div class="form-group col-6">
-							<label>Business unit:</label>
-							<form:select path="business.business" class="custom-select">
-								<c:forEach var="bus" items="${businessList}">
-									<option value="${bus.business}">${bus.business}</option>
-								</c:forEach>
-							</form:select>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label>Provenienza candidatura:</label>
-						<form:input type="text" path="provenienza" class="form-control"
-							id="provenienza" name="provenienza"></form:input>
-					</div>
-
-					<div class="form-group mb-3">
-						<label>Area competenza:</label>
-						<div id="areeCompetenzaDiv">
-							<div class="form-row">
-								<div class="col-11">
-									<input autocomplete="off" placeholder="aggiungi"
-										list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
-										class="form-control">
-									<datalist id="areeCompetenzeDisponibili">
-										<c:forEach var="area" items="${areaCompetenzaList}">
-											<option value="${area}"></option>
-										</c:forEach>
-									</datalist>
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label>Nome :</label>
+									<form:input path="nome" type="text"
+										class="form-control custom-input" id="nome"
+										required="required"></form:input>
 								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Cognome :</label>
+									<form:input type="text" path="cognome"
+										class="form-control custom-input" id="cognome"
+										required="required"></form:input>
+								</div>
+							</div>
+						</div>
 
-								<div class="col-1">
-									<div
-										onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
-										class="btn btn-block form-control">
-										<i class="fas fa-plus"></i>
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label>Data di nascita : </label> <input type="date"
+										pattern="yyyy-MM-dd" name="dataDiNascita"
+										class="form-control custom-input" id="data-nascita"></input>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Telefono :</label>
+									<form:input type="text" path="telefono"
+										class="form-control custom-input" id="telefono" maxlength="10"
+										required="required" placeholder="123-456-7890"></form:input>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label>Residenza:</label>
+									<form:input type="text" path="residenza" size="30"
+										class="form-control custom-input" id="residenza"
+										required="required"></form:input>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Domicilio:</label>
+									<form:input type="text" path="domicilio" size="30"
+										class="form-control custom-input" id="domicilio"
+										required="required"></form:input>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label>E-mail:</label>
+									<form:input type="email" path="email" size="30"
+										class="form-control custom-input" id="email"
+										required="required"></form:input>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Provenienza candidatura:</label>
+									<form:input type="text" path="provenienza"
+										class="form-control custom-input" id="provenienza"
+										name="provenienza"></form:input>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label>Codice fiscale:</label>
+							<form:input type="text" path="codiceFiscale" maxlength="16"
+								class="form-control custom-input" id="codiceFiscale"></form:input>
+						</div>
+
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label>Seniority:</label>
+									<form:select path="seniority.seniority" class="custom-select">
+
+										<c:forEach var="sen" items="${seniorityList}">
+											<option value="${sen.seniority}">${sen.seniority}</option>
+										</c:forEach>
+									</form:select>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Business unit:</label>
+									<form:select path="business.business" class="custom-select">
+										<c:forEach var="bus" items="${businessList}">
+											<option value="${bus.business}">${bus.business}</option>
+										</c:forEach>
+									</form:select>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label>Area competenza:</label>
+							<div id="areeCompetenzaDiv">
+								<div class="form-row mb-2">
+									<div class="col-11">
+										<input autocomplete="off" placeholder="Inserisci"
+											list="areeCompetenzeDisponibili" id="areaCompetenzaInput"
+											class="form-control custom-input">
+										<datalist id="areeCompetenzeDisponibili">
+											<c:forEach var="area" items="${areaCompetenzaList}">
+												<option value="${area}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+
+									<div class="col-1">
+										<div
+											onclick="stampaAreaCompetenzaSelezionata('${areaCompetenzaList}')"
+											class="btn btn-block">
+											<i class="fas fa-plus"></i>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="form-group mb-3">
-						<label>Mansione:</label>
-						<div id="mansioneDiv">
-							<div class="form-row">
-								<div class="col-11">
-									<input autocomplete="off" placeholder="aggiungi"
-										list="mansioniDisponibili" id="mansioneInput"
-										class="form-control">
-									<datalist id="mansioniDisponibili">
-										<c:forEach var="mans" items="${mansioneList}">
-											<option value="${mans}"></option>
-										</c:forEach>
-									</datalist>
-								</div>
+						<div class="form-group">
+							<label>Mansione:</label>
+							<div id="mansioneDiv">
+								<div class="form-row mb-2">
 
-								<div class="col-1">
-									<div onclick="stampaMansioneSelezionata('${mansioneList}')"
-										class="btn">
-										<i class="fas fa-plus"></i>
+									<div class="col-11">
+										<input autocomplete="off" placeholder="Inserisci"
+											list="mansioniDisponibili" id="mansioneInput"
+											class="form-control custom-input">
+										<datalist id="mansioniDisponibili">
+											<c:forEach var="mans" items="${mansioneList}">
+												<option value="${mans}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+
+									<div class="col-1">
+										<div onclick="stampaMansioneSelezionata('${mansioneList}')"
+											class="btn btn-block">
+											<i class="fas fa-plus"></i>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="form-group">
-						<label>Specializzazione:</label>
-						<div id="specializzazioneDiv">
-							<div class="form-row">
-								<div class="col-6">
-									<input autocomplete="off" placeholder="aggiungi"
-										list="specializzazioniDisponibili" id="specializzazioneInput"
-										class="form-control">
-									<datalist id="specializzazioniDisponibili">
-										<c:forEach var="specializzazione"
-											items="${specializzazioneList}">
-											<option value="${specializzazione}"></option>
-										</c:forEach>
-									</datalist>
-								</div>
+						<div class="form-group">
+							<label>Specializzazione:</label>
+							<div id="specializzazioneDiv">
+								<div class="form-row mb-2">
 
-								<div class="col-5">
-									<input id="anniEsperienzaInput" class="text-left form-control"
-										type="number" placeholder="anni esperienza">
-								</div>
-								<div class="col-1">
-									<div
-										onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
-										class="btn">
-										<i class="fas fa-plus"></i>
+									<div class="col-6">
+										<input autocomplete="off" placeholder="Inserisci"
+											list="specializzazioniDisponibili" id="specializzazioneInput"
+											class="form-control custom-input">
+										<datalist id="specializzazioniDisponibili">
+											<c:forEach var="specializzazione"
+												items="${specializzazioneList}">
+												<option value="${specializzazione}"></option>
+											</c:forEach>
+										</datalist>
+									</div>
+
+									<div class="col-5">
+										<input id="anniEsperienzaInput"
+											class="form-control custom-input" type="number"
+											placeholder="anni esperienza">
+									</div>
+
+									<div class="col-1">
+										<div
+											onclick="stampaSpecializzazioneSelezionata('${specializzazioneList}')"
+											class="btn btn-block">
+											<i class="fas fa-plus"></i>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="form-group mt-2">
-						<div class="custom-control custom-switch">
-							<form:checkbox path="categoriaProtetta"
-								class="custom-control-input" id="customSwitch1"
-								name="categoriaProtetta"></form:checkbox>
-							<label class="custom-control-label" for="customSwitch1">Categoria
-								protetta</label>
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<form:checkbox path="categoriaProtetta"
+									class="custom-control-input" id="customSwitch1"
+									name="categoriaProtetta"></form:checkbox>
+								<label class="custom-control-label" for="customSwitch1">Categoria
+									protetta</label>
+							</div>
 						</div>
-					</div>
 
-					<hr class="my-4">
+						<hr>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-success btn-block">Salva</button>
-						<button type="reset" class="btn btn-danger btn-block">Cancella</button>
-					</div>
-				</form:form>
+						<div class="form-group">
+							<button type="submit" class="btn btn-salva-candidato">Salva</button>
+						</div>
+					</form:form>
+				</div>
 			</div>
 		</div>
-	</div>
+	</header>
 
-	<!-- MODAL AGGIUNTA MANSIONE -->
-	<div class="modal fade" id="mansioneModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiungi
-						Mansione</h5>
+	<!-- === MODAL AGGIUNTA MANSIONE === -->
+	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiMansione"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content m-content">
+
+				<div class="modal-header m-header">
+					<h5 class="modal-title">Inserisci una mansione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateMansione('Mansione', '${mansioneList}');">
-					<div class="modal-body">
-						<form:input path="mansione" type="text" class="form-control"
-							placeholder="Mansione" id="mansione" name="mansione"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-mansione"
-							class="btn btn-success">Salva</button>
-						<button type="reset" id="bottone-cancella-mansione"
-							class="btn btn-danger">Cancella</button>
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="mansione" type="text"
+										class="form-control m-input" id="mansione" name="mansione" autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
 			</div>
 		</div>
 	</div>
 
-	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
-	<div class="modal fade" id="areaCompetenzaModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta Area
-						Competenza</h5>
+	<!-- === MODAL AGGIUNTA AREA COMPETENZA === -->
+	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiAreaCompetenza"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content m-content">
+
+				<div class="modal-header m-header">
+					<h5 class="modal-title" id="exampleModalLabel">Inserisci un'
+						area di competenza:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
-					onsubmit="return validateArea('Area Competenza', '${areaCompetenzaList}');">
-					<div class="modal-body">
-
-						<form:input path="area" type="text" class="form-control"
-							placeholder="Area di Competenza" id="area"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-area"
-							class="btn btn-success">Salva</button>
-						<button type="reset" id="bottone-cancella-area"
-							class="btn btn-danger">Cancella</button>
+					onsubmit="return validateArea('Area di competenza', '${areaCompetenzaList}');">
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="area" type="text"
+										class="form-control m-input" id="area" autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
 			</div>
 		</div>
 	</div>
 
-	<!-- MODAL AGGIUNTA SPECIALIZZAZOINE -->
-	<div class="modal fade" id="specializzazioneModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Aggiunta
-						Specializzazione</h5>
+	<!-- === MODAL AGGIUNTA SPECIALIZZAZOINE === -->
+	<div class="modal fade" id="aggiungiSpecializzazione" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiSpecializzazione"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" role="document">
+			<div class="modal-content m-content">
+
+				<div class="modal-header m-header">
+					<h5 class="modal-title" id="exampleModalLabel">Inserisci una
+						specializzazione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+
 				<form:form modelAttribute="specializzazione"
 					id="formSpecializzazione" method="POST"
 					action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
-					<div class="modal-body">
-
-						<form:input path="specializzazione" type="text"
-							class="form-control" placeholder="Specializzazione"
-							id="specializzazione"></form:input>
-
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="specializzazione" type="text"
+										class="form-control m-input" id="specializzazione" autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
-
-					<div class="modal-footer">
-						<button type="submit" id="bottone-salva-specializzazione"
-							class="btn btn-success">Salva</button>
-						<button type="reset" id="bottone-cancella-specializzazione"
-							class="btn btn-danger">Cancella</button>
-					</div>
-
 				</form:form>
 			</div>
 		</div>
 	</div>
 
 	<!-- MODAL ERRORE -->
-	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="errore" tabindex="-1" role="dialog"
+		aria-labelledby="modalErrore" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Errore</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" id="errorModalBody"></div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Chiudi</button>
-				</div>
+			<div class="modal-content m-content">
+				<div class="modal-body m-errore-body text-center" id="m-errore-text"></div>
 			</div>
 		</div>
 	</div>
@@ -533,8 +649,8 @@ ul ul a {
 				for(var i=1; i<areeCompetenzaEsistenti.length; i++){    
 					var input = areeCompetenzaEsistenti[i].children[0].children[0];
 					if(input.value === document.getElementById("areaCompetenzaInput").value){  
-						$('#errorModal').modal('toggle');   
-						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						$('#errore').modal('toggle');   
+						document.getElementById("m-errore-text").innerHTML = "Valore già inserito";  
 						return;              
               		}           
 				} 			
@@ -562,6 +678,7 @@ ul ul a {
 					tagInput.readOnly = true;
 					
 					tagDivButton.classList.add("btn");
+					tagDivButton.classList.add("btn-block");
 					tagDivButton.style.margin = "0px 0px 8px 0px";
 					tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 					
@@ -580,8 +697,8 @@ ul ul a {
 					return;
 				}	
 			}
-			$('#errorModal').modal('toggle');
-			document.getElementById("errorModalBody").innerHTML = "Area inserita non esistente"
+			$('#errore').modal('toggle');
+			document.getElementById("m-errore-text").innerHTML = "L'area di competenza inserita non è esistente."
 			
 		}
 		
@@ -593,8 +710,8 @@ ul ul a {
 				for(var i=1; i<mansioniEsistenti.length; i++){    
 					var input = mansioniEsistenti[i].children[0].children[0];
 					if(input.value === document.getElementById("mansioneInput").value){  
-						$('#errorModal').modal('toggle');   
-						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						$('#errore').modal('toggle');   
+						document.getElementById("m-errore-text").innerHTML = "Valore già inserito.";  
 						return;              
               		}           
 				} 			
@@ -624,6 +741,7 @@ ul ul a {
 			tagInput.readOnly = true;
 			
 			tagDivButton.classList.add("btn");
+			tagDivButton.classList.add("btn-block");
 			tagDivButton.style.margin = "0px 0px 8px 0px";
 			tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 			
@@ -642,8 +760,8 @@ ul ul a {
 			return;
 				}
 			}
-			$('#errorModal').modal('toggle');
-			document.getElementById("errorModalBody").innerHTML = "Mansione inserita non esistente"
+			$('#errore').modal('toggle');
+			document.getElementById("m-errore-text").innerHTML = "La mansione inserita non è esistente."
 		}
 		
 		
@@ -655,16 +773,16 @@ ul ul a {
 					input = input.value;
 					input = input.split(" ");
 					if(input[0] === document.getElementById("specializzazioneInput").value){  
-						$('#errorModal').modal('toggle');   
-						document.getElementById("errorModalBody").innerHTML = "Valore già inserito";  
+						$('#errore').modal('toggle');   
+						document.getElementById("m-errore-text").innerHTML = "Valore già inserito.";  
 						return;              
               		}           
 				} 			
 			}
 			
 			if(document.getElementById("anniEsperienzaInput").value < 0){
-				$('#errorModal').modal('toggle');   
-				document.getElementById("errorModalBody").innerHTML = "Gli anni di esperienza non possono essere meno di zero";  
+				$('#errore').modal('toggle');   
+				document.getElementById("m-errore-text").innerHTML = "Gli anni di esperienza non possono essere meno di zero.";  
 				return; 
 			}
 			
@@ -693,6 +811,7 @@ ul ul a {
 					tagInput.readOnly = true;
 					
 					tagDivButton.classList.add("btn");
+					tagDivButton.classList.add("btn-block");
 					tagDivButton.style.margin = "0px 0px 8px 0px";
 					tagDivButton.innerHTML = '<i class="fa fa-minus"></i>';
 					
@@ -713,8 +832,8 @@ ul ul a {
 					return;
 				}
 			}
-			$('#errorModal').modal('toggle');
-			document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"
+			$('#errore').modal('toggle');
+			document.getElementById("m-errore-text").innerHTML = "La specializzazione inserita non è esistente."
 			
 		}
 
@@ -728,14 +847,14 @@ ul ul a {
 			
 			
 			if(document.getElementById("telefono").value.length != 10 || isNaN(document.getElementById("telefono").value)){
-				$('#errorModal').modal('toggle');
-				document.getElementById("errorModalBody").innerHTML = "Telefono deve essere composto da 10 cifre"
+				$('#errore').modal('toggle');
+				document.getElementById("m-errore-text").innerHTML = "Il numero di telefono deve essere composto da 10 cifre."
 				return false;
 			}
 			
 			if(document.getElementById("codiceFiscale").value != "" && document.getElementById("codiceFiscale").value.length != 16){
-				$('#errorModal').modal('toggle');
-				document.getElementById("errorModalBody").innerHTML = "Codice Fiscale deve essere composto da 16 lettere/cifre"
+				$('#errore').modal('toggle');
+				document.getElementById("m-errore-text").innerHTML = "Il codice fiscale deve essere composto da 16 lettere/cifre."
 				return false;
 			}
 			
@@ -756,8 +875,8 @@ ul ul a {
 			 {
 			    return true
 			 }
-			$('#errorModal').modal('toggle');
-			document.getElementById("errorModalBody").innerHTML = "Email non inserito in modo corretto"
+			$('#errore').modal('toggle');
+			document.getElementById("m-errore-text").innerHTML = "L'e-mail non è inserita in modo corretto."
 			return false
 		}
 		function validateMansione(tipo, lista) {
@@ -831,13 +950,24 @@ ul ul a {
 		function insertionMessage(tipo, id, lista){
 			lista = buildString(lista);
 			if(lista.indexOf(document.getElementById(id).value) !== -1){
-				$('#errorModal').modal('toggle');   
-				document.getElementById("errorModalBody").innerHTML = tipo + " già inserita.";  
+				$('#errore').modal('toggle');   
+				document.getElementById("m-errore-text").innerHTML = tipo + " già inserita.";  
 				return false;
 			}
 			
 			return true;
 		}
+		function openMenu() {
+			  document.getElementById("sidebar").style.width = "500px";
+			  document.getElementById("header").style.marginLeft = "250px";
+			  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+			}
+
+		function closeMenu() {	
+			  document.getElementById("sidebar").style.width = "0";			 
+			  document.getElementById("header").style.marginLeft = "0";
+			  
+			}
 	</script>
 
 	<!-- Popper.JS -->
