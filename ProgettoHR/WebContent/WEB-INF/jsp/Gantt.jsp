@@ -437,7 +437,7 @@ ul ul a {
 							 <input type="text" class="form-control" id="costData" name="costi">
 							 <input type="text" class="form-control" id="daysData" name="days">
 						</div>
-						<button id="inviaDati" type="submit" class="btn btn-primary">Invia</button>
+						<button onclick="openLoadingModal()" id="inviaDati" type="submit" class="btn btn-primary">Invia</button>
 					</form>
 
 
@@ -467,9 +467,36 @@ ul ul a {
 			</div>
 		</div>
 	</div>
+	
+	<!-- MODAL CARICAMENTO -->
+	<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="errorModalLabel">Gantt</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="errorModalBody">
+				Download Excel Gantt in corso...</div>
+				<div class="modal-footer">
+					<button type="reset" id="bottone-cancella-specializzazione"
+						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<script type="text/javascript">
+	
+	function openLoadingModal(){
+		$('#sendModal').modal('hide');
+		$('#loadingModal').modal('show');
+	}
 	
 	var countCandidatiGant=0;
 	
