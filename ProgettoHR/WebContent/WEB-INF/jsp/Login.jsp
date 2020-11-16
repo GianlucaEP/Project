@@ -63,19 +63,21 @@ label {
 	letter-spacing: 3px;
 }
 
-input {
+.input-login {
 	padding: 10px 15px;
 	color: #004fff;
 	border: none;
-	border-radius: 10px;
+	border-radius: 20px;
 	letter-spacing: 2px;
 	background-color: whitesmoke;
 	width: 100%;
-}
-
-input:focus {
 	box-shadow: none !important;
 	outline: 0;
+}
+
+.input-login:focus {
+	border: 1px solid #004fff;
+	background-color: whitesmoke;
 	color: #004fff;
 }
 
@@ -135,7 +137,7 @@ input:focus {
 								</span>
 							</div>
 						</div>
-						<hr class="trans--grow hr mb-4">
+						<hr class="trans--grow hr mb-5">
 						<div class="form-group" id="utenteForm">
 							<div class="row">
 								<div class="col">
@@ -144,7 +146,8 @@ input:focus {
 							</div>
 							<div class="row">
 								<div class="col mb-3">
-									<form:input path="username" type="text" autocomplete="off" />
+									<form:input path="username" type="text" autocomplete="off"
+										class="form-control input-login" />
 								</div>
 							</div>
 						</div>
@@ -156,7 +159,8 @@ input:focus {
 							</div>
 							<div class="row">
 								<div class="col mb-3">
-									<form:input path="password" type="password" />
+									<form:input path="password" type="password"
+										class="form-control input-login" />
 								</div>
 							</div>
 						</div>

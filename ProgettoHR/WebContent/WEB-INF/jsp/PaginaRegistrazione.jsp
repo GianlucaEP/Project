@@ -38,7 +38,7 @@ body, html {
 
 header {
 	height: 100%;
-	background-image: url("/ProgettoHR/img/home.jpg");
+	background-image: url("/ProgettoHR/img/Home1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -69,10 +69,18 @@ form {
 	padding: 10px 15px;
 	color: #004fff;
 	border: none;
-	border-radius: 10px;
+	border-radius: 20px;
 	letter-spacing: 2px;
 	background-color: whitesmoke;
 	width: 100%;
+	box-shadow: none !important;
+	outline: 0;
+	transition: 0.5s;
+}
+
+#nuovoUtente:focus, #nuovaPassword:focus {
+	border: 1px solid #004fff;
+	transition: 0.5s;
 }
 
 #btn-nav {
@@ -186,8 +194,7 @@ form {
 								<div id="formNuovoUtente">
 									<label for="Utente">Utente :</label>
 									<form:input path="username" type="text" class="form-control"
-										id="nuovoUtente" placeholder="Inserisci Utente"
-										required="required" />
+										id="nuovoUtente" required="required" autocomplete="off" />
 								</div>
 							</div>
 						</div>
@@ -196,8 +203,8 @@ form {
 								<div id="formNuovaPassword">
 									<label for="Password">Password :</label>
 									<form:input path="password" type="password"
-										class="form-control" id="nuovaPassword"
-										placeholder="Inserisci Password" required="required" />
+										class="form-control" id="nuovaPassword" required="required"
+										autocomplete="off" />
 								</div>
 							</div>
 						</div>
