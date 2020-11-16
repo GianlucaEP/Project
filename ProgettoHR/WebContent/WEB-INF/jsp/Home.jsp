@@ -34,7 +34,7 @@
 
 body, html {
 	height: 100%;
-	background-image: url("/ProgettoHR/img/home.jpg");
+	background-image: url("/ProgettoHR/img/Home1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -51,6 +51,9 @@ h5 {
 	letter-spacing: 5px;
 }
 
+h6 {
+	letter-spacing: 5px;
+}
 /* PALLINI STATO CANDIDATO */
 .dot {
 	height: 25px;
@@ -62,6 +65,7 @@ h5 {
 
 #zeroRecord {
 	text-align: center;
+	color: black;
 	letter-spacing: 5px;
 	margin: 10px;
 }
@@ -81,18 +85,16 @@ h5 {
 }
 
 #btn-logout, #btn-menu, #btn-filtro {
+	border-radius: 20px;
 	box-shadow: none !important;
 	outline: 0;
 	transition: 0.5s;
 }
 
 #btn-logout:hover, #btn-menu:hover, #btn-filtro:hover {
-	border-radius: 20px;
 	background-color: #d3d3d3;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
 #sidebar {
@@ -202,15 +204,13 @@ option:hover {
 	transition: 0.5s;
 }
 
-#mansione, #area, #specializzazione {
-	border: 1px solid black;
-	border-radius: 20px;
-	box-shadow: none !important;
-	outline: 0;
-	border-radius: 30px;
+/* === MODAL AGGIUNTA MANSIONE,SPECIALIZZAZIONE E DI AREA COMPETENZA === */
+.m-content, .m-content-candidato {
+	background-color: transparent;
+	border: none;
 }
 
-.m-header {
+.m-header, .m-header-candidato {
 	background-color: white;
 	border-radius: 20px 20px 0px 0px;
 }
@@ -218,54 +218,61 @@ option:hover {
 .m-body {
 	padding: 20px;
 	margin-top: 10px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
+	background-color: #d3d3d3;
+}
+
+.m-body-candidato {
+	padding: 20px;
+	margin-top: 10px;
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	color: black;
+}
+
+.m-input {
 	border: 1px solid white;
+	border-radius: 20px;
+	box-shadow: none !important;
+	outline: 0;
+	border-radius: 30px;
+	transition: 0.5s;
+}
+
+.m-footer-candidato {
+	margin-top: 10px;
 	border-radius: 0px 0px 20px 20px;
 	background-color: white;
 }
 
-.m-content {
-	background-color: transparent;
-	border: none;
-}
-
-#btn-salva-mansione, #btn-salva-area, #btn-salva-specializzazione,
-	#btn-si {
-	background-color: #52b788;
-	border: 1px solid #52b788;
+.btn-salva {
+	border: 1px solid white;
 	border-radius: 20px;
-	color: white;
-	letter-spacing: 3px;
+	background: white;
+	color: black;
 	transition: 0.5s;
+	box-shadow: none !important;
+	outline: 0;
 }
 
-#btn-salva-mansione:hover, #btn-salva-area:hover,
-	#btn-salva-specializzazione:hover, #btn-si:hover {
-	background-color: #40916c;
-	border: 1px solid #40916c;
+#btn-si, #btn-no {
+	border: 1px solid #d3d3d3;
 	border-radius: 20px;
-	color: white;
+	background: #d3d3d3;
+	color: black;
 	transition: 0.5s;
+	box-shadow: none !important;
+	outline: 0;
 }
-
-#btn-cancella-mansione, #btn-cancella-area,
-	#btn-cancella-specializzazione, #btn-no {
-	background-color: #f25c54;
-	border: 1px solid #f25c54;
+/* ======================================================================== */
+.m-errore-body {
+	letter-spacing: 5px;
+	border: 1px solid white;
 	border-radius: 20px;
-	color: white;
-	letter-spacing: 3px;
-	transition: 0.5s;
+	background: white;
+	color: red;
 }
-
-#btn-cancella-mansione:hover, #btn-cancella-area:hover,
-	#btn-cancella-specializzazione:hover, #btn-no:hover {
-	background-color: #ef233c;
-	border: 1px solid #ef233c;
-	border-radius: 20px;
-	color: white;
-	transition: 0.5s;
-}
-
 /* DARK MODE */
 #bottoneDarkMode {
 	height: 43px;
@@ -303,69 +310,73 @@ option:hover {
 					</div>
 					<!-- SIDEBAR MENU -->
 					<div id="sidebar">
-						<ul>
-							<li><c:forEach var="business" items="${businessList}">
-									<a class="dropdown-item"
-										href="/ProgettoHR/Home/${business.business}">${business.business}</a>
-								</c:forEach></li>
-						</ul>
-						<hr>
+						<h6>- Cambia business unit:</h6>
+						<c:forEach var="business" items="${businessList}">
+							<a class="dropdown-item"
+								href="/ProgettoHR/Home/${business.business}">${business.business}</a>
+						</c:forEach>
+
 						<a href="javascript:void(0)" id="btn-menu-close"
 							onclick="closeMenu()">&times;</a>
 						<hr>
-						<a href="/ProgettoHR/Candidati/${businessUnit}" class="btn">+
-							Nuovo candidato</a>
-
+						<ul>
+							<li><a href="/ProgettoHR/Candidati/${businessUnit}"
+								class="btn"> Nuovo candidato</a></li>
+						</ul>
 						<hr>
-						<ul class="list-unstyled components">
+						<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta utente")}'>
 								<li><a href="/ProgettoHR/Registrati/${businessUnit}"
-									class="btn">+ Nuovo utente </a></li>
-								<hr>
+									class="btn"> Nuovo utente </a></li>
 							</c:if>
+						</ul>
+						<hr>
+						<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta mansione")}'>
 								<li><a href="" data-toggle="modal"
-									data-target="#aggiungiMansione" class="btn">+ Nuova
-										mansione</a></li>
+									data-target="#aggiungiMansione" class="btn"> Nuova mansione</a></li>
 							</c:if>
 							<c:if test='${fn:contains(funzionalita, "visualizza mansione")}'>
 								<li><a href="/ProgettoHR/Mansione/${businessUnit}"
-									class="btn">- Visualizza mansione</a></li>
-								<hr>
+									class="btn"> Visualizza mansione</a></li>
 							</c:if>
-
+						</ul>
+						<hr>
+						<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta area")}'>
 								<li><a href="" data-toggle="modal"
-									data-target="#aggiungiAreaCompetenza" class="btn">+ Nuova
+									data-target="#aggiungiAreaCompetenza" class="btn"> Nuova
 										area di competenza </a></li>
 							</c:if>
 							<c:if test='${fn:contains(funzionalita, "visualizza area")}'>
 								<li><a href="/ProgettoHR/AreaCompetenza/${businessUnit}"
-									class="btn">- Visualizza area di competenza</a></li>
-								<hr>
+									class="btn"> Visualizza area di competenza</a></li>
 							</c:if>
+						</ul>
+						<hr>
+						<ul>
 							<c:if
 								test='${fn:contains(funzionalita, "aggiunta specializzazione")}'>
 								<li><a href="" data-toggle="modal"
-									data-target="#aggiungiSpecializzazione" class="btn">+ Nuova
+									data-target="#aggiungiSpecializzazione" class="btn"> Nuova
 										specializzazione </a></li>
 							</c:if>
 							<c:if
 								test='${fn:contains(funzionalita, "visualizza specializzazione")}'>
 								<li><a href="/ProgettoHR/Specializzazione/${businessUnit}"
-									class="btn">- Visualizza specializzazione</a></li>
+									class="btn"> Visualizza specializzazione</a></li>
 							</c:if>
-
 						</ul>
 						<hr>
-						<a href="/ProgettoHR/Filter/${businessUnit}" class="btn" id="btn-ricerca-candidato">-
-							Ricerca candidati</a>
+						<ul>
+							<li><a href="/ProgettoHR/Filter/${businessUnit}" class="btn"
+								id="btn-ricerca-candidato">Ricerca candidati</a></li>
+						</ul>
 						<hr>
-						<a href="/ProgettoHR/Gantt/${businessUnit}" type="button"
-							class="btn" id="ganttButton">- Gantt</a>
-						<hr>
-
-
+						<ul>
+							<li><a href="/ProgettoHR/Gantt/${businessUnit}"
+								type="button" class="btn" id="ganttButton">Gantt</a></li>
+						</ul>
 					</div>
 					<div class="col">
 						<a class="navbar-brand w-100"
@@ -535,25 +546,25 @@ option:hover {
 			<div class="modal-content m-content">
 
 				<div class="modal-header m-header">
-					<h5 class="modal-title">Inserisci una nuova mansione:</h5>
+					<h5 class="modal-title">Inserisci una mansione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<i class="fas fa-times"></i>
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
 					onsubmit="return validate('Mansione', '${mansioneList}' );">
-					<!-- tipo, valoreInserito, lista -->
 					<div class="modal-body m-body">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10">
-									<form:input path="mansione" type="text" class="form-control"
-										maxlength="45" id="mansione" name="mansione"></form:input>
+									<form:input path="mansione" type="text"
+										class="form-control m-input" maxlength="45" id="mansione"
+										name="mansione" autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
-									<button class="btn" type="submit" id="btn-salva-mansione">
+									<button class="btn btn-salva" type="submit">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
@@ -570,28 +581,36 @@ option:hover {
 	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
 		role="dialog" aria-labelledby="modalAggiungiArea" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content">
 
-				<div class="modal-header">
-					<h5 class="modal-title">Inserisci una nuova area di
-						competenza:</h5>
+				<div class="modal-header m-header">
+					<h5 class="modal-title">Inserisci un'area di competenza:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+					</button>
 				</div>
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaHome/${businessUnit}"
-					onsubmit="return validateArea('Area Competenza', '${areaList}');">
-					<div class="modal-body">
-
-						<form:input path="area" type="text" class="form-control"
-							maxlength="45" id="area"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="reset" id="btn-cancella-area" class="btn">Cancella</button>
-						<button type="submit" id="btn-salva-area" class="btn">Salva</button>
+					onsubmit="return validateArea('Area di competenza', '${areaList}');">
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="area" type="text"
+										class="form-control m-input" maxlength="45" id="area"
+										autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
-
 			</div>
 		</div>
 	</div>
@@ -601,28 +620,36 @@ option:hover {
 		role="dialog" aria-labelledby="modalSpecializzazione"
 		aria-hidden="true">
 		<div class="modal-dialog  modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi una specializzazione:</h5>
+			<div class="modal-content m-content">
+
+				<div class="modal-header m-header">
+					<h5 class="modal-title">Inserisci una specializzazione:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
+
 				<form:form modelAttribute="specializzazione"
 					id="formSpecializzazione" method="POST"
 					action="/ProgettoHR/SpecializzazioneSaveDaHome/${businessUnit}"
 					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
-					<div class="modal-body">
-						<form:input path="specializzazione" type="text" maxlength="45"
-							class="form-control" id="specializzazione"></form:input>
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="specializzazione" type="text" maxlength="45"
+										class="form-control m-input" id="specializzazione"
+										autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="submit" id="btn-salva-specializzazione" class="btn">Salva</button>
-						<button type="reset" id="btn-cancella-specializzazione"
-							class="btn">Cancella</button>
-					</div>
-
 				</form:form>
 			</div>
 		</div>
@@ -633,18 +660,22 @@ option:hover {
 		role="dialog" aria-labelledby="modalEliminaCandidato"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-candidato">
 				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
-					<div class="modal-header">
+					<div class="modal-header m-header-candidato">
 						<h5 class="modal-title">Cancellazione del candidato:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="btn-close-modal">&times;</span>
+						</button>
 					</div>
 
-					<div class="modal-body" id="modalText"></div>
-					<input style="visibility: hidden;" name="idCandidato"
-						id="candidatoId" />
+					<div class="modal-body m-body-candidato" id="modalText"></div>
 
-					<div class="modal-footer">
+					<div class="modal-footer m-footer-candidato">
+						<input style="visibility: hidden;" name="idCandidato"
+							id="candidatoId" />
 						<button type="button" class="btn text-center" id="btn-no"
 							data-dismiss="modal">No</button>
 						<button type="submit" class="btn text-center" id="btn-si">Sì</button>
@@ -656,22 +687,11 @@ option:hover {
 	</div>
 
 	<!-- MODAL ERRORE -->
-	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="errore" tabindex="-1" role="dialog"
+		aria-labelledby="modalErrore" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="errorModalLabel"></h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" id="errorModalBody"></div>
-				<div class="modal-footer">
-					<button type="reset" id="bottone-cancella-specializzazione"
-						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-				</div>
+			<div class="modal-content m-content">
+				<div class="modal-body m-errore-body text-center" id="m-errore-text"></div>
 			</div>
 		</div>
 	</div>
@@ -775,9 +795,9 @@ option:hover {
 		function insertionMessage(tipo, id, lista){
 			lista = buildString(lista);
 			if(lista.indexOf(document.getElementById(id).value) !== -1){
-				$('#errorModal').modal('toggle');   
-				document.getElementById("errorModalLabel").innerHTML = tipo;
-				document.getElementById("errorModalBody").innerHTML = tipo + " già inserita.";  
+				$('#errore').modal('toggle');   
+	
+				document.getElementById("m-errore-text").innerHTML = tipo + " già inserita.";  
 				return false;
 			}
 			
