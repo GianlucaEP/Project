@@ -35,7 +35,7 @@
 body, html {
 	height: 100%;
 	transition: background-color .5s;
-	background-image: url("/ProgettoHR/img/home.jpg");
+	background-image: url("/ProgettoHR/img/Home1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -152,11 +152,12 @@ img {
 }
 
 .btn-salva-candidato {
-	border: 1px solid #d3d3d3;
-	border-radius: 20px;
+	border: 1px solid #004fff;
+	color: #004fff;
 	padding: 5px 30px;
 	letter-spacing: 5px;
 	transition: 0.5s;
+	border-radius: 20px;
 }
 
 .btn-salva-candidato:hover {
@@ -193,7 +194,7 @@ img {
 	transition: 0.5s;
 }
 
-.btn-salva, #btn-si {
+.btn-salva {
 	border: 1px solid white;
 	border-radius: 20px;
 	background: white;
@@ -527,7 +528,8 @@ img {
 							<div class="row">
 								<div class="col-10">
 									<form:input path="mansione" type="text"
-										class="form-control m-input" id="mansione" name="mansione" autocomplete="off"></form:input>
+										class="form-control m-input" id="mansione" name="mansione"
+										autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
 									<button class="btn btn-salva" type="submit">
@@ -607,7 +609,8 @@ img {
 							<div class="row">
 								<div class="col-10">
 									<form:input path="specializzazione" type="text"
-										class="form-control m-input" id="specializzazione" autocomplete="off"></form:input>
+										class="form-control m-input" id="specializzazione"
+										autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
 									<button class="btn btn-salva" type="submit">
