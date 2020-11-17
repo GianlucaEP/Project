@@ -464,6 +464,16 @@ ul ul a {
 
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<input type="checkbox"
+									class="custom-control-input" id="categoriaProtettaSelect"
+									name="categoriaProtetta"></input>
+								<label class="custom-control-label" for="categoriaProtettaSelect">Categoria
+									protetta</label>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Salva</button>

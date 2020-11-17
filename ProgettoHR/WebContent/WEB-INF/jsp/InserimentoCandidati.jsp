@@ -237,7 +237,7 @@ img {
 
 </head>
 
-<body onload="impostaAnno()">
+<body>
 	<header id="header">
 		<nav class="navbar navbar-expand-lg">
 			<div class="container-fluid">
@@ -666,11 +666,6 @@ img {
 		//areaCnt = 0;
 		//mansioneCnt = 0;
 		//specializzazioneCnt = 0;
-		
-		function impostaAnno(){
-			document.getElementById("anno").value = "";
-		}
-		
 
 		function stampaAreaCompetenzaSelezionata(areaCompetenzaList) {
 			var areeCompetenzaEsistenti = document.getElementById("areeCompetenzaDiv").children;
