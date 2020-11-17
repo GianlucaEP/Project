@@ -18,30 +18,54 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-
+    src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+* {
+	font-family: 'Poppins', sans-serif;
+}
 
 body, html, #container {
 	height: 100%;
-}
-/* MEDIA PER SCHERMO DESKTOP GRANDE */
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
-	transition: 0.5s;
+	background-image: url("/ProgettoHR/img/Home1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
-#aSidebar, #aSidebar:hover, #aSidebar:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
+#img-logo {
+	position: relative;
+	height: 80px;
+	left: 230px;
+	transition: left .5s;
+}
+
+#btn-nav {
+	border: 1px solid white;
+	border-radius: 5px;
+	height: 45px;
+	background-color: white;
+}
+
+#btn-logout, #btn-home {
+	border-radius: 5px;
+	color: black;
+	outline: 0;
+	transition: 0.5s;
+	color: black;
+}
+
+#btn-logout:hover, #btn-home:hover {
+	box-shadow: 1px 1px 2px black;
+	transition: 0.5s;
+	color: black;
 }
 
 .dark-mode {
@@ -57,96 +81,6 @@ body {
 	border-radius: 50%;
 	display: inline-block;
 	margin-top: 5px;
-}
-
-/* NAVBAR */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
-}
-
-#iconaLogout {
-	width: 25px;
-	height: 48px;
-}
-
-/* SIDEBAR */
-#sidebar {
-	width: 100%;
-	height: 100%;
-	border-collapse: collapse;
-	font-size: 0.9em;
-	border-radius: 0px 5px 5px 0px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-	border-collapse: collapse;
-	background: #5aa9e6;
-	color: #fff;
-	border-collapse: collapse;
-}
-
-#sidebar .sidebar-header {
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	background: #7fc8f8;
-}
-
-#sidebar ul.components {
-	padding: 10px 0px 0px 0px;
-}
-
-#sidebar ul p {
-	color: #fff;
-	padding: 10px;
-}
-
-#sidebar ul li a {
-	margin: 5px 0px;
-	padding: 10px 10px 10px 10px;
-	font-size: 1.1em;
-	display: block;
-}
-
-#sidebar ul li a:hover {
-	color: #000000;
-	background: #fff;
-}
-
-#sidebar ul li.active>a, a[aria-expanded="true"] {
-	color: #fff;
-	background: #7fc8f8;
-}
-
-a[data-toggle="collapse"] {
-	position: relative;
-}
-
-.dropdown-toggle::after {
-	display: block;
-	position: absolute;
-	top: 50%;
-	right: 20px;
-	transform: translateY(-50%);
-}
-
-ul ul a {
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #cae9ff;
 }
 
 .tabellaHome {
@@ -192,6 +126,10 @@ ul ul a {
 	visibility: hidden;
 }
 
+#colonnaForm {
+	background: white;
+}
+
 #colonnaNavbar {
 	padding: 0;
 }
@@ -232,49 +170,31 @@ ul ul a {
 </head>
 
 <body>
-	<div id="container" class="container-fluid">
-		<div class="row">
-			<div class="col" id="colonnaNavbar">
-				<!-- NAVBAR -->
-				<nav class="navbar">
 
-					<!-- LOGO -->
-					<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
-						<img class="logo" src="/ProgettoHR/img/erretechnologygroup.png">
-					</a>
-
-					<div id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-
-							<li class="nav-item">
-								<form action="/ProgettoHR/Logout">
-									<button type="submit" class="btn nav-link p-0">
-										<i id="iconaLogout" class="fas fa-sign-out-alt"></i>
-									</button>
-								</form>
-							</li>
-						</ul>
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div id="btn-nav" class="d-flex flex-row">
+					<div class="col-auto align-self-center">
+						<button class="btn"
+							onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
+							id="btn-home">
+							<i class="fas fa-home"></i>
+						</button>
 					</div>
-				</nav>
-			</div>
-		</div>
-
-		<!-- COLONNA BARRA LATERALE -->
-		<div id="colonnaBarraLaterale" class="row  mt-4">
-			<div id="colonnaSidebar" class="col-2">
-				<!-- BARRA LATERALE -->
-				<div id="sidebar">
-					<div class="sidebar-header">
-						<h3>Gantt</h3>
+					<div class="col-auto align-self-center">
+						<button onclick="location.href = '/ProgettoHR/Logout';"
+							class="btn float-right" id="btn-logout">
+							<i class="fas fa-sign-out-alt"></i>
+						</button>
 					</div>
-
-					<ul class="list-unstyled components">
-						<li><a id="aSidebar" href="/ProgettoHR/Home/${businessUnit}"
-							type="button"><i class="fas fa-home"></i> Torna alla Home</a></li>
-					</ul>
-
 				</div>
 			</div>
+		</div>
+	</nav>
+
+	<div id="container" class="container-fluid">
+		<div id="colonnaBarraLaterale" class="row mt-4">
 			<div id="colonnaForm" class="col-2">
 				<!--Gantt -->
 
@@ -302,11 +222,13 @@ ul ul a {
 
 					<div class="form-group">
 						<label for="exampleFormControlInput2">Data inizio</label> <input
-							type="date" pattern="dd-MM-yyyy" class="form-control" id="initialDate">
+							type="date" pattern="dd-MM-yyyy" class="form-control"
+							id="initialDate">
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlInput3">Data fine</label> <input
-							type="date" pattern="dd-MM-yyyy"  class="form-control" id="endDate">
+							type="date" pattern="dd-MM-yyyy" class="form-control"
+							id="endDate">
 					</div>
 
 					<div class="form-group">
@@ -393,7 +315,8 @@ ul ul a {
 									<td>${cand.costo.giornaliero}</td>
 
 
-									<td><button id="aggiungi${cand.id}" type="button" class="btn btn-success"
+									<td><button id="aggiungi${cand.id}" type="button"
+											class="btn btn-success"
 											onclick="addCandidato(${cand.costo.giornaliero}, '${cand.nome}')">
 											<i class="fas fa-plus"></i>
 										</button></td>
@@ -433,11 +356,13 @@ ul ul a {
 
 					<form action="/ProgettoHR/ExcelGantt/${businessUnit}" method="POST">
 						<div class="form-group" style="display: none">
-							 <input type="text" class="form-control" id="ganttData" name="data">
-							 <input type="text" class="form-control" id="costData" name="costi">
-							 <input type="text" class="form-control" id="daysData" name="days">
+							<input type="text" class="form-control" id="ganttData"
+								name="data"> <input type="text" class="form-control"
+								id="costData" name="costi"> <input type="text"
+								class="form-control" id="daysData" name="days">
 						</div>
-						<button onclick="openLoadingModal()" id="inviaDati" type="submit" class="btn btn-primary">Invia</button>
+						<button onclick="openLoadingModal()" id="inviaDati" type="submit"
+							class="btn btn-primary">Invia</button>
 					</form>
 
 
@@ -467,7 +392,7 @@ ul ul a {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- MODAL CARICAMENTO -->
 	<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -480,8 +405,8 @@ ul ul a {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" id="errorModalBody">
-				Download Excel Gantt in corso...</div>
+				<div class="modal-body" id="errorModalBody">Download Excel
+					Gantt in corso...</div>
 				<div class="modal-footer">
 					<button type="reset" id="bottone-cancella-specializzazione"
 						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
