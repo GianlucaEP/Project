@@ -242,7 +242,7 @@ label {
 			}
 
 			if (control) {
-				document.getElementById("loginButton").disabled = true;
+				document.getElementById("btn-login").disabled = true;
 			}
 
 			return control;
