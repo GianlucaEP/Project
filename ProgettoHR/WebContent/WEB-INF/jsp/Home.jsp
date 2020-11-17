@@ -357,7 +357,7 @@ option:hover {
 							</button>
 						</div>
 						<div class="col-auto align-self-center">
-							<button onclick="location.href = '/ProgettoHR/Login';"
+							<button onclick="location.href = '/ProgettoHR/Logout';"
 								class="btn" id="btn-logout">
 								<i class="fas fa-sign-out-alt"></i>
 							</button>

@@ -57,7 +57,6 @@ public class LoginController {
 	public String Logout(WebRequest webRequest, SessionStatus status) {
 		status.setComplete();
 		webRequest.removeAttribute("utente", WebRequest.SCOPE_SESSION);
-		Utility.destroySessionFactory();
 		return "redirect:/Login";
 	}
 

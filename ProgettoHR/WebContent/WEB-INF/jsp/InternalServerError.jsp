@@ -13,84 +13,63 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <style type="text/css">
-@import
-	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+* {
+	font-family: 'Poppins', sans-serif;
+}
 
-/* Body e html generale*/
-html, body {
+html, body, header {
 	height: 100%;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+#img-logo {
+	height: 80px;
 }
 
-a, a:hover, a:focus {
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-
-#content {
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
-/* Navbar */
-.navbar {
-	background: #5aa9e6;
-	border: none;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-/* ICONA LOGOUT */
-.svg-inline--fa.fa-w-16 {
-	margin-left: 5px;
-	margin-top: 5px;
-	overflow: hidden;
-	vertical-align: middle;
-	width: 25px;
-	height: 25px;
-}
-
-.navbar-nav .nav-link {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: #7fc8f8;
-	border-radius: 50%;
-}
-
-.navbar .navbar-brand .logo {
-	width: auto;
-	height: 70px;
+.container-server {
+	background: #74b9ff;
+	color: white;
 }
 </style>
 
 </head>
 <body>
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-xl ">
-		<div class="container-fluid">
+	<header>
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col">
+						<a class="navbar-brand" href="/ProgettoHR/Home/${businessUnit}">
+							<img id="img-logo" src="/ProgettoHR/img/erretechnologygroup.png">
+						</a>
+					</div>
 
-			<!-- LOGO -->
-			<a class="navbar-brand"> <img class="logo"
-				src="/ProgettoHR/img/erretechnologygroup.png">
-			</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid container-server">
+			<div class="row align-items-center">
+				<div class="col align-self-center text-center">
+					<h1>Errore del server</h1>
+					<div>
+						Oops! Qualcosa è andato storto.<br> Clicca <a
+							style="color: blue;" href="/ProgettoHR/">qui</a> per tornare alla
+						pagina iniziale.<br>Se il problema persiste contattare
+						l'amministratore.
+					</div>
+				</div>
+			</div>
 		</div>
-	</nav>
-	<div id="content">
-		<h1>Errore del server</h1>
-		<div>
-			Oops! Qualcosa è andato storto.<br> Clicca <a style="color: blue;"
-				href="/ProgettoHR/">qui</a> per tornare alla pagina iniziale.<br>Se il problema persiste contattare l'amministratore.
-		</div>
-	</div>
-
+	</header>
 
 	<!-- Popper.JS -->
 	<script
