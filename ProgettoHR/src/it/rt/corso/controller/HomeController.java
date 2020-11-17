@@ -93,6 +93,9 @@ public class HomeController {
 		} else {
 			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("statoSelezionato"));
 		}
+		
+		List<String> listaFunzionalita = utente.getRuolo().getFunzionalita().stream().map(Funzionalita::getFunzionalita)
+				.collect(Collectors.toList());
 
 		m.addAttribute("mansioneList", singleton.getMansioneList());
 		m.addAttribute("list", list);
@@ -103,6 +106,7 @@ public class HomeController {
 		m.addAttribute("specializzazione", new Specializzazione());
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("statoSelezionato", requestParams.get("statoSelezionato"));
+		m.addAttribute("funzionalita", listaFunzionalita);
 
 		return "Home";
 	}
