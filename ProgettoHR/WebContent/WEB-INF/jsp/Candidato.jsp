@@ -35,7 +35,7 @@
 body, html {
 	height: 100%;
 	transition: background-color .5s;
-	background-image: url("/ProgettoHR/img/home.jpg");
+	background-image: url("/ProgettoHR/img/Home1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -47,30 +47,46 @@ header {
 	transition: margin-left .5s;
 }
 
+.btn-salva {
+	border-radius: 20px;
+	color: white;
+	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	background: #00b894;
+	outline: 0;
+}
+
+.btn-salva:hover {
+	color: white;
+}
+
+.btn-annulla {
+	color: #d63031;
+}
+
+.btn-annulla:hover {
+	color: #d63031;
+}
+
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
 #btn-logout, #btn-home, #btn-menu {
-	border-radius: 100%;
-	background-color: white;
+	border-radius: 5px;
 	color: black;
-	box-shadow: none !important;
 	outline: 0;
-	border: 1px solid white;
 	transition: 0.5s;
+	color: black;
 }
 
 #btn-logout:hover, #btn-home:hover, #btn-menu:hover {
-	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
+	box-shadow: 1px 1px 2px black;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
 #sidebar {
@@ -120,23 +136,17 @@ header {
 }
 
 .tabellaAnagrafica .head {
-	background-color: white;
-	border-bottom: 2px solid #004fff;
-	color: black;
+	background-color: #74b9ff;
+	border-bottom: 2px solid black;
+	color: white;
 	letter-spacing: 5px;
 }
 
 .tabellaAnagrafica .body tr {
-	border-bottom: 2px solid #d3d3d3;
+	border-bottom: 1px solid whitesmoke;
 	color: black;
-	letter-spacing: 4px;
+	letter-spacing: 3px;
 	transition: 0.5s;
-}
-
-.tabellaAnagrafica .body tr:hover {
-	color: white;
-	transition: 0.5s;
-	background-color: #d3d3d3;
 }
 
 .tabellaAnagrafica .body {
@@ -153,8 +163,7 @@ header {
 }
 
 .tabellaAnagrafica .footer {
-	background-color: white;
-	border-top: 2px solid black;
+	background-color: #74b9ff;
 }
 
 #btn-stato {
@@ -169,11 +178,21 @@ header {
 }
 
 .btn-modifica {
-	background-color: white;
-	border: 1px solid white;
-	border-radius: 10px;
-	outline: 0;
-	box-shadow: none !important;
+	box-shadow: 1px 1px 2px black;
+	background: white;
+	border-radius: 5px;
+}
+
+.btn-elimina {
+	transition: 0.5s;
+	margin-left: 5px;
+}
+
+.btn-elimina:hover {
+	box-shadow: 1px 1px 2px #d63031;
+	color: #d63031;
+	border-radius: 5px;
+	transition: 0.5s;
 }
 
 /* =====================
@@ -188,33 +207,21 @@ header {
 }
 
 .tabellaBusiness .head {
-	background-color: white;
-	color: black;
+	background-color: #00b894;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaBusiness .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaBusiness .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaBusiness .body {
-	background-color: #e9ecef;
-}
-
-.tabellaBusiness .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaBusiness .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaBusiness th {
@@ -227,7 +234,7 @@ header {
 }
 
 .tabellaBusiness .footer {
-	background-color: white;
+	background-color: #00b894;
 }
 
 /* =====================
@@ -242,33 +249,21 @@ header {
 }
 
 .tabellaEconomics .head {
-	background-color: white;
-	color: black;
+	background-color: #81ecec;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaEconomics .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaEconomics .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaEconomics .body {
-	background-color: #e9ecef;
-}
-
-.tabellaEconomics .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaEconomics .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaEconomics th {
@@ -281,7 +276,7 @@ header {
 }
 
 .tabellaEconomics .footer {
-	background-color: white;
+	background-color: #81ecec;
 }
 
 /* =====================
@@ -296,33 +291,21 @@ header {
 }
 
 .tabellaCosti  .head {
-	background-color: white;
-	color: black;
+	background-color: #00cec9;
+	border-bottom: 2px solid black;
+	color: white;
 	letter-spacing: 5px;
 }
 
 .tabellaCosti  .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaCosti  .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaCosti  .body {
-	background-color: #e9ecef;
-}
-
-.tabellaCosti  .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaCosti  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaCosti  th {
@@ -335,7 +318,7 @@ header {
 }
 
 .tabellaCosti  .footer {
-	background-color: white;
+	background-color: #00cec9;
 }
 
 /* =====================
@@ -350,33 +333,21 @@ header {
 }
 
 .tabellaTitoli  .head {
-	background-color: white;
-	color: black;
+	background-color: #ffeaa7;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaTitoli  .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaTitoli  .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaTitoli  .body {
-	background-color: #e9ecef;
-}
-
-.tabellaTitoli  .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaTitoli  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaTitoli  th {
@@ -389,7 +360,7 @@ header {
 }
 
 .tabellaTitoli  .footer {
-	background-color: white;
+	background-color: #ffeaa7;
 }
 
 /* =====================
@@ -404,33 +375,21 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaCompetenzeLinguistiche  .head {
-	background-color: white;
-	color: black;
+	background-color: #fdcb6e;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaCompetenzeLinguistiche  .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaCompetenzeLinguistiche .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaCompetenzeLinguistiche .body {
-	background-color: #e9ecef;
-}
-
-.tabellaCompetenzeLinguistiche .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaCompetenzeLinguistiche  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaCompetenzeLinguistiche th {
@@ -443,7 +402,7 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaCompetenzeLinguistiche .footer {
-	background-color: white;
+	background-color: #fdcb6e;
 }
 
 /* =====================
@@ -458,33 +417,21 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaFeedback  .head {
-	background-color: white;
-	color: black;
+	background-color: #fab1a0;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaFeedback  .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaFeedback .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaFeedback .body {
-	background-color: #e9ecef;
-}
-
-.tabellaFeedback .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaFeedback  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaFeedback th {
@@ -497,7 +444,7 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaFeedback .footer {
-	background-color: white;
+	background-color: #fab1a0;
 }
 
 /* =====================
@@ -512,33 +459,21 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaQualification  .head {
-	background-color: white;
-	color: black;
+	background-color: #e17055;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaQualification .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaQualification .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaQualification .body {
-	background-color: #e9ecef;
-}
-
-.tabellaQualification .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaQualification  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaQualification th {
@@ -551,7 +486,7 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaQualification .footer {
-	background-color: white;
+	background-color: #e17055;
 }
 
 /* =====================
@@ -566,33 +501,21 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaAllegati .head {
-	background-color: white;
-	color: black;
+	background-color: #ff7675;
+	color: white;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaAllegati .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
 }
 
-.tabellaAllegati .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
 .tabellaAllegati .body {
-	background-color: #e9ecef;
-}
-
-.tabellaAllegati .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaAllegati  .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+	background-color: white;
 }
 
 .tabellaAllegati th {
@@ -605,7 +528,7 @@ TABELLA COMPETENZE LINGUISTICHE
 }
 
 .tabellaAllegati .footer {
-	background-color: white;
+	background-color: #ff7675;
 }
 </style>
 
@@ -853,7 +776,8 @@ TABELLA COMPETENZE LINGUISTICHE
 														test='${fn:contains(funzionalita, "modifica economics")}'>
 														<!-- Bottone modifica economics-->
 														<button type="button" data-toggle="modal"
-															data-target="#modificaEconomics" class="btn float-right">
+															data-target="#modificaEconomics"
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -910,18 +834,20 @@ TABELLA COMPETENZE LINGUISTICHE
 											<td><c:if
 													test='${fn:contains(funzionalita, "modifica titolo di studio")}'>
 													<button
+														onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
+														type="button" data-toggle="modal" id="btn-cancella-titolo"
+														data-target="#eliminaTitoloStudio"
+														class="btn float-right btn-elimina">
+														<i class="fas fa-trash"></i>
+													</button>
+													<button
 														onclick="impostaParametriTitoloStudio('${titolo.id}','${titolo.titoloStudio}')"
 														type="button" data-toggle="modal" id="btn-modifica-titolo"
 														data-target="#modificaTitoloStudio"
-														class="btn float-right">
+														class="btn float-right btn-modifica">
 														<i class="fas fa-user-cog"></i>
 													</button>
-													<button
-														onclick="impostaParametriEliminaTitoloStudio('${titolo.id}')"
-														type="button" data-toggle="modal" id="btn-cancella-titolo"
-														data-target="#eliminaTitoloStudio" class="btn float-right">
-														<i class="fas fa-trash"></i>
-													</button>
+
 												</c:if></td>
 										</tr>
 									</c:forEach>
@@ -962,7 +888,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica business unit -->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaBusinessUnit"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 
@@ -980,7 +906,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica area di competenza-->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaAreaCompetenza"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -997,7 +923,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica mansione -->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaMansione"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -1011,7 +937,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica seniority -->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaSeniority"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -1029,7 +955,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica specializzazione -->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaSpecializzazione"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -1043,7 +969,7 @@ TABELLA COMPETENZE LINGUISTICHE
 														<!-- Bottone modifica inserimento azienda -->
 														<button type="button" data-toggle="modal"
 															data-target="#modificaInserimentoAzienda"
-															class="btn float-right btn-business-unit">
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -1073,7 +999,8 @@ TABELLA COMPETENZE LINGUISTICHE
 														test='${fn:contains(funzionalita, "modifica costi")}'>
 														<!-- Bottone modifica costi-->
 														<button type="button" data-toggle="modal"
-															data-target="#modificaCosti" class="btn float-right">
+															data-target="#modificaCosti"
+															class="btn float-right btn-modifica">
 															<i class="fas fa-user-cog"></i>
 														</button>
 													</c:if></th>
@@ -1114,15 +1041,15 @@ TABELLA COMPETENZE LINGUISTICHE
 
 								<thead class="head">
 									<tr>
-										<th colspan=5><h3>COMPETENZE LINGUISTICHE</h3></th>
-										<th colspan=5>
+										<th colspan=4><h3>COMPETENZE LINGUISTICHE</h3></th>
+										<th colspan=4>
 									</tr>
 									<tr>
 										<th>Lingua</th>
 										<th>Letto</th>
 										<th>Scritto</th>
 										<th>Parlato</th>
-										<th colspan=2></th>
+										<th colspan=1></th>
 									</tr>
 								</thead>
 								<tbody class="body" id="competenzaLinguisticaBodyTable">
@@ -1143,16 +1070,15 @@ TABELLA COMPETENZE LINGUISTICHE
 																onclick="impostaParametriEliminaCompetenzaLinguistica('${item.competenzaLinguistica.id}')"
 																type="button" data-toggle="modal"
 																data-target="#eliminaCompetenzaLinguistica"
-																class="btn float-right btn-elimina-competenza">
+																class="btn float-right btn-elimina">
 																<i class="fas fa-trash"></i>
 															</button>
-														</td>
-														<td>
+
 															<button
 																onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.id}','${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
 																type="button" data-toggle="modal"
 																data-target="#modificaCompetenzaLinguistica"
-																class="btn float-right btn-modifica-competenza">
+																class="btn float-right btn-modifica">
 																<i class="fas fa-user-cog"></i>
 															</button>
 														</td>
@@ -1174,16 +1100,15 @@ TABELLA COMPETENZE LINGUISTICHE
 																type="button" data-toggle="modal"
 																id="btn-competenza-linguistica"
 																data-target="#eliminaCompetenzaLinguistica"
-																class="btn float-right btn-elimina-competenza">
+																class="btn float-right btn-elimina">
 																<i class="fas fa-trash "></i>
 															</button>
-														</td>
-														<td>
+
 															<button
 																onclick="impostaParametriModificaCompetenzaLinguistica('${item.competenzaLinguistica.id}','${item.competenzaLinguistica.lingua}','${item.madreLingua}', '${item.letto}','${item.scritto}','${item.parlato}')"
 																type="button" data-toggle="modal"
 																data-target="#modificaCompetenzaLinguistica"
-																class="btn float-right btn-modifica-competenza">
+																class="btn float-right btn-modifica">
 																<i class="fas fa-user-cog"></i>
 															</button>
 														</td>
@@ -1196,7 +1121,7 @@ TABELLA COMPETENZE LINGUISTICHE
 
 								<tfoot class="footer">
 									<tr>
-										<td colspan=6></td>
+										<td colspan=5></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -1238,14 +1163,15 @@ TABELLA COMPETENZE LINGUISTICHE
 												<button
 													onclick="impostaParametriEliminaFeedback('${feed.id}')"
 													type="button" data-toggle="modal" id="btn-elimina-feedback"
-													data-target="#eliminaFeedback" class="btn float-right">
+													data-target="#eliminaFeedback"
+													class="btn float-right btn-elimina">
 													<i class="fas fa-trash"></i>
 												</button>
 												<button
 													onclick="impostaParametriFeedback('${feed.id}', '${feed.tipo.tipo}', '${feed.data}', '${commento}')"
 													type="button" data-toggle="modal"
 													id="btn-modifica-feedback" data-target="#modificaFeedback"
-													class="btn float-right">
+													class="btn float-right btn-modifica">
 													<i class="fas fa-user-cog"></i>
 												</button>
 											</c:if></td>
@@ -1309,7 +1235,7 @@ TABELLA COMPETENZE LINGUISTICHE
 													type="button" data-toggle="modal"
 													id="btn-elimina-qualification"
 													data-target="#eliminaQualificationMeeting"
-													class="btn float-right">
+													class="btn float-right btn-elimina">
 													<i class="fas fa-trash"></i>
 												</button>
 												<button
@@ -1317,7 +1243,7 @@ TABELLA COMPETENZE LINGUISTICHE
 													type="button" data-toggle="modal"
 													id="btn-modifica-qualification"
 													data-target="#modificaQualificationMeeting"
-													class="btn float-right">
+													class="btn float-right btn-modifica">
 													<i class="fas fa-user-cog"></i>
 												</button>
 											</c:if></td>
@@ -1475,10 +1401,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitModificaAnagrafica"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -1522,8 +1448,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form>
 			</div>
@@ -1591,8 +1517,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 
 				</form>
@@ -1661,8 +1587,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 
 				</form>
@@ -1703,8 +1629,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form>
 			</div>
@@ -1780,8 +1706,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 
 				</form>
@@ -1819,8 +1745,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form>
 			</div>
@@ -1897,10 +1823,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitAggiungiEconomics"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -1959,10 +1885,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitAggiungiCosto"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2006,10 +1932,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitAggiungiCosto"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2052,10 +1978,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitAggiungiCosto"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2090,8 +2016,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-						<button type="submit" class="btn btn-success">Sì</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-salva">Sì</button>
 					</div>
 				</form>
 			</div>
@@ -2208,8 +2134,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2321,8 +2247,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
-						<button type="submit" class="btn btn-success">Salva</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2359,8 +2285,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-						<button type="submit" class="btn btn-success">Sì</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-salva">Sì</button>
 					</div>
 				</form>
 			</div>
@@ -2449,10 +2375,10 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Annulla
+						<button type="reset" class="btn btn-annulla">Annulla
 							modifiche</button>
 						<button type="submit" id="idSubmitModificaQM"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2526,10 +2452,9 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger btn-block"
-							data-dismiss="modal">Chiudi</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
 						<button type="submit" id="idSubmitAggiungiQM"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2563,8 +2488,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-						<button type="submit" class="btn btn-success">Sì</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-salva">Sì</button>
 					</div>
 				</form>
 			</div>
@@ -2627,10 +2552,9 @@ TABELLA COMPETENZE LINGUISTICHE
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger btn-block"
-							data-dismiss="modal">Chiudi</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
 						<button type="submit" id="idSubmitAggiungiFeedback"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2699,9 +2623,9 @@ TABELLA COMPETENZE LINGUISTICHE
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-danger btn-block">Chiudi</button>
+						<button type="reset" class="btn btn-annulla">Chiudi</button>
 						<button type="submit" id="idSubmitModificaFeedback"
-							class="btn btn-primary btn-block">Salva</button>
+							class="btn btn-salva">Salva</button>
 					</div>
 				</form:form>
 			</div>
@@ -2733,8 +2657,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-						<button type="submit" class="btn btn-success">Sì</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-salva">Sì</button>
 					</div>
 				</form>
 			</div>
@@ -2777,10 +2701,8 @@ TABELLA COMPETENZE LINGUISTICHE
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary btn-block">Salva</button>
-						<button type="button" class="btn btn-danger btn-block"
-							data-dismiss="modal">Chiudi</button>
-
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-salva">Salva</button>
 					</div>
 				</form>
 			</div>
@@ -2815,8 +2737,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-						<button type="submit" class="btn btn-success">Sì</button>
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-salva">Sì</button>
 					</div>
 				</form>
 			</div>
@@ -2840,8 +2762,7 @@ TABELLA COMPETENZE LINGUISTICHE
 				</div>
 				<div class="modal-body" id="errorModalBody"></div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Chiudi</button>
+					<button type="button" class="btn btn-annulla" data-dismiss="modal">Chiudi</button>
 				</div>
 			</div>
 		</div>
