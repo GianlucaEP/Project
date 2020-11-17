@@ -54,6 +54,10 @@ h5 {
 h6 {
 	letter-spacing: 5px;
 }
+
+span {
+	letter-spacing: 5px;
+}
 /* PALLINI STATO CANDIDATO */
 .dot {
 	height: 25px;
@@ -79,20 +83,21 @@ h6 {
 
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
 #btn-logout, #btn-menu, #btn-filtro {
-	border-radius: 20px;
-	box-shadow: none !important;
+	border-radius: 5px;
+	color: black;
 	outline: 0;
 	transition: 0.5s;
+	color: black;
 }
 
 #btn-logout:hover, #btn-menu:hover, #btn-filtro:hover {
-	background-color: #d3d3d3;
+	box-shadow: 1px 1px 2px black;
 	transition: 0.5s;
 	color: black;
 }
@@ -118,6 +123,8 @@ h6 {
 	transition: 0.3s;
 	color: black;
 	text-align: left;
+	box-shadow: none !important;
+	outline: 0;
 }
 
 #sidebar a:hover {
@@ -135,7 +142,7 @@ h6 {
 .custom-select {
 	width: 35%;
 	border: 1px solid white;
-	border-radius: 20px 20px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
 	box-shadow: none !important;
 	outline: 0;
 }
@@ -151,7 +158,7 @@ option:hover {
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 0px 10px 10px 10px;
+	border-radius: 5px;
 	overflow: hidden;
 	border-collapse: collapse;
 }
@@ -189,18 +196,27 @@ option:hover {
 	background-color: white;
 }
 
-#btn-elimina, #btn-modifica {
-	background-color: #d3d3d3;
-	border: 1px solid #d3d3d3;
-	border-radius: 30px;
-	box-shadow: none !important;
-	outline: 0;
-	color: black;
+.btn-elimina-candidato {
+	transition: 0.5s;
 }
 
-#btn-elimina:hover, #btn-modifica:hover {
-	background-color: #d3d3d3;
-	color: black;
+.btn-elimina-candidato:hover {
+	box-shadow: 1px 1px 2px #d63031;
+	color: #d63031;
+	border-radius: 5px;
+	transition: 0.5s;
+}
+
+.btn-visualizza-candidato {
+	background: #74b9ff;
+	color: white;
+	border-radius: 5px;
+	transition: 0.5s;
+}
+
+.btn-visualizza-candidato:hover {
+	color: white;
+	background: #0984e3;
 	transition: 0.5s;
 }
 
@@ -217,54 +233,93 @@ option:hover {
 
 .m-body {
 	padding: 20px;
-	margin-top: 10px;
+	margin-top: 2px;
 	border: 1px solid #d3d3d3;
 	border-radius: 0px 0px 20px 20px;
-	background-color: #d3d3d3;
+	background-color: white;
 }
 
 .m-body-candidato {
 	padding: 20px;
-	margin-top: 10px;
+	margin-top: 2px;
 	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
+	background-color: white;
 	color: black;
 }
 
-.m-input {
-	border: 1px solid white;
+.m-input-aggiungi {
+	border: 1px solid black;
 	border-radius: 20px;
 	box-shadow: none !important;
 	outline: 0;
-	border-radius: 30px;
 	transition: 0.5s;
 }
 
+.m-input-aggiungi:focus {
+	border: 1px solid #00b894;
+}
+
 .m-footer-candidato {
-	margin-top: 10px;
+	margin-top: 2px;
 	border-radius: 0px 0px 20px 20px;
 	background-color: white;
 }
 
 .btn-salva {
-	border: 1px solid white;
 	border-radius: 20px;
-	background: white;
 	color: black;
 	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	outline: 0;
+}
+
+}
+.m-footer-candidato {
+	margin-top: 2px;
+	border-radius: 0px 0px 20px 20px;
+	background-color: white;
+}
+
+.btn-salva {
+	border-radius: 20px;
+	color: black;
+	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	outline: 0;
+}
+
+.btn-salva:hover {
+	background: #00b894;
+	color: white;
 	box-shadow: none !important;
 	outline: 0;
 }
 
-#btn-si, #btn-no {
-	border: 1px solid #d3d3d3;
-	border-radius: 20px;
-	background: #d3d3d3;
-	color: black;
-	transition: 0.5s;
+#btn-si {
+	border: 1px solid #00b894;
+	background: #00b894;
+	border-radius: 15px;
 	box-shadow: none !important;
 	outline: 0;
+	color: white;
 }
+
+#btn-si:hover {
+	color: white;
+}
+
+#btn-no {
+	color: #d63031;
+	transition: 0.5s;
+	border-radius: 15px;
+}
+
+#btn-no:hover {
+	box-shadow: 1px 1px 2px #ff7675;
+	transition: 0.5s;
+	color: #d63031;
+}
+
 /* ======================================================================== */
 .m-errore-body {
 	letter-spacing: 5px;
@@ -338,7 +393,7 @@ option:hover {
 							</c:if>
 							<c:if test='${fn:contains(funzionalita, "visualizza mansione")}'>
 								<li><a href="/ProgettoHR/Mansione/${businessUnit}"
-									class="btn"> Visualizza mansione</a></li>
+									class="btn"> Visualizza le mansioni</a></li>
 							</c:if>
 						</ul>
 						<hr>
@@ -350,7 +405,7 @@ option:hover {
 							</c:if>
 							<c:if test='${fn:contains(funzionalita, "visualizza area")}'>
 								<li><a href="/ProgettoHR/AreaCompetenza/${businessUnit}"
-									class="btn"> Visualizza area di competenza</a></li>
+									class="btn"> Visualizza le aree di competenza</a></li>
 							</c:if>
 						</ul>
 						<hr>
@@ -364,7 +419,7 @@ option:hover {
 							<c:if
 								test='${fn:contains(funzionalita, "visualizza specializzazione")}'>
 								<li><a href="/ProgettoHR/Specializzazione/${businessUnit}"
-									class="btn"> Visualizza specializzazione</a></li>
+									class="btn"> Visualizza le specializzazioni</a></li>
 							</c:if>
 						</ul>
 						<hr>
@@ -497,27 +552,21 @@ option:hover {
 														<td>${cand.seniority.seniority}</td>
 
 														<td>
-															<button class="btn " id="btn-modifica"
+															<button class="btn btn-visualizza-candidato"
 																onclick="window.location = '/ProgettoHR/Candidato/${cand.business.business}/${cand.id}'">
-																<span data-toggle="tooltip" data-placement="top"
-																	title="Modifica candidato"><i
+																<span title="Modifica candidato"><i
 																	class="fas fa-user"></i></span>
-
 															</button>
-
 														</td>
-														<td><button class="btn" id="btn-elimina"
+														<td><button class="btn btn-elimina-candidato"
 																data-toggle="modal"
 																onclick="impostaParametriCandidatoId(${cand.id}, '${cand.nome}', '${cand.cognome}')"
 																data-target="#eliminaCandidato">
-																<span data-toggle="tooltip" data-placement="top"
-																	title="Elimina candidato"> <i
+																<span title="Elimina candidato"> <i
 																	class="fas fa-trash"></i>
 																</span>
-
 															</button></td>
 													</tr>
-
 												</c:forEach>
 											</tbody>
 
@@ -546,7 +595,9 @@ option:hover {
 			<div class="modal-content m-content">
 
 				<div class="modal-header m-header">
-					<h5 class="modal-title">Inserisci una mansione:</h5>
+					<span class="modal-title">Inserisci una <span
+						style="color: #004fff;">mansione</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
@@ -560,8 +611,8 @@ option:hover {
 							<div class="row">
 								<div class="col-10">
 									<form:input path="mansione" type="text"
-										class="form-control m-input" maxlength="45" id="mansione"
-										name="mansione" autocomplete="off"></form:input>
+										class="form-control m-input-aggiungi" maxlength="45"
+										id="mansione" name="mansione" autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
 									<button class="btn btn-salva" type="submit">
@@ -584,7 +635,9 @@ option:hover {
 			<div class="modal-content m-content">
 
 				<div class="modal-header m-header">
-					<h5 class="modal-title">Inserisci un'area di competenza:</h5>
+					<span class="modal-title">Inserisci <span
+						style="color: #004fff;">un'area di competenza</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
@@ -599,7 +652,7 @@ option:hover {
 							<div class="row">
 								<div class="col-10">
 									<form:input path="area" type="text"
-										class="form-control m-input" maxlength="45" id="area"
+										class="form-control m-input-aggiungi" maxlength="45" id="area"
 										autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
@@ -623,7 +676,9 @@ option:hover {
 			<div class="modal-content m-content">
 
 				<div class="modal-header m-header">
-					<h5 class="modal-title">Inserisci una specializzazione:</h5>
+					<span class="modal-title">Inserisci una <span
+						style="color: #004fff;">specializzazione</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
@@ -639,7 +694,7 @@ option:hover {
 							<div class="row">
 								<div class="col-10">
 									<form:input path="specializzazione" type="text" maxlength="45"
-										class="form-control m-input" id="specializzazione"
+										class="form-control m-input-aggiungi" id="specializzazione"
 										autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
@@ -664,14 +719,16 @@ option:hover {
 				<form action="/ProgettoHR/Elimina/${businessUnit}" method="POST">
 
 					<div class="modal-header m-header-candidato">
-						<h5 class="modal-title">Cancellazione del candidato:</h5>
+						<span class="modal-title">Cancella il <span
+							style="color: #004fff;">candidato</span>:
+						</span>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true" class="btn-close-modal">&times;</span>
 						</button>
 					</div>
 
-					<div class="modal-body m-body-candidato" id="modalText"></div>
+					<div class="modal-body m-body-candidato" id="elimina-candidato"></div>
 
 					<div class="modal-footer m-footer-candidato">
 						<input style="visibility: hidden;" name="idCandidato"
@@ -700,7 +757,7 @@ option:hover {
 	<script>
 		function impostaParametriCandidatoId(id, nome, cognome) {
 			document.getElementById("candidatoId").value = id;
-			document.getElementById("modalText").textContent = "Sei sicuro di voler cancellare il candidato "+nome+" "+cognome+"?"
+			document.getElementById("elimina-candidato").textContent = "Sei sicuro di voler cancellare il candidato "+nome+" "+cognome+"?"
 
 		}
 		function changeDotColor(stato) {

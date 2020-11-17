@@ -33,7 +33,7 @@
 
 body, html {
 	height: 100%;
-	background-image: url("/ProgettoHR/img/area.jpg");
+	background-image: url("/ProgettoHR/img/msa.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -42,6 +42,10 @@ body, html {
 
 header {
 	height: 100%;
+}
+
+span {
+	letter-spacing: 5px;
 }
 
 #zeroRecord {
@@ -53,68 +57,57 @@ header {
 
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
 #btn-logout, #btn-home, #btn-add {
-	border-radius: 100%;
-	background-color: white;
+	border-radius: 5px;
 	color: black;
-	box-shadow: none !important;
 	outline: 0;
-	border: 1px solid white;
-	transition: 0.5s;
-}
-
-#btn-logout:hover, #btn-home:hover, #btn-add:hover {
-	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
+#btn-logout:hover, #btn-home:hover {
+	box-shadow: 1px 1px 2px black;
+	transition: 0.5s;
+	color: black;
+}
+
+#btn-add:hover {
+	box-shadow: 1px 1px 2px #00b894;
+	transition: 0.5s;
+	color: black;
+}
 /* TABELLA MANSIONE */
 .tabellaMansione {
-	font-size: 0.9em;
-	border-radius: 10px;
+	width: 50%;
+	border-radius: 5px;
 	overflow: hidden;
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
+	font-size: 0.9em;
 }
 
 .tabellaMansione .head {
-	background-color: white;
+	background-color: whitesmoke;
 	color: black;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaMansione .body {
-	background-color: #e9ecef;
+	background-color: white;
 }
 
 .tabellaMansione .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
-}
-
-.tabellaMansione .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
-.tabellaMansione .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaMansione .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
 }
 
 .tabellaMansione th {
@@ -127,64 +120,132 @@ header {
 }
 
 .tabellaMansione .footer {
+	background-color: whitesmoke;
+}
+
+.m-content, .m-content-elimina, .m-content-modifica {
+	background-color: transparent;
+	border: none;
+}
+
+.m-header, .m-header-elimina, .m-header-modifica {
+	background-color: white;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.m-body {
+	padding: 20px;
+	margin-top: 2px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
 	background-color: white;
 }
 
-#btn-modifica, #btn-elimina {
+.m-body-elimina, .m-body-modifica {
+	padding: 20px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border: 1px solid white;
 	background-color: white;
 	color: black;
+	letter-spacing: 3px;
+	border: 1px solid white
+}
+
+.m-input, .m-input-modifica, .m-input-aggiungi {
+	border: 1px solid black;
+	border-radius: 20px;
+	box-shadow: none !important;
+	outline: 0;
+	transition: 0.5s;
+}
+
+.m-input-aggiungi:focus {
+	border: 1px solid #00b894;
+}
+
+.m-input-modifica:focus {
+	border: 1px solid #74b9ff;
+}
+
+.m-footer-elimina, .m-footer-modifica {
+	border-radius: 0px 0px 20px 20px;
+	background-color: white;
+}
+
+.btn-aggiungi {
+	border-radius: 20px;
+	color: black;
+	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	outline: 0;
+}
+
+.btn-aggiungi:hover {
+	background: #00b894;
+	color: white;
 	box-shadow: none !important;
 	outline: 0;
 }
 
-#btn-elimina:hover, #btn-modifica:hover {
-	background-color: black;
-	color: white;
+.btn-salva {
+	border: 1px solid white;
+	border-radius: 20px;
+	background: white;
+	color: black;
 	transition: 0.5s;
-}
-
-#mansione, #newMansione {
-	border-bottom: 1px solid black;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-radius: 0px;
 	box-shadow: none !important;
 	outline: 0;
-	color: #004fff;
 }
 
-#btn-salva-mansione {
-	background-color: #52b788;
-	border: 1px solid #52b788;
-	border-radius: 20px;
+.btn-si, .btn-modifica {
+	border: 1px solid #00b894;
+	background: #00b894;
+	border-radius: 15px;
+	box-shadow: none !important;
+	outline: 0;
 	color: white;
-	letter-spacing: 3px;
+}
+
+.btn-si:hover, .btn-modifica:hover {
+	color: white;
+}
+
+.btn-no, .btn-annulla {
+	color: #d63031;
+	transition: 0.5s;
+	border-radius: 15px;
+}
+
+.btn-no:hover, .btn-annulla:hover {
+	box-shadow: 1px 1px 2px #ff7675;
+	transition: 0.5s;
+	color: #d63031;
+}
+
+.btn-elimina-mansione {
 	transition: 0.5s;
 }
 
-#btn-salva-mansione:hover {
-	background-color: #40916c;
-	border: 1px solid #40916c;
-	border-radius: 20px;
-	color: white;
+.btn-elimina-mansione:hover {
+	box-shadow: 1px 1px 2px #d63031;
+	color: #d63031;
+	border-radius: 5px;
 	transition: 0.5s;
 }
 
-#btn-cancella-mansione {
-	background-color: #f25c54;
-	border: 1px solid #f25c54;
-	border-radius: 20px;
+.btn-modifica-mansione {
+	background: #74b9ff;
 	color: white;
-	letter-spacing: 3px;
+	border-radius: 5px;
 	transition: 0.5s;
 }
 
-#btn-cancella-mansione:hover {
-	background-color: #ef233c;
-	border: 1px solid #ef233c;
-	border-radius: 20px;
+.btn-modifica-mansione:hover {
 	color: white;
+	background: #0984e3;
 	transition: 0.5s;
 }
 </style>
@@ -238,6 +299,7 @@ header {
 									<tr>
 										<th><h3>MANSIONE</h3></th>
 										<th scope="col"></th>
+
 									</tr>
 								</thead>
 
@@ -250,13 +312,13 @@ header {
 												value="${fn:escapeXml(mansione.mansione)}"></c:set>
 											<td>${mansioneXSS}</td>
 
-											<td><button class="btn" id="btn-modifica"
+											<td><button class="btn btn-modifica-mansione"
 													data-toggle="modal"
 													onclick="impostaParametriMansione('${mansioneRaplaced}')"
 													data-target="#modificaMansione">
-													<i class="fas fa-cogs"></i>
+													<i class="fas fa-pencil-alt"></i>
 												</button>
-												<button class="btn" id="btn-elimina" data-toggle="modal"
+												<button class="btn btn-elimina-mansione" data-toggle="modal"
 													onclick="impostaParametriMansioneEliminazione('${mansione.mansione}')"
 													data-target="#eliminaMansione">
 													<i class="fas fa-trash"></i>
@@ -283,10 +345,12 @@ header {
 		role="dialog" aria-labelledby="modalAggiungiMansione"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content">
 
-				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi mansione:</h5>
+				<div class="modal-header m-header">
+					<span class="modal-title">Inserisci una nuova <span
+						style="color: #004fff;">mansione</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
@@ -295,15 +359,21 @@ header {
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaMansione/${businessUnit}"
 					onsubmit="return validate('Mansione', '${mansioneList}' );">
-					<div class="modal-body">
-
-						<form:input path="mansione" type="text" class="form-control"
-							maxlength="45" id="mansione"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="reset" id="btn-cancella-mansione" class="btn">Cancella</button>
-						<button type="submit" id="btn-salva-mansione" class="btn">Salva</button>
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="mansione" type="text"
+										class="form-control m-input-aggiungi" maxlength="45"
+										id="mansione" autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-aggiungi" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
 
@@ -316,28 +386,29 @@ header {
 		role="dialog" aria-labelledby="modalModificaMansione"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-modifica">
 				<form action="/ProgettoHR/AggiornaMansione/${businessUnit}"
 					method="POST">
 
-					<div class="modal-header">
-						<h5 class="modal-title">Aggiorna mansione:</h5>
+					<div class="modal-header m-header-modifica">
+						<span class="modal-title">Modifica la <span
+							style="color: #004fff;">mansione</span>:
+						</span>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true" class="btn-close-modal">&times;</span>
 						</button>
 					</div>
 
-					<div class="modal-body">
-						<input type="text" class="form-control" name="newMansione"
-							id="newMansione"> <input style="visibility: hidden;"
-							name="oldMansione" id="oldMansione" />
+					<div class="modal-body m-body-modifica">
+						<input type="text" class="form-control m-input-modifica"
+							name="newMansione" id="newMansione"> <input
+							style="visibility: hidden;" name="oldMansione" id="oldMansione" />
 					</div>
 
-					<div class="modal-footer">
-						<button type="button" class="btn" data-dismiss="modal"
-							id="btn-cancella-mansione">Annulla</button>
-						<button type="submit" class="btn" id="btn-salva-mansione">Aggiorna</button>
+					<div class="modal-footer m-footer-modifica">
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Annulla</button>
+						<button type="submit" class="btn btn-modifica">Modifica</button>
 					</div>
 				</form>
 			</div>
@@ -349,27 +420,30 @@ header {
 		role="dialog" aria-labelledby="modalEliminaMansione"
 		aria-hidden="true">
 		<div class="modal-dialog  modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-elimina">
+
+				<div class="modal-header m-header-elimina">
+					<span class="modal-title">Cancella la <span
+						style="color: #004fff;">mansione</span>:
+					</span>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+					</button>
+				</div>
+
 				<form action="/ProgettoHR/EliminaMansione/${businessUnit}"
 					method="POST">
-					<div class="modal-header">
-						<h5 class="modal-title">Elimina mansione:</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true" class="btn-close-modal">&times;</span>
-						</button>
-					</div>
 
-					<div class="modal-body" id="eliminaMansioneModalBodyText">
+					<div class="modal-body m-body-elimina">
 						<p id="p-elimina-mansione"></p>
 						<input style="visibility: hidden;" name="eliminaMansione"
 							id="elimina-mansione" />
 					</div>
 
-					<div class="modal-footer">
-						<button type="button" class="btn" data-dismiss="modal"
-							id="btn-cancella-mansione">No</button>
-						<button type="submit" class="btn" id="btn-salva-mansione">Sì</button>
+					<div class="modal-footer m-footer-elimina">
+						<button type="button" class="btn btn-no" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-si">Sì</button>
 					</div>
 				</form>
 			</div>

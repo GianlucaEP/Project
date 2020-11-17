@@ -34,7 +34,7 @@
 
 body, html {
 	height: 100%;
-	background-image: url("/ProgettoHR/img/area.jpg");
+	background-image: url("/ProgettoHR/img/msa.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -43,6 +43,10 @@ body, html {
 
 header {
 	height: 100%;
+}
+
+span {
+	letter-spacing: 5px;
 }
 
 #zeroRecord {
@@ -54,68 +58,57 @@ header {
 
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
 #btn-logout, #btn-home, #btn-add {
-	border-radius: 100%;
-	background-color: white;
+	border-radius: 5px;
 	color: black;
-	box-shadow: none !important;
 	outline: 0;
-	border: 1px solid white;
-	transition: 0.5s;
-}
-
-#btn-logout:hover, #btn-home:hover, #btn-add:hover {
-	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
+#btn-logout:hover, #btn-home:hover {
+	box-shadow: 1px 1px 2px black;
+	transition: 0.5s;
+	color: black;
+}
+
+#btn-add:hover {
+	box-shadow: 1px 1px 2px #00b894;
+	transition: 0.5s;
+	color: black;
+}
 /* TABELLA AREE */
 .tabellaArea {
-	font-size: 0.9em;
-	border-radius: 10px;
+	width: 50%;
+	border-radius: 5px;
 	overflow: hidden;
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
+	font-size: 0.9em;
 }
 
 .tabellaArea .head {
-	background-color: white;
+	background-color: whitesmoke;
 	color: black;
 	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
 .tabellaArea .body {
-	background-color: #e9ecef;
+	background-color: white;
 }
 
 .tabellaArea .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid whitesmoke;
 	color: black;
 	letter-spacing: 3px;
 	transition: 0.5s;
-}
-
-.tabellaArea .body tr:hover {
-	color: #004fff;
-	transition: 0.5s;
-}
-
-.tabellaArea .body tr:nth-of-type {
-	background-color: #f3f3f3;
-}
-
-.tabellaArea .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
 }
 
 .tabellaArea th {
@@ -128,66 +121,125 @@ header {
 }
 
 .tabellaArea .footer {
+	background-color: whitesmoke;
+}
+
+.m-content-aggiungi, .m-content-elimina, .m-content-modifica {
+	background-color: transparent;
+	border: none;
+}
+
+.m-header-aggiungi, .m-header-elimina, .m-header-modifica {
+	background-color: white;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.m-body-aggiungi {
+	padding: 20px;
+	margin-top: 2px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
 	background-color: white;
 }
 
-#btn-elimina, #btn-modifica {
+.m-body-elimina, .m-body-modifica {
+	padding: 20px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border: 1px solid white;
 	background-color: white;
 	color: black;
+	letter-spacing: 3px;
+	border: 1px solid white
+}
+
+.m-input, .m-input-modifica, .m-input-aggiungi {
+	border: 1px solid black;
+	border-radius: 20px;
+	box-shadow: none !important;
+	outline: 0;
+	transition: 0.5s;
+}
+
+.m-input-aggiungi:focus {
+	border: 1px solid #00b894;
+}
+
+.m-input-modifica:focus {
+	border: 1px solid #74b9ff;
+}
+
+.m-footer-elimina, .m-footer-modifica {
+	border-radius: 0px 0px 20px 20px;
+	background-color: white;
+}
+
+.btn-aggiungi {
+	border-radius: 20px;
+	color: black;
+	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	outline: 0;
+}
+
+.btn-aggiungi:hover {
+	background: #00b894;
+	color: white;
 	box-shadow: none !important;
 	outline: 0;
 }
 
-#btn-elimina:hover, #btn-modifica:hover {
-	background-color: black;
-	color: white;
+.btn-elimina-area {
 	transition: 0.5s;
 }
 
-#area, #newArea {
-	border-bottom: 1px solid black;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-radius: 0px;
+.btn-elimina-area:hover {
+	box-shadow: 1px 1px 2px #d63031;
+	color: #d63031;
+	border-radius: 5px;
+	transition: 0.5s;
+}
+
+.btn-modifica-area {
+	background: #74b9ff;
+	color: white;
+	border-radius: 5px;
+	transition: 0.5s;
+}
+
+.btn-modifica-area:hover {
+	color: white;
+	transition: 0.5s;
+	background: #0984e3;
+}
+
+.btn-si, .btn-modifica {
+	border: 1px solid #00b894;
+	background: #00b894;
+	border-radius: 15px;
 	box-shadow: none !important;
 	outline: 0;
-	color: #004fff;
+	color: white;
 }
 
-#btn-salva-area {
-	background-color: #52b788;
-	border: 1px solid #52b788;
-	border-radius: 20px;
+.btn-si:hover, .btn-modifica:hover {
 	color: white;
-	letter-spacing: 3px;
-	transition: 0.5s;
 }
 
-#btn-salva-area:hover {
-	background-color: #40916c;
-	border: 1px solid #40916c;
-	border-radius: 20px;
-	color: white;
+.btn-no, .btn-annulla {
+	color: #d63031;
 	transition: 0.5s;
+	border-radius: 15px;
 }
 
-#btn-cancella-area {
-	background-color: #f25c54;
-	border: 1px solid #f25c54;
-	border-radius: 20px;
-	color: white;
-	letter-spacing: 3px;
+.btn-no:hover, .btn-annulla:hover {
+	box-shadow: 1px 1px 2px #ff7675;
 	transition: 0.5s;
+	color: #d63031;
 }
 
-#btn-cancella-area:hover {
-	background-color: #ef233c;
-	border: 1px solid #ef233c;
-	border-radius: 20px;
-	color: white;
-	transition: 0.5s;
-}
 </style>
 
 </head>
@@ -252,12 +304,12 @@ header {
 											<td>${areaXSS}</td>
 
 											<td>
-												<button class="btn" data-toggle="modal" id="btn-modifica"
+												<button class="btn btn-modifica-area" data-toggle="modal"
 													onclick="impostaParametriArea('${areaReplaced}')"
 													data-target="#modificaAreaCompetenza">
-													<i class="fas fa-cogs"></i>
+													<i class="fas fa-pencil-alt"></i>
 												</button>
-												<button class="btn" data-toggle="modal" id="btn-elimina"
+												<button class="btn btn-elimina-area" data-toggle="modal"
 													onclick="impostaParametriAreaEliminazione('${area.area}')"
 													data-target="#eliminaAreaCompetenza">
 													<i class="fas fa-trash"></i>
@@ -284,31 +336,34 @@ header {
 	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
 		role="dialog" aria-labelledby="modalAggiungiArea" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-aggiungi">
 
-				<div class="modal-header">
-					<h5 class="modal-title">Aggiungi un'area di competenza:</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true" class="btn-close-modal">&times;</span>
-					</button>
+				<div class="modal-header m-header-aggiungi">
+					<span class="modal-title">Inserisci <span
+						style="color: #004fff;">un'area di competenza</span>:
+					</span>
 				</div>
+
 				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaAreaCompetenza/${businessUnit}"
 					onsubmit="return validateArea('Area Competenza', '${areaList}');">
-					<div class="modal-body">
-
-						<form:input path="area" type="text" class="form-control"
-							maxlength="45" id="area"></form:input>
-					</div>
-
-					<div class="modal-footer">
-						<button type="reset" id="btn-cancella-area" class="btn">Cancella</button>
-						<button type="submit" id="btn-salva-area" class="btn">Salva</button>
+					<div class="modal-body m-body-aggiungi">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="area" type="text"
+										class="form-control m-input-aggiungi" maxlength="45" id="area"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-aggiungi" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form:form>
-
 			</div>
 		</div>
 	</div>
@@ -317,29 +372,30 @@ header {
 	<div class="modal fade" id="modificaAreaCompetenza" tabindex="-1"
 		role="dialog" aria-labelledby="modalModificaArea" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-modifica">
 				<form action="/ProgettoHR/AggiornaArea/${businessUnit}"
 					method="POST">
 
-					<div class="modal-header">
-						<h5 class="modal-title">Aggiorna area competenza:</h5>
+					<div class="modal-header m-header-modifica">
+						<span class="modal-title">Modifica <span
+							style="color: #004fff;">l'area di competenza</span>:
+						</span>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true" class="btn-close-modal">&times;</span>
 						</button>
 					</div>
 
-					<div class="modal-body">
+					<div class="modal-body m-body-modifica">
 
-						<input type="text" class="form-control" name="newArea"
-							id="newArea"> <input style="visibility: hidden;"
-							name="oldArea" id="oldArea" />
+						<input type="text" class="form-control m-input-modifica"
+							name="newArea" id="newArea"> <input
+							style="visibility: hidden;" name="oldArea" id="oldArea" />
 					</div>
 
-					<div class="modal-footer">
-						<button type="button" class="btn" data-dismiss="modal"
-							id="btn-cancella-area">Annulla</button>
-						<button type="submit" class="btn" id="btn-salva-area">Aggiorna</button>
+					<div class="modal-footer m-footer-modifica">
+						<button type="button" class="btn btn-annulla" data-dismiss="modal">Annulla</button>
+						<button type="submit" class="btn btn-modifica">Modifica</button>
 					</div>
 				</form>
 			</div>
@@ -350,26 +406,30 @@ header {
 	<div class="modal fade" id="eliminaAreaCompetenza" tabindex="-1"
 		role="dialog" aria-labelledby="modalEliminaArea" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
+			<div class="modal-content m-content-elimina">
+
 				<form action="/ProgettoHR/EliminaArea/${businessUnit}" method="POST">
-					<div class="modal-header">
-						<h5 class="modal-title">Elimina area competenza:</h5>
+
+					<div class="modal-header m-header-elimina">
+						<span class="modal-title">Elimina <span
+							style="color: #004fff;">l'area di competenza</span>:
+						</span>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true" class="btn-close-modal">&times;</span>
 						</button>
 					</div>
 
-					<div class="modal-body" id="eliminaAreaModalBodyText">
+					<div class="modal-body m-body-elimina"
+						id="eliminaAreaModalBodyText">
 						<p id="p-elimina-area"></p>
 						<input style="visibility: hidden;" name="eliminaArea"
 							id="elimina-area-competenza" />
 					</div>
 
-					<div class="modal-footer">
-						<button type="button" class="btn" data-dismiss="modal"
-							id="btn-cancella-area">No</button>
-						<button type="submit" class="btn" id="btn-salva-area">Sì</button>
+					<div class="modal-footer m-footer-elimina">
+						<button type="button" class="btn btn-no" data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-si">Sì</button>
 					</div>
 				</form>
 			</div>

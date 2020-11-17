@@ -121,38 +121,40 @@ header {
 
 .tabellaAnagrafica .head {
 	background-color: white;
+	border-bottom: 2px solid #004fff;
 	color: black;
 	letter-spacing: 5px;
 }
 
 .tabellaAnagrafica .body tr {
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid #d3d3d3;
 	color: black;
 	letter-spacing: 4px;
 	transition: 0.5s;
 }
 
 .tabellaAnagrafica .body tr:hover {
-	color: black;
+	color: white;
 	transition: 0.5s;
-	background-color: white;
+	background-color: #d3d3d3;
 }
 
 .tabellaAnagrafica .body {
-	background-color: #bde0fe;
+	background-color: white;
 }
 
 .tabellaAnagrafica th {
-	padding: 8px;
+	padding: 10px;
 }
 
 .tabellaAnagrafica td {
 	font-size: 14px;
-	padding: 4px;
+	padding: 5px;
 }
 
 .tabellaAnagrafica .footer {
 	background-color: white;
+	border-top: 2px solid black;
 }
 
 #btn-stato {
@@ -2726,7 +2728,8 @@ TABELLA COMPETENZE LINGUISTICHE
 					method="POST">
 					<div class="modal-body">
 						<p>Sei sicuro di voler cancellare il feedback selezionato?</p>
-						<input style="visibility: hidden;" name="removeFeedback" id="removeFeedback"/>
+						<input style="visibility: hidden;" name="removeFeedback"
+							id="removeFeedback" />
 					</div>
 
 					<div class="modal-footer">

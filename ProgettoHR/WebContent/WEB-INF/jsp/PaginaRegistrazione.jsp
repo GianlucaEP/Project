@@ -85,28 +85,23 @@ form {
 
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
-#btn-logout, #btn-home, #btn-add {
-	border-radius: 100%;
-	background-color: white;
+#btn-logout, #btn-home {
+	border-radius: 5px;
 	color: black;
-	box-shadow: none !important;
 	outline: 0;
-	border: 1px solid white;
 	transition: 0.5s;
+	color: black;
 }
 
-#btn-logout:hover, #btn-home:hover, #btn-add:hover {
-	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
+#btn-logout:hover, #btn-home:hover{
+	box-shadow: 1px 1px 2px black;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
 #btn-registrazione {

@@ -92,28 +92,23 @@ img {
 
 #btn-nav {
 	border: 1px solid white;
-	border-radius: 30px;
+	border-radius: 5px;
 	height: 45px;
 	background-color: white;
 }
 
 #btn-logout, #btn-home, #btn-menu {
-	border-radius: 100%;
-	background-color: white;
+	border-radius: 5px;
 	color: black;
-	box-shadow: none !important;
 	outline: 0;
-	border: 1px solid white;
 	transition: 0.5s;
+	color: black;
 }
 
 #btn-logout:hover, #btn-home:hover, #btn-menu:hover {
-	border: 1px solid #d3d3d3;
-	background-color: #d3d3d3;
+	box-shadow: 1px 1px 2px black;
 	transition: 0.5s;
 	color: black;
-	box-shadow: none !important;
-	outline: 0;
 }
 
 #sidebar {
@@ -137,6 +132,8 @@ img {
 	transition: 0.3s;
 	color: black;
 	text-align: left;
+	box-shadow: none !important;
+	outline: 0;
 }
 
 #sidebar a:hover {
@@ -167,31 +164,56 @@ img {
 	transition: 0.5s;
 }
 
-.m-content {
+.m-content-aggiungi {
 	background-color: transparent;
 	border: none;
 }
 
-.m-header {
+.m-content-aggiungi {
+	background-color: transparent;
+	border: none;
+}
+
+.m-header-aggiungi {
 	background-color: white;
 	border-radius: 20px 20px 0px 0px;
 }
 
-.m-body {
+.m-body-aggiungi {
 	padding: 20px;
-	margin-top: 10px;
+	margin-top: 2px;
 	border: 1px solid #d3d3d3;
 	border-radius: 0px 0px 20px 20px;
-	background-color: #d3d3d3;
+	border: 1px solid #d3d3d3;
+	border-radius: 0px 0px 20px 20px;
+	background-color: white;
 }
 
 .m-input {
-	border: 1px solid white;
+	border: 1px solid black;
 	border-radius: 20px;
 	box-shadow: none !important;
 	outline: 0;
-	border-radius: 30px;
 	transition: 0.5s;
+}
+
+.m-input:focus {
+	border: 1px solid #00b894;
+}
+
+.btn-aggiungi {
+	border-radius: 20px;
+	color: black;
+	transition: 0.5s;
+	box-shadow: 1px 1px 2px #00b894;
+	outline: 0;
+}
+
+.btn-aggiungi:hover {
+	background: #00b894;
+	color: white;
+	box-shadow: none !important;
+	outline: 0;
 }
 
 .btn-salva {
@@ -510,10 +532,12 @@ img {
 		role="dialog" aria-labelledby="modalAggiungiMansione"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content m-content">
+			<div class="modal-content m-content-aggiungi">
 
-				<div class="modal-header m-header">
-					<h5 class="modal-title">Inserisci una mansione:</h5>
+				<div class="modal-header m-header-aggiungi">
+					<span class="modal-title">Inserisci una <span
+						style="color: #004fff;">mansione</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -523,16 +547,16 @@ img {
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateMansione('Mansione', '${mansioneList}');">
-					<div class="modal-body m-body">
+					<div class="modal-body m-body-aggiungi">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10">
 									<form:input path="mansione" type="text"
-										class="form-control m-input" id="mansione" name="mansione"
-										autocomplete="off"></form:input>
+										class="form-control m-input-aggiungi" id="mansione"
+										name="mansione" autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
-									<button class="btn btn-salva" type="submit">
+									<button class="btn btn-aggiungi" type="submit">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
@@ -549,11 +573,12 @@ img {
 		role="dialog" aria-labelledby="modalAggiungiAreaCompetenza"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content m-content">
+			<div class="modal-content m-content-aggiungi">
 
-				<div class="modal-header m-header">
-					<h5 class="modal-title" id="exampleModalLabel">Inserisci un'
-						area di competenza:</h5>
+				<div class="modal-header m-header-aggiungi">
+					<span class="modal-title">Inserisci <span
+						style="color: #004fff;">un' area di competenza</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -564,7 +589,7 @@ img {
 					method="POST"
 					action="/ProgettoHR/AreaCompetenzaSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateArea('Area di competenza', '${areaCompetenzaList}');">
-					<div class="modal-body m-body">
+					<div class="modal-body m-body-aggiungi">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10">
@@ -572,7 +597,7 @@ img {
 										class="form-control m-input" id="area" autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
-									<button class="btn btn-salva" type="submit">
+									<button class="btn btn-aggiungi" type="submit">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
@@ -589,11 +614,12 @@ img {
 		role="dialog" aria-labelledby="modalAggiungiSpecializzazione"
 		aria-hidden="true">
 		<div class="modal-dialog  modal-dialog-centered" role="document">
-			<div class="modal-content m-content">
+			<div class="modal-content m-content-aggiungi">
 
-				<div class="modal-header m-header">
-					<h5 class="modal-title" id="exampleModalLabel">Inserisci una
-						specializzazione:</h5>
+				<div class="modal-header m-header-aggiungi">
+					<span class="modal-title">Inserisci una <span
+						style="color: #004fff;">specializzazione</span>:
+					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -604,7 +630,7 @@ img {
 					id="formSpecializzazione" method="POST"
 					action="/ProgettoHR/SpecializzazioneSaveDaInserimentoCandidato/${businessUnit}"
 					onsubmit="return validateSpecializzazione('Specializzazione', '${specializzazioneList}');">
-					<div class="modal-body m-body">
+					<div class="modal-body m-body-aggiungi">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10">
@@ -613,7 +639,7 @@ img {
 										autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
-									<button class="btn btn-salva" type="submit">
+									<button class="btn btn-aggiungi" type="submit">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
