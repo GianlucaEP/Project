@@ -32,7 +32,6 @@
 }
 
 body, html, #container {
-	height: 100%;
 	background-image: url("/ProgettoHR/img/Home1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -103,6 +102,7 @@ body, html, #container {
 .tabellaHome .body tr {
 	text-align: center;
 	border-bottom: 1px solid #dddddd;
+	background-color: white;
 }
 
 .tabellaHome .body tr:nth-of-type {

@@ -283,9 +283,8 @@ span {
 						</div>
 
 						<div class="form-group">
-							<label>Data di nascita:</label> <input id="anno" maxlength="4"
-								name="anno" class="form-control f-input" type="text"
-								placeholder="yyyy">
+							<label>Data di nascita:</label> <input type="date" id="anno" maxlength="4"
+								name="anno" class="form-control f-input">
 						</div>
 
 						<div class="form-group">
@@ -509,7 +508,7 @@ span {
 											<th scope="col">Nome</th>
 											<th scope="col">Cognome</th>
 											<c:forEach items="${filterList}" var="filter">
-												<c:if test="${ filter.key == 'anno' }">
+												<c:if test="${ filter.key == 'dataNascita' }">
 													<th scope="col">Anno</th>
 												</c:if>
 												<c:if test="${ filter.key == 'telefono' }">
@@ -575,7 +574,7 @@ span {
 												<td>${cand.nome}</td>
 												<td>${cand.cognome}</td>
 												<c:forEach items="${filterList}" var="filter">
-													<c:if test="${ filter.key == 'anno' }">
+													<c:if test="${ filter.key == 'dataNascita' }">
 														<td>${cand.anno}</td>
 													</c:if>
 													<c:if test="${ filter.key == 'telefono' }">
