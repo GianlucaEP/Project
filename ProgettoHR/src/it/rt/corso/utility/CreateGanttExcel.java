@@ -313,12 +313,17 @@ public abstract class CreateGanttExcel {
 					headerCell = headerYear.createCell(lastCell);
 					headerCell.setCellValue(startingDate.plusYears(i).getYear());
 					headerCell.setCellStyle(dateCellStyle);
+					
+					LocalDate firstDay = startingDate.plusYears(i).with(TemporalAdjusters.firstDayOfYear()); // 2015-01-01
+					LocalDate lastDay = startingDate.plusYears(i).with(TemporalAdjusters.lastDayOfYear());
+					
+					Long daysInYear = ChronoUnit.DAYS.between(firstDay, lastDay);
 
-					sheet.addMergedRegion(new CellRangeAddress(0, 0, lastCell, lastCell + 365));
+					sheet.addMergedRegion(new CellRangeAddress(0, 0, lastCell, (int) (lastCell + daysInYear)));
 
 					CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
 
-					lastCell = lastCell + 365;
+					lastCell = (int) (lastCell + daysInYear);
 				}
 			}
 
@@ -624,7 +629,7 @@ public abstract class CreateGanttExcel {
 	 */
 	private static void writeCostTableData(XSSFWorkbook workbook, XSSFSheet sheet, List<Cost> costList,
 			List<Task> taskList) {
-		int totalCost = 0;
+		float totalCost = 0;
 
 		XSSFCellStyle cellStyle = workbook.createCellStyle();
 
@@ -672,7 +677,7 @@ public abstract class CreateGanttExcel {
 			headerCell.setCellValue(new BigDecimal(cost.getPartial()).doubleValue() + "€");
 			headerCell.setCellStyle(cellStyle);
 
-			totalCost = totalCost + Integer.parseInt(cost.getPartial());
+			totalCost = totalCost + Float.parseFloat(cost.getPartial());
 		}
 
 		XSSFRow totalTableRow = sheet.createRow(costList.size() + 2);
@@ -776,6 +781,8 @@ public abstract class CreateGanttExcel {
 	 */
 	public static void downloadFile(File file, HttpServletResponse response) {
 		try {
+			startingDate = null;
+			finishingDate = null;
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 			response.addHeader("content-disposition", "attachment; filename=" + getFileName() + ".xlsx");
 			response.setHeader("Pragma", "public");

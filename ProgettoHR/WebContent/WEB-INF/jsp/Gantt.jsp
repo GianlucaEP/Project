@@ -569,7 +569,7 @@ body, html, #container {
 			var diffTime = Math.abs(endDateFormat - initialDateFormat);
 			var tempDiffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 			diffDays= diffDays+tempDiffDays;
-			var parziale=diffDays * prezzo;
+			var parziale=(diffDays * prezzo).toFixed(2);
 		
 		
 			
