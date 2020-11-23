@@ -175,17 +175,19 @@ public abstract class CreateGanttExcel {
 		List<Task> taskList = buildDataExcel(data);
 
 		XSSFSheet sheet = workbook.createSheet();
-		
+
 		workbook.setSheetName(0, "Gantt");
 
 		sheet.createFreezePane(5, 0, 5, 0);
+
+		sheet.createFreezePane(0, 0);
 
 		List<Cost> costList = buildCostDataExcel(costs);
 
 		writeHeadersGantt(workbook, sheet, taskList);
 
 		XSSFSheet sheetCosts = workbook.createSheet();
-		
+
 		workbook.setSheetName(1, "Costs");
 
 		writeCostTable(workbook, sheetCosts, costList, taskList);
@@ -212,10 +214,11 @@ public abstract class CreateGanttExcel {
 		XSSFRow headerDates = sheet.createRow(2);
 		XSSFCell headerCell = header.createCell(0);
 
-		sheet.setColumnWidth(1, 1000);
+		sheet.setColumnWidth(0, 1000);
 		sheet.setColumnWidth(1, 10000);
-		sheet.setColumnWidth(2, 3000);
+		sheet.setColumnWidth(2, 10000);
 		sheet.setColumnWidth(3, 3000);
+		sheet.setColumnWidth(4, 3000);
 
 		XSSFCellStyle cellStyle = workbook.createCellStyle();
 
@@ -232,28 +235,34 @@ public abstract class CreateGanttExcel {
 		sheet.addMergedRegion(new CellRangeAddress(0, 2, 0, 0));
 
 		headerCell = header.createCell(1);
-		headerCell.setCellValue("Task Name");
+		headerCell.setCellValue("Resource");
 		headerCell.setCellStyle(cellStyle);
 
 		sheet.addMergedRegion(new CellRangeAddress(0, 2, 1, 1));
 
 		headerCell = header.createCell(2);
-		headerCell.setCellValue("Start");
+		headerCell.setCellValue("Task Name");
 		headerCell.setCellStyle(cellStyle);
 
 		sheet.addMergedRegion(new CellRangeAddress(0, 2, 2, 2));
 
 		headerCell = header.createCell(3);
-		headerCell.setCellValue("Finish");
+		headerCell.setCellValue("Start");
 		headerCell.setCellStyle(cellStyle);
 
 		sheet.addMergedRegion(new CellRangeAddress(0, 2, 3, 3));
 
 		headerCell = header.createCell(4);
-		headerCell.setCellValue("Duration");
+		headerCell.setCellValue("Finish");
 		headerCell.setCellStyle(cellStyle);
 
 		sheet.addMergedRegion(new CellRangeAddress(0, 2, 4, 4));
+
+		headerCell = header.createCell(5);
+		headerCell.setCellValue("Duration");
+		headerCell.setCellStyle(cellStyle);
+
+		sheet.addMergedRegion(new CellRangeAddress(0, 2, 5, 5));
 
 		daysBetween = ChronoUnit.DAYS.between(startingDate, finishingDate);
 
@@ -296,14 +305,14 @@ public abstract class CreateGanttExcel {
 
 			Long diffDaysFromEndYear = ChronoUnit.DAYS.between(startingDate,
 					startingDate.with(TemporalAdjusters.lastDayOfYear()));
-			headerCell = headerYear.createCell(5);
+			headerCell = headerYear.createCell(6);
 
 			headerCell.setCellValue(startingDate.getYear());
 			headerCell.setCellStyle(dateCellStyle);
 
-			int lastCell = (int) (diffDaysFromEndYear + 5);
+			int lastCell = (int) (diffDaysFromEndYear + 6);
 
-			sheet.addMergedRegion(new CellRangeAddress(0, 0, 5, lastCell));
+			sheet.addMergedRegion(new CellRangeAddress(0, 0, 6, lastCell));
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
 
 			if (diffYearsSFDates > 1) {
@@ -313,10 +322,10 @@ public abstract class CreateGanttExcel {
 					headerCell = headerYear.createCell(lastCell);
 					headerCell.setCellValue(startingDate.plusYears(i).getYear());
 					headerCell.setCellStyle(dateCellStyle);
-					
+
 					LocalDate firstDay = startingDate.plusYears(i).with(TemporalAdjusters.firstDayOfYear()); // 2015-01-01
 					LocalDate lastDay = startingDate.plusYears(i).with(TemporalAdjusters.lastDayOfYear());
-					
+
 					Long daysInYear = ChronoUnit.DAYS.between(firstDay, lastDay);
 
 					sheet.addMergedRegion(new CellRangeAddress(0, 0, lastCell, (int) (lastCell + daysInYear)));
@@ -340,12 +349,12 @@ public abstract class CreateGanttExcel {
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
 
 		} else {
-			headerCell = headerYear.createCell(5);
+			headerCell = headerYear.createCell(6);
 
 			headerCell.setCellValue(startingDate.getYear());
 			headerCell.setCellStyle(dateCellStyle);
 
-			sheet.addMergedRegion(new CellRangeAddress(0, 0, 5, (int) (daysBetween + 5)));
+			sheet.addMergedRegion(new CellRangeAddress(0, 0, 6, (int) (daysBetween + 6)));
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.LEFT);
 		}
 
@@ -367,13 +376,13 @@ public abstract class CreateGanttExcel {
 			Long diffDaysFromEndOfMonth = ChronoUnit.DAYS.between(startingDate,
 					startingDate.with(TemporalAdjusters.lastDayOfMonth()));
 
-			headerCell = headerMonth.createCell(5);
+			headerCell = headerMonth.createCell(6);
 			headerCell.setCellValue(startingDate.getMonth().toString());
 			headerCell.setCellStyle(dateCellStyle);
 
-			int lastCell = (int) (diffDaysFromEndOfMonth + 5);
+			int lastCell = (int) (diffDaysFromEndOfMonth + 6);
 
-			sheet.addMergedRegion(new CellRangeAddress(1, 1, 5, lastCell));
+			sheet.addMergedRegion(new CellRangeAddress(1, 1, 6, lastCell));
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
 
 			if (diffMonthsSFDates > 1) {
@@ -405,11 +414,11 @@ public abstract class CreateGanttExcel {
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
 
 		} else {
-			headerCell = headerMonth.createCell(5);
+			headerCell = headerMonth.createCell(6);
 			headerCell.setCellValue(startingDate.getMonth().toString());
 			headerCell.setCellStyle(dateCellStyle);
 
-			sheet.addMergedRegion(new CellRangeAddress(1, 1, 5, (int) daysBetween + 5));
+			sheet.addMergedRegion(new CellRangeAddress(1, 1, 6, (int) daysBetween + 6));
 			CellUtil.setAlignment(headerCell, HorizontalAlignment.CENTER);
 		}
 
@@ -433,9 +442,9 @@ public abstract class CreateGanttExcel {
 		dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd"));
 
 		for (int i = 0; i <= daysBetween; i++) {
-			sheet.setColumnWidth((5 + i), 800);
+			sheet.setColumnWidth((6 + i), 800);
 
-			headerCell = headerDates.createCell(5 + i);
+			headerCell = headerDates.createCell(6 + i);
 			headerCell.setCellValue(startingDate.plusDays(i).getDayOfMonth());
 			headerCell.setCellStyle(dateCellStyle);
 		} // print days numbers row
@@ -478,31 +487,35 @@ public abstract class CreateGanttExcel {
 			headerCell.setCellStyle(dataCellStyle);
 
 			headerCell = taskRow.createCell(1);
-			headerCell.setCellValue(task.getNomeTask());
+			headerCell.setCellValue(task.getNomeCandidiato());
 			headerCell.setCellStyle(dataCellStyle);
 
 			headerCell = taskRow.createCell(2);
+			headerCell.setCellValue(task.getNomeTask());
+			headerCell.setCellStyle(dataCellStyle);
+
+			headerCell = taskRow.createCell(3);
 			headerCell.setCellValue(task.getDataInizio());
 			headerCell.setCellStyle(dateCell);
 
-			headerCell = taskRow.createCell(3);
+			headerCell = taskRow.createCell(4);
 			headerCell.setCellValue(task.getDataFine());
 			headerCell.setCellStyle(dateCell);
 
-			headerCell = taskRow.createCell(4);
+			headerCell = taskRow.createCell(5);
 			int sumIndex = taskList.indexOf(task) + 4;
-			String strFormula = "D" + sumIndex + "-C" + sumIndex + "";
+			String strFormula = "E" + sumIndex + "-D" + sumIndex + "";
 			headerCell.setCellFormula(strFormula);
 			headerCell.setCellStyle(dataCellStyle);
 
 		}
 
 		XSSFRow totalRow = sheet.createRow(taskList.size() + 3);
-		XSSFCell totalCell = totalRow.createCell(3);
+		XSSFCell totalCell = totalRow.createCell(4);
 		totalCell.setCellValue("Total Days");
 		totalCell.setCellStyle(dataCellStyle);
 
-		totalCell = totalRow.createCell(4);
+		totalCell = totalRow.createCell(5);
 		totalCell.setCellValue(new BigDecimal(totalDays).doubleValue());
 		totalCell.setCellStyle(dataCellStyle);
 	}
@@ -517,6 +530,13 @@ public abstract class CreateGanttExcel {
 	 *                 {@link #createWorkbook(workbook, data) createWorkbook}
 	 */
 	private static void drawTimelineGantt(XSSFWorkbook workbook, XSSFSheet sheet, List<Task> taskList) {
+
+		byte[] white = new byte[3];
+		white[0] = (byte) 255; // red
+		white[1] = (byte) 255; // green
+		white[2] = (byte) 255; // blue
+
+		XSSFColor borderColor = new XSSFColor(white, new DefaultIndexedColorMap());
 
 		for (Task task : taskList) {
 			XSSFRow taskRow = sheet.getRow(taskList.indexOf(task) + 3);
@@ -539,16 +559,26 @@ public abstract class CreateGanttExcel {
 			rgb[1] = (byte) randomRGB2; // green
 			rgb[2] = (byte) randomRGB3; // blue
 			// create XSSFColor
+
 			XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 			usedColorList.add(color);
 
 			for (int i = 0; i <= diffDaysTask; i++) {
 
-				XSSFCell headerCell = taskRow.createCell(diffDaysFromStart + 5 + i);
+				XSSFCell headerCell = taskRow.createCell(diffDaysFromStart + 6 + i);
 				XSSFCellStyle cellStyle = workbook.createCellStyle();
 				cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				cellStyle.setFillForegroundColor(color);
+				
+				if(taskList.indexOf(task) > 0) {
+					cellStyle.setBorderTop(BorderStyle.MEDIUM);
+				}
+				
+				cellStyle.setBorderBottom(BorderStyle.MEDIUM);
+
+				cellStyle.setTopBorderColor(borderColor);
+				cellStyle.setBottomBorderColor(borderColor);
 
 				headerCell.setCellStyle(cellStyle);
 
@@ -585,26 +615,32 @@ public abstract class CreateGanttExcel {
 		cellStyle.setBorderRight(BorderStyle.THIN);
 		cellStyle.setBorderLeft(BorderStyle.THIN);
 
+		sheet.setColumnWidth(0, 10000);
 		XSSFCell headerCell = headerRow.createCell(0);
 		headerCell.setCellValue("Task");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.setColumnWidth(1, 10000);
 		headerCell = headerRow.createCell(1);
 		headerCell.setCellValue("Resource");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.setColumnWidth(2, 6000);
 		headerCell = headerRow.createCell(2);
 		headerCell.setCellValue("Cost");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.setColumnWidth(3, 4000);
 		headerCell = headerRow.createCell(3);
 		headerCell.setCellValue("Inflation");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.setColumnWidth(4, 6000);
 		headerCell = headerRow.createCell(4);
 		headerCell.setCellValue("Price");
 		headerCell.setCellStyle(cellStyle);
 
+		sheet.setColumnWidth(5, 6000);
 		headerCell = headerRow.createCell(5);
 		headerCell.setCellValue("Partial");
 		headerCell.setCellStyle(cellStyle);
@@ -615,9 +651,9 @@ public abstract class CreateGanttExcel {
 	/**
 	 * 
 	 * Write the data for the costs table in the second sheet of the given
-	 * workbook.The list of <code>XSSFColor</code> {@link #usedColorList} is used in this method to set the color
-	 * for cells containing the task name with the corresponding color used to draw
-	 * the timeline of that task
+	 * workbook.The list of <code>XSSFColor</code> {@link #usedColorList} is used in
+	 * this method to set the color for cells containing the task name with the
+	 * corresponding color used to draw the timeline of that task
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * @param sheet    the sheet contained in the given workbook, instantiated in
@@ -682,11 +718,11 @@ public abstract class CreateGanttExcel {
 
 		XSSFRow totalTableRow = sheet.createRow(costList.size() + 2);
 
-		XSSFCell headerCell = totalTableRow.createCell(0);
+		XSSFCell headerCell = totalTableRow.createCell(4);
 		headerCell.setCellValue("Total cost");
 		headerCell.setCellStyle(cellStyle);
 
-		headerCell = totalTableRow.createCell(1);
+		headerCell = totalTableRow.createCell(5);
 		headerCell.setCellValue(new BigDecimal(totalCost).doubleValue() + "€");
 		headerCell.setCellStyle(cellStyle);
 
@@ -783,6 +819,7 @@ public abstract class CreateGanttExcel {
 		try {
 			startingDate = null;
 			finishingDate = null;
+			usedColorList.clear();
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 			response.addHeader("content-disposition", "attachment; filename=" + getFileName() + ".xlsx");
 			response.setHeader("Pragma", "public");
