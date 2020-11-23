@@ -24,19 +24,20 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript"
-    src="https://www.gstatic.com/charts/loader.js"></script>
+	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
 * {
 	font-family: 'Poppins', sans-serif;
 }
 
-body, html, #container {
-	background-image: url("/ProgettoHR/img/Home1.jpg");
+body, html {
+	height: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
+	background-image: url("/ProgettoHR/img/Home1.jpg");
 }
 
 #img-logo {
@@ -82,44 +83,45 @@ body, html, #container {
 	margin-top: 5px;
 }
 
-.tabellaHome {
+.tabellaGantt {
 	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9em;
-	border-radius: 5px 5px 5px 5px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	border-collapse: collapse;
+	border-radius: 5px 5px 0px 0px;
+	overflow: hidden;
 }
 
-.tabellaHome .head {
-	background-color: #5aa9e6;
-	color: #ffffff;
-	text-align: center;
-	font-weight: bold;
-}
-
-.tabellaHome .body tr {
-	text-align: center;
-	border-bottom: 1px solid #dddddd;
+.tabellaGantt .head {
 	background-color: white;
+	color: black;
+	text-align: center;
+	letter-spacing: 5px;
+	border-bottom: 2px solid black;
 }
 
-.tabellaHome .body tr:nth-of-type {
-	background-color: #f3f3f3;
+.tabellaGantt .body {
+	background-color: #f8f9fa;
 }
 
-.tabellaHome .body tr:nth-last-of-type {
-	border-bottom: 2px solid #5aa9e6;
+.tabellaGantt  .body tr {
+	text-align: center;
+	border-bottom: 1px solid white;
+	color: black;
+	letter-spacing: 3px;
+	transition: 0.5s;
 }
 
-.tabellaHome th {
-	padding: 8px;
+.tabellaGantt  th {
+	padding: 10px;
 }
 
-.tabellaHome td {
+.tabellaGantt td {
 	font-size: 14px;
 	padding: 4px;
+}
+
+.tabellaGantt .footer {
+	background-color: white;
 }
 
 #fineButton {
@@ -128,6 +130,8 @@ body, html, #container {
 
 #colonnaForm {
 	background: white;
+	border-radius: 5px;
+	padding: 20px;
 }
 
 #colonnaNavbar {
@@ -152,18 +156,6 @@ body, html, #container {
 
 #candModal {
 	overflow-x: auto;
-}
-
-@media screen and (max-width: 855px) {
-	body {
-		
-	}
-	#colonnaTable {
-		
-	}
-	[class*="col-"] {
-		width: 100%;
-	}
 }
 </style>
 
@@ -193,93 +185,76 @@ body, html, #container {
 		</div>
 	</nav>
 
-	<div id="container" class="container-fluid">
-		<div id="colonnaBarraLaterale" class="row mt-4">
-			<div id="colonnaForm" class="col-2">
-				<!--Gantt -->
-
+	<div class="container-fluid">
+		<div id="colonnaBarraLaterale" class="row">
+			<div id="colonnaForm" class="col-2 mt-5 ml-3">
 				<form>
-					<!--  <div class="form-group">
-						<label for="exampleFormControlInput1">id task</label> <input
-							type="text" class="form-control" id="idTask">
-					</div>-->
 					<div class="form-group">
-						<label for="exampleFormControlInput1">Nome task</label> <input
+						<label for="exampleFormControlInput1">Task:</label> <input
 							type="text" class="form-control" id="nomeTask">
 					</div>
 					<div id="divNomeCandidato" class="form-group mb-3">
-						<label>Nome candidato:</label>
+						<label>Candidato:</label>
 						<div class="form-group">
-
 							<input type="button" id="nomeCandidato" class="btn btn-primary"
 								value="Scegli candidato" data-toggle="modal"
 								data-target="#candModal">
-
-
-
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleFormControlInput2">Data inizio</label> <input
+						<label for="exampleFormControlInput2">Data d'inizio:</label> <input
 							type="date" pattern="dd-MM-yyyy" class="form-control"
 							id="initialDate">
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlInput3">Data fine</label> <input
+						<label for="exampleFormControlInput3">Data di fine:</label> <input
 							type="date" pattern="dd-MM-yyyy" class="form-control"
 							id="endDate">
 					</div>
 
 					<div class="form-group">
-						<button class="btn btn-primary" type="reset"
+						<button class="btn btn-primary mt-3" type="reset"
 							onClick="return validate();" id="aggiungiButton">Aggiungi</button>
 
 					</div>
-					<!--  	<div class="form-group">
-						<input type="button" class="btn btn-primary" value="fine"
-							onClick="endGantt()" id="fineButton">
-
-					</div>-->
 				</form>
 			</div>
+
 			<div class="col-8" id="colTabellaGantt">
-				<div class="row p-2" id="divCandidatoTemp"></div>
+				<div class="row" id="divCandidatoTemp"></div>
 
 				<div class="row">
-					<div class="col-auto">
-						<input type="button" class="btn btn-primary" value="fine"
+					<div class="col">
+						<input type="button" class="btn btn-primary float-right mt-3" value="fine"
 							onClick="endGantt()" id="fineButton">
 					</div>
 				</div>
-				<div class="row p-2">
-					<div class="col p-0 mt-4 mb-4" id="chart_div"></div>
+				<div class="row">
+					<div class="col m-3" id="chart_div"></div>
 				</div>
 			</div>
-
-
 		</div>
-
 	</div>
+
+
 	<!-- modal candidato -->
 	<div class="modal fade" id="candModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" id="modalTableCand" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="candidatoModalLabel">Seleziona
-						candidato</h5>
 
+				<div class="modal-header">
+					<h5 class="modal-title" id="candidatoModalLabel">Seleziona un
+						candidato:</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+
 				<div class="modal-body" id="candModal">
-
-
-					<table class="tabellaHome">
-
+					<table class="tabellaGantt">
 						<thead class="head">
 							<tr>
 
@@ -293,7 +268,6 @@ body, html, #container {
 
 							</tr>
 						</thead>
-
 						<tbody class="body">
 							<c:forEach var="cand" items="${list}">
 								<tr>
@@ -320,16 +294,12 @@ body, html, #container {
 											onclick="addCandidato(${cand.costo.giornaliero}, '${cand.nome}', '${cand.cognome}')">
 											<i class="fas fa-plus"></i>
 										</button></td>
-
-
 								</tr>
-
 							</c:forEach>
 						</tbody>
-
 					</table>
-
 				</div>
+
 				<div class="modal-footer">
 					<button type="reset" id="bottone-cancella-specializzazione"
 						class="btn btn-danger" data-dismiss="modal">Chiudi</button>
@@ -483,16 +453,16 @@ body, html, #container {
 		tagDiv.id="CandidatoTemporaneoGantt";
 		
 		var ColDiv1 = document.createElement("div");
-			ColDiv1.classList.add("col-11");
+			ColDiv1.classList.add("col-10");
 			
 		var ColDiv2 = document.createElement("div");
-			ColDiv2.classList.add("col-1");
+			ColDiv2.classList.add("col-2");
 			tagInput.name = "candidato";
 			tagInput.id="candidatoNameInput"
 			tagInput.readOnly = true;
 			
 			tagDivButton.classList.add("btn");
-			tagDivButton.style.margin = "0px 0px 8px 0px";
+			tagDivButton.style.margin = "0px 0px 10px 0px";
 			tagDivButton.innerHTML = '<i id="iconaMeno" class="fa fa-minus"></i>';
 			
 			
@@ -523,7 +493,7 @@ body, html, #container {
 			var ColDiv1Rincaro = document.createElement("div");
 			
 				ColDiv1Costo.classList.add("col-6");
-				ColDiv1Rincaro.classList.add("col-5");
+				ColDiv1Rincaro.classList.add("col-6");
 
 				tagInputCosto.name = "costo";
 				tagInputCosto.id="costoInput"
@@ -593,7 +563,7 @@ body, html, #container {
 				
 					var tabella = document.createElement("table");
 		  			tabella.setAttribute("id", "tabellaCandidatiGantt");
-		  			tabella.setAttribute("class", "tabellaHome");
+		  			tabella.setAttribute("class", "tabellaGantt mt-5 ml-3");
 		  			document.getElementById("divCandidatoTemp").appendChild(tabella);
 		
 		  			
@@ -839,7 +809,7 @@ body, html, #container {
 	  			
 	  			var colTableTotal=document.createElement("div");
 				colTableTotal.setAttribute("id", "colTableTotal");
-				colTableTotal.setAttribute("class", "col p-0");
+				colTableTotal.setAttribute("class", "col ml-3");
 	  			document.getElementById("rowTableTotal").appendChild(colTableTotal);
 
 				
@@ -895,10 +865,10 @@ body, html, #container {
 				var tagInput = document.createElement("input");
 				var tagInputModal = document.createElement("input");
 				
-				tagDivCol.classList.add("col", "text-right", "align-self-end", "p-0");
+				tagDivCol.classList.add("col", "text-right", "align-self-end");
 				
 				tagInput.setAttribute("type", "button");
-				tagInput.classList.add("btn", "btn-primary");
+				tagInput.classList.add("btn", "btn-primary", "ml-2");
 				
 				tagInputModal.setAttribute("type", "button");
 				tagInputModal.setAttribute("data-toggle", "modal");
