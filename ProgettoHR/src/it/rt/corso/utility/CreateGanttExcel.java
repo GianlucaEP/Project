@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -50,28 +49,28 @@ public abstract class CreateGanttExcel {
 
 	/**
 	 * Saves the lower value among all the <code>dataInizio</code> of every task.
-	 * */
+	 */
 	private static LocalDate startingDate;
 	/**
 	 * Saves the higher value among all the <code>dataFine</code> of every task.
-	 * */
+	 */
 	private static LocalDate finishingDate;
 	/**
 	 * Saves the days between starting and ending dates of a task.
-	 * */
+	 */
 	private static long daysBetween;
 	/**
 	 * Saves the total number of days for all the tasks.
 	 */
 	private static String totalDays;
 	/**
-	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that will be used to color the
-	 * timeline.
+	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that will be
+	 * used to color the timeline.
 	 */
 	private static List<XSSFColor> colorList = new ArrayList<XSSFColor>();
 	/**
-	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that has been used to color the
-	 * timeline.
+	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that has
+	 * been used to color the timeline.
 	 */
 	private static List<XSSFColor> usedColorList = new ArrayList<XSSFColor>();
 
@@ -85,7 +84,7 @@ public abstract class CreateGanttExcel {
 	 * @return A <code>List</code> of <code>Task</code> type objects.
 	 * 
 	 */
-	private static List<Task> buildTaskList(List<String> data) throws ParseException {
+	private static List<Task> buildTaskList(List<String> data) {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -151,8 +150,8 @@ public abstract class CreateGanttExcel {
 	/**
 	 * 
 	 * Set startingDate and finishingDate dates based on the lower value for
-	 * <code>dataInizio</code> and greater value for <code>dataFine</code> got by the List of
-	 * <code>Task</code> type objects.
+	 * <code>dataInizio</code> and greater value for <code>dataFine</code> got by
+	 * the List of <code>Task</code> type objects.
 	 * 
 	 * @param dataInizio <code>dataInizio</code> parameter from the current task.
 	 * @param dataFine   <code>dataFine</code> parameter from the current task.
@@ -181,11 +180,9 @@ public abstract class CreateGanttExcel {
 	 *                 <code>Task</code> objects
 	 * 
 	 * @return the written workbook.
-	 * @throws ParseException
 	 * 
 	 */
-	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data, List<String> costs)
-			throws IOException, ParseException {
+	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data, List<String> costs) {
 
 		List<Task> taskList = buildTaskList(data);
 
@@ -380,11 +377,11 @@ public abstract class CreateGanttExcel {
 	 * Write months names in the header over the Timeline starting from the cell
 	 * specified by the given <code>XSSFCell</code>.
 	 * 
-	 * @param workbook   the given <code>XSSFWorkbook</code> that will be written
-	 *                   on.
-	 * @param sheet      the sheet contained in the given workbook, instantiated in
-	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
-	 * @param headerCell the given cell from where the months will be written.
+	 * @param workbook    the given <code>XSSFWorkbook</code> that will be written
+	 *                    on.
+	 * @param sheet       the sheet contained in the given workbook, instantiated in
+	 *                    {@link #createWorkbook(workbook, data) createWorkbook}.
+	 * @param headerCell  the given cell from where the months will be written.
 	 * 
 	 * @param headerMonth the given row from where the months will be written.
 	 * 
@@ -458,11 +455,11 @@ public abstract class CreateGanttExcel {
 	 * Write days numbers in the header over the Timeline starting from the cell
 	 * specified by the given <code>XSSFCell</code>.
 	 * 
-	 * @param workbook   the given <code>XSSFWorkbook</code> that will be written
-	 *                   on.
-	 * @param sheet      the sheet contained in the given workbook, instantiated in
-	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
-	 * @param headerCell the given cell from where the days will be written.
+	 * @param workbook    the given <code>XSSFWorkbook</code> that will be written
+	 *                    on.
+	 * @param sheet       the sheet contained in the given workbook, instantiated in
+	 *                    {@link #createWorkbook(workbook, data) createWorkbook}.
+	 * @param headerCell  the given cell from where the days will be written.
 	 * 
 	 * @param headerDates the given row from where the days will be written.
 	 * 
@@ -565,8 +562,9 @@ public abstract class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Color cells with colors picked from a <code>List</code> of <code>XSSFColors</code> to create a timeline corresponding to
-	 * days(cells) for task(rows) in the given workbook
+	 * Color cells with colors picked from a <code>List</code> of
+	 * <code>XSSFColors</code> to create a timeline corresponding to days(cells) for
+	 * task(rows) in the given workbook
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
 	 * @param sheet    the sheet contained in the given workbook, instantiated in
@@ -580,10 +578,10 @@ public abstract class CreateGanttExcel {
 		white[2] = (byte) 255; // blue
 
 		XSSFColor borderColor = new XSSFColor(white, new DefaultIndexedColorMap());
-		
+
 		int colorListIndex = 0;
-		
-		if(colorList.isEmpty()) {
+
+		if (colorList.isEmpty()) {
 			createColorList();
 		}
 
@@ -594,16 +592,16 @@ public abstract class CreateGanttExcel {
 			Integer diffDaysFromStart = (int) ChronoUnit.DAYS.between(startingDate, dataInizio);
 
 			LocalDate dataFine = task.getDataFine();
-			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);	
-			
-			if(colorListIndex == 10) {
+			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);
+
+			if (colorListIndex == 10) {
 				colorListIndex = 0;
 			}
-			
+
 			XSSFColor color = colorList.get(colorListIndex);
 
 			colorListIndex++;
-			
+
 			usedColorList.add(color);
 
 			for (int i = 0; i <= diffDaysTask; i++) {
@@ -612,11 +610,11 @@ public abstract class CreateGanttExcel {
 				XSSFCellStyle cellStyle = workbook.createCellStyle();
 				cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				cellStyle.setFillForegroundColor(color);
-				
-				if(taskList.indexOf(task) > 0) {
+
+				if (taskList.indexOf(task) > 0) {
 					cellStyle.setBorderTop(BorderStyle.MEDIUM);
 				}
-				
+
 				cellStyle.setBorderBottom(BorderStyle.MEDIUM);
 
 				cellStyle.setTopBorderColor(borderColor);
@@ -628,56 +626,57 @@ public abstract class CreateGanttExcel {
 
 		}
 	}
-	
-	
+
 	/**
 	 * 
-	 * Create a <code>List</code> of <code>XSSFColor</code> that will be used to color the timeline in  {@link #drawTimelineGantt(workbook, sheet, taskList) drawTimelineGantt} metohd.
+	 * Create a <code>List</code> of <code>XSSFColor</code> that will be used to
+	 * color the timeline in {@link #drawTimelineGantt(workbook, sheet, taskList)
+	 * drawTimelineGantt} metohd.
 	 * 
-	 * */
+	 */
 	private static void createColorList() {
-		
+
 		byte[] rgb = new byte[3];
 		rgb[0] = (byte) 220; // red
 		rgb[1] = (byte) 42; // green
 		rgb[2] = (byte) 42; // blue
-		
+
 		XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 38; // red
 		rgb[1] = (byte) 166; // green
 		rgb[2] = (byte) 91; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 52; // red
 		rgb[1] = (byte) 85; // green
 		rgb[2] = (byte) 219; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 220; // red
 		rgb[1] = (byte) 42; // green
 		rgb[2] = (byte) 42; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 58; // red
 		rgb[1] = (byte) 77; // green
 		rgb[2] = (byte) 19; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 52; // red
 		rgb[1] = (byte) 85; // green
 		rgb[2] = (byte) 219; // blue
@@ -685,39 +684,39 @@ public abstract class CreateGanttExcel {
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 239; // red
 		rgb[1] = (byte) 72; // green
 		rgb[2] = (byte) 54; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 107; // red
 		rgb[1] = (byte) 142; // green
 		rgb[2] = (byte) 35; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 204; // red
 		rgb[1] = (byte) 0; // green
 		rgb[2] = (byte) 102; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 		rgb[0] = (byte) 0; // red
 		rgb[1] = (byte) 0; // green
 		rgb[2] = (byte) 204; // blue
-		
+
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-		
+
 		colorList.add(color);
-		
+
 	}
 
 	/**
@@ -917,25 +916,29 @@ public abstract class CreateGanttExcel {
 	 * 
 	 * @author s.schiavone
 	 * @param days
-	 * @throws ParseException
 	 */
 	public static void downloadExcel(HttpServletRequest request, HttpServletResponse response, List<String> data,
-			List<String> costs, String days) throws IOException, ParseException {
+			List<String> costs, String days) {
+		try {
+			File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
 
-		File file = new File(System.getProperty("upload.location"), getFileName() + ".xlsx");
+			XSSFWorkbook workbook = new XSSFWorkbook();
 
-		XSSFWorkbook workbook = new XSSFWorkbook();
+			totalDays = days;
 
-		totalDays = days;
+			workbook = CreateGanttExcel.createWorkbook(workbook, data, costs);
 
-		workbook = CreateGanttExcel.createWorkbook(workbook, data, costs);
+			FileOutputStream out = new FileOutputStream(file);
 
-		FileOutputStream out = new FileOutputStream(file);
-		workbook.write(out);
-		downloadFile(file, response);
-		out.close();
-		workbook.close();
+			workbook.write(out);
 
+			downloadFile(file, response);
+			out.close();
+			workbook.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

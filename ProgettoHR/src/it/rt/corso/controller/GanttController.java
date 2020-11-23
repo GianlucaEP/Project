@@ -43,15 +43,15 @@ public class GanttController {
 
 	/**
 	 * 
-	 * Controller for Excel creation and download of them.
+	 * Controller for creation and downloading of Excel files containing a Gantt chart.
 	 * @throws ParseException 
 	 * 
 	 * */
 	@RequestMapping("/ExcelGantt/{businessUnit}")
 	public String getExcel(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,@RequestParam List<String> data,
-			@RequestParam List<String> costi,@RequestParam String days,HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+			@RequestParam List<String> costi,@RequestParam String days,HttpServletRequest request, HttpServletResponse response) {
 	
-         CreateGanttExcel.downloadExcel(request, response, data, costi, days);
+        CreateGanttExcel.downloadExcel(request, response, data, costi, days);
 
 		return null;
 	}
