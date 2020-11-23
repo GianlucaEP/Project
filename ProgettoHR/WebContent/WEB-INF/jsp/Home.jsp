@@ -428,8 +428,11 @@ option:hover {
 						</ul>
 						<hr>
 						<ul>
-							<li><a href="/ProgettoHR/Gantt/${businessUnit}"
-								type="button" class="btn" id="ganttButton">Gantt</a></li>
+							<c:if
+								test='${fn:contains(funzionalita, "creazione Gantt")}'>
+								<li><a href="/ProgettoHR/Gantt/${businessUnit}"
+									type="button" class="btn" id="ganttButton">Gantt</a></li>
+							</c:if>
 						</ul>
 					</div>
 					<div class="col">
