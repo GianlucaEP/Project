@@ -156,7 +156,6 @@ option:hover {
 /* TABELLA HOME */
 .tabellaHome {
 	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9em;
 	border-radius: 5px;
 	overflow: hidden;

@@ -317,7 +317,7 @@ body, html, #container {
 
 									<td><button id="aggiungi${cand.id}" type="button"
 											class="btn btn-success"
-											onclick="addCandidato(${cand.costo.giornaliero}, '${cand.nome}')">
+											onclick="addCandidato(${cand.costo.giornaliero}, '${cand.nome}', '${cand.cognome}')">
 											<i class="fas fa-plus"></i>
 										</button></td>
 
@@ -471,12 +471,12 @@ body, html, #container {
 			
 		}
 		
-		function addCandidato(costo, nome) {
+		function addCandidato(costo, nome, cognome) {
 		var divNomeCandidato= document.getElementById("divNomeCandidato");
 		var tagDiv = document.createElement("div");		
 		var tagInput = document.createElement("input");
 		var tagDivButton = document.createElement("span");
-		tagInput.value = nome;
+		tagInput.value = nome + ' ' + cognome;
 		tagInput.classList.add("form-control");
 		
 		tagDiv.classList.add("form-row");
@@ -615,7 +615,7 @@ body, html, #container {
 		  			var thCandidatoName = document.createElement("th");
 		  			thCandidatoName.setAttribute("id", "thCandidatoName");
 		  			document.getElementById("trCol").appendChild(thCandidatoName);		
-		  			var textNode=document.createTextNode("Nome candidato");
+		  			var textNode=document.createTextNode("Candidato");
 		  			document.getElementById("thCandidatoName").appendChild(textNode)
 		  			
 		  			var thInitialDate = document.createElement("th");
