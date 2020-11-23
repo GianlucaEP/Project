@@ -48,14 +48,29 @@ import it.rt.corso.beans.Task;
  */
 public abstract class CreateGanttExcel {
 
-	private static LocalDate startingDate;
-	private static LocalDate finishingDate;
-	private static long daysBetween;
-	private static String totalDays;
-	private static List<XSSFColor> colorList = new ArrayList<XSSFColor>();
-
 	/**
-	 * Saves a list of <code>XSSFColor</code> type objects used to color the
+	 * Saves the lower value among all the <code>dataInizio</code> of every task.
+	 * */
+	private static LocalDate startingDate;
+	/**
+	 * Saves the higher value among all the <code>dataFine</code> of every task.
+	 * */
+	private static LocalDate finishingDate;
+	/**
+	 * Saves the days between starting and ending dates of a task.
+	 * */
+	private static long daysBetween;
+	/**
+	 * Saves the total number of days for all the tasks.
+	 */
+	private static String totalDays;
+	/**
+	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that will be used to color the
+	 * timeline.
+	 */
+	private static List<XSSFColor> colorList = new ArrayList<XSSFColor>();
+	/**
+	 * Saves a <code>List</code> of <code>XSSFColor</code> type objects that has been used to color the
 	 * timeline.
 	 */
 	private static List<XSSFColor> usedColorList = new ArrayList<XSSFColor>();
@@ -67,10 +82,10 @@ public abstract class CreateGanttExcel {
 	 * @param data String that have to be worked in order to obtain the
 	 *             <code>Task</code> objects
 	 * 
-	 * @return A List of <code>Task</code> type objects.
+	 * @return A <code>List</code> of <code>Task</code> type objects.
 	 * 
 	 */
-	private static List<Task> buildDataExcel(List<String> data) throws ParseException {
+	private static List<Task> buildTaskList(List<String> data) throws ParseException {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -112,7 +127,7 @@ public abstract class CreateGanttExcel {
 	 * @return A List of <code>Cost</code> type objects.
 	 * 
 	 */
-	private static List<Cost> buildCostDataExcel(List<String> costs) {
+	private static List<Cost> buildCostList(List<String> costs) {
 
 		List<Cost> costsList = new ArrayList<Cost>();
 
@@ -136,11 +151,11 @@ public abstract class CreateGanttExcel {
 	/**
 	 * 
 	 * Set startingDate and finishingDate dates based on the lower value for
-	 * dataInizio and greater value for dataFine got by the List of
+	 * <code>dataInizio</code> and greater value for <code>dataFine</code> got by the List of
 	 * <code>Task</code> type objects.
 	 * 
-	 * @param dataInizio dataInizio parameter from the current task.
-	 * @param dataFine   dataFine parameter from the current task.
+	 * @param dataInizio <code>dataInizio</code> parameter from the current task.
+	 * @param dataFine   <code>dataFine</code> parameter from the current task.
 	 * 
 	 */
 	private static void getTimeLine(LocalDate dataInizio, LocalDate dataFine) {
@@ -172,7 +187,7 @@ public abstract class CreateGanttExcel {
 	public static XSSFWorkbook createWorkbook(XSSFWorkbook workbook, List<String> data, List<String> costs)
 			throws IOException, ParseException {
 
-		List<Task> taskList = buildDataExcel(data);
+		List<Task> taskList = buildTaskList(data);
 
 		XSSFSheet sheet = workbook.createSheet();
 
@@ -180,9 +195,7 @@ public abstract class CreateGanttExcel {
 
 		sheet.createFreezePane(5, 0, 5, 0);
 
-		sheet.createFreezePane(0, 0);
-
-		List<Cost> costList = buildCostDataExcel(costs);
+		List<Cost> costList = buildCostList(costs);
 
 		writeHeadersGantt(workbook, sheet, taskList);
 
@@ -289,6 +302,8 @@ public abstract class CreateGanttExcel {
 	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
 	 * @param headerCell the given cell from where the years will be written.
 	 * 
+	 * @param headerYear the given row from where the years will be written.
+	 * 
 	 */
 	private static void writeYearsInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
 			XSSFRow headerYear) {
@@ -360,6 +375,20 @@ public abstract class CreateGanttExcel {
 
 	}
 
+	/**
+	 * 
+	 * Write months names in the header over the Timeline starting from the cell
+	 * specified by the given <code>XSSFCell</code>.
+	 * 
+	 * @param workbook   the given <code>XSSFWorkbook</code> that will be written
+	 *                   on.
+	 * @param sheet      the sheet contained in the given workbook, instantiated in
+	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
+	 * @param headerCell the given cell from where the months will be written.
+	 * 
+	 * @param headerMonth the given row from where the months will be written.
+	 * 
+	 */
 	private static void writeMonthsInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
 			XSSFRow headerMonth) {
 
@@ -424,6 +453,20 @@ public abstract class CreateGanttExcel {
 
 	}
 
+	/**
+	 * 
+	 * Write days numbers in the header over the Timeline starting from the cell
+	 * specified by the given <code>XSSFCell</code>.
+	 * 
+	 * @param workbook   the given <code>XSSFWorkbook</code> that will be written
+	 *                   on.
+	 * @param sheet      the sheet contained in the given workbook, instantiated in
+	 *                   {@link #createWorkbook(workbook, data) createWorkbook}.
+	 * @param headerCell the given cell from where the days will be written.
+	 * 
+	 * @param headerDates the given row from where the days will be written.
+	 * 
+	 */
 	private static void writeDaysInHeader(XSSFWorkbook workbook, XSSFSheet sheet, XSSFCell headerCell,
 			XSSFRow headerDates) {
 
