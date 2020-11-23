@@ -2,7 +2,6 @@ package it.rt.corso.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -73,8 +72,6 @@ public class TitoloStudioController {
 	@RequestMapping(value = "/EliminaTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String eliminaTitoloStudio(@RequestParam("titoloStudioIdRemove") int idTitoloStudio,
 			@PathVariable String businessUnit, @PathVariable int id) {
-
-		Candidato candidato = candidatoDAO.get(id);
 
 		TitoloStudio titoloStudioTemp = titoloStudioDAO.get(idTitoloStudio);
 

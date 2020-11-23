@@ -34,7 +34,6 @@ public class CandidatiController {
 	private ApplicationContext factory = new ClassPathXmlApplicationContext("bean.xml");
 
 // Inizializzazione DAO
-	private TitoloStudioDAO titoloStudioDAO = (TitoloStudioDAO) factory.getBean("titoloStudioDAO");
 	private FeedbackDAO feedbackDAO = (FeedbackDAO) factory.getBean("feedbackDAO");
 	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 	private CandidatoSpecializzazioneDAO candidatoSpecializzazioneDAO = (CandidatoSpecializzazioneDAO) factory

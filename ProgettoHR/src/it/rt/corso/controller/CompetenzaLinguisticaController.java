@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.rt.corso.DAO.CandidatoCompetenzaLinguisticaDAO;
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.DAO.CompetenzaLinguisticaDAO;
-import it.rt.corso.DAO.TitoloStudioDAO;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.CandidatoCompetenzaLinguistica;
 import it.rt.corso.beans.CompetenzaLinguistica;
-import it.rt.corso.beans.TitoloStudio;
 import it.rt.corso.singleton.Singleton;
 
 @Controller
