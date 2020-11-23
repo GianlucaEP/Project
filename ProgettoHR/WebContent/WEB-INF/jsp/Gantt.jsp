@@ -892,8 +892,8 @@ body, html {
 		function validate(){
 			
 			var	nomeTaskValue = document.getElementById("nomeTask").value;
-			var nomeCandidatoValue = document.getElementById("candidatoNameInput");
-			var rincaroValue =  document.getElementById("rincaroInput");
+			var nomeCandidatoValue = document.getElementById("candidatoNameInput").value;
+			var rincaroValue =  document.getElementById("rincaroInput").value;
 			var initialDateValue = document.getElementById("initialDate").value;
 			var endDateValue = document.getElementById("endDate").value;
 			if (nomeTaskValue !== "" &&
@@ -905,6 +905,12 @@ body, html {
 				if(initialDateValue > endDateValue){
 					$('#errorModal').modal('toggle');   
 					document.getElementById("errorModalBody").innerHTML ="Attenzione! La data di inizio deve essere minore della data di fine.";  
+					return false;
+				}
+				
+				if(isNaN(rincaroValue)){
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML ="Attenzione! Il valore nel campo rincaro deve essere numerico.";  
 					return false;
 				}
 				aggiungiCandidato();

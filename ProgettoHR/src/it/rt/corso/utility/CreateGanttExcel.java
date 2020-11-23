@@ -53,6 +53,7 @@ public abstract class CreateGanttExcel {
 	private static LocalDate finishingDate;
 	private static long daysBetween;
 	private static String totalDays;
+	private static List<XSSFColor> colorList = new ArrayList<XSSFColor>();
 
 	/**
 	 * Saves a list of <code>XSSFColor</code> type objects used to color the
@@ -522,7 +523,7 @@ public abstract class CreateGanttExcel {
 
 	/**
 	 * 
-	 * Color cells with random colors to create a timeline corresponding to
+	 * Color cells with colors picked from a <code>List</code> of <code>XSSFColors</code> to create a timeline corresponding to
 	 * days(cells) for task(rows) in the given workbook
 	 * 
 	 * @param workbook the given <code>XSSFWorkbook</code> that will be written on.
@@ -537,6 +538,12 @@ public abstract class CreateGanttExcel {
 		white[2] = (byte) 255; // blue
 
 		XSSFColor borderColor = new XSSFColor(white, new DefaultIndexedColorMap());
+		
+		int colorListIndex = 0;
+		
+		if(colorList.isEmpty()) {
+			createColorList();
+		}
 
 		for (Task task : taskList) {
 			XSSFRow taskRow = sheet.getRow(taskList.indexOf(task) + 3);
@@ -545,23 +552,16 @@ public abstract class CreateGanttExcel {
 			Integer diffDaysFromStart = (int) ChronoUnit.DAYS.between(startingDate, dataInizio);
 
 			LocalDate dataFine = task.getDataFine();
-			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);
+			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);	
+			
+			if(colorListIndex == 10) {
+				colorListIndex = 0;
+			}
+			
+			XSSFColor color = colorList.get(colorListIndex);
 
-			Random rand = new Random();
-
-			// Generate random integers in range 0 to 255 to generate a random RGB scale
-			// color
-			int randomRGB1 = rand.nextInt(255);
-			int randomRGB2 = rand.nextInt(255);
-			int randomRGB3 = rand.nextInt(255);
-			byte[] rgb = new byte[3];
-			rgb[0] = (byte) randomRGB1; // red
-			rgb[1] = (byte) randomRGB2; // green
-			rgb[2] = (byte) randomRGB3; // blue
-			// create XSSFColor
-
-			XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-
+			colorListIndex++;
+			
 			usedColorList.add(color);
 
 			for (int i = 0; i <= diffDaysTask; i++) {
@@ -585,6 +585,97 @@ public abstract class CreateGanttExcel {
 			}
 
 		}
+	}
+	
+	
+	/**
+	 * 
+	 * Create a <code>List</code> of <code>XSSFColor</code> that will be used to color the timeline in  {@link #drawTimelineGantt(workbook, sheet, taskList) drawTimelineGantt} metohd.
+	 * 
+	 * */
+	private static void createColorList() {
+		
+		byte[] rgb = new byte[3];
+		rgb[0] = (byte) 220; // red
+		rgb[1] = (byte) 42; // green
+		rgb[2] = (byte) 42; // blue
+		
+		XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 38; // red
+		rgb[1] = (byte) 166; // green
+		rgb[2] = (byte) 91; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 52; // red
+		rgb[1] = (byte) 85; // green
+		rgb[2] = (byte) 219; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 220; // red
+		rgb[1] = (byte) 42; // green
+		rgb[2] = (byte) 42; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 58; // red
+		rgb[1] = (byte) 77; // green
+		rgb[2] = (byte) 19; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 52; // red
+		rgb[1] = (byte) 85; // green
+		rgb[2] = (byte) 219; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		
+		rgb[0] = (byte) 239; // red
+		rgb[1] = (byte) 72; // green
+		rgb[2] = (byte) 54; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 107; // red
+		rgb[1] = (byte) 142; // green
+		rgb[2] = (byte) 35; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 204; // red
+		rgb[1] = (byte) 0; // green
+		rgb[2] = (byte) 102; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
+		rgb[0] = (byte) 0; // red
+		rgb[1] = (byte) 0; // green
+		rgb[2] = (byte) 204; // blue
+		
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		
+		colorList.add(color);
+		
 	}
 
 	/**
