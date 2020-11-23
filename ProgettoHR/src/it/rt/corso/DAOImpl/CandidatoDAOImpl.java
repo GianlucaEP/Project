@@ -151,5 +151,37 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 		return lista;
 	}
 	
+	public List<Candidato> getListaFilteredByStato(String stato) {
+
+		Session session = Utility.getSession();
+
+		// creo builder di criteria
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+		// Crea a CriteriaQuery object with the specified resulttype. (classe candidato)
+		CriteriaQuery<Candidato> criteriaQuery = criteriaBuilder.createQuery(Candidato.class);
+
+		// Create and add a query root corresponding to the given entity,forming a
+		// cartesian product with any existing roots.
+		Root<Candidato> root = criteriaQuery.from(Candidato.class);
+
+		// join tra candidato e statoCandidato
+		Join<Candidato, StatoCandidato> statoCandidato = root.join("stato", JoinType.INNER);
+
+		List<Predicate> listaPredicates = new ArrayList<Predicate>();
+
+		listaPredicates.add(criteriaBuilder.like(statoCandidato.get("descrizione"), "%" + stato + "%"));
+
+		Predicate[] predicates = listaPredicates.toArray(new Predicate[listaPredicates.size()]);
+		// costruzione della query
+		criteriaQuery.select(root).where(predicates);
+		// esecuzione della query
+		Query<Candidato> query = session.createQuery(criteriaQuery);
+
+		List<Candidato> lista = (List<Candidato>) query.getResultList();
+		Utility.destroySession();
+		return lista;
+	}
+	
 
 }

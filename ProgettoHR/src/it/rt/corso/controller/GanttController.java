@@ -31,7 +31,7 @@ public class GanttController {
 	@RequestMapping("/Gantt/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
-		List<Candidato> list = cdao.getLista();
+		List<Candidato> list = cdao.getListaFilteredByStato("Attivo");
 		String data = "";
 
 		m.addAttribute("list", list);

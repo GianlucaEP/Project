@@ -40,6 +40,16 @@ public interface CandidatoDAO {
 	 * */
 	public List<Candidato> getListaByBusinessUnitFilteredByStato(String businessUnit, String stato);
 	
+	/** Create and execute query to Candidato table to get 
+	 * a List of type Candidato filtered by stato specified by the stato attribute.
+	 * 
+	 * @param stato String that specifies the stato which is going to be used in the where clause.
+	 * 
+	 * @return the List of Candidato, wich has to be printed inside the table, filtered by the selected stato.
+	 * 
+	 * */
+	public List<Candidato> getListaFilteredByStato(String stato);
+	
 	
 	
 }
