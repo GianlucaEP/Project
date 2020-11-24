@@ -49,7 +49,9 @@ public class Singleton {
 	CompetenzaLinguisticaDAO competenzaLinguisticaDAO = (CompetenzaLinguisticaDAO) factory.getBean("competenzaLinguisticaDAO");
 	TitoloStudioDAO titoloStudioDAO = (TitoloStudioDAO) factory.getBean("titoloStudioDAO");
 
-	// static variable single_instance of type Singleton
+	/** 
+	 * static variable single_instance of type Singleton
+	 **/
 	private static Singleton single_instance = null;
 
 	private static List<Business> businessList = new ArrayList<Business>();
@@ -62,7 +64,10 @@ public class Singleton {
 	private static List<CompetenzaLinguistica> competenzaLinguisticaList = new ArrayList<CompetenzaLinguistica>();
 	private static List<TitoloStudio> titoloStudioList = new ArrayList<TitoloStudio>();
 
-	// private constructor restricted to this class itself
+	/**
+	 *  private constructor restricted to this class itself, executes all the get methods of every DAO
+	 *  in order to obtain avery list only once at the start of the program.
+	 */
 	private Singleton() {
 		businessList = businessDAO.getLista();
 		areaCompetenzaList = areaCompetenzaDAO.getLista();
