@@ -19,6 +19,13 @@ public class Utility {
 	private static SessionFactory factory;
 	private static Session session;
 
+	/**
+	 * 
+	 * Build an hibernate session to connect to database.
+	 * 
+	 * @return the builded session
+	 * 
+	 */
 	public static void buildSessionFactory() {
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 
@@ -26,13 +33,7 @@ public class Utility {
 
 		factory = meta.getSessionFactoryBuilder().build();
 	}
-	/**
-	 * 
-	 * Build an hibernate session to connect to database
-	 * 
-	 * @return the builded session
-	 * 
-	 */
+
 //	public static Session buildSession() {
 //
 //		session = factory.openSession();
@@ -42,13 +43,13 @@ public class Utility {
 
 	/**
 	 * 
-	 * Build an hibernate session if a session has not been previuosly built
+	 * Build an hibernate session if a session has not been previuosly built.
 	 * 
 	 * @return the builded session
 	 * 
 	 */
 	public static Session getSession() {
-		if (session==null || !session.isOpen()) {
+		if (session == null || !session.isOpen()) {
 			session = factory.openSession();
 		}
 		return session;
@@ -56,28 +57,27 @@ public class Utility {
 
 	/**
 	 * 
-	 * Destroy the current session
+	 * Destroy the current session.
 	 * 
 	 */
 	public static void destroySession() {
 
 		session.close();
 	}
-	
+
 	/**
 	 * 
-	 * Destroy the current session factory
+	 * Destroy the current session factory.
 	 * 
 	 */
 	public static void destroySessionFactory() {
-		
+
 		factory.close();
 	}
-	
-	
+
 	/**
 	 * 
-	 * Build a session and create a CriteriaBuilder object
+	 * Build a session and create a CriteriaBuilder object.
 	 * 
 	 * @return an instantiated CriteriaBuilder object
 	 **/
@@ -85,7 +85,6 @@ public class Utility {
 
 		Session session = Utility.getSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		
 
 		return criteriaBuilder;
 	}
