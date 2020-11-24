@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents titolo_studio table.
+ * */
 @Entity
 @Table(name = "titolo_studio")
 public class TitoloStudio implements Bean{

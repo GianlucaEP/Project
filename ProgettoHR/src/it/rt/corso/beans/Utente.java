@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents utente table.
+ * */
 @Entity
 @Table(name = "utente")
 public class Utente implements Bean {

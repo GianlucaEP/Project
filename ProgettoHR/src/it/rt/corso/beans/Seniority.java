@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents seniority table.
+ * */
 @Entity
 @Table(name = "seniority")
 public class Seniority implements Bean {

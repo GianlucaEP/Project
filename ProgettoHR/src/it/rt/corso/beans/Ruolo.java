@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents ruolo table.
+ * */
 @Entity
 @Table(name = "ruolo")
 public class Ruolo implements Bean{

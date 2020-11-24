@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents costo table.
+ * */
 @Entity
 @Table(name = "costo")
 public class Costo implements Bean {

@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents specializzazione table.
+ * */
 @Entity
 @Table(name = "specializzazione")
 public class Specializzazione implements Bean {

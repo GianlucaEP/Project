@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents funzionalita table.
+ * */
 @Entity
 @Table(name = "funzionalita")
 public class Funzionalita implements Bean{

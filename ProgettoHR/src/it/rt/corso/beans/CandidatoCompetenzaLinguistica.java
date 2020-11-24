@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents candidato_competenz_linguistica middle table.
+ * */
 @Entity
 @Table(name = "candidato_competenza_linguistica")
 public class CandidatoCompetenzaLinguistica implements Bean,  Serializable {

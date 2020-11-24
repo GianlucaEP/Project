@@ -25,6 +25,9 @@ import javax.transaction.Transactional;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+/**
+ * {@link Bean Bean} type Object that rapresents candidato table.
+ * */
 @Entity
 @Table(name = "candidato")
 @Transactional

@@ -14,6 +14,9 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * {@link Bean Bean} type Object that rapresents feedback table.
+ * */
 @Entity
 @Table(name = "feedback")
 public class Feedback implements Bean{

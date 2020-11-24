@@ -10,6 +10,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents file table.
+ * */
 @Entity
 @Table(name = "file")
 public class UploadFile implements Bean {

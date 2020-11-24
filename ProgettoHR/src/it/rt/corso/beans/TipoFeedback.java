@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents tipo_feedback table.
+ * */
 @Entity
 @Table(name = "tipo_feedback")
 public class TipoFeedback implements Bean{

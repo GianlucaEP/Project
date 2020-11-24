@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents area_competenza table.
+ * */
 @Entity
 @Table(name = "area_competenza")
 public class AreaCompetenza implements Bean{

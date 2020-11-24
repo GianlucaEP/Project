@@ -14,6 +14,9 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * {@link Bean Bean} type Object that rapresents qualification_meeting table.
+ * */
 @Entity
 @Table(name = "qualification_meeting")
 public class QualificationMeeting implements Bean{

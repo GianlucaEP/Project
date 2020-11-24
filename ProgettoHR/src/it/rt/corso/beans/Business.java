@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents business table.
+ * */
 @Entity
 @Table(name = "business")
 public class Business implements Bean {

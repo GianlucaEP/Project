@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents stato table.
+ * */
 @Entity
 @Table(name = "stato")
 public class StatoCandidato implements Bean {

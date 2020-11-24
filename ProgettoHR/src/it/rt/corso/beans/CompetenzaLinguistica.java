@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents competenza_linguistica table.
+ * */
 @Entity
 @Table(name = "competenza_linguistica")
 public class CompetenzaLinguistica implements Bean {

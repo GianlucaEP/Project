@@ -1,5 +1,8 @@
 package it.rt.corso.beans;
 
+/**
+ * class that rapresents the data to be stored in the costs page in an Excel of a Gantt chart
+ * */
 public class Cost {
 	private String cost;
 	private String inflation;

@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * {@link Bean Bean} type Object that rapresents mansione table.
+ * */
 @Entity
 @Table(name = "mansione")
 public class Mansione implements Bean{

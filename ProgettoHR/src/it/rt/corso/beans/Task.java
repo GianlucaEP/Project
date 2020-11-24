@@ -2,6 +2,9 @@ package it.rt.corso.beans;
 
 import java.time.LocalDate;
 
+/**
+ * class that rapresents the data to be used in order to draw a Gantt chart.
+ * */
 public class Task {
 	private String nomeTask;
 	private String nomeCandidiato;
