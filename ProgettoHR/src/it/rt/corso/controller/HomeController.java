@@ -48,6 +48,16 @@ public class HomeController {
 
 	private CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	/**
+	 * 
+	 * Show the Home page with all the Candidato filtered by the given business unit.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Home/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
@@ -78,17 +88,24 @@ public class HomeController {
 		return "Home";
 	}
 
+	/**
+	 * 
+	 * Show the Home page with all the Candidato filtered by the selected stato and business unit; if no stato is selected show all the Candidato for the given business unit.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Home/filter/{businessUnit}", method = RequestMethod.GET)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
 			@RequestParam Map<String, String> requestParams) {
 
-//		@RequestParam("cognome") String cognome, @RequestParam("nome") String nome) NEL CASO IN CUI NON SI USA MAPPA
-
 		Singleton singleton = Singleton.getInstance();
 
-//		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(businessUnit, requestParams);
 		List<Candidato> list = new ArrayList<>();
-		if (requestParams.get("statoSelezionato").equals("noFiltro")) {
+		if (requestParams.get("statoSelezionato").equals("noFiltro")) {//no stato selected
 			list = cdao.getListaByBusinessUnit(businessUnit);
 		} else {
 			list = cdao.getListaByBusinessUnitFilteredByStato(businessUnit, requestParams.get("statoSelezionato"));
@@ -111,10 +128,5 @@ public class HomeController {
 		return "Home";
 	}
 
-//	@ResponseStatus(HttpStatus.BAD_REQUEST)
-//	@ExceptionHandler({ ServletRequestBindingException.class })
-//	public String sessionClosed() {
-//		return "redirect:/Login";
-//	}
 
 }

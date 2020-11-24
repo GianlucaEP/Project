@@ -27,6 +27,16 @@ public class QualificationMeetingController {
 			.getBean("qualificationMeetingDAO");
 	CandidatoDAO dao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	/**
+	 * Add a new {@link QualificationMeeting QualificationMeeting} Object in database for the candidato selected using the given id.
+	 * 
+	 * @param qualificationMeeting {@link QualificationMeeting QualificationMeeting} that will be added in database.
+	 * @param id the given id used to select the Candidato to which we will be adding the {@link QualificationMeeting QualificationMeeting}.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/AggiungiQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String aggiungiQualificationMeeting(
 			@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting, @PathVariable int id,
@@ -42,6 +52,16 @@ public class QualificationMeetingController {
 
 	}
 
+	/**
+	 * Update a {@link QualificationMeeting QualificationMeeting} Object in database for the candidato selected using the given id.
+	 * 
+	 * @param qualificationMeeting {@link QualificationMeeting QualificationMeeting} that will be added in database.
+	 * @param id the given id used to select the Candidato to which we will be adding the {@link QualificationMeeting QualificationMeeting}.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/ModificaQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String modificaQualificationMeeting(
 			@ModelAttribute("qualificationMeeting") QualificationMeeting qualificationMeeting, @PathVariable int id,
@@ -61,6 +81,15 @@ public class QualificationMeetingController {
 
 	}
 
+	/**
+	 * Delete a {@link QualificationMeeting QualificationMeeting} Object in database for the candidato selected using the given id.
+	 * 
+	 * @param idQualificationMeeting id used to search {@link QualificationMeeting QualificationMeeting} that will be deleted.
+	 * @param id the given id used to select the Candidato that will be showed in page.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/EliminaQualificationMeeting/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String elimina(@RequestParam("qualification") int idQualificationMeeting, @PathVariable String businessUnit,
 			@PathVariable int id) {

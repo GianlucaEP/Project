@@ -23,6 +23,16 @@ public class MansioneController {
 
 	private MansioneDAO dao = (MansioneDAO) factory.getBean("mansioneDAO");
 
+	/**
+	 * 
+	 * Show the Mansione page with all the Mansione object selected from database.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Mansione/{businessUnit}")
 	public String displayMansione(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
@@ -35,7 +45,15 @@ public class MansioneController {
 		return "/Mansione";
 	}
 
-	// aggiungo una mansione dalla Home
+	/**
+	 * 
+	 * Add a new Mansione from the Home page
+	 * 
+	 * @param mansione the {@link Mansione Mansione} object that will be added in database.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/MansioniSaveDaHome/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiMansioneHome(@ModelAttribute("mansione") Mansione mansione,
 			@PathVariable String businessUnit) {
@@ -43,7 +61,15 @@ public class MansioneController {
 		return "redirect:/Home/{businessUnit}";
 	}
 
-	// aggiungo una mansione dalla Mansione
+	/**
+	 * 
+	 * Add a new Mansione from the Mansione page
+	 * 
+	 * @param mansione the {@link Mansione Mansione} object that will be added in database.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/MansioniSaveDaMansione/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiMansioneDaMansioneList(@ModelAttribute("mansione") Mansione mansione,
 			@PathVariable String businessUnit) {
@@ -51,7 +77,15 @@ public class MansioneController {
 		return "redirect:/Mansione/{businessUnit}";
 	}
 
-	// aggiungo una mansione dalla pagina di inserimento candidato
+	/**
+	 * 
+	 * Add a new Mansione from the Candidati page
+	 * 
+	 * @param mansione the {@link Mansione Mansione} object that will be added in database.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/MansioniSaveDaInserimentoCandidato/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiMansioneInserimentoCandidato(@ModelAttribute("mansione") Mansione mansione,
 			@PathVariable String businessUnit) {
@@ -59,13 +93,28 @@ public class MansioneController {
 		return "redirect:/Candidati/{businessUnit}";
 	}
 
-	// aggiungo una mansione dalla pagina del candidato
+	/**
+	 * 
+	 * Add a new Mansione from the Candidato page
+	 * 
+	 * @param mansione the {@link Mansione Mansione} object that will be added in database.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/MansioniSaveInCandidato/{id}", method = RequestMethod.POST)
 	public String aggiungiMansioneCandidato(@ModelAttribute("mansione") Mansione mansione, @PathVariable int id) {
 		aggiungiMansione(mansione);
 		return "redirect:/Candidato/{id}";
 	}
 
+	/**
+	 * 
+	 * Uses DAO methods to add a new Mansione
+	 * 
+	 * @param mansione the {@link Mansione Mansione} object that will bused in the DAO methods.
+	 * 
+	 * */
 	public void aggiungiMansione(Mansione mansione) {
 		dao.inserisci(mansione);
 
@@ -74,6 +123,15 @@ public class MansioneController {
 		singleton.aggiornaMansione();
 	}
 
+	/**
+	 * 
+	 * Delete the Mansione from database selected by the mansione name contained in the given mansione String. 
+	 * 
+	 * @param mansione the String that will be used to search the Mansione in database.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/EliminaMansione/{businessUnit}", method = RequestMethod.POST)
 	public String elimina(@RequestParam("eliminaMansione") String mansione, @PathVariable String businessUnit) {
 
@@ -87,6 +145,16 @@ public class MansioneController {
 		return "redirect:/Mansione/{businessUnit}";
 	}
 
+	/**
+	 * 
+	 * Update the Mansione from database selected by the mansione name contained in the given mansione String. 
+	 * 
+	 * @param mansione old mansione value that will be updated.
+	 * @param newMansione new mansione value that will be used to execute the update.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AggiornaMansione/{businessUnit}", method = RequestMethod.POST)
 	public String aggiorna(@RequestParam("oldMansione") String mansione,
 			@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {

@@ -30,12 +30,26 @@ public class LoginController {
 		return new Utente();
 	}
 
+	/**
+	 * Show the login JSP page
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String display() {
 
 		return "Login";
 	}
 
+	/**
+	 * 
+	 * Execute the login, if user is not null then the login is succesful, otherwise the credentials are wrong and you will be redirected to the login page with an error message.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/LogginIn", method = RequestMethod.POST)
 	public String Login(@ModelAttribute Utente utente, Model m) throws NoSuchAlgorithmException {
 		// creo la sessionFactory che rimarrà aperta fino a fine sessione

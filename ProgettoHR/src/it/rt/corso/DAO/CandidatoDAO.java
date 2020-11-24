@@ -26,7 +26,7 @@ public interface CandidatoDAO {
 	 * @throws ParseException 
 	 * 
 	 * */
-	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) throws ParseException;
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter);
 	
 	/** Create and execute query to Candidato table, joining Business unit specified by the String businessUnit, to get 
 	 * a List of type Candidato filtered by stato specified by the stato attribute.

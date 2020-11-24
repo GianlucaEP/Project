@@ -1,6 +1,5 @@
 package it.rt.corso.DAOImpl;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +77,7 @@ public class CandidatoDAOImpl extends BaseDAO implements CandidatoDAO {
 	}
 
 	@Override
-	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter) throws ParseException {
+	public List<Candidato> getListaByBusinessUnitFiltered(Map<String, String> mappaFilter){
 
 		
 		Session session = Utility.getSession();

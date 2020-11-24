@@ -47,6 +47,15 @@ public class CandidatiController {
 		binder.registerCustomEditor(Date.class, "inserimentoAzienda", new CustomDateEditor(dateFormat, true));
 	}
 
+	/**
+	 * Shows the JSP showing the form to add {@link Candidato Candidato} objects to database.
+	 * 
+	 * @param m instantiate a {@link Model Model} object to create a model attribute.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Candidati/{businessUnit}")
 	public String formAggiungiCandidato(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
@@ -72,40 +81,58 @@ public class CandidatiController {
 		return "InserimentoCandidati";
 	}
 
+	/**
+	 * Save a new {@link Candidato Candidato} object in database when added from the Candidati page.
+	 * 
+	 * @param candidato {@link Candidato Candidato} present in the request.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * @param dataNascita date <code>String</code> that have to be formatted to a {@link Date Date} object
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/CandidatiSave/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiCandidato(HttpServletRequest request, @PathVariable String businessUnit,
-			@ModelAttribute("candidato") Candidato c, @SessionAttribute("utente") Utente utente,
+			@ModelAttribute("candidato") Candidato candidato, @SessionAttribute("utente") Utente utente,
 			@RequestParam("dataDiNascita") String dataNascita) throws ParseException {
 
 		StatoCandidato stato = (StatoCandidato) factory.getBean("inserito");
-		c.setStato(stato);
+		candidato.setStato(stato);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		c.setDataNascita(formatter.parse(dataNascita));
+		candidato.setDataNascita(formatter.parse(dataNascita));
 
-		c.setInseritoDa(utente);
+		candidato.setInseritoDa(utente);
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
 		if (areeCompetenza != null) {
-			c.setArea(aggiungiAreaCompetenza(areeCompetenza));
+			candidato.setArea(aggiungiAreaCompetenza(areeCompetenza));
 		}
 
 		String[] mansioni = request.getParameterValues("mansioni");
 		if (mansioni != null) {
-			c.setMansione(aggiungiMansione(mansioni));
+			candidato.setMansione(aggiungiMansione(mansioni));
 		}
 
 		String[] specializzazioni = request.getParameterValues("specializzazione");
 		if (specializzazioni != null) {
-			c.setCandidatoSpecializzazione(aggiungiSpecializzazione(specializzazioni, c));
+			candidato.setCandidatoSpecializzazione(aggiungiSpecializzazione(specializzazioni, candidato));
 		}
 
-		candidatoDAO.inserisci(c);
+		candidatoDAO.inserisci(candidato);
 
 		return "redirect:/Home/{businessUnit}";
 
 	}
 
+	/**
+	 * Delete a {@link Candidato Candidato} object from database when deleted from the Candidati page.
+	 * 
+	 * @param idCandidato id used to search the candidato that have to be deleted from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Elimina/{businessUnit}", method = RequestMethod.POST)
 	public String elimina(@RequestParam("idCandidato") int idCandidato, @PathVariable String businessUnit) {
 		Candidato c = candidatoDAO.get(idCandidato);
@@ -113,12 +140,21 @@ public class CandidatiController {
 		return "redirect:/Home/{businessUnit}";
 	}
 
+	/**
+	 * Update a {@link Candidato Candidato} object in database when updated from the Candidati page.
+	 * 
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param dataNascita date <code>String</code> that have to be formatted to a {@link Date Date} object
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/ModificaAnagrafica/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+	public String modificaAnagrafica(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int idCandidato,
 			@PathVariable String businessUnit, @RequestParam("dataDiNascita") String dataNascita)
 			throws ParseException {
 
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		candidato.setNome(c.getNome());
 		candidato.setCognome(c.getCognome());
@@ -139,10 +175,19 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
+	/**
+	 * Update or add a {@link Costo Costo} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param c {@link Candidato Candidato} wich the updated or added {@link Costo Costo} object will be referenced.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AggiungiModificaCosto/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+	public String modificaCosto(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		if (candidato.getCosto() == null) {
 // aggiungi costo per la prima volta di un dato candidato
@@ -163,11 +208,19 @@ public class CandidatiController {
 
 
 	
-
+	/**
+	 * Update or add a {@link Economics Economics} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param c {@link Candidato Candidato} wich the updated or added {@link Economics Economics} object will be referenced.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AggiungiModificaEconomics/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int id,
+	public String modificaEconomics(@ModelAttribute("mostraCandidato") Candidato c, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		if (candidato.getEconomics() == null) {
 // aggiungi economics per la prima volta di un dato candidato
@@ -188,36 +241,57 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-// metodo per aggiornare la seniority del candidato dalla pagina del candidato
-// stesso
+	/**
+	 * Update or add a {@link Seniority Seniority} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param seniority {@link Seniority Seniority} wich the updated or added {@link Seniority Seniority} object will be referenced.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaSeniority/{businessUnit}/{id}")
-	public String modificaSeniority(@RequestParam(name = "seniority") String seniority, @PathVariable int id,
+	public String modificaSeniority(@RequestParam(name = "seniority") String seniority, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 		candidato.getSeniority().setSeniority(seniority);
 		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
-
-// metodo per aggiornare la businessUnit del candidato dalla pagina del
-// candidato stesso
+	
+	
+	/**
+	 * Update or add a {@link BusinessUnit BusinessUnit} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaBusinessUnit/{businessUnit}/{id}")
-	public String modificaBusinessUnit(@RequestParam(name = "businessUnit") String businessUnit, @PathVariable int id) {
-		Candidato candidato = candidatoDAO.get(id);
+	public String modificaBusinessUnit(@RequestParam(name = "businessUnit") String businessUnit, @PathVariable int idCandidato) {
+		Candidato candidato = candidatoDAO.get(idCandidato);
 		candidato.getBusiness().setBusiness(businessUnit);
 		candidatoDAO.aggiorna(candidato);
 
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-// metodo per aggiornare l'area competenza del candidato dalla pagina del
-// candidato stesso
+	/**
+	 * Update or add a {@link AreaCompetenza AreaCompetenza} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param c {@link AreaCompetenza AreaCompetenza} wiche the updated or added {@link AreaCompetenza AreaCompetenza} object will be referenced.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaAreaCompetenza/{businessUnit}/{id}")
-	public String modificaAreaCompetenza(HttpServletRequest request, @PathVariable int id,
+	public String modificaAreaCompetenza(HttpServletRequest request, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
 
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		String[] areeCompetenza = request.getParameterValues("areaCompetenza");
 		if (areeCompetenza != null) {
@@ -231,13 +305,20 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-// metodo per aggiornare la mansione del candidato dalla pagina del
-// candidato stesso
+	/**
+	 * Update or add a {@link Mansione Mansione} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param request {@link HttpServletRequest HttpServletRequest} Object used to get the string mansione from the request.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaMansione/{businessUnit}/{id}")
-	public String modificaMansione(HttpServletRequest request, @PathVariable int id,
+	public String modificaMansione(HttpServletRequest request, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
 
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		String[] mansioni = request.getParameterValues("mansione");
 		if (mansioni != null) {
@@ -251,12 +332,19 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-// metodo per aggiornare la specializzazione del candidato dalla pagina del
-// candidato stesso
+	/**
+	 * Update or add a {@link Specializzazione Specializzazione} object in database when updated or added from the Candidati page.
+	 * 
+	 * @param request {@link HttpServletRequest HttpServletRequest} Object used to get the string specializzazione from the request.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaSpecializzazione/{businessUnit}/{id}")
-	public String modificaSpecializzazione(HttpServletRequest request, @PathVariable int id,
+	public String modificaSpecializzazione(HttpServletRequest request, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) {
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		String[] specializzazioni = request.getParameterValues("specializzazione");
 		if (specializzazioni != null) {
@@ -290,14 +378,20 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
-// metodo per aggiornare la data di inserimento azienda del candidato dalla
-// pagina del
-// candidato stesso
+	/**
+	 * Update <code>dataInserimentoAzienda</code> in a {@link Candidato Candidato} object in database when updated from the Candidati page.
+	 * 
+	 * @param dataInserimentoAzienda String containing the new dataInserimento.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/ModificaDataInserimentoAzienda/{businessUnit}/{id}")
 	public String modificaDataInserimentoAzienda(
-			@RequestParam(name = "dataInserimentoAzienda") String dataInserimentoAzienda, @PathVariable int id,
+			@RequestParam(name = "dataInserimentoAzienda") String dataInserimentoAzienda, @PathVariable int idCandidato,
 			@PathVariable String businessUnit) throws ParseException {
-		Candidato candidato = candidatoDAO.get(id);
+		Candidato candidato = candidatoDAO.get(idCandidato);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -308,10 +402,19 @@ public class CandidatiController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
+	/**
+	 * Update <code>statoCandidato</code> in a {@link StatoCandidato StatoCandidato} object in database when updated from the Candidati page.
+	 * 
+	 * @param stato String containing the new stato.
+	 * @param idCandidato id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Aggiorna/{businessUnit}/{id}/{stato}")
-	public String candidatoUpdateStato(@PathVariable int id, @PathVariable String stato,
+	public String candidatoUpdateStato(@PathVariable int idCandidato, @PathVariable String stato,
 			@PathVariable String businessUnit) {
-		Candidato c = candidatoDAO.get(id);
+		Candidato c = candidatoDAO.get(idCandidato);
 		StatoCandidato statoCandidato = (StatoCandidato) factory.getBean(stato);
 
 		c.setStato(statoCandidato);
@@ -322,6 +425,16 @@ public class CandidatiController {
 
 	}
 
+	/**
+	 * Show the selected {@link Candidato Candidato} from the Home page in the Candidato Page.
+	 *  
+	 * @param id id used to search the candidato that will be updated from database. 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param m {@link Model Model} type Object used to store daat in the model attribute.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Candidato/{businessUnit}/{id}", method = RequestMethod.GET)
 	public String Candidato(@PathVariable int id, @PathVariable String businessUnit, Model m,
 			@SessionAttribute("utente") Utente utente) {
@@ -356,6 +469,13 @@ public class CandidatiController {
 		return "Candidato";
 	}
 
+	/**
+	 *  Create an {@link AreaCompetenza AreaCompetenza} <code>List</code> from a given <code>Array</code> of <code>String</code>.
+	 * 
+	 *  @param areeCompetenza array of strings containing the name of the new aree competenza that will be added.
+	 *  
+	 *  @return listaCompetenza
+	 * */
 	public List<AreaCompetenza> aggiungiAreaCompetenza(String[] areeCompetenza) {
 
 		List<AreaCompetenza> listaCompetenza = new ArrayList<AreaCompetenza>();
@@ -371,6 +491,13 @@ public class CandidatiController {
 		return listaCompetenza;
 	}
 
+	/**
+	 *  Create a {@link Mansione Mansione} <code>List</code> from a given <code>Array</code> of <code>String</code>.
+	 * 
+	 *  @param mansioni array of strings containing the name of the new mansioni that will be added.
+	 *  
+	 *  @return listaMansione
+	 * */
 	public List<Mansione> aggiungiMansione(String[] mansioni) {
 
 		List<Mansione> listaMansione = new ArrayList<Mansione>();
@@ -386,6 +513,14 @@ public class CandidatiController {
 		return listaMansione;
 	}
 
+	/**
+	 *  Create a {@link Specializzazione Specializzazione} <code>List</code> from a given <code>Array</code> of <code>String</code>.
+	 * 
+	 *  @param specializzazioni array of strings containing the name of the new specializzazioni that will be added.
+	 *  @param c {@link Candidato Candidato} object to create listaCandidatoSpecializzazione List
+	 *  
+	 *  @return listaCandidatoSpecializzazione
+	 * */
 	public List<CandidatoSpecializzazione> aggiungiSpecializzazione(String[] specializzazioni, Candidato c) {
 
 		List<CandidatoSpecializzazione> listaCandidatoSpecializzazione = new ArrayList<CandidatoSpecializzazione>();
@@ -407,6 +542,11 @@ public class CandidatiController {
 		return listaCandidatoSpecializzazione;
 	}
 
+	/**
+	 * Get anni specializzazione from a given specializzazione String by removing the Specializzazione name from the String.
+	 * 
+	 * @param specializzazione the given specializzazione String.
+	 * */
 	private static int getAnniSpecializzazione(String specializzazione) {
 
 		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
@@ -416,6 +556,11 @@ public class CandidatiController {
 		return 0;
 	}
 
+	/**
+	 * Get specializzazione from a given specializzazione String by removing anni specializzazione from the string.
+	 * 
+	 * @param specializzazione the given specializzazione String.
+	 * */
 	private static String getSpecializzazioneName(String specializzazione) {
 		if (Character.isDigit(specializzazione.charAt(specializzazione.length() - 1))) {
 			return specializzazione.substring(0, specializzazione.lastIndexOf(" "));

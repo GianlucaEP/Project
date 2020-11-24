@@ -1,6 +1,5 @@
 package it.rt.corso.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +26,16 @@ public class GanttController {
 
 	private CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	/**
+	 * 
+	 * Show the Gantt creation page.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Gantt/{businessUnit}")
 	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 
@@ -43,8 +52,12 @@ public class GanttController {
 	/**
 	 * 
 	 * Controller for creation and downloading of Excel files containing a Gantt chart.
-	 * @throws ParseException 
 	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return null in order to not make the page to reload itself
 	 * */
 	@RequestMapping("/ExcelGantt/{businessUnit}")
 	public String getExcel(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,@RequestParam List<String> data,

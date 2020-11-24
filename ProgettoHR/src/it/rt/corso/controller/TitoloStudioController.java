@@ -27,7 +27,15 @@ public class TitoloStudioController {
 
 	// TITOLO DI STUDIO
 
-	// AGGIUNGO TITOLO DI STUDIO AL CANDIDATO
+	/**
+	 * Add a {@link TitoloStudio TitoloStudio} object to a Candidato and if does not already exists it will be added to titolo_studio table too.
+	 * 
+	 * @param titoloStudio the {@link TitoloStudio TitoloStudio} Object that will be added to a Candidato and/or to titolo_studio table.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param id of the Candidato that will be selected.
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/AggiungiTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String aggiungiTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio,
 			@PathVariable String businessUnit, @PathVariable int id) {

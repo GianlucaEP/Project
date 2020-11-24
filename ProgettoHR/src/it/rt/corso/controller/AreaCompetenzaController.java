@@ -22,6 +22,15 @@ public class AreaCompetenzaController {
 
 	private AreaCompetenzaDAO dao = (AreaCompetenzaDAO) factory.getBean("areaCompetenzaDAO");
 
+	/**
+	 * Shows the JSP showing the {@link AreaCompetenza AreaCompetenza} list extracted from database.
+	 * 
+	 * @param m instantiate a {@link Model Model} object to create a model attribute.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AreaCompetenza/{businessUnit}")
 	public String displayAreaCompetenza(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
@@ -33,7 +42,14 @@ public class AreaCompetenzaController {
 		return "/AreaCompetenza";
 	}
 
-	// aggiungo un'area di competenza dalla Home
+	/**
+	 * Save a new {@link AreaCompetenza AreaCompetenza} object in database when added from the Home page.
+	 * 
+	 * @param areaCompetenza {@link AreaCompetenza AreaCompetenza} present in the request.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AreaCompetenzaSaveDaHome/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiAreaCompetenzaHome(@ModelAttribute("areaCompetenza") AreaCompetenza areaCompetenza,
 			@PathVariable String businessUnit) {
@@ -42,8 +58,15 @@ public class AreaCompetenzaController {
 
 		return "redirect:/Home/{businessUnit}";
 	}
-	
-	// aggiungo un'area di competenza da Area Competenza Page
+
+	/**
+	 * Save a new {@link AreaCompetenza AreaCompetenza} object in database when added from the AreaCompetenza page.
+	 * 
+	 * @param areaCompetenza {@link AreaCompetenza AreaCompetenza} present in the request.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AreaCompetenzaSaveDaAreaCompetenza/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiAreaCompetenzaList(@ModelAttribute("areaCompetenza") AreaCompetenza areaCompetenza,
 			@PathVariable String businessUnit) {
@@ -53,7 +76,14 @@ public class AreaCompetenzaController {
 		return "redirect:/AreaCompetenza/{businessUnit}";
 	}
 
-	// aggiungo un'area di competenza dalla pagina di inserimento candidato
+	/**
+	 * Save a new {@link AreaCompetenza AreaCompetenza} object in database when added from the Candidati page.
+	 * 
+	 * @param areaCompetenza {@link AreaCompetenza AreaCompetenza} present in the request.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AreaCompetenzaSaveDaInserimentoCandidato/{businessUnit}", method = RequestMethod.POST)
 	public String aggiungiAreaCompetenzaInserimentoCandidato(
 			@ModelAttribute("areaCompetenza") AreaCompetenza areaCompetenza, @PathVariable String businessUnit) {
@@ -63,6 +93,13 @@ public class AreaCompetenzaController {
 		return "redirect:/Candidati/{businessUnit}";
 	}
 
+	/**
+	 * Add an AreaCompetenza object in database using DAO methods.
+	 * 
+	 *  @param areaCompetenza {@link AreaCompetenza AreaCompetenza} Object to be added in area_competenza table.
+	 *  
+	 *  @return JSP URL
+	 * */
 	public void aggiungiAreaCompetenza(AreaCompetenza areaCompetenza) {
 		dao.inserisci(areaCompetenza);
 
@@ -71,10 +108,18 @@ public class AreaCompetenzaController {
 		singleton.aggiornaAreaCompetenza();
 	}
 
+	/**
+	 * Delete an {@link AreaCompetenza AreaCompetenza} object in database when deleted from the AreaCompetenza page.
+	 * 
+	 * @param areaCompetenza {@link AreaCompetenza AreaCompetenza} present in the request.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/EliminaArea/{businessUnit}", method = RequestMethod.POST)
-	public String elimina(@RequestParam("eliminaArea") String area, @PathVariable String businessUnit) {
+	public String elimina(@RequestParam("eliminaArea") String areaCompetenza, @PathVariable String businessUnit) {
 
-		AreaCompetenza ac = dao.get(area);
+		AreaCompetenza ac = dao.get(areaCompetenza);
 		dao.cancella(ac);
 
 		Singleton singleton = Singleton.getInstance();
@@ -83,9 +128,19 @@ public class AreaCompetenzaController {
 		return "redirect:/AreaCompetenza/{businessUnit}";
 
 	}
-	
+
+	/**
+	 * Update an {@link AreaCompetenza AreaCompetenza} object in database when updated from the AreaCompetenza page.
+	 * 
+	 * @param oldArea {@link AreaCompetenza AreaCompetenza} present in the request containing the old value that will be updated.
+	 * @param newArea {@link AreaCompetenza AreaCompetenza} present in the request containing the new value with which the old value will be updated.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/AggiornaArea/{businessUnit}", method = RequestMethod.POST)
-	public String aggiorna(@RequestParam("oldArea") String oldArea,@RequestParam("newArea") String newArea, @PathVariable String businessUnit) {
+	public String aggiorna(@RequestParam("oldArea") String oldArea, @RequestParam("newArea") String newArea,
+			@PathVariable String businessUnit) {
 
 		dao.update(oldArea, newArea);
 
@@ -95,7 +150,5 @@ public class AreaCompetenzaController {
 		return "redirect:/AreaCompetenza/{businessUnit}";
 
 	}
-	
-	
 
 }

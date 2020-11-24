@@ -27,6 +27,15 @@ public class RegistrazioneController {
 	private UtenteDAO udao = (UtenteDAO) factory.getBean("utenteDAO");
 	private RuoloDAO rdao = (RuoloDAO) factory.getBean("ruoloDAO");
 
+	/**
+	 * Show the Home page with all the Candidato filtered by the given business unit.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Registrati/{businessUnit}")
 	public String display(Model m, @SessionAttribute("utente") Utente utente, @PathVariable String businessUnit) {
 
@@ -39,10 +48,19 @@ public class RegistrazioneController {
 
 	}
 
+	/**
+	 * Add a new User with the selected {@link Ruolo Ruolo} assigned to itself.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param loggedUser session attribute of type utente, if it's not null you are logged in session.
+	 * @param ruoloSelezionato selected {@link Ruolo Ruolo} to be assegned to the new user
+	 * @param utente the new Utente that will be added in database.
+	 * */
 	@RequestMapping(value = "/RegistratiIn/{businessUnit}", method = RequestMethod.POST)
 	public String registrazione(@ModelAttribute("utente") Utente utente, Model m,
 			@SessionAttribute("utente") Utente loggedUser, @RequestParam("ruoloSelezionato") String ruoloSelezionato,
-			@PathVariable String businessUnit) throws NoSuchAlgorithmException {
+			@PathVariable String businessUnit) throws NoSuchAlgorithmException  {
 
 		m.addAttribute("businessUnit", businessUnit);
 

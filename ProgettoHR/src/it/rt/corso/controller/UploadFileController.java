@@ -29,6 +29,15 @@ public class UploadFileController {
 	private UploadFileDAO uploadFileDAO = (UploadFileDAO) factory.getBean("uploadFileDAO");
 	private CandidatoDAO candidatoDAO = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	/**
+	 * Load a File to database.
+	 * 
+	 * @param request an <code>HttpServletRequest</code> object used to set the file into it.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param id of the Candidato to which we will assign the file uploaded in database.
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/doUpload/{businessUnit}/{id}", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request, @RequestParam MultipartFile fileUpload,
 			@PathVariable int id, @PathVariable String businessUnit, HttpSession session) throws Exception {
@@ -65,6 +74,16 @@ public class UploadFileController {
 		return "redirect:/Candidato/{businessUnit}/{id}";
 	}
 
+	/**
+	 * Download a file from database.
+	 * 
+	 * @param response an <code>HttpServletResponse</code> object used to set the file into it.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param candidatoId written in the URL in order to be used to load the Candidato in JSP.
+	 * @param fileId id used to select the file from database.
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = "/download/{businessUnit}/{candidatoId}/{fileId}", method = RequestMethod.GET)
 	public String downloadDocument(@PathVariable int candidatoId, @PathVariable int fileId,
 			@PathVariable String businessUnit, HttpServletResponse response) throws IOException {
@@ -84,6 +103,15 @@ public class UploadFileController {
 
 	}
 
+	/**
+	 * Delete a file from database.
+	 * 
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param candidatoId written in the URL in order to be used to load the Candidato in JSP.
+	 * @param idAllegato id used to select the file from database.
+	 * 
+	 * @return JSP URL.
+	 * */
 	@RequestMapping(value = { "/delete/{businessUnit}/{candidatoId}" }, method = RequestMethod.GET)
 	public String deleteDocument(@PathVariable int candidatoId, @PathVariable String businessUnit,
 			@RequestParam(name = "idAllegato") int idAllegato) throws IOException {

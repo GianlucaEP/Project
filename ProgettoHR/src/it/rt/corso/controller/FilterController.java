@@ -1,6 +1,5 @@
 package it.rt.corso.controller;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +27,17 @@ public class FilterController {
 
 	private CandidatoDAO cdao = (CandidatoDAO) factory.getBean("candidatoDAO");
 
+	/**
+	 * Show FiltroAvanzato JSP containing the Candidato filtered by the given business unit.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping("/Filter/{businessUnit}")
-	public String display(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
+	public String display(Model model, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente) {
 		
 		Singleton singleton = Singleton.getInstance();
 
@@ -39,36 +47,46 @@ public class FilterController {
 		Map<String, String> filterLsit = new HashMap<String, String>();
 		
 
-		m.addAttribute("businessList", singleton.getBusinessList());
-		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
-		m.addAttribute("list", list);
-		m.addAttribute("businessUnit", businessUnit);
-		m.addAttribute("seniorityList", singleton.getSeniorityList());
-		m.addAttribute("filterLsit", filterLsit);
-		m.addAttribute("mansione", new Mansione());
-		m.addAttribute("mansioneList", singleton.getMansioneListString());
-		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
-		m.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
-		m.addAttribute("lingueList", singleton.getCompetenzaLinguisticaListString());
-		m.addAttribute("titoloStudioList", singleton.getTitoloStudioListString());
+		model.addAttribute("businessList", singleton.getBusinessList());
+		model.addAttribute("ruolo", utente.getRuolo().getRuolo());
+		model.addAttribute("list", list);
+		model.addAttribute("businessUnit", businessUnit);
+		model.addAttribute("seniorityList", singleton.getSeniorityList());
+		model.addAttribute("filterLsit", filterLsit);
+		model.addAttribute("mansione", new Mansione());
+		model.addAttribute("mansioneList", singleton.getMansioneListString());
+		model.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
+		model.addAttribute("areaCompetenzaList", singleton.getAreaCompetenzaListString());
+		model.addAttribute("lingueList", singleton.getCompetenzaLinguisticaListString());
+		model.addAttribute("titoloStudioList", singleton.getTitoloStudioListString());
 		
 		return "FiltroAvanzato";
 	}
 
+	/**
+	 * Show FiltroAvanzato JSP containing the Candidato filtered by the seelcted filters contained in filterList.
+	 * 
+	 * @param model object to save all model attributes.
+	 * @param businessUnit business unit String obtained from the URL.
+	 * @param utente session attribute of type utente, if it's not null you are logged in session. 
+	 * @param filterMap <code>Map</code> containing all the filters that have been selected.
+	 * 
+	 * @return JSP URL
+	 * */
 	@RequestMapping(value = "/Filter/advanced/{businessUnit}", method = RequestMethod.POST)
 	public String homeFilter(Model m, @PathVariable String businessUnit, @SessionAttribute("utente") Utente utente,
-			@RequestParam Map<String, String> filterLsit) throws ParseException {
+			@RequestParam Map<String, String> filterMap){
 		
 		Singleton singleton = Singleton.getInstance();
 
-		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(filterLsit);
+		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(filterMap);
 
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
 		m.addAttribute("seniorityList", singleton.getSeniorityList());
-		m.addAttribute("filterList", filterLsit);
+		m.addAttribute("filterList", filterMap);
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("mansioneList", singleton.getMansioneListString());
 		m.addAttribute("specializzazioneList", singleton.getSpecializzazioneListString());
