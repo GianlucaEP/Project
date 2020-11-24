@@ -7,6 +7,9 @@ import org.hibernate.Transaction;
 import it.rt.corso.beans.Bean;
 import it.rt.corso.utility.Utility;
 
+/**
+ * Class for generalized DAO methods
+ * */
 public abstract class BaseDAO {
 	/**
 	 * 

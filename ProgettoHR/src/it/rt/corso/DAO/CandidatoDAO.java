@@ -7,18 +7,62 @@ import java.util.Map;
 import it.rt.corso.beans.Candidato;
 
 public interface CandidatoDAO {
-	
+	/**
+	 * Add the given Candidato entity to candidato table
+	 * 
+	 * @param candidato given Candidato entity
+	 * 
+	 * @return the added Candidato entity
+	 * */
 	public Candidato inserisci(Candidato candidato); 
+	
+	/**
+	 * Get a Candidato entity corresponding to the given Candidato id.
+	 * 
+	 * @param id the given id
+	 * 
+	 * @return the Candidato object that has been found.
+	 * */
 	public Candidato get(int id);
+	
+	/**
+	 * Delete a Candidato entity corresponding to the given Candidato Object.
+	 * 
+	 * @param candidato the given Candidato object
+	 * 
+	 * @return the deleted Candidato object
+	 * */
 	public Candidato cancella(Candidato candidato); 
+	
+	/**
+	 * Update a Candidato entity corresponding to the given Candidato Object.
+	 * 
+	 * @param candidato the given Candidato object
+	 * 
+	 * @return the updated Candidato object
+	 * */
 	public Candidato aggiorna(Candidato candidato); 
+	
+	/**
+	 * Get all Candidato entities.
+	 * 
+	 * 
+	 * @return the Candidato List of objects that has been found.
+	 * */
 	public List<Candidato> getLista();
+	
+	/**
+	 * Get all Candidato entities filtered by the given business unit.
+	 * 
+	 * @param businessUnit the given businessUnit.
+	 * 
+	 * @return the Candidato List of objects that has been found.
+	 * */
 	public List<Candidato> getListaByBusinessUnit(String businessUnit);
 
 	/** Create and execute query to Candidato table, joining Business unit specified by the String businessUnit, to get 
 	 * a List of type Candidato using the parameters contained in the Map mappaFilter as where clauses
 	 * 
-	 * @param businessUnit String that specifies the business unit wich the Candidato is part of
 	 * 
 	 * @param mappaFilter Map containing the filters names and the value of the filter wich has to be used to create the query
 	 * 

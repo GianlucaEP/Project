@@ -9,10 +9,12 @@ import it.rt.corso.utility.Utility;
 @SuppressWarnings("unchecked")
 public class BusinessDAOImpl extends BaseDAO implements BusinessDAO{
 
+
 	public Business inserisci(Business business) {
 		return (Business) super.inserisci(business);
 	}
 
+	
 	public List<Business> getLista() {
 		
 		
@@ -20,6 +22,7 @@ public class BusinessDAOImpl extends BaseDAO implements BusinessDAO{
 		Utility.destroySession();
 		return listabusiness;
 	}
+
 
 	public Business get(String id) {
 		return (Business)super.get(Business.class, id);

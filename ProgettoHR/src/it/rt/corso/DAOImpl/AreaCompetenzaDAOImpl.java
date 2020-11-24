@@ -25,10 +25,12 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		return listaArea;
 	}
 
+
 	public AreaCompetenza get(String id) {
 		return (AreaCompetenza) super.get(AreaCompetenza.class, id); 
 	}
 
+	
 	@Override
 	public List<AreaCompetenza> getIdByCandidato(int id) {
 		
@@ -40,12 +42,13 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 		return listaAreaCompetenza;
 	}
 
+	
 	@Override
 	public AreaCompetenza cancella(AreaCompetenza area) {
 		return (AreaCompetenza) super.cancella(area);
 	}
 
-	
+
 	public int update(String oldArea, String newArea) {
 
 		Transaction t = Utility.getSession().beginTransaction();	
