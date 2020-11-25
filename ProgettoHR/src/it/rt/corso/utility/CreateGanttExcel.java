@@ -190,7 +190,7 @@ public abstract class CreateGanttExcel {
 
 		workbook.setSheetName(0, "Gantt");
 
-		sheet.createFreezePane(5, 0, 5, 0);
+		sheet.createFreezePane(6, 0, 6, 0);
 
 		List<Cost> costList = buildCostList(costs);
 
@@ -594,7 +594,7 @@ public abstract class CreateGanttExcel {
 			LocalDate dataFine = task.getDataFine();
 			Integer diffDaysTask = (int) ChronoUnit.DAYS.between(dataInizio, dataFine);
 
-			if (colorListIndex == 10) {
+			if (colorListIndex == 20) {
 				colorListIndex = 0;
 			}
 
@@ -635,7 +635,7 @@ public abstract class CreateGanttExcel {
 	 * 
 	 */
 	private static void createColorList() {
-
+		// 1
 		byte[] rgb = new byte[3];
 		rgb[0] = (byte) 220; // red
 		rgb[1] = (byte) 42; // green
@@ -644,7 +644,7 @@ public abstract class CreateGanttExcel {
 		XSSFColor color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
+		// 2
 		rgb[0] = (byte) 38; // red
 		rgb[1] = (byte) 166; // green
 		rgb[2] = (byte) 91; // blue
@@ -652,7 +652,7 @@ public abstract class CreateGanttExcel {
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
+		// 3
 		rgb[0] = (byte) 52; // red
 		rgb[1] = (byte) 85; // green
 		rgb[2] = (byte) 219; // blue
@@ -660,15 +660,15 @@ public abstract class CreateGanttExcel {
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
-		rgb[0] = (byte) 220; // red
-		rgb[1] = (byte) 42; // green
-		rgb[2] = (byte) 42; // blue
+		// 4
+		rgb[0] = (byte) 231; // red
+		rgb[1] = (byte) 110; // green
+		rgb[2] = (byte) 60; // blue
 
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
+		// 5
 		rgb[0] = (byte) 58; // red
 		rgb[1] = (byte) 77; // green
 		rgb[2] = (byte) 19; // blue
@@ -676,31 +676,38 @@ public abstract class CreateGanttExcel {
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
-		rgb[0] = (byte) 52; // red
-		rgb[1] = (byte) 85; // green
-		rgb[2] = (byte) 219; // blue
-
-		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
-
-		colorList.add(color);
-
-		rgb[0] = (byte) 239; // red
-		rgb[1] = (byte) 72; // green
-		rgb[2] = (byte) 54; // blue
+		// 6
+		rgb[0] = (byte) 0; // red
+		rgb[1] = (byte) 159; // green
+		rgb[2] = (byte) 212; // blue
 
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
+		// 7
+		rgb[0] = (byte) 93; // red
+		rgb[1] = (byte) 18; // green
+		rgb[2] = (byte) 18; // blue
 
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 8
 		rgb[0] = (byte) 107; // red
 		rgb[1] = (byte) 142; // green
 		rgb[2] = (byte) 35; // blue
 
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+		// 9
+		colorList.add(color);
+		rgb[0] = (byte) 0; // red
+		rgb[1] = (byte) 0; // green
+		rgb[2] = (byte) 224; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
-
+		// 10
 		rgb[0] = (byte) 204; // red
 		rgb[1] = (byte) 0; // green
 		rgb[2] = (byte) 102; // blue
@@ -708,10 +715,94 @@ public abstract class CreateGanttExcel {
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
 		colorList.add(color);
+		// 11
+		rgb[0] = (byte) 219; // red
+		rgb[1] = (byte) 10; // green
+		rgb[2] = (byte) 91; // blue
 
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 12
 		rgb[0] = (byte) 0; // red
-		rgb[1] = (byte) 0; // green
-		rgb[2] = (byte) 204; // blue
+		rgb[1] = (byte) 38; // green
+		rgb[2] = (byte) 39; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 13
+		rgb[0] = (byte) 52; // red
+		rgb[1] = (byte) 85; // green
+		rgb[2] = (byte) 219; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 14
+		rgb[0] = (byte) 211; // red
+		rgb[1] = (byte) 84; // green
+		rgb[2] = (byte) 0; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 15
+		rgb[0] = (byte) 170; // red
+		rgb[1] = (byte) 46; // green
+		rgb[2] = (byte) 0; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 16
+		rgb[0] = (byte) 0; // red
+		rgb[1] = (byte) 85; // green
+		rgb[2] = (byte) 85; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+		// 17
+		rgb[0] = (byte) 112; // red
+		rgb[1] = (byte) 35; // green
+		rgb[2] = (byte) 183; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+
+		// 18
+		rgb[0] = (byte) 128; // red
+		rgb[1] = (byte) 34; // green
+		rgb[2] = (byte) 0; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+
+		// 19
+		rgb[0] = (byte) 52; // red
+		rgb[1] = (byte) 90; // green
+		rgb[2] = (byte) 94; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+
+		// 19
+		rgb[0] = (byte) 52; // red
+		rgb[1] = (byte) 90; // green
+		rgb[2] = (byte) 94; // blue
+
+		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
+
+		colorList.add(color);
+
+		// 20
+		rgb[0] = (byte) 42; // red
+		rgb[1] = (byte) 22; // green
+		rgb[2] = (byte) 176; // blue
 
 		color = new XSSFColor(rgb, new DefaultIndexedColorMap());
 
@@ -797,7 +888,7 @@ public abstract class CreateGanttExcel {
 	 */
 	private static void writeCostTableData(XSSFWorkbook workbook, XSSFSheet sheet, List<Cost> costList,
 			List<Task> taskList) {
-		float totalCost = 0;
+		double totalCost = 0;
 
 		XSSFCellStyle cellStyle = workbook.createCellStyle();
 
@@ -845,7 +936,11 @@ public abstract class CreateGanttExcel {
 			headerCell.setCellValue(new BigDecimal(cost.getPartial()).doubleValue() + "€");
 			headerCell.setCellStyle(cellStyle);
 
-			totalCost = totalCost + Float.parseFloat(cost.getPartial());
+			double totalCostToBeRounded = Math.round(Double.parseDouble(cost.getPartial()) * 100.0) / 100.0;;
+			
+			totalCost = totalCostToBeRounded + totalCost;
+			
+			totalCost = Math.round(totalCost * 100.0) / 100.0;;
 		}
 
 		XSSFRow totalTableRow = sheet.createRow(costList.size() + 2);
@@ -855,6 +950,7 @@ public abstract class CreateGanttExcel {
 		headerCell.setCellStyle(cellStyle);
 
 		headerCell = totalTableRow.createCell(5);
+
 		headerCell.setCellValue(new BigDecimal(totalCost).doubleValue() + "€");
 		headerCell.setCellStyle(cellStyle);
 
