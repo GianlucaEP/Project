@@ -502,6 +502,10 @@ body, html {
 				tagInputRincaro.name = "rincaro";
 				tagInputRincaro.id="rincaroInput"
 				
+				tagInputRincaro.setAttribute("type", "number");
+				tagInputRincaro.setAttribute("max", "100");
+				tagInputRincaro.setAttribute("min", "0");
+				
 				ColDiv1Costo.appendChild(tagInputCosto)
 				tagDivCosto.appendChild(ColDiv1Costo);
 				
@@ -911,6 +915,12 @@ body, html {
 				if(isNaN(rincaroValue)){
 					$('#errorModal').modal('toggle');   
 					document.getElementById("errorModalBody").innerHTML ="Attenzione! Il valore nel campo rincaro deve essere numerico.";  
+					return false;
+				}
+				
+				if(rincaroValue<0 || rincaroValue > 100){
+					$('#errorModal').modal('toggle');   
+					document.getElementById("errorModalBody").innerHTML ="Attenzione! Il valore nel campo rincaro deve compreso tra 0 e 100.";  
 					return false;
 				}
 				aggiungiCandidato();
