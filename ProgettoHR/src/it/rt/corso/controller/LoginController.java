@@ -35,7 +35,7 @@ public class LoginController {
 	 * 
 	 * @return JSP URL
 	 * */
-	@RequestMapping(value = "/Login", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String display() {
 
 		return "Login";
@@ -61,17 +61,17 @@ public class LoginController {
 		if (u != null) {
 			u.setPassword(utente.getPassword());
 			m.addAttribute("utente", u);
-			return "redirect:/";
+			return "redirect:/Welcome";
 		}
 		m.addAttribute("info", "error");
-		return "redirect:/Login";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/Logout", method = RequestMethod.GET)
 	public String Logout(WebRequest webRequest, SessionStatus status) {
 		status.setComplete();
 		webRequest.removeAttribute("utente", WebRequest.SCOPE_SESSION);
-		return "redirect:/Login";
+		return "redirect:/";
 	}
 
 }

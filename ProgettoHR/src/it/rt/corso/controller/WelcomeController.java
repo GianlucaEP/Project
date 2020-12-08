@@ -18,7 +18,7 @@ public class WelcomeController {
 	 * 
 	 * @return JSP URL
 	 * */
-	@RequestMapping("/")
+	@RequestMapping("/Welcome")
 	public String WelcomeDisplay(@SessionAttribute("utente") Utente utente) throws ServletRequestBindingException {
 		if(utente.getUsername() == null) {
 			throw new ServletRequestBindingException(null);
