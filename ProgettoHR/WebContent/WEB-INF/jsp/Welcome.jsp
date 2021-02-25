@@ -37,7 +37,7 @@ img:hover {
 }
 
 #colonna-telco {
-	background-image: url("/ProgettoHR/img/welcome-telco-blured.jpg");
+	background-image: url("/ProgettoHR/img/welcome-telco-blured-2.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -46,7 +46,7 @@ img:hover {
 }
 
 #colonna-ict {
-	background-image: url("/ProgettoHR/img/welcome-ict-blured.jpg");
+	background-image: url("/ProgettoHR/img/welcome-ict-blured-2.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -56,7 +56,7 @@ img:hover {
 }
 
 #colonna-ingegneria {
-	background-image: url("/ProgettoHR/img/welcome-ingegneria-blured.jpg");
+	background-image: url("/ProgettoHR/img/welcome-ingegneria-blured-2.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

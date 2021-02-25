@@ -1,2 +1,26 @@
-/build/
-/target/
+#Remove target from commit
+target
+
+#Remove Eclipse project from commit
+.project
+
+#Remove Eclipse .settings
+.settings
+
+#Remove Eclipse .classpath
+.classpath
+
+#Remove Eclipse .metadata
+../.metadata/
+
+#Remove log
+logs
+
+#Remove gz
+.gz
+
+/.idea
+/*.iml
+
+git.properties
+

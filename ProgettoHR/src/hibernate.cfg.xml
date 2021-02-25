@@ -8,9 +8,9 @@
 	<session-factory>
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/progetto_hr</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/progetto_hr?serverTimezone=UTC</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">corso</property>
+		<property name="hibernate.connection.password">root</property>
 		<property name="hibernate.connection.pool_size">100</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.show_sql">true</property>
@@ -34,7 +34,8 @@
 		<mapping class="it.rt.corso.beans.UploadFile" />
 		<mapping class="it.rt.corso.beans.TitoloStudio" />
 		<mapping class="it.rt.corso.beans.CompetenzaLinguistica" />
-		<mapping class="it.rt.corso.beans.CandidatoCompetenzaLinguistica" />
+		<mapping
+			class="it.rt.corso.beans.CandidatoCompetenzaLinguistica" />
 
 	</session-factory>
 

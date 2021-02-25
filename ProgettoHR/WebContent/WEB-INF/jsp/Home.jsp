@@ -470,14 +470,14 @@ option:hover {
 								</button>
 
 							</form>
-						</div>
-						<!--  <div class="col">
+<!--						</div>
+						<div class="col">
 							<button class="btn" id="bottoneDarkMode" onclick="darkMode()">
 								<span data-toggle="tooltip" data-placement="top"
 									title="attiva la modalità dark"><i class="far fa-moon"></i></span>
 							</button>
-						</div>-->
-					</div>
+						</div>
+-->					</div>
 
 					<div class="row w-100">
 						<div class="col">

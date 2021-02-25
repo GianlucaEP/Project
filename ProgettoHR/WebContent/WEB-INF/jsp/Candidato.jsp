@@ -703,40 +703,43 @@ TABELLA COMPETENZE LINGUISTICHE
 												</td>
 											</tr>
 										</c:if>
-										<tr>
-											<th scope="col">Nome</th>
-											<td scope="col">${mostraCandidato.nome}</td>
-										</tr>
-										<tr>
-											<th scope="col">Cognome</th>
-											<td scope="col">${mostraCandidato.cognome}</td>
-										</tr>
-										<tr>
-											<th scope="col">Data di nascita</th>
-											<td scope="col">${mostraCandidato.dataNascita}</td>
-										</tr>
-										<tr>
-											<th scope="col">Telefono</th>
-											<td scope="col">${mostraCandidato.telefono}</td>
-										</tr>
-										<tr>
-											<th scope="col">E-mail</th>
-											<td scope="col">${mostraCandidato.email}</td>
-										</tr>
-										<tr>
-											<th scope="col">Residenza</th>
-											<td scope="col">${mostraCandidato.residenza}</td>
-										</tr>
-										<tr>
-											<th scope="col">Domicilio</th>
-											<td scope="col">${mostraCandidato.domicilio}</td>
-										</tr>
-										<tr>
-											<th scope="col">Codice Fiscale</th>
-											<td scope="col">${mostraCandidato.codiceFiscale}</td>
-										</tr>
+										<c:if
+											test='${fn:contains(funzionalita, "visualizza anagrafica")}'>
+											<tr>
+												<th scope="col">Nome</th>
+												<td scope="col">${mostraCandidato.nome}</td>
+											</tr>
+											<tr>
+												<th scope="col">Cognome</th>
+												<td scope="col">${mostraCandidato.cognome}</td>
+											</tr>
+											<tr>
+												<th scope="col">Data di nascita</th>
+												<td scope="col">${mostraCandidato.dataNascita}</td>
+											</tr>
+											<tr>
+												<th scope="col">Telefono</th>
+												<td scope="col">${mostraCandidato.telefono}</td>
+											</tr>
+											<tr>
+												<th scope="col">E-mail</th>
+												<td scope="col">${mostraCandidato.email}</td>
+											</tr>
+										</c:if>
 										<c:if
 											test='${fn:contains(funzionalita, "visualizza anagrafica completa")}'>
+											<tr>
+												<th scope="col">Residenza</th>
+												<td scope="col">${mostraCandidato.residenza}</td>
+											</tr>
+											<tr>
+												<th scope="col">Domicilio</th>
+												<td scope="col">${mostraCandidato.domicilio}</td>
+											</tr>
+											<tr>
+												<th scope="col">Codice Fiscale</th>
+												<td scope="col">${mostraCandidato.codiceFiscale}</td>
+											</tr>
 											<tr>
 												<th scope="col">Provenienza candidatura</th>
 												<td scope="col">${mostraCandidato.provenienza}</td>
@@ -747,12 +750,13 @@ TABELLA COMPETENZE LINGUISTICHE
 												<td scope="col" id="categoriaProtetta"></td>
 											</tr>
 
-										</c:if>
+										
 
 										<tr>
 											<th scope="col">Inserito da</th>
 											<td scope="col">${mostraCandidato.inseritoDa.username}</td>
 										</tr>
+										</c:if>
 									</tbody>
 									<tfoot class="footer">
 										<tr>
@@ -1190,76 +1194,86 @@ TABELLA COMPETENZE LINGUISTICHE
 
 				<div class="col mb-3">
 					<!-- tabella QUALIFICATION MEETING-->
+
 					<div class="table-responsive">
-						<table id="qualificationMeetingTable" class="tabellaQualification">
-							<thead class="head">
-								<tr>
-									<th colspan=6><h3>QUALIFICATION MEETING</h3></th>
-								</tr>
-								<tr>
-									<th scope="col">Cliente</th>
-									<th scope="col">Data di presentazione</th>
-									<th scope="col">Riferimento gara</th>
-									<th scope="col">Data colloquio</th>
-									<th scope="col">Feedback</th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
+						<c:if
+							test='${fn:contains(funzionalita, "visualizza qualification meeting")}'>
 
-							<tbody class="body">
-								<c:forEach var="qualificationMeeting"
-									items="${mostraCandidato.qm}">
+							<table id="qualificationMeetingTable"
+								class="tabellaQualification">
+
+								<thead class="head">
 									<tr>
-
-										<c:set var="cliente"
-											value="${fn:replace(qualificationMeeting.cliente, singlequote, backslash)}"></c:set>
-										<c:set var="clienteXSS"
-											value="${fn:escapeXml(qualificationMeeting.cliente)}"></c:set>
-										<td>${clienteXSS}</td>
-										<td>${qualificationMeeting.dataPresentato}</td>
-										<c:set var="riferimentoGara"
-											value="${fn:replace(qualificationMeeting.riferimentoGara, singlequote, backslash)}"></c:set>
-										<c:set var="riferimentoGaraXSS"
-											value="${fn:escapeXml(qualificationMeeting.riferimentoGara)}"></c:set>
-										<td>${riferimentoGaraXSS}</td>
-										<td>${qualificationMeeting.dataColloquio}</td>
-										<c:set var="feedback"
-											value="${fn:replace(qualificationMeeting.feedback, singlequote, backslash)}"></c:set>
-										<c:set var="feedbackXSS"
-											value="${fn:escapeXml(qualificationMeeting.feedback)}"></c:set>
-										<td>${feedbackXSS}</td>
-										<td><c:if
-												test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
-												<button
-													onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
-													type="button" data-toggle="modal"
-													id="btn-elimina-qualification"
-													data-target="#eliminaQualificationMeeting"
-													class="btn float-right btn-elimina">
-													<i class="fas fa-trash"></i>
-												</button>
-												<button
-													onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}','${cliente}','${qualificationMeeting.dataPresentato}','${riferimentoGara}','${qualificationMeeting.dataColloquio}','${feedback}')"
-													type="button" data-toggle="modal"
-													id="btn-modifica-qualification"
-													data-target="#modificaQualificationMeeting"
-													class="btn float-right btn-modifica">
-													<i class="fas fa-user-cog"></i>
-												</button>
-											</c:if></td>
-										<!-- "${fn:escapeXml(param.foo)}" -->
+										<th colspan=6><h3>QUALIFICATION MEETING</h3></th>
 									</tr>
-								</c:forEach>
-							</tbody>
+									<tr>
+										<th scope="col">Cliente</th>
+										<th scope="col">Data di presentazione</th>
+										<th scope="col">Riferimento gara</th>
+										<th scope="col">Data colloquio</th>
+										<th scope="col">Feedback</th>
+										<th scope="col"></th>
+									</tr>
 
-							<tfoot class="footer">
-								<tr>
-									<td colspan=6></td>
-								</tr>
-							</tfoot>
-						</table>
+
+								</thead>
+
+								<tbody class="body">
+									<c:forEach var="qualificationMeeting"
+										items="${mostraCandidato.qm}">
+										<tr>
+
+											<c:set var="cliente"
+												value="${fn:replace(qualificationMeeting.cliente, singlequote, backslash)}"></c:set>
+											<c:set var="clienteXSS"
+												value="${fn:escapeXml(qualificationMeeting.cliente)}"></c:set>
+											<td>${clienteXSS}</td>
+											<td>${qualificationMeeting.dataPresentato}</td>
+											<c:set var="riferimentoGara"
+												value="${fn:replace(qualificationMeeting.riferimentoGara, singlequote, backslash)}"></c:set>
+											<c:set var="riferimentoGaraXSS"
+												value="${fn:escapeXml(qualificationMeeting.riferimentoGara)}"></c:set>
+											<td>${riferimentoGaraXSS}</td>
+											<td>${qualificationMeeting.dataColloquio}</td>
+											<c:set var="feedback"
+												value="${fn:replace(qualificationMeeting.feedback, singlequote, backslash)}"></c:set>
+											<c:set var="feedbackXSS"
+												value="${fn:escapeXml(qualificationMeeting.feedback)}"></c:set>
+											<td>${feedbackXSS}</td>
+											<td><c:if
+													test='${fn:contains(funzionalita, "modifica qualification meeting")}'>
+													<button
+														onclick="impostaParametriEliminaQualificationMeeting('${qualificationMeeting.id}')"
+														type="button" data-toggle="modal"
+														id="btn-elimina-qualification"
+														data-target="#eliminaQualificationMeeting"
+														class="btn float-right btn-elimina">
+														<i class="fas fa-trash"></i>
+													</button>
+													<button
+														onclick="impostaParametriQualificationMeeting('${qualificationMeeting.id}','${cliente}','${qualificationMeeting.dataPresentato}','${riferimentoGara}','${qualificationMeeting.dataColloquio}','${feedback}')"
+														type="button" data-toggle="modal"
+														id="btn-modifica-qualification"
+														data-target="#modificaQualificationMeeting"
+														class="btn float-right btn-modifica">
+														<i class="fas fa-user-cog"></i>
+													</button>
+												</c:if></td>
+											<!-- "${fn:escapeXml(param.foo)}" -->
+										</tr>
+									</c:forEach>
+								</tbody>
+
+								<tfoot class="footer">
+									<tr>
+										<td colspan=6></td>
+									</tr>
+								</tfoot>
+							</table>
+						</c:if>
 					</div>
 				</div>
+
 
 				<div class="col mb-5">
 					<!-- Tabella ALLEGATI -->
