@@ -537,7 +537,7 @@ span {
 													<th scope="col">Inserimento Azienda</th>
 												</c:if>
 												<c:if test="${fn:contains( filter.key, 'costo') }">
-													<th scope="col">costo orario</th>
+													<th scope="col">Costo Orario</th>
 												</c:if>
 											</c:forEach>
 											<th scope="col"></th>
@@ -606,14 +606,14 @@ span {
 														<td><c:forEach var="specializzazione"
 																items="${cand.candidatoSpecializzazione}">
 																<div>${specializzazione.specializzazione.specializzazione}
-																	&nbsp ${specializzazione.anni} anni esperienza</div>
+																	 ${specializzazione.anni} anni esperienza</div>
 															</c:forEach></td>
 													</c:if>
 													<c:if test="${fn:contains( filter.key, 'data') }">
 														<td>${cand.inserimentoAzienda}</td>
 													</c:if>
 													<c:if test="${fn:contains( filter.key, 'costo') }">
-														<td>${cand.costo.orario}&#8364;/H</td>
+														<td>${cand.costo.orario}</td>
 													</c:if>
 												</c:forEach>
 												<td>

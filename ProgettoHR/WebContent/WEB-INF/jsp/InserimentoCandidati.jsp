@@ -339,7 +339,8 @@ img {
 								<div class="form-group">
 									<label>Data di nascita : </label> <input type="date"
 										pattern="yyyy-MM-dd" name="dataDiNascita"
-										class="form-control custom-input" id="data-nascita"></input>
+										class="form-control custom-input" id="data-nascita" 
+										required="required"></input>
 								</div>
 							</div>
 							<div class="col">
