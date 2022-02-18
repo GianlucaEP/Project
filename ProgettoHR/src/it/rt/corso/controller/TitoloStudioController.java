@@ -37,8 +37,10 @@ public class TitoloStudioController {
 	 * @return JSP URL.
 	 * */
 	@RequestMapping(value = "/AggiungiTitoloStudio/{businessUnit}/{id}", method = RequestMethod.POST)
-	public String aggiungiTitoloStudio(@ModelAttribute("titoloStudio") TitoloStudio titoloStudio,
+	public String aggiungiTitoloStudio(
+			@ModelAttribute("titoloStudio") TitoloStudio titoloStudio,
 			@PathVariable String businessUnit, @PathVariable int id) {
+		
 		Candidato candidato = candidatoDAO.get(id);
 
 		List<TitoloStudio> titoloStudioList = new ArrayList<TitoloStudio>();

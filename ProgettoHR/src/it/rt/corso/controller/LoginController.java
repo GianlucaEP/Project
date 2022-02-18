@@ -61,7 +61,7 @@ public class LoginController {
 		if (u != null) {
 			u.setPassword(utente.getPassword());
 			m.addAttribute("utente", u);
-			return "redirect:/Welcome";
+			return "redirect:/Home/Engineering";
 		}
 		m.addAttribute("info", "error");
 		return "redirect:/";

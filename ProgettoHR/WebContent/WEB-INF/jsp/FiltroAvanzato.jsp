@@ -438,7 +438,6 @@ span {
 									</div>
 
 									<div class="col-4">
-										<!-- <label>Anni di esperienza</label> -->
 										<input id="anniEsperienzaInput"
 											class="text-left form-control f-input" type="number"
 											placeholder="nn" maxlength="2" min="0" max="99">
@@ -455,19 +454,22 @@ span {
 						</div>
 
 						<div class="form-group">
-							<label>Costo unitario all'ora</label> da <input
-								id="costoMinInput" name="costoMin" class="form-control f-input"
-								type="text" placeholder="costo minimo"> A<input
-								id="costoMaxInput" name="costoMax" class="form-control  f-input"
+						
+							<label>Costo unitario all'ora</label> da 
+							<input id="costoMinInput" name="costoMin" class="form-control f-input"
+								type="text" placeholder="costo minimo"> A
+							<input id="costoMaxInput" name="costoMax" class="form-control  f-input"
 								type="text" placeholder="costo massimo">
+								
 						</div>
 
 						<div class="form-group">
 							<div id="specializzazioneDiv">
 
-								Dal <input type="date" id="dataInserimentoInputFrom"
-									name="dataInserimentoFrom" class="form-control f-input">
-								Al <input type="date" id="dataInserimentoInputTo"
+								<label>Inserimento in azienda</label> dal 
+								<input type="date" id="dataInserimentoInputFrom"
+									name="dataInserimentoFrom" class="form-control f-input"> Al 
+								<input type="date" id="dataInserimentoInputTo"
 									name="dataInserimentoTo" class="form-control f-input">
 
 							</div>
@@ -491,8 +493,7 @@ span {
 				<div class="col-md-9 col-sm-12">
 					<c:choose>
 						<c:when test="${empty list}">
-							<h2 id="zeroRecord">La ricerca non ha prodotto alcun
-								risultato</h2>
+							<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
 						</c:when>
 						<c:otherwise>
 							<button type="button" id="exportButton"
@@ -606,14 +607,14 @@ span {
 														<td><c:forEach var="specializzazione"
 																items="${cand.candidatoSpecializzazione}">
 																<div>${specializzazione.specializzazione.specializzazione}
-																	 ${specializzazione.anni} anni esperienza</div>
+																	 &nbsp ${specializzazione.anni} anni</div>
 															</c:forEach></td>
 													</c:if>
 													<c:if test="${fn:contains( filter.key, 'data') }">
 														<td>${cand.inserimentoAzienda}</td>
 													</c:if>
 													<c:if test="${fn:contains( filter.key, 'costo') }">
-														<td>${cand.costo.orario}</td>
+														<td>${cand.costo.orario}&#8364;/H</td>
 													</c:if>
 												</c:forEach>
 												<td>
