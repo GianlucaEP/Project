@@ -57,5 +57,5 @@ public interface MansioneDAO {
 	 * 
 	 * @return the number of updated Mansione Objects
 	 * */
-	public int updade(String oldMansione, String newMansione);
+	public int update(String oldMansione, String newMansione);
 }

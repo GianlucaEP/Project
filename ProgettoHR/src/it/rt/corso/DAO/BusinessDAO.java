@@ -29,4 +29,16 @@ public interface BusinessDAO {
 	 * 
 	 * */
 	public Business get(String id);
-	}
+	
+	//
+	//
+	
+	public List<Business> getIdByCandidato(int id);
+	
+	public Business cancella(Business business);
+	
+	public int update(String oldBusiness, String newBusiness);
+	
+	//
+	//
+}

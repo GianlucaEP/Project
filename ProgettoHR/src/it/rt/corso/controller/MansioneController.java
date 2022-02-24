@@ -159,7 +159,7 @@ public class MansioneController {
 	public String aggiorna(@RequestParam("oldMansione") String mansione,
 			@RequestParam("newMansione") String newMansione, @PathVariable String businessUnit) {
 
-		dao.updade(mansione, newMansione);
+		dao.update(mansione, newMansione);
 
 		Singleton singleton = Singleton.getInstance();
 		singleton.aggiornaMansione();

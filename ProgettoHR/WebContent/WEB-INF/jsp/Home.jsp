@@ -587,6 +587,7 @@ option:hover {
 				</div>
 			</div>
 		</div>
+	</div>
 	</header>
 
 	<!-- MODAL AGGIUNTA MANSIONE -->

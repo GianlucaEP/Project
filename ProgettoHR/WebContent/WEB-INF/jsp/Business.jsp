@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -12,8 +12,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>Area competenza</title>
+	
+<title>Business Unit</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -55,14 +55,14 @@
 		margin: 10px;
 		color: white;
 	}
-	
+
 	#btn-nav {
 		border: 1px solid white;
 		border-radius: 5px;
 		height: 45px;
 		background-color: white;
 	}
-	
+
 	#btn-logout, #btn-home, #btn-add {
 		border-radius: 5px;
 		color: black;
@@ -76,15 +76,15 @@
 		transition: 0.5s;
 		color: black;
 	}
-	
+
 	#btn-add:hover {
 		box-shadow: 1px 1px 2px #00b894;
 		transition: 0.5s;
 		color: black;
 	}
 	
-	/* TABELLA AREE */
-	.tabellaArea {
+	/* TABELLA BUSINESS */
+	.tabellaBusiness {
 		width: 50%;
 		border-radius: 5px;
 		overflow: hidden;
@@ -94,48 +94,48 @@
 		font-size: 0.9em;
 	}
 	
-	.tabellaArea .head {
+	.tabellBusiness .head {
 		background-color: whitesmoke;
 		color: black;
 		letter-spacing: 5px;
 		border-bottom: 2px solid black;
 	}
 	
-	.tabellaArea .body {
+	.tabellaBusiness .body {
 		background-color: white;
 	}
 	
-	.tabellaArea .body tr {
+	.tabellaBusiness .body tr {
 		border-bottom: 2px solid whitesmoke;
 		color: black;
 		letter-spacing: 3px;
 		transition: 0.5s;
 	}
 	
-	.tabellaArea th {
+	.tabellaBusiness th {
 		padding: 8px;
 	}
 	
-	.tabellaArea td {
+	.tabellaBusiness td {
 		font-size: 14px;
 		padding: 4px;
 	}
 	
-	.tabellaArea .footer {
-		background-color: whitesmoke;
+	.tabellaBusiness .footer {
+		backround-color: whitesmoke;
 	}
 	
-	.m-content-aggiungi, .m-content-elimina, .m-content-modifica {
+	.m-content, .m-content-elimina, .m-content-modifica {
 		background-color: transparent;
 		border: none;
 	}
 	
-	.m-header-aggiungi, .m-header-elimina, .m-header-modifica {
+	.m-header, .m-header-elimina, .m-header-modifica {
 		background-color: white;
 		border-radius: 20px 20px 0px 0px;
 	}
 	
-	.m-body-aggiungi {
+	.m-body {
 		padding: 20px;
 		margin-top: 2px;
 		border: 1px solid #d3d3d3;
@@ -155,7 +155,7 @@
 		letter-spacing: 3px;
 		border: 1px solid white
 	}
-	
+
 	.m-input, .m-input-modifica, .m-input-aggiungi {
 		border: 1px solid black;
 		border-radius: 20px;
@@ -167,7 +167,7 @@
 	.m-input-aggiungi:focus {
 		border: 1px solid #00b894;
 	}
-	
+
 	.m-input-modifica:focus {
 		border: 1px solid #74b9ff;
 	}
@@ -176,7 +176,7 @@
 		border-radius: 0px 0px 20px 20px;
 		background-color: white;
 	}
-	
+
 	.btn-aggiungi {
 		border-radius: 20px;
 		color: black;
@@ -196,7 +196,7 @@
 	.btn-salva {
 		border: 1px solid white;
 		border-radius: 20px;
-		backround: white;
+		background: white;
 		color: black;
 		transition: 0.5s;
 		box-shadow: none !important;
@@ -229,42 +229,42 @@
 		color: #d63031;
 	}
 	
-	.btn-elimina-area {
+	.btn-elimina-business {
 		transition: 0.5s;
 	}
 	
-	.btn-elimina-area:hover {
+	.btn-elimina-business:hover {
 		box-shadow: 1px 1px 2px #d63031;
 		color: #d63031;
 		border-radius: 5px;
 		transition: 0.5s;
 	}
 	
-	.btn-modifica-area {
+	.btn-modifica-business {
 		background: #74b9ff;
 		color: white;
 		border-radius: 5px;
 		transition: 0.5s;
 	}
 	
-	.btn-modifica-area:hover {
+	.btn-modifica-business :hover {
 		color: white;
-		transition: 0.5s;
 		background: #0984e3;
+		transition: 0.5s;
 	}
-
+	
 </style>
-
+	
 </head>
 <body>
 	<header>
-		<c:set var="singlequote" value="'" />
-		<c:set var="backslash" value="&apos" />
-
+		<c:set var="singlequote" value="'"/>
+		<c:set var="backslash" value="&apos"/>
+		
 		<nav class="navbar navbar-expand-lg">
 			<div class="container-fluid">
 				<div class="row w-100">
-					<div id="btn-nav" class="d-flex flex-row">
+					<div id=btn-nav class="d-flex flex-row">
 						<div class="col-auto align-self-center">
 							<button class="btn"
 								onclick="location.href = '/ProgettoHR/Home/${businessUnit}';"
@@ -273,7 +273,7 @@
 							</button>
 						</div>
 						<div class="col-auto align-self-center">
-							<button data-toggle="modal" data-target="#aggiungiAreaCompetenza"
+							<button data-toggle="modal" data-target="#aggiungiBusiness"
 								class="btn float-right" id="btn-add">
 								<i class="fas fa-plus"></i>
 							</button>
@@ -288,57 +288,57 @@
 				</div>
 			</div>
 		</nav>
-
+		
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col mb-5 align-self-center">
-					<c:if test="${empty areaCompetenzaList}">
-						<h2 id="zeroRecord">Nessuna area di competenza ancora inserita</h2>
+					<c:if test="${empty businessList}">
+						<h2 id="zeroRecord">Nessuna business unit ancora inserita</h2>
 					</c:if>
-					<c:if test="${not empty areaCompetenzaList}">
-
+					<c:if test="${not empty businessList}">
+						
 						<div class="table-responsive">
-							<table class="tabellaArea">
+							<table class="tabellaBusiness">
 							
 								<thead class="head">
 									<tr>
-										<th><h3>AREA DI COMPETENZA</h3></th>
+										<th><h3>BUSINESS UNIT</h3></th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
-
+								
 								<tbody class="body">
-									<c:forEach var="area" items="${areaCompetenzaList}">
+									<c:forEach var="business" items="${businessList}">
 										<tr>
-											<c:set var="areaReplaced"
-												value="${fn:replace(area.area, singlequote, backslash)}"></c:set>
-											<c:set var="areaXSS" value="${fn:escapeXml(area.area)}"></c:set>
-											<td>${areaXSS}</td>
-
+											<c:set var="businessReplaced"
+												value="${fn:replace(business.business, singlequote, backslash)}"></c:set>
+											<c:set var="businessXSS" value="${fn:escapeXml(business.business)}"></c:set>
+											<td>${businessXSS}</td> 
+											
 											<td>
-												<button class="btn btn-modifica-area" 
+												<button class="btn btn-modifica-business"
 													data-toggle="modal"
-													onclick="impostaParametriArea('${areaReplaced}')"
-													data-target="#modificaAreaCompetenza">
+													onclick="impostaParametriBusiness('${businessReplaced}')"
+													data-target="#modificaBusiness">
 													<i class="fas fa-pencil-alt"></i>
 												</button>
-												<button class="btn btn-elimina-area" 
+												<button class="btn btn-elimina-business"
 													data-toggle="modal"
-													onclick="impostaParametriAreaEliminazione('${area.area}')"
-													data-target="#eliminaAreaCompetenza">
+													onclick="impostaParametriBusinessEliminazione('${business.business}')"
+													data-target="#eliminaBusiness">
 													<i class="fas fa-trash"></i>
 												</button>
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
-
+								
 								<tfoot class="footer">
 									<tr>
 										<td colspan="2"></td>
 									</tr>
 								</tfoot>
-								
+							
 							</table>
 						</div>
 						
@@ -347,33 +347,33 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
-	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
-		role="dialog" aria-labelledby="modalAggiungiArea" aria-hidden="true">
+	
+	<!-- MODAL AGGIUNTA BUSINESS UNIT -->
+	<div class="modal fade" id="aggiungiBusiness" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiBusiness" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content m-content-aggiungi">
-
-				<div class="modal-header m-header-aggiungi">
-					<span class="modal-title">Inserisci una nuova 
-						<span style="color: #004fff;">area di competenza</span>:
+			<div class="modal-content m-content">
+				
+				<div class="modal-header m-header">
+					<span class="modal-title">Inserisci una nuova
+						<span style="color: #004fff;">business unit</span>:
 					</span>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="btn-close-modal">&times;</span>
 					</button>
 				</div>
-
-				<form:form modelAttribute="areaCompetenza" id="formAreaCompetenza"
-					method="POST"
-					action="/ProgettoHR/AreaCompetenzaSaveDaAreaCompetenza/${businessUnit}"
-					onsubmit="return validateArea('Area Competenza', '${areaList}');">
-					<div class="modal-body m-body-aggiungi">
+				
+				<form:form modelAttribute="business" id="formBusiness" method="POST"
+					action="/ProgettoHR/BusinessSaveDaBusiness/${businessUnit}"
+					onsubmit="return validate('Business', '${businessList}' );">
+					<div class="modal-body m-body">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10">
-									<form:input path="area" type="text"
-										class="form-control m-input-aggiungi" maxlength="45" id="area"></form:input>
+									<form:input path="business" type="text"
+										class="form-control m-input-aggiungi" maxlenght="45"
+										id="business" autocomplete="off"></form:input>
 								</div>
 								<div class="col-2">
 									<button class="btn btn-aggiungi" type="submit">
@@ -388,18 +388,18 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- MODAL MODIFICA AREA -->
-	<div class="modal fade" id="modificaAreaCompetenza" tabindex="-1"
-		role="dialog" aria-labelledby="modalModificaArea" aria-hidden="true">
+	
+	<!-- MODAL MODIFICA BUSINESS UNIT -->
+	<div class="modal fade" id="modificaBusiness" tabindex="-1"
+		role="dialog" aria-labelledby="modalModificaBusiness" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content m-content-modifica">
-				<form action="/ProgettoHR/AggiornaArea/${businessUnit}"
+				<form action="/ProgettoHR/AggiornaBusiness/${businessUnit}"
 					method="POST">
 
 					<div class="modal-header m-header-modifica">
-						<span class="modal-title">Modifica <span
-							style="color: #004fff;">l'area di competenza</span>:
+						<span class="modal-title">Modifica la <span
+							style="color: #004fff;">business unit</span>:
 						</span>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -409,8 +409,8 @@
 
 					<div class="modal-body m-body-modifica">
 						<input type="text" class="form-control m-input-modifica"
-							name="newArea" id="newArea"> <input
-							style="visibility: hidden;" name="oldArea" id="oldArea" />
+							name="newBusiness" id="newBusiness"> <input
+							style="visibility: hidden;" name="oldBusiness" id="oldBusiness" />
 					</div>
 
 					<div class="modal-footer m-footer-modifica">
@@ -421,30 +421,30 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- MODAL CANCELLA AREA -->
-	<div class="modal fade" id="eliminaAreaCompetenza" tabindex="-1"
-		role="dialog" aria-labelledby="modalEliminaArea" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
+	
+	<!-- MODAL CANCELLA BUSINESS UNIT -->
+	<div class="modal fade" id="eliminaBusiness" tabindex="-1"
+		role="dialog" aria-labelledby="modalEliminaBusiness" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" role="document">
 			<div class="modal-content m-content-elimina">
 
-				<form action="/ProgettoHR/EliminaArea/${businessUnit}" method="POST">
+				<div class="modal-header m-header-elimina">
+					<span class="modal-title">Cancella la <span
+						style="color: #004fff;">business unit</span>:
+					</span>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" class="btn-close-modal">&times;</span>
+					</button>
+				</div>
 
-					<div class="modal-header m-header-elimina">
-						<span class="modal-title">Elimina <span
-							style="color: #004fff;">l'area di competenza</span>:
-						</span>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true" class="btn-close-modal">&times;</span>
-						</button>
-					</div>
+				<form action="/ProgettoHR/EliminaBusiness/${businessUnit}"
+					method="POST">
 
-					<div class="modal-body m-body-elimina"
-						id="eliminaAreaModalBodyText">
-						<p id="p-elimina-area"></p>
-						<input style="visibility: hidden;" name="eliminaArea"
-							id="elimina-area-competenza" />
+					<div class="modal-body m-body-elimina">
+						<p id="p-elimina-business"></p>
+						<input style="visibility: hidden;" name="eliminaBusiness"
+							id="elimina-business" />
 					</div>
 
 					<div class="modal-footer m-footer-elimina">
@@ -455,46 +455,45 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script>
 	
-		function impostaParametriArea(id) {
+		function impostaParametriBusiness(id) {
 			id = id.replace("&apos", "'");
-			document.getElementById("oldArea").value = id;
-			document.getElementById("newArea").value = id;
+			document.getElementById("oldBusiness").value = id;
+			document.getElementById("newBusiness").value = id;
 		}
 		
-		function impostaParametriAreaEliminazione(area) {
-			document.getElementById("elimina-area-competenza").value = area;
-			document.getElementById("p-elimina-area").innerHTML = "Sei sicuro di voler cancellare l'area competenza "
-			+ area + "?";
-
+		function impostaParametriBusinessEliminazione(business) {
+			document.getElementById("elimina-business").value = business;
+			document.getElementById("p-elimina-business").innerHTML = "Sei sicuro di voler cancellare la business unit "
+			+ business + "?";
 		}
 		
-		function validateArea(tipo, lista) {
-			var areaCompetenza = document.getElementById("area").value;
-			var list = document.getElementById("formAreaCompetenza");
+		function validate(tipo, lista) {
+			var business = document.getElementById("business").value;
+			var list = document.getElementById("formBusiness");
 			var control = true;
 
-			if (areaCompetenza === "") {
+			if (business === "") {
 
 				var tagDiv = document.createElement("div");
 				tagDiv.style = "color:red; font-size: small;"
-				var textnode = document.createTextNode("Inserisci Area di competenza")
+				var textnode = document.createTextNode("Inserisci Business")
 				tagDiv.appendChild(textnode)
-				document.getElementById("area").appendChild(tagDiv);
+				document.getElementById("business").appendChild(tagDiv);
 				control = false;
 
 				return control;
 			}
 
-			control = insertionMessage(tipo, 'area', lista);
+			control = insertionMessage(tipo, 'business', lista);
 
 			return control;
 		}
 		
 	</script>
-
+	
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

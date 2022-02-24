@@ -157,6 +157,14 @@ public class Singleton {
 		mansioneList = mansioneDAO.getLista();
 	}
 
+	//
+	//
+	public void aggiornaBusiness() {
+		businessList = businessDAO.getLista();
+	}
+	//
+	//
+	
 	public void aggiornaSpecializzazione() {
 		specializzazioneList = specializzazioneDAO.getLista();
 	}

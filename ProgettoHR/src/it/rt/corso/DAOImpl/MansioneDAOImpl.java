@@ -44,7 +44,7 @@ public class MansioneDAOImpl extends BaseDAO implements MansioneDAO {
 
 
 	@Override
-	public int updade(String oldMansione, String newMansione) {
+	public int update(String oldMansione, String newMansione) {
 
 		Transaction t = Utility.getSession().beginTransaction();	
 		Query<Mansione> query = Utility.getSession()

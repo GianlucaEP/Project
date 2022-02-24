@@ -55,6 +55,14 @@ public class CandidatoFilter implements CandidatoFilterInterface {
 	 */
 	public List<Predicate> buildCompundPredicate(List<Predicate> listaPredicati) {
 
+		//
+		//
+		if (!BusinessFilter.getListaPredicatesBusiness().isEmpty()) {
+			BusinessFilter.buildBusinessPredicate(listaPredicati);
+		}
+		//
+		//
+		
 		if (!MansioneFilter.getListaPredicatesMansioni().isEmpty()) {
 			MansioneFilter.buildMansionePredicate(listaPredicati);
 		}

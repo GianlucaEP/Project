@@ -21,7 +21,7 @@ public class Mansione implements Bean{
 	private String mansione;
 	
 	// ========================================================== //
-	//MANY-TO-MANY Con CANDIDATO
+	//MANY-TO-MANY con CANDIDATO
 	@ManyToMany(mappedBy = "mansione")
 	private Set<Candidato> candidato = new HashSet<>();
 	// ========================================================== //

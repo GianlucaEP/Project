@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * {@link Bean Bean} type Object that rapresents business table.
+ * {@link Bean Bean} type Object that represents business table.
  * */
 @Entity
 @Table(name = "business")

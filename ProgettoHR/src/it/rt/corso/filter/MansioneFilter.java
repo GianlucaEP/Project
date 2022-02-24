@@ -21,6 +21,10 @@ public class MansioneFilter extends CandidatoFilter{
 		return listaPredicatesMansione;
 	}
 	
+	public static void setListaPredicatesMansioni(List<Predicate> listaPredicatesMansione) {
+		MansioneFilter.listaPredicatesMansione = listaPredicatesMansione;
+	}
+	
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
@@ -52,7 +56,7 @@ public class MansioneFilter extends CandidatoFilter{
 	 * @return the given list of predicates with the added predicate
 	 * 
 	 * */
-	public static List<Predicate> buildMansionePredicate(List<Predicate> listaPredicati){
+	public static List<Predicate> buildMansionePredicate(List<Predicate> listaPredicati) {
 		Predicate[] predicatesMansioni = listaPredicatesMansione
 				.toArray(new Predicate[listaPredicatesMansione.size()]);
 		CriteriaBuilder criteriaBuilder = Utility.createCriteriaBuilder();
