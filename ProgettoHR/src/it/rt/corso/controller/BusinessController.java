@@ -24,13 +24,13 @@ public class BusinessController {
 	private BusinessDAO dao = (BusinessDAO) factory.getBean("businessDAO");
 	
 	@RequestMapping(value = "/Business/{businessUnit}")
-	public String displayBusiness(Model b, @PathVariable String businessUnit,
+	public String displayBusiness(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
 		
 		Singleton singleton = Singleton.getInstance();
 		
-		b.addAttribute("businessList", singleton.getBusinessList());
-		b.addAttribute("business", new Business());
+		m.addAttribute("businessList", singleton.getBusinessList());
+		m.addAttribute("business", new Business());
 		
 		return "/Business";
 	}

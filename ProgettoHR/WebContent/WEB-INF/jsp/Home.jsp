@@ -384,6 +384,26 @@ option:hover {
 									class="btn"> Nuovo utente </a></li>
 							</c:if>
 						</ul>
+						
+						
+						
+						
+						<hr>
+							<ul>
+							<c:if test='${fn:contains(funzionalita, "aggiunta business")}'>
+								<li><a href="" data-toggle="modal"
+									data-target="#aggiungiBusiness" class="btn"> Nuova business unit</a></li>
+							</c:if>
+							<c:if test='${fn:contains(funzionalita, "visualizza business")}'>
+								<li><a href="/ProgettoHR/Business/${businessUnit}" 
+									class="btn"> Visualizza le business unit</a></li>
+							</c:if>
+						</ul>
+							
+				
+				
+				
+				
 						<hr>
 						<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta mansione")}'>
@@ -400,7 +420,7 @@ option:hover {
 							<c:if test='${fn:contains(funzionalita, "aggiunta area")}'>
 								<li><a href="" data-toggle="modal"
 									data-target="#aggiungiAreaCompetenza" class="btn"> Nuova
-										area di competenza </a></li>
+										area di competenza</a></li>
 							</c:if>
 							<c:if test='${fn:contains(funzionalita, "visualizza area")}'>
 								<li><a href="/ProgettoHR/AreaCompetenza/${businessUnit}"
@@ -413,7 +433,7 @@ option:hover {
 								test='${fn:contains(funzionalita, "aggiunta specializzazione")}'>
 								<li><a href="" data-toggle="modal"
 									data-target="#aggiungiSpecializzazione" class="btn"> Nuova
-										specializzazione </a></li>
+										specializzazione</a></li>
 							</c:if>
 							<c:if
 								test='${fn:contains(funzionalita, "visualizza specializzazione")}'>
@@ -590,6 +610,12 @@ option:hover {
 	</div>
 	</header>
 
+
+
+	
+
+
+
 	<!-- MODAL AGGIUNTA MANSIONE -->
 	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
 		role="dialog" aria-labelledby="modalAggiungiMansione"
@@ -608,7 +634,7 @@ option:hover {
 				</div>
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaHome/${businessUnit}"
-					onsubmit="return validate('Mansione', '${mansioneList}' );">
+					onsubmit="return validateMansione('Mansione', '${mansioneList}' );">
 					<div class="modal-body m-body">
 						<div class="container-fluid">
 							<div class="row">
@@ -629,7 +655,6 @@ option:hover {
 			</div>
 		</div>
 	</div>
-
 
 	<!-- MODAL AGGIUNTA AREA COMPETENZA -->
 	<div class="modal fade" id="aggiungiAreaCompetenza" tabindex="-1"
@@ -776,10 +801,32 @@ option:hover {
 		function buildString(string) {
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
-
-		function validate(tipo, lista) {
+		
+		function validateBusiness(tipo, lista) {
+			var business = document.getElementById("business").value;
+			var list = document.getElementById("formBusiness").value;
+			var control = true;
+			
+			if(business === "") {
+				
+				var tagDiv = document.createElement("div");
+				tagDiv.style =  "color:red; font-size: small;"
+				var textnode = document.createTextNode("Inserisci business")
+				tagDiv.appendChild(textnode)
+				document.getElementById("business").appendChild(tagDiv);
+				control = false;
+				
+				return control;
+			}
+			
+			control = insertionMessage(tipo, 'business', lista)
+			
+			return control;
+		}
+		
+		function validateMansione(tipo, lista) {
 			var mansione = document.getElementById("mansione").value;
-			var list = document.getElementById("formMansione");
+			var list = document.getElementById("formMansione").value;
 			var control = true;
 			
 			
@@ -799,6 +846,7 @@ option:hover {
 
 			return control;
 		}
+		
 		function validateArea(tipo, lista) {
 			var areaCompetenza = document.getElementById("area").value;
 			var list = document.getElementById("formAreaCompetenza");
@@ -822,6 +870,7 @@ option:hover {
 			
 			return control;
 		}
+		
 		function validateSpecializzazione(tipo, lista) {
 				var specializzazione = document.getElementById("specializzazione").value;
 				var list = document.getElementById("formSpecializzazione");
@@ -845,6 +894,7 @@ option:hover {
 				
 				return control;
 		}
+		
 		function x(statoSelezionato) {
 
 			if (statoSelezionato!==""){
@@ -875,6 +925,7 @@ option:hover {
 				document.getElementById("btn-filtro").disabled = false;
 			}
 		}
+		
 		function darkMode() {
 			   var element = document.body;
 			   element.classList.toggle("dark-mode");

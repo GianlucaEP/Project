@@ -423,7 +423,7 @@ span {
 
 						<div class="form-group">
 							<div id="specializzazioneDiv">
-								<label>Specializzazione & anni di esperienza</label>
+								<label>Specializzazione e anni di esperienza</label>
 								<div class="form-row">
 									<div class="col-7">
 										<input autocomplete="off" placeholder="aggiungi"

@@ -312,8 +312,7 @@
 										<tr>
 											<c:set var="mansioneRaplaced"
 												value="${fn:replace(mansione.mansione, singlequote, backslash)}"></c:set>
-											<c:set var="mansioneXSS"
-												value="${fn:escapeXml(mansione.mansione)}"></c:set>
+											<c:set var="mansioneXSS" value="${fn:escapeXml(mansione.mansione)}"></c:set>
 											<td>${mansioneXSS}</td>
 
 											<td>

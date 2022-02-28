@@ -137,6 +137,12 @@ public class Singleton {
 		return mansioneList.stream().map(Mansione::getMansione).collect(Collectors.toList());
 	}
 
+	//
+	public List<String> getBusinessListString() {
+		return businessList.stream().map(Business::getBusiness).collect(Collectors.toList());
+	}
+	//
+	
 	public List<String> getSpecializzazioneListString() {
 		return specializzazioneList.stream().map(Specializzazione::getSpecializzazione).collect(Collectors.toList());
 	}
