@@ -35,13 +35,13 @@ public interface AreaCompetenzaDAO {
 	 * 
 	 * @param id the given id used to search the corresponding Candidato.
 	 * 
-	 * @return a list of all the AreaCompetenza corresponiding to the Candidato ID.
+	 * @return a list of all the AreaCompetenza corresponding to the Candidato ID.
 	 * */
 	public List<AreaCompetenza> getIdByCandidato(int id);
 	/**
 	 * Delete from database the AreaCompetenza corresponding to the given AreaCompetenza Object.
 	 * 
-	 * @param area AreaCompetenza objct that have to be deleted.
+	 * @param area AreaCompetenza object that have to be deleted.
 	 * 
 	 * @return the deleted AreaCompetenza object.
 	 * */

@@ -45,5 +45,4 @@ public class Business implements Bean {
 		this.candidato = candidato;
 	}
 	
-	
 }

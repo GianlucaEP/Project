@@ -612,10 +612,6 @@ option:hover {
 
 
 
-	
-
-
-
 	<!-- MODAL AGGIUNTA MANSIONE -->
 	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
 		role="dialog" aria-labelledby="modalAggiungiMansione"
@@ -802,9 +798,15 @@ option:hover {
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
 		
+		
+		
+		
+		////
+		
+		
 		function validateBusiness(tipo, lista) {
 			var business = document.getElementById("business").value;
-			var list = document.getElementById("formBusiness").value;
+			var list = document.getElementById("formBusiness");
 			var control = true;
 			
 			if(business === "") {
@@ -824,9 +826,13 @@ option:hover {
 			return control;
 		}
 		
+		
+		////
+		
+		
 		function validateMansione(tipo, lista) {
 			var mansione = document.getElementById("mansione").value;
-			var list = document.getElementById("formMansione").value;
+			var list = document.getElementById("formMansione");
 			var control = true;
 			
 			

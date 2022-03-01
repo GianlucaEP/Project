@@ -7,7 +7,7 @@ import it.rt.corso.beans.Mansione;
 public interface MansioneDAO {
 	
 	/**
-	 * Add the given Mansione entity to mansione table.
+	 * Add the given Mansione object to mansione table
 	 * 
 	 * @param costo given Mansione entity
 	 * 
@@ -18,16 +18,16 @@ public interface MansioneDAO {
 	/**
 	 * Get all Mansione entities.
 	 * 
-	 * @return the Mansione List of objects that has been found.
+	 * @return the Mansione List of objects found
 	 * */
 	public List<Mansione> getLista(); 
 	
 	/**
-	 * Get a Mansione entity corresponding to the given Mansione id.
+	 * Get a Mansione entity corresponding to the given Mansione id
 	 * 
 	 * @param id the given id
 	 * 
-	 * @return the Mansione object that has been found.
+	 * @return the Mansione object found.
 	 * */
 	public Mansione get(String id);
 	
@@ -36,21 +36,21 @@ public interface MansioneDAO {
 	 * 
 	 * @param id the given Mansione id
 	 * 
-	 * @return the Mansione object that has been found.
+	 * @return the Mansione object that has been found
 	 * */
 	public List<Mansione> getIdByCandidato(int id);
 	
 	/**
-	 * Delete a CompetenzaLinguistica entity corresponding to the given CompetenzaLinguistica Object.
+	 * Delete a Mansione entity corresponding to the given Mansione Object
 	 * 
-	 * @param competenzaLinguistica the given CompetenzaLinguistica object
+	 * @param Mansione the given Mansione object
 	 * 
-	 * @return the deleted CompetenzaLinguistica object
+	 * @return the deleted Mansione object
 	 * */
 	public Mansione cancella(Mansione mansione);
 	
 	/**
-	 * Update a Mansione entity corresponding to the given Mansione name value.
+	 * Update a Mansione entity corresponding to the given Mansione name value
 	 * 
 	 * @param oldMansione the Mansione name that will be searched in order to update it
 	 * @param newMansione the new Mansione name that will be assigned in place of the old Mansione value.
@@ -58,4 +58,5 @@ public interface MansioneDAO {
 	 * @return the number of updated Mansione Objects
 	 * */
 	public int update(String oldMansione, String newMansione);
+	
 }

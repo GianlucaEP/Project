@@ -366,7 +366,7 @@
 				
 				<form:form modelAttribute="mansione" id="formMansione" method="POST"
 					action="/ProgettoHR/MansioniSaveDaMansione/${businessUnit}"
-					onsubmit="return validate('Mansione', '${mansioneList}' );">
+					onsubmit="return validateMansione('Mansione', '${mansioneList}' );">
 					<div class="modal-body m-body">
 						<div class="container-fluid">
 							<div class="row">
@@ -467,10 +467,10 @@
 		function impostaParametriMansioneEliminazione(mansione) {
 			document.getElementById("elimina-mansione").value = mansione;
 			document.getElementById("p-elimina-mansione").innerHTML = "Sei sicuro di voler cancellare la mansione "
-					+ mansione + "?";
+			+ mansione + "?";
 		}
 		
-		function validate(tipo, lista) {
+		function validateMansione(tipo, lista) {
 			var mansione = document.getElementById("mansione").value;
 			var list = document.getElementById("formMansione");
 			var control = true;

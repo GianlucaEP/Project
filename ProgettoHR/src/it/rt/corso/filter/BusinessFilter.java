@@ -19,6 +19,7 @@ public class BusinessFilter extends CandidatoFilter {
 	
 	//
 	//
+	
 	private static List<Predicate> listaPredicatesBusiness = new ArrayList<Predicate>();
 	
 	public static List<Predicate> getListaPredicatesBusiness() {
@@ -28,8 +29,10 @@ public class BusinessFilter extends CandidatoFilter {
 	public static void setListaPredicatesBusiness(List<Predicate> listaPredicatesBusiness) {
 		BusinessFilter.listaPredicatesBusiness = listaPredicatesBusiness;
 	}
+	
 	//
 	//
+	
 	@Override
 	public List<Predicate> checkFilter(List<Predicate> listaPredicati, Root<Candidato> root, String nomeFiltro,
 			String valore) {
@@ -44,7 +47,9 @@ public class BusinessFilter extends CandidatoFilter {
 			listaPredicati.add(criteriaBuilder.like(business.get("business"), "%" + valore + "%"));
 			CandidatoFilter.setAddedCriteria(true);
 			return listaPredicati;
+			
 		} else {
+			
 			return listaPredicati;
 
 		}
@@ -53,6 +58,7 @@ public class BusinessFilter extends CandidatoFilter {
 	
 	//
 	//
+	
 	public static List<Predicate> buildBusinessPredicate(List<Predicate> listaPredicati) {
 		Predicate[] predicatesBusiness = listaPredicatesBusiness
 				.toArray(new Predicate[listaPredicatesBusiness.size()]);
@@ -61,6 +67,7 @@ public class BusinessFilter extends CandidatoFilter {
 		listaPredicatesBusiness = new ArrayList<Predicate>();
 		return listaPredicati;
 	}
+	
 	//
 	//
 	

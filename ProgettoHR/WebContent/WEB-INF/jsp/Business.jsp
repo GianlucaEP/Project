@@ -366,7 +366,7 @@
 				
 				<form:form modelAttribute="business" id="formBusiness" method="POST"
 					action="/ProgettoHR/BusinessSaveDaBusiness/${businessUnit}"
-					onsubmit="return validate('Business', '${businessList}' );">
+					onsubmit="return validateBusiness('Business', '${businessList}' );">
 					<div class="modal-body m-body">
 						<div class="container-fluid">
 							<div class="row">
@@ -470,7 +470,7 @@
 			+ business + "?";
 		}
 		
-		function validate(tipo, lista) {
+		function validateBusiness(tipo, lista) {
 			var business = document.getElementById("business").value;
 			var list = document.getElementById("formBusiness");
 			var control = true;

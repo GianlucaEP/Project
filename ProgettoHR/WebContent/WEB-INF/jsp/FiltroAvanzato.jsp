@@ -1070,10 +1070,18 @@ function controlloMappa() {
 			document.getElementById("aggiuntaNome").innerHTML = nome;
 		}
 	
-	$(document).ready(function () { $("#exportButton").click(function(){
-	$("#risultatiTable").table2excel({ exclude: ".noExport", filename:
-	"Risultati.xls" }); }); });
-
+	$(document).ready(
+			function nomeDellaFunzione() {
+		        document.getElementById('exportButton').addEventListener("click", function (){
+		            document.getElementById('risultatiTable').table2excel({
+		                exclude: ".noExport",
+		                filename: "Risultati.xls"
+		            });
+		        });
+		    });
+	
+	
+	
 	</script>
 
 	<!-- Popper.JS -->
