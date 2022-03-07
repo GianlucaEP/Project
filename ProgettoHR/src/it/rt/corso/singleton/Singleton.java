@@ -132,7 +132,7 @@ public class Singleton {
 		return areaCompetenzaList.stream().map(AreaCompetenza::getArea).collect(Collectors.toList());
 
 	}
-
+	
 	public List<String> getMansioneListString() {
 		return mansioneList.stream().map(Mansione::getMansione).collect(Collectors.toList());
 	}

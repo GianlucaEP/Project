@@ -610,8 +610,46 @@ option:hover {
 	</div>
 	</header>
 
-
-
+	<!-- MODAL AGGIUNTA BUSINESS -->
+	<div class="modal fade" id="aggiungiBusiness" tabindex="-1"
+		role="dialog" aria-labelledby="modalAggiungiBusiness"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content m-content">
+			
+				<div class="modal-header m-header">
+					<span class="modal-title">Inserisci una <span
+					 	style="color: #004fff;">business unit</span>:
+				 	</span>
+				 	<button type="button" class="close" data-dismiss="modal"
+				 		aria-label="Close">
+				 		<span aria-hidden="true" class="btn-close-modal">&times;</span>
+				 	</button>
+				</div>
+				<form:form modelAttribute="business" id="formBusiness" method="POST"
+					action="/ProgettoHR/BusinessSaveDaHome/${businessUnit}"
+					onsubmit="return validateBusiness('Business', '${businessList}' );">
+					<div class="modal-body m-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-10">
+									<form:input path="business" type="text"
+										class="form-control m-input-aggiungi" maxlenght="45"
+										id="business" name="business" autocomplete="off"></form:input>
+								</div>
+								<div class="col-2">
+									<button class="btn btn-salva" type="submit">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	
 	<!-- MODAL AGGIUNTA MANSIONE -->
 	<div class="modal fade" id="aggiungiMansione" tabindex="-1"
 		role="dialog" aria-labelledby="modalAggiungiMansione"
@@ -777,8 +815,8 @@ option:hover {
 		</div>
 	</div>
 
-
 	<script>
+	
 		function impostaParametriCandidatoId(id, nome, cognome) {
 			document.getElementById("candidatoId").value = id;
 			document.getElementById("elimina-candidato").textContent = "Sei sicuro di voler cancellare il candidato "+nome+" "+cognome+"?"
@@ -797,8 +835,6 @@ option:hover {
 		function buildString(string) {
 			return string.replace("[", "").replace("]", "").split(", ");
 		}
-		
-		
 		
 		
 		////
@@ -947,13 +983,10 @@ option:hover {
 		function closeMenu() {	
 			  document.getElementById("sidebar").style.width = "0";			 
 			  document.getElementById("header").style.marginLeft = "0";
-			  document.getElementById("img-logo").style.left = "230px";
-			  
+			  document.getElementById("img-logo").style.left = "230px";	  
 			}
+		
 	</script>
-
-
-
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

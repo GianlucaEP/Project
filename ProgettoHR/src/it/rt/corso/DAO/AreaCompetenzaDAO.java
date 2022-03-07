@@ -5,6 +5,7 @@ import java.util.List;
 import it.rt.corso.beans.AreaCompetenza;
 
 public interface AreaCompetenzaDAO {
+	
 	/**
 	 * Insert a new AreaCompetenza object in database.
 	 * 
@@ -21,6 +22,7 @@ public interface AreaCompetenzaDAO {
 	 * 
 	 * */
 	public List<AreaCompetenza> getLista();
+	
 	/**
 	 * Get AreaCompetenza object from area_competenza table selected by the given id
 	 * 
@@ -30,6 +32,7 @@ public interface AreaCompetenzaDAO {
 	 * 
 	 * */
 	public AreaCompetenza get(String id);
+	
 	/**
 	 * Get all AreaCompetenza belonging to a Candidato selected by the given id
 	 * 
@@ -38,6 +41,7 @@ public interface AreaCompetenzaDAO {
 	 * @return a list of all the AreaCompetenza corresponding to the Candidato ID.
 	 * */
 	public List<AreaCompetenza> getIdByCandidato(int id);
+	
 	/**
 	 * Delete from database the AreaCompetenza corresponding to the given AreaCompetenza Object.
 	 * 
@@ -46,6 +50,7 @@ public interface AreaCompetenzaDAO {
 	 * @return the deleted AreaCompetenza object.
 	 * */
 	public AreaCompetenza cancella(AreaCompetenza area);
+	
 	/**
 	 * Update an AreaCompetenza value selected by the old value with the new given value.
 	 * 
@@ -55,4 +60,5 @@ public interface AreaCompetenzaDAO {
 	 * @return number of entities updated or deleted.
 	 * */
 	public int update(String oldArea, String newArea);
+	
 }

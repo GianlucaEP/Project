@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * {@link Bean Bean} type Object that rapresents mansione table.
+ * {@link Bean Bean} type Object that represents mansione table.
  * */
 @Entity
 @Table(name = "mansione")
@@ -41,6 +41,5 @@ public class Mansione implements Bean{
 	public void setCandidato(Set<Candidato> candidato) {
 		this.candidato = candidato;
 	}
-	
 	
 }

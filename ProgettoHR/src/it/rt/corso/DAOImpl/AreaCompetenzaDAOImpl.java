@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import it.rt.corso.DAO.AreaCompetenzaDAO;
 import it.rt.corso.DAO.BaseDAO;
 import it.rt.corso.beans.AreaCompetenza;
 import it.rt.corso.utility.Utility;
+
 @SuppressWarnings("unchecked")
 public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 
@@ -17,38 +17,33 @@ public class AreaCompetenzaDAOImpl extends BaseDAO implements AreaCompetenzaDAO{
 	}
 
 	public List<AreaCompetenza> getLista() {
-
-		
-		
-		List<AreaCompetenza> listaArea= Utility.getSession().createQuery("FROM AreaCompetenza").getResultList();
+		List<AreaCompetenza> listaArea= Utility.getSession()
+				.createQuery("FROM AreaCompetenza")
+				.getResultList();
 		Utility.destroySession();
 		return listaArea;
 	}
 
-
 	public AreaCompetenza get(String id) {
 		return (AreaCompetenza) super.get(AreaCompetenza.class, id); 
 	}
-
 	
 	@Override
 	public List<AreaCompetenza> getIdByCandidato(int id) {
-		
-		
-
-		List<AreaCompetenza> listaAreaCompetenza = Utility.getSession().createQuery("SELECT a FROM AreaCompetenza a JOIN a.candidato c WHERE c.id = :id")
-				.setParameter("id", id).getResultList();
+		List<AreaCompetenza> listaAreaCompetenza = Utility.getSession()
+				.createQuery("SELECT a FROM AreaCompetenza a JOIN a.candidato c WHERE c.id = :id")
+				.setParameter("id", id)
+				.getResultList();
 		Utility.destroySession();
 		return listaAreaCompetenza;
 	}
-
 	
 	@Override
 	public AreaCompetenza cancella(AreaCompetenza area) {
 		return (AreaCompetenza) super.cancella(area);
 	}
-
-
+	
+	@Override
 	public int update(String oldArea, String newArea) {
 
 		Transaction t = Utility.getSession().beginTransaction();	

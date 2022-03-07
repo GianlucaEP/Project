@@ -24,6 +24,7 @@ public class BusinessController {
 	private BusinessDAO dao = (BusinessDAO) factory.getBean("businessDAO");
 	
 	@RequestMapping(value = "/Business/{businessUnit}")
+	@ModelAttribute("business")
 	public String displayBusiness(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
 		
@@ -40,7 +41,6 @@ public class BusinessController {
 			@PathVariable String businessUnit) {
 		aggiungiBusiness(business);
 		return "redirect:/Home/{businessUnit}";
-		
 	}
 	
 	@RequestMapping(value = "/BusinessSaveDaBusiness/{businessUnit}", method = RequestMethod.POST)

@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * {@link Bean Bean} type Object that rapresents seniority table.
+ * {@link Bean Bean} type Object that represents seniority table.
  * */
 @Entity
 @Table(name = "seniority")

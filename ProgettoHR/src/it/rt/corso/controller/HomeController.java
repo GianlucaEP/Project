@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import it.rt.corso.DAO.CandidatoDAO;
 import it.rt.corso.beans.AreaCompetenza;
+import it.rt.corso.beans.Business;
 import it.rt.corso.beans.Candidato;
 import it.rt.corso.beans.Funzionalita;
 import it.rt.corso.beans.Mansione;
@@ -75,6 +76,7 @@ public class HomeController {
 		
 		m.addAttribute("list", list);
 		m.addAttribute("businessUnit", businessUnit);
+		m.addAttribute("business", new Business());
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("mansione", new Mansione());
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
@@ -122,6 +124,7 @@ public class HomeController {
 		m.addAttribute("areaCompetenza", new AreaCompetenza());
 		m.addAttribute("specializzazione", new Specializzazione());
 		m.addAttribute("mansione", new Mansione());
+		m.addAttribute("business", new Business());
 		m.addAttribute("statoSelezionato", requestParams.get("statoSelezionato"));
 		m.addAttribute("funzionalita", listaFunzionalita);
 
