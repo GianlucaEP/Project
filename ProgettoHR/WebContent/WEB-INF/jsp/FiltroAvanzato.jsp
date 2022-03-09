@@ -496,7 +496,7 @@ span {
 							<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
 						</c:when>
 						<c:otherwise>
-							<button type="button" id="exportButton"
+							<button type="button" id="exportButton" onclick="exportToExcel('xlsx', 'res')"
 								class="btn mb-2 mt-4 btn-salva">Esporta Risultati</button>
 
 							<div class="table-responsive">
@@ -1070,20 +1070,28 @@ function controlloMappa() {
 			document.getElementById("aggiuntaNome").innerHTML = nome;
 		}
 	
-	$(document).ready(
-			function nomeDellaFunzione() {
-		        document.getElementById('exportButton').addEventListener("click", function (){
-		            document.getElementById('risultatiTable').table2excel({
-		                exclude: ".noExport",
-		                filename: "Risultati.xls"
-		            });
-		        });
-		    });
-	
-	
+// 	$(document).ready(
+// 			function () {
+// 		        document.getElementById("exportButton").addEventListener("click", function (){
+// 		            document.getElementById("risultatiTable").table2excel({
+// 		            	exclude: ".noExl",
+// 		                filename: "Risultati.xls"
+// 		            });
+// 		        });
+// 		    });
+
+	function exportToExcel(fileExtension, fileName){
+		
+		var el = document.getElementById("risultatiTable");
+		var wb = XLSX.utils.table_to_book(el, {sheet: "sheet1"});
+		return XLSX.writeFile(wb, fileName + "." + fileExtension) || ('MySheetName.' + (fileExtension || 'xlsx'));
+	}
 	
 	</script>
-
+	<!-- table2excel -->
+	<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+	<!-- 	<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script> -->
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>	
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

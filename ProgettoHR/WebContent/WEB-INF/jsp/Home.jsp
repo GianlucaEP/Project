@@ -384,10 +384,6 @@ option:hover {
 									class="btn"> Nuovo utente </a></li>
 							</c:if>
 						</ul>
-						
-						
-						
-						
 						<hr>
 							<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta business")}'>
@@ -399,11 +395,6 @@ option:hover {
 									class="btn"> Visualizza le business unit</a></li>
 							</c:if>
 						</ul>
-							
-				
-				
-				
-				
 						<hr>
 						<ul>
 							<c:if test='${fn:contains(funzionalita, "aggiunta mansione")}'>

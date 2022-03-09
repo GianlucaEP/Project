@@ -24,7 +24,6 @@ public class BusinessController {
 	private BusinessDAO dao = (BusinessDAO) factory.getBean("businessDAO");
 	
 	@RequestMapping(value = "/Business/{businessUnit}")
-	@ModelAttribute("business")
 	public String displayBusiness(Model m, @PathVariable String businessUnit,
 			@SessionAttribute("utente") Utente utente) {
 		

@@ -24,6 +24,6 @@
 		<mapping class="it.rt.corso.beans.StatoCandidato"/>
 		<mapping class="it.rt.corso.beans.TipoFeedback"/>
 		
-		</session-factory>
+	</session-factory>
 
 </hibernate-configuration>  
