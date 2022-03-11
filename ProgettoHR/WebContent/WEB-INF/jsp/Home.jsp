@@ -979,16 +979,17 @@ option:hover {
 		
 	</script>
 	<!-- Popper.JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+		
 	<!-- Bootstrap JS -->
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+		
 	<!-- Font Awesome JS -->
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
 
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+		
 </body>
 </html>

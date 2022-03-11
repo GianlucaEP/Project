@@ -19,7 +19,6 @@ import javax.persistence.Table;
 public class Business implements Bean {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "business")
 	private String business;
 	

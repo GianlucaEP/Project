@@ -496,7 +496,7 @@ span {
 							<h2 id="zeroRecord">La ricerca non ha prodotto alcun risultato</h2>
 						</c:when>
 						<c:otherwise>
-							<button type="button" id="exportButton" onclick="exportToExcel('xlsx', 'res')"
+							<button type="button" id="exportButton" onclick="exportToExcel('xlsx', 'risultati')"
 								class="btn mb-2 mt-4 btn-salva">Esporta Risultati</button>
 
 							<div class="table-responsive">
@@ -714,7 +714,7 @@ span {
 
 	}
 
-function controlloMappa() {
+	function controlloMappa() {
 	  var inputFormArray = document.getElementsByTagName("input");
 	  
 	  for (var i = 0; i < inputFormArray.length; i++) {
@@ -1008,7 +1008,6 @@ function controlloMappa() {
 		for(specializzazione of buildString(specializzazioneList)){
 			if(document.getElementById("specializzazioneInput").value === specializzazione){
 				
-			
 				var tagDiv = document.createElement("div");		
 				var tagInput = document.createElement("input");
 				var tagDivButton = document.createElement("span");
@@ -1050,35 +1049,17 @@ function controlloMappa() {
 			}
 		}
 		$('#errorModal').modal('toggle');
-		document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"
-		
+		document.getElementById("errorModalBody").innerHTML = "Specializzazione inserita non esistente"	
 	}
-
-
-
 
 	function buildString(string) {
 		return string.replace("[", "").replace("]", "").split(", ");
 	}
 
-
-
-
-		function aggiungiNome() {
-
-			nome = document.getElementById("inputNome").value;
-			document.getElementById("aggiuntaNome").innerHTML = nome;
-		}
-	
-// 	$(document).ready(
-// 			function () {
-// 		        document.getElementById("exportButton").addEventListener("click", function (){
-// 		            document.getElementById("risultatiTable").table2excel({
-// 		            	exclude: ".noExl",
-// 		                filename: "Risultati.xls"
-// 		            });
-// 		        });
-// 		    });
+	function aggiungiNome() {
+		nome = document.getElementById("inputNome").value;
+		document.getElementById("aggiuntaNome").innerHTML = nome;
+	}
 
 	function exportToExcel(fileExtension, fileName){
 		
@@ -1088,22 +1069,24 @@ function controlloMappa() {
 	}
 	
 	</script>
-	<!-- table2excel -->
-	<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
-	<!-- 	<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script> -->
-	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>	
+	
+	<!-- export table xls file -->
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+	
 	<!-- Popper.JS -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+		
 	<!-- Bootstrap JS -->
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+		
 	<!-- Font Awesome JS -->
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+		
 </body>
 
 </html>

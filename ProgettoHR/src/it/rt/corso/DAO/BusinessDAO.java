@@ -31,12 +31,6 @@ public interface BusinessDAO {
 	 * */
 	public Business get(String id);
 	
-	
-	
-	
-	
-	
-	//
 	/**
 	 * Get the list of all the Business entities referenced to the given Business id
 	 * 
@@ -64,9 +58,5 @@ public interface BusinessDAO {
 	 * @return the number of updated Business Objects
 	 * */
 	public int update(String oldBusiness, String newBusiness);
-	//
-	
-	
-	
-	
+
 }
