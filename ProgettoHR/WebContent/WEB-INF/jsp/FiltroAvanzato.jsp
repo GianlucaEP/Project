@@ -530,8 +530,7 @@ span {
 												<c:if test="${fn:contains( filter.key, 'mansione0') }">
 													<th scope="col">Mansione</th>
 												</c:if>
-												<c:if
-													test="${fn:contains( filter.key, 'specializzazione0') }">
+												<c:if test="${fn:contains( filter.key, 'specializzazione0') }">
 													<th scope="col">Specializzazione</th>
 												</c:if>
 												<c:if test="${fn:contains( filter.key, 'data') }">

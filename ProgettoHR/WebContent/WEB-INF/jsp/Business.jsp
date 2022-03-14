@@ -32,6 +32,10 @@
 		font-family: 'Poppins', sans-serif;
 	}
 	
+	p {
+		color: red;
+	}
+	
 	body, html {
 		height: 100%;
 		background-image: url("/ProgettoHR/img/msa.jpg");
@@ -299,7 +303,6 @@
 						
 						<div class="table-responsive">
 							<table class="tabellaBusiness">
-							
 								<thead class="head">
 									<tr>
 										<th><h3>BUSINESS UNIT</h3></th>
@@ -466,7 +469,7 @@
 		
 		function impostaParametriBusinessEliminazione(business) {
 			document.getElementById("elimina-business").value = business;
-			document.getElementById("p-elimina-business").innerHTML = "Sei sicuro di voler cancellare la business unit "
+			document.getElementById("p-elimina-business").innerHTML = "ATTENZIONE: cancellando una Business Unit, tutti i candidati appartenenti a quell'unità verranno eliminati per sempre! <br><br> Sei sicuro di voler cancellare la business unit "
 			+ business + "?";
 		}
 		
