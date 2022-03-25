@@ -80,6 +80,18 @@ public class FilterController {
 		Singleton singleton = Singleton.getInstance();
 
 		List<Candidato> list = cdao.getListaByBusinessUnitFiltered(filterMap);
+		
+		if (filterMap.containsKey("costoMin") || filterMap.containsKey("costoMax")) {
+			filterMap.remove("costoMin");
+			filterMap.remove("costoMax");
+			filterMap.put("costo", "");
+		}
+		
+		if (filterMap.containsKey("dataInserimentoFrom") || filterMap.containsKey("dataInserimentoTo")) {
+			filterMap.remove("dataInserimentoFrom");
+			filterMap.remove("dataInserimentoTo");
+			filterMap.put("dataInserimento", "");
+		}
 
 		m.addAttribute("businessList", singleton.getBusinessList());
 		m.addAttribute("ruolo", utente.getRuolo().getRuolo());
